@@ -15,7 +15,7 @@
     return { docs: docs, size: docs.length, empty: !docs.length, docChanges: function () { return []; }, metadata: { fromCache: false, hasPendingWrites: false } };
   }
   function err(e) { return { code: "unavailable", message: (e && e.message) || "error" }; }
-  function memRow(r) { return { __id: r.id, name: r.name, parent: r.parent, rel: r.rel, kind: r.kind || "neshama", by: r.by_name || "", msg: r.msg || "", candles: r.candles || 0, done: r.done || 0, createdAt: new Date(r.created_at).getTime() }; }
+  function memRow(r) { return { __id: r.id, name: r.name, parent: r.parent, rel: r.rel, kind: r.kind || "neshama", by: r.by_name || "", msg: r.msg || "", candles: r.candles || 0, done: r.done || 0, listed: !!r.listed, createdAt: new Date(r.created_at).getTime() }; }
   function chRow(r) { return { __id: String(r.n), s: r.s, by: r.by_name || "", at: new Date(r.at).getTime() }; }
 
   // path helpers: "memorials" | "memorials/<id>/chapters"
@@ -29,12 +29,76 @@
     throw new Error("unknown path " + path);
   }
 
+  function rpc(fn, args) {
+    return sb.rpc(fn, args).then(function (res) { if (res.error) throw err(res.error); return res.data; });
+  }
+
+  // קריאה אחת מביאה את הקריאה כולה (גם כשאינה ברשימה הציבורית): {mem, chapters} או {mem:null, chapters:[]}
+  function loadMem(id) {
+    return rpc("get_memorial", { p_id: id }).then(function (d) {
+      if (!d || !d.memorial) return { mem: null, chapters: [] };
+      return { mem: memRow(d.memorial), chapters: (d.chapters || []).map(chRow) };
+    });
+  }
+
+  // poller אחד לכל קריאה, משותף למאזיני המסמך והפרקים. מודיע רק כשמשהו השתנה.
+  var POLL_MS = 8000, pollers = {};
+  function part(sub, state) {
+    return sub.what === "chapters" ? snapQuery(state.chapters) : snapDoc(sub.id, state.mem);
+  }
+  function partKey(sub, state) { return JSON.stringify(sub.what === "chapters" ? state.chapters : state.mem); }
+  function deliver(p, sub) {
+    if (sub.dead || !p.state) return;
+    var k = partKey(sub, p.state);
+    if (k === sub.key) return;
+    sub.key = k;
+    sub.next(part(sub, p.state));
+  }
+  function refresh(id) {
+    var p = pollers[id];
+    if (!p) return;
+    if (p.busy) { p.again = true; return; }
+    p.busy = true;
+    loadMem(id).then(function (state) {
+      p.state = state;
+      p.subs.slice().forEach(function (sub) { deliver(p, sub); });
+    }, function (e) {
+      p.subs.slice().forEach(function (sub) { if (!sub.dead && sub.onErr) sub.onErr(e && e.code ? e : err(e)); });
+    }).then(function () {
+      p.busy = false;
+      if (p.again) { p.again = false; refresh(id); }
+    });
+  }
+  function watch(id, what, next, onErr) {
+    var p = pollers[id];
+    if (!p) {
+      p = pollers[id] = { subs: [], state: null, busy: false, again: false, timer: null };
+      p.timer = setInterval(function () { if (typeof document === "undefined" || !document.hidden) refresh(id); }, POLL_MS);
+    }
+    var sub = { id: id, what: what, next: next, onErr: onErr, key: null, dead: false };
+    p.subs.push(sub);
+    if (p.state) setTimeout(function () { deliver(p, sub); }, 0); // מה שכבר ידוע, מיד
+    refresh(id);
+    return function () {
+      if (sub.dead) return;
+      sub.dead = true;
+      p.subs.splice(p.subs.indexOf(sub), 1);
+      if (!p.subs.length && pollers[id] === p) { clearInterval(p.timer); delete pollers[id]; }
+    };
+  }
+  if (typeof document !== "undefined" && document.addEventListener) {
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) Object.keys(pollers).forEach(refresh);
+    });
+  }
+
   function fetchQuery(q) {
     if (q.kind === "memorials") {
+      // הרשימה הציבורית: השרת מחזיר רק קריאות שסומנו listed
       var r = sb.from("memorials").select("*").order("created_at", { ascending: false }).limit(q.limit || 200);
       return r.then(function (res) { if (res.error) throw res.error; return res.data.map(memRow); });
     }
-    return sb.from("chapters").select("*").eq("memorial_id", q.mid).then(function (res) { if (res.error) throw res.error; return res.data.map(chRow); });
+    return loadMem(q.mid).then(function (state) { return state.chapters; });
   }
 
   function query(path) {
@@ -43,23 +107,22 @@
       orderBy: function () { return api; },
       limit: function (n) { q.limit = n; return api; },
       where: function () { return api; },
-      get: function () { return fetchQuery(q).then(snapQuery); },
+      get: function () { return fetchQuery(q).then(snapQuery, function (e) { throw e && e.code ? e : err(e); }); },
       add: function (d) {
-        return sb.rpc("create_memorial", { p_name: d.name, p_parent: d.parent || "", p_rel: d.rel, p_by: d.by || "", p_msg: d.msg || "", p_kind: d.kind || "neshama" })
-          .then(function (res) { if (res.error) throw err(res.error); return { id: String(res.data) }; });
+        return rpc("create_memorial", { p_name: d.name, p_parent: d.parent || "", p_rel: d.rel, p_by: d.by || "", p_msg: d.msg || "", p_kind: d.kind || "neshama", p_listed: !!d.listed })
+          .then(function (id) { return { id: String(id) }; });
       },
       doc: function (id) { return docRef(path + "/" + id); },
       onSnapshot: function (next, onErr) {
+        if (q.kind === "chapters") return watch(q.mid, "chapters", next, onErr);
         var alive = true, timer = null;
         function load() { fetchQuery(q).then(function (rows) { if (alive) next(snapQuery(rows)); }, function (e) { if (alive && onErr) onErr(err(e)); }); }
         function soon() { clearTimeout(timer); timer = setTimeout(load, 250); }
         load();
-        var table = q.kind === "memorials" ? "memorials" : "chapters";
-        var opts = { event: "*", schema: "public", table: table };
-        if (q.kind === "chapters") opts.filter = "memorial_id=eq." + q.mid;
-        var ch = sb.channel(table + "-" + (q.mid || "all") + "-" + Math.random().toString(36).slice(2)).on("postgres_changes", opts, soon).subscribe();
+        var opts = { event: "*", schema: "public", table: "memorials" };
+        var ch = sb.channel("memorials-all-" + Math.random().toString(36).slice(2)).on("postgres_changes", opts, soon).subscribe();
         var poll = setInterval(load, 30000); // גיבוי אם realtime כבוי
-        return function () { alive = false; clearInterval(poll); sb.removeChannel(ch); };
+        return function () { alive = false; clearTimeout(timer); clearInterval(poll); sb.removeChannel(ch); };
       }
     };
     return api;
@@ -71,29 +134,46 @@
       id: path.split("/").pop(), path: path,
       get: function () {
         if (q.kind === "chapter") {
-          return sb.from("chapters").select("*").eq("memorial_id", q.mid).eq("n", q.n).maybeSingle()
-            .then(function (res) { if (res.error) throw err(res.error); return snapDoc(q.n, res.data ? chRow(res.data) : null); });
+          return loadMem(q.mid).then(function (state) {
+            var hit = null;
+            state.chapters.forEach(function (c) { if (c.__id === String(q.n)) hit = c; });
+            return snapDoc(q.n, hit);
+          });
         }
-        return sb.from("memorials").select("*").eq("id", q.id).maybeSingle()
-          .then(function (res) { if (res.error) throw err(res.error); return snapDoc(q.id, res.data ? memRow(res.data) : null); });
+        return loadMem(q.id).then(function (state) { return snapDoc(q.id, state.mem); });
       },
+      // פרק: {s:'claimed',by} -> {ok:true|false} ; {s:'done',by} -> {done:<מספר>|null}
       set: function (d) {
         if (q.kind !== "chapter") return Promise.reject(err({ message: "unsupported" }));
-        var fn = d.s === "done" ? "finish_chapter" : "claim_chapter";
-        return sb.rpc(fn, { p_mid: q.mid, p_n: q.n, p_by: d.by || "" }).then(function (res) { if (res.error) throw err(res.error); });
+        var done = d.s === "done";
+        return rpc(done ? "finish_chapter" : "claim_chapter", { p_mid: q.mid, p_n: q.n, p_by: d.by || "" }).then(function (v) {
+          refresh(q.mid);
+          return done ? { done: typeof v === "number" ? v : null } : { ok: v === true };
+        });
+      },
+      // פרק פנוי כלשהו בסבב הנוכחי: מחזיר את המפתח (פרק + 150*(סבב-1)) או null כשאין פנוי
+      takeChapter: function (by) {
+        if (q.kind !== "memorial") return Promise.reject(err({ message: "unsupported" }));
+        return rpc("take_chapter", { p_mid: q.id, p_by: by || "" }).then(function (v) {
+          refresh(q.id);
+          return typeof v === "number" ? v : null;
+        });
       },
       update: function (d) {
         if (q.kind !== "memorial") return Promise.reject(err({ message: "unsupported" }));
-        if ("candles" in d) return sb.rpc("light_candle", { p_mid: q.id }).then(function (res) { if (res.error) throw err(res.error); });
+        if ("candles" in d) return rpc("light_candle", { p_mid: q.id }).then(function () { refresh(q.id); });
         return Promise.resolve(); // "done" מחושב בשרת
       },
       delete: function () { return Promise.reject(err({ message: "unsupported" })); },
-      onSnapshot: function () { return function () {}; },
+      onSnapshot: function (next, onErr) {
+        if (q.kind === "memorial") return watch(q.id, "memorial", next, onErr);
+        return function () {}; // פרק בודד: לא נדרש באתר
+      },
       collection: function (sub) { return query(path + "/" + sub); }
     };
   }
 
-  var db = sb ? { collection: query, doc: docRef } : null;
+  var db = sb ? { collection: query, doc: docRef, features: { takeChapter: true, listed: true } } : null;
   var user = sb ? { can: function () { return true; }, isOwner: function () { return false; }, canEdit: function () { return false; } } : null;
 
   // ---- AI: streams from /api/ask (Cloudflare Pages Function) ----

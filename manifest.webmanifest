@@ -1,17 +1,18 @@
 {
-  "name": "Tfilah.com – סידור, תהילים וזמני היום",
-  "short_name": "Tfilah",
+  "name": "תפילה: סידור, תהילים וקריאה משותפת",
+  "short_name": "תפילה",
   "lang": "he",
   "dir": "rtl",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
-  "description": "סידור תפילה מלא בשלושה נוסחים, ספר תהילים, זמני היום, ונר לעילוי נשמת.",
+  "background_color": "#F6F0E4",
+  "theme_color": "#F6F0E4",
+  "description": "סידור תפילה מלא בשלושה נוסחים, ספר תהילים וקריאת תהילים משותפת. כל אחד פרק, ביחד ספר שלם.",
   "icons": [
+    { "src": "brand/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

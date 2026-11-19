@@ -3,8 +3,8 @@
 The mark is three paper pieces that join into the letter tav. Every file is
 plain vector shapes: no embedded bitmap and no font needed at display time.
 
-Needs fonttools and a Frank Ruhl Libre 900 + Heebo 500 font file:
-  python3 tools/build-logo.py <frank-ruhl-900.woff> <heebo-500.woff>
+Needs fonttools, a Bellefair (Hebrew) font file for the wordmark and a Latin UI font for the domain:
+  python3 tools/build-logo.py <bellefair-hebrew.woff> <assistant-latin-600.woff>
 """
 import sys, os
 from fontTools.ttLib import TTFont
@@ -13,16 +13,18 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#F7F4EC", "#18233F", "#2456C8"
+PAPER, INK, STAMP = "#EEF0F3", "#15181E", "#5F6B7C"
 
 # 32-unit grid. roof, right leg, left leg with its foot
 ROOF = "M3.8 4.8H26.2L28.2 6.8V9.4H3.8Z"
 RIGHT = "M22 12.8H28.2V27.2H22Z"
 LEFT = "M10.2 12.8H16.4V27.2H3.8V24.6L5.8 22.6H10.2Z"
 
-def mark(roof=INK, right=INK, left=STAMP):
+GRAD = '<defs><linearGradient id="tfs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A3ACB9"/><stop offset=".5" stop-color="#6F7A89"/><stop offset="1" stop-color="#98A2B0"/></linearGradient></defs>'
+def mark(roof=INK, right=INK, left="url(#tfs)"):
     j = 'stroke-width="1.6" stroke-linejoin="round"'  # soft corners
-    return f'<path d="{ROOF}" fill="{roof}" stroke="{roof}" {j}/><path d="{RIGHT}" fill="{right}" stroke="{right}" {j}/><path d="{LEFT}" fill="{left}" stroke="{left}" {j}/>'
+    g = GRAD if "url(" in left else ""
+    return f'{g}<path d="{ROOF}" fill="{roof}" stroke="{roof}" {j}/><path d="{RIGHT}" fill="{right}" stroke="{right}" {j}/><path d="{LEFT}" fill="{left}" stroke="{left}" {j}/>'
 
 def text_path(font_file, text, size, x_right=None, x_left=None, baseline=0):
     """outline `text` (already in visual order, left to right) as one path"""
@@ -51,7 +53,7 @@ def main():
     write("icon-maskable.svg", 32, 32, f'<rect width="32" height="32" fill="{INK}"/><g transform="translate(7 7) scale(.5625)">{mark(PAPER, PAPER, PAPER)}</g>', "תפילה")
     # horizontal lockup, right to left: mark, then the wordmark, domain under it
     word = "הליפת"  # visual order of תפילה
-    wd, ww = text_path(frank, word, 30, x_left=0, baseline=0)
+    wd, ww = text_path(frank, word, 33, x_left=0, baseline=0)
     dd, dw = text_path(heebo, "tfilah.com", 8.4, x_left=0, baseline=0)
     W = round(ww + 12 + 32 + 2, 1)
     lock = (f'<g transform="translate({W-32} 4)">{mark()}</g>'

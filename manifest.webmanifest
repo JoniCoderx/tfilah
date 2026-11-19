@@ -1,0 +1,17 @@
+{
+  "name": "Tfilah.com – סידור, תהילים וזמני היום",
+  "short_name": "Tfilah",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "description": "סידור תפילה מלא בשלושה נוסחים, ספר תהילים, זמני היום, ונר לעילוי נשמת.",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

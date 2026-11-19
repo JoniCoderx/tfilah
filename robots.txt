@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tfilah.com/sitemap.xml

@@ -34,7 +34,7 @@ head = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
-<meta name="theme-color" content="#F7FAFE">
+<meta name="theme-color" content="#FCF8F8">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,10 +61,10 @@ head = f"""<!doctype html>
 <body>
 """
 SEO_NAV = ('<nav class="seo-links" aria-label="כל הדפים" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 16px">'
-  '<a href="/tefila/" style="color:#4D607A">סידור תפילה</a><a href="/tehillim/" style="color:#4D607A">ספר תהילים</a>'
-  '<a href="/tehillim/20/" style="color:#4D607A">תהילים כ</a><a href="/tehillim/91/" style="color:#4D607A">תהילים צא</a>'
-  '<a href="/tehillim/121/" style="color:#4D607A">תהילים קכא</a><a href="/sefer/" style="color:#4D607A">ספרייה</a>'
-  '<a href="/sefer/perek/" style="color:#4D607A">פרק שירה</a><a href="/sefer/avot/" style="color:#4D607A">פרקי אבות</a></nav>')
+  '<a href="/tefila/" style="color:#6E5560">סידור תפילה</a><a href="/tehillim/" style="color:#6E5560">ספר תהילים</a>'
+  '<a href="/tehillim/20/" style="color:#6E5560">תהילים כ</a><a href="/tehillim/91/" style="color:#6E5560">תהילים צא</a>'
+  '<a href="/tehillim/121/" style="color:#6E5560">תהילים קכא</a><a href="/sefer/" style="color:#6E5560">ספרייה</a>'
+  '<a href="/sefer/perek/" style="color:#6E5560">פרק שירה</a><a href="/sefer/avot/" style="color:#6E5560">פרקי אבות</a></nav>')
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable
 open(out, "w", encoding="utf-8").write(s)

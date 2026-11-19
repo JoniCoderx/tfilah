@@ -6,8 +6,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#F7FAFE",
-  "theme_color": "#F7FAFE",
+  "background_color": "#FCF8F8",
+  "theme_color": "#FCF8F8",
   "description": "סידור תפילה מלא בשלושה נוסחים, ספר תהילים וקריאת תהילים משותפת. כל אחד פרק, ביחד ספר שלם.",
   "icons": [
     { "src": "brand/favicon.svg", "sizes": "any", "type": "image/svg+xml" },

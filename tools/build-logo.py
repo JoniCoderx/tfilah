@@ -13,15 +13,17 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#F7FAFE", "#0C2340", "#B7791F"
+PAPER, INK, STAMP = "#FCF8F8", "#4A1426", "#8E1F3F"
 
-# 32-unit grid. Three pieces of similar weight with a 4-unit gap, so they stay apart at 16px.
-ROOF = "M2 2H24Q30 2 30 8V9H2Z"   # the top edge curls down like the corner of a page
-RIGHT = "M21 13H30V30H21Z"
-LEFT = "M8 13H17V30H2L8 23Z"      # the left leg ends in a pointed foot
+# 32-unit grid. The gate: one rounded stroke that is both the letter tav and a doorway, and a point of light inside it.
+GATE = "M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5"
+G1, G2, G3 = "#A32449", "#7A1935", "#4A1426"
+GRAD = f'<defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{G1}"/><stop offset=".52" stop-color="{G2}"/><stop offset="1" stop-color="{G3}"/></linearGradient></defs>'
 
-def mark(roof=INK, right=INK, left=INK):
-    return f'<path d="{ROOF}" fill="{roof}"/><path d="{RIGHT}" fill="{right}"/><path d="{LEFT}" fill="{left}"/>'
+def mark(roof=None, right=None, left=None, colour="url(#tfg)"):
+    g = GRAD if "url(" in colour else ""
+    return (f'{g}<path d="{GATE}" fill="none" stroke="{colour}" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="16" cy="19.4" r="2.6" fill="{colour}"/>')
 
 def text_path(font_file, text, size, x_right=None, x_left=None, baseline=0):
     """outline `text` (already in visual order, left to right) as one path"""
@@ -43,11 +45,11 @@ def main():
     frank, heebo = sys.argv[1], sys.argv[2]
     os.makedirs(OUT, exist_ok=True)
     write("mark.svg", 32, 32, mark(), "תפילה")
-    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor"/>', "תפילה")
+    write("mark-mono.svg", 32, 32, mark(colour="currentColor"), "תפילה")
     # favicon / app icon: paper mark on an ink tile
-    tile = f'<rect width="32" height="32" rx="7" fill="{INK}"/><g transform="translate(3.2 3.2) scale(.8)">{mark(PAPER, PAPER, PAPER)}</g>'
+    tile = f'{GRAD}<rect width="32" height="32" rx="9" fill="url(#tfg)"/>{mark(colour="#FFFFFF")}'
     write("favicon.svg", 32, 32, tile, "תפילה")
-    write("icon-maskable.svg", 32, 32, f'<rect width="32" height="32" fill="{INK}"/><g transform="translate(7 7) scale(.5625)">{mark(PAPER, PAPER, PAPER)}</g>', "תפילה")
+    write("icon-maskable.svg", 32, 32, f'{GRAD}<rect width="32" height="32" fill="url(#tfg)"/><g transform="translate(5.6 5.6) scale(.65)">{mark(colour="#FFFFFF")}</g>', "תפילה")
     # horizontal lockup, right to left: mark, then the wordmark, domain under it
     word = "הליפת"  # visual order of תפילה
     wd, ww = text_path(frank, word, 30, x_left=0, baseline=0)

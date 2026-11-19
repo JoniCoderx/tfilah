@@ -13,18 +13,15 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#EEF0F3", "#15181E", "#5F6B7C"
+PAPER, INK, STAMP = "#F6F0E4", "#351A29", "#A6781F"
 
-# 32-unit grid. roof, right leg, left leg with its foot
-ROOF = "M3.8 4.8H26.2L28.2 6.8V9.4H3.8Z"
-RIGHT = "M22 12.8H28.2V27.2H22Z"
-LEFT = "M10.2 12.8H16.4V27.2H3.8V24.6L5.8 22.6H10.2Z"
+# 32-unit grid. Three pieces of similar weight with a 4-unit gap, so they stay apart at 16px.
+ROOF = "M2 2H24Q30 2 30 8V9H2Z"   # the top edge curls down like the corner of a page
+RIGHT = "M21 13H30V30H21Z"
+LEFT = "M8 13H17V30H2L8 23Z"      # the left leg ends in a pointed foot
 
-GRAD = '<defs><linearGradient id="tfs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A3ACB9"/><stop offset=".5" stop-color="#6F7A89"/><stop offset="1" stop-color="#98A2B0"/></linearGradient></defs>'
-def mark(roof=INK, right=INK, left="url(#tfs)"):
-    j = 'stroke-width="1.6" stroke-linejoin="round"'  # soft corners
-    g = GRAD if "url(" in left else ""
-    return f'{g}<path d="{ROOF}" fill="{roof}" stroke="{roof}" {j}/><path d="{RIGHT}" fill="{right}" stroke="{right}" {j}/><path d="{LEFT}" fill="{left}" stroke="{left}" {j}/>'
+def mark(roof=INK, right=INK, left=INK):
+    return f'<path d="{ROOF}" fill="{roof}"/><path d="{RIGHT}" fill="{right}"/><path d="{LEFT}" fill="{left}"/>'
 
 def text_path(font_file, text, size, x_right=None, x_left=None, baseline=0):
     """outline `text` (already in visual order, left to right) as one path"""
@@ -46,9 +43,9 @@ def main():
     frank, heebo = sys.argv[1], sys.argv[2]
     os.makedirs(OUT, exist_ok=True)
     write("mark.svg", 32, 32, mark(), "תפילה")
-    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>', "תפילה")
+    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor"/>', "תפילה")
     # favicon / app icon: paper mark on an ink tile
-    tile = f'<rect width="32" height="32" rx="7" fill="{INK}"/><g transform="translate(2.9 2.9) scale(.82)">{mark(PAPER, PAPER, PAPER)}</g>'
+    tile = f'<rect width="32" height="32" rx="7" fill="{INK}"/><g transform="translate(3.2 3.2) scale(.8)">{mark(PAPER, PAPER, PAPER)}</g>'
     write("favicon.svg", 32, 32, tile, "תפילה")
     write("icon-maskable.svg", 32, 32, f'<rect width="32" height="32" fill="{INK}"/><g transform="translate(7 7) scale(.5625)">{mark(PAPER, PAPER, PAPER)}</g>', "תפילה")
     # horizontal lockup, right to left: mark, then the wordmark, domain under it

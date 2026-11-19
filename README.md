@@ -66,7 +66,7 @@
 - שם המותג בממשק: „תפילה”. הדומיין `tfilah.com` הוא חתימה משנית.
 - `brand/`: הלוגו כ-SVG וקטורי (בלי תמונה מוטמעת ובלי תלות בפונט): `mark.svg`, `mark-mono.svg`, `favicon.svg`, `icon-maskable.svg`, `logo.svg`, `logo-header.svg`.
 - `python3 tools/build-logo.py <bellefair-hebrew.woff> <assistant-latin-600.woff>` מייצר אותם מחדש. הלוגו שבכותרת האפליקציה מוטמע ב-`src/app.html`; אם משנים את הסמל, מעדכנים גם שם.
-- צבעים: נייר `#EEF0F3`, דיו `#15181E`, אדום חותמת `#5F6B7C`. שכבת העיצוב נמצאת בסוף ה-CSS של `src/app.html` תחת ההערה `SEFER`.
+- צבעים: נייר `#F6F0E4`, דיו `#351A29`, אדום חותמת `#A6781F`. שכבת העיצוב נמצאת בסוף ה-CSS של `src/app.html` תחת ההערה `SEFER`.
 
 ## תהילים יחד (עדכון מסד הנתונים)
 - מריצים את כל `supabase.sql` ב-SQL Editor. הקובץ בטוח להרצה חוזרת, גם על מסד קיים מהגרסה הקודמת.

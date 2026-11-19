@@ -1,5 +1,5 @@
 // Tfilah.com offline support: the siddur and Tehillim keep working without internet.
-const VERSION = "tfilah-v18";
+const VERSION = "tfilah-v19";
 const CORE = ["/", "/index.html", "/config.js", "/shim.js", "/manifest.webmanifest",
   "/data/index.json", "/data/tehillim.json", "/data/books.json", "/icons/icon-192.png", "/brand/favicon.svg"];
 

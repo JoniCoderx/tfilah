@@ -13,7 +13,7 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#F6F0E4", "#351A29", "#A6781F"
+PAPER, INK, STAMP = "#F7FAFE", "#0C2340", "#B7791F"
 
 # 32-unit grid. Three pieces of similar weight with a 4-unit gap, so they stay apart at 16px.
 ROOF = "M2 2H24Q30 2 30 8V9H2Z"   # the top edge curls down like the corner of a page
@@ -50,7 +50,7 @@ def main():
     write("icon-maskable.svg", 32, 32, f'<rect width="32" height="32" fill="{INK}"/><g transform="translate(7 7) scale(.5625)">{mark(PAPER, PAPER, PAPER)}</g>', "תפילה")
     # horizontal lockup, right to left: mark, then the wordmark, domain under it
     word = "הליפת"  # visual order of תפילה
-    wd, ww = text_path(frank, word, 33, x_left=0, baseline=0)
+    wd, ww = text_path(frank, word, 30, x_left=0, baseline=0)
     dd, dw = text_path(heebo, "tfilah.com", 8.4, x_left=0, baseline=0)
     W = round(ww + 12 + 32 + 2, 1)
     lock = (f'<g transform="translate({W-32} 4)">{mark()}</g>'

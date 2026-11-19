@@ -13,15 +13,16 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#F6F0E4", "#351A29", "#A3342B"
+PAPER, INK, STAMP = "#F7F4EC", "#18233F", "#2456C8"
 
 # 32-unit grid. roof, right leg, left leg with its foot
-ROOF = "M3 4H26.4L29 6.6V10H3Z"
-RIGHT = "M21.4 12H29V28H21.4Z"
-LEFT = "M9.6 12H17.2V28H3V24.4L5.6 21.8H9.6Z"
+ROOF = "M3.8 4.8H26.2L28.2 6.8V9.4H3.8Z"
+RIGHT = "M22 12.8H28.2V27.2H22Z"
+LEFT = "M10.2 12.8H16.4V27.2H3.8V24.6L5.8 22.6H10.2Z"
 
 def mark(roof=INK, right=INK, left=STAMP):
-    return f'<path d="{ROOF}" fill="{roof}"/><path d="{RIGHT}" fill="{right}"/><path d="{LEFT}" fill="{left}"/>'
+    j = 'stroke-width="1.6" stroke-linejoin="round"'  # soft corners
+    return f'<path d="{ROOF}" fill="{roof}" stroke="{roof}" {j}/><path d="{RIGHT}" fill="{right}" stroke="{right}" {j}/><path d="{LEFT}" fill="{left}" stroke="{left}" {j}/>'
 
 def text_path(font_file, text, size, x_right=None, x_left=None, baseline=0):
     """outline `text` (already in visual order, left to right) as one path"""
@@ -43,7 +44,7 @@ def main():
     frank, heebo = sys.argv[1], sys.argv[2]
     os.makedirs(OUT, exist_ok=True)
     write("mark.svg", 32, 32, mark(), "תפילה")
-    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor"/>', "תפילה")
+    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>', "תפילה")
     # favicon / app icon: paper mark on an ink tile
     tile = f'<rect width="32" height="32" rx="7" fill="{INK}"/><g transform="translate(2.9 2.9) scale(.82)">{mark(PAPER, PAPER, PAPER)}</g>'
     write("favicon.svg", 32, 32, tile, "תפילה")

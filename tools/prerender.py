@@ -58,7 +58,7 @@ def load_logo():
 LOGO = load_logo()
 
 CSS = """
-:root{--paper:#F6F0E4;--surface:#FBF7EE;--ink:#351A29;--ink2:#4A2E3D;--muted:#6B5560;--line:#DDD0BC;--sunk:#EDE4D3;--stamp:#A3342B;
+:root{--paper:#F7F4EC;--surface:#FDFCF8;--ink:#18233F;--ink2:#2C3857;--muted:#586078;--line:#DAD6CA;--sunk:#ECE9E0;--stamp:#2456C8;
 --reading:1.32rem;--f-head:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--f-ui:"Heebo",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;--top:3.25rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
@@ -212,7 +212,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/icons/og.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F6F0E4"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F4EC"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;500;700&family=Noto+Serif+Hebrew:wght@400;700&display=swap">

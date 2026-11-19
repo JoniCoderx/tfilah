@@ -1,7 +1,7 @@
 // Tfilah.com offline support: the siddur and Tehillim keep working without internet.
-const VERSION = "tfilah-v15";
+const VERSION = "tfilah-v16";
 const CORE = ["/", "/index.html", "/config.js", "/shim.js", "/manifest.webmanifest",
-  "/data/index.json", "/data/tehillim.json", "/data/books.json", "/icons/icon-192.png"];
+  "/data/index.json", "/data/tehillim.json", "/data/books.json", "/icons/icon-192.png", "/brand/favicon.svg"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

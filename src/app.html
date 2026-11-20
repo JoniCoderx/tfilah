@@ -1085,6 +1085,8 @@ footer .fb span{color:var(--muted);font-family:var(--f-ui);font-weight:500;font-
 footer nav{display:flex;flex-wrap:wrap;gap:2px 18px;margin:6px 0 10px}
 footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink)}
 .candle{display:none}
+/* audit: touch targets of at least 44px on phones for the controls people actually tap */
+@media (max-width:820px){.gcard li a,.chip,.smartbar button,article.text details summary{min-height:44px}.cats a,.hlink,.vref{min-height:44px;display:inline-flex;align-items:center}.logo{min-block-size:44px}}
 </style>
 
 <div class="progress" id="prog" aria-hidden="true"></div>
@@ -1119,9 +1121,9 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 <div class="pal" id="pal" hidden role="dialog" aria-modal="true" aria-label="חיפוש מהיר">
   <div class="palbox">
     <div class="palin"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <label for="palq" class="sr">חיפוש</label><input id="palq" type="search" autocomplete="off" placeholder="תפילה, ברכה, פרק תהילים (למשל כג)…">
+      <label for="palq" class="sr">חיפוש</label><input id="palq" type="search" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="pallist" aria-autocomplete="list" placeholder="תפילה, ברכה, פרק תהילים (למשל כג)…">
       <button class="iconbtn" type="button" id="palx" aria-label="סגירה" style="width:34px;height:34px;border:0"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-    <div class="pallist" id="pallist" role="listbox"></div>
+    <div class="pallist" id="pallist" role="listbox" aria-label="תוצאות החיפוש"></div>
     <div class="palfoot"><span>↑↓ לבחירה</span><span>Enter לפתיחה</span><span>Esc לסגירה</span></div>
   </div>
 </div>
@@ -1363,7 +1365,7 @@ function zCard(){let z=null;try{z=zmanim()}catch(e){}if(!z)return'';const now=ne
     ${rows.map(([l,t])=>`<div class="zrow${nextT&&t===nextT[1]?' next':t<now?' past':''}"><span>${l}</span><b>${fmtT(t,z.tz)}</b></div>`).join('')}
     ${st?`<div class="zshab"><div><span>הדלקת נרות</span><b>${fmtT(st.candle,st.tz)}</b></div><div><span>צאת שבת</span><b>${fmtT(st.havdala,st.tz)}</b></div>${st.rt?`<div><span>רבנו תם</span><b>${fmtT(st.rt,st.tz)}</b></div>`:''}</div>`:''}
     <button class="zmore" type="button" id="zmore">${zAll?'הצגת הזמנים העיקריים':'כל הזמנים: מג״א, מנחה קטנה, פלג, ר״ת'}</button></section>`}
-function bindZ(){const b=$('#zmore');if(b)b.onclick=()=>{zAll=!zAll;$('#zcard').outerHTML=zCard();bindZ()};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
+function bindZ(){const b=$('#zmore');if(b)b.onclick=()=>{zAll=!zAll;$('#zcard').outerHTML=zCard();bindZ();$('#zmore')?.focus({preventScroll:true})};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
 function omerCard(){const om=omerToday();if(!om)return'';const p=findPrayer(/ספירת העומר/);
   return `<div class="card omer reveal"><span class="eyebrow">ספירת העומר</span><div class="cnt">${gem(om)}</div><b style="font-family:var(--f-read)">${omerText(om)}</b>${p?`<a class="chip" href="#p-${p.id}" style="justify-self:start">לנוסח הספירה</a>`:''}</div>`}
 function holCard(){const hol=upcomingHC(5)||upcoming(4);if(!hol.length)return'';
@@ -1511,7 +1513,7 @@ async function giveChapter(id){if(giving||!DB)return null;giving=true;try{
   const n=(key-1)%150+1;keepMine(id,[key]);sessionStorage.setItem('mctx',JSON.stringify({id,n,k:key}));location.hash='t-'+n;return n}
   catch(e){toast('לא הצלחנו לתת פרק כרגע. בדקו את החיבור ונסו שוב');return null}finally{giving=false}}
 function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)return;
-  if(!DB){app.innerHTML=`<div class="empty" style="margin-top:30px"><b>התפילה זמינה למחוברים</b>היכנסו לחשבון כדי לראות את הדף ולהשתתף.</div>${footer()}`;return}
+  if(!DB){app.innerHTML=`<h1 class="sr">תהילים יחד</h1><div class="empty" style="margin-top:30px"><b>התפילה זמינה למחוברים</b>היכנסו לחשבון כדי לראות את הדף ולהשתתף.</div>${footer()}`;return}
   const m=memById(id);
   if(!m&&memOne===null){app.innerHTML='<p class="loading">פותחים את הקריאה…</p>';return}
   if(!m){app.innerHTML=`<div class="empty" style="margin-top:30px"><b>הקריאה לא נמצאה</b>ייתכן שהקישור שגוי או שהקריאה הוסרה. <a href="#zikaron">לתהילים יחד</a></div>${footer()}`;return}
@@ -1617,13 +1619,14 @@ function bindTools(rerender){const apply=()=>document.documentElement.style.setP
   {const rt=$('#rt');if(rt)document.documentElement.style.setProperty('--rth',rt.offsetHeight+'px')}
   const pop=$('#rpop'),aa=$('#aa');
   aa.onclick=e=>{e.stopPropagation();pop.hidden=!pop.hidden;aa.setAttribute('aria-expanded',String(!pop.hidden))};
+  $('#rt').addEventListener('keydown',e=>{if(e.key==='Escape'&&!pop.hidden){e.stopPropagation();pop.hidden=true;aa.setAttribute('aria-expanded','false');aa.focus()}});
   document.addEventListener('click',function oc(e){if(!document.body.contains(pop)){document.removeEventListener('click',oc);return}
     if(!e.target.isConnected)return;if(!pop.hidden&&!pop.contains(e.target)&&!aa.contains(e.target)){pop.hidden=true;aa.setAttribute('aria-expanded','false')}});
   $('#rback').onclick=()=>{history.length>1?history.back():(location.hash='home')};
   $$('#asc button').forEach(b=>b.onclick=()=>{autoScroll(+b.dataset.s);if(+b.dataset.s){pop.hidden=true;aa.setAttribute('aria-expanded','false');toast('גלילה אוטומטית. נגיעה במסך עוצרת')}});
   $('#fm').onclick=()=>{fontScale=Math.max(.95,+(fontScale-.12).toFixed(2));store.set('fs',fontScale);apply()};
   $('#fp').onclick=()=>{fontScale=Math.min(2.6,+(fontScale+.12).toFixed(2));store.set('fs',fontScale);apply()};
-  $('#nk').onclick=()=>{nikud=!nikud;store.set('nikud',nikud);rerender();const p=$('#rpop');if(p){p.hidden=false;$('#aa').setAttribute('aria-expanded','true')}};
+  $('#nk').onclick=()=>{nikud=!nikud;store.set('nikud',nikud);rerender();const p=$('#rpop');if(p){p.hidden=false;$('#aa').setAttribute('aria-expanded','true');$('#nk')?.focus({preventScroll:true})}};
   $$('.fontpick button').forEach(b=>b.onclick=()=>{readFont=b.dataset.f;store.set('rf2',readFont);applyFont();$$('.fontpick button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
   $('#wk').onclick=async()=>{const b=$('#wk');if(wakeLock){try{await wakeLock.release()}catch(e){}wakeLock=null;b.setAttribute('aria-pressed','false');b.textContent='כבוי';return}
     try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;const w=$('#wk');if(w){w.setAttribute('aria-pressed','false');w.textContent='כבוי'}});b.setAttribute('aria-pressed','true');b.textContent='פעיל';toast('המסך יישאר דולק בזמן התפילה')}
@@ -1725,7 +1728,7 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
       <article class="text">${body}</article>
       <nav class="pager">${prev?`<a class="card" href="#p-${prev.items[0].id}"><small>→ הקודם</small><b>${esc(prev.parts.at(-1))}</b></a>`:''}${next?`<a class="card next" href="#p-${next.items[0].id}"><small>הבא ←</small><b>${esc(next.parts.at(-1))}</b></a>`:''}</nav>${footer()}`;
     bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)});
-    const so=$('#smartoff'),sn=$('#smarton');if(so)so.onclick=()=>{smartOn=false;store.set('smart',false);const y=scrollY;draw();scrollTo(0,y)};if(sn)sn.onclick=()=>{smartOn=true;store.set('smart',true);const y=scrollY;draw();scrollTo(0,y)};
+    const so=$('#smartoff'),sn=$('#smarton');if(so)so.onclick=()=>{smartOn=false;store.set('smart',false);const y=scrollY;draw();scrollTo(0,y);$('#smarton')?.focus({preventScroll:true})};if(sn)sn.onclick=()=>{smartOn=true;store.set('smart',true);const y=scrollY;draw();scrollTo(0,y);$('#smartoff')?.focus({preventScroll:true})};
     $$('.fav').forEach(b=>b.onclick=e=>{const k=b.dataset.id;favs.has(k)?favs.delete(k):favs.add(k);store.set('favs',[...favs]);b.setAttribute('aria-pressed',favs.has(k));if(favs.has(k)){burst(e.clientX,e.clientY,24);toast('נשמר')}});
     $$('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();history.replaceState(null,'','#p-'+a.dataset.j);jump(a.dataset.j)});
     const tb=$('#tocb');if(tb)tb.onclick=()=>{const curId=(location.hash.match(/^#p-(.+)$/)||[])[1]||id;openToc(g.items.map(it=>[it.id,it.t,!!itemRule(it,g.key,f)]),curId,j=>{history.replaceState(null,'','#p-'+j);jump(j)})}};
@@ -1756,9 +1759,9 @@ function smartToc(){const svcs=services(),np=nowPrayer(),cur=np.g,f=smartOn?dayF
     <ol class="rows">${on.map(row).join('')}</ol>
     ${off.length?`<details class="skipped"><summary>לא נאמרים היום (${off.length})</summary><ol class="rows muted">${off.map(row).join('')}</ol></details>`:''}
   </section>`}
-function bindHead(){const c=$('#city');if(c)c.onchange=e=>{city=e.target.value;store.set('city',city);route()};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
+function bindHead(){const c=$('#city');if(c)c.onchange=e=>{city=e.target.value;store.set('city',city);route();setTimeout(()=>$('#city')?.focus({preventScroll:true}),60)};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
 function bindToc(){const c=$('#stoc .svc'),sb=c&&c.querySelector('[aria-selected="true"]');if(sb){const d=sb.getBoundingClientRect().left-c.getBoundingClientRect().left-(c.clientWidth-sb.offsetWidth)/2;c.scrollLeft+=d}
-  $$('#stoc .svc button').forEach(b=>b.onclick=()=>{svcSel=+b.dataset.g;$('#stoc').outerHTML=smartToc();bindToc()})}
+  $$('#stoc .svc button').forEach(b=>b.onclick=()=>{svcSel=+b.dataset.g;$('#stoc').outerHTML=smartToc();bindToc();$('#stoc .svc [aria-selected="true"]')?.focus({preventScroll:true})})}
 function todayHead(){const now=new Date(),f=dayFlags(),np=nowPrayer(now),H=HC();let z=null;try{z=zmanim()}catch(e){}
   let hdTxt=hebDate(now),par='';
   try{if(H){const hd=new H.HDate(now);hdTxt=`${DAYS[now.getDay()]==='שבת'?'שבת':'יום '+DAYS[now.getDay()]}, ${hd.renderGematriya().replace(NIK,'')}`;
@@ -2299,11 +2302,11 @@ function palRender(raw){const q=norm(raw||'').trim(),out=[];
       const lb=libAll().filter(x=>norm(x.t).includes(qq)&&!have.has(x.href)&&!have.has('lib'+x.href)&&have.add('lib'+x.href)).slice(0,8);if(lb.length){out.push(['hd','ספרייה']);lb.forEach(x=>out.push(['it',x.t,x.sub,x.href,x.ic]))}
       if(exact)routes()}
     out.push(['hd','חיפוש בתוך הטקסט'],['it',`חיפוש "${raw.trim()}" בתוך כל התפילות`,'גם מילים מתוך התפילות עצמן, עם ובלי ניקוד','#search','search',raw.trim()])}
-  palItems=out.filter(x=>x[0]==='it');palSel=0;let i=0;
+  palItems=out.filter(x=>x[0]==='it');palSel=0;let i=0;$('#palq').setAttribute('aria-activedescendant',palItems.length?'po0':'');
   $('#pallist').innerHTML=out.map(x=>x[0]==='hd'?`<div class="palhd">${esc(x[1])}</div>`:
     `<a class="palitem" role="option" id="po${i}" aria-selected="${i===0}" data-i="${i++}" href="${x[3]}"${x[5]?` data-q="${esc(x[5])}"`:''}><span class="ib">${icon(x[4])}</span><span><b>${esc(x[1])}${x[6]?`<span class="nz">נוסח ${esc(x[6])}</span>`:''}</b>${x[2]?`<small>${esc(x[2])}</small>`:''}</span></a>`).join('')}
 function palMove(d){if(!palItems.length)return;palSel=(palSel+d+palItems.length)%palItems.length;
-  $$('.palitem').forEach(a=>a.setAttribute('aria-selected',String(+a.dataset.i===palSel)));document.getElementById('po'+palSel)?.scrollIntoView({block:'nearest'})}
+  $$('.palitem').forEach(a=>a.setAttribute('aria-selected',String(+a.dataset.i===palSel)));document.getElementById('po'+palSel)?.scrollIntoView({block:'nearest'});$('#palq').setAttribute('aria-activedescendant','po'+palSel)}
 function palGo(a){if(!a)return;if(a.dataset.q)store.set('q',a.dataset.q);closePal();const h=a.getAttribute('href');const pm=h.match(/^#p-([a-z]+)-/);if(pm&&pm[1]!==nus&&byId[h.slice(3)]){/* reading opens in the result's nusach; the saved choice stays */}if(location.hash===h)route();else location.hash=h}
 let palUntrap=null;
 function openPal(){if(!INDEX)return;const p=$('#pal');if(!p.hidden)return;p.hidden=false;const q=$('#palq');q.value='';palRender('');palUntrap=trap(p,closePal);q.focus()}
@@ -2397,7 +2400,7 @@ function kYahr(){const last=store.get('kyahr',{});
     const n=$('#kyn').value.trim(),a=$('#kya').checked;store.set('kyahr',{n,d:v,a});const [y,m,d]=v.split('-').map(Number),g=new Date(y,m-1,d),hd=hebDateOf(g,a),f=hcFn('getYahrzeit');
     const now=new H.HDate(new Date()),list=[];for(let hy=now.getFullYear();list.length<5&&hy<now.getFullYear()+7;hy++){const yd=f?f(hy,hd.greg()):null;if(yd){const gd=yd.greg();if(gd>=new Date(Date.now()-864e5))list.push([yd,gd])}}
     $('#kout').innerHTML=`<div class="kbig glass"><span class="eyebrow">${n?esc(n):'תאריך הפטירה'}</span><b>${hd.renderGematriya()}</b><p class="note">${a?'אחרי השקיעה, לכן התאריך העברי הוא של היום הבא.':'לפני השקיעה.'}</p></div>
-      ${list.length?`<h3 class="ksub">יום השנה בשנים הקרובות</h3><ul class="klist">${list.map(([h,g],i)=>`<li class="glass"><b>${h.renderGematriya()}</b><span>${fmtG(g)}</span>${i===0?'<em>הקרוב</em>':''}</li>`).join('')}</ul>
+      ${list.length?`<h2 class="ksub">יום השנה בשנים הקרובות</h2><ul class="klist">${list.map(([h,g],i)=>`<li class="glass"><b>${h.renderGematriya()}</b><span>${fmtG(g)}</span>${i===0?'<em>הקרוב</em>':''}</li>`).join('')}</ul>
       <p class="note">יום השנה מתחיל בערב שלפני, ובו מדליקים נר נשמה.${[H.months.ADAR_I,H.months.ADAR_II].includes(hd.getMonth())&&!hd.isLeapYear?.()?' מי שנפטר באדר בשנה רגילה: בשנה מעוברת יש מנהגים שונים אם לציין באדר א׳ או באדר ב׳, כדאי לשאול רב.':''}</p>
       <div class="kbtns"><button class="btn primary" id="kics" type="button">הוסיפו ליומן</button><a class="btn ghost" href="#zikaron">פתחו קריאת תהילים לעילוי נשמה</a><a class="btn ghost" href="#kli-shem">תהילים לפי השם</a></div>`:''}`;
     const b=$('#kics');if(b)b.onclick=()=>dlFile('yahrzeit.ics',allDayIcs(`יום השנה${n?' · '+n:''}`,list.map(x=>x[1])))};

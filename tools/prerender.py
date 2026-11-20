@@ -50,7 +50,7 @@ def clean(s):
 
 def plain(s):
     """a derived, unpointed one-line rendering for titles, descriptions and opening lines (never shown as the text itself)"""
-    return re.sub(r"\s+", " ", NIK.sub("", TAG.sub(" ", s)).replace("—", " ")).replace("יהוה", "ה'").strip()
+    return re.sub(r"\s+", " ", NIK.sub("", TAG.sub(" ", s).replace("־", " ")).replace("—", " ")).replace("יהוה", "ה'").strip()
 
 def snippet(s, n=150):
     s = plain(s)
@@ -108,7 +108,7 @@ LOGO = load_logo()
 
 # ---------- CSS: a small base plus blocks that ship only on pages that use them ----------
 CSS_BASE = """
-:root{--paper:#FBF7F5;--surface:#FFFFFF;--ink:#2B1A1F;--ink2:#4A3238;--muted:#6F5A5F;--line:#EAD9D3;--sunk:#F5ECE8;--stamp:#A85C4A;--grad:linear-gradient(135deg,#A85C4A,#8A4636 52%,#2B1A1F);
+:root{--paper:#FBF7F5;--surface:#FFFFFF;--ink:#2B1A1F;--ink2:#4A3238;--muted:#6F5A5F;--line:#EAD9D3;--sunk:#F5ECE8;--stamp:#8A4636;--tint:#F0CFC4;--grad:linear-gradient(135deg,#A85C4A,#8A4636 52%,#5E2C22);
 --sh:0 1px 2px rgba(43,26,31,.05),0 10px 28px -16px rgba(43,26,31,.22);--r:1.375rem;
 --reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
@@ -120,7 +120,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(246,247,249,.94);border-block-end:1px solid var(--line)}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(251,247,245,.94);border-block-end:1px solid var(--line)}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}
@@ -174,6 +174,8 @@ CSS_BLOCKS = [
 .tools .az.sm{font-size:.9rem}
 .nus{display:flex;align-items:center;flex-wrap:wrap;margin-inline-start:auto;font-size:.93rem;color:var(--muted)}
 .nus a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.45rem;font-weight:600}
+.bar{flex-wrap:nowrap}.nus{flex-wrap:nowrap;white-space:nowrap}
+@media (max-width:30rem){.nus span{display:none}}
 .text{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;box-shadow:var(--sh);padding:1.4rem clamp(1.1rem,4.5vw,2.25rem) 1.6rem;font-family:var(--f-read);font-size:var(--reading);line-height:1.9;text-align:start;max-width:38rem;margin-inline:auto}
 .text p{margin:0 0 .65em}.text p:last-child{margin-block-end:0}
 .text sup{color:var(--stamp);font-family:var(--f-ui);font-weight:600;font-size:.58em;margin-inline-end:.4em;vertical-align:.5em;line-height:1}
@@ -191,7 +193,7 @@ CSS_BLOCKS = [
 .pager small{display:block;color:var(--muted);font-weight:400;font-size:.8rem}
 .pager .next{text-align:end;background:var(--grad);border-color:transparent;color:#fff;box-shadow:var(--sh)}
 .pager .next:hover{color:#fff;filter:brightness(1.08)}
-.pager .next small{color:#EAD9D3}
+.pager .next small{color:#F0CFC4}
 """),
 ("together", """
 .together{margin:2rem 0 0;padding:1.3rem 1.4rem 1.5rem;background:var(--sunk);border-radius:1.75rem}
@@ -270,7 +272,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .hero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.2}
 .hero .btn{background:#fff;color:var(--ink);box-shadow:none}
 .hero .btn:hover{color:var(--stamp);filter:none}
-.hero small{display:block;margin-block-start:.8rem;color:#EAD9D3;font-size:.92rem}
+.hero small{display:block;margin-block-start:.8rem;color:#F0CFC4;font-size:.92rem}
 """),
 ("prose", """
 .prose{max-width:36rem}
@@ -307,7 +309,7 @@ if(typeof fs!=='number'||!(fs>=MIN&&fs<=MAX))fs=1.32;
 nik=nik!==false;
 var fm=document.getElementById('fm'),fp=document.getElementById('fp'),nk=document.getElementById('nk');
 function size(){document.documentElement.style.setProperty('--reading',fs+'rem');fm.disabled=fs<=MIN;fp.disabled=fs>=MAX}
-function nikud(){if(orig==null)orig=art.innerHTML;art.innerHTML=nik?orig:orig.replace(NIK,'');nk.setAttribute('aria-pressed',nik?'true':'false');nk.setAttribute('aria-label',nik?'הסתרת הניקוד':'הצגת הניקוד')}
+function nikud(){if(orig==null)orig=art.innerHTML;art.innerHTML=nik?orig:orig.replace(NIK,'');nk.setAttribute('aria-pressed',nik?'true':'false')}
 fm.onclick=function(){fs=Math.max(MIN,+(fs-STEP).toFixed(2));set('fs',fs);size()};
 fp.onclick=function(){fs=Math.min(MAX,+(fs+STEP).toFixed(2));set('fs',fs);size()};
 nk.onclick=function(){nik=!nik;set('nikud',nik);nikud()};
@@ -322,9 +324,9 @@ JS_TODAY = ("(function(){try{var d=new Date(),h=+new Intl.DateTimeFormat('en-u-c
             "if(h>=1&&h<=30)m('d'+h);m('w'+d.getDay())}catch(e){}})()")
 
 TOOLS_HTML = ('<div class="tools" id="tools" role="group" aria-label="כלי קריאה" hidden>'
-              '<button type="button" id="fm" class="az sm" aria-label="הקטנת הטקסט">א−</button>'
-              '<button type="button" id="fp" class="az" aria-label="הגדלת הטקסט">א+</button>'
-              '<button type="button" id="nk" aria-pressed="true" aria-label="הסתרת הניקוד">ניקוד</button></div>')
+              '<button type="button" id="fm" class="az sm" aria-label="א− הקטנת הטקסט">א−</button>'
+              '<button type="button" id="fp" class="az" aria-label="א+ הגדלת הטקסט">א+</button>'
+              '<button type="button" id="nk" aria-pressed="true">ניקוד</button></div>')
 
 NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><a href="/tehillim/">תהילים</a>'
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')

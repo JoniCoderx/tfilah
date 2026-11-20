@@ -110,7 +110,7 @@ LOGO = load_logo()
 CSS_BASE = """
 :root{--paper:#FBF7F5;--surface:#FFFFFF;--ink:#2B1A1F;--ink2:#4A3238;--muted:#6F5A5F;--line:#EAD9D3;--sunk:#F5ECE8;--stamp:#8A4636;--tint:#F0CFC4;--grad:linear-gradient(135deg,#A85C4A,#8A4636 52%,#5E2C22);
 --sh:0 1px 2px rgba(43,26,31,.05),0 10px 28px -16px rgba(43,26,31,.22);--r:1.375rem;
---reading:1.42rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Frank Ruhl Libre","David Libre","Times New Roman",serif;--top:3.5rem}
+--reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Heebo","Assistant",system-ui,Arial,sans-serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:1rem;line-height:1.6;overflow-wrap:break-word}
@@ -176,7 +176,7 @@ CSS_BLOCKS = [
 .nus a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.45rem;font-weight:600}
 .bar{flex-wrap:nowrap}.nus{flex-wrap:nowrap;white-space:nowrap}
 @media (max-width:30rem){.nus span{display:none}}
-.text{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;box-shadow:var(--sh);padding:1.4rem clamp(1.1rem,4.5vw,2.25rem) 1.6rem;font-family:var(--f-read);font-size:var(--reading);line-height:1.9;text-align:start;max-width:38rem;margin-inline:auto}
+.text{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;box-shadow:var(--sh);padding:1.4rem clamp(1.1rem,4.5vw,2.25rem) 1.6rem;font-family:var(--f-read);font-size:var(--reading);font-weight:300;line-height:1.9;text-align:start;max-width:38rem;margin-inline:auto}
 .text p{margin:0 0 .65em}.text p:last-child{margin-block-end:0}
 .text sup{color:var(--stamp);font-family:var(--f-ui);font-weight:600;font-size:.58em;margin-inline-end:.4em;vertical-align:.5em;line-height:1}
 .text h2{font-family:var(--f-ui);font-weight:700;font-size:1.05em;line-height:1.3;margin:1.5em 0 .5em;padding-block-end:.3em;border-block-end:1px solid var(--line)}
@@ -298,14 +298,14 @@ JS_HEAD = ("(function(){try{var v=JSON.parse(localStorage.getItem('fs'));"
            "if(typeof v==='number'&&v>=.95&&v<=2.6)document.documentElement.style.setProperty('--reading',v+'rem')}catch(e){}})()")
 
 # Runs right after the text: size and nikud tools. Keys shared with the app:
-# "fs" = JSON number (rem, .95 to 2.6, step .12, default 1.42); "nikud" = JSON true/false.
+# "fs" = JSON number (rem, .95 to 2.6, step .12, default 1.32); "nikud" = JSON true/false.
 JS_TOOLS = r"""(function(){
 var art=document.getElementById('text'),bar=document.getElementById('tools');if(!art||!bar)return;
 var NIK=/[֑-ֽֿ-ׇ]/g,orig=null,MIN=.95,MAX=2.6,STEP=.12;
 function get(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}
 function set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-var fs=get('fs',1.42),nik=get('nikud',true);
-if(typeof fs!=='number'||!(fs>=MIN&&fs<=MAX))fs=1.42;
+var fs=get('fs',1.32),nik=get('nikud',true);
+if(typeof fs!=='number'||!(fs>=MIN&&fs<=MAX))fs=1.32;
 nik=nik!==false;
 var fm=document.getElementById('fm'),fp=document.getElementById('fp'),nk=document.getElementById('nk');
 function size(){document.documentElement.style.setProperty('--reading',fs+'rem');fm.disabled=fs<=MIN;fp.disabled=fs>=MAX}
@@ -333,7 +333,7 @@ NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><
 FOOT_NAV = ('<nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a></nav>')
-FONTS = "https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;700;900&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@300;700&display=swap"
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
 

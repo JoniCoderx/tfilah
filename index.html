@@ -45,9 +45,9 @@
   --mark:#FFE58A; --shadow:0 1px 2px rgba(17,17,20,.04),0 8px 24px -12px rgba(17,17,20,.12);
   --f-display:"Karantina","IBM Plex Sans Hebrew",sans-serif;
   --f-ui:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
-  --f-read:"Frank Ruhl Libre","David Libre","Noto Serif Hebrew","Times New Roman",serif;
+  --f-read:"Heebo","Assistant","Segoe UI",Arial,sans-serif; --read-w:300;
   --f-rashi:"Noto Rashi Hebrew","Noto Serif Hebrew",serif;
-  --reading:1.42rem; --r:22px; --tabh:0px;
+  --reading:1.32rem; --r:22px; --tabh:0px;
   /* legacy aliases used by inner views */
   --stone:var(--ink); --gold:var(--accent); --gold-hi:var(--accent-ink); --gold-lt:var(--accent); --tekhelet:var(--accent); --tekhelet-soft:var(--accent-soft);
   --panel:var(--card); --panel-solid:var(--card); --faint:#9a9aa2; --done:var(--ok); --flame:var(--candle); --on-gold:#fff; --f-head:var(--f-ui); --f-text:var(--f-read);
@@ -1002,7 +1002,7 @@ article.text section+section{border-top-color:var(--line)}
 article.text h3{color:var(--stamp-deep);font-size:.8em}
 article.text h3 .fav{color:#A08A8F;min-inline-size:44px;min-block-size:44px}
 article.text h3 .fav[aria-pressed="true"]{color:var(--stamp)}
-article.text small{color:var(--muted)}
+article.text small{color:var(--muted);font-family:var(--f-ui);font-size:.74em;font-weight:400;line-height:1.6}
 .verse sup{color:var(--stamp-deep)}
 .smartbar{background:var(--sunk);color:var(--ink);border-radius:12px}
 .smartbar button{background:var(--card);color:var(--ink);min-height:40px;border:1px solid var(--line)}
@@ -1174,7 +1174,7 @@ const app=$('#app');
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
              set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const NUS=[['mizrach','עדות המזרח'],['sefard','ספרד'],['ashkenaz','אשכנז']];
-let nus=store.get('nus','mizrach'), fontScale=store.get('fs',1.42), nikud=store.get('nikud',true);
+let nus=store.get('nus','mizrach'), fontScale=store.get('fs',1.32), nikud=store.get('nikud',true);
 let favs=new Set(store.get('favs',[])), myName=store.get('myname','');
 let INDEX=null, byId={}, groups={}; const TEXT={}, NORM={}; let TEH=null;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1661,7 +1661,7 @@ function bindTools(rerender){const apply=()=>document.documentElement.style.setP
   $('#fm').onclick=()=>{fontScale=Math.max(.95,+(fontScale-.12).toFixed(2));store.set('fs',fontScale);apply()};
   $('#fp').onclick=()=>{fontScale=Math.min(2.6,+(fontScale+.12).toFixed(2));store.set('fs',fontScale);apply()};
   $('#nk').onclick=()=>{nikud=!nikud;store.set('nikud',nikud);rerender();const p=$('#rpop');if(p){p.hidden=false;$('#aa').setAttribute('aria-expanded','true');$('#nk')?.focus({preventScroll:true})}};
-  $$('.fontpick button').forEach(b=>b.onclick=()=>{readFont=b.dataset.f;store.set('rf3',readFont);applyFont();$$('.fontpick button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
+  $$('.fontpick button').forEach(b=>b.onclick=()=>{readFont=b.dataset.f;store.set('rf4',readFont);applyFont();$$('.fontpick button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
   $('#wk').onclick=async()=>{const b=$('#wk');if(wakeLock){try{await wakeLock.release()}catch(e){}wakeLock=null;b.setAttribute('aria-pressed','false');b.textContent='כבוי';return}
     try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;const w=$('#wk');if(w){w.setAttribute('aria-pressed','false');w.textContent='כבוי'}});b.setAttribute('aria-pressed','true');b.textContent='פעיל';toast('המסך יישאר דולק בזמן התפילה')}
     catch(e){toast('הדפדפן לא מאפשר להשאיר את המסך דולק')}};
@@ -1937,8 +1937,8 @@ function viewRav(){setNav('rav');app.innerHTML=ravPanel(true).replace('class="ra
 
 
 /* ---------- reading fonts / wake lock ---------- */
-const READFONTS=[['frank','קלאסי','"Frank Ruhl Libre",serif',400],['david','דוד','"David Libre",serif',400],['heebo','מודרני','"Heebo",sans-serif',300],['noto','עבה','"Noto Serif Hebrew",serif',400]];
-let readFont=store.get('rf3','frank'), wakeLock=null;
+const READFONTS=[['heebo','מודרני','"Heebo",sans-serif',300],['frank','קלאסי','"Frank Ruhl Libre",serif',400],['david','דוד','"David Libre",serif',400],['noto','עבה','"Noto Serif Hebrew",serif',400]];
+let readFont=store.get('rf4','heebo'), wakeLock=null;
 function applyFont(){const r=READFONTS.find(x=>x[0]===readFont)||READFONTS[0];document.documentElement.style.setProperty('--f-read',r[2]);document.documentElement.style.setProperty('--read-w',r[3]||400)}
 applyFont();
 document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&$('#wk')?.getAttribute('aria-pressed')==='true'&&!wakeLock){try{wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}});

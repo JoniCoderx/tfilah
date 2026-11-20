@@ -65,8 +65,8 @@
 ## מיתוג
 - שם המותג בממשק: „תפילה”. הדומיין `tfilah.com` הוא חתימה משנית.
 - `brand/`: הלוגו כ-SVG וקטורי (בלי תמונה מוטמעת ובלי תלות בפונט): `mark.svg`, `mark-mono.svg`, `favicon.svg`, `icon-maskable.svg`, `logo.svg`, `logo-header.svg`.
-- `python3 tools/build-logo.py <frank-ruhl-900.woff> <heebo-500.woff>` מייצר אותם מחדש. הלוגו שבכותרת האפליקציה מוטמע ב-`src/app.html`; אם משנים את הסמל, מעדכנים גם שם.
-- צבעים: נייר `#F6F0E4`, דיו `#351A29`, אדום חותמת `#A3342B`. שכבת העיצוב נמצאת בסוף ה-CSS של `src/app.html` תחת ההערה `SEFER`.
+- `python3 tools/build-logo.py <bellefair-hebrew.woff> <assistant-latin-600.woff>` מייצר אותם מחדש. הלוגו שבכותרת האפליקציה מוטמע ב-`src/app.html`; אם משנים את הסמל, מעדכנים גם שם.
+- צבעים: נייר `#FCF8F8`, דיו `#4A1426`, אדום חותמת `#8E1F3F`. שכבת העיצוב נמצאת בסוף ה-CSS של `src/app.html` תחת ההערה `SEFER`.
 
 ## תהילים יחד (עדכון מסד הנתונים)
 - מריצים את כל `supabase.sql` ב-SQL Editor. הקובץ בטוח להרצה חוזרת, גם על מסד קיים מהגרסה הקודמת.

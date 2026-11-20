@@ -58,8 +58,8 @@ def load_logo():
 LOGO = load_logo()
 
 CSS = """
-:root{--paper:#F6F0E4;--surface:#FBF7EE;--ink:#351A29;--ink2:#4A2E3D;--muted:#6B5560;--line:#DDD0BC;--sunk:#EDE4D3;--stamp:#A3342B;
---reading:1.32rem;--f-head:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--f-ui:"Heebo",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;--top:3.25rem}
+:root{--paper:#FCF8F8;--surface:#FFFFFF;--ink:#4A1426;--ink2:#6A2E40;--muted:#6E5560;--line:#EAD9DE;--sunk:#F6ECEF;--stamp:#8E1F3F;
+--reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew",serif;--f-head:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;--top:3.25rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:1rem;line-height:1.6;overflow-wrap:break-word}
@@ -82,7 +82,7 @@ main{max-width:40rem;margin-inline:auto;padding:1rem 1rem 3rem}
 .crumbs a{color:var(--muted);text-decoration:none;display:inline-block;padding-block:.3rem}
 .crumbs a:hover{color:var(--stamp);text-decoration:underline}
 .crumbs span{padding-inline:.15rem}
-h1{font-family:var(--f-head);font-weight:900;font-size:clamp(1.9rem,6.4vw,2.9rem);line-height:1.12;margin:.2rem 0 .3rem;letter-spacing:-.005em}
+h1{font-family:var(--f-disp);font-weight:900;font-size:clamp(2.2rem,7.4vw,3.3rem);line-height:1.12;margin:.2rem 0 .3rem;letter-spacing:-.005em}
 h1 .ctx{display:block;font-family:var(--f-ui);font-weight:500;font-size:.95rem;line-height:1.4;color:var(--ink2);letter-spacing:0;margin-block-start:.3rem}
 .meta{margin:0 0 .5rem;color:var(--muted);font-size:.93rem}
 .meta b{color:var(--ink);font-weight:700}
@@ -110,14 +110,14 @@ h1,h2,h3,[id]{scroll-margin-top:calc(var(--top) + .75rem)}
 .pager a:hover{border-color:var(--ink);color:var(--ink)}
 .pager small{display:block;color:var(--muted);font-family:var(--f-ui);font-weight:400;font-size:.8rem}
 .pager .next{text-align:end}
-h2.sec{font-family:var(--f-head);font-weight:700;font-size:1.4rem;line-height:1.25;margin:2.25rem 0 .6rem}
+h2.sec{font-family:var(--f-disp);font-weight:700;font-size:1.8rem;line-height:1.25;margin:2.25rem 0 .6rem}
 h2.sec.big{font-size:1.75rem;font-weight:900;border-block-start:1px solid var(--ink);padding-block-start:1.1rem;margin-block-start:3rem}
 h3.grp{font-family:var(--f-ui);font-weight:700;font-size:.95rem;color:var(--ink2);margin:1.5rem 0 .2rem}
 .related{display:flex;flex-wrap:wrap;gap:.4rem}
 .related a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.85rem;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:.95rem;border-radius:2px}
 .related a:hover{border-color:var(--ink);color:var(--ink)}
 .together{margin:2rem 0 0;padding:1.1rem 1.1rem 1.2rem;background:var(--sunk)}
-.together h2{font-family:var(--f-head);font-weight:900;font-size:1.3rem;margin:0 0 .15rem}
+.together h2{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;margin:0 0 .15rem}
 .together p{margin:0 0 .8rem;color:var(--ink2)}
 .btn{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:1.1rem;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;border-radius:2px}
 .btn:hover{background:var(--ink2);color:var(--paper)}
@@ -212,10 +212,10 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/icons/og.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F6F0E4"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FCF8F8"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Heebo:wght@400;500;700&family=Noto+Serif+Hebrew:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@700;900&family=Noto+Serif+Hebrew:wght@400;700&display=swap">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <style>{CSS}</style><script>{JS_HEAD}</script></head><body{' class="hub"' if hub else ''}>
 <a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>

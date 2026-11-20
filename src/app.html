@@ -3,7 +3,7 @@
 <meta name="description" content="תפילה: סידור בשלושה נוסחים, ספר תהילים וקריאה משותפת. כל אחד פרק, ביחד ספר שלם.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Noto+Serif+Hebrew:wght@400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
 <style>
 /* Layout: an app, not a page. One "now" sky card that changes with the hour leads; everything else is
    calm white cards on a soft grey ground. Tekhelet blue is the one accent; candle orange only for memorials.
@@ -508,7 +508,7 @@ article.text section.skip h3{color:var(--muted)}
 :root{
   --bg:#FFFFFF; --card:#F5F5F7; --sunk:#EDEDF0; --ink:#0B0B0C; --ink-2:#2E2E33; --muted:#6E6E73; --line:#E6E6EA;
   --accent:#0B0B0C; --accent-ink:#0B0B0C; --accent-soft:#F5F5F7;
-  --gold:#B8862B; --gold-deep:#8A5F12; --gold-soft:#FBF3E1; --gold-lt:#E9C77A;
+  --gold:#B8862B; --gold-deep:#8A5F12; --gold-soft:#FBF3E1; --gold-lt:#F3C6D2;
   --candle:#E8892B; --candle-soft:#FDF1E4;
   --shadow:none; --r:28px;
   --f-ui:"Heebo","Segoe UI",Arial,sans-serif;
@@ -536,7 +536,7 @@ a{color:var(--ink)}
 /* header */
 .top{background:rgba(255,255,255,.72)}
 .top.scrolled{border-bottom-color:var(--line)}
-.logo .mk{background:linear-gradient(145deg,#E9C77A,#B8862B);border-radius:10px}
+.logo .mk{background:linear-gradient(145deg,#F3C6D2,#B8862B);border-radius:10px}
 .logo b{font-weight:800;letter-spacing:-.02em}
 .logo b span{color:var(--gold)}
 .tabs a{font-weight:500;color:var(--ink-2);border-radius:999px}
@@ -556,7 +556,7 @@ a{color:var(--ink)}
 .hero2::after{content:"";position:absolute;inset:auto 0 0;height:90px;z-index:-1;background:linear-gradient(transparent,#fff)}
 .hmeta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;font-weight:500;color:var(--ink-2);font-size:clamp(.95rem,1.8vw,1.1rem)}
 .hmeta i{font-style:normal;color:var(--gold)}
-.hero2 h1{font-family:var(--f-display);font-weight:900;font-size:clamp(5rem,17vw,12.5rem);line-height:.86;letter-spacing:-.055em;margin:14px 0 0;color:var(--ink)}
+.hero2 h1{font-family:var(--f-display);font-weight:400;font-size:clamp(5rem,17vw,12.5rem);line-height:.86;letter-spacing:-.055em;margin:14px 0 0;color:var(--ink)}
 .hero2 h1 .dotg{color:var(--gold)}
 .hsub{margin:18px auto 0;font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--ink-2);font-weight:400;font-variant-numeric:tabular-nums}
 .hsub b{font-weight:700;color:var(--ink)}
@@ -610,7 +610,7 @@ a{color:var(--ink)}
 .zshab{margin:6px 0 0;border-radius:18px;background:#fff}
 .zmore{border:0;background:none;color:var(--gold-deep)}
 @media (max-width:620px){.zcard{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.parasha .pname{font-family:var(--f-display);font-weight:900;letter-spacing:-.04em;font-size:3rem}
+.parasha .pname{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em;font-size:3rem}
 .ptags span{background:#fff;color:var(--gold-deep)}
 .hrow{border-top:1px solid #e9e9ec}
 .hrow .cd{background:#fff}
@@ -618,14 +618,14 @@ a{color:var(--ink)}
 
 /* tehillim */
 .teh-today{background:#0B0B0C}
-.teh-today h3{font-family:var(--f-display);font-weight:900;letter-spacing:-.04em;font-size:2.6rem}
+.teh-today h3{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em;font-size:2.6rem}
 .verse-day blockquote{font-size:clamp(1.4rem,3vw,1.9rem)}
 .verse-day .vref{color:var(--gold-deep)}
 
 /* memorial: full-bleed dark */
 .zband{margin-inline:calc(50% - 50vw);border-radius:0;margin-top:80px;padding:clamp(56px,9vw,110px) max(16px,env(safe-area-inset-right,0px)) clamp(48px,7vw,90px) max(16px,env(safe-area-inset-left,0px));background:#070708}
 .zband>*{max-width:70rem;margin-inline:auto}
-.zband h2{font-family:var(--f-display);font-weight:900;letter-spacing:-.05em;font-size:clamp(3rem,9vw,6.5rem);line-height:.9}
+.zband h2{font-family:var(--f-display);font-weight:400;letter-spacing:-.05em;font-size:clamp(3rem,9vw,6.5rem);line-height:.9}
 .zband h2 em{color:#F2B266}
 .zband::before{inset:0 50% 0 0;background:radial-gradient(closest-side,rgba(255,140,50,.28),transparent)}
 .zband .mcard{border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:20px 14px 18px;transition:background .2s,border-color .2s,transform .2s}
@@ -634,7 +634,7 @@ a{color:var(--ink)}
 .zband .mcard .eyebrow{color:#F2B266}
 .zband .mcard small{color:rgba(255,255,255,.6)}
 .askcard{margin-top:48px}
-.askcard .ib{background:linear-gradient(135deg,#E9C77A,#B8862B);animation:none}
+.askcard .ib{background:linear-gradient(135deg,#F3C6D2,#B8862B);animation:none}
 .askcard input{background:#fff;border:0;border-radius:999px;padding:13px 18px}
 .donate{background:var(--gold-soft)}
 .amounts button{border:0;background:#fff;border-radius:16px}
@@ -643,12 +643,12 @@ a{color:var(--ink)}
 
 /* siddur page */
 .daily a{border-radius:24px}
-.daily .d1{background:linear-gradient(160deg,#F7E3B5,#E9C77A);color:var(--ink)}
+.daily .d1{background:linear-gradient(160deg,#F7E3B5,#F3C6D2);color:var(--ink)}
 .daily .d2{background:linear-gradient(160deg,#F3D3B0,#E39A5A);color:var(--ink)}
 .daily .d3{background:linear-gradient(160deg,#1b1b22,#3a3346)}
 .daily .d4{background:#0B0B0C}
-.daily a b{font-family:var(--f-display);font-weight:900;letter-spacing:-.04em}
-.topcat{font-family:var(--f-display);font-weight:900;letter-spacing:-.04em}
+.daily a b{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em}
+.topcat{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em}
 .gcard li a{background:#fff}
 .gcard li a:hover{background:var(--ink);color:#fff}
 .cats a{border:0;background:var(--card)}
@@ -671,7 +671,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .grid150 .sel{background:var(--ink)}
 .grid150 a,.grid150 button{border:0;background:var(--card)}
 .msg.me{background:var(--ink)}
-.orb .core{background:conic-gradient(from 200deg,#E9C77A,#B8862B,#F7E3B5,#E9C77A)}
+.orb .core{background:conic-gradient(from 200deg,#F3C6D2,#B8862B,#F7E3B5,#F3C6D2)}
 .badge{background:var(--gold-soft);color:var(--gold-deep)}
 .rav{border:0;background:var(--card)}
 .palitem[aria-selected="true"]{background:var(--gold-soft)}
@@ -688,7 +688,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 @media (max-width:980px){.needs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:620px){.needs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .libhead{padding:clamp(28px,6vw,64px) 2px 8px;display:grid;gap:10px}
-.libhead h1{font-family:var(--f-display);font-weight:900;font-size:clamp(2.6rem,8vw,5.2rem);letter-spacing:-.05em;line-height:.95}
+.libhead h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2.6rem,8vw,5.2rem);letter-spacing:-.05em;line-height:.95}
 .libhead p{margin:0;color:var(--muted);font-size:1.1rem;max-width:36rem}
 .searchwide{margin-top:10px;display:flex;align-items:center;gap:10px;width:min(34rem,100%);padding:15px 18px;border:0;border-radius:999px;background:var(--card);color:var(--muted);cursor:pointer;font-size:1.02rem;text-align:start}
 .libsec{scroll-margin-top:140px}
@@ -700,7 +700,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .libit b{display:block;font-weight:600;font-size:1.02rem}
 .libit small{display:block;color:var(--muted);font-size:.8rem}
 .bookhead{text-align:start;padding:18px 0 6px;max-width:40rem;margin:0 auto}
-.bookhead h1{font-family:var(--f-display);font-weight:900;font-size:clamp(2.4rem,7vw,4rem);letter-spacing:-.045em;line-height:1}
+.bookhead h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2.4rem,7vw,4rem);letter-spacing:-.045em;line-height:1}
 .bookhead p{margin:8px 0 0;color:var(--muted)}
 .hlink{font-size:.8rem;font-weight:600;color:var(--gold-deep);text-decoration:none;margin-inline-start:auto;margin-inline-end:10px;white-space:nowrap}
 .kinds{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
@@ -753,16 +753,18 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .big1{width:100%;padding:16px 18px;font-size:1.05rem}
 .rounds{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:10px}
 
-/* ===== SEFER: paper, ink and one stamp. A Hebrew book designed today. Extends LUX; new rules go here. ===== */
+/* ===== SEFER: one colour, taken all the way. Bordeaux only: deep wine for ink, the same hue in gradients, soft rounds everywhere. Extends LUX; new rules go here. ===== */
 :root{
-  --bg:#F6F0E4; --card:#FBF7EE; --sunk:#EDE4D3; --ink:#351A29; --ink-2:#4A2E3D; --muted:#6B5560; --line:#DDD0BC;
-  --accent:#351A29; --accent-ink:#351A29; --accent-soft:#EDE4D3; --on-ink:#FBF7EE; --rose:#F0C9B8;
-  --stamp:#A3342B; --stamp-deep:#8A2A22;
-  --gold:#A3342B; --gold-deep:#8A2A22; --gold-soft:#F1E3D3; --gold-lt:#F0C9B8; --gold-hi:#8A2A22;
-  --candle:#A3342B; --candle-soft:#F1E3D3; --ok:#2F6B4A; --ok-soft:#DDE8DC; --mark:#F3D9A4; --faint:#75606B;
-  --f-ui:"Heebo","Segoe UI",Arial,sans-serif;
+  --bg:#FCF8F8; --card:#FFFFFF; --sunk:#F6ECEF; --ink:#4A1426; --ink-2:#6A2E40; --muted:#6E5560; --line:#EAD9DE; --tint:#F3C6D2;
+  --grad:linear-gradient(135deg,#A32449 0%,#7A1935 52%,#4A1426 100%); --wash:radial-gradient(95% 62% at 50% -12%,#F4C4D0 0%,#FBEAEE 46%,#FCF8F8 80%);
+  --sky:var(--bg); --sun:var(--ink); --halo:var(--sunk);
+  --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--sunk); --on-ink:#FFFFFF; --rose:var(--tint);
+  --stamp:#8E1F3F; --stamp-deep:#6E1730;
+  --gold:#8E1F3F; --gold-deep:#6E1730; --gold-soft:#FBEFF2; --gold-lt:var(--tint); --gold-hi:#6E1730;
+  --candle:#8E1F3F; --candle-soft:#FBEFF2; --ok:var(--ink); --ok-soft:var(--sunk); --mark:var(--tint); --faint:var(--muted);
+  --f-ui:"Assistant","Heebo","Segoe UI",Arial,sans-serif;
   --f-display:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;
-  --r:16px; --rth:58px;
+  --r:26px; --rth:58px;
 }
 body{background:var(--bg);color:var(--ink)}
 body::before{background:var(--bg)}
@@ -773,11 +775,11 @@ a{color:var(--ink)}
 .note{color:var(--muted)}
 .glass,.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
 .lift:hover{transform:none;border-color:var(--ink)}
-.btn{border-radius:12px;min-height:48px}
+.btn{border-radius:14px;min-height:48px}
 .btn.gold,.btn.primary{background:var(--ink);color:var(--on-ink)}
 .btn.gold:hover,.btn.primary:hover{background:var(--ink-2)}
 .btn.ghost{background:var(--sunk);color:var(--ink)}
-.btn.ghost:hover{background:#E4D9C5}
+.btn.ghost:hover{background:#EEDDE2}
 .btn.light,.btn.candlebtn{background:var(--on-ink);color:var(--ink)}
 .btn.white{background:none;backdrop-filter:none;-webkit-backdrop-filter:none;text-decoration:underline;text-underline-offset:4px}
 .chip{background:var(--card);border:1px solid var(--line);min-height:40px}
@@ -785,7 +787,7 @@ a{color:var(--ink)}
 .empty{background:none;border:1px dashed var(--line)}
 .loading::before{border-color:var(--line);border-top-color:var(--stamp)}
 .sec{margin:56px 2px 18px;align-items:baseline}
-.sec h1,.sec h2{font-family:var(--f-display);font-weight:900;font-size:clamp(1.8rem,4.4vw,2.7rem);letter-spacing:0;line-height:1.1}
+.sec h1,.sec h2{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,5vw,3rem);letter-spacing:0;line-height:1.1}
 .sec .more,.sec a{color:var(--ink);font-weight:500;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;display:inline-flex;align-items:center;min-height:44px}
 
 /* header: the mark and the Hebrew name; five clear destinations */
@@ -817,36 +819,38 @@ a{color:var(--ink)}
 @media (max-width:380px){.topin{gap:6px}.nus select{width:6.6rem;font-size:.8rem}.logo svg{block-size:25px}}
 
 /* home: one answer first. What to pray now, in which nusach, one button. */
-.hero2{background:none;margin-inline:0;padding:clamp(18px,5vw,56px) 0 clamp(20px,4vw,40px);text-align:start;overflow:visible}
+.hero2{background:none;margin-inline:0;padding:clamp(10px,3vw,28px) 0 clamp(20px,4vw,40px);text-align:center;overflow:visible}
 .hero2::after{display:none}
-.hmeta{justify-content:flex-start;color:var(--muted);font-size:.95rem}
-.hmeta i{color:var(--stamp)}
-.hero2 h1{font-family:var(--f-display);font-weight:900;letter-spacing:0;line-height:1;font-size:clamp(4rem,17vw,8.5rem);margin:6px 0 0;overflow-wrap:anywhere}
-.hero2 h1.long{font-size:clamp(2.6rem,10.5vw,6rem);line-height:1.05}
-.hero2 h1 .dotg{color:var(--stamp)}
-.hsub{margin:10px 0 0;color:var(--ink-2);font-size:1.05rem}
+.hmeta{justify-content:center;color:var(--ink);font-weight:600;font-size:.95rem}
+.hmeta i{color:var(--muted)}
+.skybox{position:relative;max-width:540px;margin:0 auto}
+.skybox svg{display:block;inline-size:100%;block-size:auto;overflow:visible}
+.hero2 h1{font-family:var(--f-display);font-weight:900;letter-spacing:0;line-height:.95;font-size:clamp(5rem,27vw,9.2rem);margin:-33% 0 0;position:relative}
+.hero2 h1.long{font-size:clamp(2.5rem,12vw,4.6rem);line-height:1.05;margin-top:-27%}
+.hero2 h1 .dotg{display:none}
+.hsub{margin:12px 0 0;color:var(--ink);font-size:1.05rem;justify-content:center}
 .hnus{margin:6px 0 0;color:var(--muted);font-size:.95rem}
 .hnus b{color:var(--ink);font-weight:700}
-.hact{justify-content:flex-start;margin-top:20px}
+.hact{justify-content:center;margin-top:18px}
 .hact .btn{padding:15px 26px;font-size:1.08rem;font-weight:700}
 .hctl{justify-content:flex-start;margin-top:12px}
 .lnk{background:var(--card);border:1px solid var(--line);backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:12px;min-height:44px;color:var(--ink);text-decoration:none}
 .lnk[data-on]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
-.hnotes{justify-content:flex-start;margin:22px 0 0;max-width:none}
-.hnotes .tn{background:none;border:1px solid var(--line);border-radius:10px;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--ink)}
+.hnotes{justify-content:center;margin:22px 0 0;max-width:none}
+.hnotes .tn{background:var(--card);border:1px solid var(--line);border-radius:10px;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--ink)}
 .hnotes .tn small{color:var(--muted)}
 .shabline{background:var(--ink);color:var(--on-ink);border-radius:12px;margin-top:16px}
 .shabline b{color:var(--rose)}
 @media (max-width:620px){.hact .btn.primary{inline-size:100%}}
 .quick4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:8px}
 @media (max-width:820px){.quick4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.q4{display:grid;align-content:center;gap:2px;min-height:76px;padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:var(--card);text-decoration:none;color:var(--ink)}
+.q4{display:grid;align-content:center;gap:2px;min-height:76px;padding:12px 16px;border:1px solid var(--line);border-radius:18px;background:var(--card);text-decoration:none;color:var(--ink)}
 .q4:hover{border-color:var(--ink)}
-.q4 b{font-family:var(--f-display);font-weight:700;font-size:1.2rem;line-height:1.2}
+.q4 b{font-family:var(--f-ui);font-weight:700;font-size:1.08rem;line-height:1.25}
 .q4 small{color:var(--muted);font-size:.82rem}
 
 /* today's service */
-.svc button{font-family:var(--f-display);color:var(--muted);letter-spacing:0;min-height:48px}
+.svc button{font-family:var(--f-ui);font-weight:600;font-size:1.15rem;color:var(--muted);letter-spacing:0;min-height:48px}
 .svc button[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -3px 0 var(--stamp)}
 .svc .dot{background:var(--stamp);box-shadow:none}
 .stoc{border:0;background:none}
@@ -868,10 +872,10 @@ a{color:var(--ink)}
 .zrow.past{opacity:1}.zrow.past span,.zrow.past b{color:var(--muted)}
 .zrow.next{background:var(--sunk)}.zrow.next span,.zrow.next b{color:var(--ink)}
 .zrow.next b{font-weight:700}
-.zrow.next span::after{background:var(--stamp);color:#fff}
+.zrow.next span::after{background:var(--ink);color:var(--on-ink)}
 .zshab{background:var(--sunk)}.zshab span{color:var(--ink-2)}.zshab b{color:var(--ink)}
 .zmore{color:var(--ink);text-decoration:underline;text-underline-offset:4px;min-height:44px}
-.zhead h3,.hol h3{font-family:var(--f-display);font-weight:700;font-size:1.3rem}
+.zhead h3,.hol h3{font-family:var(--f-ui);font-weight:700;font-size:1.15rem}
 .parasha .pname{font-family:var(--f-display);letter-spacing:0;line-height:1.05}
 .ptags span,.hrow .cd{background:var(--sunk);color:var(--ink)}
 .hrow{border-top-color:var(--line)}
@@ -890,7 +894,7 @@ a{color:var(--ink)}
 .grid150 .today{background:var(--sunk);border-color:var(--ink);font-weight:700;color:var(--ink)}
 .grid150 .claimed{background:var(--sunk);border-color:var(--line);color:var(--ink-2)}
 .grid150 .done{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
-.grid150 .sel{background:var(--stamp);border-color:var(--stamp);color:#fff}
+.grid150 .sel{background:var(--tint);border-color:var(--ink);color:var(--ink);font-weight:700}
 .legend i{border:1px solid var(--line)}
 
 /* tehillim yachad */
@@ -900,34 +904,36 @@ a{color:var(--ink)}
 .zband .eyebrow{color:var(--rose)!important}
 .zband h1,.zband h2{font-family:var(--f-display);font-weight:900;letter-spacing:0;font-size:clamp(2.3rem,7vw,4.2rem);line-height:1.05;margin:6px 0 0}
 .zband h1 em,.zband h2 em{font-style:normal;color:var(--rose)!important}
-.zband p{color:rgba(251,247,238,.86)}
-.zband .btn.ghost,.zband .row .btn.ghost{background:none;border:1px solid rgba(251,247,238,.45);color:var(--on-ink)}
-.zband .btn.ghost:hover{background:rgba(251,247,238,.1)}
+.zband p{color:rgba(255,255,255,.86)}
+.zband .btn.ghost,.zband .row .btn.ghost{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)}
+.zband .btn.ghost:hover{background:rgba(255,255,255,.1)}
 .zband .btn[disabled]{opacity:.55}
-.zband .empty{border-color:rgba(251,247,238,.35);color:rgba(251,247,238,.86)}
+.zband .empty{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.86)}
 .zband .empty b{color:var(--on-ink)}
-.zband .mcard{background:none;border:1px solid rgba(251,247,238,.3);border-radius:14px;justify-items:start;text-align:start;padding:16px}
-.zband .mcard:hover{background:rgba(251,247,238,.06);border-color:var(--rose);transform:none}
+.zband .mcard{background:none;border:1px solid rgba(255,255,255,.3);border-radius:14px;justify-items:start;text-align:start;padding:16px}
+.zband .mcard:hover{background:rgba(255,255,255,.06);border-color:var(--rose);transform:none}
 .zband .mcard .eyebrow{color:var(--rose)}
-.zband .mcard small{color:rgba(251,247,238,.8)}
-.zsearch input{background:none;border:1px solid rgba(251,247,238,.45);color:var(--on-ink);border-radius:12px;min-height:48px}
-.zsearch input::placeholder{color:rgba(251,247,238,.7)}
-.pbar{display:block;inline-size:100%;block-size:6px;border-radius:99px;background:rgba(251,247,238,.22);overflow:hidden}
+.zband .mcard small{color:rgba(255,255,255,.8)}
+.zsearch input{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink);border-radius:12px;min-height:48px}
+.zsearch input::placeholder{color:rgba(255,255,255,.7)}
+.pbar{display:block;inline-size:100%;block-size:6px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden}
 .pbar i{display:block;block-size:100%;background:var(--rose);border-radius:99px}
 .glass.mhead,.mhead{background:var(--ink);color:var(--on-ink);border:0;display:block;border-radius:var(--r)}
 .mhead h1{font-family:var(--f-display);font-weight:900;letter-spacing:0;line-height:1.05;font-size:clamp(2.2rem,7vw,3.8rem);overflow-wrap:anywhere}
 .mhead .eyebrow{color:var(--rose)}
-.mhead .msg{color:rgba(251,247,238,.9)}
-.mhead .note{color:rgba(251,247,238,.8)}
-.mhead .zl{color:rgba(251,247,238,.75)}
+.mhead .msg{color:rgba(255,255,255,.9)}
+.mhead .note{color:rgba(255,255,255,.8)}
+.mhead .zl{color:rgba(255,255,255,.75)}
 .mhead .btn.gold{background:var(--on-ink);color:var(--ink)}
-.mhead .btn.ghost{background:none;border:1px solid rgba(251,247,238,.45);color:var(--on-ink)}
+.mhead .btn.gold:hover{background:#fff}
+.zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold{background:var(--on-ink);color:var(--ink)}
+.mhead .btn.ghost{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)}
 .jprog{margin:18px 0 8px;font-size:1.1rem}
-.jprog b{font-family:var(--f-display);font-weight:900;font-size:2.4rem;line-height:1;margin-inline-end:6px;font-variant-numeric:tabular-nums}
+.jprog b{font-family:var(--f-display);font-weight:900;font-size:2.8rem;line-height:1;margin-inline-end:6px;font-variant-numeric:tabular-nums}
 .mhead .pbar{margin-bottom:20px;block-size:8px}
 .jtake{flex:1 1 100%;font-size:1.12rem;font-weight:700;min-height:56px}
 @media (min-width:621px){.jtake{flex:0 0 auto;padding-inline:40px}}
-.jsteps{display:flex;flex-wrap:wrap;gap:6px 18px;margin:16px 0 0;padding:0;list-style:none;color:rgba(251,247,238,.86);font-size:.92rem;counter-reset:j}
+.jsteps{display:flex;flex-wrap:wrap;gap:6px 18px;margin:16px 0 0;padding:0;list-style:none;color:rgba(255,255,255,.86);font-size:.92rem;counter-reset:j}
 .jsteps li{counter-increment:j}.jsteps li::before{content:counter(j) ". ";font-weight:700;color:var(--rose)}
 .finish{border:1px solid var(--line);background:var(--card)}
 .letters span,.kletters span{background:var(--sunk);color:var(--ink);border:0}
@@ -947,7 +953,7 @@ a{color:var(--ink)}
 .toc a.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
 .searchwide{background:var(--card);border:1px solid var(--line);border-radius:12px;min-height:52px}
 .kbig b{color:var(--ink)}
-.klist em{background:var(--stamp)}
+.klist em{background:var(--ink);color:var(--on-ink)}
 .dial{border-color:var(--line)}.dial .arrow svg{fill:var(--stamp)}
 .kform input[type=text],.kform input:not([type]),.kform input[type=date],.kform input[type=number]{background:var(--bg);min-height:48px}
 .kback{display:inline-flex;align-items:center;min-height:44px}
@@ -955,14 +961,14 @@ a{color:var(--ink)}
 /* reader: the text gets the room */
 .rtools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
 .rtools .tocb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:500;color:var(--ink);flex:none}
-.rh1{font-family:var(--f-display);font-weight:900;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.15;max-width:40rem;margin:18px auto 0}
+.rh1{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,6vw,2.8rem);line-height:1.15;max-width:40rem;margin:18px auto 0}
 .rsub{max-width:40rem;margin:4px auto 0;color:var(--muted);font-size:.92rem}
 article.text{background:none;border:0;padding:8px 0 0;max-width:40rem;line-height:1.9}
 article.text p{text-align:start}
 article.text section{scroll-margin-top:calc(var(--barh,64px) + var(--rth,58px) + 14px)}
 article.text section+section{border-top-color:var(--line)}
 article.text h3{color:var(--stamp-deep);font-size:.8em}
-article.text h3 .fav{color:#8F7B85;min-inline-size:44px;min-block-size:44px}
+article.text h3 .fav{color:#9A7E88;min-inline-size:44px;min-block-size:44px}
 article.text h3 .fav[aria-pressed="true"]{color:var(--stamp)}
 article.text small{color:var(--muted)}
 .verse sup{color:var(--stamp-deep)}
@@ -983,10 +989,57 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .progress{background:var(--stamp)}
 .pager a{border:1px solid var(--line);background:var(--card);border-radius:14px}
 .rpop,.palbox,.sheet .panel,.alarm{background:var(--card);border-color:var(--line)}
-.pal,.sheet{background:rgba(53,26,41,.5);backdrop-filter:none;-webkit-backdrop-filter:none}
+.pal,.sheet{background:rgba(74,20,38,.5);backdrop-filter:none;-webkit-backdrop-filter:none}
 .tocsheet a{display:flex;align-items:center;min-height:48px;padding:6px 4px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);font-family:var(--f-read);font-size:1.12rem}
 .tocsheet a[aria-current="true"]{font-weight:700;color:var(--stamp-deep)}
 .tocsheet a.sk{color:var(--muted)}
+.hact .btn.primary{border-radius:18px;min-height:58px}
+@media (min-width:621px){.hact .btn.primary{min-inline-size:22rem}}
+.logo{color:var(--ink)}
+/* gradients and rounds, all in the one hue */
+body[data-r="home"]::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--wash)}
+body[data-r="home"] .top:not(.scrolled){background:transparent}
+body[data-r="home"]::before{background:transparent}
+.btn{border-radius:999px}
+.btn.gold,.btn.primary{background:var(--grad);color:#fff;box-shadow:0 16px 30px -18px #7A1935}
+.btn.gold:hover,.btn.primary:hover{background:var(--grad);filter:brightness(1.1)}
+.zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.btn.light,.btn.candlebtn{background:#fff;color:var(--ink);box-shadow:none;filter:none}
+.hero2 h1{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.1em}
+.hact .btn.primary{border-radius:999px;min-height:60px}
+.zband,.glass.mhead,.mhead,.teh-today,.daily .d4{background:var(--grad)}
+.daily .d3{background:linear-gradient(135deg,#8E3A55,#6A2E40)}
+.ystrip{border-radius:30px;box-shadow:0 24px 40px -28px #7A1935}
+.q4{border-radius:24px;border-color:var(--line);box-shadow:0 16px 30px -26px #7A1935}
+.daily a,.pager a,.res a,.smartbar,.gcard li a{border-radius:20px}
+.searchbtn,.iconbtn,.nus select,.lnk,.chip,.hnotes .tn,.cats a,.toc a,.rtools .tocb,.tbtn,.kinds button,.sugg button,.amounts button{border-radius:999px}
+.field input,.field select,.field textarea,.kform input,.searchbox input,.askcard input,.zsearch input,.searchwide{border-radius:18px}
+.tabs a{border-radius:999px;padding-inline:14px}
+.tabs a:hover{box-shadow:none;background:var(--sunk)}
+.tabs a[aria-current="page"]{box-shadow:none;background:var(--grad);color:#fff}
+.svc button[aria-selected="true"]{box-shadow:inset 0 -3px 0 var(--stamp)}
+.grid150 a,.grid150 button{border-radius:16px}
+.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon{background:var(--grad);color:#fff;border-color:transparent}
+.pbar i{background:linear-gradient(90deg,#fff,var(--tint))}
+.progress{background:var(--grad)}
+.palbox,.sheet .panel,.rpop{border-radius:28px}
+@media (min-width:640px){.sheet .panel{border-radius:28px}}
+@media (max-width:820px){.tabbar{inset:auto 10px calc(10px + env(safe-area-inset-bottom,0px));border:1px solid var(--line);border-radius:26px;box-shadow:0 18px 36px -22px #7A1935;padding:6px}
+  .tabbar a{border-radius:20px}.tabbar a[aria-current="page"]{background:var(--grad);color:#fff}.tabbar a[aria-current="page"] svg.i{color:#fff}
+  :root{--tabh:84px}}
+.cityin{display:inline-flex;align-items:center;gap:4px;margin-inline-start:10px;color:var(--muted);font-size:.95rem;min-height:44px}
+.cityin svg.i{width:16px;height:16px}
+.cityin select{appearance:none;-webkit-appearance:none;border:0;background:none;color:var(--ink);font-weight:600;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:4px;min-height:44px}
+.hsub{display:flex;flex-wrap:wrap;align-items:center;gap:0 4px}
+.zhead .lnk{font-size:.9rem;padding:6px 12px}
+.ystrip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 24px;align-items:center;margin-top:10px;padding:18px 22px}
+.ystrip h2{font-size:clamp(1.7rem,5.6vw,2.4rem);line-height:1.15;margin:2px 0 0}
+.ystrip .yact{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
+.ystrip .yact a{color:var(--on-ink);display:inline-flex;align-items:center;min-height:44px;text-underline-offset:4px}
+.ystrip>*{margin-inline:0}
+.ystrip .wall{grid-column:1/-1;margin-top:0}
+.ystrip .wall:empty{display:none}
+.ystrip .empty{padding:12px 14px;text-align:start}
+@media (max-width:700px){.ystrip{grid-template-columns:1fr;padding:18px}.ystrip .yact .btn{flex:1 1 100%}}
 @media (max-width:820px){nav.toc{display:none}.rh1{margin-top:14px}.smartbar{margin-top:10px;padding:8px 12px}}
 
 /* search, forms, small parts */
@@ -1016,10 +1069,10 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .askcard .ib{background:var(--sunk);color:var(--ink)}
 .askcard input{background:var(--bg);border:1px solid var(--line);border-radius:12px}
 .donate{background:var(--card)}
-.donate h2{font-family:var(--f-display);font-weight:700;font-size:1.5rem;line-height:1.25}
+.donate h2{font-family:var(--f-display);font-weight:900;font-size:1.8rem;line-height:1.2}
 .amounts button{background:var(--bg);border:1px solid var(--line);min-height:48px}
 .amounts button[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
-.alarm .ib{background:var(--stamp)}
+.alarm .ib{background:var(--ink);color:var(--rose)}
 .remlist input{accent-color:var(--ink)}
 footer{border-top-color:var(--line);color:var(--muted)}
 footer .fb{font-family:var(--f-display);font-weight:900;font-size:1.3rem;color:var(--ink)}
@@ -1034,7 +1087,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 
 <header class="top" id="bar">
   <div class="wrap topin">
-    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><path d="M3 4H26.4L29 6.6V10H3Z" fill="#351A29"/><path d="M21.4 12H29V28H21.4Z" fill="#351A29"/><path d="M9.6 12H17.2V28H3V24.4L5.6 21.8H9.6Z" fill="#A3342B"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="#351A29"/></svg></a>
+    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A32449"/><stop offset=".52" stop-color="#7A1935"/><stop offset="1" stop-color="#4A1426"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
     <nav class="tabs" aria-label="ניווט">
       <a href="#home" data-r="home">היום</a>
       <a href="#siddur" data-r="siddur">סידור</a>
@@ -1213,7 +1266,7 @@ const QUICK=[['מודה אני','בקימה',/^מודה אני/],['ברכות ה
   ['ספירת העומר','פסח עד שבועות',/ספירת העומר/],['נרות חנוכה','חנוכה',/נרות חנוכה|^סדר ההדלקה/]];
 
 /* ---------- shell ---------- */
-function setNav(r){$$('.tabs a,.tabbar a,.top .iconbtn[data-r]').forEach(a=>a.dataset.r===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'))}
+function setNav(r){document.body.dataset.r=r||'';$$('.tabs a,.tabbar a,.top .iconbtn[data-r]').forEach(a=>a.dataset.r===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'))}
 function renderNus(){$('#nus').innerHTML=`<label class="sr" for="nusSel">נוסח</label><select id="nusSel" title="נוסח התפילה">${NUS.map(([c,h])=>`<option value="${c}" ${c===nus?'selected':''}>${h}</option>`).join('')}</select>`}
 const sameKey=t=>norm(t).replace(/תפלת/g,'תפילת').replace(/שעל/g,'על').replace(/המטה/g,'המיטה').replace(/לימות|לימי/g,'').replace(/^(סדר|תפילת) /,'').replace(/\s+/g,' ').trim();
 function parallel(p,n){const t=sameKey(p.t),c=INDEX.prayers.filter(x=>x.n===n&&sameKey(x.t)===t);if(!c.length)return null;
@@ -1283,11 +1336,11 @@ function nowCard(){
 function zCard(){let z=null;try{z=zmanim()}catch(e){}if(!z)return'';const now=new Date();
   const KEY=['עלות השחר','הנץ החמה','סוף זמן ק״ש (גר״א)','סוף זמן תפילה (גר״א)','חצות היום','מנחה גדולה','שקיעה','צאת הכוכבים'];
   const rows=zAll?z.list:z.list.filter(([l])=>KEY.includes(l)),nextT=z.list.find(([,t])=>t>now);const st=hcShabbat()||shabbatTimes();
-  return `<section class="card zcard reveal" id="zcard"><div class="zhead"><h3>זמני היום · ${esc(z.name)}</h3><span class="note">${zAll?'כל הזמנים':'עיקריים'}</span></div>
+  return `<section class="card zcard reveal" id="zcard"><div class="zhead"><h3>זמני היום · ${esc(z.name)}</h3><button class="lnk" type="button" id="remBtn"${rem.on?' data-on':''}>${icon('bell')}${rem.on?'תזכורות פעילות':'תזכורות'}</button></div>
     ${rows.map(([l,t])=>`<div class="zrow${nextT&&t===nextT[1]?' next':t<now?' past':''}"><span>${l}</span><b>${fmtT(t,z.tz)}</b></div>`).join('')}
     ${st?`<div class="zshab"><div><span>הדלקת נרות</span><b>${fmtT(st.candle,st.tz)}</b></div><div><span>צאת שבת</span><b>${fmtT(st.havdala,st.tz)}</b></div>${st.rt?`<div><span>רבנו תם</span><b>${fmtT(st.rt,st.tz)}</b></div>`:''}</div>`:''}
     <button class="zmore" type="button" id="zmore">${zAll?'הצגת הזמנים העיקריים':'כל הזמנים: מג״א, מנחה קטנה, פלג, ר״ת'}</button></section>`}
-function bindZ(){const b=$('#zmore');if(b)b.onclick=()=>{zAll=!zAll;$('#zcard').outerHTML=zCard();bindZ()}}
+function bindZ(){const b=$('#zmore');if(b)b.onclick=()=>{zAll=!zAll;$('#zcard').outerHTML=zCard();bindZ()};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
 function omerCard(){const om=omerToday();if(!om)return'';const p=findPrayer(/ספירת העומר/);
   return `<div class="card omer reveal"><span class="eyebrow">ספירת העומר</span><div class="cnt">${gem(om)}</div><b style="font-family:var(--f-read)">${omerText(om)}</b>${p?`<a class="chip" href="#p-${p.id}" style="justify-self:start">לנוסח הספירה</a>`:''}</div>`}
 function holCard(){const hol=upcomingHC(5)||upcoming(4);if(!hol.length)return'';
@@ -1299,8 +1352,8 @@ function viewHome(){setNav('home');
   const tiles=QUICK.map(([t,sub,re],i)=>{if(/הדרך|המיטה|ברכת המזון/.test(t))return'';const p=findPrayer(re);return p?`<a class="tile card lift" href="#p-${p.id}"><span class="ib">${icon(QI[i])}</span><span><b>${t}</b><small>${sub}</small></span></a>`:''}).join('');
   app.innerHTML=`${heroNow()}
   ${quick4()}
-  ${specials()}
   ${yachadBand()}
+  ${specials()}
   ${smartToc()}
 
   <div class="sec"><h2>ברכות ותפילות</h2><a href="#siddur">כל הסידור</a></div>
@@ -1315,7 +1368,7 @@ function viewHome(){setNav('home');
   <div class="tgrid"><section class="card teh-today reveal"><span class="eyebrow">תהילים היום · ${gem(hd)} לחודש</span>
       <h3>${rng(m[0],m[1])}</h3><p>החלוקה החודשית: כל ספר תהילים בחודש אחד.</p>
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
-      <a class="btn ghost" style="background:none;border:1px solid rgba(251,247,238,.45);color:var(--on-ink)" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div></section>
+      <a class="btn ghost" style="background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div></section>
     <div id="potd"></div></div>
   <div class="needs" style="margin-top:10px">${NEEDS.map(([k,ic,t,sub])=>`<a class="need card lift" href="#k-${k}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sub}</small></span></a>`).join('')}</div>
 
@@ -1461,7 +1514,7 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
 
   <div class="sec"><h2>הספר כולו</h2><span class="note">${free} פרקים פנויים</span></div>
   <p class="note" style="margin:0 0 10px">רוצים פרק מסוים? בחרו אותו כאן. ${done>=150?`<b>${isN?'הספר נשלם. תהא נשמתו צרורה בצרור החיים.':'הספר נשלם. יהי רצון שתתקבל התפילה.'}</b>`:''}</p>
-  <div class="legend" style="margin-bottom:10px"><span><i style="background:var(--card)"></i>פנוי</span><span><i style="background:var(--stamp)"></i>בחרתי</span><span><i style="background:var(--sunk)"></i>נלקח</span><span><i style="background:var(--ink)"></i>נקרא</span></div>
+  <div class="legend" style="margin-bottom:10px"><span><i style="background:var(--card)"></i>פנוי</span><span><i style="background:var(--rose)"></i>בחרתי</span><span><i style="background:var(--sunk)"></i>נלקח</span><span><i style="background:var(--ink)"></i>נקרא</span></div>
   <div class="grid150" id="g150">${Array.from({length:150},(_,i)=>{const n=i+1,c=CH(n),cls=c?c.s:(selected.has(n)?'sel':'');
     const lbl=c?`פרק ${gem(n)}, ${c.s==='done'?'נקרא':'נלקח'}${c.by?' על ידי '+c.by:''}`:`פרק ${gem(n)}, פנוי`;
     return c?`<a class="${cls}" href="#t-${n}" data-mc="${n}" title="${esc(lbl)}" aria-label="${esc(lbl)}">${gem(n)}</a>`:`<button type="button" class="${cls}" data-n="${n}" aria-pressed="${selected.has(n)}" aria-label="${lbl}" ${ro?'disabled':''}>${gem(n)}</button>`}).join('')}</div>
@@ -1633,7 +1686,7 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
     app.innerHTML=`${tools(g.parts.join(' / '),g.items.length>1)}
       <h1 class="rh1">${esc(g.parts.at(-1))}</h1><p class="rsub">נוסח ${nusName(p.n)}${g.parts.length>1?' · '+esc(g.parts.slice(0,-1).join(' / ')):''}</p>
       ${f?`<div class="smartbar"><span>${icon('spark')}סידור חכם · מותאם ליום ${esc(f.hd.renderGematriya().replace(NIK,'').replace(/\s+\S+$/,''))}${f.after?' (מהשקיעה)':''}, ${isIL()?'ארץ ישראל':'חוץ לארץ'}</span><button type="button" id="smartoff">להציג הכל</button></div>`:(HC()?`<div class="smartbar off"><span>מוצג הסידור המלא</span><button type="button" id="smarton">להפעיל סידור חכם</button></div>`:'')}
-      ${f?(()=>{const r=prayerNotes();return r&&r.notes.length?`<p class="tday"><span>${r.after?'הלילה':'היום'}:</span>${r.notes.map(([a,b])=>`<b>${a}${b?' · '+b:''}</b>`).join('')}</p>`:''})():''}
+      ${f?(()=>{const r=prayerNotes();const arv=/ערבית|מעריב/.test(g.key),ns=(r&&r.notes||[]).filter(([a])=>!(arv&&/תחנון|צדקתך/.test(a)));return ns.length?`<p class="tday"><span>${r.after?'הלילה':'היום'}:</span>${ns.map(([a,b])=>`<b>${a}${b?' · '+b:''}</b>`).join('')}</p>`:''})():''}
       ${g.items.length>1?`<nav class="toc" aria-label="תוכן">${g.items.map(it=>`<a href="#s-${it.id}" data-j="${it.id}" class="${it.id===id?'on':''}${itemRule(it.t,g.key,f)?' sk':''}">${esc(it.t)}</a>`).join('')}</nav>`:''}
       <article class="text">${body}</article>
       <nav class="pager">${prev?`<a class="card" href="#p-${prev.items[0].id}"><small>→ הקודם</small><b>${esc(prev.parts.at(-1))}</b></a>`:''}${next?`<a class="card next" href="#p-${next.items[0].id}"><small>הבא ←</small><b>${esc(next.parts.at(-1))}</b></a>`:''}</nav>${footer()}`;
@@ -1667,7 +1720,7 @@ function smartToc(){const svcs=services(),np=nowPrayer(),cur=np.g,f=smartOn?dayF
     <ol class="rows">${on.map(row).join('')}</ol>
     ${off.length?`<details class="skipped"><summary>לא נאמרים היום (${off.length})</summary><ol class="rows muted">${off.map(row).join('')}</ol></details>`:''}
   </section>`}
-function bindHead(){const nh=$('#nusHero');if(nh)nh.onchange=e=>setNus(e.target.value);const c=$('#city');if(c)c.onchange=e=>{city=e.target.value;store.set('city',city);route()};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
+function bindHead(){const c=$('#city');if(c)c.onchange=e=>{city=e.target.value;store.set('city',city);route()};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
 function bindToc(){const c=$('#stoc .svc'),sb=c&&c.querySelector('[aria-selected="true"]');if(sb){const d=sb.getBoundingClientRect().left-c.getBoundingClientRect().left-(c.clientWidth-sb.offsetWidth)/2;c.scrollLeft+=d}
   $$('#stoc .svc button').forEach(b=>b.onclick=()=>{svcSel=+b.dataset.g;$('#stoc').outerHTML=smartToc();bindToc()})}
 function todayHead(){const now=new Date(),f=dayFlags(),np=nowPrayer(now),H=HC();let z=null;try{z=zmanim()}catch(e){}
@@ -1938,7 +1991,7 @@ function prayerNotes(){const H=HC();if(!H)return null;try{
   if(m===M.TISHREI&&d<=10)notes.push(['המלך הקדוש · זכרנו לחיים','עשרת ימי תשובה']);
   let t=null;try{t=H.tachanun(hd,il)}catch(e){}
   if(t&&!after){if(shab){if(t.mincha)notes.push(['צדקתך צדק','מנחה של שבת'])}
-    else notes.push(t.shacharit||t.mincha?['אומרים תחנון',t.shacharit&&!t.mincha?'בשחרית בלבד':(!t.shacharit&&t.mincha?'במנחה בלבד':'')]:['אין אומרים תחנון',''])}
+    else notes.push(t.shacharit||t.mincha?['אומרים תחנון',t.shacharit&&!t.mincha?'בשחרית בלבד':(!t.shacharit&&t.mincha?'במנחה בלבד':'בשחרית ובמנחה')]:['אין אומרים תחנון','בשחרית ובמנחה'])}
   return{notes,after,hd}}catch(e){return null}}
 function notesBar(){const r=prayerNotes();if(!r)return'';
   return `<div class="pnotes reveal" id="pnotes"><span class="eyebrow">${r.after?'בתפילת ערבית הלילה':'בתפילה היום'} · ${esc(r.hd.renderGematriya().replace(NIK,'').replace(/\s+\S+$/,''))} · ${isIL()?'ארץ ישראל':'חוץ לארץ'}</span>
@@ -2077,24 +2130,30 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
     if((wd===5&&now>=st.candle)||(wd===6&&now<st.havdala))shab=`<div class="shabline"><small>צאת שבת</small><b>${fmtT(st.havdala,st.tz)}</b><small>${untilTxt(st.havdala,now)}</small></div>`;
     else if(wd===5)shab=`<div class="shabline"><small>הדלקת נרות</small><b>${fmtT(st.candle,st.tz)}</b><small>${untilTxt(st.candle,now)}</small></div>`}}catch(e){}
   const r=prayerNotes();
+  const isArv=/ערבית|מעריב/.test(np.label||''),hn=(r&&r.notes||[]).filter(([a])=>!(isArv&&/תחנון|צדקתך/.test(a)));
   const lbl=np.label||'',cta=g?`לפתיחת ${/^קבלת/.test(lbl)?'':'תפילת '}${lbl}`:'לפתיחת הסידור';
+  let f=null,phase='day';try{if(z){const T=l=>(z.list.find(x=>x[0]===l)||[])[1],alot=T('עלות השחר'),netz=T('הנץ החמה'),set=T('שקיעה'),tz=T('צאת הכוכבים');
+    f=(now-netz)/(set-netz);phase=now<alot||now>=new Date(+tz+20*60e3)?'night':now<new Date(+netz+60*60e3)?'dawn':now<new Date(+set-75*60e3)?'day':'dusk'}
+    else phase=hr<5||hr>=20?'night':hr<8?'dawn':hr<16?'day':'dusk'}catch(e){}
+  document.documentElement.dataset.phase=phase;
+  const day=f!==null&&f>=-.02&&f<=1.02,ff=day?Math.min(1,Math.max(0,f)):.3,ang=ff*Math.PI,sx=(180+160*Math.cos(ang)).toFixed(1),sy=(176-160*Math.sin(ang)).toFixed(1);
+  const arc=`<svg viewBox="0 0 360 190" aria-hidden="true"><defs><radialGradient id="halo"><stop offset="0" stop-color="var(--tint)"/><stop offset="1" stop-color="var(--tint)" stop-opacity="0"/></radialGradient></defs>
+      <path d="M20 176A160 160 0 0 1 340 176" fill="none" stroke="var(--tint)" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+      <circle cx="${sx}" cy="${sy}" r="${day?34:26}" fill="url(#halo)"/><circle cx="${sx}" cy="${sy}" r="${day?11:9}" fill="${day?'var(--stamp)':'#fff'}" stroke="var(--stamp)" stroke-width="2.5"/>
+      <line x1="4" y1="176" x2="356" y2="176" stroke="var(--tint)" stroke-width="1.5"/></svg>`;
   return `<section class="hero2" id="hero">
     <div class="hmeta"><span>${greet}</span><i>·</i><span>${esc(hdTxt)}</span>${par?`<i>·</i><span>${esc(par)}</span>`:''}</div>
-    <h1${lbl.length>6?' class="long"':''}>${esc(lbl)}<span class="dotg">.</span></h1>
-    ${z?`<p class="hsub" id="cd">${cdText(z,now)}</p>`:''}
+    <div class="skybox">${arc}<h1${lbl.length>6?' class="long"':''}>${esc(lbl)}</h1></div>
+    <p class="hsub"><span id="cd">${z?cdText(z,now):''}</span><label class="cityin">${icon('pin')}<span class="sr">עיר לחישוב הזמנים</span><select id="city">${opts}</select></label></p>
     ${shab}
     <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a></div>
-    <div class="hctl"><label class="lnk"><span>נוסח</span><select id="nusHero" aria-label="החלפת נוסח">${NUS.map(([c,h])=>`<option value="${c}" ${c===nus?'selected':''}>${h}</option>`).join('')}</select></label>
-      <label class="lnk">${icon('pin')}<span class="sr">עיר</span><select id="city">${opts}</select></label>
-      <button class="lnk" type="button" id="remBtn"${rem.on?' data-on':''}>${icon('bell')}${rem.on?'תזכורות פעילות':'תזכורות'}</button></div>
-    ${r&&r.notes.length?`<div class="hnotes"><span>${r.after?'הלילה בתפילה':'היום בתפילה'}</span>${r.notes.map(([a,b])=>`<span class="tn"><b>${a}</b>${b?` <small>${b}</small>`:''}</span>`).join('')}</div>`:''}
+    ${hn.length?`<div class="hnotes"><span>${isArv?'בתפילת ערבית':r.after?'הלילה בתפילה':'היום בתפילה'}</span>${hn.map(([a,b])=>`<span class="tn"><b>${a}</b>${b?` <small>${b}</small>`:''}</span>`).join('')}</div>`:''}
   </section>`}
 function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/],['קריאת שמע שעל המיטה','לפני השינה',/קריאת שמע ש?על המי?טה/],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/]];
   return `<nav class="quick4" aria-label="קיצורים">${q.map(([t,sb,re])=>{const p=findPrayer(re);return p?`<a class="q4" href="#p-${p.id}"><b>${t}</b><small>${sb}</small></a>`:''}).join('')}<a class="q4" href="#tehillim"><b>תהילים</b><small>כל 150 הפרקים</small></a></nav>`}
-function yachadBand(){return `<section class="zband" aria-labelledby="zh"><span class="eyebrow">תהילים יחד</span>
-    <h2 id="zh">כל אחד פרק.<br><em>ביחד ספר שלם.</em></h2>
-    <p>פותחים קריאה לרפואה, לעילוי נשמה או לכל ישועה, ושולחים קישור בוואטסאפ. כל אחד מקבל פרק, קורא ומסמן. בלי הרשמה.</p>
-    <div class="row" style="margin-top:20px"><button class="btn candlebtn" type="button" data-new>פותחים קריאה</button><a class="btn ghost" href="#zikaron">קריאות פתוחות</a></div>
+function yachadBand(){return `<section class="zband ystrip" aria-labelledby="zh"><div class="ytxt"><span class="eyebrow">תהילים יחד</span>
+    <h2 id="zh">כל אחד פרק. <em>ביחד ספר שלם.</em></h2></div>
+    <div class="yact"><button class="btn candlebtn" type="button" data-new>פתיחת קריאה משותפת</button><a href="#zikaron">איך זה עובד</a></div>
     <div class="wall" id="wall"></div></section>`}
 function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;const els=$$('#app .sec, #app .hgrid, #app .tgrid, #app .needs, #app .tiles, #app .askcard, #app .donate, #app .spcs');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
@@ -2335,7 +2394,9 @@ function autoScroll(s){asSpeed=s;cancelAnimationFrame(asRaf);asAcc=0;$$('#asc bu
 ['wheel','touchstart','keydown'].forEach(ev=>addEventListener(ev,e=>{if(asSpeed&&!(e.target.closest&&e.target.closest('#asc')))autoScroll(0)},{passive:true}));
 addEventListener('hashchange',()=>{autoScroll(0);compassOff&&compassOff();compassOff=null});
 
-function route(){if(!INDEX)return;closePal();const run=()=>{reading=false;$('#prog').style.transform='scaleX(0)';
+function setPhase(){try{const now=new Date(),z=zmanim(),T=l=>(z.list.find(x=>x[0]===l)||[])[1],a=T('עלות השחר'),n=T('הנץ החמה'),s=T('שקיעה'),t=T('צאת הכוכבים');
+  document.documentElement.dataset.phase=now<a||now>=new Date(+t+20*60e3)?'night':now<new Date(+n+60*60e3)?'dawn':now<new Date(+s-75*60e3)?'day':'dusk'}catch(e){}}
+function route(){if(!INDEX)return;closePal();setPhase();const run=()=>{reading=false;$('#prog').style.transform='scaleX(0)';
   const h=decodeURIComponent(location.hash.slice(1))||'home';let m;
   {const saved=store.get('nus','mizrach');if(!/^p-/.test(h)&&nus!==saved){nus=saved;renderNus()}}
   if((m=h.match(/^p-([a-z]+-\d+)$/))){const hl=pendingHl;pendingHl=null;return viewPrayer(m[1],hl)}

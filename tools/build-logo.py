@@ -3,8 +3,8 @@
 The mark is three paper pieces that join into the letter tav. Every file is
 plain vector shapes: no embedded bitmap and no font needed at display time.
 
-Needs fonttools and a Frank Ruhl Libre 900 + Heebo 500 font file:
-  python3 tools/build-logo.py <frank-ruhl-900.woff> <heebo-500.woff>
+Needs fonttools, a Bellefair (Hebrew) font file for the wordmark and a Latin UI font for the domain:
+  python3 tools/build-logo.py <bellefair-hebrew.woff> <assistant-latin-600.woff>
 """
 import sys, os
 from fontTools.ttLib import TTFont
@@ -13,15 +13,17 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#F6F0E4", "#351A29", "#A3342B"
+PAPER, INK, STAMP = "#FCF8F8", "#4A1426", "#8E1F3F"
 
-# 32-unit grid. roof, right leg, left leg with its foot
-ROOF = "M3 4H26.4L29 6.6V10H3Z"
-RIGHT = "M21.4 12H29V28H21.4Z"
-LEFT = "M9.6 12H17.2V28H3V24.4L5.6 21.8H9.6Z"
+# 32-unit grid. The gate: one rounded stroke that is both the letter tav and a doorway, and a point of light inside it.
+GATE = "M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5"
+G1, G2, G3 = "#A32449", "#7A1935", "#4A1426"
+GRAD = f'<defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{G1}"/><stop offset=".52" stop-color="{G2}"/><stop offset="1" stop-color="{G3}"/></linearGradient></defs>'
 
-def mark(roof=INK, right=INK, left=STAMP):
-    return f'<path d="{ROOF}" fill="{roof}"/><path d="{RIGHT}" fill="{right}"/><path d="{LEFT}" fill="{left}"/>'
+def mark(roof=None, right=None, left=None, colour="url(#tfg)"):
+    g = GRAD if "url(" in colour else ""
+    return (f'{g}<path d="{GATE}" fill="none" stroke="{colour}" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="16" cy="19.4" r="2.6" fill="{colour}"/>')
 
 def text_path(font_file, text, size, x_right=None, x_left=None, baseline=0):
     """outline `text` (already in visual order, left to right) as one path"""
@@ -43,11 +45,11 @@ def main():
     frank, heebo = sys.argv[1], sys.argv[2]
     os.makedirs(OUT, exist_ok=True)
     write("mark.svg", 32, 32, mark(), "תפילה")
-    write("mark-mono.svg", 32, 32, f'<path d="{ROOF}{RIGHT}{LEFT}" fill="currentColor"/>', "תפילה")
+    write("mark-mono.svg", 32, 32, mark(colour="currentColor"), "תפילה")
     # favicon / app icon: paper mark on an ink tile
-    tile = f'<rect width="32" height="32" rx="7" fill="{INK}"/><g transform="translate(2.9 2.9) scale(.82)">{mark(PAPER, PAPER, PAPER)}</g>'
+    tile = f'{GRAD}<rect width="32" height="32" rx="9" fill="url(#tfg)"/>{mark(colour="#FFFFFF")}'
     write("favicon.svg", 32, 32, tile, "תפילה")
-    write("icon-maskable.svg", 32, 32, f'<rect width="32" height="32" fill="{INK}"/><g transform="translate(7 7) scale(.5625)">{mark(PAPER, PAPER, PAPER)}</g>', "תפילה")
+    write("icon-maskable.svg", 32, 32, f'{GRAD}<rect width="32" height="32" fill="url(#tfg)"/><g transform="translate(5.6 5.6) scale(.65)">{mark(colour="#FFFFFF")}</g>', "תפילה")
     # horizontal lockup, right to left: mark, then the wordmark, domain under it
     word = "הליפת"  # visual order of תפילה
     wd, ww = text_path(frank, word, 30, x_left=0, baseline=0)

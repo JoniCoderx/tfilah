@@ -108,8 +108,8 @@ LOGO = load_logo()
 
 # ---------- CSS: a small base plus blocks that ship only on pages that use them ----------
 CSS_BASE = """
-:root{--paper:#FCF8F8;--surface:#FFFFFF;--ink:#4A1426;--ink2:#6A2E40;--muted:#6E5560;--line:#EAD9DE;--sunk:#F6ECEF;--stamp:#8E1F3F;--grad:linear-gradient(135deg,#A32449,#7A1935 52%,#4A1426);
---sh:0 1px 2px rgba(74,20,38,.05),0 10px 28px -16px rgba(74,20,38,.22);--r:1.375rem;
+:root{--paper:#F6F7F9;--surface:#FFFFFF;--ink:#15181D;--ink2:#2E333B;--muted:#5A616C;--line:#D5D9E0;--sunk:#ECEEF2;--stamp:#4A525E;--grad:linear-gradient(135deg,#5B6370,#2A2F37 52%,#15181D);
+--sh:0 1px 2px rgba(21,24,29,.05),0 10px 28px -16px rgba(21,24,29,.22);--r:1.375rem;
 --reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
@@ -388,7 +388,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{SITE}/icons/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FCF8F8"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F6F7F9"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>{css_for(body)}</style><script>{JS_HEAD}</script>

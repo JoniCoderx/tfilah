@@ -1,6 +1,6 @@
 // Tfilah.com offline support: the siddur and Tehillim keep working without internet.
 // Raise VERSION on every deploy (README, "אפליקציה בטלפון"); that is what tells phones to update.
-const VERSION = "tfilah-v22";
+const VERSION = "tfilah-v23";
 const SHELL = VERSION;              // the app and its prayer texts; replaced as a whole on every VERSION
 const PAGES = "tfilah-pages";       // static reading pages (/tehillim/23/ ...) the reader has opened
 const EXT = "tfilah-ext-v1";        // fonts and libraries from other hosts (their URLs carry a version)
@@ -134,10 +134,10 @@ function offlinePage() {
   const html = `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>אין חיבור לאינטרנט · תפילה</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FCF8F8;color:#4A1426;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.7}
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#F6F7F9;color:#15181D;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.7}
 main{max-width:30rem;padding:2rem 1.5rem;text-align:center}h1{font-size:1.5rem;margin:0 0 .75rem}p{margin:0 0 1.25rem}
-a,button{display:inline-block;margin:.25rem;padding:.7rem 1.4rem;border-radius:999px;border:1px solid #4A1426;font:inherit;text-decoration:none;cursor:pointer}
-a{background:#4A1426;color:#FCF8F8}button{background:transparent;color:#4A1426}</style></head>
+a,button{display:inline-block;margin:.25rem;padding:.7rem 1.4rem;border-radius:999px;border:1px solid #15181D;font:inherit;text-decoration:none;cursor:pointer}
+a{background:#15181D;color:#F6F7F9}button{background:transparent;color:#15181D}</style></head>
 <body><main><h1>אין כרגע חיבור לאינטרנט</h1>
 <p>הדף הזה עוד לא נשמר במכשיר, ולכן אי אפשר להציג אותו בלי חיבור. הסידור והתהילים שבאפליקציה זמינים גם עכשיו.</p>
 <a href="/">לסידור ולתהילים</a><button type="button" id="again">לנסות שוב</button></main>

@@ -106,16 +106,15 @@ def new_memorial(db, name, listed=False):
 
 def main():
     new_sql = open(SQL, encoding="utf-8").read()
-    # Older versions of the file to upgrade from: the very first one in git, and git HEAD
-    # (when the working copy differs from it).
+    # Every older version of the file found in git history is an upgrade starting point.
     olds = []
     try:
-        first = subprocess.run(["git", "-C", ROOT, "log", "--format=%h", "--diff-filter=A", "--", "supabase.sql"],
-                               capture_output=True, text=True, check=True).stdout.split()[-1]
-        for label, rev in (("first version, " + first, first), ("git HEAD", "HEAD")):
+        revs = subprocess.run(["git", "-C", ROOT, "log", "--format=%h", "--", "supabase.sql"],
+                              capture_output=True, text=True, check=True).stdout.split()
+        for rev in reversed(revs):
             text = subprocess.run(["git", "-C", ROOT, "show", rev + ":supabase.sql"], capture_output=True, text=True, check=True).stdout
             if text != new_sql and text not in [t for _, t in olds]:
-                olds.append((label, text))
+                olds.append(("commit " + rev, text))
     except Exception:
         olds = []
 

@@ -34,7 +34,7 @@ head = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
-<meta name="theme-color" content="#FCF8F8">
+<meta name="theme-color" content="#F6F7F9">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -80,9 +80,9 @@ _groups = [
     ("ספרייה וכלים", [("/sefer/", "ספרייה"), ("/sefer/avot/", "פרקי אבות"), ("/sefer/shir/", "שיר השירים"), ("/sefer/esther/", "מגילת אסתר"),
         ("/sefer/perek/", "פרק שירה"), ("/kelim/", "כלים אישיים")]),
 ]
-SEO_NAV = ('<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.88rem;line-height:1.5;color:#6E5560">'
-  + "".join('<p style="margin:0 0 6px"><b style="color:#4A1426">%s:</b> ' % g
-            + " · ".join('<a href="%s" style="color:#6E5560;display:inline-block;padding:4px 0">%s</a>' % (h, t) for h, t in links) + "</p>"
+SEO_NAV = ('<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.88rem;line-height:1.5;color:#5A616C">'
+  + "".join('<p style="margin:0 0 6px"><b style="color:#15181D">%s:</b> ' % g
+            + " · ".join('<a href="%s" style="color:#5A616C;display:inline-block;padding:4px 0">%s</a>' % (h, t) for h, t in links) + "</p>"
             for g, links in _groups) + "</nav>")
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>תפילה | סידור, תהילים וקריאת תהילים משותפת</title>
 <meta name="description" content="סידור תפילה מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים וקריאה משותפת: כל אחד פרק, ביחד ספר שלם.">
-<meta name="theme-color" content="#FCF8F8">
+<meta name="theme-color" content="#F6F7F9">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -517,7 +517,7 @@ article.text details.ins.off p{color:var(--muted)}
 article.text mark.ins-mark{background:var(--accent-soft);color:var(--accent-ink);font-weight:700;border-radius:4px;padding:0 .15em;box-shadow:inset 0 -2px 0 var(--accent)}
 article.text .ins-mute{opacity:.35}
 article.text section.skip h3{color:var(--muted)}
-.toc a.sk{opacity:.5;text-decoration:line-through}
+.toc a.sk{opacity:1;color:var(--muted);text-decoration:line-through}
 
 .nextz.shabz{padding:10px 14px;border-radius:16px;background:var(--candle-soft);justify-items:end}
 .nextz.shabz span{color:#9a4a1a}.nextz.shabz b{color:#5a2508;font-size:1.9rem}.nextz.shabz small{color:#7a3a14}
@@ -537,7 +537,7 @@ article.text section.skip h3{color:var(--muted)}
 :root{
   --bg:#FFFFFF; --card:#F5F5F7; --sunk:#EDEDF0; --ink:#0B0B0C; --ink-2:#2E2E33; --muted:#6E6E73; --line:#E6E6EA;
   --accent:#0B0B0C; --accent-ink:#0B0B0C; --accent-soft:#F5F5F7;
-  --gold:#B8862B; --gold-deep:#8A5F12; --gold-soft:#FBF3E1; --gold-lt:#F3C6D2;
+  --gold:#B8862B; --gold-deep:#8A5F12; --gold-soft:#FBF3E1; --gold-lt:#C9CED6;
   --candle:#E8892B; --candle-soft:#FDF1E4;
   --shadow:none; --r:28px;
   --f-ui:"Heebo","Segoe UI",Arial,sans-serif;
@@ -565,7 +565,7 @@ a{color:var(--ink)}
 /* header */
 .top{background:rgba(255,255,255,.72)}
 .top.scrolled{border-bottom-color:var(--line)}
-.logo .mk{background:linear-gradient(145deg,#F3C6D2,#B8862B);border-radius:10px}
+.logo .mk{background:linear-gradient(145deg,#C9CED6,#B8862B);border-radius:10px}
 .logo b{font-weight:800;letter-spacing:-.02em}
 .logo b span{color:var(--gold)}
 .tabs a{font-weight:500;color:var(--ink-2);border-radius:999px}
@@ -663,7 +663,7 @@ a{color:var(--ink)}
 .zband .mcard .eyebrow{color:#F2B266}
 .zband .mcard small{color:rgba(255,255,255,.6)}
 .askcard{margin-top:48px}
-.askcard .ib{background:linear-gradient(135deg,#F3C6D2,#B8862B);animation:none}
+.askcard .ib{background:linear-gradient(135deg,#C9CED6,#B8862B);animation:none}
 .askcard input{background:#fff;border:0;border-radius:999px;padding:13px 18px}
 .donate{background:var(--gold-soft)}
 .amounts button{border:0;background:#fff;border-radius:16px}
@@ -672,7 +672,7 @@ a{color:var(--ink)}
 
 /* siddur page */
 .daily a{border-radius:24px}
-.daily .d1{background:linear-gradient(160deg,#F7E3B5,#F3C6D2);color:var(--ink)}
+.daily .d1{background:linear-gradient(160deg,#F7E3B5,#C9CED6);color:var(--ink)}
 .daily .d2{background:linear-gradient(160deg,#F3D3B0,#E39A5A);color:var(--ink)}
 .daily .d3{background:linear-gradient(160deg,#1b1b22,#3a3346)}
 .daily .d4{background:#0B0B0C}
@@ -700,7 +700,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .grid150 .sel{background:var(--ink)}
 .grid150 a,.grid150 button{border:0;background:var(--card)}
 .msg.me{background:var(--ink)}
-.orb .core{background:conic-gradient(from 200deg,#F3C6D2,#B8862B,#F7E3B5,#F3C6D2)}
+.orb .core{background:conic-gradient(from 200deg,#C9CED6,#B8862B,#F7E3B5,#C9CED6)}
 .badge{background:var(--gold-soft);color:var(--gold-deep)}
 .rav{border:0;background:var(--card)}
 .palitem[aria-selected="true"]{background:var(--gold-soft)}
@@ -782,15 +782,17 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .big1{width:100%;padding:16px 18px;font-size:1.05rem}
 .rounds{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:10px}
 
-/* ===== SEFER: one colour, taken all the way. Bordeaux only: deep wine for ink, the same hue in gradients, soft rounds everywhere. Extends LUX; new rules go here. ===== */
+/* ===== SEFER: white, silver and stainless steel. Graphite ink on cool white; steel and chrome in gradients; soft rounds everywhere. Extends LUX; new rules go here. ===== */
 :root{
-  --bg:#FCF8F8; --card:#FFFFFF; --sunk:#F6ECEF; --ink:#4A1426; --ink-2:#6A2E40; --muted:#6E5560; --line:#EAD9DE; --tint:#F3C6D2;
-  --grad:linear-gradient(135deg,#A32449 0%,#7A1935 52%,#4A1426 100%); --wash:radial-gradient(95% 62% at 50% -12%,#F4C4D0 0%,#FBEAEE 46%,#FCF8F8 80%);
+  --bg:#F6F7F9; --card:#FFFFFF; --sunk:#ECEEF2; --ink:#15181D; --ink-2:#2E333B; --muted:#5A616C; --line:#D5D9E0; --tint:#C9CED6;
+  --grad:linear-gradient(180deg,rgba(255,255,255,.26) 0%,rgba(255,255,255,0) 48%),linear-gradient(135deg,#5B6370 0%,#2A2F37 52%,#15181D 100%);
+  --chrome:linear-gradient(180deg,#9AA2AE 0%,#3A404A 36%,#111318 52%,#7C8491 76%,#2A2F37 100%);
+  --silver:linear-gradient(180deg,#FFFFFF 0%,#EDEFF3 46%,#D3D8DF 54%,#EEF0F4 100%); --wash:radial-gradient(95% 62% at 50% -12%,#DDE1E7 0%,#EEF0F3 46%,#F6F7F9 80%);
   --sky:var(--bg); --sun:var(--ink); --halo:var(--sunk);
   --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--sunk); --on-ink:#FFFFFF; --rose:var(--tint);
-  --stamp:#8E1F3F; --stamp-deep:#6E1730;
-  --gold:#8E1F3F; --gold-deep:#6E1730; --gold-soft:#FBEFF2; --gold-lt:var(--tint); --gold-hi:#6E1730;
-  --candle:#8E1F3F; --candle-soft:#FBEFF2; --ok:var(--ink); --ok-soft:var(--sunk); --mark:var(--tint); --faint:var(--muted);
+  --stamp:#4A525E; --stamp-deep:#2E333B;
+  --gold:#4A525E; --gold-deep:#2E333B; --gold-soft:#F1F3F6; --gold-lt:var(--tint); --gold-hi:#2E333B;
+  --candle:#4A525E; --candle-soft:#F1F3F6; --ok:var(--ink); --ok-soft:var(--sunk); --mark:var(--tint); --faint:var(--muted);
   --f-ui:"Assistant","Heebo","Segoe UI",Arial,sans-serif;
   --f-display:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;
   --r:26px; --rth:58px;
@@ -808,7 +810,7 @@ a{color:var(--ink)}
 .btn.gold,.btn.primary{background:var(--ink);color:var(--on-ink)}
 .btn.gold:hover,.btn.primary:hover{background:var(--ink-2)}
 .btn.ghost{background:var(--sunk);color:var(--ink)}
-.btn.ghost:hover{background:#EEDDE2}
+.btn.ghost:hover{background:#E2E5EA}
 .btn.light,.btn.candlebtn{background:var(--on-ink);color:var(--ink)}
 .btn.white{background:none;backdrop-filter:none;-webkit-backdrop-filter:none;text-decoration:underline;text-underline-offset:4px}
 .chip{background:var(--card);border:1px solid var(--line);min-height:40px}
@@ -997,7 +999,7 @@ article.text p{text-align:start}
 article.text section{scroll-margin-top:calc(var(--barh,64px) + var(--rth,58px) + 14px)}
 article.text section+section{border-top-color:var(--line)}
 article.text h3{color:var(--stamp-deep);font-size:.8em}
-article.text h3 .fav{color:#9A7E88;min-inline-size:44px;min-block-size:44px}
+article.text h3 .fav{color:#8A919C;min-inline-size:44px;min-block-size:44px}
 article.text h3 .fav[aria-pressed="true"]{color:var(--stamp)}
 article.text small{color:var(--muted)}
 .verse sup{color:var(--stamp-deep)}
@@ -1018,7 +1020,7 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .progress{background:var(--stamp)}
 .pager a{border:1px solid var(--line);background:var(--card);border-radius:14px}
 .rpop,.palbox,.sheet .panel,.alarm{background:var(--card);border-color:var(--line)}
-.pal,.sheet{background:rgba(74,20,38,.5);backdrop-filter:none;-webkit-backdrop-filter:none}
+.pal,.sheet{background:rgba(21,24,29,.5);backdrop-filter:none;-webkit-backdrop-filter:none}
 .tocsheet a{display:flex;align-items:center;min-height:48px;padding:6px 4px;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);font-family:var(--f-read);font-size:1.12rem}
 .tocsheet a[aria-current="true"]{font-weight:700;color:var(--stamp-deep)}
 .tocsheet a.sk{color:var(--muted)}
@@ -1030,15 +1032,18 @@ body[data-r="home"]::after{content:"";position:fixed;inset:0;z-index:-1;backgrou
 body[data-r="home"] .top:not(.scrolled){background:transparent}
 body[data-r="home"]::before{background:transparent}
 .btn{border-radius:999px}
-.btn.gold,.btn.primary{background:var(--grad);color:#fff;box-shadow:0 16px 30px -18px #7A1935}
+.btn.gold,.btn.primary{background:var(--grad);color:#fff;box-shadow:0 16px 30px -18px #2A2F37}
 .btn.gold:hover,.btn.primary:hover{background:var(--grad);filter:brightness(1.1)}
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.btn.light,.btn.candlebtn{background:#fff;color:var(--ink);box-shadow:none;filter:none}
-.hero2 h1{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.1em}
+.hero2 h1{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.1em}
 .hact .btn.primary{border-radius:999px;min-height:60px}
 .zband,.glass.mhead,.mhead,.teh-today,.daily .d4{background:var(--grad)}
-.daily .d3{background:linear-gradient(135deg,#8E3A55,#6A2E40)}
-.ystrip{border-radius:30px;box-shadow:0 24px 40px -28px #7A1935}
-.q4{border-radius:24px;border-color:var(--line);box-shadow:0 16px 30px -26px #7A1935}
+.daily .d3{background:linear-gradient(135deg,#6B7380,#2E333B)}
+.ystrip{border-radius:30px;box-shadow:0 24px 40px -28px #2A2F37}
+.q4{border-radius:24px;border-color:var(--line);background:var(--silver);box-shadow:0 16px 30px -26px #2A2F37,inset 0 1px 0 #fff}
+.searchbtn,.iconbtn,.lnk,.chip,.hnotes .tn{background-image:var(--silver);box-shadow:inset 0 1px 0 #fff}
+.glass,.card{box-shadow:inset 0 1px 0 #fff}
+.zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.btn.light,.btn.candlebtn{background:var(--silver)!important}
 .daily a,.pager a,.res a,.smartbar,.gcard li a{border-radius:20px}
 .searchbtn,.iconbtn,.nus select,.lnk,.chip,.hnotes .tn,.cats a,.toc a,.rtools .tocb,.tbtn,.kinds button,.sugg button,.amounts button{border-radius:999px}
 .field input,.field select,.field textarea,.kform input,.searchbox input,.askcard input,.zsearch input,.searchwide{border-radius:18px}
@@ -1052,7 +1057,7 @@ body[data-r="home"]::before{background:transparent}
 .progress{background:var(--grad)}
 .palbox,.sheet .panel,.rpop{border-radius:28px}
 @media (min-width:640px){.sheet .panel{border-radius:28px}}
-@media (max-width:820px){.tabbar{inset:auto 10px calc(10px + env(safe-area-inset-bottom,0px));border:1px solid var(--line);border-radius:26px;box-shadow:0 18px 36px -22px #7A1935;padding:6px}
+@media (max-width:820px){.tabbar{inset:auto 10px calc(10px + env(safe-area-inset-bottom,0px));border:1px solid var(--line);border-radius:26px;box-shadow:0 18px 36px -22px #2A2F37;padding:6px}
   .tabbar a{border-radius:20px}.tabbar a[aria-current="page"]{background:var(--grad);color:#fff}.tabbar a[aria-current="page"] svg.i{color:#fff}
   :root{--tabh:84px}}
 .cityin{display:inline-flex;align-items:center;gap:4px;margin-inline-start:10px;color:var(--muted);font-size:.95rem;min-height:44px}
@@ -1116,7 +1121,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 
 <header class="top" id="bar">
   <div class="wrap topin">
-    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A32449"/><stop offset=".52" stop-color="#7A1935"/><stop offset="1" stop-color="#4A1426"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
+    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B6370"/><stop offset=".52" stop-color="#2A2F37"/><stop offset="1" stop-color="#15181D"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
     <nav class="tabs" aria-label="ניווט">
       <a href="#home" data-r="home">היום</a>
       <a href="#siddur" data-r="siddur">סידור</a>
@@ -2477,6 +2482,6 @@ document.documentElement.style.setProperty('--reading',fontScale+'rem');
 boot().catch(()=>{app.innerHTML='<div class="empty" style="margin-top:30px"><b>לא הצלחנו לטעון את הסידור</b>רעננו את הדף.</div>'});
 })();
 </script>
-<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.88rem;line-height:1.5;color:#6E5560"><p style="margin:0 0 6px"><b style="color:#4A1426">סידור:</b> <a href="/tefila/" style="color:#6E5560;display:inline-block;padding:4px 0">סידור תפילה</a> · <a href="/tefila/mizrach/" style="color:#6E5560;display:inline-block;padding:4px 0">סידור נוסח עדות המזרח</a> · <a href="/tefila/sefard/" style="color:#6E5560;display:inline-block;padding:4px 0">סידור נוסח ספרד</a> · <a href="/tefila/ashkenaz/" style="color:#6E5560;display:inline-block;padding:4px 0">סידור נוסח אשכנז</a> · <a href="/tefila/mizrach/shacharit/" style="color:#6E5560;display:inline-block;padding:4px 0">שחרית נוסח עדות המזרח</a> · <a href="/tefila/sefard/shacharit/" style="color:#6E5560;display:inline-block;padding:4px 0">שחרית נוסח ספרד</a> · <a href="/tefila/ashkenaz/shacharit/" style="color:#6E5560;display:inline-block;padding:4px 0">שחרית נוסח אשכנז</a> · <a href="/tefila/mizrach/mincha/" style="color:#6E5560;display:inline-block;padding:4px 0">מנחה נוסח עדות המזרח</a> · <a href="/tefila/sefard/mincha/" style="color:#6E5560;display:inline-block;padding:4px 0">מנחה נוסח ספרד</a> · <a href="/tefila/ashkenaz/mincha/" style="color:#6E5560;display:inline-block;padding:4px 0">מנחה נוסח אשכנז</a> · <a href="/tefila/mizrach/arvit/" style="color:#6E5560;display:inline-block;padding:4px 0">ערבית נוסח עדות המזרח</a> · <a href="/tefila/sefard/arvit/" style="color:#6E5560;display:inline-block;padding:4px 0">ערבית נוסח ספרד</a> · <a href="/tefila/ashkenaz/arvit/" style="color:#6E5560;display:inline-block;padding:4px 0">ערבית נוסח אשכנז</a> · <a href="/tefila/mizrach-53/" style="color:#6E5560;display:inline-block;padding:4px 0">ברכת המזון</a> · <a href="/tefila/mizrach-119/" style="color:#6E5560;display:inline-block;padding:4px 0">תפילת הדרך</a> · <a href="/tefila/mizrach-37/" style="color:#6E5560;display:inline-block;padding:4px 0">קריאת שמע שעל המיטה</a></p><p style="margin:0 0 6px"><b style="color:#4A1426">תהילים:</b> <a href="/tehillim/" style="color:#6E5560;display:inline-block;padding:4px 0">ספר תהילים</a> · <a href="/tehillim/yomi/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים יומי</a> · <a href="/tehillim-yachad/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים יחד</a> · <a href="/tehillim/refuah/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לרפואה שלמה</a> · <a href="/tehillim/parnasa/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לפרנסה</a> · <a href="/tehillim/shidduch/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לזיווג הגון</a> · <a href="/tehillim/banim/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לזרע של קיימא</a> · <a href="/tehillim/leida/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים ללידה קלה</a> · <a href="/tehillim/derech/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים להצלחה בדרך</a> · <a href="/tehillim/shmira/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לשמירה והגנה</a> · <a href="/tehillim/hodaya/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים להודיה ולשמחה</a> · <a href="/tehillim/tzara/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לעת צרה</a> · <a href="/tehillim/neshama/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לעילוי נשמה</a> · <a href="/tehillim/tikkun/" style="color:#6E5560;display:inline-block;padding:4px 0">תיקון הכללי</a> · <a href="/tehillim/kever/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים לבית העלמין</a> · <a href="/tehillim/20/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק כ</a> · <a href="/tehillim/23/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק כג</a> · <a href="/tehillim/91/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק צא</a> · <a href="/tehillim/119/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק קיט</a> · <a href="/tehillim/121/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק קכא</a> · <a href="/tehillim/130/" style="color:#6E5560;display:inline-block;padding:4px 0">תהילים פרק קל</a></p><p style="margin:0 0 6px"><b style="color:#4A1426">ספרייה וכלים:</b> <a href="/sefer/" style="color:#6E5560;display:inline-block;padding:4px 0">ספרייה</a> · <a href="/sefer/avot/" style="color:#6E5560;display:inline-block;padding:4px 0">פרקי אבות</a> · <a href="/sefer/shir/" style="color:#6E5560;display:inline-block;padding:4px 0">שיר השירים</a> · <a href="/sefer/esther/" style="color:#6E5560;display:inline-block;padding:4px 0">מגילת אסתר</a> · <a href="/sefer/perek/" style="color:#6E5560;display:inline-block;padding:4px 0">פרק שירה</a> · <a href="/kelim/" style="color:#6E5560;display:inline-block;padding:4px 0">כלים אישיים</a></p></nav>
+<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.88rem;line-height:1.5;color:#5A616C"><p style="margin:0 0 6px"><b style="color:#15181D">סידור:</b> <a href="/tefila/" style="color:#5A616C;display:inline-block;padding:4px 0">סידור תפילה</a> · <a href="/tefila/mizrach/" style="color:#5A616C;display:inline-block;padding:4px 0">סידור נוסח עדות המזרח</a> · <a href="/tefila/sefard/" style="color:#5A616C;display:inline-block;padding:4px 0">סידור נוסח ספרד</a> · <a href="/tefila/ashkenaz/" style="color:#5A616C;display:inline-block;padding:4px 0">סידור נוסח אשכנז</a> · <a href="/tefila/mizrach/shacharit/" style="color:#5A616C;display:inline-block;padding:4px 0">שחרית נוסח עדות המזרח</a> · <a href="/tefila/sefard/shacharit/" style="color:#5A616C;display:inline-block;padding:4px 0">שחרית נוסח ספרד</a> · <a href="/tefila/ashkenaz/shacharit/" style="color:#5A616C;display:inline-block;padding:4px 0">שחרית נוסח אשכנז</a> · <a href="/tefila/mizrach/mincha/" style="color:#5A616C;display:inline-block;padding:4px 0">מנחה נוסח עדות המזרח</a> · <a href="/tefila/sefard/mincha/" style="color:#5A616C;display:inline-block;padding:4px 0">מנחה נוסח ספרד</a> · <a href="/tefila/ashkenaz/mincha/" style="color:#5A616C;display:inline-block;padding:4px 0">מנחה נוסח אשכנז</a> · <a href="/tefila/mizrach/arvit/" style="color:#5A616C;display:inline-block;padding:4px 0">ערבית נוסח עדות המזרח</a> · <a href="/tefila/sefard/arvit/" style="color:#5A616C;display:inline-block;padding:4px 0">ערבית נוסח ספרד</a> · <a href="/tefila/ashkenaz/arvit/" style="color:#5A616C;display:inline-block;padding:4px 0">ערבית נוסח אשכנז</a> · <a href="/tefila/mizrach-53/" style="color:#5A616C;display:inline-block;padding:4px 0">ברכת המזון</a> · <a href="/tefila/mizrach-119/" style="color:#5A616C;display:inline-block;padding:4px 0">תפילת הדרך</a> · <a href="/tefila/mizrach-37/" style="color:#5A616C;display:inline-block;padding:4px 0">קריאת שמע שעל המיטה</a></p><p style="margin:0 0 6px"><b style="color:#15181D">תהילים:</b> <a href="/tehillim/" style="color:#5A616C;display:inline-block;padding:4px 0">ספר תהילים</a> · <a href="/tehillim/yomi/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים יומי</a> · <a href="/tehillim-yachad/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים יחד</a> · <a href="/tehillim/refuah/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לרפואה שלמה</a> · <a href="/tehillim/parnasa/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לפרנסה</a> · <a href="/tehillim/shidduch/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לזיווג הגון</a> · <a href="/tehillim/banim/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לזרע של קיימא</a> · <a href="/tehillim/leida/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים ללידה קלה</a> · <a href="/tehillim/derech/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים להצלחה בדרך</a> · <a href="/tehillim/shmira/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לשמירה והגנה</a> · <a href="/tehillim/hodaya/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים להודיה ולשמחה</a> · <a href="/tehillim/tzara/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לעת צרה</a> · <a href="/tehillim/neshama/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לעילוי נשמה</a> · <a href="/tehillim/tikkun/" style="color:#5A616C;display:inline-block;padding:4px 0">תיקון הכללי</a> · <a href="/tehillim/kever/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים לבית העלמין</a> · <a href="/tehillim/20/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק כ</a> · <a href="/tehillim/23/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק כג</a> · <a href="/tehillim/91/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק צא</a> · <a href="/tehillim/119/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק קיט</a> · <a href="/tehillim/121/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק קכא</a> · <a href="/tehillim/130/" style="color:#5A616C;display:inline-block;padding:4px 0">תהילים פרק קל</a></p><p style="margin:0 0 6px"><b style="color:#15181D">ספרייה וכלים:</b> <a href="/sefer/" style="color:#5A616C;display:inline-block;padding:4px 0">ספרייה</a> · <a href="/sefer/avot/" style="color:#5A616C;display:inline-block;padding:4px 0">פרקי אבות</a> · <a href="/sefer/shir/" style="color:#5A616C;display:inline-block;padding:4px 0">שיר השירים</a> · <a href="/sefer/esther/" style="color:#5A616C;display:inline-block;padding:4px 0">מגילת אסתר</a> · <a href="/sefer/perek/" style="color:#5A616C;display:inline-block;padding:4px 0">פרק שירה</a> · <a href="/kelim/" style="color:#5A616C;display:inline-block;padding:4px 0">כלים אישיים</a></p></nav>
 </body>
 </html>

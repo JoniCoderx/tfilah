@@ -8,8 +8,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#FCF8F8",
-  "theme_color": "#FCF8F8",
+  "background_color": "#F6F7F9",
+  "theme_color": "#F6F7F9",
   "categories": ["books", "lifestyle", "education"],
   "icons": [
     { "src": "/brand/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

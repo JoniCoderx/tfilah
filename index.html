@@ -777,16 +777,16 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .kcomp #kdeg{font-size:1.2rem}
 .krow .kcard{padding:14px}
 .zsearch{margin:18px 0 4px}.zsearch input{width:100%;box-sizing:border-box;font:inherit;padding:13px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:inherit}
-.zsearch input::placeholder{color:rgba(255,255,255,.5)}
-.glass.mhead{background:#1A1512;color:#fff}
+.zsearch input::placeholder{color:rgba(var(--onc),.5)}
+.glass.mhead{background:#1A1512;color:var(--on)}
 .big1{width:100%;padding:16px 18px;font-size:1.05rem}
 .rounds{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:10px}
 
 /* ===== SEFER: tchelet and white. Navy ink on white; light sky blue in gradients; soft rounds everywhere. Extends LUX; new rules go here. ===== */
 :root{
   --bg:#F8FCFF; --card:#FFFFFF; --sunk:#E9F6FE; --ink:#0B2E4F; --ink-2:#27506F; --muted:#46677F; --line:#CDE7F8; --tint:#B3E0FA;
-  --grad:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 46%),linear-gradient(135deg,#0B78BE 0%,#0A6CA8 52%,#075E99 100%);
-  --chrome:linear-gradient(180deg,#1493DB 0%,#0B78BE 34%,#075E99 52%,#1189D2 76%,#0A6CA8 100%);
+  --grad:linear-gradient(180deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 50%),linear-gradient(135deg,#BFE6FF 0%,#A6DBFB 52%,#8FD0F7 100%); --on:#0B2E4F; --onc:11,46,79;
+  --chrome:linear-gradient(180deg,#38AEEF 0%,#1C98DE 40%,#128BD0 100%);
   --silver:linear-gradient(180deg,#FFFFFF 0%,#F2FAFF 46%,#DDF0FD 54%,#F3FAFF 100%); --wash:radial-gradient(95% 62% at 50% -12%,#BFE6FF 0%,#E8F6FF 46%,#F8FCFF 80%);
   --sky:var(--bg); --sun:var(--ink); --halo:var(--sunk);
   --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--sunk); --on-ink:#FFFFFF; --rose:var(--tint);
@@ -935,36 +935,36 @@ a{color:var(--ink)}
 .zband .eyebrow{color:var(--rose)!important}
 .zband h1,.zband h2{font-family:var(--f-display);font-weight:900;letter-spacing:0;font-size:clamp(2.3rem,7vw,4.2rem);line-height:1.05;margin:6px 0 0}
 .zband h1 em,.zband h2 em{font-style:normal;color:var(--rose)!important}
-.zband p{color:rgba(255,255,255,.86)}
-.zband .btn.ghost,.zband .row .btn.ghost{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)}
+.zband p{color:rgba(var(--onc),.86)}
+.zband .btn.ghost,.zband .row .btn.ghost{background:none;border:1px solid rgba(var(--onc),.3);color:var(--on-ink)}
 .zband .btn.ghost:hover{background:rgba(255,255,255,.1)}
 .zband .btn[disabled]{opacity:.55}
-.zband .empty{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.86)}
+.zband .empty{border-color:rgba(var(--onc),.35);color:rgba(var(--onc),.86)}
 .zband .empty b{color:var(--on-ink)}
-.zband .mcard{background:none;border:1px solid rgba(255,255,255,.3);border-radius:14px;justify-items:start;text-align:start;padding:16px}
+.zband .mcard{background:none;border:1px solid rgba(var(--onc),.22);border-radius:14px;justify-items:start;text-align:start;padding:16px}
 .zband .mcard:hover{background:rgba(255,255,255,.06);border-color:var(--rose);transform:none}
 .zband .mcard .eyebrow{color:var(--rose)}
-.zband .mcard small{color:rgba(255,255,255,.8)}
-.zsearch input{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink);border-radius:12px;min-height:48px}
-.zsearch input::placeholder{color:rgba(255,255,255,.7)}
-.pbar{display:block;inline-size:100%;block-size:6px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden}
+.zband .mcard small{color:rgba(var(--onc),.8)}
+.zsearch input{background:none;border:1px solid rgba(var(--onc),.3);color:var(--on-ink);border-radius:12px;min-height:48px}
+.zsearch input::placeholder{color:rgba(var(--onc),.7)}
+.pbar{display:block;inline-size:100%;block-size:6px;border-radius:99px;background:rgba(var(--onc),.14);overflow:hidden}
 .pbar i{display:block;block-size:100%;background:var(--rose);border-radius:99px}
 .glass.mhead,.mhead{background:var(--ink);color:var(--on-ink);border:0;display:block;border-radius:var(--r)}
 .mhead h1{font-family:var(--f-display);font-weight:900;letter-spacing:0;line-height:1.05;font-size:clamp(2.2rem,7vw,3.8rem);overflow-wrap:anywhere}
 .mhead .eyebrow{color:var(--rose)}
-.mhead .msg{color:rgba(255,255,255,.9)}
-.mhead .note{color:rgba(255,255,255,.8)}
-.mhead .zl{color:rgba(255,255,255,.75)}
+.mhead .msg{color:rgba(var(--onc),.9)}
+.mhead .note{color:rgba(var(--onc),.8)}
+.mhead .zl{color:rgba(var(--onc),.75)}
 .mhead .btn.gold{background:var(--on-ink);color:var(--ink)}
 .mhead .btn.gold:hover{background:#fff}
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold{background:var(--on-ink);color:var(--ink)}
-.mhead .btn.ghost{background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)}
+.mhead .btn.ghost{background:none;border:1px solid rgba(var(--onc),.3);color:var(--on-ink)}
 .jprog{margin:18px 0 8px;font-size:1.1rem}
 .jprog b{font-family:var(--f-display);font-weight:900;font-size:2.8rem;line-height:1;margin-inline-end:6px;font-variant-numeric:tabular-nums}
 .mhead .pbar{margin-bottom:20px;block-size:8px}
 .jtake{flex:1 1 100%;font-size:1.12rem;font-weight:700;min-height:56px}
 @media (min-width:621px){.jtake{flex:0 0 auto;padding-inline:40px}}
-.jsteps{display:flex;flex-wrap:wrap;gap:6px 18px;margin:16px 0 0;padding:0;list-style:none;color:rgba(255,255,255,.86);font-size:.92rem;counter-reset:j}
+.jsteps{display:flex;flex-wrap:wrap;gap:6px 18px;margin:16px 0 0;padding:0;list-style:none;color:rgba(var(--onc),.86);font-size:.92rem;counter-reset:j}
 .jsteps li{counter-increment:j}.jsteps li::before{content:counter(j) ". ";font-weight:700;color:var(--rose)}
 .finish{border:1px solid var(--line);background:var(--card)}
 .letters span,.kletters span{background:var(--sunk);color:var(--ink);border:0}
@@ -1038,7 +1038,7 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .tname{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px 20px;align-items:center}
 .tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
 @media (max-width:700px){.tname{grid-template-columns:1fr}.tnrow{flex-wrap:wrap}.tnrow .btn{flex:1 1 100%}}
-.jwho{margin:14px 0 0;color:rgba(255,255,255,.94);font-size:.95rem}.jwho b{font-size:1.15rem}
+.jwho{margin:14px 0 0;color:rgba(var(--onc),.94);font-size:.95rem}.jwho b{font-size:1.15rem}
 .whol{list-style:none;margin:0;padding:6px 0;counter-reset:none}
 .whol li{display:flex;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid var(--line)}.whol li:first-child{border-top:0}
 .whol .wn{inline-size:30px;block-size:30px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;flex:none}
@@ -1052,7 +1052,7 @@ body[data-r="home"]::after{content:"";position:fixed;inset:0;z-index:-1;backgrou
 body[data-r="home"] .top:not(.scrolled){background:transparent}
 body[data-r="home"]::before{background:transparent}
 .btn{border-radius:999px}
-.btn.gold,.btn.primary{background:var(--grad);color:#fff;box-shadow:0 16px 30px -18px #0A6CA8}
+.btn.gold,.btn.primary{background:var(--grad);color:var(--on);box-shadow:0 16px 30px -18px #5FB4E6}
 .btn.gold:hover,.btn.primary:hover{background:var(--grad);filter:brightness(1.1)}
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.btn.light,.btn.candlebtn{background:#fff;color:var(--ink);box-shadow:none;filter:none}
 .hero2 h1{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.1em}
@@ -1069,16 +1069,16 @@ body[data-r="home"]::before{background:transparent}
 .field input,.field select,.field textarea,.kform input,.searchbox input,.askcard input,.zsearch input,.searchwide{border-radius:18px}
 .tabs a{border-radius:999px;padding-inline:14px}
 .tabs a:hover{box-shadow:none;background:var(--sunk)}
-.tabs a[aria-current="page"]{box-shadow:none;background:var(--grad);color:#fff}
+.tabs a[aria-current="page"]{box-shadow:none;background:var(--grad);color:var(--on)}
 .svc button[aria-selected="true"]{box-shadow:inset 0 -3px 0 var(--stamp)}
 .grid150 a,.grid150 button{border-radius:16px}
-.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon{background:var(--grad);color:#fff;border-color:transparent}
+.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon{background:var(--grad);color:var(--on);border-color:transparent}
 .pbar i{background:linear-gradient(90deg,#fff,var(--tint))}
 .progress{background:var(--grad)}
 .palbox,.sheet .panel,.rpop{border-radius:28px}
 @media (min-width:640px){.sheet .panel{border-radius:28px}}
 @media (max-width:820px){.tabbar{inset:auto 10px calc(10px + env(safe-area-inset-bottom,0px));border:1px solid var(--line);border-radius:26px;box-shadow:0 18px 36px -22px #0A6CA8;padding:6px}
-  .tabbar a{border-radius:20px}.tabbar a[aria-current="page"]{background:var(--grad);color:#fff}.tabbar a[aria-current="page"] svg.i{color:#fff}
+  .tabbar a{border-radius:20px}.tabbar a[aria-current="page"]{background:var(--grad);color:var(--on)}.tabbar a[aria-current="page"] svg.i{color:var(--on)}
   :root{--tabh:84px}}
 .cityin{display:inline-flex;align-items:center;gap:4px;margin-inline-start:10px;color:var(--muted);font-size:.95rem;min-height:44px}
 .cityin svg.i{width:16px;height:16px}
@@ -1135,11 +1135,20 @@ footer nav{display:flex;flex-wrap:wrap;gap:2px 18px;margin:6px 0 10px}
 footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink)}
 .candle{display:none}
 /* audit: contrast. Small labels on the rose-gold metal are white (4.5:1 and up); the big prayer name keeps its metal bands but no band is lighter than 3:1 on the page ground */
-.teh-today .eyebrow,.zband .eyebrow,.zband .mcard .eyebrow{color:#fff!important}
-.zband p,.zband .empty,.jsteps{color:rgba(255,255,255,.94)}
-.zsearch input::placeholder{color:rgba(255,255,255,.9)}
+.teh-today .eyebrow,.zband .eyebrow,.zband .mcard .eyebrow{color:var(--on)!important}
+.zband p,.zband .empty,.jsteps{color:rgba(var(--onc),.94)}
+.zsearch input::placeholder{color:rgba(var(--onc),.9)}
 /* audit: touch targets of at least 44px on phones for the controls people actually tap */
 @media (max-width:820px){.gcard li a,.chip,.smartbar button,article.text details summary{min-height:44px}.cats a,.hlink,.vref{min-height:44px;display:inline-flex;align-items:center}.logo{min-block-size:44px}}
+/* light tchelet surfaces carry dark text */
+.zband,.glass.mhead,.mhead,.teh-today,.daily .d4,.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon{--on-ink:var(--on);color:var(--on)}
+.zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.teh-today .btn.primary,.teh-today .btn.gold,.zband .btn.gold{background:#fff;color:var(--ink);box-shadow:0 10px 24px -16px rgba(var(--onc),.5)}
+.zband .btn.ghost,.mhead .btn.ghost,.teh-today .btn.ghost{color:var(--on)!important;border-color:rgba(var(--onc),.3)!important}
+.mhead .pbar i,.zband .pbar i{background:var(--ink)}
+.zband,.glass.mhead,.mhead,.teh-today,.shabline,.daily .d3,.daily .d4{--rose:#075E99}
+.daily .d3{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
+.shabline{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
+.shabline *{color:inherit}.shabline b{color:var(--ink)}
 </style>
 
 <div class="progress" id="prog" aria-hidden="true"></div>
@@ -1147,7 +1156,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 
 <header class="top" id="bar">
   <div class="wrap topin">
-    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1493DB"/><stop offset=".52" stop-color="#0B78BE"/><stop offset="1" stop-color="#075E99"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
+    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6CC6F7"/><stop offset=".52" stop-color="#35A9EC"/><stop offset="1" stop-color="#1493DB"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
     <nav class="tabs" aria-label="ניווט">
       <a href="#home" data-r="home">היום</a>
       <a href="#siddur" data-r="siddur">סידור</a>

@@ -13,11 +13,11 @@ from fontTools.pens.transformPen import TransformPen
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "brand")
-PAPER, INK, STAMP = "#FAFCFF", "#0E2A52", "#1F6FD6"
+PAPER, INK, STAMP = "#F8FCFF", "#0B2E4F", "#0B78BE"
 
 # 32-unit grid. The gate: one rounded stroke that is both the letter tav and a doorway, and a point of light inside it.
 GATE = "M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5"
-G1, G2, G3 = "#3A8DF0", "#1F6FD6", "#134A9C"
+G1, G2, G3 = "#1493DB", "#0B78BE", "#075E99"
 GRAD = f'<defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{G1}"/><stop offset=".52" stop-color="{G2}"/><stop offset="1" stop-color="{G3}"/></linearGradient></defs>'
 
 def mark(roof=None, right=None, left=None, colour="url(#tfg)"):

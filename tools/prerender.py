@@ -108,8 +108,8 @@ LOGO = load_logo()
 
 # ---------- CSS: a small base plus blocks that ship only on pages that use them ----------
 CSS_BASE = """
-:root{--paper:#FAFCFF;--surface:#FFFFFF;--ink:#0E2A52;--ink2:#2B4A78;--muted:#4A6285;--line:#D6E6FA;--sunk:#EEF5FE;--stamp:#1A5FC0;--tint:#BFDBFB;--grad:linear-gradient(135deg,#1F6FD6,#1A5FC0 52%,#134A9C);
---sh:0 1px 2px rgba(14,42,82,.05),0 10px 28px -16px rgba(14,42,82,.22);--r:1.375rem;
+:root{--paper:#F8FCFF;--surface:#FFFFFF;--ink:#0B2E4F;--ink2:#27506F;--muted:#46677F;--line:#CDE7F8;--sunk:#E9F6FE;--stamp:#0A6CA8;--tint:#B3E0FA;--grad:linear-gradient(135deg,#0B78BE,#0A6CA8 52%,#075E99);
+--sh:0 1px 2px rgba(11,46,79,.05),0 10px 28px -16px rgba(11,46,79,.22);--r:1.375rem;
 --reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Heebo","Assistant",system-ui,Arial,sans-serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
@@ -120,7 +120,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(250,252,255,.94);border-block-end:1px solid var(--line)}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(248,252,255,.94);border-block-end:1px solid var(--line)}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}
@@ -193,7 +193,7 @@ CSS_BLOCKS = [
 .pager small{display:block;color:var(--muted);font-weight:400;font-size:.8rem}
 .pager .next{text-align:end;background:var(--grad);border-color:transparent;color:#fff;box-shadow:var(--sh)}
 .pager .next:hover{color:#fff;filter:brightness(1.08)}
-.pager .next small{color:#BFDBFB}
+.pager .next small{color:#B3E0FA}
 """),
 ("together", """
 .together{margin:2rem 0 0;padding:1.3rem 1.4rem 1.5rem;background:var(--sunk);border-radius:1.75rem}
@@ -272,7 +272,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .hero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.2}
 .hero .btn{background:#fff;color:var(--ink);box-shadow:none}
 .hero .btn:hover{color:var(--stamp);filter:none}
-.hero small{display:block;margin-block-start:.8rem;color:#BFDBFB;font-size:.92rem}
+.hero small{display:block;margin-block-start:.8rem;color:#B3E0FA;font-size:.92rem}
 """),
 ("prose", """
 .prose{max-width:36rem}
@@ -399,7 +399,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{SITE}/icons/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FAFCFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F8FCFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>{css_for(body)}</style><script>{JS_HEAD}</script>

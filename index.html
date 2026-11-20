@@ -785,8 +785,8 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 /* ===== SEFER: rose gold. Deep cocoa ink on warm white; rose-gold metal in gradients; soft rounds everywhere. Extends LUX; new rules go here. ===== */
 :root{
   --bg:#FBF7F5; --card:#FFFFFF; --sunk:#F5ECE8; --ink:#2B1A1F; --ink-2:#4A3238; --muted:#6F5A5F; --line:#EAD9D3; --tint:#F0CFC4;
-  --grad:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 46%),linear-gradient(135deg,#A85C4A 0%,#8A4636 52%,#5E2C22 100%);
-  --chrome:linear-gradient(180deg,#E3A892 0%,#B8705C 34%,#7E3F31 52%,#CF927D 76%,#96503F 100%);
+  --grad:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,0) 46%),linear-gradient(135deg,#9A5040 0%,#864333 52%,#5E2C22 100%);
+  --chrome:linear-gradient(180deg,#B06853 0%,#9A5443 34%,#6E3428 52%,#AC6450 76%,#8A4636 100%);
   --silver:linear-gradient(180deg,#FFFFFF 0%,#FBF1ED 46%,#F3DDD5 54%,#FBF2EE 100%); --wash:radial-gradient(95% 62% at 50% -12%,#F6D9CF 0%,#FBEEE9 46%,#FBF7F5 80%);
   --sky:var(--bg); --sun:var(--ink); --halo:var(--sunk);
   --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--sunk); --on-ink:#FFFFFF; --rose:var(--tint);
@@ -1114,6 +1114,10 @@ footer .fb span{color:var(--muted);font-family:var(--f-ui);font-weight:500;font-
 footer nav{display:flex;flex-wrap:wrap;gap:2px 18px;margin:6px 0 10px}
 footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink)}
 .candle{display:none}
+/* audit: contrast. Small labels on the rose-gold metal are white (4.5:1 and up); the big prayer name keeps its metal bands but no band is lighter than 3:1 on the page ground */
+.teh-today .eyebrow,.zband .eyebrow,.zband .mcard .eyebrow{color:#fff!important}
+.zband p,.zband .empty,.jsteps{color:rgba(255,255,255,.94)}
+.zsearch input::placeholder{color:rgba(255,255,255,.9)}
 /* audit: touch targets of at least 44px on phones for the controls people actually tap */
 @media (max-width:820px){.gcard li a,.chip,.smartbar button,article.text details summary{min-height:44px}.cats a,.hlink,.vref{min-height:44px;display:inline-flex;align-items:center}.logo{min-block-size:44px}}
 </style>
@@ -2445,10 +2449,12 @@ function kBday(){const last=store.get('kbday',{});
     const [y,m,d]=v.split('-').map(Number),hd=hebDateOf(new Date(y,m-1,d),a),f=hcFn('getBirthdayOrAnniversary'),now=new H.HDate(new Date());
     let next=null;for(let hy=now.getFullYear();hy<now.getFullYear()+2&&!next;hy++){const b=f?f(hy,hd.greg()):null;if(b&&b.greg()>=new Date(Date.now()-864e5))next=b}
     const mAge=s==='f'?12:13,bm=f?f(hd.getFullYear()+mAge,hd.greg()):null,age=next?next.getFullYear()-hd.getFullYear():null;
+    /* the chapter of the year of life one is in now: current age + 1, the same rule as the age tool */
+    const cur=age===null?null:Math.max(0,next.greg()<=new Date()?age:age-1),chap=cur===null?null:Math.min(150,cur+1);
     $('#kout').innerHTML=`<div class="kbig glass"><span class="eyebrow">נולדתם ב</span><b>${hd.renderGematriya()}</b></div>
       <ul class="klist">${next?`<li class="glass"><b>יום ההולדת העברי הקרוב${age?` (${age})`:''}</b><span>${fmtG(next.greg())}</span></li>`:''}
       ${bm?`<li class="glass"><b>${s==='f'?'בת מצווה':'בר מצווה'}</b><span>${bm.renderGematriya()} · ${fmtG(bm.greg())}</span></li>`:''}
-      ${age!==null?`<li class="glass"><b>הפרק שלכם השנה</b><span><a href="#t-${Math.min(150,age)}">תהילים פרק ${gem(Math.min(150,age))}</a></span></li>`:''}</ul>
+      ${chap!==null?`<li class="glass"><b>הפרק שלכם השנה</b><span><a href="#t-${chap}">תהילים פרק ${gem(chap)}</a> · בגיל ${cur}, השנה ה-${cur+1} לחייכם</span></li>`:''}</ul>
       ${next?'<div class="kbtns"><button class="btn primary" id="kics" type="button">הוסיפו ליומן (10 שנים)</button></div>':''}`;
     const b=$('#kics');if(b)b.onclick=()=>{const ds=[];for(let i=0;i<10;i++){const x=f(next.getFullYear()+i,hd.greg());if(x)ds.push(x.greg())}dlFile('hebrew-birthday.ics',allDayIcs('יום הולדת עברי',ds))}};
   $('#kf').onsubmit=e=>{e.preventDefault();run()};if(last.d)setTimeout(run,0)}

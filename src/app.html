@@ -3,7 +3,7 @@
 <meta name="description" content="תפילה: סידור בשלושה נוסחים, ספר תהילים וקריאה משותפת. כל אחד פרק, ביחד ספר שלם.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;700;800&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Heebo:wght@300;700&family=Noto+Serif+Hebrew:wght@400;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
 <style>
 /* Layout: an app, not a page. One "now" sky card that changes with the hour leads; everything else is
    calm white cards on a soft grey ground. Tekhelet blue is the one accent; candle orange only for memorials.
@@ -16,9 +16,9 @@
   --mark:#FFE58A; --shadow:0 1px 2px rgba(17,17,20,.04),0 8px 24px -12px rgba(17,17,20,.12);
   --f-display:"Karantina","IBM Plex Sans Hebrew",sans-serif;
   --f-ui:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
-  --f-read:"Noto Serif Hebrew","Frank Ruhl Libre","Times New Roman",serif;
+  --f-read:"Frank Ruhl Libre","David Libre","Noto Serif Hebrew","Times New Roman",serif;
   --f-rashi:"Noto Rashi Hebrew","Noto Serif Hebrew",serif;
-  --reading:1.32rem; --r:22px; --tabh:0px;
+  --reading:1.42rem; --r:22px; --tabh:0px;
   /* legacy aliases used by inner views */
   --stone:var(--ink); --gold:var(--accent); --gold-hi:var(--accent-ink); --gold-lt:var(--accent); --tekhelet:var(--accent); --tekhelet-soft:var(--accent-soft);
   --panel:var(--card); --panel-solid:var(--card); --faint:#9a9aa2; --done:var(--ok); --flame:var(--candle); --on-gold:#fff; --f-head:var(--f-ui); --f-text:var(--f-read);
@@ -965,7 +965,8 @@ a{color:var(--ink)}
 .rtools .tocb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:500;color:var(--ink);flex:none}
 .rh1{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,6vw,2.8rem);line-height:1.15;max-width:40rem;margin:18px auto 0}
 .rsub{max-width:40rem;margin:4px auto 0;color:var(--muted);font-size:.92rem}
-article.text{background:none;border:0;padding:8px 0 0;max-width:40rem;line-height:1.9}
+article.text{background:none;border:0;padding:8px 0 0;max-width:40rem;line-height:1.95;font-weight:var(--read-w,400);word-spacing:.05em;font-feature-settings:'kern','liga'}
+article.text b,article.text big b{font-weight:700}
 article.text p{text-align:start}
 article.text section{scroll-margin-top:calc(var(--barh,64px) + var(--rth,58px) + 14px)}
 article.text section+section{border-top-color:var(--line)}
@@ -1144,7 +1145,7 @@ const app=$('#app');
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
              set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const NUS=[['mizrach','עדות המזרח'],['sefard','ספרד'],['ashkenaz','אשכנז']];
-let nus=store.get('nus','mizrach'), fontScale=store.get('fs',1.32), nikud=store.get('nikud',true);
+let nus=store.get('nus','mizrach'), fontScale=store.get('fs',1.42), nikud=store.get('nikud',true);
 let favs=new Set(store.get('favs',[])), myName=store.get('myname','');
 let INDEX=null, byId={}, groups={}; const TEXT={}, NORM={}; let TEH=null;
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1631,7 +1632,7 @@ function bindTools(rerender){const apply=()=>document.documentElement.style.setP
   $('#fm').onclick=()=>{fontScale=Math.max(.95,+(fontScale-.12).toFixed(2));store.set('fs',fontScale);apply()};
   $('#fp').onclick=()=>{fontScale=Math.min(2.6,+(fontScale+.12).toFixed(2));store.set('fs',fontScale);apply()};
   $('#nk').onclick=()=>{nikud=!nikud;store.set('nikud',nikud);rerender();const p=$('#rpop');if(p){p.hidden=false;$('#aa').setAttribute('aria-expanded','true');$('#nk')?.focus({preventScroll:true})}};
-  $$('.fontpick button').forEach(b=>b.onclick=()=>{readFont=b.dataset.f;store.set('rf2',readFont);applyFont();$$('.fontpick button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
+  $$('.fontpick button').forEach(b=>b.onclick=()=>{readFont=b.dataset.f;store.set('rf3',readFont);applyFont();$$('.fontpick button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
   $('#wk').onclick=async()=>{const b=$('#wk');if(wakeLock){try{await wakeLock.release()}catch(e){}wakeLock=null;b.setAttribute('aria-pressed','false');b.textContent='כבוי';return}
     try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;const w=$('#wk');if(w){w.setAttribute('aria-pressed','false');w.textContent='כבוי'}});b.setAttribute('aria-pressed','true');b.textContent='פעיל';toast('המסך יישאר דולק בזמן התפילה')}
     catch(e){toast('הדפדפן לא מאפשר להשאיר את המסך דולק')}};
@@ -1907,9 +1908,9 @@ function viewRav(){setNav('rav');app.innerHTML=ravPanel(true).replace('class="ra
 
 
 /* ---------- reading fonts / wake lock ---------- */
-const READFONTS=[['noto','נוטו','"Noto Serif Hebrew",serif'],['frank','פרנק','"Frank Ruhl Libre",serif'],['david','דוד','"David Libre",serif']];
-let readFont=store.get('rf2','noto'), wakeLock=null;
-function applyFont(){const f=(READFONTS.find(x=>x[0]===readFont)||READFONTS[0])[2];document.documentElement.style.setProperty('--f-read',f)}
+const READFONTS=[['frank','קלאסי','"Frank Ruhl Libre",serif',400],['david','דוד','"David Libre",serif',400],['heebo','מודרני','"Heebo",sans-serif',300],['noto','עבה','"Noto Serif Hebrew",serif',400]];
+let readFont=store.get('rf3','frank'), wakeLock=null;
+function applyFont(){const r=READFONTS.find(x=>x[0]===readFont)||READFONTS[0];document.documentElement.style.setProperty('--f-read',r[2]);document.documentElement.style.setProperty('--read-w',r[3]||400)}
 applyFont();
 document.addEventListener('visibilitychange',async()=>{if(document.visibilityState==='visible'&&$('#wk')?.getAttribute('aria-pressed')==='true'&&!wakeLock){try{wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}});
 

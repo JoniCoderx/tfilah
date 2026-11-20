@@ -120,7 +120,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(251,247,245,.94);border-block-end:1px solid var(--line)}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(250,252,255,.94);border-block-end:1px solid var(--line)}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}
@@ -951,7 +951,10 @@ def siddur_of(n):
 for n, plist in by_nus.items():
     for i, p in enumerate(plist):
         paras = TEXTS[n][p["id"]]
-        text = "".join(f"<p>{clean(x)}</p>" for x in paras)
+        # the source repeats the title as its first line; the page already has it as the h1
+        _pl = lambda x: re.sub(r"[\s:.]+", "", re.sub(r"[\u0591-\u05BD\u05BF-\u05C7]", "", re.sub(r"<[^>]+>", "", x)))
+        shown = paras[1:] if len(paras) > 1 and _pl(paras[0]) == _pl(p["t"]) else paras
+        text = "".join(f"<p>{clean(x)}</p>" for x in shown)
         assert plain(text), p["id"]
         me = f"/tefila/{p['id']}/"
         prev = plist[i - 1] if i > 0 else None

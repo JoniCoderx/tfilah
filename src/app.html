@@ -1751,7 +1751,7 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
   if(p.n!==nus){nus=p.n;renderNus()}
   app.innerHTML='<p class="loading">טוען…</p>';const my=navId,T=await text(p.n),gs=groups[p.n],g=gs[p.g];if(my!==navId)return;
   const draw=()=>{const f=smartOn?dayFlags():null;
-    const body=g.items.map(it=>{const why=itemRule(it,g.key,f),paras=(T[it.id]||[]).map(x=>renderPara(x,it.id===id?hl:null,f)).join('');
+    const body=g.items.map(it=>{const why=itemRule(it,g.key,f),src=T[it.id]||[],pl=x=>String(x).replace(/<[^>]+>/g,'').replace(NIK,'').replace(/[\s:.]+/g,''),paras=(src.length>1&&pl(src[0])===pl(it.t)?src.slice(1):src).map(x=>renderPara(x,it.id===id?hl:null,f)).join('');
       const head=`<h3 aria-level="2">${esc(it.t)}<button class="fav" type="button" data-id="${it.id}" aria-pressed="${favs.has(it.id)}" aria-label="שמירה למועדפים">★</button></h3>`;
       return why&&it.id!==id?`<section id="s-${it.id}" class="skip">${head}<details><summary>${why} · להציג בכל זאת</summary>${paras}</details></section>`:`<section id="s-${it.id}">${head}${paras}</section>`}).join('');
     const prev=gs[p.g-1],next=gs[p.g+1];
@@ -2520,6 +2520,7 @@ const safeHash=()=>{try{return decodeURIComponent(location.hash.slice(1))}catch(
 function loadErr(retry){app.innerHTML=`<div class="empty" role="alert" style="margin-top:30px"><b>לא הצלחנו לטעון את הדף</b>בדקו את החיבור לאינטרנט ונסו שוב.<div style="margin-top:14px"><button class="btn primary" type="button" id="retry">לנסות שוב</button></div></div>`;
   const b=$('#retry');if(b){b.onclick=()=>{app.innerHTML='<p class="loading">טוען…</p>';retry()}}}
 let navId=0;
+const BASE_TITLE=document.title;
 function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{reading=false;$('#prog').style.transform='scaleX(0)';
   const h=safeHash()||'home';let m;
   {const saved=store.get('nus','mizrach');if(!/^p-/.test(h)&&nus!==saved){nus=saved;renderNus()}}
@@ -2531,7 +2532,7 @@ function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{re
   if((m=h.match(/^b-([a-z]+)$/)))return viewBook(m[1]);
   if((m=h.match(/^kli-([a-z]+)$/)))return viewKli(m[1]);
   scrollTo(0,0);({siddur:viewSiddur,search:viewSearch,tehillim:()=>viewTehillim(),favorites:viewFavs,zikaron:viewZikaron,rav:viewRav,sifriya:viewLib,kelim:viewKelim,tmicha:viewSupport}[h]||viewHome)()};
-  const run=()=>{const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).catch(fail)}catch(e){fail()}};
+  const run=()=>{const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(location.hash!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
   if(document.startViewTransition&&!reduce)document.startViewTransition(run);else run()}
 addEventListener('hashchange',route);
 const setBarH=()=>document.documentElement.style.setProperty('--barh',$('#bar').offsetHeight+'px');addEventListener('resize',setBarH);setBarH();

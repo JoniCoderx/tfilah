@@ -126,7 +126,7 @@ inbound = collections.Counter()
 link_cache = {}
 n_links = n_hash = n_ld = 0
 desc_len = []
-READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9]+/|/tefila/[a-z]+-\d+/|/sefer/[a-z]+/")
+READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9-]+/|/tefila/[a-z]+-\d+/|/sefer/[a-z]+/")
 
 def link_ok(target):
     """internal path resolves to a page or a file on disk"""
@@ -390,7 +390,9 @@ def kind(p):
     if len(parts) == 1: return parts[0] + " (hub)"
     if re.fullmatch(r"/tehillim/\d+/", p): return "tehillim chapter"
     if p == "/tehillim/yomi/": return "tehillim schedule"
+    if re.fullmatch(r"/tehillim/(yom|chodesh)-[a-z0-9]+/", p): return "tehillim by day"
     if parts[0] == "tehillim": return "tehillim by need"
+    if parts[0] == "kelim": return "tool"
     if re.fullmatch(r"/tefila/[a-z]+-\d+/", p): return "prayer"
     if parts[0] == "tefila": return "nusach hub" if len(parts) == 2 else "service"
     return parts[0] + " page"

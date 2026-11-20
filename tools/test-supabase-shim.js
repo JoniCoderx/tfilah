@@ -61,7 +61,7 @@ function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
   var ref = await db.collection("memorials").add({ name: "שים", parent: "", rel: "בן", by: "בודק", msg: "" });
   var pub = await db.collection("memorials").add({ name: "שים גלוי", parent: "", rel: "בת", listed: true });
-  check("add() returns ids", /^[0-9a-f]{10}$/.test(ref.id) && /^[0-9a-f]{10}$/.test(pub.id), ref.id);
+  check("add() returns ids", /^[0-9a-f]{16}$/.test(ref.id) && /^[0-9a-f]{16}$/.test(pub.id), ref.id);
 
   var list = (await db.collection("memorials").orderBy("createdAt", "desc").limit(200).get()).docs.map(function (d) { return d.id; });
   check("public list has the listed reading and not the default one", list.indexOf(pub.id) >= 0 && list.indexOf(ref.id) < 0);

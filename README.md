@@ -27,7 +27,7 @@
 1. console.anthropic.com ← API Keys ← Create Key. מגדירים שם מגבלת הוצאה חודשית.
 2. ב-Cloudflare: הפרויקט ← Settings ← Variables and Secrets ← מוסיפים Secret בשם `ANTHROPIC_API_KEY`.
 3. ב-`config.js`: `aiEnabled: true`, ומעלים שוב.
-4. מומלץ: Cloudflare ← Security ← WAF ← Rate limiting rule על `/api/ask` (למשל 10 בקשות לדקה לכל IP).
+4. מומלץ: Cloudflare ← Security ← WAF ← Rate limiting rule על `/api/ask`. בתוכנית החינמית חלון הזמן קצר (שניות), אז מגדירים למשל 3 בקשות ל-10 שניות לכל IP. בנוסף מגדירים מגבלת הוצאה חודשית בחשבון Anthropic.
 
 המודל מוגדר ב-`functions/api/ask.js` (ברירת מחדל Haiku, הזול והמהיר).
 
@@ -45,11 +45,10 @@
 
 ## עדכון: תפילת רבים (רפואה, זיווג, הצלחה, כללי)
 
-אם כבר הרצתם את `supabase.sql` בגרסה הקודמת, הריצו שוב את כל הקובץ: הוא מוסיף את סוג התפילה (`kind`).
-אם מופיעה שגיאה על עמודה קיימת, הריצו קודם את שתי השורות שבסוף הקובץ (עם `alter table`).
+אם כבר הרצתם את `supabase.sql` בגרסה קודמת, הריצו שוב את כל הקובץ. הוא בטוח להרצה חוזרת ומעדכן לבד מסד קיים.
 
 ## עדכון: סבבים בחלוקת התהילים
-כשמסיימים את כל 150 הפרקים, מתחיל אוטומטית סבב חדש. אם כבר יש לכם מסד נתונים, הריצו ב-SQL Editor את שתי השורות שבסוף `supabase.sql` (בלי סימני ה-`--`).
+כשמסיימים את כל 150 הפרקים, מתחיל אוטומטית סבב חדש. אין צורך בצעד נוסף מעבר להרצת `supabase.sql`.
 
 ## פיתוח (קוד)
 - `src/app.html`: קוד המקור של האפליקציה.
@@ -76,4 +75,5 @@
 
 ## בדיקות
 - `python3 tools/seo-audit.py`: בודק את כל הדפים המחוללים ואת מפת האתר (canonical, H1, כותרות כפולות, קישורים פנימיים).
-- `python3 tools/test-supabase.py`: בדיקות מקביליות של `supabase.sql` ושל `shim.js` מול Postgres מקומי.
+- `python3 tools/test-supabase.py`: בדיקות מקביליות ואבטחה של `supabase.sql` ושל `shim.js` מול Postgres מקומי.
+- `node tools/test-ask.mjs`: בדיקות של פונקציית `/api/ask` (מקור הבקשה, גודל, תפקידים, שגיאות).

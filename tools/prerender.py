@@ -405,6 +405,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <style>{css_for(body)}</style><script>{JS_HEAD}</script>
 <link rel="stylesheet" href="{FONTS}">
 {''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False, separators=(",", ":"))}</script>' for x in lds)}
+<script>if("serviceWorker" in navigator)addEventListener("load",function(){{navigator.serviceWorker.register("/sw.js").catch(function(){{}})}});</script>
 </head><body{' class="hub"' if hub else ''}>
 {body}
 </body></html>

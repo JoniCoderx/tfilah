@@ -138,10 +138,10 @@ function offlinePage() {
   const html = `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>אין חיבור לאינטרנט · תפילה</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FBF7F5;color:#2B1A1F;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.7}
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FBF8F1;color:#241B0E;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.7}
 main{max-width:30rem;padding:2rem 1.5rem;text-align:center}h1{font-size:1.5rem;margin:0 0 .75rem}p{margin:0 0 1.25rem}
-a,button{display:inline-block;margin:.25rem;padding:.7rem 1.4rem;border-radius:999px;border:1px solid #2B1A1F;font:inherit;text-decoration:none;cursor:pointer}
-a{background:#2B1A1F;color:#FBF7F5}button{background:transparent;color:#2B1A1F}</style></head>
+a,button{display:inline-block;margin:.25rem;padding:.7rem 1.4rem;border-radius:999px;border:1px solid #241B0E;font:inherit;text-decoration:none;cursor:pointer}
+a{background:#241B0E;color:#FBF8F1}button{background:transparent;color:#241B0E}</style></head>
 <body><main><h1>אין כרגע חיבור לאינטרנט</h1>
 <p>הדף הזה עוד לא נשמר במכשיר, ולכן אי אפשר להציג אותו בלי חיבור. הסידור והתהילים שבאפליקציה זמינים גם עכשיו.</p>
 <a href="/">לסידור ולתהילים</a><button type="button" id="again">לנסות שוב</button></main>

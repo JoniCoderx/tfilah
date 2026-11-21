@@ -1063,6 +1063,27 @@ h3.arth{display:flex;align-items:center;gap:12px}h3.arth .art{flex:none;color:va
 .tabbar a[aria-current="page"] svg,.tabbar a[aria-current="page"] svg.i,.btn.primary svg,.btn.gold svg,.teh-today .btn.light svg,#asgo[aria-pressed="true"] svg{color:var(--on-cta)!important}
 .btn.gold:disabled,.btn.primary:disabled,.btn[aria-disabled="true"]{color:var(--on-cta)!important;opacity:.55}
 .hact .btn{font-size:1.17rem}
+.q4i{display:flex;align-items:center;gap:12px}.q4i>span:last-child{display:grid;gap:2px;min-width:0}
+.q4i .ib{flex:none;display:grid;place-items:center;inline-size:44px;block-size:44px;border-radius:14px;background:#E1F2FE;color:#0B79C0}.q4i .ib svg{display:block}
+.q4i:hover .ib{background:var(--grad-cta);color:#fff}
+@media (max-width:430px){.q4i{flex-direction:column;align-items:flex-start;gap:8px}.q4i .ib{inline-size:38px;block-size:38px;border-radius:12px}}
+.shsheet{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:16px;background:rgba(11,46,79,.45)}
+.shbox{inline-size:min(26rem,100%);max-block-size:calc(100dvh - 32px);overflow:auto;background:#fff;border-radius:26px;padding:16px 18px 18px;display:grid;gap:12px;box-shadow:0 30px 70px -30px rgba(11,46,79,.7)}
+.shtop{display:flex;align-items:center;justify-content:space-between}.shtop h2{margin:0;font:900 1.35rem/1.2 var(--f-display)}
+.shimg{display:block;inline-size:100%;max-block-size:46dvh;object-fit:contain;border-radius:18px;border:1px solid var(--line);background:var(--sunk)}
+.shacts{display:grid;grid-template-columns:1fr 1fr;gap:8px}.shacts .btn{inline-size:100%;justify-content:center;padding-inline:10px}.shacts .btn.primary{grid-column:1/-1}
+.shsheet .note{margin:0;font-size:.86rem}
+.seo-links{max-inline-size:min(1120px,100% - 32px);margin:0 auto;padding:0 0 calc(var(--tabh,0px) + 40px);font-family:var(--f-ui)}
+.seo-links details{border:1px solid var(--line);border-radius:22px;background:#fff}
+.seo-links summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;min-height:60px;padding:10px 20px}
+.seo-links summary::-webkit-details-marker{display:none}
+.seo-links summary span{font:900 1.15rem/1.2 var(--f-display);color:var(--ink)}.seo-links summary small{color:var(--muted);font-size:.92rem}
+.seo-links summary::after{content:"";margin-inline-start:auto;flex:none;inline-size:30px;block-size:30px;border-radius:50%;background:var(--sunk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B2E4F' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/14px 14px no-repeat;transition:transform .2s ease}
+.seo-links details[open] summary::after{transform:rotate(180deg)}
+.seo-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 28px;padding:4px 20px 20px}
+.seo-cols h3{font:700 1rem/1.3 var(--f-ui);margin:10px 0 4px;color:var(--ink);letter-spacing:0}.seo-cols ul{list-style:none;margin:0;padding:0}
+.seo-cols a{display:block;padding:7px 0;color:var(--ink-2);text-decoration:none;font-size:.95rem}.seo-cols a:hover{color:var(--stamp);text-decoration:underline}
+@media (max-width:600px){.seo-links summary{flex-wrap:wrap;gap:2px 12px}.seo-links summary small{flex-basis:calc(100% - 44px);order:3}}
 /* phone: one line per button, label and short title */
 .btn,.chip,.tbtn,.lnk,.tocb,.seg button,.tabs a,.hlink,.cd,.tag,#aspill button{white-space:nowrap}
 .hact .btn,.jtake,.shema .row .btn{white-space:normal;text-wrap:balance}
@@ -1081,7 +1102,13 @@ article.text details.plain summary,.plain summary{border:0;padding:6px 14px;gap:
 .plain[open] summary::before,article.text details.plain[open] summary::before{content:"";transform:rotate(180deg)}
 article.text h3 .fav{display:inline-grid;place-items:center;padding:0}article.text h3 .fav svg{display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}article.text h3 .fav[aria-pressed="true"] svg{fill:currentColor}
 .pf button{display:inline-grid;place-items:center;padding:0}.pf button svg{display:block}
-.hname{margin-top:10px}
+.nameband{margin-top:26px;padding:clamp(20px,4vw,34px);border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(150deg,#FFFFFF 0%,#EEF8FF 55%,#DDF0FD 100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:18px 34px;align-items:center;box-shadow:0 18px 40px -30px rgba(var(--onc),.35)}
+.nameband h2{font:900 clamp(1.9rem,6vw,2.7rem)/1.05 var(--f-display);margin:4px 0 8px;letter-spacing:-.025em}.nameband p{margin:0;color:var(--ink-2);font-size:1.02rem;line-height:1.6}
+.nameband form{display:grid;gap:12px}.nameband .tnrow input{min-height:54px;font-size:1.05rem;background:#fff}.nameband .tnrow .btn{min-height:54px}
+.nblet{display:flex;flex-wrap:wrap;gap:6px;min-block-size:44px}
+.nblet span{display:grid;place-items:center;inline-size:40px;block-size:44px;border-radius:12px;background:var(--grad-cta);color:#fff;font:700 1.25rem/1 var(--f-read)}
+.nblet.ex span{background:#fff;color:#7A98AE;border:1px dashed #BFE0F7}
+@media (max-width:760px){.nameband{grid-template-columns:1fr}.nameband .tnrow{flex-wrap:wrap}.nameband .tnrow .btn{flex:1 1 100%}}
 .rsec{font-family:var(--f-display);font-weight:900;font-size:1.25rem;margin:22px 2px 8px}
 #bar,.tabbar,#rt{transition:transform .28s ease,top .28s ease}
 html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:transform .28s ease,visibility 0s .28s}html.hidebars #rt{top:0}
@@ -1121,7 +1148,7 @@ body[data-r="home"] .top:not(.scrolled){background:transparent}
 body[data-r="home"]::before{background:transparent}
 .btn{border-radius:999px}
 .btn.gold,.btn.primary{background:var(--grad);color:var(--on);box-shadow:0 16px 30px -18px #5FB4E6}
-.btn.gold:hover,.btn.primary:hover{background:var(--grad);filter:brightness(1.1)}
+.btn.gold:hover,.btn.primary:hover{background:var(--grad-cta);filter:brightness(1.07)}
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.btn.light,.btn.candlebtn{background:#fff;color:var(--ink);box-shadow:none;filter:none}
 .hero2 h1{background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.1em}
 .hact .btn.primary{border-radius:999px;min-height:60px}
@@ -1519,14 +1546,19 @@ function viewHome(){setNav('home');
   ${yzCard()}
   ${specials()}
 
+  <section class="nameband" aria-labelledby="nbh">
+    <div class="nbtxt"><span class="eyebrow">לרפואה, לעילוי נשמה ולכל בקשה</span><h2 id="nbh">תהילים לפי שם</h2>
+      <p>כותבים שם, ולכל אות בו מקבלים את הפסוקים שלה ממזמור קי״ט. כך קוראים תהילים על אדם אחד מסוים.</p></div>
+    <form id="hnf"><label class="sr" for="hnq">שם בעברית</label>
+      <div class="nblet" id="nblet" aria-hidden="true"></div>
+      <div class="tnrow"><input id="hnq" maxlength="40" placeholder="כתבו שם, למשל: אברהם בן שרה" autocomplete="off"><button class="btn primary" type="submit">הצגת הפסוקים</button></div></form></section>
+
   <div class="sec"><h2>תהילים</h2><a href="#tehillim">כל הספר</a></div>
   <div class="tgrid"><section class="card teh-today reveal"><span class="eyebrow">תהילים היום · ${gem(hd)} לחודש</span>
       <h3>${rng(m[0],m[1])}</h3><p>החלוקה החודשית: כל ספר תהילים בחודש אחד.</p>
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
       <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div>${tTrack()}</section>
     <div id="potd"></div></div>
-  <form class="card tname hname" id="hnf"><div><label for="hnq"><b>תהילים לפי שם</b></label><p class="note" style="margin:2px 0 0">כותבים שם ומקבלים את פסוקי התהילים לפי האותיות שלו, לרפואה או לעילוי נשמה.</p></div>
-    <div class="tnrow"><input id="hnq" maxlength="40" placeholder="למשל: אברהם בן שרה" autocomplete="off"><button class="btn primary" type="submit">הצגת הפסוקים</button></div></form>
   ${yachadBand()}
 
   <div class="sec"><h2>היום בלוח</h2></div>
@@ -1545,6 +1577,7 @@ function viewHome(){setNav('home');
   ${donateBlock()}
   ${footer()}`;
   bindHead();
+  {const q=$('#hnq'),box=$('#nblet');if(q&&box){const draw=()=>{const L=lettersOf(q.value),ex=!L.length;box.classList.toggle('ex',ex);box.innerHTML=(ex?[...'אברהם']:L.slice(0,16)).map(l=>`<span>${l}</span>`).join('')+(L.length>16?'<span>…</span>':'')};q.addEventListener('input',draw);draw()}}
   {const hf=$('#hnf');if(hf)hf.onsubmit=e=>{e.preventDefault();const v=$('#hnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'}}
   $('#qa').onsubmit=e=>{e.preventDefault();const q=$('#qai').value.trim();if(!q)return;pendingQ=q;location.hash='rav'};
   bindToc();bindZ();bindNew();bindDonate();bindTrack();drawWall();drawVerse();tick();sampleReady.then(()=>{const c=$('#askcard');if(c&&SAMPLE)c.hidden=false});
@@ -2289,9 +2322,29 @@ async function shareCard({eyebrow,text,foot,url,msg}){try{await document.fonts.l
   if(foot){x.fillStyle='#0A6CA8';x.font='700 40px Heebo, Arial';x.fillText(foot,W/2,1150)}
   x.fillStyle='#0B2E4F';x.font='900 46px Heebo, Arial';x.fillText('תפילה',W/2,1250);x.fillStyle='#46677F';x.font='400 30px Heebo, Arial';x.direction='ltr';x.fillText('tfilah.com',W/2,1296);
   const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('לא הצלחנו ליצור תמונה');return}
-  const file=new File([blob],'tfilah.png',{type:'image/png'});
-  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:msg||'',url:url||undefined});return}}catch(e){if(e&&e.name==='AbortError')return}
-  dlFile('tfilah.png',blob,'image/png');toast('התמונה נשמרה. אפשר לשתף אותה מהגלריה')}
+  shareSheet(blob,c.toDataURL('image/png'),{text:msg||`${plain}${foot?'\n'+foot:''}`,url:url||location.origin})}
+/* one place to share from: see the picture, then send it, copy it or save it */
+function shareSheet(blob,dataUrl,o){const old=$('#shsheet');if(old)old.remove();
+  const file=new File([blob],'tfilah.png',{type:'image/png'}),canFiles=!!(navigator.canShare&&navigator.canShare({files:[file]})),canCopy=!!(navigator.clipboard&&window.ClipboardItem);
+  const full=`${o.text}\n${o.url}`,el=document.createElement('div');el.id='shsheet';el.className='shsheet';
+  const X='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  el.innerHTML=`<div class="shbox" role="dialog" aria-modal="true" aria-labelledby="shh"><div class="shtop"><h2 id="shh">שיתוף</h2><button class="iconbtn" type="button" id="shx" aria-label="סגירה">${X}</button></div>
+    <img class="shimg" src="${dataUrl}" alt="התמונה שתישלח">
+    <div class="shacts">${canFiles?'<button class="btn primary" type="button" id="shnat">שליחת התמונה</button>':''}
+      <a class="btn ${canFiles?'ghost':'primary'}" id="shwa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(full)}">שליחה בוואטסאפ</a>
+      ${canCopy?'<button class="btn ghost" type="button" id="shcp">העתקת התמונה</button>':''}
+      <button class="btn ghost" type="button" id="shdl">שמירת התמונה</button>
+      <button class="btn ghost" type="button" id="shtx">העתקת הטקסט</button></div>
+    <p class="note" id="shnote">${canFiles?'”שליחת התמונה” פותחת את האפליקציות בטלפון, כולל וואטסאפ וסטטוס.':'בוואטסאפ מהמחשב נשלח הטקסט עם קישור. כדי לשלוח את התמונה עצמה, העתיקו אותה והדביקו בשיחה.'}</p></div>`;
+  document.body.append(el);const opener=document.activeElement;let untrap=null;
+  const close=()=>{if(untrap)untrap();el.remove();if(opener&&opener.focus)opener.focus({preventScroll:true})};
+  try{untrap=trap(el.querySelector('.shbox'),close)}catch(e){}
+  el.addEventListener('click',e=>{if(e.target===el)close()});$('#shx').onclick=close;
+  const nat=$('#shnat');if(nat)nat.onclick=async()=>{try{await navigator.share({files:[file],text:full})}catch(e){}};
+  const cp=$('#shcp');if(cp)cp.onclick=async()=>{try{await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);toast('התמונה הועתקה. אפשר להדביק אותה בכל שיחה')}catch(e){toast('הדפדפן לא מאפשר להעתיק תמונה. אפשר לשמור אותה')}};
+  $('#shdl').onclick=()=>{dlFile('tfilah.png',blob,'image/png');toast('התמונה נשמרה')};
+  $('#shtx').onclick=async()=>{try{await navigator.clipboard.writeText(full);toast('הטקסט הועתק')}catch(e){toast(full)}};
+  (nat||$('#shwa')).focus({preventScroll:true})}
 /* monthly Psalms: mark each day read, see the month fill up */
 const tKey=()=>{try{return new Intl.DateTimeFormat('en-u-ca-hebrew',{month:'numeric',year:'numeric'}).format(new Date())}catch(e){const d=new Date();return d.getFullYear()+'-'+d.getMonth()}};
 const tDays=()=>{const t=store.get('tday',{});return t.k===tKey()?t.d||[]:[]};
@@ -2304,7 +2357,7 @@ async function drawVerse(){const el=$('#potd');if(!el)return;let P;try{P=await t
   const pool=[];P.forEach((ch,ci)=>ch.forEach((v,vi)=>{const L=stripTags(v).replace(NIK,'').length;if(L>40&&L<120)pool.push([ci,vi])}));
   const [ci,vi]=pool[h%pool.length];if(!$('#potd'))return;
   el.innerHTML=`<section class="verse-day glass reveal"><span class="eyebrow">פסוק להיום</span>
-    <blockquote>${P[ci][vi]}</blockquote><div class="vrow"><a href="#t-${ci+1}" class="vref">תהילים ${gem(ci+1)}, ${gem(vi+1)} ←</a><button class="chip" type="button" id="vshare">${icon('share')}שיתוף כתמונה</button></div></section>`;
+    <blockquote>${P[ci][vi]}</blockquote><div class="vrow"><a href="#t-${ci+1}" class="vref">תהילים ${gem(ci+1)}, ${gem(vi+1)} ←</a><button class="chip" type="button" id="vshare">${icon('share')}שיתוף</button></div></section>`;
   $('#vshare').onclick=()=>shareCard({eyebrow:'פסוק להיום',text:P[ci][vi],foot:`תהילים ${gem(ci+1)}, ${gem(vi+1)}`,url:location.origin+'/tehillim/'+(ci+1)+'/'})}
 
 /* ---------- FAVORITES ---------- */
@@ -2428,8 +2481,8 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
     <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a></div>
     ${hn.length?`<div class="hnotes"><span>${isArv?'בתפילת ערבית':r.after?'הלילה בתפילה':'היום בתפילה'}</span>${hn.map(([a,b])=>`<span class="tn"><b>${a}</b>${b?` <small>${b}</small>`:''}</span>`).join('')}</div>`:''}
   </section>`}
-function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/],['שמע על המיטה','קריאת שמע לפני השינה',/קריאת שמע ש?על המי?טה/],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/]];
-  return `<nav class="quick4" aria-label="קיצורים">${q.map(([t,sb,re])=>{const p=findPrayer(re);return p?`<a class="q4" href="#p-${p.id}"><b>${t}</b><small>${sb}</small></a>`:''}).join('')}<a class="q4" href="#tehillim"><b>תהילים</b><small>כל 150 הפרקים</small></a></nav>`}
+function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/,'road'],['שמע על המיטה','קריאת שמע לפני השינה',/קריאת שמע ש?על המי?טה/,'moon'],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/,'wheat']];
+  return `<nav class="quick4" aria-label="קיצורים">${q.map(([t,sb,re,ic])=>{const p=findPrayer(re);return p?`<a class="q4 q4i" href="#p-${p.id}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sb}</small></span></a>`:''}).join('')}<a class="q4 q4i" href="#tehillim"><span class="ib">${icon('book')}</span><span><b>תהילים</b><small>כל 150 הפרקים</small></span></a></nav>`}
 const durTxt=ms=>{const mins=Math.max(1,Math.round(ms/60e3)),h=Math.floor(mins/60),m=mins%60;return h?`${h}:${String(m).padStart(2,'0')} ש׳`:`${m} דק׳`};
 /* Shema by the clock: both opinions for the morning limit, and when the evening Shema begins */
 function shemaCard(){const p=findPrayer(/^שמע$|^קריאת שמע$|ק"ש וברכותיה|קריאת שמע וברכותיה/),bed=findPrayer(/קריאת שמע ש?על המי?טה/);let z=null;try{z=zmanim()}catch(e){}
@@ -2749,6 +2802,6 @@ document.documentElement.style.setProperty('--reading',fontScale+'rem');
 const start=()=>boot().catch(()=>loadErr(start));start();
 })();
 </script>
-<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:0 16px 96px;font-size:.88rem;line-height:1.5;color:#46677F"><details><summary style="cursor:pointer;display:inline-block;padding:12px 0;font-weight:700;color:#0B2E4F">כל הדפים באתר</summary><p style="margin:0 0 6px"><b style="color:#0B2E4F">סידור:</b> <a href="/tefila/" style="color:#46677F;display:inline-block;padding:4px 0">סידור תפילה</a> · <a href="/tefila/mizrach/" style="color:#46677F;display:inline-block;padding:4px 0">סידור נוסח עדות המזרח</a> · <a href="/tefila/sefard/" style="color:#46677F;display:inline-block;padding:4px 0">סידור נוסח ספרד</a> · <a href="/tefila/ashkenaz/" style="color:#46677F;display:inline-block;padding:4px 0">סידור נוסח אשכנז</a> · <a href="/tefila/mizrach/shacharit/" style="color:#46677F;display:inline-block;padding:4px 0">שחרית נוסח עדות המזרח</a> · <a href="/tefila/sefard/shacharit/" style="color:#46677F;display:inline-block;padding:4px 0">שחרית נוסח ספרד</a> · <a href="/tefila/ashkenaz/shacharit/" style="color:#46677F;display:inline-block;padding:4px 0">שחרית נוסח אשכנז</a> · <a href="/tefila/mizrach/mincha/" style="color:#46677F;display:inline-block;padding:4px 0">מנחה נוסח עדות המזרח</a> · <a href="/tefila/sefard/mincha/" style="color:#46677F;display:inline-block;padding:4px 0">מנחה נוסח ספרד</a> · <a href="/tefila/ashkenaz/mincha/" style="color:#46677F;display:inline-block;padding:4px 0">מנחה נוסח אשכנז</a> · <a href="/tefila/mizrach/arvit/" style="color:#46677F;display:inline-block;padding:4px 0">ערבית נוסח עדות המזרח</a> · <a href="/tefila/sefard/arvit/" style="color:#46677F;display:inline-block;padding:4px 0">ערבית נוסח ספרד</a> · <a href="/tefila/ashkenaz/arvit/" style="color:#46677F;display:inline-block;padding:4px 0">ערבית נוסח אשכנז</a> · <a href="/tefila/mizrach-53/" style="color:#46677F;display:inline-block;padding:4px 0">ברכת המזון</a> · <a href="/tefila/mizrach-119/" style="color:#46677F;display:inline-block;padding:4px 0">תפילת הדרך</a> · <a href="/tefila/mizrach-37/" style="color:#46677F;display:inline-block;padding:4px 0">קריאת שמע שעל המיטה</a></p><p style="margin:0 0 6px"><b style="color:#0B2E4F">תהילים:</b> <a href="/tehillim/" style="color:#46677F;display:inline-block;padding:4px 0">ספר תהילים</a> · <a href="/tehillim/yomi/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים יומי</a> · <a href="/tehillim-yachad/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים יחד</a> · <a href="/tehillim/refuah/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לרפואה שלמה</a> · <a href="/tehillim/parnasa/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לפרנסה</a> · <a href="/tehillim/shidduch/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לזיווג הגון</a> · <a href="/tehillim/banim/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לזרע של קיימא</a> · <a href="/tehillim/leida/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ללידה קלה</a> · <a href="/tehillim/derech/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים להצלחה בדרך</a> · <a href="/tehillim/shmira/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לשמירה והגנה</a> · <a href="/tehillim/hodaya/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים להודיה ולשמחה</a> · <a href="/tehillim/tzara/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לעת צרה</a> · <a href="/tehillim/neshama/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לעילוי נשמה</a> · <a href="/tehillim/tikkun/" style="color:#46677F;display:inline-block;padding:4px 0">תיקון הכללי</a> · <a href="/tehillim/kever/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים לבית העלמין</a> · <a href="/tehillim/yom-rishon/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום ראשון</a> · <a href="/tehillim/yom-sheni/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום שני</a> · <a href="/tehillim/yom-shlishi/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום שלישי</a> · <a href="/tehillim/yom-revii/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום רביעי</a> · <a href="/tehillim/yom-chamishi/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום חמישי</a> · <a href="/tehillim/yom-shishi/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום שישי</a> · <a href="/tehillim/yom-shabbat/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ליום שבת</a> · <a href="/tehillim/86/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים פו</a> · <a href="/tehillim/84/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים פד</a> · <a href="/tehillim/1/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים א</a> · <a href="/tehillim/20/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים כ</a> · <a href="/tehillim/23/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים כג</a> · <a href="/tehillim/130/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קל</a> · <a href="/tehillim/90/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים צ</a> · <a href="/tehillim/100/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ק</a> · <a href="/tehillim/27/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים כז</a> · <a href="/tehillim/30/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים ל</a> · <a href="/tehillim/91/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים צא</a> · <a href="/tehillim/121/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קכא</a> · <a href="/tehillim/119/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קיט</a> · <a href="/tehillim/13/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים יג</a> · <a href="/tehillim/145/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קמה</a> · <a href="/tehillim/142/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קמב</a> · <a href="/tehillim/24/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים כד</a> · <a href="/tehillim/16/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים טז</a> · <a href="/tehillim/67/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים סז</a> · <a href="/tehillim/51/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים נא</a></p><p style="margin:0 0 6px"><b style="color:#0B2E4F">ספרייה וכלים:</b> <a href="/sefer/" style="color:#46677F;display:inline-block;padding:4px 0">ספרייה</a> · <a href="/sefer/avot/" style="color:#46677F;display:inline-block;padding:4px 0">פרקי אבות</a> · <a href="/sefer/shir/" style="color:#46677F;display:inline-block;padding:4px 0">שיר השירים</a> · <a href="/sefer/esther/" style="color:#46677F;display:inline-block;padding:4px 0">מגילת אסתר</a> · <a href="/sefer/perek/" style="color:#46677F;display:inline-block;padding:4px 0">פרק שירה</a> · <a href="/kelim/" style="color:#46677F;display:inline-block;padding:4px 0">כלים אישיים</a> · <a href="/kelim/yahr/" style="color:#46677F;display:inline-block;padding:4px 0">חישוב יום השנה לפטירה</a> · <a href="/kelim/bday/" style="color:#46677F;display:inline-block;padding:4px 0">יום הולדת עברי לפי לועזי</a> · <a href="/kelim/kivun/" style="color:#46677F;display:inline-block;padding:4px 0">כיוון תפילה לירושלים</a> · <a href="/kelim/shem/" style="color:#46677F;display:inline-block;padding:4px 0">תהילים קיט לפי שם</a> · <a href="/zmanei-shabbat/" style="color:#46677F;display:inline-block;padding:4px 0">זמני כניסת ויציאת שבת</a> · <a href="/zmanei-shabbat/jerusalem/" style="color:#46677F;display:inline-block;padding:4px 0">זמני שבת בירושלים</a> · <a href="/zmanei-shabbat/tel-aviv/" style="color:#46677F;display:inline-block;padding:4px 0">זמני שבת בתל אביב</a> · <a href="/zmanei-shabbat/haifa/" style="color:#46677F;display:inline-block;padding:4px 0">זמני שבת בחיפה</a></p></details></nav>
+<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols"><section><h3>סידור</h3><ul><li><a href="/tefila/">סידור תפילה</a></li><li><a href="/tefila/mizrach/">סידור נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/">סידור נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/">סידור נוסח אשכנז</a></li><li><a href="/tefila/mizrach/shacharit/">שחרית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/shacharit/">שחרית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/shacharit/">שחרית נוסח אשכנז</a></li><li><a href="/tefila/mizrach/mincha/">מנחה נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/mincha/">מנחה נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/mincha/">מנחה נוסח אשכנז</a></li><li><a href="/tefila/mizrach/arvit/">ערבית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/arvit/">ערבית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/arvit/">ערבית נוסח אשכנז</a></li><li><a href="/tefila/mizrach-53/">ברכת המזון</a></li><li><a href="/tefila/mizrach-119/">תפילת הדרך</a></li><li><a href="/tefila/mizrach-37/">קריאת שמע שעל המיטה</a></li></ul></section><section><h3>תהילים</h3><ul><li><a href="/tehillim/">ספר תהילים</a></li><li><a href="/tehillim/yomi/">תהילים יומי</a></li><li><a href="/tehillim-yachad/">תהילים יחד</a></li><li><a href="/tehillim/refuah/">תהילים לרפואה שלמה</a></li><li><a href="/tehillim/parnasa/">תהילים לפרנסה</a></li><li><a href="/tehillim/shidduch/">תהילים לזיווג הגון</a></li><li><a href="/tehillim/banim/">תהילים לזרע של קיימא</a></li><li><a href="/tehillim/leida/">תהילים ללידה קלה</a></li><li><a href="/tehillim/derech/">תהילים להצלחה בדרך</a></li><li><a href="/tehillim/shmira/">תהילים לשמירה והגנה</a></li><li><a href="/tehillim/hodaya/">תהילים להודיה ולשמחה</a></li><li><a href="/tehillim/tzara/">תהילים לעת צרה</a></li><li><a href="/tehillim/neshama/">תהילים לעילוי נשמה</a></li><li><a href="/tehillim/tikkun/">תיקון הכללי</a></li><li><a href="/tehillim/kever/">תהילים לבית העלמין</a></li><li><a href="/tehillim/yom-rishon/">תהילים ליום ראשון</a></li><li><a href="/tehillim/yom-sheni/">תהילים ליום שני</a></li><li><a href="/tehillim/yom-shlishi/">תהילים ליום שלישי</a></li><li><a href="/tehillim/yom-revii/">תהילים ליום רביעי</a></li><li><a href="/tehillim/yom-chamishi/">תהילים ליום חמישי</a></li><li><a href="/tehillim/yom-shishi/">תהילים ליום שישי</a></li><li><a href="/tehillim/yom-shabbat/">תהילים ליום שבת</a></li><li><a href="/tehillim/86/">תהילים פו</a></li><li><a href="/tehillim/84/">תהילים פד</a></li><li><a href="/tehillim/1/">תהילים א</a></li><li><a href="/tehillim/20/">תהילים כ</a></li><li><a href="/tehillim/23/">תהילים כג</a></li><li><a href="/tehillim/130/">תהילים קל</a></li><li><a href="/tehillim/90/">תהילים צ</a></li><li><a href="/tehillim/100/">תהילים ק</a></li><li><a href="/tehillim/27/">תהילים כז</a></li><li><a href="/tehillim/30/">תהילים ל</a></li><li><a href="/tehillim/91/">תהילים צא</a></li><li><a href="/tehillim/121/">תהילים קכא</a></li><li><a href="/tehillim/119/">תהילים קיט</a></li><li><a href="/tehillim/13/">תהילים יג</a></li><li><a href="/tehillim/145/">תהילים קמה</a></li><li><a href="/tehillim/142/">תהילים קמב</a></li><li><a href="/tehillim/24/">תהילים כד</a></li><li><a href="/tehillim/16/">תהילים טז</a></li><li><a href="/tehillim/67/">תהילים סז</a></li><li><a href="/tehillim/51/">תהילים נא</a></li></ul></section><section><h3>ספרייה וכלים</h3><ul><li><a href="/sefer/">ספרייה</a></li><li><a href="/sefer/avot/">פרקי אבות</a></li><li><a href="/sefer/shir/">שיר השירים</a></li><li><a href="/sefer/esther/">מגילת אסתר</a></li><li><a href="/sefer/perek/">פרק שירה</a></li><li><a href="/kelim/">כלים אישיים</a></li><li><a href="/kelim/yahr/">חישוב יום השנה לפטירה</a></li><li><a href="/kelim/bday/">יום הולדת עברי לפי לועזי</a></li><li><a href="/kelim/kivun/">כיוון תפילה לירושלים</a></li><li><a href="/kelim/shem/">תהילים קיט לפי שם</a></li><li><a href="/zmanei-shabbat/">זמני כניסת ויציאת שבת</a></li><li><a href="/zmanei-shabbat/jerusalem/">זמני שבת בירושלים</a></li><li><a href="/zmanei-shabbat/tel-aviv/">זמני שבת בתל אביב</a></li><li><a href="/zmanei-shabbat/haifa/">זמני שבת בחיפה</a></li></ul></section></div></details></nav>
 </body>
 </html>

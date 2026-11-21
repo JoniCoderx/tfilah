@@ -85,11 +85,9 @@ _groups = [
         ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"),
         ("/zmanei-shabbat/jerusalem/", "זמני שבת בירושלים"), ("/zmanei-shabbat/tel-aviv/", "זמני שבת בתל אביב"), ("/zmanei-shabbat/haifa/", "זמני שבת בחיפה")]),
 ]
-SEO_NAV = ('<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:0 16px 96px;font-size:.88rem;line-height:1.5;color:#46677F">'
-  '<details><summary style="cursor:pointer;display:inline-block;padding:12px 0;font-weight:700;color:#0B2E4F">כל הדפים באתר</summary>'
-  + "".join('<p style="margin:0 0 6px"><b style="color:#0B2E4F">%s:</b> ' % g
-            + " · ".join('<a href="%s" style="color:#46677F;display:inline-block;padding:4px 0">%s</a>' % (h, t) for h, t in links) + "</p>"
-            for g, links in _groups) + "</details></nav>")
+SEO_NAV = ('<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols">'
+  + "".join('<section><h3>%s</h3><ul>' % g + "".join('<li><a href="%s">%s</a></li>' % (h, t_) for h, t_ in links) + "</ul></section>"
+            for g, links in _groups) + "</div></details></nav>")
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable
 open(out, "w", encoding="utf-8").write(s)

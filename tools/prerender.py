@@ -78,6 +78,7 @@ def fit_desc(head, body="", tails=TAILS):
 
 # ---------- lists owned by the app (read only) ----------
 APP_SRC = open(os.path.join(ROOT, "src", "app.html"), encoding="utf-8").read()
+PLAIN_T_EARLY = json.loads(re.search(r"^const PLAIN_T=(\{.*\});$", APP_SRC, re.M).group(1))
 
 def app_const(name):
     m = re.search(r"const " + name + r"=(\[.*?\]);", APP_SRC, flags=re.S)
@@ -288,6 +289,10 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .znow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.znow div{padding:1rem;border-radius:1.25rem;background:var(--sunk);display:grid;gap:.2rem}
 .znow span{font-size:.85rem;color:var(--muted);font-weight:600}.znow b{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums}
 .znow small{color:var(--muted)}
+"""),
+("plainx", """
+.plainx{margin:.4rem 0 1rem;padding:1rem 1.15rem;border-radius:1.25rem;background:var(--sunk)}
+.plainx b{display:block;font-size:.9rem;color:var(--stamp);margin-block-end:.3rem}.plainx p{margin:0;line-height:1.75}
 """),
 ("note", """
 .note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}
@@ -806,6 +811,7 @@ for c in range(1, 151):
          fit_desc(f"{name} ({c}), מזמור {gem(c)}, בניקוד מלא, {nv}", " ".join(vs[:3])),
          name, [("תהילים", "/tehillim/"), (f"פרק {gem(c)}", f"/tehillim/{c}/")],
          text=verses(c), meta=f"{esc(first)} · {nv}", after=after, app_hash=f"t-{c}",
+         before=(f'<aside class="plainx" aria-label="הסבר קצר"><b>במילים פשוטות</b><p>{esc(PLAIN_T_EARLY[str(c)])}</p></aside>' if str(c) in PLAIN_T_EARLY else ""),
          ld=[{"@type": "Chapter", "name": name, "position": c, "inLanguage": "he", "isAccessibleForFree": True,
               "url": f"{SITE}/tehillim/{c}/", "isPartOf": BOOK_T}])
 
@@ -957,6 +963,8 @@ page("/tehillim/", f"ספר תהילים אונליין | כל 150 הפרקים 
 def siddur_of(n):
     return {"@type": "CreativeWork", "name": f"סידור תפילה, נוסח {NUS[n]}", "inLanguage": "he", "url": f"{SITE}/tefila/{n}/"}
 
+PLAIN = json.loads(re.search(r"^const PLAIN=(\[.*\]);$", APP_SRC, re.M).group(1))
+PLAIN_T = json.loads(re.search(r"^const PLAIN_T=(\{.*\});$", APP_SRC, re.M).group(1))
 for n, plist in by_nus.items():
     for i, p in enumerate(plist):
         paras = TEXTS[n][p["id"]]
@@ -964,6 +972,8 @@ for n, plist in by_nus.items():
         _pl = lambda x: re.sub(r"[\s:.]+", "", re.sub(r"[\u0591-\u05BD\u05BF-\u05C7]", "", re.sub(r"<[^>]+>", "", x)))
         shown = paras[1:] if len(paras) > 1 and _pl(paras[0]) == _pl(p["t"]) else paras
         text = "".join(f"<p>{clean(x)}</p>" for x in shown)
+        _px = next((x for r, x in PLAIN if re.search(r, p["t"])), "")
+        plain_html = f'<aside class="plainx" aria-label="הסבר קצר"><b>במילים פשוטות</b><p>{esc(_px)}</p></aside>' if _px else ""
         assert plain(text), p["id"]
         me = f"/tefila/{p['id']}/"
         prev = plist[i - 1] if i > 0 else None
@@ -1020,7 +1030,7 @@ for n, plist in by_nus.items():
             crumbs.append((sec_label, sec_href))
         crumbs.append((pname(p), me))
         page(me, f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}", fit_desc(head, " ".join(paras[:3])),
-             p["t"], crumbs, text=text, meta=meta, before=before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
+             p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
 # ---------- service pages ----------

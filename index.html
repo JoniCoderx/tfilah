@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":"Tfilah.com","url":"https://tfilah.com/","inLanguage":"he","description":"סידור תפילה מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים וקריאה משותפת: כל אחד פרק, ביחד ספר שלם."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Heebo:wght@300;700&family=Noto+Serif+Hebrew:wght@400;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&family=David+Libre:wght@400;500;700&family=Heebo:wght@300;400;700;800;900&family=Noto+Serif+Hebrew:wght@400;700&family=Noto+Rashi+Hebrew:wght@400;500&display=swap">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
@@ -45,7 +45,7 @@
   --mark:#FFE58A; --shadow:0 1px 2px rgba(17,17,20,.04),0 8px 24px -12px rgba(17,17,20,.12);
   --f-display:"Karantina","IBM Plex Sans Hebrew",sans-serif;
   --f-ui:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
-  --f-read:"Heebo","Assistant","Segoe UI",Arial,sans-serif; --read-w:300;
+  --f-read:"Heebo","Assistant","Segoe UI",Arial,sans-serif; --read-w:400;
   --f-rashi:"Noto Rashi Hebrew","Noto Serif Hebrew",serif;
   --reading:1.32rem; --r:22px; --tabh:0px;
   /* legacy aliases used by inner views */
@@ -794,7 +794,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
   --gold:#0B78BE; --gold-deep:#0A6CA8; --gold-soft:#F2FAFF; --gold-lt:var(--tint); --gold-hi:#0A6CA8;
   --candle:#0B78BE; --candle-soft:#F2FAFF; --ok:var(--ink); --ok-soft:var(--sunk); --mark:var(--tint); --faint:var(--muted);
   --f-ui:"Assistant","Heebo","Segoe UI",Arial,sans-serif;
-  --f-display:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;
+  --f-display:"Heebo","Assistant","Segoe UI",Arial,sans-serif;
   --r:26px; --rth:58px;
 }
 body{background:var(--bg);color:var(--ink)}
@@ -1034,6 +1034,11 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .shema .row{grid-column:1/-1}
 @media (max-width:700px){.shema{grid-template-columns:1fr}.shema .row .btn{flex:1 1 100%}}
 .yz{margin-top:10px;padding:8px 0 0}
+.ttrack{margin-top:14px;display:grid;gap:10px}.tdots{display:grid;grid-template-columns:repeat(15,1fr);gap:5px}
+.tdots i{display:block;aspect-ratio:1;border-radius:50%;background:rgba(var(--onc),.1)}.tdots i.on{background:var(--grad-cta)}.tdots i.now{outline:2px solid var(--stamp);outline-offset:1px}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.92rem;color:var(--ink-2)}
+.vrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+h1,h2,h3,.hero2 h1{letter-spacing:-.022em}
 .more4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .more4 a{display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;color:var(--ink);min-width:0}
 .more4 a span:last-child{display:grid;gap:2px;min-width:0}.more4 b{font-weight:700}.more4 small{color:var(--muted);font-size:.84rem;line-height:1.35}
@@ -1174,7 +1179,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 
 <header class="top" id="bar">
   <div class="wrap topin">
-    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118.7 32" aria-hidden="true" focusable="false"><g transform="translate(86.7 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6CC6F7"/><stop offset=".52" stop-color="#35A9EC"/><stop offset="1" stop-color="#1493DB"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(3.98 25.6)" d="M12.39 0.12Q12.21 0.12 12.03 0.1Q11.85 0.09 11.7 0.06V-0.18Q11.91 -0.51 11.94 -0.87Q11.97 -1.23 11.97 -2.25V-6.69Q11.97 -8.16 12.18 -9.06Q12.39 -9.96 12.61 -10.39Q12.84 -10.83 12.9 -10.92V-10.98H4.11Q2.91 -10.98 2.28 -11.5Q1.65 -12.03 1.65 -13.62Q1.65 -14.67 1.86 -15.59Q2.07 -16.5 2.29 -17.13Q2.52 -17.76 2.58 -17.91H3.15V-17.58Q3.15 -16.95 3.36 -16.73Q3.57 -16.5 4.14 -16.5H13.71Q14.55 -16.5 14.55 -15.69V-11.37L14.28 -11.01Q13.92 -10.53 13.84 -9.38Q13.77 -8.22 13.89 -6.72L14.19 -2.67Q14.31 -1.23 13.83 -0.55Q13.35 0.12 12.39 0.12ZM2.49 0.12Q2.25 0.12 1.83 0.03V-0.18Q1.98 -0.33 2.05 -0.58Q2.13 -0.84 2.13 -1.32V-5.61Q2.13 -7.02 2.59 -7.77Q3.06 -8.52 3.81 -8.52Q3.93 -8.52 4 -8.5Q4.08 -8.49 4.29 -8.43V-8.25Q4.05 -8.07 3.99 -7.72Q3.93 -7.38 3.96 -6.96L4.23 -2.04Q4.29 -0.84 3.76 -0.36Q3.24 0.12 2.49 0.12ZM23.4 0.3Q22.68 0.3 22.21 -0.15Q21.75 -0.6 21.75 -1.5Q21.75 -2.73 22.56 -3.78Q23.37 -4.83 24.48 -5.67L27.42 -7.89Q27.93 -8.31 28.16 -8.75Q28.38 -9.18 28.38 -9.75Q28.38 -10.35 28.08 -10.66Q27.78 -10.98 26.76 -10.98H19.5Q18.66 -10.98 18.34 -11.78Q18.03 -12.57 18.03 -13.86Q18.03 -14.85 18.15 -15.75Q18.27 -16.65 18.45 -17.38Q18.63 -18.12 18.75 -18.64Q18.87 -19.17 18.87 -19.44Q18.87 -19.68 18.78 -19.75Q18.69 -19.83 18.51 -19.86L17.7 -20.01Q17.31 -20.07 17.05 -20.38Q16.8 -20.7 16.8 -21.45Q16.8 -22.29 17.07 -22.99Q17.34 -23.7 17.46 -24H18.03V-23.76Q18.03 -23.43 18.42 -23.34L19.95 -23.01Q20.55 -22.89 20.67 -22.47Q20.79 -22.05 20.79 -21.81Q20.79 -20.82 20.48 -19.98Q20.16 -19.14 19.84 -18.46Q19.53 -17.79 19.53 -17.28Q19.53 -16.71 20.02 -16.61Q20.52 -16.5 21.21 -16.5H28.65Q29.25 -16.5 29.54 -16.29Q29.82 -16.08 29.94 -15.78Q30.09 -15.45 30.33 -14.49Q30.57 -13.53 30.57 -12.12Q30.57 -11.37 30.43 -10.41Q30.3 -9.45 29.88 -8.5Q29.46 -7.56 28.59 -6.9L25.56 -4.53Q24.99 -4.14 24.88 -3.78Q24.78 -3.42 24.78 -3.24Q24.78 -2.76 24.88 -2.37Q24.99 -1.98 24.99 -1.5Q24.99 -0.81 24.63 -0.26Q24.27 0.3 23.4 0.3ZM36.36 -5.7 35.97 -6.48Q37.14 -7.26 37.78 -8.04Q38.43 -8.82 38.43 -9.66Q38.43 -10.35 38.11 -10.66Q37.8 -10.98 36.96 -10.98H34.68Q33.42 -10.98 32.82 -11.55Q32.22 -12.12 32.22 -13.62Q32.22 -14.67 32.41 -15.57Q32.61 -16.47 32.83 -17.1Q33.06 -17.73 33.15 -17.91H33.72V-17.43Q33.72 -17.04 33.94 -16.77Q34.17 -16.5 34.65 -16.5H37.62Q38.67 -16.5 39.13 -16.04Q39.6 -15.57 39.72 -15.3Q39.84 -15.06 39.91 -14.45Q39.99 -13.83 40.05 -13.14Q40.11 -12.45 40.11 -11.94Q40.11 -10.38 39.72 -9.3Q39.33 -8.22 38.74 -7.53Q38.16 -6.84 37.52 -6.4Q36.87 -5.97 36.36 -5.7ZM42.06 0 42.96 -5.52H51.66Q52.08 -5.52 52.39 -5.79Q52.71 -6.06 52.89 -6.66Q53.07 -7.26 53.07 -8.25Q53.07 -9.66 52.59 -10.32Q52.11 -10.98 50.88 -10.98H45.6Q45.39 -10.8 45.24 -10.52Q45.09 -10.23 45.03 -9.99H46.35Q46.8 -9.99 47.1 -9.69Q47.4 -9.39 47.4 -8.97V-6.54H46.83Q46.71 -6.78 46.39 -6.94Q46.08 -7.11 45.54 -7.11Q44.46 -7.11 44.13 -6.39H42.93Q42.9 -6.75 42.88 -6.97Q42.87 -7.2 42.87 -7.47Q42.87 -8.43 43.11 -9.11Q43.35 -9.78 43.68 -10.23Q44.01 -10.68 44.22 -10.95V-10.98H44.04Q43.71 -10.98 43.23 -11.22Q42.75 -11.46 42.41 -12.04Q42.06 -12.63 42.06 -13.71Q42.06 -14.52 42.25 -15.4Q42.45 -16.29 42.67 -16.99Q42.9 -17.7 43.02 -17.91H43.59V-17.25Q43.59 -16.89 43.78 -16.7Q43.98 -16.5 44.28 -16.5H50.64Q51.72 -16.5 52.45 -16Q53.19 -15.51 53.61 -14.52Q53.7 -14.37 53.95 -13.57Q54.21 -12.78 54.45 -11.45Q54.69 -10.11 54.69 -8.31Q54.69 -6.75 54.48 -5.36Q54.27 -3.96 53.97 -2.65Q53.67 -1.35 53.37 0ZM69.24 0.12Q69.06 0.12 68.88 0.1Q68.7 0.09 68.55 0.06V-0.18Q68.7 -0.39 68.76 -0.75Q68.82 -1.11 68.82 -2.25V-8.79Q68.82 -10.08 68.59 -10.53Q68.37 -10.98 67.53 -10.98H61.56Q61.5 -10.89 61.38 -10.56Q61.26 -10.23 61.17 -9.75Q61.08 -9.27 61.08 -8.64Q61.08 -7.68 61.27 -6.55Q61.47 -5.43 61.66 -4.35Q61.86 -3.27 61.86 -2.43Q61.86 -1.86 61.71 -1.23Q61.56 -0.6 61.17 0H56.19L57.09 -5.52H59.52Q59.49 -5.97 59.44 -6.46Q59.4 -6.96 59.38 -7.46Q59.37 -7.95 59.4 -8.4Q59.43 -8.85 59.52 -9.21Q59.64 -9.63 59.88 -10.14L60.24 -10.95V-10.98H60.15Q58.89 -10.98 58.29 -11.55Q57.69 -12.12 57.69 -13.65Q57.69 -14.67 57.88 -15.57Q58.08 -16.47 58.3 -17.1Q58.53 -17.73 58.62 -17.91H59.19V-17.43Q59.19 -17.04 59.41 -16.77Q59.64 -16.5 60.12 -16.5H67.62Q69.33 -16.5 69.85 -15.69Q70.38 -14.88 70.44 -13.47L70.92 -2.67Q70.98 -1.32 70.59 -0.6Q70.2 0.12 69.24 0.12Z" fill="currentColor"/></svg></a>
+    <a class="logo" href="#home" aria-label="תפילה, לדף הבית"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.2 32" aria-hidden="true" focusable="false"><g transform="translate(101.19999999999999 0)"><defs><linearGradient id="tfg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6CC6F7"/><stop offset=".52" stop-color="#35A9EC"/><stop offset="1" stop-color="#1493DB"/></linearGradient></defs><path d="M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5" fill="none" stroke="url(#tfg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="19.4" r="2.6" fill="url(#tfg)"/></g><path transform="translate(4.03 25.6)" d="M11.91 0V-11.6Q11.91 -12.48 11.37 -12.96Q10.84 -13.45 9.84 -13.45H2.09V-17.72H10.27Q13.64 -17.72 15.54 -16.02Q17.45 -14.31 17.45 -11.32V0ZM1.99 0V-6.09Q1.99 -8.06 2.47 -8.91Q2.94 -9.77 3.19 -9.93H7.57Q7.49 -9.4 7.41 -8.61Q7.34 -7.81 7.34 -6.74V0ZM20.08 -13.45V-22.5H25.63V-17.72H35.07V-14.17L29.5 0H23.66L29.15 -13.45ZM39.32 -7.5V-13.45H36.77V-17.72H44.85V-7.5ZM56.21 0.42Q54.62 0.42 52.74 0.12Q50.86 -0.18 49.26 -0.75L50.27 -4.78Q51.8 -4.37 53.3 -4.15Q54.8 -3.93 55.78 -3.93Q57.74 -3.94 58.7 -4.76Q59.65 -5.58 59.65 -7.22V-13.45H55.27Q55.03 -12.6 54.95 -12.01Q54.87 -11.43 54.87 -10.71V-10.09Q55.18 -10.05 55.54 -10.03Q55.9 -10 56.04 -10.03V-6.53Q54.99 -6.25 53.78 -6.28Q52.57 -6.31 51.45 -6.61Q50.33 -6.91 49.54 -7.44V-8.77Q49.54 -10.15 49.79 -11.37Q50.04 -12.6 50.54 -13.45H48.84V-17.72H65.2V-7.95Q65.2 -4.92 63.96 -3.08Q62.72 -1.23 60.68 -0.4Q58.64 0.42 56.21 0.42ZM78.28 -17.72Q81.74 -17.72 83.55 -16.03Q85.37 -14.33 85.37 -11.04V0H79.85L79.8 -11.54Q79.8 -12.45 79.41 -12.95Q79.01 -13.45 78.3 -13.45H76.11Q76.01 -12.61 75.97 -11.78Q75.94 -10.96 75.94 -10.34V-5.7Q75.94 -2.87 74.38 -1.28Q72.83 0.31 70.12 0.31Q69.42 0.31 68.85 0.25Q68.28 0.19 67.63 0.09V-4.15Q67.85 -4.15 68.09 -4.14Q68.32 -4.13 68.57 -4.13Q69.48 -4.13 70 -4.62Q70.53 -5.11 70.53 -6.14V-9.81Q70.53 -10.49 70.72 -11.54Q70.91 -12.6 71.38 -13.45H68.89V-17.72Z" fill="currentColor"/></svg></a>
     <nav class="tabs" aria-label="ניווט">
       <a href="#home" data-r="home">היום</a>
       <a href="#siddur" data-r="siddur">סידור</a>
@@ -1464,7 +1469,7 @@ function viewHome(){setNav('home');
   <div class="tgrid"><section class="card teh-today reveal"><span class="eyebrow">תהילים היום · ${gem(hd)} לחודש</span>
       <h3>${rng(m[0],m[1])}</h3><p>החלוקה החודשית: כל ספר תהילים בחודש אחד.</p>
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
-      <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div></section>
+      <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div>${tTrack()}</section>
     <div id="potd"></div></div>
   ${yachadBand()}
 
@@ -1486,7 +1491,7 @@ function viewHome(){setNav('home');
   bindHead();
   $('#openK2').onclick=()=>openPal();
   $('#qa').onsubmit=e=>{e.preventDefault();const q=$('#qai').value.trim();if(!q)return;pendingQ=q;location.hash='rav'};
-  bindToc();bindZ();bindNew();bindDonate();drawWall();drawVerse();tick();sampleReady.then(()=>{const c=$('#askcard');if(c&&SAMPLE)c.hidden=false});
+  bindToc();bindZ();bindNew();bindDonate();bindTrack();drawWall();drawVerse();tick();sampleReady.then(()=>{const c=$('#askcard');if(c&&SAMPLE)c.hidden=false});
   clearInterval(window.__nt);window.__nt=setInterval(()=>{const cd=$('#cd');if(!cd||!$('#hero')){clearInterval(window.__nt);return}let z=null;try{z=zmanim()}catch(e){}cd.innerHTML=cdText(z)},30000);
 }
 function donateBlock(m){if(!DONATE_URL)return'';
@@ -1617,7 +1622,7 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
   </section>
   ${mineList(id)}
   <div class="glass" style="padding:18px;margin-top:14px;display:grid;gap:10px"><b>${opener?'הקריאה נפתחה. שלחו את הקישור כדי שיצטרפו':'מזמינים עוד קוראים'}</b>
-    <div class="row"><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(shareText(done)+url)}">שליחה בוואטסאפ</a><button class="btn ghost" type="button" id="share">העתקת קישור</button>${isN?`<button class="btn ghost" type="button" id="light" ${ro?'disabled':''}>הדלקת נר · <span id="cn">${(m.candles||0).toLocaleString('he-IL')}</span></button>`:''}</div>
+    <div class="row"><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(shareText(done)+url)}">שליחה בוואטסאפ</a><button class="btn ghost" type="button" id="share">העתקת קישור</button><button class="btn ghost" type="button" id="shimg">תמונה לסטטוס</button>${isN?`<button class="btn ghost" type="button" id="light" ${ro?'disabled':''}>הדלקת נר · <span id="cn">${(m.candles||0).toLocaleString('he-IL')}</span></button>`:''}</div>
     <ol class="howto"><li>שולחים את הקישור בוואטסאפ או מעתיקים אותו.</li><li>כל מי שנכנס לוחץ „לקבלת פרק”, קורא ומסמן שקרא.</li><li>כאן רואים בזמן אמת מי קורא וכמה פרקים נקראו.</li></ol>
     <p class="note" style="margin:0">${m.listed?'הקריאה מופיעה ברשימת הקריאות הפתוחות באתר.':'קריאה פרטית: רק מי שיש לו את הקישור רואה אותה. ההודעה שנשלחת לא כוללת את השם.'}</p></div>
 
@@ -1646,6 +1651,7 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
   scrollTo(0,y);
   const lb=$('#light');if(lb)lb.onclick=async()=>{if(ro||lb.disabled)return;lb.disabled=true;const n=(m.candles||0)+1;
     try{await DB.doc('memorials/'+id).update({candles:n});m.candles=n;$('#cn').textContent=n.toLocaleString('he-IL');toast('הנר הודלק')}catch(err){toast('לא הצלחנו להדליק כרגע. נסו שוב.')}finally{setTimeout(()=>{const b=$('#light');if(b)b.disabled=false},1500)}};
+  $('#shimg').onclick=()=>shareCard({eyebrow:'תהילים יחד',text:'כל אחד פרק. ביחד ספר שלם.',foot:done>0?`כבר נקראו ${done} מתוך 150 פרקים`:'הצטרפו וקבלו פרק',url,msg:shareText(done)});
   $('#share').onclick=async()=>{try{await navigator.clipboard.writeText(url);toast('הקישור הועתק')}catch(e){toast(url)}};
   $('#myn').oninput=e=>{myName=e.target.value.trim();store.set('myname',myName)};
   $('#g150').onclick=e=>{const b=e.target.closest('button[data-n]');if(!b||ro)return;const n=+b.dataset.n;selected.has(n)?selected.delete(n):selected.add(n);
@@ -2000,7 +2006,7 @@ function viewRav(){setNav('rav');app.innerHTML=ravPanel(true).replace('class="ra
 
 
 /* ---------- reading fonts / wake lock ---------- */
-const READFONTS=[['heebo','מודרני','"Heebo",sans-serif',300],['frank','קלאסי','"Frank Ruhl Libre",serif',400],['david','דוד','"David Libre",serif',400],['noto','עבה','"Noto Serif Hebrew",serif',400]];
+const READFONTS=[['heebo','מודרני','"Heebo",sans-serif',400],['frank','קלאסי','"Frank Ruhl Libre",serif',400],['david','דוד','"David Libre",serif',400],['noto','עבה','"Noto Serif Hebrew",serif',400]];
 let readFont=store.get('rf4','heebo'), wakeLock=null;
 function applyFont(){const r=READFONTS.find(x=>x[0]===readFont)||READFONTS[0];document.documentElement.style.setProperty('--f-read',r[2]);document.documentElement.style.setProperty('--read-w',r[3]||400)}
 applyFont();
@@ -2157,12 +2163,36 @@ async function viewNeed(k){setNav('tehillim');const n=NEEDS.find(x=>x[0]===k);if
 
 
 /* ---------- verse of the day ---------- */
+/* a picture to share: drawn on a canvas so it works in WhatsApp status and stories */
+async function shareCard({eyebrow,text,foot,url,msg}){try{await document.fonts.load('900 60px Heebo');await document.fonts.load('400 40px Heebo')}catch(e){}
+  const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+  x.fillStyle='#fff';x.fillRect(0,0,W,H);let g=x.createRadialGradient(W/2,-120,40,W/2,-120,1100);g.addColorStop(0,'#CFEBFF');g.addColorStop(.55,'#F1F9FF');g.addColorStop(1,'#FFFFFF');x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.save();x.translate(W/2-80,96);x.scale(5,5);g=x.createLinearGradient(0,0,32,32);g.addColorStop(0,'#6CC6F7');g.addColorStop(.52,'#35A9EC');g.addColorStop(1,'#1493DB');x.strokeStyle=g;x.fillStyle=g;x.lineWidth=5.6;x.lineCap='round';x.lineJoin='round';
+  x.stroke(new Path2D('M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5'));x.beginPath();x.arc(16,19.4,2.6,0,7);x.fill();x.restore();
+  x.direction='rtl';x.textAlign='center';x.fillStyle='#46677F';x.font='700 38px Heebo, Arial';x.fillText(eyebrow,W/2,340);
+  const plain=String(text).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();let size=plain.length>90?62:plain.length>50?74:92,lines;
+  for(;;){x.font=`900 ${size}px Heebo, Arial`;lines=[];let cur='';for(const w of plain.split(' ')){const t=cur?cur+' '+w:w;if(x.measureText(t).width>W-170&&cur){lines.push(cur);cur=w}else cur=t}lines.push(cur);if(lines.length*size*1.42<620||size<=44)break;size-=6}
+  x.fillStyle='#0B2E4F';const lh=size*1.42,y0=400+(700-lines.length*lh)/2+size;lines.forEach((l,i)=>x.fillText(l,W/2,y0+i*lh));
+  if(foot){x.fillStyle='#0A6CA8';x.font='700 40px Heebo, Arial';x.fillText(foot,W/2,1150)}
+  x.fillStyle='#0B2E4F';x.font='900 46px Heebo, Arial';x.fillText('תפילה',W/2,1250);x.fillStyle='#46677F';x.font='400 30px Heebo, Arial';x.direction='ltr';x.fillText('tfilah.com',W/2,1296);
+  const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('לא הצלחנו ליצור תמונה');return}
+  const file=new File([blob],'tfilah.png',{type:'image/png'});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:msg||'',url:url||undefined});return}}catch(e){if(e&&e.name==='AbortError')return}
+  dlFile('tfilah.png',blob,'image/png');toast('התמונה נשמרה. אפשר לשתף אותה מהגלריה')}
+/* monthly Psalms: mark each day read, see the month fill up */
+const tKey=()=>{try{return new Intl.DateTimeFormat('en-u-ca-hebrew',{month:'numeric',year:'numeric'}).format(new Date())}catch(e){const d=new Date();return d.getFullYear()+'-'+d.getMonth()}};
+const tDays=()=>{const t=store.get('tday',{});return t.k===tKey()?t.d||[]:[]};
+function tTrack(){const hd=Math.min(hebDay(),30),D=tDays(),on=D.includes(hd);let run=0;for(let i=hd;i>=1&&D.includes(i);i--)run++;
+  return `<div class="ttrack" id="ttrack"><div class="tdots" role="img" aria-label="${D.length} מתוך 30 ימי החודש נקראו">${Array.from({length:30},(_,i)=>`<i class="${D.includes(i+1)?'on':''}${i+1===hd?' now':''}"></i>`).join('')}</div>
+    <div class="trow"><span>${D.length?`קראתם <b>${D.length}</b> מתוך 30 ימים החודש${run>1?` · ${run} ימים ברצף`:''}`:'סמנו כל יום שקראתם, והחודש יתמלא'}</span><button class="tbtn" type="button" id="tmark" aria-pressed="${on}">${on?'קראתי היום ✓':'קראתי היום'}</button></div></div>`}
+function bindTrack(){const b=$('#tmark');if(!b)return;b.onclick=()=>{const hd=Math.min(hebDay(),30);let D=tDays();D=D.includes(hd)?D.filter(x=>x!==hd):[...D,hd];store.set('tday',{k:tKey(),d:D});$('#ttrack').outerHTML=tTrack();bindTrack();$('#tmark').focus({preventScroll:true});if(D.includes(hd))toast(D.length>=30?'סיימתם את ספר התהילים החודש':'נרשם. יישר כוח')}}
 async function drawVerse(){const el=$('#potd');if(!el)return;let P;try{P=await tehillim()}catch(e){return}
   const d=new Date(),seed=d.getFullYear()*372+d.getMonth()*31+d.getDate();let h=seed;h=(h^61)^(h>>>16);h=h+(h<<3);h^=h>>>4;h=Math.imul(h,0x27d4eb2d);h^=h>>>15;h=Math.abs(h);
   const pool=[];P.forEach((ch,ci)=>ch.forEach((v,vi)=>{const L=stripTags(v).replace(NIK,'').length;if(L>40&&L<120)pool.push([ci,vi])}));
   const [ci,vi]=pool[h%pool.length];if(!$('#potd'))return;
   el.innerHTML=`<section class="verse-day glass reveal"><span class="eyebrow">פסוק להיום</span>
-    <blockquote>${P[ci][vi]}</blockquote><a href="#t-${ci+1}" class="vref">תהילים ${gem(ci+1)}, ${gem(vi+1)} ←</a></section>`}
+    <blockquote>${P[ci][vi]}</blockquote><div class="vrow"><a href="#t-${ci+1}" class="vref">תהילים ${gem(ci+1)}, ${gem(vi+1)} ←</a><button class="chip" type="button" id="vshare">${icon('share')}שיתוף כתמונה</button></div></section>`;
+  $('#vshare').onclick=()=>shareCard({eyebrow:'פסוק להיום',text:P[ci][vi],foot:`תהילים ${gem(ci+1)}, ${gem(vi+1)}`,url:location.origin+'/tehillim/'+(ci+1)+'/'})}
 
 /* ---------- FAVORITES ---------- */
 function viewFavs(){setNav('favorites');const list=[...favs].map(id=>byId[id]).filter(Boolean);

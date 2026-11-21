@@ -1,6 +1,32 @@
-/data/*
-  Cache-Control: public, max-age=86400
+# Cloudflare Pages headers for tfilah.com (static files only; /api/ask sets its own headers).
+# When several rules match one file their headers are added together, so Cache-Control is set
+# only in the specific rules below and never under /*.
+# The policy was checked in headless Chromium against the app and the static pages (zero violations).
+# Before adding a script, font or API host to the site, add it here too, or the browser will block it.
 
 /*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(self), screen-wake-lock=(self), accelerometer=(self), gyroscope=(self), magnetometer=(self), clipboard-write=(self), camera=(), microphone=(), payment=(), usb=(), serial=(), hid=(), midi=(), display-capture=(), fullscreen=(), autoplay=(), encrypted-media=(), picture-in-picture=(), publickey-credentials-get=(), xr-spatial-tracking=(), idle-detection=(), browsing-topics=()
+
+# The service worker file itself: always revalidated, otherwise a new VERSION would not be noticed.
+/sw.js
+  Cache-Control: no-cache
+
+# Prayer texts keep their file names when their content changes, so the browser must revalidate
+# them (a cheap 304 when unchanged). Offline copies are the service worker's job, not the HTTP cache's.
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Icons and logo: same names across versions, so a short cache only, never "immutable".
+/icons/*
+  Cache-Control: public, max-age=86400
+/brand/*
+  Cache-Control: public, max-age=86400
+
+# Everything else (HTML pages, config.js, shim.js, manifest) keeps the Cloudflare Pages default:
+# "public, max-age=0, must-revalidate".

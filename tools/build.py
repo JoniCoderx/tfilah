@@ -34,7 +34,7 @@ head = f"""<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
-<meta name="theme-color" content="#FCF8F8">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -60,11 +60,36 @@ head = f"""<!doctype html>
 </head>
 <body>
 """
-SEO_NAV = ('<nav class="seo-links" aria-label="כל הדפים" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 16px">'
-  '<a href="/tefila/" style="color:#6E5560">סידור תפילה</a><a href="/tehillim/" style="color:#6E5560">ספר תהילים</a>'
-  '<a href="/tehillim/20/" style="color:#6E5560">תהילים כ</a><a href="/tehillim/91/" style="color:#6E5560">תהילים צא</a>'
-  '<a href="/tehillim/121/" style="color:#6E5560">תהילים קכא</a><a href="/sefer/" style="color:#6E5560">ספרייה</a>'
-  '<a href="/sefer/perek/" style="color:#6E5560">פרק שירה</a><a href="/sefer/avot/" style="color:#6E5560">פרקי אבות</a></nav>')
+# Static, crawlable links to every hub and the main landing pages (the app itself is rendered by script).
+# Kept compact: small muted text under the app. Prayer ids are looked up in data/index.json, never hard-coded.
+import json, os
+_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_idx = json.load(open(os.path.join(_root, "data", "index.json"), encoding="utf-8"))
+_app = open(os.path.join(_root, "src", "app.html"), encoding="utf-8").read()
+_needs = re.findall(r"\['([a-z]+)','[a-z]+','([^']+)','[^']*',\[[\d,]+\]\]", re.search(r"const NEEDS=(\[.*?\]);", _app, flags=re.S).group(1))
+def _prayer(title, nus="mizrach"):
+    norm = lambda t: t.replace("תפלת", "תפילת")
+    return next("/tefila/%s/" % p["id"] for p in _idx["prayers"] if p["n"] == nus and norm(p["t"]) == title)
+_groups = [
+    ("סידור", [("/tefila/", "סידור תפילה")] + [("/tefila/%s/" % n, "סידור נוסח " + t) for n, t in _idx["nusachim"].items()]
+        + [("/tefila/%s/%s/" % (n, k), "%s נוסח %s" % (l, t)) for k, l in (("shacharit", "שחרית"), ("mincha", "מנחה"), ("arvit", "ערבית")) for n, t in _idx["nusachim"].items()]
+        + [(_prayer("ברכת המזון"), "ברכת המזון"), (_prayer("תפילת הדרך"), "תפילת הדרך"), (_prayer("קריאת שמע שעל המיטה"), "קריאת שמע שעל המיטה")]),
+    ("תהילים", [("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד")]
+        + [("/tehillim/%s/" % k, "תיקון הכללי" if k == "tikkun" else "תהילים " + t) for k, t in _needs]
+        + [("/tehillim/%s/" % k, "תהילים ליום " + t) for k, t in (("yom-rishon", "ראשון"), ("yom-sheni", "שני"), ("yom-shlishi", "שלישי"),
+            ("yom-revii", "רביעי"), ("yom-chamishi", "חמישי"), ("yom-shishi", "שישי"), ("yom-shabbat", "שבת"))]
+        + [("/tehillim/%d/" % c, "תהילים " + g) for c, g in ((86, "פו"), (84, "פד"), (1, "א"), (20, "כ"), (23, "כג"), (130, "קל"), (90, "צ"), (100, "ק"),
+            (27, "כז"), (30, "ל"), (91, "צא"), (121, "קכא"), (119, "קיט"), (13, "יג"), (145, "קמה"), (142, "קמב"), (24, "כד"), (16, "טז"), (67, "סז"), (51, "נא"))]),
+    ("ספרייה וכלים", [("/sefer/", "ספרייה"), ("/sefer/avot/", "פרקי אבות"), ("/sefer/shir/", "שיר השירים"), ("/sefer/esther/", "מגילת אסתר"),
+        ("/sefer/perek/", "פרק שירה"), ("/kelim/", "כלים אישיים"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"),
+        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"),
+        ("/zmanei-shabbat/jerusalem/", "זמני שבת בירושלים"), ("/zmanei-shabbat/tel-aviv/", "זמני שבת בתל אביב"), ("/zmanei-shabbat/haifa/", "זמני שבת בחיפה")]),
+]
+SEO_NAV = ('<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:0 16px 96px;font-size:.88rem;line-height:1.5;color:#46677F">'
+  '<details><summary style="cursor:pointer;display:inline-block;padding:12px 0;font-weight:700;color:#0B2E4F">כל הדפים באתר</summary>'
+  + "".join('<p style="margin:0 0 6px"><b style="color:#0B2E4F">%s:</b> ' % g
+            + " · ".join('<a href="%s" style="color:#46677F;display:inline-block;padding:4px 0">%s</a>' % (h, t) for h, t in links) + "</p>"
+            for g, links in _groups) + "</details></nav>")
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable
 open(out, "w", encoding="utf-8").write(s)

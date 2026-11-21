@@ -1138,10 +1138,14 @@ page("/tefila/", f"סידור תפילה אונליין | עדות המזרח, �
 # =====================================================================
 # Library
 # =====================================================================
+PLAIN_B = json.loads(re.search(r"^const PLAIN_B=(\{.*\});$", APP_SRC, re.M).group(1))
+BOOK_ART = {"perek": ["שמים וארץ", "יום ולילה", "עצים וצמחים", "עופות", "בהמות וחיות", "שרצים ורמשים"]}
 for bi, (k, b) in enumerate(B.items()):
     text = ""
+    b = dict(b, secs=[s for s in b["secs"] if s.get("v")])  # a heading with no text under it is not shown
     for j, s in enumerate(b["secs"]):
-        if s.get("h"): text += f'<h2 id="s{j+1}">{esc(s["h"])}</h2>'
+        _art = BOOK_ART.get(k, [])
+        if s.get("h"): text += f'<h2 id="s{j+1}">{esc(s["h"])}{(": " + esc(_art[j])) if j < len(_art) else ""}</h2>'
         text += "".join(f'<p>{f"<sup>{gem(i+1)}</sup>" if b.get("num") else ""}{clean(v)}</p>' for i, v in enumerate(s["v"]))
     me = f"/sefer/{k}/"
     pk = BOOK_KEYS[bi - 1] if bi else None
@@ -1156,6 +1160,8 @@ for bi, (k, b) in enumerate(B.items()):
     jump = ('<div class="related" style="margin-block-end:1rem">' + "".join(
         f'<a href="#s{j+1}">{esc(s["h"])}</a>' for j, s in enumerate(b["secs"]) if s.get("h")) + "</div>") if nsec > 1 else ""
     first_v = " ".join(b["secs"][0]["v"][:3])
+    _bx = PLAIN_B.get(k, "")
+    jump = (f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה {esc(b["t"])}?</b><p>{esc(_bx)}</p></aside>' if _bx else "") + jump
     page(me, f"{b['t']} | הנוסח המלא בניקוד | {BRAND}",
          fit_desc(f"{b['t']} בניקוד מלא אונליין" + (f". {plain(sub)}" if sub else "") + (f". {nsec} פרקים בעמוד אחד" if nsec > 1 else ""), first_v),
          b["t"], [("ספרייה", "/sefer/"), (b["t"], me)],

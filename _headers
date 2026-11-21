@@ -30,3 +30,7 @@
 
 # Everything else (HTML pages, config.js, shim.js, manifest) keeps the Cloudflare Pages default:
 # "public, max-age=0, must-revalidate".
+
+# Font files: a new version would get a new file name, so they can be cached for a year.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

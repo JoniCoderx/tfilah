@@ -223,7 +223,8 @@ def check_head_basics(path, doc):
     if not vp or "width=device-width" not in (attr(vp.group(0), "content") or ""):
         fail("viewport meta missing", path)
     for host in ("https://fonts.googleapis.com", "https://fonts.gstatic.com"):
-        if host in doc and not re.search(r'<link\b[^>]*rel="preconnect"[^>]*href="' + re.escape(host) + '"', doc):
+        # only a font host the page loads from at start needs a preconnect; one fetched on demand by script does not
+        if re.search(r'<link\b[^>]*rel="stylesheet"[^>]*href="' + re.escape(host), doc) and not re.search(r'<link\b[^>]*rel="preconnect"[^>]*href="' + re.escape(host) + '"', doc):
             fail("font host without preconnect", f"{path}: {host}")
     for href in re.findall(r'href="(https://fonts\.googleapis\.com/css2[^"]*)"', doc):
         if "display=swap" not in href:

@@ -108,7 +108,7 @@ LOGO = load_logo()
 
 # ---------- CSS: a small base plus blocks that ship only on pages that use them ----------
 CSS_BASE = """
-:root{--paper:#F8FCFF;--surface:#FFFFFF;--ink:#0B2E4F;--ink2:#27506F;--muted:#46677F;--line:#CDE7F8;--sunk:#E9F6FE;--stamp:#0A6CA8;--tint:#B3E0FA;--grad:linear-gradient(135deg,#BFE6FF,#A6DBFB 52%,#8FD0F7);
+:root{--paper:#FFFFFF;--surface:#FFFFFF;--ink:#0B2E4F;--ink2:#27506F;--muted:#46677F;--line:#DDEEF9;--sunk:#F3F9FE;--stamp:#0A6CA8;--tint:#B3E0FA;--grad:linear-gradient(135deg,#6CC6F7,#45B0EE 52%,#2FA0E4);
 --sh:0 1px 2px rgba(11,46,79,.05),0 10px 28px -16px rgba(11,46,79,.22);--r:1.375rem;
 --reading:1.32rem;--f-disp:"Frank Ruhl Libre","Noto Serif Hebrew","Times New Roman",serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Heebo","Assistant",system-ui,Arial,sans-serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
@@ -120,7 +120,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(248,252,255,.94);border-block-end:1px solid var(--line)}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(255,255,255,.94);border-block-end:1px solid var(--line)}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}
@@ -268,9 +268,9 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .steps span{color:var(--ink2);grid-column:2}
 """),
 ("hero", """
-.hero{margin:1rem 0 1.5rem;padding:1.6rem 1.5rem 1.7rem;background:var(--grad);color:var(--ink);border-radius:1.75rem;box-shadow:var(--sh)}
+.hero{margin:1rem 0 1.5rem;padding:1.6rem 1.5rem 1.7rem;background:linear-gradient(160deg,#FFFFFF,#F3FAFF 55%,#E4F3FE);border:1px solid var(--line);color:var(--ink);border-radius:1.75rem;box-shadow:var(--sh)}
 .hero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.2}
-.hero .btn{background:#fff;color:var(--ink);box-shadow:none}
+.hero .btn{color:var(--ink);box-shadow:none}
 .hero .btn:hover{color:var(--stamp);filter:none}
 .hero small{display:block;margin-block-start:.8rem;color:var(--ink2);font-size:.92rem}
 """),
@@ -399,7 +399,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{SITE}/icons/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F8FCFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FFFFFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>{css_for(body)}</style><script>{JS_HEAD}</script>

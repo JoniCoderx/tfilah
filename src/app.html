@@ -755,10 +755,10 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 
 /* ===== SEFER: tchelet and white. Navy ink on white; light sky blue in gradients; soft rounds everywhere. Extends LUX; new rules go here. ===== */
 :root{
-  --bg:#F8FCFF; --card:#FFFFFF; --sunk:#E9F6FE; --ink:#0B2E4F; --ink-2:#27506F; --muted:#46677F; --line:#CDE7F8; --tint:#B3E0FA;
-  --grad:linear-gradient(180deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 50%),linear-gradient(135deg,#BFE6FF 0%,#A6DBFB 52%,#8FD0F7 100%); --on:#0B2E4F; --onc:11,46,79;
+  --bg:#FFFFFF; --card:#FFFFFF; --sunk:#F3F9FE; --ink:#0B2E4F; --ink-2:#27506F; --muted:#46677F; --line:#DDEEF9; --tint:#B3E0FA;
+  --grad:linear-gradient(160deg,#FFFFFF 0%,#F3FAFF 55%,#E4F3FE 100%); --on:#0B2E4F; --onc:11,46,79;
   --chrome:linear-gradient(180deg,#38AEEF 0%,#1C98DE 40%,#128BD0 100%);
-  --silver:linear-gradient(180deg,#FFFFFF 0%,#F2FAFF 46%,#DDF0FD 54%,#F3FAFF 100%); --wash:radial-gradient(95% 62% at 50% -12%,#BFE6FF 0%,#E8F6FF 46%,#F8FCFF 80%);
+  --silver:linear-gradient(180deg,#FFFFFF 0%,#FFFFFF 60%,#F7FBFF 100%); --wash:radial-gradient(90% 46% at 50% -14%,#E4F3FF 0%,#F7FBFF 46%,#FFFFFF 78%);
   --sky:var(--bg); --sun:var(--ink); --halo:var(--sunk);
   --accent:var(--ink); --accent-ink:var(--ink); --accent-soft:var(--sunk); --on-ink:#FFFFFF; --rose:var(--tint);
   --stamp:#0B78BE; --stamp-deep:#0A6CA8;
@@ -1119,6 +1119,10 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.teh-today .btn.primary,.teh-today .btn.gold,.zband .btn.gold{background:#fff;color:var(--ink);box-shadow:0 10px 24px -16px rgba(var(--onc),.5)}
 .zband .btn.ghost,.mhead .btn.ghost,.teh-today .btn.ghost{color:var(--on)!important;border-color:rgba(var(--onc),.3)!important}
 .mhead .pbar i,.zband .pbar i{background:var(--ink)}
+.zband,.glass.mhead,.mhead,.teh-today,.daily .d4,.daily .d3,.shabline{border:1px solid var(--line)!important;box-shadow:0 18px 40px -30px rgba(var(--onc),.35)}
+.daily .d3,.shabline{background:#fff}
+.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon,.progress{background:var(--grad-cta)}
+.zband .btn.primary,.zband .btn.gold,.mhead .btn.primary,.teh-today .btn.primary,.teh-today .btn.gold{background:var(--grad-cta)!important;color:var(--on)}
 :root{--grad-cta:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 50%),linear-gradient(135deg,#6CC6F7 0%,#45B0EE 52%,#2FA0E4 100%)}
 .btn.gold,.btn.primary,.tabbar a[aria-current="page"],.tabs a[aria-current="page"]{background:var(--grad-cta);color:var(--on);box-shadow:0 16px 30px -18px #2FA0E4}
 .mhead .btn.gold.jtake{background:var(--grad-cta)!important;color:var(--on)}

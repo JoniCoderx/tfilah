@@ -1900,7 +1900,8 @@ const LFIN={'ך':'כ','ם':'מ','ן':'נ','ף':'פ','ץ':'צ'};
 const looseW=w=>/^(יהוה|יי|ה|השם|אדני|אדוני|ידוד)$/.test(w)?'ה':w.replace(/[ךםןףץ]/g,c=>LFIN[c]).replace(/[וי]/g,'');
 const wordsOf=t=>norm(t).replace(/[^א-ת ]/g,' ').split(/\s+/).filter(Boolean);
 const looseIdx=t=>{const W=[],L=[];for(const w of wordsOf(t)){const l=looseW(w);if(l){W.push(w);L.push(l)}}return{W,L}};
-const findSeq=(L,q)=>{const n=q.length,last=q[n-1];if(n===1&&last.length<2)return-1;outer:for(let i=0;i<=L.length-n;i++){for(let j=0;j<n-1;j++)if(L[i+j]!==q[j])continue outer;if(L[i+n-1].startsWith(last))return i}return-1};
+const wordFits=(l,w,first,last)=>(last?l.startsWith(w):l===w)||(first&&l.length>w.length&&l.length-w.length<=2&&(last?l.slice(l.length-w.length-0).startsWith(w)||l.indexOf(w)===l.length-w.length||l.indexOf(w,1)>0&&l.indexOf(w,1)<=2:l.endsWith(w)));
+const findSeq=(L,q,from)=>{const n=q.length;if(n===1&&q[0].length<2)return-1;outer:for(let i=from||0;i<=L.length-n;i++){for(let j=0;j<n;j++)if(!wordFits(L[i+j],q[j],j===0,j===n-1))continue outer;return i}return-1};
 const SX={};let PSX=null,PSXp=null;
 const ensurePSX=()=>PSXp||(PSXp=tehillim().then(P=>{PSX=[];P.forEach((ch,c)=>ch.forEach((v,i)=>{const x=looseIdx(v);PSX.push({c:c+1,v:i+1,W:x.W,L:x.L})}));return PSX}).catch(()=>{PSXp=null;return null}));
 const psalmHits=(raw,max)=>{if(!PSX)return[];const q=wordsOf(raw).map(looseW).filter(Boolean);if(!q.length||q.join('').length<3)return[];const out=[];for(const x of PSX){const i=findSeq(x.L,q);if(i>=0){out.push({x,i,n:q.length});if(out.length>=max)break}}return out};
@@ -2207,8 +2208,7 @@ function pageFind(raw){const art=$('article.text');fnd={r:[],i:0};if(window.CSS&
   const q=wordsOf(raw||'').map(looseW).filter(Boolean);if(!art||!q.length||q.join('').length<2){if(out)out.textContent='';return 0}
   for(const el of art.querySelectorAll('p')){if(el.closest('details.plain'))continue;const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),toks=[];let n;
     while((n=tw.nextNode())){const re=/[^\s־]+/g;let m;while((m=re.exec(n.data))){const l=looseW(m[0].replace(NIK,'').replace(/[^א-ת]/g,''));if(l)toks.push([l,n,m.index,m.index+m[0].length])}}
-    const L=toks.map(t=>t[0]);for(let i=0;i<=L.length-q.length;i++){let ok=true;for(let j=0;j<q.length-1;j++)if(L[i+j]!==q[j]){ok=false;break}
-      if(ok&&L[i+q.length-1].startsWith(q[q.length-1])){const a=toks[i],z=toks[i+q.length-1],r=document.createRange();r.setStart(a[1],a[2]);r.setEnd(z[1],z[3]);fnd.r.push(r);i+=q.length-1}}}
+    const L=toks.map(t=>t[0]);for(let i=findSeq(L,q,0);i>=0;i=findSeq(L,q,i+q.length)){const a=toks[i],z=toks[i+q.length-1],r=document.createRange();r.setStart(a[1],a[2]);r.setEnd(z[1],z[3]);fnd.r.push(r)}}
   if(window.CSS&&CSS.highlights&&fnd.r.length)CSS.highlights.set('fnd',new Highlight(...fnd.r));pageFindGo(0,true);return fnd.r.length}
 function pageFindGo(d,quiet){const n=fnd.r.length,out=$('#pfn');if(!n){if(out)out.textContent='לא נמצא';return}fnd.i=(fnd.i+d+n)%n;const r=fnd.r[fnd.i];
   if(window.CSS&&CSS.highlights)CSS.highlights.set('fndc',new Highlight(r));if(out)out.textContent=`${fnd.i+1} מתוך ${n}`;

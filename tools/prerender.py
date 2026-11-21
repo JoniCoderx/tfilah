@@ -284,7 +284,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 """),
 ("zt", """
 .zt{inline-size:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-variant-numeric:tabular-nums}
-.zt th,.zt td{padding:.7rem .5rem;text-align:start;border-block-end:1px solid var(--line)}.zt th{font-size:.85rem;color:var(--muted);font-weight:600}
+.zt th,.zt td{padding:.7rem .4rem;text-align:start;border-block-end:1px solid var(--line);white-space:nowrap}.zt th{font-size:.85rem;color:var(--muted);font-weight:600}
 .zt td b{font-size:1.1rem}.zt tr.now td{background:var(--sunk);font-weight:700}.zt tr.past{display:none}
 .znow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.znow div{padding:1rem;border-radius:1.25rem;background:var(--sunk);display:grid;gap:.2rem}
 .znow span{font-size:.85rem;color:var(--muted);font-weight:600}.znow b{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums}
@@ -1312,7 +1312,7 @@ def shabbat_rows(c, weeks=30):
     return out
 SH_JS = ("(function(){var t=new Date();t.setHours(0,0,0,0);var r=document.querySelectorAll('.zt tbody tr'),f=null;"
          "for(var i=0;i<r.length;i++){var d=new Date(r[i].getAttribute('data-s')+'T00:00:00');r[i].classList.remove('now');if(d<t)r[i].classList.add('past');else if(!f){f=r[i];f.classList.add('now')}}"
-         "if(f){var c=f.querySelectorAll('td'),n=document.querySelectorAll('.znow b'),w=document.getElementById('zwhen');if(n.length>2){n[0].textContent=c[1].textContent;n[1].textContent=c[2].textContent;n[2].textContent=c[3].textContent}if(w)w.textContent=c[0].textContent}})();")
+         "if(f){var c=f.querySelectorAll('td'),n=document.querySelectorAll('.znow b'),w=document.getElementById('zwhen');if(n.length>2){n[0].textContent=c[1].textContent;n[1].textContent=c[2].textContent;n[2].textContent=c[3].textContent}if(w)w.textContent='ערב שבת '+c[0].textContent}})();")
 sh_links = [(f"/zmanei-shabbat/{c[0]}/", "זמני שבת ב" + c[1]) for c in SH_CITIES]
 for c in SH_CITIES:
     slug, name, lat, lon, tz, mins = c; rows = shabbat_rows(c)
@@ -1320,11 +1320,12 @@ for c in SH_CITIES:
     s0, f0, cand, hav, rt = rows[0]
     dtxt = lambda d: f"{d.day} {HEMON[d.month - 1]} {d.year}"
     body = (f'<p class="note">שבת הקרובה: <b id="zwhen">ערב שבת {dtxt(f0)}</b></p>'
-            f'<div class="znow"><div><span>כניסת שבת (הדלקת נרות)</span><b>{cand}</b><small>{mins} דקות לפני השקיעה</small></div>'
-            f'<div><span>יציאת שבת</span><b>{hav}</b><small>צאת הכוכבים</small></div><div><span>רבנו תם</span><b>{rt}</b><small>72 דקות אחרי השקיעה</small></div></div>'
+            f'<div class="znow"><div><span>כניסת שבת</span><b>{cand}</b></div>'
+            f'<div><span>יציאת שבת</span><b>{hav}</b></div><div><span>רבנו תם</span><b>{rt}</b></div></div>'
+            f'<p class="note" style="margin-block-start:0">הדלקת נרות {mins} דקות לפני השקיעה. יציאת שבת בצאת הכוכבים. רבנו תם 72 דקות אחרי השקיעה.</p>'
             f'<h2 class="sec">זמני כניסת ויציאת שבת ב{esc(name)} לשבתות הקרובות</h2>'
-            '<table class="zt"><thead><tr><th scope="col">ערב שבת</th><th scope="col">כניסת שבת</th><th scope="col">יציאת שבת</th><th scope="col">רבנו תם</th></tr></thead><tbody>'
-            + "".join(f'<tr data-s="{s.isoformat()}"{chr(32)+"class="+chr(34)+"now"+chr(34) if i == 0 else ""}><td>ערב שבת {dtxt(f)}</td><td><b>{a}</b></td><td><b>{b}</b></td><td>{r_}</td></tr>' for i, (s, f, a, b, r_) in enumerate(rows))
+            '<table class="zt"><thead><tr><th scope="col">ערב שבת</th><th scope="col">כניסה</th><th scope="col">יציאה</th><th scope="col">ר״ת</th></tr></thead><tbody>'
+            + "".join(f'<tr data-s="{s.isoformat()}"{chr(32)+"class="+chr(34)+"now"+chr(34) if i == 0 else ""}><td>{dtxt(f)}</td><td><b>{a}</b></td><td><b>{b}</b></td><td>{r_}</td></tr>' for i, (s, f, a, b, r_) in enumerate(rows))
             + '</tbody></table>'
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. הדלקת נרות לפי המנהג המקובל במקום ({mins} דקות לפני השקיעה). למעשה יש להחמיר ולהקדים.</p>'
             + chips("לקראת שבת", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד"), ("/zmanei-shabbat/", "זמני שבת בכל הערים")])

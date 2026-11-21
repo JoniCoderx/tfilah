@@ -82,7 +82,8 @@ _groups = [
             (27, "כז"), (30, "ל"), (91, "צא"), (121, "קכא"), (119, "קיט"), (13, "יג"), (145, "קמה"), (142, "קמב"), (24, "כד"), (16, "טז"), (67, "סז"), (51, "נא"))]),
     ("ספרייה וכלים", [("/sefer/", "ספרייה"), ("/sefer/avot/", "פרקי אבות"), ("/sefer/shir/", "שיר השירים"), ("/sefer/esther/", "מגילת אסתר"),
         ("/sefer/perek/", "פרק שירה"), ("/kelim/", "כלים אישיים"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"),
-        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם")]),
+        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"),
+        ("/zmanei-shabbat/jerusalem/", "זמני שבת בירושלים"), ("/zmanei-shabbat/tel-aviv/", "זמני שבת בתל אביב"), ("/zmanei-shabbat/haifa/", "זמני שבת בחיפה")]),
 ]
 SEO_NAV = ('<nav class="seo-links" aria-label="כל חלקי האתר" style="max-width:860px;margin:0 auto;padding:8px 16px 96px;font-size:.88rem;line-height:1.5;color:#46677F">'
   + "".join('<p style="margin:0 0 6px"><b style="color:#0B2E4F">%s:</b> ' % g

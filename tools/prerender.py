@@ -281,6 +281,14 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .prose table{border-collapse:collapse;margin:0 0 1rem;font-size:.97rem}
 .prose td,.prose th{padding:.35rem .9rem .35rem 0;text-align:start;border-block-end:1px solid var(--line)}
 """),
+("zt", """
+.zt{inline-size:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-variant-numeric:tabular-nums}
+.zt th,.zt td{padding:.7rem .5rem;text-align:start;border-block-end:1px solid var(--line)}.zt th{font-size:.85rem;color:var(--muted);font-weight:600}
+.zt td b{font-size:1.1rem}.zt tr.now td{background:var(--sunk);font-weight:700}.zt tr.past{display:none}
+.znow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.znow div{padding:1rem;border-radius:1.25rem;background:var(--sunk);display:grid;gap:.2rem}
+.znow span{font-size:.85rem;color:var(--muted);font-weight:600}.znow b{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums}
+.znow small{color:var(--muted)}
+"""),
 ("note", """
 .note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}
 """),
@@ -332,7 +340,8 @@ NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')
 FOOT_NAV = ('<nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
-            '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a></nav>')
+            '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
+            '<a href="/zmanei-shabbat/">זמני שבת</a></nav>')
 FONTS = "https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@400;700;900&display=swap"
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
@@ -1237,6 +1246,88 @@ page("/kelim/", f"כלים אישיים: תהילים לפי השם, יארצי�
      lead=f"{len(KELIM)} כלים שמחשבים בשבילכם: לפי השם, לפי הגיל, לפי התאריך העברי ולפי המקום.",
      ld=[{"@type": "CollectionPage", "name": "כלים אישיים", "url": SITE + "/kelim/", "inLanguage": "he", "isPartOf": WEBSITE,
           "mainEntity": item_list([f"/kelim/{k}/" for k, _, _ in KELIM])}])
+
+# ---------- Shabbat times by city ----------
+# Same sun formula as the app (src/app.html sunUTC). Candle lighting = sunset minus the local custom,
+# end of Shabbat = sun 8.5 degrees below the horizon, Rabbenu Tam = sunset plus 72 minutes.
+import math
+from zoneinfo import ZoneInfo
+IL = "Asia/Jerusalem"
+SH_CITIES = [("jerusalem", "ירושלים", 31.778, 35.235, IL, 40), ("tel-aviv", "תל אביב", 32.085, 34.781, IL, 18), ("haifa", "חיפה", 32.794, 34.989, IL, 30),
+    ("bnei-brak", "בני ברק", 32.084, 34.834, IL, 22), ("beer-sheva", "באר שבע", 31.252, 34.791, IL, 18), ("ashdod", "אשדוד", 31.804, 34.655, IL, 18),
+    ("petah-tikva", "פתח תקווה", 32.087, 34.887, IL, 40), ("netanya", "נתניה", 32.332, 34.860, IL, 18), ("rishon-lezion", "ראשון לציון", 31.973, 34.789, IL, 18),
+    ("holon", "חולון", 32.011, 34.775, IL, 18), ("bat-yam", "בת ים", 32.017, 34.745, IL, 18), ("ramat-gan", "רמת גן", 32.068, 34.824, IL, 18),
+    ("ashkelon", "אשקלון", 31.669, 34.574, IL, 18), ("rehovot", "רחובות", 31.894, 34.811, IL, 18), ("beit-shemesh", "בית שמש", 31.747, 34.988, IL, 18),
+    ("modiin", "מודיעין", 31.898, 35.010, IL, 18), ("modiin-illit", "מודיעין עילית", 31.933, 35.041, IL, 18), ("elad", "אלעד", 32.052, 34.951, IL, 18),
+    ("herzliya", "הרצליה", 32.166, 34.843, IL, 18), ("kfar-saba", "כפר סבא", 32.175, 34.907, IL, 18), ("raanana", "רעננה", 32.184, 34.871, IL, 18),
+    ("hadera", "חדרה", 32.434, 34.919, IL, 18), ("lod", "לוד", 31.951, 34.888, IL, 18), ("ramla", "רמלה", 31.929, 34.866, IL, 18),
+    ("tzfat", "צפת", 32.965, 35.496, IL, 20), ("tiberias", "טבריה", 32.796, 35.530, IL, 18), ("afula", "עפולה", 32.608, 35.289, IL, 18),
+    ("nahariya", "נהריה", 33.006, 35.095, IL, 18), ("kiryat-shmona", "קריית שמונה", 33.207, 35.570, IL, 18), ("eilat", "אילת", 29.558, 34.952, IL, 18),
+    ("netivot", "נתיבות", 31.421, 34.588, IL, 18), ("kiryat-gat", "קריית גת", 31.610, 34.764, IL, 18), ("beitar-illit", "ביתר עילית", 31.698, 35.118, IL, 18),
+    ("new-york", "ניו יורק", 40.713, -74.006, "America/New_York", 18), ("los-angeles", "לוס אנג׳לס", 34.052, -118.244, "America/Los_Angeles", 18),
+    ("miami", "מיאמי", 25.762, -80.192, "America/New_York", 18), ("london", "לונדון", 51.507, -0.128, "Europe/London", 18), ("paris", "פריז", 48.857, 2.352, "Europe/Paris", 18)]
+def sun_utc(dt, lat, lon, zen):
+    y0 = datetime.datetime(dt.year, 1, 1); N = (datetime.datetime(dt.year, dt.month, dt.day) - y0).days + 1
+    lh = lon / 15; t = N + (18 - lh) / 24; M = .9856 * t - 3.289; r = math.radians
+    L = (M + 1.916 * math.sin(r(M)) + .02 * math.sin(r(2 * M)) + 282.634) % 360
+    RA = math.degrees(math.atan(.91764 * math.tan(r(L)))) % 360
+    RA = (RA + math.floor(L / 90) * 90 - math.floor(RA / 90) * 90) / 15
+    sD = .39782 * math.sin(r(L)); cD = math.cos(math.asin(sD))
+    cH = (math.cos(r(zen)) - sD * math.sin(r(lat))) / (cD * math.cos(r(lat)))
+    if not -1 <= cH <= 1: return None
+    H = math.degrees(math.acos(cH)) / 15; ut = (H + RA - .06571 * t - 6.622 - lh) % 24
+    base = datetime.datetime(dt.year, dt.month, dt.day, tzinfo=datetime.timezone.utc)
+    ms = base + datetime.timedelta(hours=ut); noon = base + datetime.timedelta(hours=12 - lh)
+    while (ms - noon).total_seconds() > 43200: ms -= datetime.timedelta(days=1)
+    while (noon - ms).total_seconds() > 43200: ms += datetime.timedelta(days=1)
+    return ms
+HEMON = ["בינואר", "בפברואר", "במרץ", "באפריל", "במאי", "ביוני", "ביולי", "באוגוסט", "בספטמבר", "באוקטובר", "בנובמבר", "בדצמבר"]
+def shabbat_rows(c, weeks=30):
+    _, _, lat, lon, tz, mins = c; z = ZoneInfo(tz); today = datetime.date.today()
+    fri = today + datetime.timedelta(days=(4 - today.weekday()) % 7)
+    if today.weekday() == 5: fri = today - datetime.timedelta(days=1)
+    out = []
+    for i in range(weeks):
+        f = fri + datetime.timedelta(days=7 * i); s = f + datetime.timedelta(days=1)
+        sf, hv, ss = sun_utc(f, lat, lon, 90.833), sun_utc(s, lat, lon, 98.5), sun_utc(s, lat, lon, 90.833)
+        if not (sf and hv and ss): continue
+        hm = lambda d: d.astimezone(z).strftime("%H:%M")
+        out.append((s, f, hm(sf - datetime.timedelta(minutes=mins)), hm(hv), hm(ss + datetime.timedelta(minutes=72))))
+    return out
+SH_JS = ("(function(){var t=new Date();t.setHours(0,0,0,0);var r=document.querySelectorAll('.zt tbody tr'),f=null;"
+         "for(var i=0;i<r.length;i++){var d=new Date(r[i].getAttribute('data-s')+'T00:00:00');r[i].classList.remove('now');if(d<t)r[i].classList.add('past');else if(!f){f=r[i];f.classList.add('now')}}"
+         "if(f){var c=f.querySelectorAll('td'),n=document.querySelectorAll('.znow b'),w=document.getElementById('zwhen');if(n.length>2){n[0].textContent=c[1].textContent;n[1].textContent=c[2].textContent;n[2].textContent=c[3].textContent}if(w)w.textContent=c[0].textContent}})();")
+sh_links = [(f"/zmanei-shabbat/{c[0]}/", "זמני שבת ב" + c[1]) for c in SH_CITIES]
+for c in SH_CITIES:
+    slug, name, lat, lon, tz, mins = c; rows = shabbat_rows(c)
+    if not rows: continue
+    s0, f0, cand, hav, rt = rows[0]
+    dtxt = lambda d: f"{d.day} {HEMON[d.month - 1]} {d.year}"
+    body = (f'<p class="note">שבת הקרובה: <b id="zwhen">ערב שבת {dtxt(f0)}</b></p>'
+            f'<div class="znow"><div><span>כניסת שבת (הדלקת נרות)</span><b>{cand}</b><small>{mins} דקות לפני השקיעה</small></div>'
+            f'<div><span>יציאת שבת</span><b>{hav}</b><small>צאת הכוכבים</small></div><div><span>רבנו תם</span><b>{rt}</b><small>72 דקות אחרי השקיעה</small></div></div>'
+            f'<h2 class="sec">זמני כניסת ויציאת שבת ב{esc(name)} לשבתות הקרובות</h2>'
+            '<table class="zt"><thead><tr><th scope="col">ערב שבת</th><th scope="col">כניסת שבת</th><th scope="col">יציאת שבת</th><th scope="col">רבנו תם</th></tr></thead><tbody>'
+            + "".join(f'<tr data-s="{s.isoformat()}"{chr(32)+"class="+chr(34)+"now"+chr(34) if i == 0 else ""}><td>ערב שבת {dtxt(f)}</td><td><b>{a}</b></td><td><b>{b}</b></td><td>{r_}</td></tr>' for i, (s, f, a, b, r_) in enumerate(rows))
+            + '</tbody></table>'
+            f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. הדלקת נרות לפי המנהג המקובל במקום ({mins} דקות לפני השקיעה). למעשה יש להחמיר ולהקדים.</p>'
+            + chips("לקראת שבת", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד"), ("/zmanei-shabbat/", "זמני שבת בכל הערים")])
+            + chips("ערים נוספות", [l for l in sh_links if l[0] != f"/zmanei-shabbat/{slug}/"][:12]))
+    page(f"/zmanei-shabbat/{slug}/", f"זמני שבת ב{name}: כניסת שבת ויציאת שבת השבוע | {BRAND}",
+         f"מתי נכנסת ומתי יוצאת שבת ב{name}: שעת הדלקת נרות, שעת צאת השבת וזמן רבנו תם לשבת הקרובה, ולוח זמנים לשבתות הבאות, מחושב לפי מיקום העיר.",
+         f"זמני שבת ב{name}", [("זמני שבת", "/zmanei-shabbat/"), (name, f"/zmanei-shabbat/{slug}/")], after=body, hub=True, prio="0.8", script=SH_JS,
+         app_hash="home", app_label="לכל זמני היום באפליקציה", lead=f"כניסת שבת ויציאת שבת ב{name}, מתעדכן לכל שבת.",
+         ld=[{"@type": "WebPage", "name": f"זמני שבת ב{name}", "url": SITE + f"/zmanei-shabbat/{slug}/", "inLanguage": "he", "isPartOf": WEBSITE,
+              "about": {"@type": "Place", "name": name, "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon}}}])
+jr = shabbat_rows(SH_CITIES[0])[0]
+shhub = ('<ul class="cards">' + "".join(f'<li><a href="/zmanei-shabbat/{c[0]}/"><b>{esc(c[1])}</b><small>כניסה {shabbat_rows(c, 1)[0][2]} · יציאה {shabbat_rows(c, 1)[0][3]}</small></a></li>' for c in SH_CITIES) + '</ul>'
+         '<p class="note">הזמנים בכרטיסים הם לשבת הקרובה ביום בניית הדף. בדף של כל עיר מופיעה תמיד השבת הקרובה ולוח לשבתות הבאות.</p>')
+page("/zmanei-shabbat/", f"זמני כניסת שבת ויציאת שבת לפי עיר: מתי נכנסת ומתי יוצאת שבת | {BRAND}",
+     "מתי נכנסת שבת ומתי יוצאת שבת השבוע: זמני הדלקת נרות וצאת השבת בירושלים, תל אביב, חיפה, באר שבע ובעשרות ערים נוספות בארץ ובעולם.",
+     "זמני כניסת ויציאת שבת", [("זמני שבת", "/zmanei-shabbat/")], after=shhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה",
+     lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים מתי נכנסת ומתי יוצאת השבת.",
+     ld=[{"@type": "CollectionPage", "name": "זמני כניסת ויציאת שבת", "url": SITE + "/zmanei-shabbat/", "inLanguage": "he", "isPartOf": WEBSITE,
+          "mainEntity": item_list([f"/zmanei-shabbat/{c[0]}/" for c in SH_CITIES])}])
 
 # ---------- 404 ----------
 nf = ('<p><a class="btn" href="/">לדף הבית</a></p><ul class="cards" style="margin-block-start:1.5rem">'

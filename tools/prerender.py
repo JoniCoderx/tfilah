@@ -1308,11 +1308,31 @@ def shabbat_rows(c, weeks=30):
         sf, hv, ss = sun_utc(f, lat, lon, 90.833), sun_utc(s, lat, lon, 98.5), sun_utc(s, lat, lon, 90.833)
         if not (sf and hv and ss): continue
         hm = lambda d: d.astimezone(z).strftime("%H:%M")
-        out.append((s, f, hm(sf - datetime.timedelta(minutes=mins)), hm(hv), hm(ss + datetime.timedelta(minutes=72))))
+        out.append((s, f, hm(sf - datetime.timedelta(minutes=mins)), hm(hv), hm(max(ss + datetime.timedelta(minutes=72), hv))))
     return out
-SH_JS = ("(function(){var t=new Date();t.setHours(0,0,0,0);var r=document.querySelectorAll('.zt tbody tr'),f=null;"
-         "for(var i=0;i<r.length;i++){var d=new Date(r[i].getAttribute('data-s')+'T00:00:00');r[i].classList.remove('now');if(d<t)r[i].classList.add('past');else if(!f){f=r[i];f.classList.add('now')}}"
-         "if(f){var c=f.querySelectorAll('td'),n=document.querySelectorAll('.znow b'),w=document.getElementById('zwhen');if(n.length>2){n[0].textContent=c[1].textContent;n[1].textContent=c[2].textContent;n[2].textContent=c[3].textContent}if(w)w.textContent='ערב שבת '+c[0].textContent}})();")
+# The page recomputes itself in the reader's browser with the same sun formula, so it never goes stale:
+# the coming Shabbat is always on top and the table always runs 30 weeks ahead. The HTML written at build time is the fallback.
+SH_CALC = ("function R(d){return d*Math.PI/180}function G(r){return r*180/Math.PI}"
+           "function sun(P,y,m,d,zen){var N=Math.floor((Date.UTC(y,m-1,d)-Date.UTC(y,0,0))/864e5),lh=P.lon/15,t=N+(18-lh)/24,M=.9856*t-3.289;"
+           "var L=(M+1.916*Math.sin(R(M))+.02*Math.sin(R(2*M))+282.634)%360;if(L<0)L+=360;var RA=G(Math.atan(.91764*Math.tan(R(L))))%360;if(RA<0)RA+=360;"
+           "RA=(RA+Math.floor(L/90)*90-Math.floor(RA/90)*90)/15;var sD=.39782*Math.sin(R(L)),cD=Math.cos(Math.asin(sD)),cH=(Math.cos(R(zen))-sD*Math.sin(R(P.lat)))/(cD*Math.cos(R(P.lat)));"
+           "if(cH>1||cH<-1)return null;var H=G(Math.acos(cH))/15,ut=(H+RA-.06571*t-6.622-lh)%24;if(ut<0)ut+=24;var ms=Date.UTC(y,m-1,d)+ut*36e5,noon=Date.UTC(y,m-1,d)+(12-lh)*36e5;"
+           "while(ms-noon>432e5)ms-=864e5;while(noon-ms>432e5)ms+=864e5;return new Date(ms)}"
+           "function hm(P,d){return new Intl.DateTimeFormat('he-IL',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:P.tz}).format(d)}"
+           "function friday(P){var f=new Intl.DateTimeFormat('en-CA',{timeZone:P.tz,year:'numeric',month:'2-digit',day:'2-digit',weekday:'short'}).formatToParts(new Date()),o={};"
+           "f.forEach(function(x){o[x.type]=x.value});var wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(o.weekday),add=wd===6?-1:(5-wd+7)%7;return Date.UTC(+o.year,+o.month-1,+o.day)+add*864e5}"
+           "function week(P,ms){var f=new Date(ms),s=new Date(ms+864e5),a=sun(P,f.getUTCFullYear(),f.getUTCMonth()+1,f.getUTCDate(),90.833),"
+           "b=sun(P,s.getUTCFullYear(),s.getUTCMonth()+1,s.getUTCDate(),98.5),c=sun(P,s.getUTCFullYear(),s.getUTCMonth()+1,s.getUTCDate(),90.833);if(!a||!b||!c)return null;"
+           "return{f:f,c:hm(P,new Date(+a-P.m*6e4)),h:hm(P,b),r:hm(P,new Date(Math.max(+c+72*6e4,+b)))}}")
+SH_JS = ("(function(){try{var P=__P__,MON=['בינואר','בפברואר','במרץ','באפריל','במאי','ביוני','ביולי','באוגוסט','בספטמבר','באוקטובר','בנובמבר','בדצמבר'];" + SH_CALC +
+         "var f0=friday(P),rows=[],first=null;for(var i=0;i<30;i++){var w=week(P,f0+i*7*864e5);if(!w)continue;if(!first)first=w;"
+         "var dt=w.f.getUTCDate()+' '+MON[w.f.getUTCMonth()]+' '+w.f.getUTCFullYear();w.dt=dt;"
+         "rows.push('<tr'+(rows.length?'':' class=\"now\"')+'><td>'+dt+'</td><td><b>'+w.c+'</b></td><td><b>'+w.h+'</b></td><td>'+w.r+'</td></tr>')}"
+         "if(!first)return;var tb=document.querySelector('.zt tbody');if(tb)tb.innerHTML=rows.join('');var n=document.querySelectorAll('.znow b');"
+         "if(n.length>2){n[0].textContent=first.c;n[1].textContent=first.h;n[2].textContent=first.r}"
+         "var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v};set('zwhen','ערב שבת '+first.dt);set('zq1',first.c);set('zq2',first.h);set('zq3',first.dt)}catch(e){}})();")
+SH_HUB_JS = ("(function(){try{" + SH_CALC + "document.querySelectorAll('.cards li[data-p]').forEach(function(li){var a=li.getAttribute('data-p').split(','),P={lat:+a[0],lon:+a[1],tz:a[2],m:+a[3]},"
+             "w=week(P,friday(P)),s=li.querySelector('small');if(w&&s)s.textContent='כניסה '+w.c+' · יציאה '+w.h})}catch(e){}})();")
 sh_links = [(f"/zmanei-shabbat/{c[0]}/", "זמני שבת ב" + c[1]) for c in SH_CITIES]
 for c in SH_CITIES:
     slug, name, lat, lon, tz, mins = c; rows = shabbat_rows(c)
@@ -1327,21 +1347,26 @@ for c in SH_CITIES:
             '<table class="zt"><thead><tr><th scope="col">ערב שבת</th><th scope="col">כניסה</th><th scope="col">יציאה</th><th scope="col">ר״ת</th></tr></thead><tbody>'
             + "".join(f'<tr data-s="{s.isoformat()}"{chr(32)+"class="+chr(34)+"now"+chr(34) if i == 0 else ""}><td>{dtxt(f)}</td><td><b>{a}</b></td><td><b>{b}</b></td><td>{r_}</td></tr>' for i, (s, f, a, b, r_) in enumerate(rows))
             + '</tbody></table>'
+            f'<h2 class="sec">מתי נכנסת ומתי יוצאת שבת ב{esc(name)}?</h2>'
+            f'<div class="prose"><p>השבת הקרובה ב{esc(name)}, ערב שבת <span id="zq3">{dtxt(f0)}</span>, נכנסת בשעה <b id="zq1">{cand}</b> (הדלקת נרות) ויוצאת במוצאי שבת בשעה <b id="zq2">{hav}</b>. '
+            f'הדף מחשב את הזמנים מחדש בכל כניסה, כך שתמיד מוצגת השבת הקרובה.</p></div>'
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. הדלקת נרות לפי המנהג המקובל במקום ({mins} דקות לפני השקיעה). למעשה יש להחמיר ולהקדים.</p>'
             + chips("לקראת שבת", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד"), ("/zmanei-shabbat/", "זמני שבת בכל הערים")])
             + chips("ערים נוספות", [l for l in sh_links if l[0] != f"/zmanei-shabbat/{slug}/"][:12]))
     page(f"/zmanei-shabbat/{slug}/", f"זמני שבת ב{name}: כניסת שבת ויציאת שבת השבוע | {BRAND}",
          f"מתי נכנסת ומתי יוצאת שבת ב{name}: שעת הדלקת נרות, שעת צאת השבת וזמן רבנו תם לשבת הקרובה, ולוח זמנים לשבתות הבאות, מחושב לפי מיקום העיר.",
-         f"זמני שבת ב{name}", [("זמני שבת", "/zmanei-shabbat/"), (name, f"/zmanei-shabbat/{slug}/")], after=body, hub=True, prio="0.8", script=SH_JS,
+         f"זמני שבת ב{name}", [("זמני שבת", "/zmanei-shabbat/"), (name, f"/zmanei-shabbat/{slug}/")], after=body, hub=True, prio="0.8", script=SH_JS.replace("__P__", json.dumps({"lat": lat, "lon": lon, "tz": tz, "m": mins})),
          app_hash="home", app_label="לכל זמני היום באפליקציה", lead=f"כניסת שבת ויציאת שבת ב{name}, מתעדכן לכל שבת.",
          ld=[{"@type": "WebPage", "name": f"זמני שבת ב{name}", "url": SITE + f"/zmanei-shabbat/{slug}/", "inLanguage": "he", "isPartOf": WEBSITE,
               "about": {"@type": "Place", "name": name, "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon}}}])
 jr = shabbat_rows(SH_CITIES[0])[0]
-shhub = ('<ul class="cards">' + "".join(f'<li><a href="/zmanei-shabbat/{c[0]}/"><b>{esc(c[1])}</b><small>כניסה {shabbat_rows(c, 1)[0][2]} · יציאה {shabbat_rows(c, 1)[0][3]}</small></a></li>' for c in SH_CITIES) + '</ul>'
-         '<p class="note">הזמנים בכרטיסים הם לשבת הקרובה ביום בניית הדף. בדף של כל עיר מופיעה תמיד השבת הקרובה ולוח לשבתות הבאות.</p>')
+shhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]},{c[5]}"><a href="/zmanei-shabbat/{c[0]}/"><b>{esc(c[1])}</b><small>כניסה {shabbat_rows(c, 1)[0][2]} · יציאה {shabbat_rows(c, 1)[0][3]}</small></a></li>' for c in SH_CITIES) + '</ul>'
+         '<p class="note">הזמנים בכרטיסים הם לשבת הקרובה, ומתעדכנים מעצמם בכל שבוע. בדף של כל עיר יש גם לוח לשבתות הבאות.</p>'
+         '<div class="prose"><h2>מתי יוצאת שבת השבוע?</h2><p>צאת השבת משתנה מעיר לעיר ומשבוע לשבוע, כי היא תלויה בשעת השקיעה במקום. '
+         'בחרו עיר מהרשימה כדי לראות את שעת כניסת השבת (הדלקת נרות), את שעת צאת השבת במוצאי שבת ואת זמן רבנו תם.</p></div>')
 page("/zmanei-shabbat/", f"זמני כניסת שבת ויציאת שבת לפי עיר: מתי נכנסת ומתי יוצאת שבת | {BRAND}",
-     "מתי נכנסת שבת ומתי יוצאת שבת השבוע: זמני הדלקת נרות וצאת השבת בירושלים, תל אביב, חיפה, באר שבע ובעשרות ערים נוספות בארץ ובעולם.",
-     "זמני כניסת ויציאת שבת", [("זמני שבת", "/zmanei-shabbat/")], after=shhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה",
+     "מתי נכנסת שבת ומתי יוצאת שבת השבוע: זמני הדלקת נרות, צאת שבת ומוצאי שבת בירושלים, תל אביב, חיפה, באר שבע ובעוד עשרות ערים. מתעדכן מעצמו בכל שבוע.",
+     "זמני כניסת ויציאת שבת", [("זמני שבת", "/zmanei-shabbat/")], after=shhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה", script=SH_HUB_JS,
      lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים מתי נכנסת ומתי יוצאת השבת.",
      ld=[{"@type": "CollectionPage", "name": "זמני כניסת ויציאת שבת", "url": SITE + "/zmanei-shabbat/", "inLanguage": "he", "isPartOf": WEBSITE,
           "mainEntity": item_list([f"/zmanei-shabbat/{c[0]}/" for c in SH_CITIES])}])

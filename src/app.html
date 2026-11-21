@@ -1005,6 +1005,14 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .shema .row{grid-column:1/-1}
 @media (max-width:700px){.shema{grid-template-columns:1fr}.shema .row .btn{flex:1 1 100%}}
 .yz{margin-top:10px;padding:8px 0 0}
+.more4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.more4 a{display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;color:var(--ink);min-width:0}
+.more4 a span:last-child{display:grid;gap:2px;min-width:0}.more4 b{font-weight:700}.more4 small{color:var(--muted);font-size:.84rem;line-height:1.35}
+@media (max-width:900px){.more4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:480px){.more4{grid-template-columns:1fr}}
+/* Shema on the home screen is a strip, not a hero */
+.shema{padding:14px 18px;gap:10px 20px}.shema h3{font-size:1.25rem;margin:0}.shema .eyebrow{font-size:.78rem}.shst{font-size:.95rem}
+.shz div{padding:8px 10px;border-radius:14px}.shz b{font-size:1.1rem}
+.shema .row{gap:8px}.shema .row .btn{min-height:44px;padding:8px 18px;font-size:.92rem;flex:0 1 auto!important}
 .tways{margin-bottom:10px}
 .tname{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px 20px;align-items:center}
 .tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
@@ -1417,32 +1425,29 @@ const QI=['sun','sunrise','moon','plate','wheat','wheat','road','flame','cup','h
 function viewHome(){setNav('home');
   const d=new Date(),hd=hebDay(d),m=MONTHLY[Math.min(hd,30)-1],w=WEEKLY[d.getDay()];
   const rng=(a,b)=>a===b?`פרק ${gem(a)}`:`פרקים ${gem(a)}–${gem(b)}`;
-  const tiles=QUICK.map(([t,sub,re],i)=>{if(/הדרך|המיטה|ברכת המזון/.test(t))return'';const r=findAny(re);return r?`<a class="tile card lift" href="#p-${r.p.id}"><span class="ib">${icon(QI[i])}</span><span><b>${t}</b><small>${sub}${r.other?' · נוסח '+r.other:''}</small></span></a>`:''}).join('');
   app.innerHTML=`${heroNow()}
   ${quick4()}
   ${shemaCard()}
-  ${yachadBand()}
   ${yzCard()}
   ${specials()}
-  ${smartToc()}
 
-  <div class="sec"><h2>ברכות ותפילות</h2><a href="#siddur">כל הסידור</a></div>
-  <div class="tiles">${tiles}</div>
-
-  <div class="sec"><h2>היום בלוח</h2><button class="chip" type="button" id="openK2">${icon('search')}חיפוש מהיר</button></div>
-  <div class="hgrid">${zCard()}<div class="stack">${parashaCard()}${holCard()}</div></div>
-
-  <div class="sec"><h2>כלים אישיים</h2><a href="#kelim">כל הכלים</a></div>
-  <div class="kgrid krow">${KELIM.slice(0,4).map(([k,t,d,ic])=>`<a class="kcard glass" href="#kli-${k}"><span class="kic">${kic(ic)}</span><b>${t}</b><small>${d}</small></a>`).join('')}</div>
   <div class="sec"><h2>תהילים</h2><a href="#tehillim">כל הספר</a></div>
   <div class="tgrid"><section class="card teh-today reveal"><span class="eyebrow">תהילים היום · ${gem(hd)} לחודש</span>
       <h3>${rng(m[0],m[1])}</h3><p>החלוקה החודשית: כל ספר תהילים בחודש אחד.</p>
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
-      <a class="btn ghost" style="background:none;border:1px solid rgba(255,255,255,.45);color:var(--on-ink)" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div></section>
+      <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div></section>
     <div id="potd"></div></div>
-  <div class="needs" style="margin-top:10px">${NEEDS.map(([k,ic,t,sub])=>`<a class="need card lift" href="#k-${k}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sub}</small></span></a>`).join('')}</div>
+  ${yachadBand()}
 
-  ${libTeaser()}
+  <div class="sec"><h2>היום בלוח</h2><button class="chip" type="button" id="openK2">${icon('search')}חיפוש מהיר</button></div>
+  <div class="hgrid">${zCard()}<div class="stack">${parashaCard()}${holCard()}</div></div>
+
+  <div class="sec"><h2>עוד באתר</h2></div>
+  <div class="more4">
+    <a class="card lift" href="#siddur"><span class="ib">${icon('book')}</span><span><b>הסידור המלא</b><small>שחרית, מנחה, ערבית, שבת וברכות</small></span></a>
+    <a class="card lift" href="#tehillim"><span class="ib">${icon('spark')}</span><span><b>תהילים לפי צורך</b><small>רפואה, פרנסה, זיווג, שמירה ועוד</small></span></a>
+    <a class="card lift" href="#sifriya"><span class="ib">${icon('flame')}</span><span><b>ספרייה</b><small>פרקי אבות, שיר השירים, סגולות</small></span></a>
+    <a class="card lift" href="#kelim"><span class="ib">${icon('hands')}</span><span><b>כלים אישיים</b><small>תהילים לפי שם, יארצייט, יום הולדת עברי</small></span></a></div>
 
   <section class="card askcard" id="askcard" hidden><span class="ib">${icon('chat')}</span><div><h3>יש לכם שאלה בהלכה או בתפילה?</h3>
     <p>מורה הדרך הוא עוזר AI ולא רב. הוא עונה לפי נוסח ${nusName(nus)} ומקשר לתפילה המתאימה.</p>
@@ -1870,6 +1875,8 @@ async function viewTehillim(a,b){setNav('tehillim');
         <a class="q4" href="#zikaron"><b>תהילים יחד</b><small>כל אחד פרק, ביחד ספר שלם</small></a></nav>
       <form class="card tname" id="tnf"><div><label for="tnq"><b>תהילים לפי שם</b></label><p class="note" style="margin:2px 0 0">פסוקי מזמור קי״ט לפי אותיות השם, לרפואה או לעילוי נשמה.</p></div>
         <div class="tnrow"><input id="tnq" maxlength="40" placeholder="למשל: אברהם בן שרה" value="${esc(store.get('kname',''))}" autocomplete="off"><button class="btn primary" type="submit">הצגת הפרקים</button></div></form>
+      <div class="sec" style="margin:28px 2px 12px"><h2>תהילים לפי צורך</h2></div>
+      <div class="needs">${NEEDS.map(([k,ic,t,sub])=>`<a class="need card lift" href="#k-${k}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sub}</small></span></a>`).join('')}</div>
       <div class="sec" style="margin:28px 2px 12px"><h2>כל 150 הפרקים</h2></div>
       <div class="grid150">${Array.from({length:150},(_,i)=>`<a href="#t-${i+1}" class="${i+1>=m[0]&&i+1<=m[1]?'today':''}">${gem(i+1)}</a>`).join('')}</div>${footer()}`;
     $('#tnf').onsubmit=e=>{e.preventDefault();const v=$('#tnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'};return}

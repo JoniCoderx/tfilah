@@ -1026,6 +1026,14 @@ article.text details.plain summary::before{background:var(--grad-cta);color:var(
 h3.arth{display:flex;align-items:center;gap:12px}h3.arth .art{flex:none;color:var(--stamp);inline-size:44px;block-size:44px;padding:8px;border-radius:14px;background:var(--sunk)}h3.arth span{display:grid}h3.arth small{font:600 .9rem var(--f-ui);color:var(--muted)}
 .hero2 h1,.hero2 h1.long{margin:0;padding-block:.06em .12em}.hero2 h1{font-size:clamp(4.4rem,25vw,8.6rem)}.hero2 h1.long{font-size:clamp(2.4rem,11.5vw,4.4rem)}
 .btn.gold:hover,.btn.primary:hover,.btn.gold:focus-visible,.btn.primary:focus-visible,.btn.gold:active,.btn.primary:active{background:var(--grad-cta);filter:brightness(1.04)}
+/* the main action: deep tchelet with white text. Light tchelet stays for surfaces and accents. */
+:root{--grad-cta:linear-gradient(180deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 52%),linear-gradient(135deg,#1389D6 0%,#0B79C0 50%,#0A6FB3 100%);--on-cta:#fff}
+.btn.gold,.btn.primary,.tabbar a[aria-current="page"],.tabs a[aria-current="page"],.grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon,
+.zband .btn.primary,.zband .btn.gold,.mhead .btn.primary,.mhead .btn.gold.jtake,.teh-today .btn.primary,.teh-today .btn.gold,.teh-today .btn.light,#aspill #asstop,#asgo[aria-pressed="true"],.jtake{color:var(--on-cta)!important;text-shadow:0 1px 0 rgba(6,60,100,.25)}
+.btn.gold,.btn.primary,.teh-today .btn.light,.jtake{box-shadow:0 16px 30px -18px #0A6FB3}
+.tabbar a[aria-current="page"] svg,.tabbar a[aria-current="page"] svg.i,.btn.primary svg,.btn.gold svg,.teh-today .btn.light svg,#asgo[aria-pressed="true"] svg{color:var(--on-cta)!important}
+.btn.gold:disabled,.btn.primary:disabled,.btn[aria-disabled="true"]{color:var(--on-cta)!important;opacity:.55}
+.hact .btn{font-size:1.17rem}
 /* phone: one line per button, label and short title */
 .btn,.chip,.tbtn,.lnk,.tocb,.seg button,.tabs a,.hlink,.cd,.tag,#aspill button{white-space:nowrap}
 .hact .btn,.jtake,.shema .row .btn{white-space:normal;text-wrap:balance}
@@ -1180,8 +1188,9 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 .daily .d3,.shabline{background:#fff}
 .grid150 .done,.toc a.on,.kinds button[aria-checked="true"],.tbtn[aria-pressed="true"],.amounts button[aria-pressed="true"],.hrow .cd.soon,.progress{background:var(--grad-cta)}
 .zband .btn.primary,.zband .btn.gold,.mhead .btn.primary,.teh-today .btn.primary,.teh-today .btn.gold{background:var(--grad-cta)!important;color:var(--on)}
-:root{--grad-cta:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 50%),linear-gradient(135deg,#6CC6F7 0%,#45B0EE 52%,#2FA0E4 100%)}
-.btn.gold,.btn.primary,.tabbar a[aria-current="page"],.tabs a[aria-current="page"]{background:var(--grad-cta);color:var(--on);box-shadow:0 16px 30px -18px #2FA0E4}
+:root{--grad-cta:linear-gradient(180deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 52%),linear-gradient(135deg,#1389D6 0%,#0B79C0 50%,#0A6FB3 100%)}
+.zband .btn.candlebtn{background:var(--grad-cta)!important;color:#fff!important;text-shadow:0 1px 0 rgba(6,60,100,.25)}
+.btn.gold,.btn.primary,.tabbar a[aria-current="page"],.tabs a[aria-current="page"]{background:var(--grad-cta);color:var(--on);box-shadow:0 16px 30px -18px #0A6FB3}
 .mhead .btn.gold.jtake{background:var(--grad-cta)!important;color:var(--on)}
 .zband,.glass.mhead,.mhead,.teh-today,.shabline,.daily .d3,.daily .d4{--rose:#075E99}
 .daily .d3{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}

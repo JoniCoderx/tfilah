@@ -109,7 +109,7 @@ LOGO = load_logo()
 
 # ---------- CSS: a small base plus blocks that ship only on pages that use them ----------
 CSS_BASE = """
-:root{--paper:#FFFFFF;--surface:#FFFFFF;--ink:#0B2E4F;--ink2:#27506F;--muted:#46677F;--line:#DDEEF9;--sunk:#F3F9FE;--stamp:#0A6CA8;--tint:#B3E0FA;--grad:linear-gradient(135deg,#6CC6F7,#45B0EE 52%,#2FA0E4);
+:root{--paper:#FFFFFF;--surface:#FFFFFF;--ink:#0B2E4F;--ink2:#27506F;--muted:#46677F;--line:#DDEEF9;--sunk:#F3F9FE;--stamp:#0A6CA8;--tint:#B3E0FA;--grad:linear-gradient(135deg,#1389D6,#0B79C0 50%,#0A6FB3);
 --sh:0 1px 2px rgba(11,46,79,.05),0 10px 28px -16px rgba(11,46,79,.22);--r:1.375rem;
 --reading:1.32rem;--f-disp:"Heebo","Assistant",system-ui,Arial,sans-serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Heebo","Assistant",system-ui,Arial,sans-serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
@@ -145,8 +145,8 @@ h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.
 .related{display:flex;flex-wrap:wrap;gap:.45rem}
 .related a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.3rem 1rem;border:1px solid var(--line);background:var(--surface);text-decoration:none;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.3;border-radius:999px}
 .related a:hover{border-color:var(--stamp);color:var(--stamp)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.5rem;background:linear-gradient(135deg,#6CC6F7,#45B0EE 52%,#2FA0E4);color:var(--ink);text-decoration:none;font-weight:700;border-radius:999px;box-shadow:var(--sh)}
-.btn:hover{color:var(--ink);filter:brightness(1.08)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.5rem;background:var(--grad);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;box-shadow:var(--sh)}
+.btn:hover{color:#fff;filter:brightness(1.08)}
 .applink{margin:1.5rem 0 0}
 .applink a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600}
 footer{border-block-start:1px solid var(--line);color:var(--muted);font-size:.88rem}
@@ -169,7 +169,7 @@ CSS_BLOCKS = [
 .tools{display:flex;gap:.375rem}
 .tools button{min-width:2.75rem;min-height:2.75rem;padding-inline:.85rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .95rem var(--f-ui);cursor:pointer;border-radius:999px}
 .tools button:hover{border-color:var(--stamp)}
-.tools button[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:var(--ink)}
+.tools button[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:#fff}
 .tools button:disabled{color:var(--muted);cursor:default;border-color:var(--line)}
 .tools .az{font-weight:700;font-size:1.1rem}
 .tools .az.sm{font-size:.9rem}
@@ -192,8 +192,8 @@ CSS_BLOCKS = [
 .pager a{display:block;padding:.75rem 1.2rem;border:1px solid var(--line);background:var(--surface);border-radius:var(--r);text-decoration:none;color:var(--ink);font-weight:700;font-size:1.05rem;line-height:1.35;min-height:2.75rem}
 .pager a:hover{border-color:var(--stamp);color:var(--ink)}
 .pager small{display:block;color:var(--muted);font-weight:400;font-size:.8rem}
-.pager .next{text-align:end;background:var(--grad);border-color:transparent;color:var(--ink);box-shadow:var(--sh)}
-.pager .next:hover{color:var(--ink);filter:brightness(1.08)}
+.pager .next{text-align:end;background:var(--grad);border-color:transparent;color:#fff;box-shadow:var(--sh)}
+.pager .next:hover{color:#fff;filter:brightness(1.08)}
 .pager .next small{color:#B3E0FA}
 """),
 ("together", """
@@ -254,7 +254,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .sched b{font-weight:700;font-size:1.08rem}
 .sched b a{color:var(--ink);display:inline-block;padding-block:.6rem}
 .sched .rng{color:var(--muted);margin-inline-start:.5rem}
-.sched .tag{display:inline-block;margin-inline-start:.5rem;padding:.05rem .6rem;border-radius:999px;background:var(--grad);color:var(--ink);font-size:.8rem;font-weight:700}
+.sched .tag{display:inline-block;margin-inline-start:.5rem;padding:.05rem .6rem;border-radius:999px;background:var(--grad);color:#fff;font-size:.8rem;font-weight:700}
 .sched .chs{display:flex;flex-wrap:wrap;gap:.3rem;margin-block-start:.5rem}
 .sched .chs a{display:inline-grid;place-items:center;min-width:2.75rem;min-height:2.75rem;padding-inline:.5rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-weight:700}
 .sched .chs a:hover{border-color:var(--stamp);color:var(--stamp)}
@@ -264,14 +264,14 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 ("steps", """
 .steps{list-style:none;margin:1.5rem 0;padding:0;display:grid;gap:.7rem;counter-reset:st}
 .steps li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:.2rem 1rem;align-items:start;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
-.steps li::before{content:counter(st);grid-row:span 2;display:grid;place-items:center;inline-size:2.5rem;block-size:2.5rem;border-radius:50%;background:var(--grad);color:var(--ink);font-weight:700;font-size:1.15rem}
+.steps li::before{content:counter(st);grid-row:span 2;display:grid;place-items:center;inline-size:2.5rem;block-size:2.5rem;border-radius:50%;background:var(--grad);color:#fff;font-weight:700;font-size:1.15rem}
 .steps b{font-family:var(--f-disp);font-weight:900;font-size:1.3rem;line-height:1.3}
 .steps span{color:var(--ink2);grid-column:2}
 """),
 ("hero", """
 .hero{margin:1rem 0 1.5rem;padding:1.6rem 1.5rem 1.7rem;background:linear-gradient(160deg,#FFFFFF,#F3FAFF 55%,#E4F3FE);border:1px solid var(--line);color:var(--ink);border-radius:1.75rem;box-shadow:var(--sh)}
 .hero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.2}
-.hero .btn{color:var(--ink);box-shadow:none}
+.hero .btn{color:#fff;box-shadow:none}
 .hero .btn:hover{color:var(--stamp);filter:none}
 .hero small{display:block;margin-block-start:.8rem;color:var(--ink2);font-size:.92rem}
 """),

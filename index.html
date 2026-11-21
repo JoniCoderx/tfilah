@@ -1043,6 +1043,9 @@ article.text details summary{color:var(--muted);border-color:var(--line);min-hei
 .whol li{display:flex;align-items:center;gap:12px;padding:11px 18px;border-top:1px solid var(--line)}.whol li:first-child{border-top:0}
 .whol .wn{inline-size:30px;block-size:30px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums;flex:none}
 .whol b{flex:1;min-width:0;overflow-wrap:anywhere;font-weight:600}.whol .wc{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.jname{margin-top:18px;display:grid;gap:6px}.jname label{font-weight:700;font-size:.95rem}.jname label small{font-weight:400;opacity:.85}
+.jname .row{margin:0;flex-wrap:nowrap;gap:8px}.jname input{flex:1;min-width:0;min-height:52px;padding:10px 18px;border-radius:999px;border:1px solid rgba(var(--onc),.3);background:#fff;color:var(--ink);font:inherit}
+@media (max-width:480px){.jname .row{flex-wrap:wrap}.jname .row .btn{flex:1 1 100%}}
 .howto{margin:0;padding-inline-start:1.3em;display:grid;gap:4px;color:var(--ink-2);font-size:.95rem}
 .hact .btn.primary{border-radius:18px;min-height:58px}
 @media (min-width:621px){.hact .btn.primary{min-inline-size:22rem}}
@@ -1145,6 +1148,9 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 .zband .btn.primary,.mhead .btn.primary,.mhead .btn.gold,.teh-today .btn.primary,.teh-today .btn.gold,.zband .btn.gold{background:#fff;color:var(--ink);box-shadow:0 10px 24px -16px rgba(var(--onc),.5)}
 .zband .btn.ghost,.mhead .btn.ghost,.teh-today .btn.ghost{color:var(--on)!important;border-color:rgba(var(--onc),.3)!important}
 .mhead .pbar i,.zband .pbar i{background:var(--ink)}
+:root{--grad-cta:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 50%),linear-gradient(135deg,#6CC6F7 0%,#45B0EE 52%,#2FA0E4 100%)}
+.btn.gold,.btn.primary,.tabbar a[aria-current="page"],.tabs a[aria-current="page"]{background:var(--grad-cta);color:var(--on);box-shadow:0 16px 30px -18px #2FA0E4}
+.mhead .btn.gold.jtake{background:var(--grad-cta)!important;color:var(--on)}
 .zband,.glass.mhead,.mhead,.teh-today,.shabline,.daily .d3,.daily .d4{--rose:#075E99}
 .daily .d3{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
 .shabline{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
@@ -1594,7 +1600,8 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
       ${m.msg?`<p class="msg">${esc(m.msg)}</p>`:`<p class="msg">קוראים יחד את כל ספר התהילים. כל אחד פרק, ביחד ספר שלם.</p>`}${m.by?`<p class="note" style="margin:0">${isN?'הוקדש על ידי':'נפתח על ידי'} ${esc(m.by)}</p>`:''}
       <p class="jprog"><b>${done}</b>מתוך 150 פרקים נקראו${RD>1?` · סבב ${gem(RD)}`:''}</p>
       <span class="pbar" role="progressbar" aria-label="התקדמות הקריאה" aria-valuemin="0" aria-valuemax="150" aria-valuenow="${done}"><i style="inline-size:${(done/150*100).toFixed(1)}%"></i></span>
-      <div class="row"><button class="btn gold jtake" type="button" id="rnd" ${ro||!free?'disabled':''}>${free?'לקבלת פרק':'כל הפרקים נלקחו'}</button></div>
+      <div class="jname"><label for="myn">השם שלי <small>(לא חובה, יופיע ברשימת הקוראים)</small></label>
+        <div class="row"><input id="myn" maxlength="40" value="${esc(myName)}" placeholder="למשל: רחל" autocomplete="given-name"><button class="btn gold jtake" type="button" id="rnd" ${ro||!free?'disabled':''}>${free?'לקבלת פרק':'כל הפרקים נלקחו'}</button></div></div>
       <ol class="jsteps"><li>מקבלים פרק</li><li>קוראים</li><li>מסמנים שקראתי</li></ol>
       <p class="jwho">${names.length?`<b>${names.length}</b> קוראים בשם${nAnon?` ועוד ${nAnon} פרקים בלי שם`:''}`:totalAll?`${totalAll} פרקים נלקחו עד עכשיו`:'עוד לא הצטרפו קוראים. היו הראשונים'} · ${claimed} פרקים בקריאה עכשיו</p>
       ${RD>1?`<p class="note" style="margin:12px 0 0">הספר נשלם כבר ${RD-1===1?'פעם אחת':(RD-1)+' פעמים'}. ממשיכים בסבב ${gem(RD)}.</p>`:''}
@@ -1608,7 +1615,7 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
   <div class="sec"><h2>מי קורא</h2><span class="note">${names.length+(nAnon?1:0)?`${totalAll} פרקים · ${names.length} קוראים בשם`:'עדיין ריק'}</span></div>
   ${names.length||nAnon?`<ol class="whol card">${names.map(([nm,[c,d]],i)=>`<li><span class="wn">${i+1}</span><b>${esc(nm)}</b><span class="wc">${d?`${d} נקראו`:''}${d&&c?' · ':''}${c?`${c} בקריאה`:''}</span></li>`).join('')}${nAnon?`<li><span class="wn">${names.length+1}</span><b>קוראים בלי שם</b><span class="wc">${anon[1]?`${anon[1]} נקראו`:''}${anon[1]&&anon[0]?' · ':''}${anon[0]?`${anon[0]} בקריאה`:''}</span></li>`:''}</ol>`
     :'<div class="empty"><b>עוד אין קוראים</b>שלחו את הקישור, וכל מי שיקבל פרק יופיע כאן עם מספר הפרקים שלו.</div>'}
-  <p class="note" style="margin:8px 0 0">כדי להופיע בשם, כתבו את שמכם בשדה „השם שלי” לפני שלוקחים פרק.</p>
+  <p class="note" style="margin:8px 0 0">כדי להופיע בשם, כתבו את שמכם למעלה, ליד „לקבלת פרק”.</p>
 
   <div class="sec"><h2>הספר כולו</h2><span class="note">${free} פרקים פנויים</span></div>
   <p class="note" style="margin:0 0 10px">רוצים פרק מסוים? בחרו אותו כאן. ${done>=150?`<b>${isN?'הספר נשלם. תהא נשמתו צרורה בצרור החיים.':'הספר נשלם. יהי רצון שתתקבל התפילה.'}</b>`:''}</p>
@@ -1617,7 +1624,6 @@ function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)retur
     const lbl=c?`פרק ${gem(n)}, ${c.s==='done'?'נקרא':'נלקח'}${c.by?' על ידי '+c.by:''}`:`פרק ${gem(n)}, פנוי`;
     return c?`<a class="${cls}" href="#t-${n}" data-mc="${n}" title="${esc(lbl)}" aria-label="${esc(lbl)}">${gem(n)}</a>`:`<button type="button" class="${cls}" data-n="${n}" aria-pressed="${selected.has(n)}" aria-label="${lbl}" ${ro?'disabled':''}>${gem(n)}</button>`}).join('')}</div>
   <div class="glass" style="padding:18px;margin-top:14px;display:grid;gap:12px">
-    <div class="field" style="margin:0"><label for="myn">השם שלי (לא חובה, יופיע ליד הפרקים שלקחתי)</label><input id="myn" maxlength="40" value="${esc(myName)}" placeholder="שמכם" autocomplete="given-name"></div>
     <div class="row"><button class="btn ghost" type="button" id="take" ${ro?'disabled':''}>לקחת את הפרקים שבחרתי</button></div>
     ${ro?'<p class="note" style="margin:0">יש לכם הרשאת צפייה בלבד בדף הזה.</p>':''}</div>
 

@@ -144,7 +144,7 @@ h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.
 .related{display:flex;flex-wrap:wrap;gap:.45rem}
 .related a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.3rem 1rem;border:1px solid var(--line);background:var(--surface);text-decoration:none;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.3;border-radius:999px}
 .related a:hover{border-color:var(--stamp);color:var(--stamp)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.5rem;background:var(--grad);color:var(--ink);text-decoration:none;font-weight:700;border-radius:999px;box-shadow:var(--sh)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.5rem;background:linear-gradient(135deg,#6CC6F7,#45B0EE 52%,#2FA0E4);color:var(--ink);text-decoration:none;font-weight:700;border-radius:999px;box-shadow:var(--sh)}
 .btn:hover{color:var(--ink);filter:brightness(1.08)}
 .applink{margin:1.5rem 0 0}
 .applink a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600}

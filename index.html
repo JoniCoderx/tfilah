@@ -1068,6 +1068,11 @@ h3.arth{display:flex;align-items:center;gap:12px}h3.arth .art{flex:none;color:va
   .kchk{font-size:.93rem}.row{gap:8px}.row .btn{padding-inline:16px}
   .sec h2{font-size:clamp(1.5rem,7.4vw,1.9rem)}
 }
+article.text details.plain summary,.plain summary{border:0;padding:6px 14px;gap:10px;line-height:1.2}
+.plain summary::before,article.text details.plain summary::before{content:"";flex:none;inline-size:28px;block-size:28px;border-radius:50%;background:#9FD6F9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B2E4F' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/14px 14px no-repeat;transition:transform .2s ease}
+.plain[open] summary::before,article.text details.plain[open] summary::before{content:"";transform:rotate(180deg)}
+article.text h3 .fav{display:inline-grid;place-items:center;padding:0}article.text h3 .fav svg{display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}article.text h3 .fav[aria-pressed="true"] svg{fill:currentColor}
+.pf button{display:inline-grid;place-items:center;padding:0}.pf button svg{display:block}
 .rsec{font-family:var(--f-display);font-weight:900;font-size:1.25rem;margin:22px 2px 8px}
 #bar,.tabbar,#rt{transition:transform .28s ease,top .28s ease}
 html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:transform .28s ease,visibility 0s .28s}html.hidebars #rt{top:0}
@@ -1079,7 +1084,7 @@ html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:tran
 #asgo[aria-pressed="true"]{background:var(--grad-cta)}
 .more4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .more4 a{display:flex;align-items:center;gap:12px;padding:16px;text-decoration:none;color:var(--ink);min-width:0}
-.more4 a span:last-child{display:grid;gap:2px;min-width:0}.more4 b{font-weight:700}.more4 small{color:var(--muted);font-size:.84rem;line-height:1.35}
+.more4 a span:last-child{display:grid;gap:2px;min-width:0}.more4 .ib{display:grid;place-items:center;flex:none;inline-size:44px;block-size:44px;border-radius:14px;background:var(--sunk);color:var(--stamp)}.more4 .ib svg{display:block}.more4 b{font-weight:700}.more4 small{color:var(--muted);font-size:.84rem;line-height:1.35}
 @media (max-width:900px){.more4{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:480px){.more4{grid-template-columns:1fr}}
 /* Shema on the home screen is a strip, not a hero */
 .shema{padding:14px 18px;gap:10px 20px}.shema h3{font-size:1.25rem;margin:0}.shema .eyebrow{font-size:.78rem}.shst{font-size:.95rem}
@@ -1742,7 +1747,7 @@ const tools=(crumb,toc)=>`<div class="rtools" id="rt"><div class="in" style="pos
   <button class="iconbtn" type="button" id="sh" aria-label="שיתוף">${icon('share')}</button>
   <button class="iconbtn" type="button" id="aa" aria-expanded="false" aria-controls="rpop" aria-label="הגדרות קריאה"><span style="font-family:var(--f-read);font-weight:700;font-size:1.05rem">אָא</span></button>
   <div class="rpop" id="rpop" hidden>
-    <div class="rl pfrow"><label for="pfq">חיפוש בתוך הטקסט</label><div class="pf"><input id="pfq" type="search" placeholder="מילה או משפט" autocomplete="off"><button type="button" id="pfp" aria-label="התוצאה הקודמת">‹</button><button type="button" id="pfx" aria-label="התוצאה הבאה">›</button></div><small id="pfn" aria-live="polite"></small></div>
+    <div class="rl pfrow"><label for="pfq">חיפוש בתוך הטקסט</label><div class="pf"><input id="pfq" type="search" placeholder="מילה או משפט" autocomplete="off"><button type="button" id="pfp" aria-label="התוצאה הקודמת"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button><button type="button" id="pfx" aria-label="התוצאה הבאה"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div><small id="pfn" aria-live="polite"></small></div>
     <div class="rl"><span>גודל טקסט</span><div class="seg"><button id="fm" type="button" aria-label="הקטנת הטקסט">א־</button><button id="fp" type="button" aria-label="הגדלת הטקסט">א+</button></div></div>
     <div class="rl"><span>גופן</span><div class="fontpick" role="group" aria-label="גופן">${READFONTS.map(([k,l,f])=>`<button type="button" data-f="${k}" aria-pressed="${k===readFont}" style="font-family:${f}">${l}</button>`).join('')}</div></div>
     <div class="rl"><span>ניקוד</span><button class="tbtn" id="nk" type="button" aria-pressed="${nikud}">${nikud?'מוצג':'מוסתר'}</button></div>
@@ -1862,7 +1867,7 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
   const solo=g.items.length>1&&SOLO.test(g.key),items=solo?[p]:g.items,ix=g.items.indexOf(p);
   const draw=()=>{const f=smartOn?dayFlags():null;
     const body=items.map(it=>{const why=itemRule(it,g.key,f),src=T[it.id]||[],pl=x=>String(x).replace(/<[^>]+>/g,'').replace(NIK,'').replace(/[\s:.]+/g,''),paras=(src.length>1&&pl(src[0])===pl(it.t)?src.slice(1):src).map(x=>renderPara(x,it.id===id?hl:null,f)).join('');
-      const head=`<h3 aria-level="2">${esc(it.t)}<button class="fav" type="button" data-id="${it.id}" aria-pressed="${favs.has(it.id)}" aria-label="שמירה למועדפים">★</button></h3>`;
+      const head=`<h3 aria-level="2">${esc(it.t)}<button class="fav" type="button" data-id="${it.id}" aria-pressed="${favs.has(it.id)}" aria-label="שמירה למועדפים"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></button></h3>`;
       return why&&it.id!==id?`<section id="s-${it.id}" class="skip">${head}<details><summary>${why} · להציג בכל זאת</summary>${paras}</details></section>`:`<section id="s-${it.id}">${head}${plainBox(plainFor(it.t),'',solo||it.id===id||items.length===1)}${paras}</section>`}).join('');
     const prev=gs[p.g-1],next=gs[p.g+1];
     app.innerHTML=`${tools(solo?p.t:g.parts.join(' / '),items.length>1)}

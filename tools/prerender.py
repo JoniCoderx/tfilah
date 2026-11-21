@@ -811,7 +811,7 @@ for c in range(1, 151):
          fit_desc(f"{name} ({c}), מזמור {gem(c)}, בניקוד מלא, {nv}", " ".join(vs[:3])),
          name, [("תהילים", "/tehillim/"), (f"פרק {gem(c)}", f"/tehillim/{c}/")],
          text=verses(c), meta=f"{esc(first)} · {nv}", after=after, app_hash=f"t-{c}",
-         before=(f'<aside class="plainx" aria-label="הסבר קצר"><b>במילים פשוטות</b><p>{esc(PLAIN_T_EARLY[str(c)])}</p></aside>' if str(c) in PLAIN_T_EARLY else ""),
+         before=(f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה המזמור הזה?</b><p>{esc(PLAIN_T_EARLY[str(c)])}</p></aside>' if str(c) in PLAIN_T_EARLY else ""),
          ld=[{"@type": "Chapter", "name": name, "position": c, "inLanguage": "he", "isAccessibleForFree": True,
               "url": f"{SITE}/tehillim/{c}/", "isPartOf": BOOK_T}])
 
@@ -973,7 +973,7 @@ for n, plist in by_nus.items():
         shown = paras[1:] if len(paras) > 1 and _pl(paras[0]) == _pl(p["t"]) else paras
         text = "".join(f"<p>{clean(x)}</p>" for x in shown)
         _px = next((x for r, x in PLAIN if re.search(r, p["t"])), "")
-        plain_html = f'<aside class="plainx" aria-label="הסבר קצר"><b>במילים פשוטות</b><p>{esc(_px)}</p></aside>' if _px else ""
+        plain_html = f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה התפילה הזאת?</b><p>{esc(_px)}</p></aside>' if _px else ""
         assert plain(text), p["id"]
         me = f"/tefila/{p['id']}/"
         prev = plist[i - 1] if i > 0 else None

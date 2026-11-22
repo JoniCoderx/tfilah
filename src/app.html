@@ -904,6 +904,8 @@ a{color:var(--ink)}
 
 /* header: the mark and the Hebrew name; five clear destinations */
 .top{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+/* newer iPhones draw the page under the status bar, above the sticky header: a frosted strip above the header covers it */
+.top::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:140px;background:rgba(255,255,255,.78);backdrop-filter:saturate(1.5) blur(18px);-webkit-backdrop-filter:saturate(1.5) blur(18px);pointer-events:none}
 .top.scrolled{border-bottom-color:var(--line)}
 .logo svg{display:block;block-size:30px;inline-size:auto}
 .tabs{gap:0;flex:none}

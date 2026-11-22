@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetches the one verse of the Kotel page that is not in the site's own data (Isaiah 64:10) and stores it untouched.
+"""Fetches the verses outside the Torah and Psalms that the site shows (the Kotel page, the Rachel page) and stores them untouched.
 
   python3 tools/get-kotel.py
 
@@ -8,7 +8,7 @@ import json, os, subprocess, urllib.parse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VERSION = "Tanach with Nikkud"
 out = {"source": VERSION, "license": "Public Domain", "via": "https://www.sefaria.org/api/v3/texts/", "verses": {}}
-for ref in ("Isaiah.64.10",):
+for ref in ("Isaiah.64.10", "Jeremiah.31.15", "Jeremiah.31.16", "Jeremiah.31.17"):
     url = "https://www.sefaria.org/api/v3/texts/" + ref + "?version=" + urllib.parse.quote("hebrew|" + VERSION)
     d = json.loads(subprocess.run(["curl", "-s", "-f", "--max-time", "40", url], capture_output=True, check=True).stdout)
     v = [x for x in d["versions"] if x["versionTitle"] == VERSION]

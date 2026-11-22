@@ -12,6 +12,7 @@ URLS = json.load(open(R + 'data/urls.json', encoding='utf-8'))
 RD = open(R + '_redirects', encoding='utf-8').read()
 OLD = json.load(open(R + 'tools/old-urls.json', encoding='utf-8'))
 noredir = []
+DUPC = json.load(open(R + 'tools/dup-canon.json', encoding='utf-8'))
 bad, nomap, nikud, empty, dup = [], [], [], [], collections.defaultdict(list)
 for n in ('mizrach', 'sefard', 'ashkenaz'):
     T = json.load(open(R + f'data/{n}.json', encoding='utf-8'))
@@ -42,7 +43,7 @@ for n in ('mizrach', 'sefard', 'ashkenaz'):
             if a != b2:
                 bad.append((p['id'], f'words differ: page {len(a)} data {len(b)}'))
         if f"{URLS[p['id']]}</loc>" not in sm:
-            nomap.append(p['id'])
+            if URLS[p['id']] not in DUPC: nomap.append(p['id'])   # an exact repeat names the first copy as canonical and is left out on purpose
 print('records', len(I['prayers']), '| pages whose text differs from the data:', len(bad), bad[:8])
 print('not in sitemap:', len(nomap), nomap[:8], '| old address without a redirect:', len(noredir), noredir[:8])
 if len(set(URLS.values())) != len(URLS):

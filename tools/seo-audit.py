@@ -113,8 +113,15 @@ for u in set(locs):
         fail("sitemap: <loc> has no index.html on disk", u)
 if locs and "/" not in sm_paths:
     fail("sitemap", "the home page is missing")
+# exact repeats of a text inside one nusach: readable at their own address, canonical to the first, not in the sitemap
+DUPC = json.load(open(os.path.join(ROOT, "tools", "dup-canon.json"), encoding="utf-8"))
+for a, b in DUPC.items():
+    if a in sm_paths:
+        fail("a repeat page is listed in the sitemap", a)
+    if b not in sm_paths or b in DUPC:
+        fail("a repeat page names a canonical that is not an indexable page", f"{a} -> {b}")
 for path in sorted(disk):
-    if path not in sm_paths:
+    if path not in sm_paths and path not in DUPC:
         fail("page on disk missing from sitemap", path)
 
 # ---------- per page ----------
@@ -274,6 +281,8 @@ for path, f in sorted(disk.items()):
     can = attr(cans[0], "href") if cans else None
     if len(cans) != 1:
         fail("page does not have exactly one canonical", f"{path} ({len(cans)})")
+    elif path in DUPC and can == SITE + DUPC[path]:
+        pass
     elif can != own:
         kind = "canonical points to the home page" if can in (SITE, SITE + "/") else "canonical is not the page's own URL"
         fail(kind, f"{path} -> {can}")

@@ -460,7 +460,7 @@ JS_SIDE = (";(function(){var s=document.querySelector('.sideacts');if(!s)return;
 
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
-         app_label="לפתיחה באפליקציה", h1_ctx="", hub=False, ld=None, prio="0.6", script="", notfound=False):
+         app_label="לפתיחה באפליקציה", h1_ctx="", hub=False, ld=None, prio="0.6", script="", notfound=False, canon_to=""):
     """text = the sacred text as an <article> body (reading pages); before/after = page chrome around it."""
     url = SITE + path
     assert notfound or (path.startswith("/") and path.endswith("/")), path
@@ -505,7 +505,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <p class="flegal"><a href="/pratiyut/">פרטיות</a><a href="/tnaim/">תנאי שימוש</a><a href="/negishut/">נגישות</a></p>
 {FOOT_NAV}</div></footer><script>{FOOT_JS}</script>{f'<script>{script}</script>' if script else ''}"""
     canon = ('<meta name="robots" content="noindex">' if notfound else
-             f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">')
+             f'<link rel="canonical" href="{SITE + canon_to if canon_to else url}">\n<meta property="og:url" content="{url}">')
     doc = f"""<!doctype html>
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{BACK_TO_APP.replace("__H__", app_hash) if app_hash and app_hash != "home" and not notfound else ""}
@@ -532,7 +532,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     lastmod = OLD[path][0] if path in OLD and OLD[path][1] == fp else TODAY
     with open(out, "w", encoding="utf-8") as f:
         f.write(doc)
-    if not notfound:
+    if not notfound and not canon_to:
         URLS.append((path, prio, lastmod, fp))
 
 def pager(prev, nxt):
@@ -629,6 +629,25 @@ def _build_purl():
 
 
 PURL = _build_purl()
+# The same words printed again in another service (Aleinu of mincha is Aleinu of shacharit, letter for letter) are one
+# text for a search engine. Every copy stays readable at its own address, but names the first one as canonical and stays
+# out of the sitemap, so the site is not judged by 79 repeats. Only exact matches inside one nusach count.
+def _dups():
+    out = {}
+    for n in ("mizrach", "sefard", "ashkenaz"):
+        groups = {}
+        for i, p in enumerate(q for q in I["prayers"] if q["n"] == n and TEXTS[n].get(q["id"])):
+            key = re.sub(r"[^\u05D0-\u05EA]", "", re.sub(r"<[^>]+>", "", "".join(TEXTS[n][p["id"]])))
+            groups.setdefault(key, []).append((len(PURL[p["id"]]), i, p["id"]))
+        for g in groups.values():
+            if len(g) > 1:
+                first = min(g)[2]
+                out.update({pid: first for _, _, pid in g if pid != first})
+    return out
+
+
+DUP_OF = _dups()
+json.dump({PURL[a]: PURL[b] for a, b in DUP_OF.items()}, open(os.path.join(ROOT, "tools", "dup-canon.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0, sort_keys=True)
 _PRAYER_PATHS.update(PURL.values())
 BYID = {p["id"]: p for plist in by_nus.values() for p in plist}
 B = json.load(open(os.path.join(DATA, "books.json"), encoding="utf-8"))
@@ -1206,17 +1225,19 @@ for n, plist in by_nus.items():
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if p["id"] == "sefard-32": _tt = f"פרק שירה: הנוסח המלא בניקוד, עם ההקדמה | {BRAND}"
+        if p["id"] == "sefard-32": _tt = f"פרק שירה (Perek Shira): הנוסח המלא בניקוד | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         _desc = fit_desc(head, " ".join(paras[:3]))
         if p["id"] == "sefard-32":
-            _desc = "פרק שירה המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים, כל אחד והפסוק שלו. לקריאה בנייד, להדפסה ולשיתוף."
+            _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
+            meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
         if norm_t(p["t"]) == "תפילת הדרך":
             _desc = fit_desc(f"תפילת הדרך המלאה בניקוד, בנוסח {NUS[n]}. נאמרת ביציאה לדרך אל מחוץ לעיר", " ".join(paras[1:3] if len(paras) > 2 else paras),
                              tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))
         page(me, _tt, _desc,
              p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
+             canon_to=PURL[DUP_OF[p["id"]]] if p["id"] in DUP_OF else "",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
 # ---------- service pages ----------
@@ -1679,7 +1700,7 @@ for c in SH_CITIES:
             'הנץ והשקיעה מחושבים בגובה פני הים, בלי התחשבות בהרים שמסתירים את האופק. הדף מחשב את הזמנים מחדש בכל כניסה, כך שתמיד מוצג היום הנוכחי.</p></div>'
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. בכל דבר שתלוי בזמן יש להחמיר, ובשאלה למעשה לשאול רב.</p>'
             + chips("עוד ל" + name, [(f"/zmanei-shabbat/{slug}/", "זמני שבת ב" + name), ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"), ("/zmanei-hayom/", "זמני היום בכל הערים")])
-            + chips("ערים נוספות", [l for l in day_links if l[0] != f"/zmanei-hayom/{slug}/"][:12]))
+            + chips("ערים נוספות", (lambda k: [day_links[(k + j) % len(day_links)] for j in range(1, 13)])([l[0] for l in day_links].index(f"/zmanei-hayom/{slug}/"))))
     page(f"/zmanei-hayom/{slug}/", f"זמני היום ב{name}: הנץ, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים | {BRAND}",
          fit_desc(f"זמני היום ב{name} להיום: עלות השחר, הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, פלג המנחה, שקיעה וצאת הכוכבים", tails=("מתעדכן בכל יום, עם לוח לשבוע הקרוב.", "מתעדכן בכל יום.")),
          f"זמני היום ב{name}", [("זמני היום", "/zmanei-hayom/"), (name, f"/zmanei-hayom/{slug}/")], after=body, hub=True, prio="0.8",

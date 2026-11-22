@@ -2,9 +2,20 @@
 // אבל על בסיס Supabase ופונקציית /api/ask משלכם.
 (function () {
   var C = window.TFILAH_CONFIG || {};
-  var sb = null;
-  if (C.supabaseUrl && C.supabaseAnonKey && window.supabase) {
-    sb = window.supabase.createClient(C.supabaseUrl, C.supabaseAnonKey);
+  var sb = null, on = !!(C.supabaseUrl && C.supabaseAnonKey), loading = null;
+  var LIB = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js";
+  // הספרייה נטענת רק כשיש חיבור מוגדר, ורק כשמישהו באמת צריך אותה
+  function ready() {
+    if (!on) return Promise.resolve(false);
+    if (sb) return Promise.resolve(true);
+    if (!loading) loading = new Promise(function (res) {
+      function mk() { try { sb = window.supabase.createClient(C.supabaseUrl, C.supabaseAnonKey); res(true); } catch (e) { loading = null; res(false); } }
+      if (window.supabase) return mk();
+      var s = document.createElement("script"); s.src = LIB; s.async = true;
+      s.onload = mk; s.onerror = function () { loading = null; res(false); };
+      document.head.appendChild(s);
+    });
+    return loading;
   }
 
   function snapDoc(id, data) {
@@ -173,8 +184,8 @@
     };
   }
 
-  var db = sb ? { collection: query, doc: docRef, features: { takeChapter: true, listed: true } } : null;
-  var user = sb ? { can: function () { return true; }, isOwner: function () { return false; }, canEdit: function () { return false; } } : null;
+  var db = on ? { collection: query, doc: docRef, features: { takeChapter: true, listed: true } } : null;
+  var user = on ? { can: function () { return true; }, isOwner: function () { return false; }, canEdit: function () { return false; } } : null;
 
   // ---- AI: streams from /api/ask (Cloudflare Pages Function) ----
   function sample(input, opts) {
@@ -215,5 +226,8 @@
   }
 
   var caps = { db: db, user: user, sample: C.aiEnabled ? sample : null };
-  window.claude = { use: function (name) { return Promise.resolve(caps[name] || null); } };
+  window.claude = { use: function (name) {
+    if (name === "db" || name === "user") return ready().then(function (ok) { return ok ? caps[name] : null; });
+    return Promise.resolve(caps[name] || null);
+  } };
 })();

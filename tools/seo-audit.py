@@ -278,11 +278,15 @@ for path, f in sorted(disk.items()):
     elif not can.endswith("/"):
         fail("canonical without trailing slash", path)
 
-    for prop, want in (("og:url", own), ("og:image", SITE + "/icons/og.png"), ("og:site_name", "תפילה"), ("og:locale", "he_IL"),
+    for prop, want in (("og:url", own), ("og:site_name", "תפילה"), ("og:locale", "he_IL"),
                        ("og:image:width", "1200"), ("og:image:height", "630")):
         om = re.search(r'<meta\s+property="' + prop + r'"[^>]*>', head, flags=re.I)
         if not om or attr(om.group(0), "content") != want:
             fail("Open Graph " + prop + " missing or wrong", path)
+    om = re.search(r'<meta\s+property="og:image"[^>]*>', head, flags=re.I)
+    img = attr(om.group(0), "content") if om else ""
+    if not re.fullmatch(re.escape(SITE) + r"/icons/og(-[a-z]+)?\.png", img or "") or not os.path.exists(os.path.join(ROOT, img[len(SITE) + 1:])):
+        fail("Open Graph og:image missing or not a file", path)
     for prop in ("og:title", "og:description", "og:type"):
         om = re.search(r'<meta\s+property="' + prop + r'"[^>]*>', head, flags=re.I)
         if not om or not (attr(om.group(0), "content") or "").strip():

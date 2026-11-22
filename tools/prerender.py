@@ -433,6 +433,9 @@ def og_for(path):
 _PRAYER_PATHS = set()
 
 
+# Someone who is already using the app and reloads, or goes back to, a page address is returned to the same screen in the app.
+# A visitor arriving from a search engine or a shared link has no such mark and gets the page itself.
+BACK_TO_APP = '<script>try{if(sessionStorage.getItem("tfapp")&&!location.hash&&!location.search)location.replace("/#__H__")}catch(e){}</script>'
 JS_SIDE = (";(function(){var s=document.querySelector('.sideacts');if(!s)return;var tc=document.querySelector('.rside .svctoc');if(tc&&matchMedia('(min-width:64rem)').matches)tc.open=true;s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;"
            "if(b.dataset.act==='print'){print()}else if(b.dataset.act==='copy'){var u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',u)})}})})();")
 
@@ -480,7 +483,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
              f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">')
     doc = f"""<!doctype html>
 <html lang="he" dir="rtl"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{BACK_TO_APP.replace("__H__", app_hash) if app_hash and app_hash != "home" and not notfound else ""}
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 {canon}

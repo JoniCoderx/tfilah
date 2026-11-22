@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="תפילה: סידור בשלושה נוסחים, ספר תהילים וקריאה משותפת. כל אחד פרק, ביחד ספר שלם.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin>
-<link rel="preload" as="fetch" href="data/index.json" crossorigin="anonymous">
+<link rel="preload" as="fetch" href="/data/index.json" crossorigin="anonymous">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <style>@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/heebo-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/heebo-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/heebo-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/heebo-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/heebo-hebrew-900.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/heebo-latin-900.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/assistant-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/assistant-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/assistant-hebrew-600.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/assistant-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/assistant-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/assistant-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 <style>
@@ -1413,16 +1413,17 @@ let reading=false;addEventListener('scroll',()=>{$('#bar').classList.toggle('scr
 
 /* ---------- data ---------- */
 async function boot(){
-  INDEX=await load('data/index.json');
+  {const got=await Promise.all([load('/data/index.json'),load('/data/urls.json').catch(()=>null)]);INDEX=got[0];URLS=got[1]}
   for(const p of INDEX.prayers)byId[p.id]=p;
   for(const[c] of NUS){const list=INDEX.prayers.filter(p=>p.n===c),gs=[];let cur=null;
     for(const p of list){const parts=p.s.length>=3?p.s.slice(0,2):p.s.length?p.s:[p.t],key=parts.join(' / ');
       if(!cur||cur.key!==key){cur={key,parts,items:[]};gs.push(cur)}cur.items.push(p);p.g=gs.length-1}
     groups[c]=gs}
-  renderNus();route();setTimeout(remTick,1500);
+  try{sessionStorage.setItem('tfapp','1')}catch(e){}
+  renderNus();sync(true);setTimeout(remTick,1500);
 }
-const text=async c=>TEXT[c]||(TEXT[c]=await load(`data/${c}.json`));
-const tehillim=async()=>TEH||(TEH=await load('data/tehillim.json'));
+const text=async c=>TEXT[c]||(TEXT[c]=await load(`/data/${c}.json`));
+const tehillim=async()=>TEH||(TEH=await load('/data/tehillim.json'));
 
 /* ---------- shared memorial store ---------- */
 let DB=null, canWrite=null, mems=null, memWaiters=[];
@@ -1434,7 +1435,7 @@ const dbReady=(async()=>{try{
       mems=s.docs.map(d=>({id:d.id,...d.data()}));redrawZ()},()=>{done=true;clearTimeout(timer);mems=mems||[];redrawZ()})}
   else{mems=null;redrawZ()}
 }catch(e){DB=null;redrawZ()}})();
-function redrawZ(){const h=location.hash.slice(1)||'home';if(DB){const yb=$('#yband');if(yb&&!yb.firstElementChild){yb.innerHTML=yachadBand();bindNew()}$$('[data-new]').forEach(b=>b.disabled=false)}if(h==='home'||h==='zikaron')drawWall();if(/^m-/.test(h))drawMemorial()}
+function redrawZ(){const h=ROUTE||'home';if(DB){const yb=$('#yband');if(yb&&!yb.firstElementChild){yb.innerHTML=yachadBand();bindNew()}$$('[data-new]').forEach(b=>b.disabled=false)}if(h==='home'||h==='zikaron')drawWall();if(/^m-/.test(h))drawMemorial()}
 const KINDS={neshama:['לעילוי נשמת','לעילוי נשמה','שם הנפטר/ת','שם האב או האם',' ז״ל'],refuah:['לרפואה שלמה של','לרפואה','שם החולה','שם האם',''],
   zivug:['לזיווג הגון עבור','לזיווג','שם המבקש/ת','שם האם',''],hatzlacha:['להצלחה ולישועה של','להצלחה','שם','שם האם',''],general:['תפילת רבים','בקשה כללית','על מה מתפללים','','']};
 const kindOf=m=>KINDS[m&&m.kind]?m.kind:'neshama';
@@ -1501,9 +1502,9 @@ const svcStart=(p,n)=>{const sv=svcOf(p);return sv&&sv[0]!=='?'?INDEX.prayers.fi
 function setNus(v){if(!NUS.some(x=>x[0]===v)||v===nus)return;const from=nus;nus=v;store.set('nus',nus);renderNus();
   const cur=safeHash().match(/^p-([a-z]+-\d+)$/);
   if(cur){const p=byId[cur[1]],q=p&&parallel(p,nus);
-    if(q){toast('עברתם לנוסח '+nusName(nus));location.hash='p-'+q.id}
-    else{const st=p&&svcStart(p,nus);if(st){toast(`עברתם לנוסח ${nusName(nus)}. הנה תחילת התפילה`);location.hash='p-'+st.id}
-      else{toast(`לא מצאנו קטע מקביל בנוסח ${nusName(nus)}. הנה הסידור כולו`);location.hash='siddur'}}}
+    if(q){toast('עברתם לנוסח '+nusName(nus));nav('p-'+q.id)}
+    else{const st=p&&svcStart(p,nus);if(st){toast(`עברתם לנוסח ${nusName(nus)}. הנה תחילת התפילה`);nav('p-'+st.id)}
+      else{toast(`לא מצאנו קטע מקביל בנוסח ${nusName(nus)}. הנה הסידור כולו`);nav('siddur')}}}
   else route()}
 $('#nus').addEventListener('change',e=>setNus(e.target.value));
 const LOGO_HTML=(document.querySelector('header .logo')||{}).innerHTML||'';
@@ -1630,8 +1631,8 @@ function viewHome(){setNav('home');
   ${footer()}`;
   bindHead();
   {const q=$('#hnq'),box=$('#nblet');if(q&&box){const draw=()=>{const L=lettersOf(q.value),ex=!L.length;box.classList.toggle('ex',ex);box.innerHTML=(ex?[...'אברהם']:L.slice(0,16)).map(l=>`<span>${l}</span>`).join('')+(L.length>16?'<span>…</span>':'')};q.addEventListener('input',draw);draw()}}
-  {const hf=$('#hnf');if(hf)hf.onsubmit=e=>{e.preventDefault();const v=$('#hnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'}}
-  $('#qa').onsubmit=e=>{e.preventDefault();const q=$('#qai').value.trim();if(!q)return;pendingQ=q;location.hash='rav'};
+  {const hf=$('#hnf');if(hf)hf.onsubmit=e=>{e.preventDefault();const v=$('#hnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);nav('kli-shem')}}
+  $('#qa').onsubmit=e=>{e.preventDefault();const q=$('#qai').value.trim();if(!q)return;pendingQ=q;nav('rav')};
   bindToc();bindZ();bindNew();bindDonate();bindTrack();drawWall();lazyVerse();tick();sampleReady.then(()=>{const c=$('#askcard');if(c&&SAMPLE)c.hidden=false});
   clearInterval(window.__nt);window.__nt=setInterval(()=>{const cd=$('#cd');if(!cd||!$('#hero')){clearInterval(window.__nt);return}let z=null;try{z=zmanim()}catch(e){}cd.innerHTML=cdText(z)},30000);
 }
@@ -1658,7 +1659,7 @@ function bindDonate(){const a=$('#dgo');if(!a)return;let amt=AMOUNTS[1][0];
   const f=$('#dfree');if(f)f.oninput=()=>{const v=Math.floor(+f.value);if(v>=5&&v<=20000){amt=v;$$('[data-amt]').forEach(x=>x.setAttribute('aria-pressed','false'));upd()}};
   $$('input[name=dfreq]').forEach(r=>r.onchange=upd);upd()}
 
-function drawWall(){const wall=$('#wall');if(!wall)return;const full=(location.hash.slice(1)==='zikaron');
+function drawWall(){const wall=$('#wall');if(!wall)return;const full=(ROUTE==='zikaron');
   if(mems===null&&!DB){wall.innerHTML=`<div class="empty" style="grid-column:1/-1"><b>קיר הנרות זמין למחוברים</b>כדי לראות נרות ולהדליק נר צריך להיות מחוברים.</div>`;$$('[data-new]').forEach(b=>b.disabled=true);return}
   if(mems===null){wall.innerHTML='<p class="loading" style="grid-column:1/-1">טוען קריאות…</p>';return}
   const pub=mems.filter(m=>m.listed===true);
@@ -1703,7 +1704,7 @@ async function openNew(kind0){
     const name=$('#f-name').value.trim(),parent=g?'':$('#f-parent').value.trim();if(!name||(!g&&!parent)){$('#f-err').textContent=g?'כתבו על מה מתפללים.':'צריך למלא שם ושם הורה.';return}
     const btn=e.submitter||sh.querySelector('[type=submit]');btn.disabled=true;btn.textContent='פותחים…';
     try{const ref=await DB.collection('memorials').add({name,parent,rel:$('#f-rel').value,kind,listed:$('#f-listed').checked,by:$('#f-by').value.trim(),msg:$('#f-msg').value.trim(),candles:1,done:0,createdAt:Date.now()});
-      const mine=store.get('opened',[]);mine.push(ref.id);store.set('opened',mine.slice(-30));close();location.hash='m-'+ref.id}
+      const mine=store.get('opened',[]);mine.push(ref.id);store.set('opened',mine.slice(-30));close();nav('m-'+ref.id)}
     catch(err){btn.disabled=false;btn.textContent='פתיחת הקריאה';$('#f-err').textContent='הקריאה לא נפתחה ולא נשמרה. בדקו את החיבור ונסו שוב.'}});
 }
 
@@ -1747,9 +1748,9 @@ async function giveChapter(id){if(giving||!DB)return null;giving=true;try{
     for(let i=0;i<4&&key==null&&free.length;i++){const n=free.splice(Math.floor(Math.random()*free.length),1)[0],r=DB.doc(`memorials/${id}/chapters/${base+n}`);
       const s=await r.get();if(s.exists)continue;const out=await r.set({s:'claimed',by:myName||'',at:Date.now()});if(out&&out.ok===false)continue;key=base+n}
     if(key==null){toast('הפרקים נלקחו בינתיים. נסו שוב');return null}}
-  const n=(key-1)%150+1;keepMine(id,[key]);sessionStorage.setItem('mctx',JSON.stringify({id,n,k:key}));location.hash='t-'+n;return n}
+  const n=(key-1)%150+1;keepMine(id,[key]);sessionStorage.setItem('mctx',JSON.stringify({id,n,k:key}));nav('t-'+n);return n}
   catch(e){toast('לא הצלחנו לתת פרק כרגע. בדקו את החיבור ונסו שוב');return null}finally{giving=false}}
-function drawMemorial(){const id=location.hash.slice(3);if(!id||id!==memId)return;
+function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
   if(!DB){app.innerHTML=`<h1 class="sr">תהילים יחד</h1><div class="empty" style="margin-top:30px"><b>התפילה זמינה למחוברים</b>היכנסו לחשבון כדי לראות את הדף ולהשתתף.</div>${footer()}`;return}
   const m=memById(id);
   if(!m&&memOne===null){app.innerHTML='<p class="loading">פותחים את הקריאה…</p>';return}
@@ -1892,7 +1893,7 @@ function bindTools(rerender){const apply=()=>document.documentElement.style.setP
   $('#rt').addEventListener('keydown',e=>{if(e.key==='Escape'&&!pop.hidden){e.stopPropagation();pop.hidden=true;aa.setAttribute('aria-expanded','false');aa.focus()}});
   document.addEventListener('click',function oc(e){if(!document.body.contains(pop)){document.removeEventListener('click',oc);return}
     if(!e.target.isConnected)return;if(!pop.hidden&&!pop.contains(e.target)&&!aa.contains(e.target)){pop.hidden=true;aa.setAttribute('aria-expanded','false')}});
-  $('#rback').onclick=()=>{history.length>1?history.back():(location.hash='home')};
+  $('#rback').onclick=()=>{history.length>1?history.back():nav('home')};
   {const q=$('#pfq');if(q){let t;q.oninput=()=>{clearTimeout(t);t=setTimeout(()=>pageFind(q.value),200)};q.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();pageFindGo(e.shiftKey?-1:1)}};$('#pfp').onclick=()=>pageFindGo(-1);$('#pfx').onclick=()=>pageFindGo(1)}}
   {const g=$('#asgo');if(g){g.setAttribute('aria-pressed',String(!!asSpeed));g.onclick=()=>autoScroll(asSpeed?0:38)}}
   $$('#asc button').forEach(b=>b.onclick=()=>{autoScroll(+b.dataset.s);if(+b.dataset.s){pop.hidden=true;aa.setAttribute('aria-expanded','false');toast('הטקסט נגלל לבד. נגיעה במסך עוצרת')}});
@@ -1995,9 +1996,9 @@ const SOLO=/ברכות ותפילות שונות|תפילות וסגולות|ת�
 const cnt=(n,one,many)=>n===1?one:`${n} ${many}`;
 /* the public address of what is on screen: the static page when there is one */
 /* readable addresses of the prayer pages; until the list arrives the numbered address is used, and it redirects */
-let URLS=null;load('data/urls.json').then(j=>{URLS=j},()=>{});
+let URLS=null;
 function staticOf(h){let m;
-  if((m=h.match(/^p-([a-z]+-\d+)$/)))return URLS&&URLS[m[1]]||`/tefila/${m[1]}/`;if((m=h.match(/^t-(\d+)$/)))return +m[1]>=1&&+m[1]<=150?`/tehillim/${m[1]}/`:null;
+  if((m=h.match(/^p-([a-z]+-\d+)$/)))return URLS&&URLS[m[1]]||null;if((m=h.match(/^t-(\d+)$/)))return +m[1]>=1&&+m[1]<=150?`/tehillim/${m[1]}/`:null;
   if((m=h.match(/^b-([a-z]+)$/)))return `/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `/tehillim/${m[1]}/`;if((m=h.match(/^kli-([a-z]+)$/)))return `/kelim/${m[1]}/`;
   return {home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'}[h]||null}
 function shareUrl(){const h=safeHash()||'home',s=staticOf(h);return location.origin+(s||'/#'+h)}
@@ -2006,7 +2007,7 @@ function shareUrl(){const h=safeHash()||'home',s=staticOf(h);return location.ori
 function realLinks(root){(root||document).querySelectorAll('a[href^="#"]').forEach(a=>{const h=a.getAttribute('href').slice(1);if(!h||a.dataset.h||a.dataset.j!==undefined||a.closest('#pal'))return;
   const s=staticOf(h);if(s){a.dataset.h='#'+h;a.setAttribute('href',s)}})}
 document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const a=e.target.closest('a[data-h]');if(!a||a.target==='_blank')return;
-  e.preventDefault();const h=a.dataset.h;if(location.hash===h)route();else location.hash=h});
+  e.preventDefault();nav(a.dataset.h)});
 {let lt=0;const mo=new MutationObserver(()=>{clearTimeout(lt);lt=setTimeout(()=>realLinks(document.body),120)});document.addEventListener('DOMContentLoaded',()=>0);setTimeout(()=>{mo.observe(document.body,{childList:true,subtree:true});realLinks(document.body)},0)}
 const shareTitle=()=>(($('#app h1')||{}).textContent||'תפילה').replace(/\s+/g,' ').trim();
 function endCard(){return `<section class="endcard" aria-label="סיום הקריאה"><b>סיימתם לקרוא</b><p>מכירים מישהו שישמח לקרוא את זה? שלחו לו.</p>
@@ -2014,7 +2015,7 @@ function endCard(){return `<section class="endcard" aria-label="סיום הקר�
 document.addEventListener('click',async e=>{const w=e.target.closest('[data-endwa]'),c=e.target.closest('[data-endcp]');if(!w&&!c)return;const url=(w||c).dataset.url||shareUrl(),txt=(w||c).dataset.txt||shareTitle();
   if(w)window.open('https://wa.me/?text='+encodeURIComponent(`${txt}\n${url}`),'_blank','noopener');
   else{try{await navigator.clipboard.writeText(url);toast('הקישור הועתק')}catch(x){toast(url)}}});
-async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){location.hash='siddur';return}
+async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){nav('siddur');return}
   if(p.n!==nus){nus=p.n;renderNus()}
   app.innerHTML='<p class="loading">טוען…</p>';const my=navId,T=await text(p.n),gs=groups[p.n],g=gs[p.g];if(my!==navId)return;
   const solo=g.items.length>1&&SOLO.test(g.key),items=solo?[p]:g.items,ix=g.items.indexOf(p);
@@ -2037,10 +2038,10 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
     bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)});
     const so=$('#smartoff'),sn=$('#smarton');if(so)so.onclick=()=>{smartOn=false;store.set('smart',false);const y=scrollY;draw();scrollTo(0,y);$('#smarton')?.focus({preventScroll:true})};if(sn)sn.onclick=()=>{smartOn=true;store.set('smart',true);const y=scrollY;draw();scrollTo(0,y);$('#smartoff')?.focus({preventScroll:true})};
     $$('.fav').forEach(b=>b.onclick=e=>{const k=b.dataset.id;favs.has(k)?favs.delete(k):favs.add(k);store.set('favs',[...favs]);b.setAttribute('aria-pressed',favs.has(k));if(favs.has(k)){burst(e.clientX,e.clientY,24);toast('נשמר')}});
-    $$('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();history.replaceState(null,'','#p-'+a.dataset.j);jump(a.dataset.j)});
-    const tb=$('#tocb');if(tb)tb.onclick=()=>{const curId=(location.hash.match(/^#p-(.+)$/)||[])[1]||id;const seenS=new Set(),svcList=[];items.forEach(it=>{const nm=it.s&&it.s[2];if(!nm||seenS.has(nm))return;seenS.add(nm);svcList.push([it.id,nm,false])});
-      openToc(items.map(it=>[it.id,it.t,!!itemRule(it,g.key,f)]),curId,j=>{history.replaceState(null,'','#p-'+j);jump(j)},{name:'קפיצה לחלק',list:svcList})}};
-  draw();reading=true;if(hl)setTimeout(()=>pageFind(hl),600);if(!solo&&(g.items[0].id!==id||hl)){jump(id,true);const again=()=>{if(location.hash==='#p-'+id&&!hl)jump(id,true)};document.fonts?.ready.then(again);setTimeout(again,500)}else scrollTo(0,0);
+    $$('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();setRoute('p-'+a.dataset.j);jump(a.dataset.j)});
+    const tb=$('#tocb');if(tb)tb.onclick=()=>{const curId=(ROUTE.match(/^p-(.+)$/)||[])[1]||id;const seenS=new Set(),svcList=[];items.forEach(it=>{const nm=it.s&&it.s[2];if(!nm||seenS.has(nm))return;seenS.add(nm);svcList.push([it.id,nm,false])});
+      openToc(items.map(it=>[it.id,it.t,!!itemRule(it,g.key,f)]),curId,j=>{setRoute('p-'+j);jump(j)},{name:'קפיצה לחלק',list:svcList})}};
+  draw();reading=true;if(hl)setTimeout(()=>pageFind(hl),600);if(!solo&&(g.items[0].id!==id||hl)){jump(id,true);const again=()=>{if(ROUTE==='p-'+id&&!hl)jump(id,true)};document.fonts?.ready.then(again);setTimeout(again,500)}else scrollTo(0,0);
   if(hl)setTimeout(()=>{const mk=document.querySelector(`#s-${id} mark`);if(mk)mk.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'})},450)}
 let smartOn=store.get('smart',true);
 
@@ -2169,7 +2170,7 @@ async function viewTehillim(a,b){setNav('tehillim');
       <div class="needs">${NEEDS.map(([k,ic,t,sub])=>`<a class="need card lift" href="#k-${k}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sub}</small></span></a>`).join('')}</div>
       <div class="sec" style="margin:28px 2px 12px"><h2>כל 150 הפרקים</h2></div>
       <div class="grid150">${Array.from({length:150},(_,i)=>`<a href="#t-${i+1}" class="${i+1>=m[0]&&i+1<=m[1]?'today':''}">${gem(i+1)}</a>`).join('')}</div>${footer()}`;
-    $('#tnf').onsubmit=e=>{e.preventDefault();const v=$('#tnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'};return}
+    $('#tnf').onsubmit=e=>{e.preventDefault();const v=$('#tnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);nav('kli-shem')};return}
   app.innerHTML='<p class="loading">טוען…</p>';const my=navId,P=await tehillim();if(my!==navId)return;b=b||a;
   let ctx=null;try{ctx=JSON.parse(sessionStorage.getItem('mctx')||'null')}catch(e){}if(ctx&&!(a===b&&ctx.n===a))ctx=null;
   const draw=()=>{let body='';for(let c=a;c<=b;c++)body+=`<section><h3 aria-level="2">פרק ${gem(c)}</h3>${plainBox(PLAIN_T[c],'על מה המזמור הזה?',a===b)}${P[c-1].map((v,i)=>`<p class="verse"><sup>${gem(i+1)}</sup>${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`;
@@ -2408,9 +2409,9 @@ const NEEDS=[['refuah','plus','לרפואה שלמה','כ, ו, ל, מא, פח, �
  ['neshama','flame','לעילוי נשמה','טז, יז, לג, עב, צא, קד, קל',[16,17,33,72,91,104,130]],
  ['tikkun','spark','תיקון הכללי','טז, לב, מא, מב, נט, עז, צ, קה, קלז, קנ',[16,32,41,42,59,77,90,105,137,150]],
  ['kever','pin','לבית העלמין','לג, טז, יז, עב, צא, קד, קל',[33,16,17,72,91,104,130]]];
-async function viewNeed(k){setNav('tehillim');const n=NEEDS.find(x=>x[0]===k);if(!n){location.hash='tehillim';return}
+async function viewNeed(k){setNav('tehillim');const n=NEEDS.find(x=>x[0]===k);if(!n){nav('tehillim');return}
   app.innerHTML='<p class="loading">טוען…</p>';const my=navId,P=await tehillim();if(my!==navId)return;
-  let TK=null;if(k==='tikkun'){try{TK=await load('data/tikkun.json')}catch(e){}if(my!==navId)return}
+  let TK=null;if(k==='tikkun'){try{TK=await load('/data/tikkun.json')}catch(e){}if(my!==navId)return}
   const tkp=a=>a.map(x=>`<p>${nikud?x:x.replace(NIK,'')}</p>`).join('');
   const draw=()=>{const body=(TK?`<section><h3 aria-level="2">לפני אמירת המזמורים</h3>${tkp(TK.open)}</section>`:'')+n[4].map(c=>`<section><h3 aria-level="2">פרק ${gem(c)}</h3>${P[c-1].map((v,i)=>`<p class="verse"><sup>${gem(i+1)}</sup>${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`).join('')+(TK?`<section><h3 aria-level="2">תפילה אחרי תיקון הכללי</h3>${tkp(TK.short)}<details class="tklong"><summary>התפילה הארוכה של רבי נתן</summary>${tkp(TK.natan)}</details></section>`:'');
     app.innerHTML=`${tools(`תהילים ${n[2]}`)}<h1 class="rh1">תהילים ${n[2]}</h1><div>
@@ -2636,7 +2637,7 @@ function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;c
   els.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv','pre');io.observe(el)}})}
 
 /* ---------- LIBRARY ---------- */
-let BOOKS=null;const books=async()=>BOOKS||(BOOKS=await load('data/books.json'));
+let BOOKS=null;const books=async()=>BOOKS||(BOOKS=await load('/data/books.json'));
 const LIB=[
  ['ישועות ובקשות','hands',[['b:chana','תפילת חנה','לזרע של קיימא'],['p:תפילת השל"ה','תפילת השל"ה','לבנים צדיקים, בערב ראש חודש סיון'],['p:על הפרנסה','תפילה על הפרנסה'],
    ['b:haman','פרשת המן','סגולה לפרנסה'],['b:haazinu','שירת האזינו','להצלחה ולפרנסה'],['p:לחולה','מי שברך לחולה','לרפואה שלמה'],['p:לחיילי','מי שברך לחיילי צה"ל'],
@@ -2672,7 +2673,7 @@ function viewLib(){setNav('sifriya');
 const PLAIN_B={"perek": "פרק שירה הוא שיר של כל הבריאה. השמים, הים, העצים, הציפורים והחיות, כל אחד מהם אומר פסוק משלו. מי שקורא אותו מתחיל לשמוע שגם העולם שמסביב שר. רבים אומרים אותו כסגולה, ארבעים יום ברצף.", "avot": "שישה פרקים קצרים של עצות לחיים מפי חכמי המשנה: איך להתנהג, איך ללמוד, איך לחיות עם אנשים. משפטים כמו ”אם אין אני לי, מי לי” באים מכאן. נוהגים ללמוד פרק בכל שבת בקיץ.", "shir": "שיר אהבה בין רועה לאהובתו. חכמים קראו אותו כמשל לאהבה בין הבורא לעם ישראל. קוראים אותו בפסח, ורבים גם בכל ערב שבת.", "ruth": "סיפור קצר על נאמנות. רות, אישה זרה, לא עוזבת את חמותה נעמי: ”עמך עמי ואלוהיך אלוהי”. ממנה נולד דוד המלך. קוראים את המגילה בשבועות.", "esther": "הסיפור של פורים: איך גזרה נוראה התהפכה ברגע האחרון. שם ה׳ לא מופיע במגילה אפילו פעם אחת, ובכל זאת מרגישים שמישהו מכוון את הכול.", "eicha": "קינה על חורבן ירושלים. חמישה פרקים של כאב, שנגמרים בבקשה: ”השיבנו ה׳ אליך ונשובה”. קוראים אותה בתשעה באב, בישיבה על הרצפה.", "kohelet": "שלמה המלך שואל מה הטעם בכל העמל. הוא ניסה הכול, עושר, חוכמה והנאות, ומצא שהכול חולף. המסקנה שלו פשוטה: לשמוח במה שיש ולירוא את ה׳. קוראים בסוכות.", "mishlei": "ספר של משפטי חוכמה קצרים לחיי היום־יום: על עבודה, על חברים, על דיבור, על כסף. אפשר לקרוא משפט אחד ולחשוב עליו כל היום.", "chana": "התפילה של חנה אחרי שנולד לה שמואל, הבן שחיכתה לו שנים. שיר תודה של מי שהיה למטה והורם. רבות אומרות אותה כתפילה לזכות לילדים.", "haman": "הסיפור על המן, האוכל שירד מהשמים במדבר, מנה חדשה בכל בוקר. הוא מלמד לסמוך על כך שגם מחר יהיה. נוהגים לקרוא אותו כתפילה על פרנסה.", "haazinu": "השיר שמשה אמר לעם ישראל לפני מותו. הוא קורא לשמים ולארץ להקשיב, ומספר את כל הסיפור: מהחסד שקיבלנו, דרך הנפילות, ועד הנחמה בסוף.", "chavakuk": "תפילה של הנביא חבקוק. היא נגמרת באחד המשפטים החזקים בתנ״ך: גם אם התאנה לא תפרח ואין יבול בגפנים, ”ואני בה׳ אעלוזה”.", "kohanim": "שלושה פסוקים עתיקים של ברכה: שישמור עליך, שיאיר לך פנים, שייתן לך שלום. בהם הכוהנים מברכים את העם, ובהם הורים מברכים את ילדיהם.", "akeda": "הסיפור שבו אברהם נדרש להעלות את יצחק בנו, וברגע האחרון נעצר. קוראים אותו בכל בוקר כדי להזכיר את האמונה של האבות ולבקש רחמים בזכותם.", "yamsuf": "השיר ששרו בני ישראל אחרי שעברו את ים סוף. רגע של שמחה גדולה אחרי פחד גדול. הוא מזכיר שגם כשנראה שאין דרך, נפתחת דרך.", "selichot": "תפילות שבהן מבקשים סליחה, בימים שלפני ראש השנה ויום כיפור. קמים מוקדם או נשארים ערים בלילה ואומרים אותן יחד. המסר שחוזר בהן: הדלת פתוחה למי שרוצה לחזור.", "akdamut": "שיר בארמית שאומרים בחג השבועות לפני קריאת התורה. הוא אומר שגם אילו כל הימים היו דיו וכל השמים קלף, לא היה אפשר לכתוב את כל גדולת הבורא.", "yizkor": "תפילה קצרה לזכר אבא, אמא וקרובים שהלכו. אומרים אותה בבית הכנסת ביום כיפור ובחגים, ומתחייבים לתת צדקה לזכרם. רגע שקט לזכור את מי שחסר."};
 const BOOK_ART={perek:[["שמים וארץ", "<path d='M7 17h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 10.5 3.3 3.3 0 0 0 7 17z'/><path d='M3 21h18'/>"], ["יום ולילה", "<circle cx='9' cy='12' r='4'/><path d='M9 4v2M9 18v2M3 12h-.5M5 7.5 3.8 6.3M5 16.5l-1.2 1.2'/><path d='M21 14.5A6.5 6.5 0 0 1 14.5 8a6.5 6.5 0 1 0 6.5 6.5z'/>"], ["עצים וצמחים", "<path d='M12 21v-7'/><path d='M12 14c-3.6 0-6-2.3-6-5.3S8.6 3 12 3s6 2.7 6 5.7-2.4 5.3-6 5.3z'/><path d='M12 11l2.5-2.5M12 13 9.5 10.5'/>"], ["עופות", "<path d='M3 11c2.5-3.5 5.5-3.5 9 0 3.500-3.5 6.5-3.5 9 0'/><path d='M7 17c1.7-2.2 3.3-2.2 5 0 1.700-2.2 3.300-2.200 5 0'/>"], ["בהמות וחיות", "<path d='M12 13.500c-2.800 0-5 2-5 4 0 1.500 1.500 2.500 5 2.500s5-1 5-2.500c0-2-2.200-4-5-4z'/><circle cx='6.500' cy='10' r='1.600'/><circle cx='10' cy='6.500' r='1.600'/><circle cx='14' cy='6.500' r='1.600'/><circle cx='17.500' cy='10' r='1.600'/>"], ["שרצים ורמשים", "<path d='M3 15c2.500-6 5.500 6 8 0s5.500 6 8 0'/><circle cx='20.500' cy='13.500' r='1'/>"]]};
 const artIcon=d=>`<svg class="art" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
-async function viewBook(key,sec){setNav('sifriya');app.innerHTML='<p class="loading">טוען…</p>';const my=navId,B=await books(),b=B[key];if(my!==navId)return;if(!b){location.hash='sifriya';return}
+async function viewBook(key,sec){setNav('sifriya');app.innerHTML='<p class="loading">טוען…</p>';const my=navId,B=await books(),b=B[key];if(my!==navId)return;if(!b){nav('sifriya');return}
   const secs=b.secs.filter(x=>x.v&&x.v.length),art=BOOK_ART[key]||[];
   const draw=()=>{const many=secs.length>1;
     const body=secs.map((s,i)=>`<section id="bs${i}">${many||secs[0].h!==b.t?`<h3 aria-level="2"${art[i]?' class="arth"':''}>${art[i]?artIcon(art[i][1]):''}<span>${esc(s.h)}${art[i]?`<small>${esc(art[i][0])}</small>`:''}</span></h3>`:''}${s.v.map((v,j)=>`<p${b.num?' class="verse"':''}>${b.num?`<sup>${gem(j+1)}</sup>`:''}${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`).join('');
@@ -2763,7 +2764,7 @@ function palRender(raw){palWait=false;const q=norm(raw||'').trim(),out=[];
     `<a class="palitem" role="option" id="po${i}" aria-selected="${i===0}" data-i="${i++}" href="${x[3]}"${x[5]?` data-q="${esc(x[5])}"`:''}${x[7]?` data-hl="${esc(x[7])}"`:''}><span class="ib">${icon(x[4])}</span><span><b>${esc(x[1])}${x[6]?`<span class="nz">נוסח ${esc(x[6])}</span>`:''}</b>${x[2]?`<small>${esc(x[2])}</small>`:''}</span></a>`).join('')}
 function palMove(d){if(!palItems.length)return;palSel=(palSel+d+palItems.length)%palItems.length;
   $$('.palitem').forEach(a=>a.setAttribute('aria-selected',String(+a.dataset.i===palSel)));document.getElementById('po'+palSel)?.scrollIntoView({block:'nearest'});$('#palq').setAttribute('aria-activedescendant','po'+palSel)}
-function palGo(a){if(!a)return;if(a.dataset.q)store.set('q',a.dataset.q);if(a.dataset.hl)pendingHl=a.dataset.hl;closePal();const h=a.getAttribute('href');const pm=h.match(/^#p-([a-z]+)-/);if(pm&&pm[1]!==nus&&byId[h.slice(3)]){/* reading opens in the result's nusach; the saved choice stays */}if(location.hash===h)route();else location.hash=h}
+function palGo(a){if(!a)return;if(a.dataset.q)store.set('q',a.dataset.q);if(a.dataset.hl)pendingHl=a.dataset.hl;closePal();const h=a.getAttribute('href');const pm=h.match(/^#p-([a-z]+)-/);if(pm&&pm[1]!==nus&&byId[h.slice(3)]){/* reading opens in the result's nusach; the saved choice stays */}nav(h)}
 let palUntrap=null;
 function openPal(){if(!INDEX)return;const p=$('#pal');if(!p.hidden)return;p.hidden=false;const q=$('#palq');q.value='';palRender('');if(!PSX)ensurePSX().then(()=>{if(!p.hidden&&q.value)palRender(q.value)});palUntrap=trap(p,closePal);q.focus()}
 function closePal(){const p=$('#pal');if(p.hidden)return;p.hidden=true;const u=palUntrap;palUntrap=null;u&&u()}
@@ -2812,12 +2813,12 @@ function viewKelim(){setNav('kelim');
     <div class="kleadrow"><label class="sr" for="klq">שם בעברית</label><input id="klq" maxlength="40" placeholder="למשל: אברהם בן שרה" autocomplete="off" value="${esc(store.get('kname',''))}"><button class="btn primary">הצגת הפסוקים</button></div></form>
   <h2 class="ksub">תהילים ותפילה</h2><div class="kgrid">${['pasuk','gil','kivun'].map(card).join('')}</div>
   <h2 class="ksub">תאריכים עבריים</h2><div class="kgrid">${['yahr','bday'].map(card).join('')}</div>${yzCard()}${footer()}`;
-  $('#klf').onsubmit=e=>{e.preventDefault();const v=$('#klq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'};scrollTo(0,0)}
+  $('#klf').onsubmit=e=>{e.preventDefault();const v=$('#klq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);nav('kli-shem')};scrollTo(0,0)}
 
 function kShell(k,inner){const it=KELIM.find(x=>x[0]===k);
   return `<div class="kpage"><a class="kback" href="#kelim">→ כל הכלים</a><h1 class="kh">${it[1]}</h1><p class="note" style="max-width:34rem">${it[2]}</p>${inner}</div>${footer()}`}
 
-async function viewKli(k){setNav('kelim');if(!KELIM.some(x=>x[0]===k)){location.hash='kelim';return}
+async function viewKli(k){setNav('kelim');if(!KELIM.some(x=>x[0]===k)){nav('kelim');return}
   const draw={shem:kShem,pasuk:kPasuk,gil:kGil,yahr:kYahr,bday:kBday,kivun:kKivun}[k];await draw();scrollTo(0,0)}
 
 async function kShem(){const last=store.get('kname','');
@@ -2919,11 +2920,33 @@ function autoScroll(s){asSpeed=s;asPill();document.documentElement.classList.tog
   if(!s)return;asLast=performance.now();const step=t=>{asAcc+=(t-asLast)*asSpeed/1000;asLast=t;const px=Math.floor(asAcc);if(px){scrollBy(0,px);asAcc-=px}
     if(innerHeight+scrollY>=document.documentElement.scrollHeight-2){autoScroll(0);return}asRaf=requestAnimationFrame(step)};asRaf=requestAnimationFrame(step)}
 ['wheel','touchstart','keydown'].forEach(ev=>addEventListener(ev,e=>{if(asSpeed&&!(e.target.closest&&e.target.closest('#asc,#aspill,#asgo')))autoScroll(0)},{passive:true}));
-addEventListener('hashchange',()=>{autoScroll(0);compassOff&&compassOff();compassOff=null});
+{const off=()=>{autoScroll(0);compassOff&&compassOff();compassOff=null};addEventListener('hashchange',off);addEventListener('popstate',off)}
 
 function setPhase(){try{const now=new Date(),z=zmanim(),T=l=>(z.list.find(x=>x[0]===l)||[])[1],a=T('עלות השחר'),n=T('הנץ החמה'),s=T('שקיעה'),t=T('צאת הכוכבים');
   document.documentElement.dataset.phase=now<a||now>=new Date(+t+20*60e3)?'night':now<new Date(+n+60*60e3)?'dawn':now<new Date(+s-75*60e3)?'day':'dusk'}catch(e){}}
-const safeHash=()=>{try{return decodeURIComponent(location.hash.slice(1))}catch(e){return''}};
+/* ROUTE is the screen being shown (p-sefard-32, t-23, siddur…). The address bar shows that screen's own page
+   address (tfilah.com/perek-shira/) whenever it has one; old #links keep working and are rewritten on arrival. */
+let ROUTE='';
+const safeHash=()=>ROUTE;
+const hashNow=()=>{try{return decodeURIComponent(location.hash.slice(1))}catch(e){return''}};
+const addrOf=h=>{const m=h.match(/^m-([A-Za-z0-9_-]+)$/);if(m)return '/y/'+m[1];
+  /* a chapter received in a shared reading keeps its app address, so a reload still offers "I read it" */
+  if(/^t-\d+$/.test(h)){try{const c=JSON.parse(sessionStorage.getItem('mctx')||'null');if(c&&'t-'+c.n===h)return '/#'+h}catch(e){}}
+  return staticOf(h)||'/#'+h};
+let PATHS=null;
+function pathRoute(path){let m;if(!PATHS){PATHS={'/':'home','/tefila/':'siddur','/tehillim/':'tehillim','/kelim/':'kelim','/sefer/':'sifriya','/tehillim-yachad/':'zikaron'};if(URLS)for(const k in URLS)PATHS[URLS[k]]='p-'+k}
+  if(!path.endsWith('/'))path+='/';if(PATHS[path])return PATHS[path];
+  if((m=path.match(/^\/tehillim\/(\d+)\/$/)))return 't-'+m[1];if((m=path.match(/^\/tehillim\/([a-z]+)\/$/))&&NEEDS.some(n=>n[0]===m[1]))return 'k-'+m[1];
+  if((m=path.match(/^\/y\/([A-Za-z0-9_-]+)\/$/)))return 'm-'+m[1];if((m=path.match(/^\/sefer\/([a-z]+)\/$/)))return 'b-'+m[1];if((m=path.match(/^\/kelim\/([a-z]+)\/$/)))return 'kli-'+m[1];return null}
+/* move to a screen */
+function nav(h){h=String(h||'home').replace(/^#/,'');if(h===ROUTE){route();return}ROUTE=h;try{history.pushState(null,'',addrOf(h))}catch(e){}route()}
+/* note where we are without drawing again (a jump inside a long prayer) */
+function setRoute(h){ROUTE=h;try{history.replaceState(null,'',addrOf(h))}catch(e){}}
+/* the address changed by itself: back, forward, an old #link, a typed address */
+function sync(first){const h=hashNow()||pathRoute(location.pathname)||'home',a=addrOf(h);
+  if(location.pathname+location.hash!==a&&location.pathname+decodeURIComponent(location.hash)!==a){try{history.replaceState(null,'',a)}catch(e){}}
+  if(h!==ROUTE||first){ROUTE=h;route()}}
+window.tfRoute=()=>ROUTE;
 /* a failed load never leaves a blank or stuck screen: say so and offer to try again */
 function loadErr(retry){app.innerHTML=`<div class="empty" role="alert" style="margin-top:30px"><b>לא הצלחנו לטעון את הדף</b>בדקו את החיבור לאינטרנט ונסו שוב.<div style="margin-top:14px"><button class="btn primary" type="button" id="retry">לנסות שוב</button></div></div>`;
   const b=$('#retry');if(b){b.onclick=()=>{app.innerHTML='<p class="loading">טוען…</p>';retry()}}}
@@ -2938,12 +2961,12 @@ function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{re
   if((m=h.match(/^n-([A-Za-z0-9_-]+)$/)))return viewLetters(m[1]);
   if((m=h.match(/^k-([a-z]+)$/)))return viewNeed(m[1]);
   if((m=h.match(/^b-([a-z]+)$/)))return viewBook(m[1]);
-  if((m=h.match(/^shem-(.+)$/))){let nm='';try{nm=decodeURIComponent(m[1])}catch(e){nm=m[1]}nm=nm.replace(/[-_+]+/g,' ').replace(/[^\u05D0-\u05EA ]/g,'').trim().slice(0,40);if(nm){location.replace(`/kelim/shem/#name=${encodeURIComponent(nm)}&neshama=0`);return}history.replaceState(null,'','#kli-shem');return viewKli('shem')}
+  if((m=h.match(/^shem-(.+)$/))){let nm='';try{nm=decodeURIComponent(m[1])}catch(e){nm=m[1]}nm=nm.replace(/[-_+]+/g,' ').replace(/[^\u05D0-\u05EA ]/g,'').trim().slice(0,40);if(nm){location.replace(`/kelim/shem/#name=${encodeURIComponent(nm)}&neshama=0`);return}setRoute('kli-shem');return viewKli('shem')}
   if((m=h.match(/^kli-([a-z]+)$/)))return viewKli(m[1]);
   scrollTo(0,0);({siddur:viewSiddur,search:viewSearch,tehillim:()=>viewTehillim(),favorites:viewFavs,zikaron:viewZikaron,rav:viewRav,sifriya:viewLib,kelim:viewKelim,tmicha:viewSupport}[h]||viewHome)()};
-  const run=()=>{$$('.sheet').forEach(s=>{const x=s.querySelector('[data-x]');if(x)x.click();else s.remove()});const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(location.hash!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
+  const run=()=>{$$('.sheet').forEach(s=>{const x=s.querySelector('[data-x]');if(x)x.click();else s.remove()});const at=ROUTE,fail=()=>{if(ROUTE===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(ROUTE!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
   if(document.startViewTransition&&!reduce)document.startViewTransition(run);else run()}
-addEventListener('hashchange',route);
+addEventListener('hashchange',()=>sync());addEventListener('popstate',()=>sync());
 const setBarH=()=>document.documentElement.style.setProperty('--barh',$('#bar').offsetHeight+'px');addEventListener('resize',setBarH);setBarH();
 document.documentElement.style.setProperty('--reading',fontScale+'rem');
 const start=()=>boot().catch(()=>loadErr(start));start();

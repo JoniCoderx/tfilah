@@ -35,14 +35,14 @@ head = f"""<!doctype html>
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="תפילה">
 <meta property="og:image" content="https://tfilah.com/icons/og.png">
 <link rel="canonical" href="https://tfilah.com/">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icons/favicon-96.png" type="image/png" sizes="96x96"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="icons/icon-192.png" type="image/png">
+<link rel="alternate icon" href="/icons/icon-192.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="תפילה">
 <meta property="og:title" content="{TITLE}">
@@ -53,10 +53,10 @@ head = f"""<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":"Tfilah.com","url":"https://tfilah.com/","inLanguage":"he","description":"{DESC}"}}</script>
 {''.join(links)}<style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
-<script defer src="config.js"></script>
+<script defer src="/config.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script defer src="shim.js"></script>
-<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{{}}));</script>
+<script defer src="/shim.js"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{{}}));</script>
 </head>
 <body>
 """

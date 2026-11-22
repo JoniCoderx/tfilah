@@ -305,8 +305,11 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 @media print{.top,.crumbs,.nform,.nact,.prose,.pager,.related,.applink,footer,.note,.lead{display:none!important}}
 """),
 ("tautbox", """
-.tautbox{display:grid;gap:.5rem;margin:.6rem 0 1.2rem}.tautbox label{font-weight:700}
-.tautbox textarea{inline-size:100%;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);line-height:1.6}
+.tautbox{margin:.6rem 0 1.2rem}.cform{display:grid;gap:.5rem}.cform label{font-weight:700;margin-block-start:.3rem}
+.cform textarea,.cform input[type=email]{inline-size:100%;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);line-height:1.6}
+.cform input[type=email]{min-block-size:3rem;text-align:left}.cform .chp{position:absolute;inset-inline-start:-9999px;inline-size:1px;block-size:1px;opacity:0}
+.cwhere{margin:0;padding:.7rem 1rem;border-radius:1rem;background:#EEF7FE;color:var(--ink);line-height:1.5;overflow-wrap:anywhere}.cwhere span{font-size:.85rem;color:var(--muted)}
+.cmsg{margin:0;min-block-size:1.5rem;font-weight:700}.cmsg.good{color:#0A6FB3}.cmsg.bad{color:#B3261E}
 .nact{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0}.btn2{min-height:3rem;padding:.4rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 """),
 ("tklong", """
@@ -1485,15 +1488,9 @@ page("/chanukah/", f"ברכות הדלקת נרות חנוכה: הנוסח המ�
      ld=[{"@type": "CreativeWork", "name": "ברכות הדלקת נרות חנוכה", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + "/chanukah/", "isPartOf": WEBSITE}])
 
 # ---------- About and sources ----------
-TAUT_JS = ("(function(){var b=document.getElementById('tautbox');if(!b)return;var q=new URLSearchParams(location.search),M=%r;"
-           "function cl(s,n){return (s||'').replace(/[<>\"]/g,'').slice(0,n)}"
-           "var u=cl(q.get('u'),200),t=cl(q.get('t'),80),n=cl(q.get('n'),30);if(u&&u.indexOf(location.origin)!==0)u='';"
-           "var lines=['העמוד: '+(u||'(כתבו כאן את כתובת העמוד)'),'התפילה: '+(t||''),n?'הנוסח: '+n:'','','מה הטעות (המילים כפי שהן באתר):','','מה צריך להיות, ולפי איזה סידור:',''].filter(function(x,i){return x||i>2}),body=lines.join('\\n');"
-           "var h='<label for=\"tautt\">פרטי הדיווח</label><textarea id=\"tautt\" rows=\"8\"></textarea><p class=\"nact\">'+(M?'<a class=\"btn\" id=\"tautm\" href=\"#\">שליחה במייל</a>':'')+'<button type=\"button\" class=\"btn2\" id=\"tautc\">העתקת הפרטים</button></p>'+(M?'':'<p class=\"note\">כתובת המייל לדיווחים תתווסף כאן בקרוב. בינתיים אפשר להעתיק את הפרטים ולשמור אותם.</p>');"
-           "b.innerHTML=h;var ta=document.getElementById('tautt');ta.value=body;"
-           "var m=document.getElementById('tautm');if(m)m.onclick=function(){this.href='mailto:'+M+'?subject='+encodeURIComponent('דיווח על טעות בנוסח'+(t?': '+t:''))+'&body='+encodeURIComponent(ta.value)};"
-           "document.getElementById('tautc').onclick=function(){var x=this;(navigator.clipboard?navigator.clipboard.writeText(ta.value):Promise.reject()).then(function(){x.textContent='הפרטים הועתקו'},function(){ta.select()})};"
-           "if(location.hash==='#taut')document.getElementById('taut').scrollIntoView()})();") % CONTACT
+TAUT_JS = open(os.path.join(ROOT, "tools", "odot.js"), encoding="utf-8").read().replace("__MAIL__", CONTACT)
+TAUT_JS = re.sub(r"/\*.*?\*/", "", TAUT_JS, flags=re.S)
+TAUT_JS = "".join(l.strip() + ("\n" if l.rstrip().endswith(("{", "}", ";", ",")) is False else "") for l in TAUT_JS.split("\n") if l.strip())
 odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סידור אונליין בשלושה נוסחים, עדות המזרח, ספרד ואשכנז, עם ספר תהילים מלא, ספרייה של מגילות ופרקים, זמני היום וכלים אישיים. '
         'הקריאה חופשית, בלי הרשמה ובלי פרסומות.</p>'
         '<h2>מקורות הטקסטים</h2><p>נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. '
@@ -1503,7 +1500,7 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         'וצאת השבת כשהשמש 8.5 מעלות מתחת לאופק. הזמנים עשויים לסטות בדקה או שתיים מלוחות אחרים, ולמעשה יש להחמיר.</p>'
         '<h2 id="taut">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'
         '<div id="tautbox" class="tautbox"></div>'
-        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב לנו: <a href="mailto:{CONTACT}">{CONTACT}</a>.' if CONTACT else 'כתובת לפניות תתפרסם כאן בקרוב.') + '</p>'
+        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <a href="mailto:{CONTACT}">{CONTACT}</a>.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
         '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
         + chips("להתחיל לקרוא", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
 page("/odot/", f"אודות האתר תפילה ומקורות הטקסטים | {BRAND}",

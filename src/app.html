@@ -780,7 +780,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 #zcard .zfoot .zmore{display:inline-flex;align-items:center;inline-size:auto;padding:0;border:0;min-block-size:44px}#zcard .zfoot .zlink{justify-content:flex-start}
 @media (max-width:620px){#zcard .zgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .hgrid>.stack{align-content:stretch;grid-auto-rows:auto}.hgrid>.stack>:last-child{align-self:stretch}.hgrid>.stack{grid-template-rows:auto 1fr}
-.hgrid>.stack .parasha{display:grid;align-content:center}
+.hgrid>.stack .parasha{display:grid;align-content:center}.pgo{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-block-start:14px}.pgo .btn{min-height:46px}.pgo .pall{font-weight:700;color:#0A6FB3;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
 .hgrid>.hol{grid-column:1/-1}
 @media (min-width:900px){.hgrid>.hol{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-rows:auto 1fr;padding:6px 8px 10px}.hgrid>.hol h3{grid-column:1/-1;grid-row:1;padding-inline:12px}
   .hgrid>.hol .hrow{grid-row:2;display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;align-content:start;gap:8px;padding:12px;border:0;border-inline-start:1px solid var(--line)}.hgrid>.hol .hrow:first-of-type{border-inline-start:0}
@@ -2441,6 +2441,11 @@ function hcShabbat(satArg){const H=HC();if(!H)return null;try{const c=cityRow(),
   const ev=H.HebrewCalendar.calendar({start:fri,end:sat,location:loc,candlelighting:true,candleLightingMins:c[5]});
   const cand=ev.find(e=>/^Candle/.test(e.getDesc())),hav=ev.find(e=>/^Havdalah/.test(e.getDesc()));if(!cand||!hav)return null;
   const old=shabbatTimes();return{candle:cand.eventTime,havdala:hav.eventTime,rt:old?old.rt:hav.eventTime,tz:c[4]}}catch(e){return null}}
+/* the 54 portion pages, by the name Hebcal gives the portion in English */
+const PARS='bereshit noach lech-lecha vayera chayei-sara toldot vayetzei vayishlach vayeshev miketz vayigash vayechi shemot vaera bo beshalach yitro mishpatim terumah tetzaveh ki-tisa vayakhel pekudei vayikra tzav shmini tazria metzora achrei-mot kedoshim emor behar bechukotai bamidbar nasso behaalotcha shlach korach chukat balak pinchas matot masei devarim vaetchanan eikev reeh shoftim ki-teitzei ki-tavo nitzavim vayeilech haazinu vezot-haberakhah'.split(' ');
+function parLinks(desc){const s=String(desc||'').replace(/^Parashat\s+/,'').toLowerCase().replace(/['’]/g,'').replace(/[^a-z]+/g,'-').replace(/^-|-$/g,'');if(PARS.includes(s))return[s];
+  const k=s.split('-');for(let i=1;i<k.length;i++){const a=k.slice(0,i).join('-'),b=k.slice(i).join('-');if(PARS.includes(a)&&PARS.includes(b))return[a,b]}return[]}
+window.tfParLinks=parLinks;
 function parashaCard(){const H=HC();if(!H)return'';try{const sat=nextSat();
   const ev=H.HebrewCalendar.calendar({start:sat,end:sat,sedrot:true,il:isIL(),shabbatMevarchim:true});const F=H.flags;
   const par=ev.find(e=>e.getFlags()&F.PARSHA_HASHAVUA),chag=ev.find(e=>e.getFlags()&F.CHAG),spec=ev.filter(e=>e.getFlags()&F.SPECIAL_SHABBAT),mev=ev.find(e=>/Mevarchim/.test(e.getDesc()));
@@ -2449,7 +2454,8 @@ function parashaCard(){const H=HC();if(!H)return'';try{const sat=nextSat();
   return `<div class="glass parasha"><span class="eyebrow">${par?'פרשת השבוע':'שבת'} · ${esc(hd.renderGematriya().replace(NIK,'').replace(/\s+\S+$/,''))}</span>
     <div class="pname">${esc(name)}</div>
     ${spec.length||mev?`<div class="ptags">${[...spec.map(noNik),mev?noNik(mev):''].filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}
-    ${st?`<div class="ptimes"><span>הדלקת נרות <b>${fmtT(st.candle,st.tz)}</b></span><span>צאת שבת <b>${fmtT(st.havdala,st.tz)}</b></span></div>`:''}</div>`}catch(e){return''}}
+    ${st?`<div class="ptimes"><span>הדלקת נרות <b>${fmtT(st.candle,st.tz)}</b></span><span>צאת שבת <b>${fmtT(st.havdala,st.tz)}</b></span></div>`:''}
+    ${par?`<div class="pgo">${(L=>L.map((s,i)=>`<a class="btn primary" href="/parasha/${s}/">${L.length>1?'לפרשת '+esc(name.split(/[\s־-]+/)[i]||''):'לקריאת הפרשה'}</a>`).join(''))(parLinks(par.getDesc()))}<a class="pall" href="/parasha/">כל הפרשות</a></div>`:''}</div>`}catch(e){return''}}
 function upcomingHC(n){const H=HC();if(!H)return null;try{const F=H.flags,now=new Date();now.setHours(0,0,0,0);
   const ev=H.HebrewCalendar.calendar({start:now,end:new Date(+now+220*864e5),il:isIL()});const seen=new Set(),out=[];
   for(const e of ev){const f=e.getFlags();if(f&F.EREV)continue;

@@ -54,6 +54,31 @@ print('identical bodies (over 30 words): groups', len(d), '| records', sum(len(v
 same_n = [v for v in d if len({x.split('-')[0] for x in v}) < len(v)]
 print('  of them inside one nusach:', len(same_n), same_n[:6])
 
+# ---- the weekly portions: every page carries exactly the verses of its portion, word for word, and the 54 pages cover the whole Torah once ----
+TOR = json.load(open(R + 'data/torah.json', encoding='utf-8'))['books']
+PAR = json.load(open(R + 'tools/parashot.json', encoding='utf-8'))
+pbad, seen_v = [], 0
+for p in PAR:
+    slug = re.sub(r"[^a-z]+", "-", p["key"].lower().replace("'", "")).strip("-")
+    f = R + 'parasha/' + slug + '/index.html'
+    if not os.path.exists(f):
+        pbad.append((slug, 'no page')); continue
+    art = re.search(r'<article[^>]*>(.*?)</article>', open(f, encoding='utf-8').read(), re.S).group(1)
+    got = [html.unescape(re.sub(r'<[^>]+>', '', x)) for x in re.findall(r'<p><sup>[^<]*</sup>(.*?)</p>', art, re.S)]
+    want = []
+    c1, v1 = p['aliyot'][0][:2]; c2, v2 = p['aliyot'][-1][2:]
+    for c in range(c1, c2 + 1):
+        ch = TOR[p['book']][c - 1]
+        want += ch[(v1 if c == c1 else 1) - 1:(v2 if c == c2 else len(ch))]
+    seen_v += len(got)
+    if got != want:
+        pbad.append((slug, f'page {len(got)} verses, data {len(want)}'))
+    if len(re.findall(r'<h2 id="a\d">', art)) != 7:
+        pbad.append((slug, 'not seven aliyot'))
+total_v = sum(len(c) for b in TOR.values() for c in b)
+print('portions', len(PAR), '| verses on the pages', seen_v, 'of', total_v, '| pages that differ from the data:', len(pbad), pbad[:6])
+if pbad or seen_v != total_v:
+    print('RESULT: FAILED (weekly portions)'); sys.exit(1)
 if bad or nomap or empty or noredir:
     print('RESULT: FAILED'); sys.exit(1)
 print('RESULT: OK')

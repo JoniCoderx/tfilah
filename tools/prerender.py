@@ -405,10 +405,14 @@ DESCS = {}
 
 def og_for(path):
     """the share picture that matches what the link opens"""
+    if path in _PRAYER_PATHS: return "og-siddur"
     for pre, name in (("/kelim/shem/", "og-shem"), ("/kelim/", "og-kelim"), ("/tehillim-yachad/", "og-yachad"), ("/tehillim/", "og-tehillim"),
                       ("/zmanei-shabbat/", "og-shabbat"), ("/zmanei-hayom/", "og-zmanim"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
         if path.startswith(pre): return name
     return "og"
+
+
+_PRAYER_PATHS = set()
 
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
@@ -512,7 +516,12 @@ NUS = I["nusachim"]
 TEXTS = {n: json.load(open(os.path.join(DATA, f"{n}.json"), encoding="utf-8")) for n in NUS}
 by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] for n in NUS}
 
-# ---------- readable addresses for prayer pages: /tefila/<nusach>/<name in Latin letters>/ ----------
+# ---------- short addresses for prayer pages: /<name in Latin letters>/ ----------
+# The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
+# the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
+# after the name (tfilah.com/tefilat-haderech/ashkenaz/).
+_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "y", "api", "data", "icons",
+             "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
              ("ערבית", "arvit"), ("מעריב", "arvit"), ("מוסף", "musaf"), ("סעוד", "seuda"), ("חנוכה", "chanukah"), ("סוכות", "sukkot"), ("הגדה", "hagada"), ("קדיש", "kaddish")]
@@ -526,13 +535,13 @@ def _slug(title):
 
 
 def _build_purl():
-    out, old = {}, {}
+    out, taken = {}, set(_RESERVED)
     for n in ("mizrach", "sefard", "ashkenaz"):
         ps = [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])]
         base = {p["id"]: _slug(p["t"]) for p in ps}
         count = {}
         for v in base.values(): count[v] = count.get(v, 0) + 1
-        used = {"shacharit", "mincha", "arvit"}          # the three whole-service pages live at these names
+        used = set(_RESERVED)
         for p in ps:
             s = base[p["id"]]
             if s in used:                                   # the first prayer with a name keeps it plain; later ones say where they belong
@@ -548,11 +557,15 @@ def _build_purl():
                 s = cand
             assert s not in used, s
             used.add(s)
-            out[p["id"]] = f"/tefila/{n}/{s}/"
+            if s in taken:
+                out[p["id"]] = f"/{s}/{n}/"                   # the same name in another nusach
+            else:
+                taken.add(s); out[p["id"]] = f"/{s}/"
     return out
 
 
 PURL = _build_purl()
+_PRAYER_PATHS.update(PURL.values())
 BYID = {p["id"]: p for plist in by_nus.values() for p in plist}
 B = json.load(open(os.path.join(DATA, "books.json"), encoding="utf-8"))
 BOOK_KEYS = list(B)
@@ -1661,7 +1674,10 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
 _rd = os.path.join(ROOT, "_redirects")
 _cur = open(_rd, encoding="utf-8").read() if os.path.exists(_rd) else ""
 _cur = re.sub(r"# prayers: begin.*?# prayers: end\n?", "", _cur, flags=re.S).rstrip("\n")
-_lines = "".join(f"/tefila/{pid}/ {path} 301\n/tefila/{pid} {path} 301\n" for pid, path in PURL.items())
+# two generations of old addresses: /tefila/<nusach>-<number>/ and /tefila/<nusach>/<name>/ (tools/old-urls.json)
+_old = json.load(open(os.path.join(ROOT, "tools", "old-urls.json"), encoding="utf-8"))
+_lines = "".join(f"/tefila/{pid}/ {path} 301\n" + (f"{_old[pid]} {path} 301\n" if _old.get(pid) and _old[pid] != path else "") for pid, path in PURL.items())
+assert _lines.count("\n") < 1900, "Cloudflare Pages allows 2,000 static redirects"
 open(_rd, "w", encoding="utf-8").write((_cur + "\n" if _cur else "") + "# prayers: begin (written by tools/prerender.py)\n" + _lines + "# prayers: end\n")
 json.dump(PURL, open(os.path.join(DATA, "urls.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 

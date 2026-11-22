@@ -126,7 +126,9 @@ inbound = collections.Counter()
 link_cache = {}
 n_links = n_hash = n_ld = 0
 desc_len = []
-READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9-]+/|/tefila/[a-z]+/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/|/sefer/[a-z]+/")
+_PURLS = json.load(open(os.path.join(ROOT, "data", "urls.json"), encoding="utf-8"))          # prayer id -> address
+_PNUS = {v: k.split("-")[0] for k, v in _PURLS.items()}                                          # address -> nusach
+READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9-]+/|/sefer/[a-z]+/|" + "|".join(sorted((re.escape(v) for v in _PNUS), key=len, reverse=True)))
 
 def link_ok(target):
     """internal path resolves to a page or a file on disk"""
@@ -299,8 +301,8 @@ for path, f in sorted(disk.items()):
     check_copy(path, doc)
 
     # nusach of a prayer page comes from its URL: /tefila/<nusach>-<n>/
-    pm = re.fullmatch(r"/tefila/([a-z]+)/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/", path)
-    nus = pm.group(1) if pm else ""
+    pm = path in _PNUS
+    nus = _PNUS.get(path, "")
     if pm:
         prayer_titles[(nus, h1_main)].append(path)
     h1nus[(h1_full, nus)].append(path)
@@ -333,7 +335,7 @@ else:
     else:
         check_copy("/", nav.group(0))
         check_links("/", nav.group(0), anchors_only=True)
-        for hubp in sorted(p for p in disk if p.count("/") == 2):
+        for hubp in sorted(p for p in disk if p.count("/") == 2 and p not in _PNUS):      # prayer pages sit at the top level but are not hubs
             if f'href="{hubp}"' not in nav.group(0):
                 fail("home page does not link to a hub", hubp)
 
@@ -398,7 +400,7 @@ def kind(p):
     if re.fullmatch(r"/tehillim/(yom|chodesh)-[a-z0-9]+/", p): return "tehillim by day"
     if parts[0] == "tehillim": return "tehillim by need"
     if parts[0] == "kelim": return "tool"
-    if re.fullmatch(r"/tefila/[a-z]+/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/", p): return "prayer"
+    if p in _PNUS: return "prayer"
     if parts[0] == "tefila": return "nusach hub" if len(parts) == 2 else "service"
     return parts[0] + " page"
 count = collections.Counter(kind(p) for p in disk)

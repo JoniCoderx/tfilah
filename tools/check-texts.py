@@ -10,6 +10,7 @@ words = lambda s: re.sub(r'[^א-ת ]', '', NIK.sub('', html.unescape(TAG.sub(' '
 sm = open(R + 'sitemap.xml', encoding='utf-8').read()
 URLS = json.load(open(R + 'data/urls.json', encoding='utf-8'))
 RD = open(R + '_redirects', encoding='utf-8').read()
+OLD = json.load(open(R + 'tools/old-urls.json', encoding='utf-8'))
 noredir = []
 bad, nomap, nikud, empty, dup = [], [], [], [], collections.defaultdict(list)
 for n in ('mizrach', 'sefard', 'ashkenaz'):
@@ -26,7 +27,7 @@ for n in ('mizrach', 'sefard', 'ashkenaz'):
             nikud.append(p['id'])
         dup[' '.join(words(raw))].append(p['id'])
         f = R + URLS[p['id']].strip('/') + '/index.html'
-        if f"/tefila/{p['id']}/ {URLS[p['id']]} 301" not in RD:
+        if f"/tefila/{p['id']}/ {URLS[p['id']]} 301" not in RD or (OLD.get(p['id']) and f"{OLD[p['id']]} {URLS[p['id']]} 301" not in RD):
             noredir.append(p['id'])
         if not os.path.exists(f):
             bad.append((p['id'], 'no page')); continue

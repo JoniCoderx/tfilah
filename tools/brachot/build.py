@@ -57,12 +57,17 @@ head, rest = shell.split('<main id="main">', 1)
 tail = rest.split("</main>", 1)[1]
 tail = re.sub(r"<script>.*?</script>", lambda m: m.group(0) if "data-taut" in m.group(0) and "kesher" not in m.group(0) else "", tail, flags=re.S)
 head = re.sub(r"<title>.*?</title>", f"<title>{TITLE}</title>", head, count=1, flags=re.S)
-head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{DESC}">\n<meta name="robots" content="noindex">', head, count=1)
-head = re.sub(r'<link rel="canonical" href="[^"]*">\n?', "", head, count=1)
+head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{DESC}">', head, count=1)
+head = re.sub(r'(<link rel="canonical" href=")[^"]*', r"\g<1>https://tfilah.com" + PATH, head, count=1)
 head = re.sub(r'(<meta property="og:url" content=")[^"]*', r"\g<1>https://tfilah.com" + PATH, head, count=1)
 head = re.sub(r'(<meta property="og:title" content=")[^"]*', r"\g<1>" + TITLE, head, count=1)
 head = re.sub(r'(<meta property="og:description" content=")[^"]*', r"\g<1>" + DESC, head, count=1)
+LD = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "תפילה", "item": "https://tfilah.com/"},
+                                                                              {"@type": "ListItem", "position": 2, "name": "מה מברכים על", "item": "https://tfilah.com" + PATH}]},
+      {"@context": "https://schema.org", "@type": "WebApplication", "name": "מה מברכים על", "url": "https://tfilah.com" + PATH, "inLanguage": "he", "applicationCategory": "ReferenceApplication",
+       "operatingSystem": "Any", "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ILS"}, "description": DESC}]
 head = re.sub(r'<script type="application/ld\+json">.*?</script>\n?', "", head, flags=re.S)
+head = head.replace("</head>", "".join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False, separators=(",", ":")) + "</script>" for x in LD) + "\n</head>", 1)
 body = open(os.path.join(H, "page.html"), encoding="utf-8").read()
 js = lambda o: json.dumps(o, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 search_js = open(os.path.join(H, "search.js"), encoding="utf-8").read().split("if (typeof module")[0]
@@ -94,4 +99,18 @@ for r in data.RECORDS:
         b, a = BN[r.get("before")], AN[r.get("after")]
     L.append(f"| {r['name']} | {cell('، '.join(r.get('alias', [])))} | {b} | {a} | {cell(cond)} | {srcs(r)} | {'צריך בדיקה' if r.get('status') == 'review' else 'ממקור'} |")
 open(os.path.join(H, "REVIEW.md"), "w", encoding="utf-8").write("\n".join(L) + "\n")
+# ---- the sitemap: prerender.py rewrites it without this page, so the page adds itself (the date changes only when the page does) ----
+import hashlib, datetime
+doc = open(os.path.join(ROOT, "ma-mevarchim", "index.html"), encoding="utf-8").read()
+fp = hashlib.sha1(doc.encode()).hexdigest()[:16]
+lm_file = os.path.join(H, "lastmod.json")
+lm = json.load(open(lm_file)) if os.path.exists(lm_file) else {}
+if lm.get("fp") != fp:
+    lm = {"fp": fp, "date": datetime.date.today().isoformat()}
+    json.dump(lm, open(lm_file, "w"))
+sm_path = os.path.join(ROOT, "sitemap.xml")
+sm = open(sm_path, encoding="utf-8").read()
+sm = re.sub(r"\s*<url><loc>https://tfilah\.com/ma-mevarchim/</loc>.*?</url>", "", sm, flags=re.S)
+sm = sm.replace("</urlset>", f"<url><loc>https://tfilah.com{PATH}</loc><lastmod>{lm['date']}</lastmod><priority>0.8</priority></url>\n</urlset>")
+open(sm_path, "w", encoding="utf-8").write(sm)
 print(f"ma-mevarchim: {len(foods)} foods, {len(icons)} illustrations, {len(rv)} waiting for review, {len(data.CHOICES)} choosers")

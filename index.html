@@ -2056,12 +2056,12 @@ function dayFlags(){const H=HC();if(!H)return null;try{
   else tal=talAbroad(H,hd);
   const ev=H.HebrewCalendar.getHolidaysOnDate(hd,il)||[],has=f=>ev.some(e=>e.getFlags()&f),desc=ev.map(e=>e.getDesc()).join('|');
   const rc=has(F.ROSH_CHODESH),chm=has(F.CHOL_HAMOED),yomtov=has(F.CHAG),chan=isChanukah(H,hd),
-    purim=(city==='jerusalem'?/Shushan Purim/:/(^|\|)Purim(\||$)/).test(desc),fast=pubFast(H,ev),aseret=m===M.TISHREI&&d<=10,
+    purim=(city==='jerusalem'?/(^|\|)Shushan Purim(\||$)/:/(^|\|)Purim(\||$)/).test(desc),fast=pubFast(H,ev),aseret=m===M.TISHREI&&d<=10,
     regel=yomtov&&/(^|\|)(Pesach|Shavuot|Sukkot|Shmini Atzeret|Simchat Torah)/.test(desc);
   let alot=null;try{alot=z&&(z.list.find(x=>x[0]==='עלות השחר')||[])[1]}catch(e){}
   let tach=null;try{tach=H.tachanun(hd,il)}catch(e){}
   return{hd,after,geshem,tal,rc,chm,chan,purim,fast,yomtov,regel,aseret,dow,shab:dow===6,tach,omer:omerToday(),motzash:dow===0&&(after||!!(alot&&now<alot)),
-    torah:dow===1||dow===4||rc||fast||chan||purim||chm||yomtov||dow===6,hallel:rc||chan||chm||yomtov}}catch(e){return null}}
+    torah:dow===1||dow===4||rc||fast||chan||purim||chm||yomtov||dow===6,hallel:rc||chan||chm||regel}}catch(e){return null}}/* Hallel on the three festivals, not on Rosh Hashana or Yom Kippur */
 const INS={nisim:['על הניסים',f=>f.chan||f.purim],chan:['על הניסים לחנוכה',f=>f.chan],purim:['על הניסים לפורים',f=>f.purim],anenu:['עננו',f=>f.fast],yaale:['יעלה ויבוא',f=>f.rc||f.chm||f.yomtov],
   sumB:['ברכנו / ותן ברכה',f=>!f.tal],winB:['ברך עלינו / טל ומטר',f=>f.tal],sumG:['מוריד הטל',f=>!f.geshem],winG:['משיב הרוח ומוריד הגשם',f=>f.geshem]};
 function insKey(raw){const s=norm(raw).replace(/[^\u05D0-\u05EA ]/g,' ').replace(/\s+/g,' ').trim();
@@ -2466,7 +2466,7 @@ function upcoming(n=4){const out=[],now=new Date();now.setHours(12,0,0,0);
   return out}
 function omerToday(){const now=new Date(),h=hparts(now);if(!h)return 0;const evening=now.getHours()>=19;
   const base=evening?new Date(+now+864e5):now,hh=hparts(base);
-  for(let i=0;i<50;i++){const p=hparts(new Date(+base-i*864e5));if(p&&p.m==='Nisan'&&p.d===16)return i+1}return 0}
+  for(let i=0;i<49;i++){const p=hparts(new Date(+base-i*864e5));if(p&&p.m==='Nisan'&&p.d===16)return i+1}return 0}/* 49 days: the count ends on the eve of Shavuot */
 const omerText=n=>{const w=Math.floor(n/7),r=n%7,g=gem(n);return `היום ${g} ${n===1?'יום':'ימים'} לעומר${w?`, שהם ${w===1?'שבוע אחד':gem(w)+' שבועות'}${r?` ו${r===1?'יום אחד':gem(r)+' ימים'}`:''}`:''}`};
 
 /* ---------- today panel ---------- */
@@ -2544,7 +2544,7 @@ function prayerNotes(){const H=HC();if(!H)return null;try{
   if(has(F.ROSH_CHODESH))notes.push(['יעלה ויבוא','ראש חודש'],isChanukah(H,hd)?['מוסף','ראש חודש']:['חצי הלל ומוסף','ראש חודש']);
   if(has(F.CHOL_HAMOED))notes.push(['יעלה ויבוא','חול המועד']);
   if(isChanukah(H,hd))notes.push(['על הניסים','חנוכה'],['הלל שלם','חנוכה']);
-  if((city==='jerusalem'?/Shushan Purim/:/(^|\|)Purim(\||$)/).test(desc))notes.push(['על הניסים','פורים']);
+  if((city==='jerusalem'?/(^|\|)Shushan Purim(\||$)/:/(^|\|)Purim(\||$)/).test(desc))notes.push(['על הניסים','פורים']);
   if(pubFast(H,ev))notes.push(['עננו','תענית ציבור']);
   if(m===M.TISHREI&&d<=10)notes.push(['המלך הקדוש · זכרנו לחיים','עשרת ימי תשובה']);
   let t=null;try{t=H.tachanun(hd,il)}catch(e){}

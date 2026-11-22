@@ -2,6 +2,15 @@
 /tehillim/tikkun-haklali /tehillim/tikkun/ 301
 /tikkun-haklali/ /tehillim/tikkun/ 301
 # prayers: begin (written by tools/prerender.py)
+/shacharit/ /tefila/mizrach/shacharit/ 301
+/mincha/ /tefila/mizrach/mincha/ 301
+/arvit/ /tefila/mizrach/arvit/ 301
+/maariv/ /tefila/mizrach/arvit/ 301
+/hallel/ /seder-hallel/ 301
+/musaf/ /musaf-rosh-chodesh/ 301
+/tefilat-amida/ /tefilat-amida-erev-shabbat/ 301
+/haftara/ /haftara-shabbat/ 301
+/baruch-hashem-leolam-outside-of-israel/ /baruch-hashem-leolam/ 301
 /tefila/mizrach-1/ /modeh-ani/ 301
 /tefila/mizrach/modeh-ani/ /modeh-ani/ 301
 /tefila/mizrach-2/ /brachot-hashachar/ 301
@@ -176,8 +185,8 @@
 /tefila/mizrach/uva-letzion-goel-rosh-chodesh/ /uva-letzion-goel-rosh-chodesh/ 301
 /tefila/mizrach-87/ /shir-shel-yom-rosh-chodesh/ 301
 /tefila/mizrach/shir-shel-yom-rosh-chodesh/ /shir-shel-yom-rosh-chodesh/ 301
-/tefila/mizrach-88/ /musaf/ 301
-/tefila/mizrach/musaf/ /musaf/ 301
+/tefila/mizrach-88/ /musaf-rosh-chodesh/ 301
+/tefila/mizrach/musaf/ /musaf-rosh-chodesh/ 301
 /tefila/mizrach-89/ /barchi-nafshi/ 301
 /tefila/mizrach/barchi-nafshi/ /barchi-nafshi/ 301
 /tefila/mizrach-90/ /kave-rosh-chodesh/ 301
@@ -202,8 +211,8 @@
 /tefila/mizrach/musaf-regalim/ /musaf-regalim/ 301
 /tefila/mizrach-100/ /seder-hahadlaka/ 301
 /tefila/mizrach/seder-hahadlaka/ /seder-hahadlaka/ 301
-/tefila/mizrach-101/ /shacharit/ 301
-/tefila/mizrach/shacharit-chanukah/ /shacharit/ 301
+/tefila/mizrach-101/ /shacharit-lachanukah/ 301
+/tefila/mizrach/shacharit-chanukah/ /shacharit-lachanukah/ 301
 /tefila/mizrach-102/ /shabbat-zachor/ 301
 /tefila/mizrach/shabbat-zachor/ /shabbat-zachor/ 301
 /tefila/mizrach-103/ /kriat-hamegila/ 301
@@ -438,8 +447,8 @@
 /tefila/sefard/shir-hashirim/ /shir-hashirim/sefard/ 301
 /tefila/sefard-89/ /mincha-leerev-shabbat/ 301
 /tefila/sefard/mincha-leerev-shabbat/ /mincha-leerev-shabbat/ 301
-/tefila/sefard-90/ /tefilat-amida/ 301
-/tefila/sefard/tefilat-amida/ /tefilat-amida/ 301
+/tefila/sefard-90/ /tefilat-amida-erev-shabbat/ 301
+/tefila/sefard/tefilat-amida/ /tefilat-amida-erev-shabbat/ 301
 /tefila/sefard-91/ /kabbalat-shabbat/sefard/ 301
 /tefila/sefard/kabbalat-shabbat/ /kabbalat-shabbat/sefard/ 301
 /tefila/sefard-92/ /tefilat-arvit-shel-shabbat/ 301
@@ -588,8 +597,8 @@
 /tefila/sefard/tzafun/ /tzafun/ 301
 /tefila/sefard-164/ /barech/ 301
 /tefila/sefard/barech/ /barech/ 301
-/tefila/sefard-165/ /hallel/ 301
-/tefila/sefard/hallel/ /hallel/ 301
+/tefila/sefard-165/ /hallel-hagada/ 301
+/tefila/sefard/hallel/ /hallel-hagada/ 301
 /tefila/sefard-166/ /nirtza/ 301
 /tefila/sefard/nirtza/ /nirtza/ 301
 /tefila/sefard-167/ /shir-hashirim-hagada/ 301
@@ -970,8 +979,8 @@
 /tefila/ashkenaz/emet-veemuna/ /emet-veemuna/ 301
 /tefila/ashkenaz-140/ /hashkiveinu/ 301
 /tefila/ashkenaz/hashkiveinu/ /hashkiveinu/ 301
-/tefila/ashkenaz-141/ /baruch-hashem-leolam-outside-of-israel/ 301
-/tefila/ashkenaz/baruch-hashem-leolam-outside-of-israel/ /baruch-hashem-leolam-outside-of-israel/ 301
+/tefila/ashkenaz-141/ /baruch-hashem-leolam/ 301
+/tefila/ashkenaz/baruch-hashem-leolam-outside-of-israel/ /baruch-hashem-leolam/ 301
 /tefila/ashkenaz-142/ /chatzi-kaddish-arvit/ 301
 /tefila/ashkenaz/chatzi-kaddish-arvit/ /chatzi-kaddish-arvit/ 301
 /tefila/ashkenaz-143/ /avot-arvit/ 301
@@ -1290,8 +1299,8 @@
 /tefila/ashkenaz/chatzi-kaddish-shabbat-shacharit-2/ /chatzi-kaddish-shabbat-shacharit-2/ 301
 /tefila/ashkenaz-298/ /hagbaha-shabbat-shacharit/ 301
 /tefila/ashkenaz/hagbaha-shabbat-shacharit/ /hagbaha-shabbat-shacharit/ 301
-/tefila/ashkenaz-299/ /haftara/ 301
-/tefila/ashkenaz/haftara/ /haftara/ 301
+/tefila/ashkenaz-299/ /haftara-shabbat/ 301
+/tefila/ashkenaz/haftara/ /haftara-shabbat/ 301
 /tefila/ashkenaz-300/ /yekum-purkan/ 301
 /tefila/ashkenaz/yekum-purkan/ /yekum-purkan/ 301
 /tefila/ashkenaz-301/ /tefila-leshalom-medinat-yisrael/ 301

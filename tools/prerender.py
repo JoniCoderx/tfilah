@@ -609,7 +609,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1613,6 +1613,44 @@ page("/kotel/", f"תפילה בכותל המערבי: פסוקים ומזמור�
      "תפילה בכותל המערבי", [("תפילה בכותל המערבי", "/kotel/")], text=k_text, before=k_before, after=k_after, prio="0.8",
      lead="הפסוקים והמזמורים שנהגו לומר ליד הכותל, עם המקור של כל מנהג.",
      ld=[{"@type": "CreativeWork", "name": "תפילה בכותל המערבי", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + "/kotel/"}])
+
+# ---------- the forty-day custom of Rachel Imenu ----------
+# A custom that passes by word of mouth. The page describes it as the two pages that were read describe it, says plainly
+# that it is a custom and not a ruling, and prints no composed prayer: the request is made in one's own words.
+# The only sacred text is the three verses about Rachel (Jeremiah 31:15-17, data/kotel.json), shown as verses, not as part of the custom.
+_R_SRC = [("https://www.tehillim-center.co.il/article/4954", "מוקד תהילים ארצי"), ("https://breslev.co.il/4873956/", "ברסלב ישראל")]
+R40_JS = ("(function(){var g=document.getElementById('r40g'),s=document.getElementById('r40s'),r=document.getElementById('r40r');if(!g)return;var K='rachel40',d=[];"
+          "try{d=JSON.parse(localStorage.getItem(K)||'[]')||[]}catch(e){}if(!(d instanceof Array))d=[];"
+          "function save(){try{localStorage.setItem(K,JSON.stringify(d))}catch(e){}}"
+          "function paint(){var b=g.querySelectorAll('button'),n=0;for(var i=0;i<b.length;i++){var on=d.indexOf(i+1)>=0;if(on)n++;b[i].setAttribute('aria-pressed',on?'true':'false')}"
+          "s.textContent=n===0?'עוד לא סומן יום. מסמנים כל יום אחרי שהדליקו.':n>=40?'סומנו כל 40 הימים.':'סומנו '+n+' מתוך 40 ימים. נשארו '+(40-n)+'.';r.hidden=n===0}"
+          "g.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(!b)return;var k=+b.getAttribute('data-d'),i=d.indexOf(k);if(i>=0)d.splice(i,1);else d.push(k);save();paint()});"
+          "r.addEventListener('click',function(){if(confirm('למחוק את כל הסימונים ולהתחיל מחדש?')){d=[];save();paint()}});paint()})();")
+_r40 = ('<style>.r40g{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;max-width:26rem;margin:.8rem 0}@media(min-width:40rem){.r40g{grid-template-columns:repeat(8,1fr);max-width:32rem}}'
+        '.r40g button{min-height:2.75rem;border:1px solid var(--line);border-radius:.8rem;background:var(--surface,#fff);color:inherit;font:inherit;font-weight:700;cursor:pointer}'
+        '.r40g button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}#r40r{margin-block-start:.3rem}</style>'
+        '<h2 class="sec" id="maakav">מעקב 40 יום</h2><p class="note" id="r40s" aria-live="polite">מסמנים כל יום אחרי שהדליקו.</p>'
+        '<div class="r40g" id="r40g" role="group" aria-label="ארבעים הימים">' + "".join(f'<button type="button" data-d="{i}" aria-pressed="false" aria-label="יום {i}">{i}</button>' for i in range(1, 41)) + '</div>'
+        '<p><button type="button" class="btn2" id="r40r" hidden>התחלה מחדש</button></p><p class="note">הסימון נשמר רק במכשיר הזה.</p>')
+r_before = ('<div class="prose"><p>סגולת רחל אמנו היא מנהג שעובר מפה לאוזן: מדליקים נר לעילוי נשמתה של רחל אמנו 40 יום ברצף, נותנים צדקה ומתפללים על ישועה. '
+            'זה מנהג ולא הלכה, ואין לו נוסח תפילה קבוע. מבקשים במילים שלכם.</p>'
+            '<h2 class="sec">איך נוהגים</h2><ol>'
+            '<li>מדליקים נר לעילוי נשמת רחל אמנו בכל יום, 40 יום ברצף, ושמים כמה מטבעות לצדקה.</li>'
+            '<li>אחרי ההדלקה מתפללים לקדוש ברוך הוא שבזכותה של רחל אמנו ירחם וישלח את הישועה שמבקשים, למשל זיווג הגון או זרע של קיימא.</li>'
+            '<li>מקבלים על עצמכם לפרסם את הסגולה ברבים אם התפילה נענתה.</li></ol>'
+            '<p>בשבת לא מדליקים נר. את הנר של שבת מדליקים ביום שישי, לפני כניסת השבת.</p></div>' + _r40)
+r_text = ('<h2 id="psukim">הפסוקים על רחל אמנו</h2><p><small>מתוך ספר ירמיהו, פרק לא. הפסוקים אינם חלק מהסגולה. הם המקור לדמותה של רחל כמי שמתפללת על בניה.</small></p>'
+          + "".join(f'<p>{clean(KOTEL["verses"][k])} <small>(ירמיהו לא, {v})</small></p>' for k, v in (("Jeremiah.31.15", "טו"), ("Jeremiah.31.16", "טז"), ("Jeremiah.31.17", "יז"))))
+r_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
+           + "".join(f'<li>תיאור המנהג: <a href="{u}" target="_blank" rel="noopener">{esc(t)}</a>.</li>' for u, t in _R_SRC)
+           + '<li>נוסח הפסוקים: ”תנ״ך עם ניקוד” (נחלת הכלל).</li></ul>'
+           '<p><small>האתר מתאר את המנהג כפי שהוא מתואר במקורות האלה ואינו פוסק בו. מי שרוצה הדרכה שואל רב.</small></p></div>'
+           + chips("עוד באתר", [("/tikun-rachel/", "תיקון רחל"), ("/mizmor-letoda/", "מזמור לתודה"), ("/nishmat-kol-chai/", "נשמת כל חי"), ("/sefer/haman/", "פרשת המן"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם")]))
+page("/segulat-rachel-imenu/", f"סגולת רחל אמנו: 40 יום של נר, צדקה ותפילה | {BRAND}",
+     "סגולת רחל אמנו ל-40 יום: איך נוהגים, שלב אחרי שלב, עם מעקב ימים שנשמר בטלפון והפסוקים על רחל אמנו מספר ירמיהו בניקוד מלא.",
+     "סגולת רחל אמנו", [("סגולת רחל אמנו", "/segulat-rachel-imenu/")], text=r_text, before=r_before, after=r_after, prio="0.8", script=R40_JS,
+     lead="40 יום של נר, צדקה ותפילה. איך נוהגים, ומעקב ימים.",
+     ld=[{"@type": "Article", "headline": "סגולת רחל אמנו: 40 יום", "inLanguage": "he", "url": SITE + "/segulat-rachel-imenu/"}])
 
 page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה ועוד | {BRAND}",
      "ספרייה בניקוד מלא: פרקי אבות, שיר השירים, מגילת רות, מגילת אסתר, איכה, קהלת, משלי, פרק שירה, פרשת המן, סליחות, יזכור ועוד. כל ספר בעמוד קריאה משלו.",

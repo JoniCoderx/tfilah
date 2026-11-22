@@ -309,6 +309,9 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .tautbox textarea{inline-size:100%;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);line-height:1.6}
 .nact{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0}.btn2{min-height:3rem;padding:.4rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 """),
+("tklong", """
+.tklong{margin:1rem 0;border-block:1px solid var(--line)}.tklong summary{cursor:pointer;min-height:3rem;display:flex;align-items:center;font-family:var(--f-ui);font-weight:700;font-size:1rem}
+"""),
 ("svctoc", """
 .svctoc{margin:.6rem 0 1rem;border:1px solid var(--line);border-radius:1.25rem;background:#fff}
 .svctoc summary{cursor:pointer;list-style:none;min-height:3.2rem;display:flex;align-items:center;padding:.5rem 1.1rem;font-weight:700}
@@ -498,6 +501,7 @@ def collection(name, path, paths, desc=""):
 # Load everything first: links between pages need the whole picture.
 # =====================================================================
 P = json.load(open(os.path.join(DATA, "tehillim.json"), encoding="utf-8"))
+TIKKUN = json.load(open(os.path.join(DATA, "tikkun.json"), encoding="utf-8"))
 I = json.load(open(os.path.join(DATA, "index.json"), encoding="utf-8"))
 NUS = I["nusachim"]
 TEXTS = {n: json.load(open(os.path.join(DATA, f"{n}.json"), encoding="utf-8")) for n in NUS}
@@ -875,8 +879,16 @@ for i, (k, t, chs) in enumerate(NEEDS):
         desc = fit_desc(f"{h1}{alt}: {cnt} שנוהגים לומר, פרקים {names}. כל הפרקים ברצף בעמוד אחד, בניקוד מלא",
                         tails=("עם קישור לכל פרק בנפרד.", "קריאה נוחה בנייד.", "חינם וללא הרשמה."))
     text = "".join(f'<h2 id="p{c}"><a href="/tehillim/{c}/">תהילים פרק {gem(c)}</a></h2>{verses(c)}' for c in chs)
+    if k == "tikkun":
+        # what is said before and after the ten psalms, from the edition named in data/tikkun.json
+        text = ('<h2 id="lifnei">לפני אמירת המזמורים</h2>' + "".join(f"<p>{clean(x)}</p>" for x in TIKKUN["open"]) + text
+                + '<h2 id="acharei">תפילה אחרי תיקון הכללי</h2>' + "".join(f"<p>{clean(x)}</p>" for x in TIKKUN["short"])
+                + '<details class="tklong"><summary>התפילה הארוכה של רבי נתן</summary>' + "".join(f"<p>{clean(x)}</p>" for x in TIKKUN["natan"]) + "</details>")
+        title = f"תיקון הכללי המלא: עשרת המזמורים והתפילה שאחריהם | {BRAND}"
+        lead = f"תיקון הכללי כפי שאומרים אותו: הפתיחה, עשרת פרקי התהילים ({names}) והתפילה שאחריהם. הכול ברצף, בניקוד מלא."
     before = (f'<p class="note">{esc(NEED_NOTE[k])}</p>' if k in NEED_NOTE else "")
-    before += '<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#p{c}">פרק {gem(c)}</a>' for c in chs) + "</div>"
+    before += ('<div class="related" style="margin-block-end:1rem">' + ('<a href="#lifnei">הפתיחה</a>' if k == "tikkun" else "")
+               + "".join(f'<a href="#p{c}">פרק {gem(c)}</a>' for c in chs) + ('<a href="#acharei">התפילה שאחרי</a>' if k == "tikkun" else "") + "</div>")
     prev, nxt = (NEEDS[i - 1] if i else None), (NEEDS[i + 1] if i + 1 < len(NEEDS) else None)
     after = pager((f"/tehillim/{prev[0]}/", need_h1(prev[0])) if prev else None, (f"/tehillim/{nxt[0]}/", need_h1(nxt[0])) if nxt else None)
     after += chips("כל פרק בעמוד משלו", [(f"/tehillim/{c}/", f"תהילים פרק {gem(c)}") for c in chs])
@@ -1485,7 +1497,8 @@ TAUT_JS = ("(function(){var b=document.getElementById('tautbox');if(!b)return;va
 odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סידור אונליין בשלושה נוסחים, עדות המזרח, ספרד ואשכנז, עם ספר תהילים מלא, ספרייה של מגילות ופרקים, זמני היום וכלים אישיים. '
         'הקריאה חופשית, בלי הרשמה ובלי פרסומות.</p>'
         '<h2>מקורות הטקסטים</h2><p>נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. '
-        'ספר תהילים והמגילות: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא.</p>'
+        'ספר תהילים והמגילות: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא. '
+        'בנוסח אשכנז, ”ויתן לך” מתוך סידור ושננתם, ו”במה מדליקין” מתוך תורת אמת. הפתיחה והתפילות של תיקון הכללי: מהדורת rabenubook.com.</p>'
         '<h2>זמני היום והלוח</h2><p>הלוח העברי, פרשת השבוע והמועדים מחושבים בספריית Hebcal. זמני היום מחושבים לפי מיקום העיר: הנץ ושקיעה אסטרונומיים, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, '
         'וצאת השבת כשהשמש 8.5 מעלות מתחת לאופק. הזמנים עשויים לסטות בדקה או שתיים מלוחות אחרים, ולמעשה יש להחמיר.</p>'
         '<h2 id="taut">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'

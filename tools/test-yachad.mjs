@@ -1,6 +1,7 @@
 // Tests for functions/api/yachad.js against a local SQLite stand-in for D1 (no network).
 //   node --no-warnings tools/test-yachad.mjs
-import { onRequest, _reset } from "../functions/api/yachad.js";
+import { onRequest, _reset, readPublic } from "../functions/api/yachad.js";
+import { onRequest as sharePage } from "../functions/y/[id].js";
 import { fakeD1 } from "./d1-fake.mjs";
 
 const SITE = "https://tfilah.com";
@@ -18,7 +19,7 @@ const mk = (over = {}) => post("create_memorial", { p_name: "שרה", p_parent: 
 // ---- create and read ----
 let a = await mk();
 const id = a.d;
-ok("create returns a 16-char id", a.s === 200 && /^[0-9a-f]{16}$/.test(id), a.j);
+ok("create returns a short id that is easy to read out", a.s === 200 && /^[a-z2-9]{10}$/.test(id) && !/[lo01]/.test(id), a.j);
 let g = (await post("get_memorial", { p_id: id })).d;
 ok("get returns the reading with no chapters", g && g.memorial.name === "שרה" && g.memorial.kind === "refuah" && g.memorial.done === 0 && g.chapters.length === 0 && g.memorial.listed === false, g);
 ok("an unlisted reading is not in the public list", (await list()).length === 0);
@@ -54,6 +55,19 @@ ok("the finisher's name is kept", g.chapters.find(c => c.n === 1).by_name === "�
 const both = await Promise.all([post("take_chapter", { p_mid: id, p_by: "x" }), post("take_chapter", { p_mid: id, p_by: "y" })]);
 ok("two people at once get different chapters", both[0].d !== both[1].d && both[0].d > 2 && both[1].d > 2, [both[0].d, both[1].d]);
 for (const bad of [0, 15001, 1.5, "7", null]) ok("bad chapter number " + JSON.stringify(bad), (await post("finish_chapter", { p_mid: id, p_n: bad, p_by: "" })).d === null && (await post("claim_chapter", { p_mid: id, p_n: bad, p_by: "" })).d === false);
+
+// ---- readers are counted per browser, not per chapter ----
+{ const r = (await mk({ p_name: "קוראים" })).d;
+  for (const n of [1, 2, 3]) await post("finish_chapter", { p_mid: r, p_n: n, p_by: "", p_rid: "aaaaaaaa11" });
+  await post("take_chapter", { p_mid: r, p_by: "רות", p_rid: "bbbbbbbb22" });
+  await post("finish_chapter", { p_mid: r, p_n: 9, p_by: "נעמי" });                       // no id: counted by name
+  await post("finish_chapter", { p_mid: r, p_n: 10, p_by: "", p_rid: "<script>" });        // a bad id is dropped: anonymous
+  const m = (await post("get_memorial", { p_id: r })).d.memorial;
+  ok("six chapters from four readers", m.done === 5 && m.readers === 4, m);
+  const pubm = await readPublic(env(), r);
+  ok("the share page reads only public fields", pubm && pubm.name === "קוראים" && pubm.done === 5 && !("hidden" in pubm) && !("by_name" in pubm));
+  ok("the share page gets nothing for a bad or unknown id", (await readPublic(env(), "x' or 1=1")) === null && (await readPublic(env(), "zzzzzzzzzz")) === null);
+}
 
 // ---- a claim left for a day can be taken over ----
 clock += 23 * 3600e3;
@@ -93,6 +107,20 @@ for (let i = 0; i < 31; i++) last = await mk({ p_name: "מס " + i });
 ok("the 31st new reading within ten minutes is refused", last.s === 429, last.s);
 clock += 11 * 60e3;
 ok("and allowed again later", (await mk()).s === 200);
+
+// ---- the address people send ----
+{ const r = (await mk({ p_name: "שרה", p_parent: "רחל", p_rel: "בת", p_kind: "refuah" })).d;
+  const res = await sharePage({ params: { id: r }, env: env(), request: new Request(SITE + "/y/" + r) }), h = await res.text();
+  ok("share page says who the reading is for", res.status === 200 && h.includes("<title>תהילים יחד לרפואה שלמה של שרה בת רחל | תפילה</title>") && h.includes('property="og:title" content="תהילים יחד לרפואה שלמה של שרה בת רחל"'));
+  ok("share page opens the reading and is not indexed", h.includes('location.replace("/#m-' + r + '")') && h.includes('content="noindex"') && h.includes("og-yachad.png"));
+  const x = (await mk({ p_name: '<img src=x onerror=1>"', p_kind: "general" })).d;
+  const hx = await (await sharePage({ params: { id: x }, env: env(), request: new Request(SITE + "/y/" + x) })).text();
+  ok("names are escaped on the share page", !hx.includes("<img src=x") && hx.includes("&lt;img"));
+  const nf = await sharePage({ params: { id: "nosuchid22" }, env: env(), request: new Request(SITE + "/y/nosuchid22") });
+  ok("unknown reading: generic page, 404", nf.status === 404 && (await nf.text()).includes("קריאת תהילים משותפת"));
+  const bad = await sharePage({ params: { id: "a b<c" }, env: env(), request: new Request(SITE + "/y/x") });
+  ok("a malformed id is sent to the explanation page", bad.status === 302 && bad.headers.get("location").endsWith("/tehillim-yachad/"));
+}
 
 console.log(`${pass + fail} checks, ${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

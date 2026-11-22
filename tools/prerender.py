@@ -291,6 +291,8 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .znow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.znow div{padding:1rem;border-radius:1.25rem;background:var(--sunk);display:grid;gap:.2rem}
 .znow span{font-size:.85rem;color:var(--muted);font-weight:600}.znow b{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums}
 .znow small{color:var(--muted)}
+.zday td small{color:var(--muted);white-space:normal}.zday td:first-child{white-space:normal;font-weight:600}.zt.zday tr.past{display:table-row}
+.zscroll{overflow-x:auto;margin-inline:-.25rem;padding-inline:.25rem}.zweek td,.zweek th{padding-inline:.35rem;font-size:.95rem}
 """),
 ("plainx", """
 .plainx{margin:.4rem 0 1rem;padding:1rem 1.15rem;border-radius:1.25rem;background:var(--sunk)}
@@ -376,7 +378,7 @@ FOOT_JS = "document.addEventListener('click',function(e){var a=e.target.closest&
 FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
-            '<a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/odot/">אודות ומקורות</a></nav></details>')
+            '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/odot/">אודות ומקורות</a></nav></details>')
 FONT_HEAD = '<link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin><style>@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-hebrew-900.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-latin-900.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-hebrew-600.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>'
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
@@ -404,7 +406,7 @@ DESCS = {}
 def og_for(path):
     """the share picture that matches what the link opens"""
     for pre, name in (("/kelim/shem/", "og-shem"), ("/kelim/", "og-kelim"), ("/tehillim-yachad/", "og-yachad"), ("/tehillim/", "og-tehillim"),
-                      ("/zmanei-shabbat/", "og-shabbat"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
+                      ("/zmanei-shabbat/", "og-shabbat"), ("/zmanei-hayom/", "og-zmanim"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
         if path.startswith(pre): return name
     return "og"
 
@@ -439,7 +441,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 {NAV}</div></header>
 <main id="main"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}{before}{reading}{after}{applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
-<nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
+<nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
 {'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}
 <p class="fcredit">הטקסטים מתוך המהדורות הפתוחות של תורת אמת, דעת ו-Tanach.us, דרך הארכיון של ספריא. <a href="/odot/">פירוט המקורות</a></p>
@@ -1494,6 +1496,116 @@ for c in SH_CITIES:
          app_hash="home", app_label="לכל זמני היום באפליקציה", lead=f"כניסת שבת ויציאת שבת ב{name}, מתעדכן לכל שבת.",
          ld=[{"@type": "WebPage", "name": f"זמני שבת ב{name}", "url": SITE + f"/zmanei-shabbat/{slug}/", "inLanguage": "he", "isPartOf": WEBSITE,
               "about": {"@type": "Place", "name": name, "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon}}}])
+
+# ---------- the day's times, a page per city: /zmanei-hayom/<city>/ ----------
+# Same rules as the app's zmanim(): proportional hours from sunrise to sunset; dawn and Rabbenu Tam 72 proportional
+# minutes; nightfall 13.5 proportional minutes after sunset. One more row gives nightfall at 8.5 degrees.
+def sun_rise_set(d, lat, lon, zen, rising):
+    y0 = datetime.datetime(d.year, 1, 1); N = (datetime.datetime(d.year, d.month, d.day) - y0).days + 1
+    lh = lon / 15; t = N + ((6 if rising else 18) - lh) / 24; M = .9856 * t - 3.289; r = math.radians
+    L = (M + 1.916 * math.sin(r(M)) + .02 * math.sin(r(2 * M)) + 282.634) % 360
+    RA = math.degrees(math.atan(.91764 * math.tan(r(L)))) % 360
+    RA = (RA + math.floor(L / 90) * 90 - math.floor(RA / 90) * 90) / 15
+    sD = .39782 * math.sin(r(L)); cD = math.cos(math.asin(sD))
+    cH = (math.cos(r(zen)) - sD * math.sin(r(lat))) / (cD * math.cos(r(lat)))
+    if not -1 <= cH <= 1: return None
+    H = (360 - math.degrees(math.acos(cH)) if rising else math.degrees(math.acos(cH))) / 15
+    ut = (H + RA - .06571 * t - 6.622 - lh) % 24
+    base = datetime.datetime(d.year, d.month, d.day, tzinfo=datetime.timezone.utc)
+    ms = base + datetime.timedelta(hours=ut); noon = base + datetime.timedelta(hours=12 - lh)
+    while (ms - noon).total_seconds() > 43200: ms -= datetime.timedelta(days=1)
+    while (noon - ms).total_seconds() > 43200: ms += datetime.timedelta(days=1)
+    return ms
+
+
+DAY_ROWS = [("alot", "עלות השחר", "72 דקות זמניות לפני הנץ"), ("talit", "זמן טלית ותפילין", "60 דקות זמניות לפני הנץ"),
+            ("netz", "הנץ החמה", "זריחה, בגובה פני הים"), ("shmaM", "סוף זמן קריאת שמע (מג״א)", "3 שעות זמניות מעלות השחר"),
+            ("shmaG", "סוף זמן קריאת שמע (גר״א)", "3 שעות זמניות מהנץ"), ("tfila", "סוף זמן תפילה (גר״א)", "4 שעות זמניות מהנץ"),
+            ("chatzot", "חצות היום", "אמצע היום"), ("mg", "מנחה גדולה", "חצי שעה זמנית אחרי חצות"), ("mk", "מנחה קטנה", "9.5 שעות זמניות מהנץ"),
+            ("plag", "פלג המנחה", "10.75 שעות זמניות מהנץ"), ("shkia", "שקיעה", "בגובה פני הים"),
+            ("tzet", "צאת הכוכבים", "13.5 דקות זמניות אחרי השקיעה"), ("tzet85", "צאת הכוכבים לחומרה", "השמש 8.5° מתחת לאופק"),
+            ("rt", "צאת הכוכבים לרבנו תם", "72 דקות זמניות אחרי השקיעה")]
+
+
+def day_times(c, d):
+    _, _, lat, lon, tz, _m = c
+    rise, sset = sun_rise_set(d, lat, lon, 90.833, True), sun_rise_set(d, lat, lon, 90.833, False)
+    if not rise or not sset: return None
+    hr = (sset - rise) / 12; alot = rise - hr * 1.2; rt = sset + hr * 1.2; mga = (rt - alot) / 12
+    t85 = sun_rise_set(d, lat, lon, 98.5, False)
+    v = {"alot": alot, "talit": rise - hr, "netz": rise, "shmaM": alot + 3 * mga, "shmaG": rise + 3 * hr, "tfila": rise + 4 * hr, "chatzot": rise + 6 * hr,
+         "mg": rise + 6.5 * hr, "mk": rise + 9.5 * hr, "plag": rise + 10.75 * hr, "shkia": sset, "tzet": sset + hr * (13.5 / 60), "tzet85": t85, "rt": rt}
+    z = ZoneInfo(tz)
+    return {k: (x.astimezone(z).strftime("%H:%M") if x else "") for k, x in v.items()}
+
+
+HEDAY = ["יום שני", "יום שלישי", "יום רביעי", "יום חמישי", "יום שישי", "שבת", "יום ראשון"]
+DAY_CALC = ("function R(d){return d*Math.PI/180}function G(r){return r*180/Math.PI}"
+            "function sun(P,y,m,d,zen,up){var N=Math.floor((Date.UTC(y,m-1,d)-Date.UTC(y,0,0))/864e5),lh=P.lon/15,t=N+((up?6:18)-lh)/24,M=.9856*t-3.289;"
+            "var L=(M+1.916*Math.sin(R(M))+.02*Math.sin(R(2*M))+282.634)%360;if(L<0)L+=360;var RA=G(Math.atan(.91764*Math.tan(R(L))))%360;if(RA<0)RA+=360;"
+            "RA=(RA+Math.floor(L/90)*90-Math.floor(RA/90)*90)/15;var sD=.39782*Math.sin(R(L)),cD=Math.cos(Math.asin(sD)),cH=(Math.cos(R(zen))-sD*Math.sin(R(P.lat)))/(cD*Math.cos(R(P.lat)));"
+            "if(cH>1||cH<-1)return null;var H=(up?360-G(Math.acos(cH)):G(Math.acos(cH)))/15,ut=(H+RA-.06571*t-6.622-lh)%24;if(ut<0)ut+=24;var ms=Date.UTC(y,m-1,d)+ut*36e5,noon=Date.UTC(y,m-1,d)+(12-lh)*36e5;"
+            "while(ms-noon>432e5)ms-=864e5;while(noon-ms>432e5)ms+=864e5;return ms}"
+            "function hm(P,ms){return ms==null?'':new Intl.DateTimeFormat('he-IL',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:P.tz}).format(new Date(ms))}"
+            "function today(P){var o={};new Intl.DateTimeFormat('en-CA',{timeZone:P.tz,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).forEach(function(x){o[x.type]=x.value});return Date.UTC(+o.year,+o.month-1,+o.day)}"
+            "function day(P,ms){var D=new Date(ms),y=D.getUTCFullYear(),m=D.getUTCMonth()+1,d=D.getUTCDate(),r=sun(P,y,m,d,90.833,1),s=sun(P,y,m,d,90.833,0);if(r==null||s==null)return null;"
+            "var h=(s-r)/12,a=r-h*1.2,rt=s+h*1.2,g=(rt-a)/12;return{alot:a,talit:r-h,netz:r,shmaM:a+3*g,shmaG:r+3*h,tfila:r+4*h,chatzot:r+6*h,mg:r+6.5*h,mk:r+9.5*h,plag:r+10.75*h,shkia:s,tzet:s+h*.225,tzet85:sun(P,y,m,d,98.5,0),rt:rt}}")
+DAY_JS = ("(function(){try{var P=__P__,MON=['בינואר','בפברואר','במרץ','באפריל','במאי','ביוני','ביולי','באוגוסט','בספטמבר','באוקטובר','בנובמבר','בדצמבר'],WD=['יום ראשון','יום שני','יום שלישי','יום רביעי','יום חמישי','יום שישי','שבת'];" + DAY_CALC +
+          "var t0=today(P),v=day(P,t0);if(!v)return;var dt=function(ms){var D=new Date(ms);return WD[D.getUTCDay()]+', '+D.getUTCDate()+' '+MON[D.getUTCMonth()]+' '+D.getUTCFullYear()};"
+          "document.querySelectorAll('[data-z]').forEach(function(e){var k=e.getAttribute('data-z');if(k==='date')e.textContent=dt(t0);else if(v[k]!=null)e.textContent=hm(P,v[k])});"
+          "var now=Date.now(),nx=null;document.querySelectorAll('.zday tr[data-k]').forEach(function(tr){var k=tr.getAttribute('data-k');tr.className='';if(!nx&&v[k]!=null&&v[k]>=now){nx=tr;tr.className='now'}});"
+          "var tb=document.querySelector('.zweek tbody');if(tb){var rows=[];for(var i=0;i<7;i++){var w=day(P,t0+i*864e5);if(!w)continue;"
+          "rows.push('<tr'+(i?'':' class=\"now\"')+'><td>'+dt(t0+i*864e5).replace(/ \\d{4}$/,'')+'</td><td>'+hm(P,w.netz)+'</td><td>'+hm(P,w.shmaG)+'</td><td>'+hm(P,w.chatzot)+'</td><td><b>'+hm(P,w.shkia)+'</b></td><td>'+hm(P,w.tzet)+'</td></tr>')}tb.innerHTML=rows.join('')}"
+          "}catch(e){}})();")
+DAY_HUB_JS = ("(function(){try{" + DAY_CALC + "document.querySelectorAll('.cards li[data-p]').forEach(function(li){var a=li.getAttribute('data-p').split(','),P={lat:+a[0],lon:+a[1],tz:a[2]},"
+              "v=day(P,today(P)),s=li.querySelector('small');if(v&&s)s.textContent='הנץ '+hm(P,v.netz)+' · שקיעה '+hm(P,v.shkia)})}catch(e){}})();")
+_today = datetime.date.today()
+_dtxt = lambda d: f"{HEDAY[d.weekday()]}, {d.day} {HEMON[d.month - 1]} {d.year}"
+day_links = [(f"/zmanei-hayom/{c[0]}/", "זמני היום ב" + c[1]) for c in SH_CITIES]
+for c in SH_CITIES:
+    slug, name, lat, lon, tz, _mins = c; v = day_times(c, _today)
+    if not v: continue
+    week = [(d, day_times(c, d)) for d in (_today + datetime.timedelta(days=i) for i in range(7))]
+    body = (f'<p class="note">היום: <b data-z="date">{_dtxt(_today)}</b></p>'
+            f'<div class="znow"><div><span>הנץ החמה</span><b data-z="netz">{v["netz"]}</b></div><div><span>שקיעה</span><b data-z="shkia">{v["shkia"]}</b></div>'
+            f'<div><span>צאת הכוכבים</span><b data-z="tzet">{v["tzet"]}</b></div></div>'
+            f'<h2 class="sec">כל זמני היום ב{esc(name)}</h2>'
+            '<table class="zt zday"><thead><tr><th scope="col">הזמן</th><th scope="col">שעה</th><th scope="col">לפי</th></tr></thead><tbody>'
+            + "".join(f'<tr data-k="{k}"><td>{esc(lbl)}</td><td><b data-z="{k}">{v[k]}</b></td><td><small>{esc(how)}</small></td></tr>' for k, lbl, how in DAY_ROWS if v[k])
+            + '</tbody></table>'
+            f'<h2 class="sec">זמני היום ב{esc(name)} לשבוע הקרוב</h2>'
+            '<div class="zscroll" tabindex="0" role="region" aria-label="לוח זמני היום לשבוע הקרוב"><table class="zt zweek"><thead><tr><th scope="col">יום</th><th scope="col">הנץ</th><th scope="col">סוף ק״ש</th><th scope="col">חצות</th><th scope="col">שקיעה</th><th scope="col">צאת</th></tr></thead><tbody>'
+            + "".join(f'<tr{chr(32) + "class=" + chr(34) + "now" + chr(34) if i == 0 else ""}><td>{_dtxt(d).rsplit(" ", 1)[0]}</td><td>{w["netz"]}</td><td>{w["shmaG"]}</td><td>{w["chatzot"]}</td><td><b>{w["shkia"]}</b></td><td>{w["tzet"]}</td></tr>' for i, (d, w) in enumerate(week) if w)
+            + '</tbody></table></div>'
+            f'<h2 class="sec">שאלות נפוצות על זמני היום ב{esc(name)}</h2><div class="prose">'
+            f'<h3>מתי השקיעה היום ב{esc(name)}?</h3><p>השקיעה ב{esc(name)} היום בשעה <b data-z="shkia">{v["shkia"]}</b>, וצאת הכוכבים בשעה <b data-z="tzet">{v["tzet"]}</b>.</p>'
+            f'<h3>עד מתי אפשר לקרוא קריאת שמע של שחרית?</h3><p>סוף זמן קריאת שמע ב{esc(name)} היום: <b data-z="shmaM">{v["shmaM"]}</b> לפי המגן אברהם, ו-<b data-z="shmaG">{v["shmaG"]}</b> לפי הגר״א. סוף זמן תפילה לפי הגר״א: <b data-z="tfila">{v["tfila"]}</b>.</p>'
+            f'<h3>ממתי אפשר להתפלל מנחה?</h3><p>ממנחה גדולה, היום בשעה <b data-z="mg">{v["mg"]}</b>, ועד השקיעה.</p>'
+            '<h3>איך מחושבים הזמנים?</h3><p>היום מתחלק ל-12 שעות זמניות, מהנץ החמה ועד השקיעה. עלות השחר וצאת הכוכבים לרבנו תם הם 72 דקות זמניות לפני הנץ ואחרי השקיעה. '
+            'צאת הכוכבים מחושב 13.5 דקות זמניות אחרי השקיעה, כמקובל בלוחות של עדות המזרח, ולצידו מוצג גם הזמן המחמיר, כשהשמש 8.5 מעלות מתחת לאופק. '
+            'הנץ והשקיעה מחושבים בגובה פני הים, בלי התחשבות בהרים שמסתירים את האופק. הדף מחשב את הזמנים מחדש בכל כניסה, כך שתמיד מוצג היום הנוכחי.</p></div>'
+            f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. בכל דבר שתלוי בזמן יש להחמיר, ובשאלה למעשה לשאול רב.</p>'
+            + chips("עוד ל" + name, [(f"/zmanei-shabbat/{slug}/", "זמני שבת ב" + name), ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"), ("/zmanei-hayom/", "זמני היום בכל הערים")])
+            + chips("ערים נוספות", [l for l in day_links if l[0] != f"/zmanei-hayom/{slug}/"][:12]))
+    page(f"/zmanei-hayom/{slug}/", f"זמני היום ב{name}: הנץ, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים | {BRAND}",
+         fit_desc(f"זמני היום ב{name} להיום: עלות השחר, הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, פלג המנחה, שקיעה וצאת הכוכבים", tails=("מתעדכן בכל יום, עם לוח לשבוע הקרוב.", "מתעדכן בכל יום.")),
+         f"זמני היום ב{name}", [("זמני היום", "/zmanei-hayom/"), (name, f"/zmanei-hayom/{slug}/")], after=body, hub=True, prio="0.8",
+         script=DAY_JS.replace("__P__", json.dumps({"lat": lat, "lon": lon, "tz": tz})), app_hash="home", app_label="לזמני היום באפליקציה, עם תזכורות",
+         lead=f"כל זמני היום ב{name}, מתעדכן בכל יום.",
+         ld=[{"@type": "WebPage", "name": f"זמני היום ב{name}", "url": SITE + f"/zmanei-hayom/{slug}/", "inLanguage": "he", "isPartOf": WEBSITE,
+              "about": {"@type": "Place", "name": name, "geo": {"@type": "GeoCoordinates", "latitude": lat, "longitude": lon}}}])
+
+_jr = day_times(SH_CITIES[0], _today)
+dayhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]}"><a href="/zmanei-hayom/{c[0]}/"><b>{esc(c[1])}</b><small>הנץ {day_times(c, _today)["netz"]} · שקיעה {day_times(c, _today)["shkia"]}</small></a></li>' for c in SH_CITIES if day_times(c, _today)) + "</ul>"
+          '<div class="prose"><h2>מה כולל לוח זמני היום</h2><p>לכל עיר: עלות השחר, זמן טלית ותפילין, הנץ החמה, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, סוף זמן תפילה, חצות, מנחה גדולה, מנחה קטנה, פלג המנחה, שקיעה וצאת הכוכבים, וגם לוח לשבוע הקרוב. הזמנים מחושבים מחדש בכל כניסה לדף.</p></div>'
+          + chips("קשור", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")]))
+page("/zmanei-hayom/", f"זמני היום לפי עיר: הנץ, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים | {BRAND}",
+     fit_desc(f"זמני היום ב-{len(SH_CITIES)} ערים: הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, שקיעה וצאת הכוכבים. בירושלים היום: הנץ {_jr['netz']}, שקיעה {_jr['shkia']}", tails=("מתעדכן בכל יום.",)),
+     "זמני היום", [("זמני היום", "/zmanei-hayom/")], after=dayhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה", script=DAY_HUB_JS,
+     lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים את כל זמני היום, מעלות השחר ועד צאת הכוכבים.",
+     ld=[{"@type": "CollectionPage", "name": "זמני היום", "url": SITE + "/zmanei-hayom/", "inLanguage": "he", "isPartOf": WEBSITE,
+          "mainEntity": item_list([f"/zmanei-hayom/{c[0]}/" for c in SH_CITIES])}])
+
 jr = shabbat_rows(SH_CITIES[0])[0]
 shhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]},{c[5]}"><a href="/zmanei-shabbat/{c[0]}/"><b>{esc(c[1])}</b><small>כניסה {shabbat_rows(c, 1)[0][2]} · יציאה {shabbat_rows(c, 1)[0][3]}</small></a></li>' for c in SH_CITIES) + '</ul>'
          '<p class="note">הזמנים בכרטיסים הם לשבת הקרובה, ומתעדכנים מעצמם בכל שבוע. בדף של כל עיר יש גם לוח לשבתות הבאות.</p>'

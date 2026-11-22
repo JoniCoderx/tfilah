@@ -55,7 +55,7 @@ for top in sorted(os.listdir(ROOT)):
 
 # ---------- what the app can route to ----------
 routes = {"t": set(str(i) for i in range(1, 151)), "p": set(), "b": set(), "k": set(), "kli": set(),
-          "named": {"home", "siddur", "search", "tehillim", "favorites", "zikaron", "rav", "sifriya", "kelim", "tmicha"}}
+          "named": {"home", "siddur", "search", "tehillim", "favorites", "zikaron", "znew", "rav", "sifriya", "kelim", "tmicha"}}
 try:
     routes["p"] = {p["id"] for p in json.loads(read("data", "index.json"))["prayers"]}
     routes["b"] = set(json.loads(read("data", "books.json")))

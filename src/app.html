@@ -1283,6 +1283,9 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 .sfold .ggrid{gap:0 18px}.sfold{box-shadow:none}
 .hgrid .card,.tgrid .card{box-shadow:none}
 .kcard.glass{box-shadow:none}
+/* a wide screen gives the reading more room: a wider column and larger type, with everything around it aligned to it */
+@media (min-width:1100px){article.text,.pager,.finish,.disc,.smartbar,.bookhead,.forwho,.rh1,.rsub,.endcard,nav.toc{max-width:48rem;margin-inline:auto}
+  article.text{font-size:calc(var(--reading)*1.1);line-height:2.02}.rh1{font-size:clamp(2.8rem,4vw,3.6rem);margin-top:28px}.rsub{font-size:1rem}}
 </style>
 
 <div class="progress" id="prog" aria-hidden="true"></div>
@@ -2597,7 +2600,7 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
   return `<section class="hero2" id="hero">
     <div class="hmeta"><span>${greet}</span><i>·</i><span>${esc(hdTxt)}</span>${par?`<i>·</i><span>${esc(par)}</span>`:''}</div>
     <h1 class="hfix">סידור תפילה ותהילים</h1>
-    <div class="skybox">${arc}<p class="hnow${lbl.length>6?' long':''}"><small>עכשיו</small><b>${esc(lbl)}</b><span>נוסח ${nusName(nus)}</span></p></div>
+    <div class="skybox">${arc}<p class="hnow${lbl.length>6?' long':''}"><small>${(()=>{try{const mg=z&&(z.list.find(x=>x[0]==='מנחה גדולה')||[])[1];return /^מנחה/.test(lbl)&&mg&&now<mg?'התפילה הבאה':'עכשיו'}catch(e){return 'עכשיו'}})()}</small><b>${esc(lbl)}</b><span>נוסח ${nusName(nus)}</span></p></div>
     <p class="hsub"><span id="cd">${z?cdText(z,now):''}</span><label class="cityin">${icon('pin')}<span class="sr">עיר לחישוב הזמנים</span><select id="city">${opts}</select></label></p>
     ${shab}
     <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a><a class="hall" href="#siddur">לכל הסידור</a></div>
@@ -2724,7 +2727,8 @@ const sxLoading={};
 /* words that are not the name of a prayer in this nusach may still be a blessing inside one (אשר יצר inside ברכות השחר) */
 function innerHits(raw,n,max){const X=SX[n];if(!X)return null;const qw=wordsOf(raw).map(looseW).filter(Boolean);if(qw.length<2)return[];const out=[];
   for(const p of INDEX.prayers){if(p.n!==n||!X[p.id])continue;const i=findSeq(X[p.id].L,qw);if(i>=0){out.push([p,X[p.id].W.slice(i,i+qw.length).join(' '),X[p.id].W.slice(Math.max(0,i-3),i+qw.length+5).join(' ')]);if(out.length>=max)break}}return out}
-function palRender(raw){const q=norm(raw||'').trim(),out=[];
+let palWait=false;
+function palRender(raw){palWait=false;const q=norm(raw||'').trim(),out=[];
   if(!q){const np=nowPrayer(),g=groups[nus][np.g];out.push(['hd','עכשיו']);if(g)out.push(['it','התפילה של עכשיו: '+np.label,'נוסח '+nusName(nus),`#p-${g.items[0].id}`,'sun']);
     out.push(['hd','מעבר מהיר']);ROUTES.forEach(r=>out.push(['it',r[0],'',r[1],r[2]]))}
   else{const Q=parseQ(raw),qq=Q.q,first=Q.hint||nus,others=NUS.map(x=>x[0]).filter(n=>n!==first);
@@ -2741,12 +2745,13 @@ function palRender(raw){const q=norm(raw||'').trim(),out=[];
       const lbx=libAll().filter(x=>norm(x.t).trim()===qq&&!have0.has(x.href)&&!/^#p-/.test(x.href));
       if(!ps.length&&lbx.length){out.push(['hd','ספרייה']);lbx.forEach(x=>out.push(['it',x.t,x.sub,x.href,x.ic]))}
       if(!ps.length&&!gh.length){const ih=innerHits(raw,first,3);
-        if(ih===null){if(!sxLoading[first]){sxLoading[first]=text(first).then(T=>{ensureSX(first,T);const q=$('#palq');if(!$('#pal').hidden&&q.value===raw)palRender(raw)},()=>{sxLoading[first]=null})}}
+        if(ih===null){palWait=true;out.push(['hd','מחפש בנוסח '+nusName(first)+'…']);if(!sxLoading[first]){sxLoading[first]=text(first).then(T=>{ensureSX(first,T);const q=$('#palq');if(!$('#pal').hidden&&q.value===raw)palRender(raw)},()=>{sxLoading[first]=null})}}
         else if(ih.length){out.push(['hd','בתוך התפילות · נוסח '+nusName(first)]);ih.forEach(([p,hl,snip])=>out.push(['it',`${raw.trim()} · בתוך ${p.t}`,'…'+snip+'…',`#p-${p.id}`,'book',null,nusName(first),hl]))}}
       const seen=new Set(ps.map(p=>norm(p.t).trim())),alt=[];
       for(const n of others)for(const[sc,p]of titleHits(qq,n,true)){const k=norm(p.t).trim();if(ps.length&&seen.has(k)&&!Q.hint)continue;alt.push([n,p,sc])}
       alt.sort((a,b)=>a[2]-b[2]);
-      if(alt.length){out.push(['hd',ps.length?'בנוסחים אחרים':'לא נמצא בנוסח '+nusName(first)+'. בנוסחים אחרים']);alt.slice(0,6).forEach(([n,p])=>out.push(['it',p.t,p.s.join(' / ')||'סידור',`#p-${p.id}`,'book',null,nusName(n)]))}
+      const foundHere=ps.length||gh.length||out.some(x=>x[0]==='hd'&&/^בתוך התפילות/.test(x[1]));
+      if(alt.length){out.push(['hd',foundHere||palWait?'בנוסחים אחרים':'לא נמצא בנוסח '+nusName(first)+'. בנוסחים אחרים']);alt.slice(0,6).forEach(([n,p])=>out.push(['it',p.t,p.s.join(' / ')||'סידור',`#p-${p.id}`,'book',null,nusName(n)]))}
       const nd=NEEDS.filter(n=>n[2].includes(qq));if(nd.length){out.push(['hd','תהילים לבקשה']);nd.forEach(n=>out.push(['it','תהילים '+n[2],'פרקים '+n[3],`#k-${n[0]}`,n[1]]))}
       const have=new Set(out.filter(x=>x[0]==='it').map(x=>x[3]));
       const lb=libAll().filter(x=>norm(x.t).includes(qq)&&!have.has(x.href)&&!have.has('lib'+x.href)&&have.add('lib'+x.href)).slice(0,8);if(lb.length){out.push(['hd','ספרייה']);lb.forEach(x=>out.push(['it',x.t,x.sub,x.href,x.ic]))}
@@ -2766,7 +2771,7 @@ $('#openK').onclick=openPal;$('#palx').onclick=closePal;
 $('#pal').addEventListener('click',e=>{if(e.target.id==='pal')closePal();const a=e.target.closest('.palitem');if(a){e.preventDefault();palGo(a)}});
 $('#palq').addEventListener('input',e=>palRender(e.target.value));
 $('#palq').addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();palMove(1)}else if(e.key==='ArrowUp'){e.preventDefault();palMove(-1)}
-  else if(e.key==='Enter'){e.preventDefault();palGo(document.getElementById('po'+palSel))}else if(e.key==='Escape')closePal()});
+  else if(e.key==='Enter'){e.preventDefault();if(palWait)return;palGo(document.getElementById('po'+palSel))}else if(e.key==='Escape')closePal()});
 addEventListener('keydown',e=>{const t=e.target,typing=t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT'||t.isContentEditable);
   if((e.key==='/'&&!typing)||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k')){e.preventDefault();openPal()}
   else if(e.key==='Escape'&&!$('#pal').hidden)closePal()});

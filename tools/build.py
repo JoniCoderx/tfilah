@@ -41,7 +41,7 @@ head = f"""<!doctype html>
 <meta name="apple-mobile-web-app-title" content="תפילה">
 <meta property="og:image" content="https://tfilah.com/icons/og.png">
 <link rel="canonical" href="https://tfilah.com/">
-<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icons/favicon-96.png" type="image/png" sizes="96x96"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="icons/icon-192.png" type="image/png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="תפילה">

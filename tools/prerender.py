@@ -312,6 +312,8 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 ("prose", """
 .prose{max-width:36rem}
 .prose p{margin:0 0 .9rem;color:var(--ink2)}
+.prose ul{margin:0 0 .9rem;padding-inline-start:1.2rem;color:var(--ink2)}.prose li{margin:0 0 .35rem}
+.flegal{display:flex;flex-wrap:wrap;gap:0 1.1rem;margin:.4rem 0 0;font-size:.85rem}.flegal a{display:inline-flex;align-items:center;min-height:2.75rem;color:inherit}
 .prose h2{font-family:var(--f-disp);font-weight:900;font-size:1.5rem;line-height:1.25;margin:1.6rem 0 .5rem;color:var(--ink)}
 .prose table{border-collapse:collapse;margin:0 0 1rem;font-size:.97rem}
 .prose td,.prose th{padding:.35rem .9rem .35rem 0;text-align:start;border-block-end:1px solid var(--line)}
@@ -500,6 +502,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
 {'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}
 <p class="fcredit">הטקסטים מתוך המהדורות הפתוחות של תורת אמת, דעת ו-Tanach.us, דרך הארכיון של ספריא. <a href="/odot/">פירוט המקורות</a></p>
+<p class="flegal"><a href="/pratiyut/">פרטיות</a><a href="/tnaim/">תנאי שימוש</a><a href="/negishut/">נגישות</a></p>
 {FOOT_NAV}</div></footer><script>{FOOT_JS}</script>{f'<script>{script}</script>' if script else ''}"""
     canon = ('<meta name="robots" content="noindex">' if notfound else
              f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">')
@@ -571,7 +574,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "y", "api", "data", "icons",
+_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1736,6 +1739,58 @@ page("/odot/", f"אודות האתר תפילה ומקורות הטקסטים | 
      "מי אנחנו ומאין הטקסטים: סידור תפילה בשלושה נוסחים, ספר תהילים וספרייה ממהדורות פתוחות, שיטת חישוב זמני היום והלוח העברי, ומה מעמדם של ההסברים באתר.",
      "אודות ומקורות", [("אודות ומקורות", "/odot/")], after=odot, hub=True, prio="0.4", script=TAUT_JS, lead="תפילה · Tfilah.com. מה יש באתר, מאין הטקסטים ואיך מחושבים הזמנים.",
      ld=[{"@type": "AboutPage", "name": "אודות ומקורות", "url": SITE + "/odot/", "inLanguage": "he", "isPartOf": WEBSITE}])
+
+# ---------- Privacy, terms, accessibility: short and in plain words ----------
+LEGAL_DATE = "כ״ב בחשוון תשפ״ז (22.11.2026)"
+_mail = f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<a href="/odot/#kesher">טופס צור קשר</a>'
+_legal_chips = chips("עוד על האתר", [("/odot/", "אודות ומקורות"), ("/pratiyut/", "פרטיות"), ("/tnaim/", "תנאי שימוש"), ("/negishut/", "נגישות"), ("/odot/#kesher", "צור קשר")])
+pratiyut = ('<div class="prose"><h2>בקצרה</h2><p>אין הרשמה, אין פרסומות, אין עוגיות מעקב, ואיננו מוכרים או מעבירים מידע לאף אחד. רוב מה שהאתר זוכר נשמר רק במכשיר שלכם.</p>'
+            '<h2>מה נשמר במכשיר שלכם</h2><p>הנוסח שבחרתם, גודל האותיות, העיר לזמני היום, המועדפים והשמות שהקלדתם בכלים האישיים נשמרים בדפדפן שלכם בלבד, כדי שלא תצטרכו לבחור מחדש בכל כניסה. '
+            'המידע הזה לא נשלח אלינו. מחיקת נתוני האתר בדפדפן מוחקת אותו.</p>'
+            '<h2>מה נשמר אצלנו: תהילים יחד</h2><p>כשפותחים קריאה משותפת, נשמרים בשרת השם שכתבתם ושם ההורה, סוג הבקשה, והמילים שהוספתם אם הוספתם. '
+            'לכל פרק שנקרא נשמרים מספר הפרק, שעת הקריאה, ושם הקורא רק אם בחר לכתוב אותו. כדי לספור קוראים בלי הרשמה, הדפדפן שולח מזהה אקראי שאינו מזהה אתכם אישית.</p>'
+            '<p>כל מי שקיבל את הקישור לקריאה רואה את הפרטים האלה. קריאה מופיעה ברשימה הפתוחה באתר רק אם סימנתם זאת בעצמכם. '
+            'לפני שכותבים שם של חולה, כדאי לוודא שהדבר מקובל עליו ועל משפחתו.</p>'
+            f'<h2>מחיקה ותיקון</h2><p>רוצים למחוק קריאה שפתחתם, או לתקן שם? כתבו אל {_mail} עם הקישור לקריאה, ונמחק או נתקן בהקדם.</p>'
+            '<h2>פנייה אלינו</h2><p>כשאתם כותבים אלינו, אנחנו מקבלים את ההודעה ואת כתובת המייל שמסרתם, ומשתמשים בהן רק כדי לענות לכם.</p>'
+            '<h2>מיקום</h2><p>כלי כיוון התפילה מבקש את מיקום המכשיר רק אחרי שאישרתם. החישוב נעשה במכשיר עצמו, והמיקום לא נשלח אלינו ולא נשמר.</p>'
+            '<h2>שירותים חיצוניים</h2><p>האתר מתארח ב-Cloudflare, ששומרת רישום טכני רגיל של גלישה, כמו כתובת IP, לצורכי אבטחה ותפעול. '
+            'ספריית הלוח העברי נטענת מ-jsDelivr, וגופני קריאה נוספים נטענים מ-Google Fonts רק אם בחרתם בהם. שיתוף בוואטסאפ, בטלגרם או במייל פותח את השירות שבחרתם, לפי התנאים שלו.</p>'
+            f'<h2>שינויים</h2><p>אם נשנה משהו מהותי, נעדכן את הדף הזה. עדכון אחרון: {LEGAL_DATE}.</p></div>' + _legal_chips)
+page("/pratiyut/", f"מדיניות פרטיות | {BRAND}",
+     "מה האתר תפילה שומר ומה לא: בלי הרשמה ובלי עוגיות מעקב, ההעדפות נשמרות במכשיר שלכם, ומה נשמר בקריאת תהילים משותפת ואיך מבקשים למחוק.",
+     "פרטיות", [("פרטיות", "/pratiyut/")], after=pratiyut, hub=True, prio="0.2", lead="מה אנחנו שומרים, מה נשאר רק אצלכם, ואיך מבקשים למחוק.",
+     ld=[{"@type": "WebPage", "name": "מדיניות פרטיות", "url": SITE + "/pratiyut/", "inLanguage": "he", "isPartOf": WEBSITE}])
+
+tnaim = ('<div class="prose"><h2>השימוש באתר</h2><p>האתר פתוח לכולם, בחינם ובלי הרשמה. האתר מופעל בידי מפעילי האתר תפילה, Tfilah.com. השימוש בו מהווה הסכמה לתנאים הקצרים שכאן.</p>'
+         '<h2>הטקסטים</h2><p>נוסחי התפילה והתהילים לקוחים ממהדורות פתוחות, כמפורט בדף <a href="/odot/">אודות ומקורות</a>. אנחנו בודקים אותם מול המקור ומתקנים כל טעות שמדווחת, '
+         'ועדיין ייתכנו טעויות הקלדה או ניקוד. מצאתם טעות? <a href="/odot/#taut" data-taut>דווחו לנו</a>.</p>'
+         '<h2>זמנים, לוח והסברים</h2><p>זמני היום, זמני השבת והלוח העברי מחושבים אוטומטית ועשויים לסטות בדקה או שתיים מלוחות אחרים. למעשה יש להחמיר, ולא לסמוך על האתר לרגע האחרון. '
+         'ההסברים שליד התפילות נכתבו כדי לתת הקשר לקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p>'
+         '<h2>תהילים יחד</h2><p>כל אחד יכול לפתוח קריאה משותפת. מי שפותח אחראי לשם ולמילים שכתב, ועליו לוודא שהפרסום מקובל על מי שהקריאה לזכותו או על משפחתו. '
+         'נסיר קריאה שיש בה תוכן פוגעני, מטעה או מסחרי, וכן כל קריאה שנתבקשנו להסיר בידי מי שהיא נוגעת לו.</p>'
+         '<h2>שימוש הוגן</h2><p>מותר ורצוי לקרוא, להדפיס ולשתף קישורים. אין להעמיס על האתר באמצעים אוטומטיים, לנסות לשבש את פעולתו, או להציג אותו כאילו הוא שלכם. '
+         'השם תפילה, הסמל והעיצוב שייכים למפעילי האתר. ההסברים שנכתבו עבור האתר מותרים לציטוט עם קישור למקור.</p>'
+         '<h2>אחריות</h2><p>האתר ניתן כמות שהוא. אנחנו משתדלים מאוד שיהיה מדויק וזמין, אך איננו יכולים להתחייב שלא תהיה בו טעות או תקלה, והשימוש בו באחריות המשתמש.</p>'
+         f'<h2>יצירת קשר ושינויים</h2><p>לכל שאלה: {_mail}. אם התנאים ישתנו, הדף הזה יתעדכן. עדכון אחרון: {LEGAL_DATE}.</p></div>' + _legal_chips)
+page("/tnaim/", f"תנאי שימוש | {BRAND}",
+     "תנאי השימוש באתר תפילה בקיצור ובמילים פשוטות: שימוש חופשי בלי הרשמה, מעמד הטקסטים, הזמנים וההסברים, כללי הקריאה המשותפת בתהילים וגבולות האחריות.",
+     "תנאי שימוש", [("תנאי שימוש", "/tnaim/")], after=tnaim, hub=True, prio="0.2", lead="הכללים של האתר, בקיצור ובמילים פשוטות.",
+     ld=[{"@type": "WebPage", "name": "תנאי שימוש", "url": SITE + "/tnaim/", "inLanguage": "he", "isPartOf": WEBSITE}])
+
+negishut = ('<div class="prose"><h2>המטרה שלנו</h2><p>תפילה צריכה להיות נוחה לכל אדם, גם למי שמתקשה בראייה, במוטוריקה או בשימוש במסך. האתר נבנה לפי הנחיות הנגישות WCAG 2.1 ברמה AA, '
+            'שעליהן מבוסס התקן הישראלי ת״י 5568.</p>'
+            '<h2>מה עשינו</h2><ul><li>אפשר להגדיל ולהקטין את אותיות הקריאה, ולקרוא עם ניקוד או בלעדיו.</li><li>כל האתר פועל במקלדת בלבד, עם סימון ברור של המקום שבו נמצאים וקישור דילוג לתוכן.</li>'
+            '<li>הדפים בנויים עם כותרות, תוויות ותיאורים לקוראי מסך.</li><li>צבעי הטקסט והכפתורים נבדקים לניגודיות מספקת.</li><li>האתר מכבד את הגדרת ”הפחתת תנועה” במכשיר.</li>'
+            '<li>האתר מותאם לטלפון, לטאבלט ולמחשב, וכפתוריו גדולים מספיק ללחיצה נוחה.</li></ul>'
+            '<h2>איך בדקנו</h2><p>האתר נבדק בכלי בדיקה אוטומטיים ובמעבר ידני במקלדת, בטלפון ובמחשב. בדיקה מלאה עם קוראי מסך על מכשירים אמיתיים עדיין לא הושלמה.</p>'
+            '<h2>מה עוד לא מושלם</h2><p>ייתכן שתיתקלו בחלק שאינו נגיש כראוי, בעיקר בכלים חדשים. שיתוף פותח אפליקציות חיצוניות כמו וואטסאפ, שנגישותן אינה בשליטתנו.</p>'
+            f'<h2>נתקלתם בקושי?</h2><p>כתבו אל {_mail} וספרו באיזה דף ובאיזה מכשיר. נשתדל לתקן מהר, ובינתיים נעזור לכם להגיע לתפילה שחיפשתם.</p>'
+            f'<p>עדכון אחרון: {LEGAL_DATE}.</p></div>' + _legal_chips)
+page("/negishut/", f"הצהרת נגישות | {BRAND}",
+     "הצהרת הנגישות של האתר תפילה: התאמה להנחיות WCAG 2.1 ברמה AA, הגדלת אותיות, שימוש במקלדת ובקוראי מסך, מה עדיין לא מושלם ואיך פונים אלינו בנושא נגישות.",
+     "הצהרת נגישות", [("נגישות", "/negishut/")], after=negishut, hub=True, prio="0.2", lead="מה עשינו כדי שהאתר יהיה נוח לכולם, ולמי פונים כשמשהו לא עובד.",
+     ld=[{"@type": "WebPage", "name": "הצהרת נגישות", "url": SITE + "/negishut/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
 # ---------- 404 ----------
 nf = ('<p><a class="btn" href="/">לדף הבית</a></p><ul class="cards" style="margin-block-start:1.5rem">'

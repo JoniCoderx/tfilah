@@ -2,7 +2,20 @@
 // אבל על בסיס Supabase ופונקציית /api/ask משלכם.
 (function () {
   var C = window.TFILAH_CONFIG || {};
-  var sb = null, on = !!(C.supabaseUrl && C.supabaseAnonKey), loading = null;
+  var own = C.yachad === true;   // תהילים יחד על המסד של האתר עצמו (Cloudflare D1), בלי שירות חיצוני
+  var sb = own ? ownBackend() : null, on = own || !!(C.supabaseUrl && C.supabaseAnonKey), loading = null;
+  // אותו ממשק שהקוד למטה מצפה לו, מעל /api/yachad
+  function ownBackend() {
+    function call(fn, args) {
+      return fetch("/api/yachad", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fn: fn, args: args || {} }) })
+        .then(function (r) { return r.json().then(function (j) { return r.ok ? { data: j.data, error: null } : { data: null, error: { message: j.error || ("HTTP " + r.status) } }; }); })
+        .catch(function (e) { return { data: null, error: { message: (e && e.message) || "network" } }; });
+    }
+    var listQ = { select: function () { return listQ; }, order: function () { return listQ; },
+      limit: function () { return fetch("/api/yachad?list=1").then(function (r) { return r.json().then(function (j) { return r.ok ? { data: j.data || [], error: null } : { data: null, error: { message: j.error || "error" } }; }); }, function (e) { return { data: null, error: { message: "network" } }; }); } };
+    var ch = { on: function () { return ch; }, subscribe: function () { return ch; } };   // אין שידור חי: הרענון נעשה בתשאול
+    return { rpc: call, from: function () { return listQ; }, channel: function () { return ch; }, removeChannel: function () {} };
+  }
   var LIB = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js";
   // הספרייה נטענת רק כשיש חיבור מוגדר, ורק כשמישהו באמת צריך אותה
   function ready() {

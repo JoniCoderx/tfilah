@@ -14,7 +14,14 @@ window.TFILAH_CONFIG = {
   // כששני השדות ריקים החלק הזה כבוי, ובאתר כתוב ”תהילים יחד ייפתח בקרוב”. שאר האתר עובד כרגיל.
   // צריך למלא את שניהם. מעתיקים אותם מ-Supabase: Project Settings ← API.
 
-  // כתובת הפרויקט (Project URL). לדוגמה: "https://abcd1234.supabase.co"
+  // הדרך המומלצת, בלי שירות חיצוני: המסד של Cloudflare (D1), בחינם.
+  // 1. ב-Cloudflare: Storage & Databases ← D1 ← Create database (שם לבחירתכם, למשל tfilah).
+  // 2. בפרויקט ה-Pages: Settings ← Bindings ← Add ← D1 database. Variable name: DB. לבחור את המסד ולשמור.
+  // 3. כאן משנים ל-true ומעלים את האתר. הטבלאות נוצרות לבד בשימוש הראשון.
+  // כש-yachad הוא true, שני שדות ה-Supabase שלמטה נשארים ריקים.
+  yachad: false,
+
+  // חלופה: Supabase. כתובת הפרויקט (Project URL). לדוגמה: "https://abcd1234.supabase.co"
   supabaseUrl: "",
 
   // המפתח הציבורי בלבד: זה שנקרא anon או publishable (מתחיל ב-eyJ או ב-sb_publishable_).

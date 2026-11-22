@@ -1239,7 +1239,7 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # =====================================================================
 # Explainers that lead into the app
 # =====================================================================
-SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()))
+SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
 yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
           + ('<a class="btn" href="/#zikaron">לפתיחת קריאה משותפת</a><small>פותחים קריאה, שולחים קישור, וכל אחד מקבל פרק.</small></div>' if SB_ON else
              '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')

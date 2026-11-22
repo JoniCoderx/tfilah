@@ -191,6 +191,13 @@ CSS_BLOCKS = [
 .text big{font-size:1.15em}
 """),
 ("rgrid", """
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0 0 .8rem}
+.acts a,.acts button{display:inline-flex;align-items:center;gap:.4rem;min-height:2.75rem;padding:.3rem .9rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .93rem var(--f-ui);text-decoration:none;cursor:pointer;border-radius:999px}
+.acts a:hover,.acts button:hover{border-color:var(--stamp);color:var(--stamp)}.acts .wa{background:#0B6B38;border-color:#0B6B38;color:#fff}.acts .wa:hover{background:#08542C;border-color:#08542C;color:#fff}
+.acts button.ok,.acts button[aria-pressed=true]{background:#E1F2FE;border-color:#9CC9E8;color:#0B3F6E}.acts button[aria-pressed=true] svg{fill:currentColor}
+.acts .vcount{font:600 .85rem var(--f-ui);color:var(--muted);margin-inline-start:.3rem}
+@media print{.acts{display:none!important}}
+@media (max-width:30rem){.acts [data-act=print] span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}.acts [data-act=print]{padding-inline:.75rem}}
 .sidebar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:0 0 .6rem}.sidebar .bar{margin:0;min-height:0;flex:0 1 auto}
 .sideacts{display:flex;gap:.35rem;margin:0}
 .sideacts button,.sideacts a{display:grid;place-items:center;inline-size:2.75rem;block-size:2.75rem;padding:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:999px}
@@ -455,8 +462,17 @@ BACK_TO_APP = '<script>try{if(sessionStorage.getItem("tfapp")&&!location.hash&&!
 IC_COPY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>'
 IC_WA = '<svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.3.7 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>'
 IC_PRINT = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg>'
-JS_SIDE = (";(function(){var s=document.querySelector('.sideacts');if(!s)return;var tc=document.querySelector('.rside .svctoc');if(tc&&matchMedia('(min-width:64rem)').matches)tc.open=true;s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;"
-           "if(b.dataset.act==='print'){print()}else if(b.dataset.act==='copy'){var u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.classList.add('ok');b.setAttribute('aria-label','הקישור הועתק');setTimeout(function(){b.classList.remove('ok');b.setAttribute('aria-label','העתקת קישור')},1800)},function(){prompt('הקישור:',u)})}})})();")
+VIEWS_MIN = 100   # an opening count is shown only from this number up; "opened 4 times" helps nobody
+JS_SIDE = (";(function(){var s=document.querySelector('.acts');if(!s)return;var tc=document.querySelector('.rside .svctoc');if(tc&&matchMedia('(min-width:64rem)').matches)tc.open=true;"
+           "var P=location.pathname,sv=s.querySelector('[data-act=save]');function fv(){try{return JSON.parse(localStorage.getItem('favs')||'[]')||[]}catch(e){return[]}}"
+           "function paint(){if(!sv)return;var on=fv().indexOf(sv.dataset.id)>=0;sv.setAttribute('aria-pressed',on);sv.querySelector('span').textContent=on?'נשמר':'שמירה'}paint();"
+           "s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var a=b.dataset.act;"
+           "if(a==='print'){print()}else if(a==='save'){var f=fv(),k=f.indexOf(b.dataset.id);if(k>=0)f.splice(k,1);else f.push(b.dataset.id);try{localStorage.setItem('favs',JSON.stringify(f))}catch(x){}paint()}"
+           "else if(a==='copy'){var u=location.origin+P,l=b.querySelector('span');(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.classList.add('ok');l.textContent='הועתק';setTimeout(function(){b.classList.remove('ok');l.textContent='קישור'},1800)},function(){prompt('הקישור:',u)})}});"
+           "try{var vc=s.querySelector('.vcount'),k='tfv'+P,seen=sessionStorage.getItem(k);if(!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent))"
+           "fetch('/api/views'+(seen?'?p='+encodeURIComponent(P):''),seen?{}:{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({p:P})}).then(function(r){return r.json()}).then(function(d){sessionStorage.setItem(k,'1');"
+           "if(vc&&d.n>=VIEWS_MIN){vc.textContent='נפתח '+d.n.toLocaleString('he-IL')+' פעמים';vc.hidden=false}}).catch(function(){})}catch(e){}})();".replace("VIEWS_MIN", str(VIEWS_MIN)))
+IC_STAR = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>'
 
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
@@ -484,9 +500,12 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     if text:
         bar = f'<div class="bar">{TOOLS_HTML}{bar_extra}</div>'
         # on a wide screen the text gets the main column and everything that serves it sits beside it
-        side = (f'<div class="rside">{before}<div class="sidebar">{bar}<div class="sideacts"><button type="button" data-act="copy" aria-label="העתקת קישור" title="העתקת קישור">{IC_COPY}</button>'
-                f'<a class="wa" data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " | תפילה " + url)}" aria-label="שיתוף בוואטסאפ" title="שיתוף בוואטסאפ">{IC_WA}</a>'
-                f'<button type="button" data-act="print" aria-label="הדפסה או שמירה כ-PDF" title="הדפסה או שמירה כ-PDF">{IC_PRINT}</button></div></div></div>'
+        # the actions come first, in words: share, link, save, print
+        _save = f'<button type="button" data-act="save" data-id="{app_hash[2:]}" aria-pressed="false">{IC_STAR}<span>שמירה</span></button>' if app_hash.startswith("p-") else ""
+        acts = (f'<div class="acts" role="group" aria-label="שיתוף ושמירה"><a class="wa" data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " | תפילה " + url)}" aria-label="שיתוף בוואטסאפ">{IC_WA}<span>שיתוף</span></a>'
+                f'<button type="button" data-act="copy" aria-label="העתקת קישור">{IC_COPY}<span>קישור</span></button>{_save}'
+                f'<button type="button" data-act="print" aria-label="הדפסה או שמירה כ-PDF">{IC_PRINT}<span>הדפסה</span></button><span class="vcount" hidden></span></div>')
+        side = (f'<div class="rside">{acts}{before}<div class="sidebar">{bar}</div></div>'
                 # what a printed copy or a saved PDF carries: the site's mark and address at the top, and the page address at the end
                 )
         printhead = f'<div class="printhead" aria-hidden="true"><div class="ph">{LOGO.replace("tfg", "tfgp")}<span>סידור תפילה ותהילים · tfilah.com</span></div></div>'
@@ -1805,7 +1824,7 @@ pratiyut = ('<div class="prose"><h2>בקצרה</h2><p>אין הרשמה, אין 
             '<h2>פנייה אלינו</h2><p>כשאתם כותבים אלינו, אנחנו מקבלים את ההודעה ואת כתובת המייל שמסרתם, ומשתמשים בהן רק כדי לענות לכם.</p>'
             '<h2>מיקום</h2><p>כלי כיוון התפילה מבקש את מיקום המכשיר רק אחרי שאישרתם. החישוב נעשה במכשיר עצמו, והמיקום לא נשלח אלינו ולא נשמר.</p>'
             '<h2>שירותים חיצוניים</h2><p>האתר מתארח ב-Cloudflare, ששומרת רישום טכני רגיל של גלישה, כמו כתובת IP, לצורכי אבטחה ותפעול. '
-            'ספריית הלוח העברי נטענת מ-jsDelivr, וגופני קריאה נוספים נטענים מ-Google Fonts רק אם בחרתם בהם. שיתוף בוואטסאפ, בטלגרם או במייל פותח את השירות שבחרתם, לפי התנאים שלו.</p>'
+            'כדי להציג כמה פעמים עמוד נפתח, נשמר אצלנו מספר אחד לכל עמוד, בלי שום פרט על מי שפתח אותו. ספריית הלוח העברי נטענת מ-jsDelivr, וגופני קריאה נוספים נטענים מ-Google Fonts רק אם בחרתם בהם. שיתוף בוואטסאפ, בטלגרם או במייל פותח את השירות שבחרתם, לפי התנאים שלו.</p>'
             f'<h2>שינויים</h2><p>אם נשנה משהו מהותי, נעדכן את הדף הזה. עדכון אחרון: {LEGAL_DATE}.</p></div>' + _legal_chips)
 page("/pratiyut/", f"מדיניות פרטיות | {BRAND}",
      "מה האתר תפילה שומר ומה לא: בלי הרשמה ובלי עוגיות מעקב, ההעדפות נשמרות במכשיר שלכם, ומה נשמר בקריאת תהילים משותפת ואיך מבקשים למחוק.",

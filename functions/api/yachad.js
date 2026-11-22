@@ -223,7 +223,7 @@ export async function readPublic(env, id) {
   try {
     const m = await env.DB.prepare(`select id, name, parent, rel, kind, done from memorials where id = ? and hidden = 0`).bind(id).first();
     return m || null;
-  } catch { return null; }
+  } catch { return undefined; }   // undefined: could not ask. null: asked, and there is no such reading.
 }
 
 function json(obj, status, extra) {

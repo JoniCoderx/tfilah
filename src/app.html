@@ -1805,13 +1805,23 @@ function viewZikaron(){setNav('zikaron');
 /* ---------- MEMORIAL page ---------- */
 function roundOf(){let r=1;while(r<100){let all=true;for(let n=1;n<=150;n++){const c=chapters[(r-1)*150+n];if(!c||c.s!=='done'){all=false;break}}if(!all)break;r++}return r}
 let memId=null, chapters={}, selected=new Set(), chUnsub=null, memOne=null, mUnsub=null, giving=false;
+/* A reading is called "not found" only when the server says so twice in a row at the start, or three times in a row once it is on screen.
+   One failed or empty answer (a dropped connection, a busy server) never replaces a reading with "removed". */
+let memMiss=0, memMissAt=0, memErr=false;
 function viewMemorial(id){setNav('zikaron');
-  if(memId!==id){memId=id;chapters={};selected=new Set();chUnsub?.();chUnsub=null;mUnsub?.();mUnsub=null;memOne=null}
+  if(memId!==id){memId=id;chapters={};selected=new Set();chUnsub?.();chUnsub=null;mUnsub?.();mUnsub=null;memOne=null;memMiss=0;memErr=false}
   app.innerHTML='<p class="loading">פותחים את הקריאה…</p>';
   dbReady.then(()=>{if(DB&&!chUnsub){chUnsub=DB.collection(`memorials/${id}/chapters`).onSnapshot(s=>{chapters={};s.docs.forEach(d=>chapters[d.id]=d.data());drawMemorial()},()=>{})}
-    if(DB&&!mUnsub){const ref=DB.doc('memorials/'+id),got=s=>{if(memId!==id)return;memOne=s&&s.exists?{id,...s.data()}:false;drawMemorial()};
-      let u=null;try{u=ref.onSnapshot(got,()=>{if(memOne===null){memOne=false;drawMemorial()}})}catch(e){}
-      mUnsub=typeof u==='function'?u:()=>{};ref.get().then(got,()=>{if(memOne===null){memOne=false;drawMemorial()}})}
+    if(DB&&!mUnsub){const ref=DB.doc('memorials/'+id),bad=()=>{if(memId!==id||memOne)return;memErr=true;drawMemorial();setTimeout(()=>{if(memId===id&&!memOne)ref.get().then(got,bad)},4000)},
+      got=s=>{if(memId!==id)return;
+        if(s&&s.exists){memMiss=0;memErr=false;memOne={id,...s.data()};drawMemorial();return}
+        const now=Date.now();if(memMiss&&now-memMissAt<(memOne?3000:1200))return;   /* answers that arrive together count as one */
+        memMiss++;memMissAt=now;memErr=false;
+        if(memOne&&memMiss<3)return;                                   /* on screen: keep it until the server repeats the answer */
+        if(!memOne&&memMiss<2){setTimeout(()=>{if(memId===id&&!memOne)ref.get().then(got,bad)},1500);return}   /* at the start: ask once more */
+        memOne=false;drawMemorial()};
+      let u=null;try{u=ref.onSnapshot(got,bad)}catch(e){}
+      mUnsub=typeof u==='function'?u:()=>{};ref.get().then(got,bad)}
     if(DB&&chUnsub){DB.collection(`memorials/${id}/chapters`).get().then(s=>{if(memId!==id)return;chapters={};s.docs.forEach(d=>chapters[d.id]=d.data());drawMemorial()},()=>{})}
     drawMemorial()});
 }
@@ -1835,7 +1845,8 @@ async function giveChapter(id){if(giving||!DB)return null;giving=true;try{
 function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
   if(!DB){app.innerHTML=`<h1 class="sr">תהילים יחד</h1><div class="empty" style="margin-top:30px"><b>התפילה זמינה למחוברים</b>היכנסו לחשבון כדי לראות את הדף ולהשתתף.</div>${footer()}`;return}
   const m=memById(id);
-  if(!m&&memOne===null){app.innerHTML='<p class="loading">פותחים את הקריאה…</p>';return}
+  if(!m&&memOne===null){app.innerHTML=memErr?`<h1 class="sr">תהילים יחד</h1><div class="empty" style="margin-top:30px"><b>לא הצלחנו לפתוח את הקריאה כרגע</b>הקריאה לא נמחקה. בודקים שוב בעוד רגע, ואפשר גם לנסות עכשיו.<br><button class="btn primary" type="button" id="mretry" style="margin-top:12px">לנסות שוב</button></div>${footer()}`:'<p class="loading">פותחים את הקריאה…</p>';
+    const rb=$('#mretry');if(rb)rb.onclick=()=>{const keep=memId;memId=null;viewMemorial(keep)};return}
   if(!m){app.innerHTML=`<div class="empty" style="margin-top:30px"><b>הקריאה לא נמצאה</b>ייתכן שהקישור שגוי או שהקריאה הוסרה. <a href="#zikaron">לתהילים יחד</a></div>${footer()}`;return}
   document.title=`תהילים יחד ${mLine(m)} | תפילה`;
   const RD=roundOf(),base=(RD-1)*150,CH=n=>chapters[base+n];
@@ -1914,7 +1925,7 @@ function mineList(id){const mine=(store.get('mine',{})[id]||[]).filter(k=>chapte
   return `<div class="glass" style="padding:18px;margin-top:14px;display:grid;gap:10px"><b>הפרקים שלי, מחכים לקריאה</b><div class="chips">${mine.sort((x,y)=>x-y).map(k=>`<a class="chip" href="#t-${cn(k)}" onclick="sessionStorage.setItem('mctx',JSON.stringify({id:'${esc(id)}',n:${cn(k)},k:${k}}))">פרק ${gem(cn(k))}</a>`).join('')}</div></div>`}
 
 function viewMemorialData(id){/* make sure the reading is loaded when a deep link skips its page */
-  if(memId===id)return;memId=id;chapters={};selected=new Set();chUnsub?.();chUnsub=null;mUnsub?.();mUnsub=null;memOne=null;
+  if(memId===id)return;memId=id;chapters={};selected=new Set();chUnsub?.();chUnsub=null;mUnsub?.();mUnsub=null;memOne=null;memMiss=0;memErr=false;
   if(DB){chUnsub=DB.collection(`memorials/${id}/chapters`).onSnapshot(s=>{chapters={};s.docs.forEach(d=>chapters[d.id]=d.data())},()=>{});
     DB.doc('memorials/'+id).get().then(s=>{if(memId===id)memOne=s&&s.exists?{id,...s.data()}:false},()=>{})}}
 /* ---------- Psalm 119 by letters ---------- */

@@ -25,5 +25,5 @@ export async function onRequest({ params, env, request }) {
 <style>body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#0B2E4F;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px}a{display:inline-block;margin-top:16px;background:#0B79C0;color:#fff;text-decoration:none;font-weight:bold;padding:14px 28px;border-radius:999px}h1{font-size:1.5rem;margin:0 0 8px}p{margin:0;line-height:1.6}</style>
 <script>location.replace(${JSON.stringify(app)})</script></head>
 <body><main><h1>${esc(title)}</h1><p>${esc(desc)}</p><a href="${app}">לפתיחת הקריאה</a></main></body></html>`;
-  return new Response(html, { status: m ? 200 : 404, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=60", "x-content-type-options": "nosniff" } });
+  return new Response(html, { status: m ? 200 : m === null ? 404 : 503, headers: { "content-type": "text/html; charset=utf-8", "cache-control": m ? "public, max-age=60" : "no-store", "x-content-type-options": "nosniff" } });
 }

@@ -776,7 +776,10 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .hnow.long b{font-size:clamp(2rem,9.5vw,3.2rem)}
 .hact{align-items:center;gap:6px 18px}.hall{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font-weight:700;color:#0A6FB3;text-underline-offset:4px}
 @media (max-width:620px){.hero2{padding-block:2px 10px}.hero2 h1.hfix{margin-top:4px}.hero2 .skybox{max-width:210px;margin-top:14px}.hero2 .skybox svg{max-block-size:54px}.hnow b{font-size:clamp(2.6rem,13vw,3.6rem)}.hsub{margin-top:4px;font-size:.98rem}.hact{margin-top:8px;gap:0}.hnotes{margin-top:6px}.quick4{margin-top:4px}}
-@media (max-width:430px){.q4i{flex-direction:row!important;align-items:center!important;gap:10px!important}.q4.q4i{min-height:62px;padding:8px 12px}.q4i small{display:none}}
+@media (max-width:380px){.q4 b{font-size:.92rem}}@media (max-width:430px){.q4i{flex-direction:row!important;align-items:center!important;gap:10px!important}.q4.q4i{min-height:62px;padding:8px 12px}.q4i small{display:none}}
+.supp{max-inline-size:40rem;margin:6px 0}.supp h2{font-size:1.2rem;margin:18px 0 6px}.supp p{margin:0;line-height:1.75;color:var(--ink-2)}
+.dfree{display:grid;gap:6px;font-weight:600;max-inline-size:16rem}.dfree input{min-height:48px;padding:8px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
+.endsup{margin:12px 0 0;font-size:.95rem;color:var(--ink-2)}.endsup a{font-weight:700;color:#0A6FB3}
 .kseg{display:flex;gap:16px}.kseg.kcol{flex-direction:column;gap:4px}.kseg.kcol label{min-height:44px}
 .klead{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center;padding:18px;margin:6px 0 22px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(150deg,#fff,#EEF8FF 60%,#DDF0FD)}
 .klead h2{margin:0;font-size:1.3rem}.klead p{margin:2px 0 0;color:var(--ink-2);line-height:1.5}
@@ -1637,17 +1640,28 @@ function viewHome(){setNav('home');
   bindToc();bindZ();bindNew();bindDonate();bindTrack();drawWall();lazyVerse();tick();sampleReady.then(()=>{const c=$('#askcard');if(c&&SAMPLE)c.hidden=false});
   clearInterval(window.__nt);window.__nt=setInterval(()=>{const cd=$('#cd');if(!cd||!$('#hero')){clearInterval(window.__nt);return}let z=null;try{z=zmanim()}catch(e){}cd.innerHTML=cdText(z)},30000);
 }
-function donateBlock(m){if(!DONATE_URL)return'';
-  return `<section class="donate glass" aria-labelledby="dh"><div><span class="eyebrow">תמיכה באתר</span>
-    <h2 id="dh" style="margin:4px 0 0">רוצים לעזור לנו להשאיר את האתר פתוח לכולם?</h2>
-    <p class="note" style="margin:6px 0 0">הקריאה והשיתוף בחינם, תמיד. התרומה עוזרת להחזיק את האתר. התשלום בעמוד מאובטח של חברת הסליקה.</p></div>
-    <div class="amounts" role="group" aria-label="סכום">${AMOUNTS.map(([a,l],i)=>`<button type="button" data-amt="${a}" aria-pressed="${i===0}">₪${a}${l?`<small>${l}</small>`:''}</button>`).join('')}</div>
-    <div class="row"><a class="btn gold" id="dgo" href="${esc(DONATE_URL)}" target="_blank" rel="noopener">לתרומה</a>
-    <span class="note" id="damt">נבחר: ₪${AMOUNTS[0][0]}</span></div></section>`}
-function viewSupport(){setNav('');app.innerHTML=`<section class="libhead"><span class="eyebrow">תמיכה באתר</span><h1>תפילה פתוח לכולם.</h1><p>הסידור, התהילים והקריאה המשותפת זמינים בחינם, בלי הרשמה ובלי פרסומות.</p></section>
-  ${donateBlock()||'<div class="empty"><b>עדיין אין באתר אפשרות לתרום</b>כשתיפתח אפשרות כזאת, היא תופיע כאן. בינתיים הדרך הטובה לעזור היא לשתף את האתר.</div>'}${footer()}`;bindDonate();scrollTo(0,0)}
-function bindDonate(){$$('[data-amt]').forEach(b=>b.onclick=()=>{$$('[data-amt]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#damt').textContent='נבחר: ₪'+b.dataset.amt;
-  const a=$('#dgo');if(a){try{const u=new URL(DONATE_URL);u.searchParams.set('amount',b.dataset.amt);a.href=u.href}catch(e){}}})}
+const CFGX=window.TFILAH_CONFIG||{};
+/* support: the reader chooses. Reading and the tools stay free; nothing here is shown inside a prayer. */
+function donateBlock(m){if(!DONATE_URL)return'';const mon=!!CFGX.donateMonthlyUrl;
+  return `<section class="donate glass" aria-labelledby="dh"><div><h2 id="dh" style="margin:0">בוחרים סכום</h2>
+    <p class="note" style="margin:6px 0 0">התשלום נעשה בעמוד המאובטח של חברת הסליקה. פרטי התשלום לא עוברים דרך האתר ולא נשמרים בו.</p></div>
+    ${mon?'<div class="kseg" role="radiogroup" aria-label="תדירות"><label><input type="radio" name="dfreq" value="once" checked> פעם אחת</label><label><input type="radio" name="dfreq" value="month"> כל חודש</label></div>':''}
+    <div class="amounts" role="group" aria-label="סכום">${AMOUNTS.map(([a,l],i)=>`<button type="button" data-amt="${a}" aria-pressed="${i===1}">₪${a}${l?`<small>${l}</small>`:''}</button>`).join('')}</div>
+    <label class="dfree">סכום אחר, בשקלים<input id="dfree" type="number" inputmode="numeric" min="5" max="20000" step="1" placeholder="למשל 50"></label>
+    <div class="row"><a class="btn primary" id="dgo" href="${esc(DONATE_URL)}" target="_blank" rel="noopener">המשך לתשלום מאובטח</a>
+    <span class="note" id="damt" aria-live="polite">נבחר: ₪${AMOUNTS[1][0]}</span></div>${mon?'<p class="note" style="margin:0">תרומה חודשית אפשר לבטל בכל רגע, בעמוד של חברת הסליקה.</p>':''}</section>`}
+function viewSupport(){setNav('');
+  app.innerHTML=`<section class="libhead"><h1>תמיכה בתפילה</h1><p>הסידור, התהילים והכלים פתוחים לכולם: בלי הרשמה, בלי פרסומות ובלי תשלום. כך זה יישאר, גם למי שלא תורם.</p></section>
+  <div class="prose supp"><h2>למה לתמוך</h2><p>אתר שנפתח מהר, בלי פרסומות שקופצות באמצע תפילה, צריך מישהו שיתחזק אותו: לתקן טעויות בנוסח שמדווחים עליהן, לעדכן זמנים ולוח, ולהוסיף תפילות וכלים. תמיכה מרצון היא מה שמאפשר להמשיך בלי פרסומות.</p>
+  ${CFGX.donateNote?`<h2>לאן הולכת התרומה</h2><p>${esc(CFGX.donateNote)}</p>`:''}</div>
+  ${donateBlock()||'<div class="empty"><b>עדיין אין באתר אפשרות לתרום</b>כשתיפתח אפשרות כזאת, היא תופיע כאן. בינתיים הדרך הטובה לעזור היא לשתף את האתר עם מי שיכול להיעזר בו.</div>'}
+  <div class="prose supp"><h2>דרכים אחרות לעזור</h2><p>לשלוח את האתר למי שמחפש סידור נוח בטלפון, ולדווח כשמוצאים טעות בנוסח. <a href="/odot/#taut" data-taut>לדיווח על טעות</a></p></div>${footer()}`;bindDonate();scrollTo(0,0)}
+function bindDonate(){const a=$('#dgo');if(!a)return;let amt=AMOUNTS[1][0];
+  const upd=()=>{const mon=($('input[name=dfreq]:checked')||{}).value==='month';$('#damt').textContent=`נבחר: ₪${amt}${mon?' בכל חודש':''}`;
+    try{const u=new URL(mon&&CFGX.donateMonthlyUrl?CFGX.donateMonthlyUrl:DONATE_URL);u.searchParams.set('amount',amt);a.href=u.href}catch(e){}};
+  $$('[data-amt]').forEach(b=>b.onclick=()=>{$$('[data-amt]').forEach(x=>x.setAttribute('aria-pressed',x===b));amt=+b.dataset.amt;const f=$('#dfree');if(f)f.value='';upd()});
+  const f=$('#dfree');if(f)f.oninput=()=>{const v=Math.floor(+f.value);if(v>=5&&v<=20000){amt=v;$$('[data-amt]').forEach(x=>x.setAttribute('aria-pressed','false'));upd()}};
+  $$('input[name=dfreq]').forEach(r=>r.onchange=upd);upd()}
 
 function drawWall(){const wall=$('#wall');if(!wall)return;const full=(location.hash.slice(1)==='zikaron');
   if(mems===null&&!DB){wall.innerHTML=`<div class="empty" style="grid-column:1/-1"><b>תהילים יחד ייפתח בקרוב</b>הקריאה המשותפת עוד לא מחוברת. בינתיים אפשר לקרוא תהילים באתר.</div>`;$$('[data-new]').forEach(b=>b.disabled=true);return}
@@ -1984,7 +1998,7 @@ function shareUrl(){const h=safeHash()||'home',o=location.origin;let m;
   const S={home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'};return S[h]?o+S[h]:`${o}/#${h}`}
 const shareTitle=()=>(($('#app h1')||{}).textContent||'תפילה').replace(/\s+/g,' ').trim();
 function endCard(){return `<section class="endcard" aria-label="סיום הקריאה"><b>סיימתם לקרוא</b><p>מכירים מישהו שישמח לקרוא את זה? שלחו לו.</p>
-  <div class="row"><button class="btn primary" type="button" data-endwa>שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp>העתקת קישור</button></div></section>`}
+  <div class="row"><button class="btn primary" type="button" data-endwa>שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp>העתקת קישור</button></div>${DONATE_URL?'<p class="endsup">תפילה עוזרת לכם? <a href="#tmicha">אפשר לתמוך בתחזוקת האתר</a></p>':''}</section>`}
 document.addEventListener('click',async e=>{const w=e.target.closest('[data-endwa]'),c=e.target.closest('[data-endcp]');if(!w&&!c)return;const url=(w||c).dataset.url||shareUrl(),txt=(w||c).dataset.txt||shareTitle();
   if(w)window.open('https://wa.me/?text='+encodeURIComponent(`${txt}\n${url}`),'_blank','noopener');
   else{try{await navigator.clipboard.writeText(url);toast('הקישור הועתק')}catch(x){toast(url)}}});
@@ -2105,13 +2119,24 @@ async function viewSearch(){setNav('search');const q0=store.get('q','');
     out.sort((a,b)=>a.s-b.s);const mk=s=>esc(s).split(esc(q)).join(`<mark>${esc(q)}</mark>`),ph=psalmHits(inp.value,12);
     const oth=NUS.filter(([c])=>c!==nus).map(([c,h])=>`<button class="chip" type="button" data-nz="${c}">לחפש בנוסח ${h}</button>`).join('');
     const lq=looseT(inp.value).join(' '),lib=lq.length>1?allTitles().filter(x=>x.sub!==undefined&&!/^#p-/.test(x.href)&&x.L.join(' ').includes(lq)).slice(0,8):[];
-    const total=out.length+ph.length+lib.length,dym=total<3?didYouMean(inp.value,5).filter(x=>!lib.includes(x)):[];
+    /* what the words name comes first: a whole service, a prayer by its title, a book or a tool; then places where the words appear */
+    const top=[],seenH=new Set(),addTop=(href,t,sub)=>{if(seenH.has(href)||top.length>=10)return;seenH.add(href);top.push({href,t,sub})};
+    groupHits(q,nus).forEach(([t,sub,id])=>addTop('#p-'+id,t,`נוסח ${nusName(nus)} · ${sub}`));
+    titleHits(q,nus,true).filter(x=>x[0]<=2).slice(0,6).forEach(([,p])=>addTop('#p-'+p.id,p.t,`נוסח ${nusName(p.n)}${p.s.length?' · '+p.s.at(-1):''}`));
+    lib.forEach(x=>addTop(x.href,x.t,x.sub));
+    const elsew=[];NUS.forEach(([c])=>{if(c!==nus)titleHits(q,c,true).filter(x=>x[0]===0).slice(0,1).forEach(([,p])=>elsew.push({href:'#p-'+p.id,t:p.t,sub:`נוסח ${nusName(c)}${p.s.length?' · '+p.s.at(-1):''}`}))});
+    for(let k=out.length-1;k>=0;k--)if(seenH.has('#p-'+out[k].p.id))out.splice(k,1);
+    const row=x=>`<li><a class="glass spot" href="${x.href}"><span class="path">${esc(x.sub||'')}</span><br><b>${esc(x.t)}</b></a></li>`;
+    const psHtml=ph.length?`<h2 class="rsec">בספר תהילים</h2><ul class="res">${ph.map(({x,i,n})=>`<li><a class="glass spot" href="#t-${x.c}"><span class="path">תהילים פרק ${gem(x.c)}, פסוק ${gem(x.v)}</span><div class="snip">${snipW(x.W,i,n,6,10)}</div></a></li>`).join('')}</ul>`:'';
+    const total=out.length+ph.length+top.length+elsew.length,dym=!top.length&&!elsew.length&&total<3?didYouMean(inp.value,5):[];
     $('#sr').innerHTML=`<p class="count">${total===0?(dym.length?'לא מצאנו בדיוק את זה.':'לא מצאנו. נסו מילה אחרת או פחות מילים'):total===1?'תוצאה אחת':total+' תוצאות'}${out.length?' · נוסח '+nusName(nus):''}</p><div class="ssugg" style="margin-top:8px">${PQ.ch?`<a class="chip" href="#t-${PQ.ch}">תהילים פרק ${gem(PQ.ch)}</a>`:''}${oth}</div>
       ${dym.length?`<h2 class="rsec">אולי התכוונתם ל…</h2><div class="ssugg">${dym.map(x=>`<a class="chip" href="${x.href}">${esc(x.t)}</a>`).join('')}</div>`:''}
-      ${lib.length?`<h2 class="rsec">בספרייה ובכלים</h2><ul class="res">${lib.map(x=>`<li><a class="glass spot" href="${x.href}"><span class="path">${esc(x.sub||'')}</span><br><b>${esc(x.t)}</b></a></li>`).join('')}</ul>`:''}
-      ${ph.length?`<h2 class="rsec">בספר תהילים</h2><ul class="res">${ph.map(({x,i,n})=>`<li><a class="glass spot" href="#t-${x.c}"><span class="path">תהילים פרק ${gem(x.c)}, פסוק ${gem(x.v)}</span><div class="snip">${snipW(x.W,i,n,6,10)}</div></a></li>`).join('')}</ul>`:''}
-      ${out.length&&ph.length?'<h2 class="rsec">בסידור</h2>':''}<ul class="res">${out.slice(0,80).map(({p,i})=>{const x=X[p.id];
-      return `<li><a class="glass spot" href="#p-${p.id}" data-hl="${i>=0?esc(x.W.slice(i,i+qw.length).join(' ')):esc(q)}"><span class="path">נוסח ${nusName(p.n)}${p.s.length?' · '+esc(p.s.join(' / ')):''}</span><br><b>${mk(p.t)}</b>${i>=0?`<div class="snip">${snipW(x.W,i,qw.length,8,12)}</div>`:''}</a></li>`}).join('')}</ul>`;
+      ${top.length?`${out.length||ph.length?'<h2 class="rsec">תפילות ודפים</h2>':''}<ul class="res">${top.map(row).join('')}</ul>`:''}
+      ${top.length?'':psHtml}
+      ${out.length&&(top.length||ph.length)?'<h2 class="rsec">בתוך התפילות</h2>':''}<ul class="res">${out.slice(0,80).map(({p,i})=>{const x=X[p.id];
+      return `<li><a class="glass spot" href="#p-${p.id}" data-hl="${i>=0?esc(x.W.slice(i,i+qw.length).join(' ')):esc(q)}"><span class="path">נוסח ${nusName(p.n)}${p.s.length?' · '+esc(p.s.join(' / ')):''}</span><br><b>${mk(p.t)}</b>${i>=0?`<div class="snip">${snipW(x.W,i,qw.length,8,12)}</div>`:''}</a></li>`}).join('')}</ul>
+      ${elsew.length?`<h2 class="rsec">בנוסחים אחרים</h2><ul class="res">${elsew.map(row).join('')}</ul>`:''}
+      ${top.length?psHtml:''}`;
     $$('#sr a[data-hl]').forEach(a=>a.onclick=()=>{pendingHl=a.dataset.hl});$$('#sr [data-nz]').forEach(b=>b.onclick=()=>{nus=b.dataset.nz;store.set('nus',nus);renderNus();run()})};
   inp.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(run,220)});$('#sf').addEventListener('submit',e=>{e.preventDefault();run()});inp.focus();run()}
 

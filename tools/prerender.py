@@ -1066,6 +1066,8 @@ for n, plist in by_nus.items():
             crumbs.append((sec_label, sec_href))
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
+        # where the same name opens two different editions, the title says which one this is
+        if me == "/tefila/sefard-32/": _tt = f"פרק שירה עם ההקדמה ”תניא רבי אליעזר” | נוסח ספרד | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         page(me, _tt, fit_desc(head, " ".join(paras[:3])),
              p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
@@ -1312,6 +1314,11 @@ for i, (k, t, d) in enumerate(KELIM):
     ttl, head, paras, extra, rel = TOOL[k]
     pv, nx = (KELIM[i - 1] if i else None), (KELIM[i + 1] if i + 1 < len(KELIM) else None)
     opener = SHEM_FORM if k == "shem" else f'<p><a class="btn" href="/#kli-{k}">לפתיחת הכלי באפליקציה</a></p>'
+    if k == "shem":
+        # the four sections people look for by name: printed here, pointed, straight from the Psalms data
+        _ns = "".join(f'<h3 id="ot-{c}">אות {c}</h3>' + "".join(f"<p><sup>{gem(ABC.index(c) * 8 + j + 1)}</sup>{clean(v)}</p>" for j, v in enumerate(P[118][ABC.index(c) * 8:ABC.index(c) * 8 + 8])) for c in "נשמה")
+        opener += ('<h2 class="sec" id="neshama">אותיות נשמה: הפסוקים מפרק קי״ט</h2><p class="note">לעילוי נשמה נוהגים לומר, אחרי אותיות השם, את פסוקי האותיות נ, ש, מ, ה. אלה 32 הפסוקים:</p>'
+                   f'<article class="text nesh">{_ns}</article>')
     body = (opener + '<div class="prose"><h2>איך זה עובד</h2>'
             + "".join(f"<p>{esc(x)}</p>" for x in paras) + extra + "</div>"
             + ('<p class="note">הכלי מחשב בדפדפן שלכם. השם שמקלידים לא נשלח לשום מקום.</p>' if k == "shem" else '<p class="note">הכלי מחשב לפי מה שמקלידים בו, ונפתח באפליקציה של תפילה.</p>')

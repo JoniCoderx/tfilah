@@ -122,7 +122,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(255,255,255,.94);border-block-end:1px solid var(--line)}.top::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:140px;background:rgba(255,255,255,.78);backdrop-filter:saturate(1.5) blur(18px);-webkit-backdrop-filter:saturate(1.5) blur(18px);pointer-events:none}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(255,255,255,.94);border-block-end:1px solid var(--line)}.top::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:160px;background:#fff;pointer-events:none}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}

@@ -2010,8 +2010,10 @@ const plainFor=t=>{const i=PLAIN_RE.findIndex(r=>r.test(t));return i<0?'':PLAIN[
 const SOLO=/ברכות ותפילות שונות|תפילות וסגולות|תוספות|תעניות|חנוכה|פורים|ניסן|משניות|שירים|ברכות הנהנין|^ברכות|יוצרות|סדר הקריאות|סוכות|שמחת תורה|^חגים$|סליחות|הושענות|תפילות נוספות|תפילות לציבור|זמירות|מי שברך|קדיש$/;
 const cnt=(n,one,many)=>n===1?one:`${n} ${many}`;
 /* the public address of what is on screen: the static page when there is one */
+/* readable addresses of the prayer pages; until the list arrives the numbered address is used, and it redirects */
+let URLS=null;load('data/urls.json').then(j=>{URLS=j},()=>{});
 function shareUrl(){const h=safeHash()||'home',o=location.origin;let m;
-  if((m=h.match(/^p-([a-z]+-\d+)$/)))return `${o}/tefila/${m[1]}/`;if((m=h.match(/^t-(\d+)$/)))return `${o}/tehillim/${m[1]}/`;
+  if((m=h.match(/^p-([a-z]+-\d+)$/)))return o+(URLS&&URLS[m[1]]||`/tefila/${m[1]}/`);if((m=h.match(/^t-(\d+)$/)))return `${o}/tehillim/${m[1]}/`;
   if((m=h.match(/^b-([a-z]+)$/)))return `${o}/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `${o}/tehillim/${m[1]}/`;if((m=h.match(/^kli-([a-z]+)$/)))return `${o}/kelim/${m[1]}/`;
   const S={home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'};return S[h]?o+S[h]:`${o}/#${h}`}
 const shareTitle=()=>(($('#app h1')||{}).textContent||'תפילה').replace(/\s+/g,' ').trim();

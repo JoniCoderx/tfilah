@@ -150,7 +150,7 @@ h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.
 .btn:hover{color:#fff;filter:brightness(1.08)}
 .applink{margin:1.5rem 0 0}
 .applink a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600}
-footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:2rem;color:var(--muted);font-size:.9rem}.flegal{display:flex;flex-wrap:wrap;gap:.25rem .5rem;margin:.4rem 0 .5rem;font-size:.85rem}.flegal a{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;min-width:2.75rem;padding-inline:.5rem;color:inherit}.fcredit a{display:inline-flex;align-items:center;min-height:2.75rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
+html[data-theme=dark]{background:#fff;filter:invert(1) hue-rotate(180deg)}html[data-theme=dark] img,html[data-theme=dark] .mm-pic svg,html[data-theme=dark] .mm-tile .ib svg,html[data-theme=dark] .mm-sug svg,html[data-theme=dark] .mm-pick svg,html[data-theme=dark] .mm-chip svg,html[data-theme=dark] canvas{filter:invert(1) hue-rotate(180deg)}.dkb{display:inline-flex;align-items:center;gap:.4rem;min-height:2.75rem;padding:.3rem .8rem;border:1px solid var(--line);border-radius:999px;background:none;color:inherit;font:inherit;font-weight:600;cursor:pointer}.dkb[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:2rem;color:var(--muted);font-size:.9rem}.flegal{display:flex;flex-wrap:wrap;gap:.25rem .5rem;margin:.4rem 0 .5rem;font-size:.85rem}.flegal a{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;min-width:2.75rem;padding-inline:.5rem;color:inherit}.fcredit a{display:inline-flex;align-items:center;min-height:2.75rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
 .fmap{margin-block-start:.6rem}.fmap summary{cursor:pointer;min-block-size:2.75rem;display:flex;align-items:center;font-weight:600;color:var(--ink2)}.fmap nav{display:flex;flex-wrap:wrap;gap:0 1rem}
 footer{border-block-start:1px solid var(--line);color:var(--muted);font-size:.88rem}
 footer .in{max-width:40rem;margin-inline:auto;padding:1.25rem 1rem 2.5rem}
@@ -182,6 +182,7 @@ CSS_BLOCKS = [
 .nus a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.45rem;font-weight:600}
 .bar{flex-wrap:nowrap}.nus{flex-wrap:nowrap;white-space:nowrap}
 @media (max-width:30rem){.nus span{display:none}}
+@media (max-width:22rem){.bar{flex-wrap:wrap}}
 .text{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;box-shadow:var(--sh);padding:1.4rem clamp(1.1rem,4.5vw,2.25rem) 1.6rem;font-family:var(--f-read);font-size:var(--reading);font-weight:400;line-height:1.9;text-align:start;max-width:38rem;margin-inline:auto}
 .text p{margin:0 0 .65em}.text p:last-child{margin-block-end:0}
 .text sup{color:var(--stamp);font-family:var(--f-ui);font-weight:600;font-size:.58em;margin-inline-end:.4em;vertical-align:.5em;line-height:1}
@@ -369,7 +370,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .svctoc[open] summary::after{transform:rotate(-135deg)}.svctoc .grp{margin:.4rem 1.1rem 0}.svctoc .toc{margin:0;padding:0 .6rem .8rem}
 """),
 ("note", """
-.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}
+.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}.tdn{margin:1rem 0 1.25rem;padding:.9rem 1rem;border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:12px;background:var(--accent-soft,#f3f6ff);font-family:var(--f-ui,inherit);font-size:.95rem;line-height:1.65;color:var(--ink);text-align:start}.tdn h2{margin:0 0 .4rem;font-size:1.05rem}.tdn ul{margin:0;padding-inline-start:1.1rem}.tdn li{margin:.3rem 0}.tdn p{margin:.6rem 0 0}.tdn .tds{font-size:.85rem;color:var(--muted)}.tdn a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
 """),
 ]
 
@@ -419,11 +420,14 @@ NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')
 DONATE_ON = bool(re.search(r'donateUrl:\s*"[^"]+"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()))
 CONTACT = (re.search(r'contactEmail:\s*"([^"]*)"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()) or [None, ""])[1]
+TD_BOX = '<aside class="tdn" aria-label="מתי אומרים את תפילת הדרך בברכה"><h2>מתי אומרים אותה בברכה?</h2><ul><li><b>לפי זמן הנסיעה:</b> בסידור עדות המזרח שבאתר נכתב שמי ששוהה בנסיעה מחוץ לעיר שעה וחמישית (72 דקות) אומר אותה בשם ומלכות, ובנסיעה קצרה מזו אינו מברך בשם ומלכות.</li><li><b>לפי המרחק:</b> בשולחן ערוך נפסק שאומרים אותה כשהדרך היא פרסה לפחות, ובפחות מפרסה אין חותמים ב”ברוך”. המשנה ברורה מוסיף שפרסה היא 8,000 אמה, ושגם הנוסע ברכבת מברך כשהוא נוסע פרסה אחת.</li><li><b>מתי בדרך:</b> אחרי שיצאו מהעיר, ולכתחילה בתחילת הדרך.</li></ul><p>כשלא חותמים, אומרים את התפילה עד ”כי אל שומע תפילה ותחנון אתה” בלי הסיום ”ברוך אתה ה׳ שומע תפילה”. יש שתי דרכי מדידה, זמן ומרחק, והאתר אינו מכריע ביניהן. מי שמסופק שואל רב.</p><p class="tds">מקורות: הוראת הסידור בנוסח עדות המזרח · <a href="https://www.sefaria.org.il/Shulchan_Arukh%2C_Orach_Chayim.110.7" target="_blank" rel="noopener">שולחן ערוך אורח חיים קי, ז</a> · <a href="https://www.sefaria.org.il/Mishnah_Berurah.110.30" target="_blank" rel="noopener">משנה ברורה שם, ס״ק כט עד לא</a></p></aside>'
+DARK_JS = "(function(){function on(){return document.documentElement.dataset.theme==='dark'}function paint(){var d=on();document.querySelectorAll('[data-dark]').forEach(function(b){if(b.getAttribute('aria-pressed')!==String(d))b.setAttribute('aria-pressed',d);var s=b.querySelector('span'),w=d?'מצב יום':'מצב לילה';if(s&&s.textContent!==w)s.textContent=w});var m=document.querySelector('meta[name=theme-color]'),k=d?'#000000':'#FFFFFF';if(m&&m.content!==k)m.content=k}document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dark]');if(!b)return;var d=!on();if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('dark',JSON.stringify(d))}catch(x){}paint()});paint();new MutationObserver(paint).observe(document.body,{childList:true,subtree:true})})();"
+DARK_EARLY = '<script>try{if(JSON.parse(localStorage.getItem("dark")||"false"))document.documentElement.dataset.theme="dark"}catch(e){}</script>'
 FOOT_JS = "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-taut]');if(!a)return;var h=document.querySelector('h1');a.href='/odot/?u='+encodeURIComponent(location.origin+location.pathname)+'&t='+encodeURIComponent(h?h.textContent.replace(/\\\\s+/g,' ').trim():'')+'#taut'});"
 FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
-            '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/odot/">אודות ומקורות</a></nav></details>')
+            '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/kotel/">תפילה בכותל</a><a href="/odot/">אודות ומקורות</a></nav></details>')
 FONT_HEAD = '<link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin><style>@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-hebrew-900.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-latin-900.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-hebrew-600.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>'
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
@@ -525,13 +529,13 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
 {'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}
 <p class="fcredit">הטקסטים מתוך המהדורות הפתוחות של תורת אמת, דעת ו-Tanach.us, דרך הארכיון של ספריא. <a href="/odot/">פירוט המקורות</a></p>
-<p class="flegal"><a href="/pratiyut/">פרטיות</a><a href="/tnaim/">תנאי שימוש</a><a href="/negishut/">נגישות</a></p>
-{FOOT_NAV}</div></footer><script>{FOOT_JS}</script>{f'<script>{script}</script>' if script else ''}"""
+<p class="flegal"><a href="/pratiyut/">פרטיות</a><a href="/tnaim/">תנאי שימוש</a><a href="/negishut/">נגישות</a><button type="button" class="dkb" data-dark aria-pressed="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>מצב לילה</span></button></p>
+{FOOT_NAV}</div></footer><script>{FOOT_JS}{DARK_JS}</script>{f'<script>{script}</script>' if script else ''}"""
     canon = ('<meta name="robots" content="noindex">' if notfound else
              f'<link rel="canonical" href="{SITE + canon_to if canon_to else url}">\n<meta property="og:url" content="{url}">')
     doc = f"""<!doctype html>
 <html lang="he" dir="rtl"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{BACK_TO_APP.replace("__H__", app_hash) if app_hash and app_hash != "home" and not notfound else ""}
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{DARK_EARLY}{BACK_TO_APP.replace("__H__", app_hash) if app_hash and app_hash != "home" and not notfound else ""}
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 {canon}
@@ -597,7 +601,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1242,6 +1246,8 @@ for n, plist in by_nus.items():
             meta += f" · נכתב גם: {esc(alt)}"
         when = CONTEXT_ID.get(p["id"]) or CONTEXT.get(p["t"]) or CONTEXT.get(norm_t(p["t"]))
         before = f'<p class="note">{esc(when)}</p>' if when else ""
+        if norm_t(p["t"]) == "תפילת הדרך":
+            before += TD_BOX
         crumbs = [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/")]
         if p["id"] in SVC_OF:
             crumbs.append((sec_label, sec_href))
@@ -1492,6 +1498,43 @@ page("/parasha/", f"פרשת השבוע: כל 54 הפרשות בניקוד מל�
      after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
      hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.",
      ld=[collection("פרשת השבוע", "/parasha/", list(PAR_PATH.values()))])
+
+# ---------- at the Western Wall ----------
+# No composed "Kotel prayer" is printed here: none was found whose text can be read at its source and copied freely.
+# The page holds only verses and Psalms (data/tehillim.json; Isaiah 64:10 from data/kotel.json), in the order the old
+# accounts give, and names the source of every custom. Whether one tears a garment today is left to a rabbi.
+KOTEL = json.load(open(os.path.join(DATA, "kotel.json"), encoding="utf-8"))
+_KSRC = "https://timeline.thekotel.org/wp-content/uploads/2024/06/u2_t1583397251.pdf"
+_kv = lambda c, i: f'<p>{clean(P[c - 1][i - 1])} <small>(תהילים {gem(c)}, {gem(i)})</small></p>'
+_kp = lambda c: f'<h3 id="p{c}"><a href="/tehillim/{c}/">תהילים פרק {gem(c)}</a></h3>{verses(c)}'
+k_text = ('<h2 id="bo">כשמגיעים אל הכותל</h2>'
+          '<p><small>בספר התפילות ”שערי דמעה” (ירושלים, תר״ט, 1849) נכתב שהבא אל הכותל אומר את שני הפסוקים האלה:</small></p>'
+          + _kv(26, 8) + _kv(5, 8)
+          + '<h2 id="mizmorim">מזמורים שנהגו לומר ליד הכותל</h2>'
+          '<p><small>לפי תיאורים של אנשי ירושלים מהמאות ה-17 וה-18: פרק פד ופרק קכב, ואחריהם פרק קלב ופרק קלג.</small></p>'
+          + _kp(84) + _kp(122) + _kp(132) + _kp(133)
+          + '<h2 id="churban">על חורבן בית המקדש</h2>'
+          '<p><small>בשולחן ערוך (אורח חיים תקסא, ב) נכתב שהרואה את מקום המקדש בחורבנו אומר את הפסוק הזה:</small></p>'
+          f'<p>{clean(KOTEL["verses"]["Isaiah.64.10"])} <small>(ישעיהו סד, י)</small></p>'
+          '<p><small>הב״ח והמשנה ברורה (שם, ס״ק ו) מוסיפים את המזמור ”מזמור לאסף”, פרק עט:</small></p>'
+          + _kp(79))
+k_before = ('<div class="prose"><p>אין נוסח אחד מחייב לתפילה בכותל המערבי. לאורך הדורות נהגו לומר שם פסוקים ומזמורי תהילים על ירושלים ועל בית המקדש, ולהוסיף אחריהם בקשה אישית, כל אחד במילים שלו.</p>'
+            '<p>בעמוד הזה מופיעים רק פסוקים ומזמורים, בסדר שמתואר במקורות, ולצד כל קטע כתוב מאיפה המנהג. '
+            'השולחן ערוך מזכיר שם גם קריעה על חורבן המקדש. אם ואיך נוהגים בזה היום, שואלים רב.</p></div>'
+            '<div class="related" style="margin-block-end:1rem"><a href="#bo">כשמגיעים</a><a href="#mizmorim">מזמורים</a><a href="#churban">על החורבן</a></div>')
+k_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
+           '<li>הפסוקים בבואו אל הכותל והמזמורים: ”מנהג אמירת תהלים ליד הכותל המערבי, לקט תיעוד היסטורי”, הקרן למורשת הכותל המערבי '
+           f'(<a href="{_KSRC}" target="_blank" rel="noopener">לקריאת הלקט</a>), שמביא את ”שערי דמעה”, מכתב מירושלים משנת שע״ו, את רבי משה פוריית מפראג ואת רבי משה חאגיז.</li>'
+           '<li><a href="https://www.sefaria.org.il/Shulchan_Arukh%2C_Orach_Chayim.561.2" target="_blank" rel="noopener">שולחן ערוך אורח חיים תקסא, ב</a> · '
+           '<a href="https://www.sefaria.org.il/Bach%2C_Orach_Chayim.561" target="_blank" rel="noopener">ב״ח שם</a> · '
+           '<a href="https://www.sefaria.org.il/Mishnah_Berurah.561.6" target="_blank" rel="noopener">משנה ברורה שם, ס״ק ו</a>.</li>'
+           '<li>נוסח הפסוקים: תהילים מתוך ספר התהילים שבאתר, והפסוק מישעיהו מתוך ”תנ״ך עם ניקוד” (נחלת הכלל).</li></ul></div>'
+           + chips("עוד באתר", [("/tehillim/", "ספר תהילים"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/tefilat-haderech/", "תפילת הדרך"), ("/tefila/", "סידור תפילה")]))
+page("/kotel/", f"תפילה בכותל המערבי: פסוקים ומזמורים שנהגו לומר | {BRAND}",
+     "מה אומרים בכותל המערבי: הפסוקים שנאמרים כשמגיעים אל הכותל ומזמורי התהילים שנהגו לומר שם, בניקוד מלא ועם המקור של כל מנהג.",
+     "תפילה בכותל המערבי", [("תפילה בכותל המערבי", "/kotel/")], text=k_text, before=k_before, after=k_after, prio="0.8",
+     lead="הפסוקים והמזמורים שנהגו לומר ליד הכותל, עם המקור של כל מנהג.",
+     ld=[{"@type": "CreativeWork", "name": "תפילה בכותל המערבי", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + "/kotel/"}])
 
 page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה ועוד | {BRAND}",
      "ספרייה בניקוד מלא: פרקי אבות, שיר השירים, מגילת רות, מגילת אסתר, איכה, קהלת, משלי, פרק שירה, פרשת המן, סליחות, יזכור ועוד. כל ספר בעמוד קריאה משלו.",

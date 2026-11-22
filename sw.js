@@ -1,6 +1,6 @@
 // Tfilah.com offline support: the siddur and Tehillim keep working without internet.
 // Raise VERSION on every deploy (README, "אפליקציה בטלפון"); that is what tells phones to update.
-const VERSION = "tfilah-v84";
+const VERSION = "tfilah-v85";
 const SHELL = VERSION;              // the app and its prayer texts; replaced as a whole on every VERSION
 const PAGES = "tfilah-pages";       // static reading pages (/tehillim/23/ ...) the reader has opened
 const EXT = "tfilah-ext-v1";        // fonts and libraries from other hosts (their URLs carry a version)

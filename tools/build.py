@@ -38,7 +38,7 @@ head = f"""<!doctype html>
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="תפילה">
-<meta property="og:image" content="https://tfilah.com/icons/og.png?v=3">
+<meta property="og:image" content="https://tfilah.com/icons/og.png?v=4">
 <link rel="canonical" href="https://tfilah.com/">
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icons/favicon-96.png" type="image/png" sizes="96x96"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="/icons/icon-192.png" type="image/png">

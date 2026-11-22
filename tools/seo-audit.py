@@ -126,7 +126,7 @@ inbound = collections.Counter()
 link_cache = {}
 n_links = n_hash = n_ld = 0
 desc_len = []
-READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9-]+/|/tefila/[a-z]+-\d+/|/sefer/[a-z]+/")
+READING = re.compile(r"/tehillim/(?!yomi/)[a-z0-9-]+/|/tefila/[a-z]+/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/|/sefer/[a-z]+/")
 
 def link_ok(target):
     """internal path resolves to a page or a file on disk"""
@@ -299,7 +299,7 @@ for path, f in sorted(disk.items()):
     check_copy(path, doc)
 
     # nusach of a prayer page comes from its URL: /tefila/<nusach>-<n>/
-    pm = re.fullmatch(r"/tefila/([a-z]+)-\d+/", path)
+    pm = re.fullmatch(r"/tefila/([a-z]+)/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/", path)
     nus = pm.group(1) if pm else ""
     if pm:
         prayer_titles[(nus, h1_main)].append(path)
@@ -398,7 +398,7 @@ def kind(p):
     if re.fullmatch(r"/tehillim/(yom|chodesh)-[a-z0-9]+/", p): return "tehillim by day"
     if parts[0] == "tehillim": return "tehillim by need"
     if parts[0] == "kelim": return "tool"
-    if re.fullmatch(r"/tefila/[a-z]+-\d+/", p): return "prayer"
+    if re.fullmatch(r"/tefila/[a-z]+/(?!shacharit/|mincha/|arvit/)[a-z0-9-]+/", p): return "prayer"
     if parts[0] == "tefila": return "nusach hub" if len(parts) == 2 else "service"
     return parts[0] + " page"
 count = collections.Counter(kind(p) for p in disk)

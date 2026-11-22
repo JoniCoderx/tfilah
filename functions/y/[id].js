@@ -13,7 +13,7 @@ export async function onRequest({ params, env, request }) {
   let who = "";
   if (m) who = m.kind === "general" || !PRE[m.kind] ? m.name : `${PRE[m.kind]} ${m.name} ${m.rel === "בת" ? "בת" : "בן"} ${m.parent}${m.kind === "neshama" ? " ז״ל" : ""}`;
   const title = m ? `תהילים יחד ${who}` : "תהילים יחד: קריאת תהילים משותפת";
-  const desc = m ? `קוראים יחד את ספר התהילים ${who}. כל אחד פרק, ביחד ספר שלם.${m.done ? ` כבר נקראו ${m.done} פרקים.` : ""} היכנסו וקבלו פרק.`
+  const desc = m ? `קוראים יחד את ספר התהילים ${who}. כל אחד פרק, ביחד ספר שלם.${m.done === 1 ? " כבר נקרא פרק אחד." : m.done ? ` כבר נקראו ${m.done} פרקים.` : ""} היכנסו וקבלו פרק.`
                  : "קריאת תהילים משותפת: כל אחד פרק, ביחד ספר שלם. היכנסו וקבלו פרק.";
   const app = "/#m-" + id, self = "https://tfilah.com/y/" + id;
   const html = `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

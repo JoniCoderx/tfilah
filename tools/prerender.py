@@ -601,7 +601,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -723,6 +723,13 @@ for pid in ("mizrach-101", "mizrach-88", "sefard-165", "sefard-90", "ashkenaz-29
 PRIMARY = {"ashkenaz-1", "ashkenaz-3", "ashkenaz-4", "ashkenaz-13", "ashkenaz-440", "ashkenaz-441", "ashkenaz-442", "ashkenaz-443"}
 for pid in PRIMARY:
     assert pid in BYID and pid in CTX, pid
+# ...and so does the first page of every other repeated name: it is the one that holds the plain address (/kaddish-yatom/),
+# and a title that drags its whole section path behind it reads badly in search results.
+for _n, _pl in by_nus.items():
+    _first = {}
+    for p in _pl:
+        _first.setdefault(p["t"], p)
+    PRIMARY |= {p["id"] for p in _first.values() if p["id"] in CTX}
 
 # How people type the name. The source title stays as the H1; these only lead the <title> and description.
 SPELL = {"תפלת הדרך": "תפילת הדרך", "פטום הקטורת": "פיטום הקטורת", "פטום קטורת": "פיטום הקטורת",
@@ -1258,11 +1265,20 @@ for n, plist in by_nus.items():
         # where the same name opens two different editions, the title says which one this is
         if p["id"] == "sefard-32": _tt = f"פרק שירה (Perek Shira): הנוסח המלא בניקוד | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
+        if len(_tt) > 62 and CTX.get(p["id"]) and p["id"] not in PRIMARY:
+            _parts = CTX[p["id"]].split(" · ")
+            for _k in (2, 1, 3):
+                _cand = f"{lead_of(p)} ({' · '.join(_parts[-_k:])}) | נוסח {NUS[n]} | {BRAND}"
+                if len(_cand) <= 62 and _cand not in TITLES and len(_parts) >= _k:
+                    _tt = _cand
+                    break
         _desc = fit_desc(head, " ".join(paras[:3]))
         if p["id"] == "sefard-32":
             _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
+        if p["t"].startswith(("קדיש", "חצי קדיש")):
+            after = chips("קדיש", [("/kaddish/", "כל סוגי הקדיש בעמוד אחד")]) + after
         if p["id"] == "ashkenaz-264":
             _nl = [("/nishmat-kol-chai/mizrach/", "mizrach"), ("/nishmat-kol-chai/sefard/", "sefard")]
             switch = '<nav class="nus" aria-label="אותה תפילה בנוסח אחר"><span>גם בנוסח</span>' + "".join(f'<a href="{h}">{esc(NUS[m])}</a>' for h, m in _nl) + "</nav>"
@@ -1539,6 +1555,19 @@ for n, (pid, lo, hi) in NISHMAT.items():
                + chips("אותה תפילה בנוסח אחר", [(h, f"נשמת כל חי · נוסח {NUS[m]}") for m, h in _n_all if m != n]),
          app_hash=f"p-{pid}", app_label="לתפילה המלאה באפליקציה",
          ld=[{"@type": "CreativeWork", "name": "נשמת כל חי", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
+
+# ---------- kaddish: one page that names every kind and points to its text ----------
+_kd = [("קדיש יתום", "נאמר על ידי האבלים, במניין."), ("חצי קדיש", ""), ("קדיש שלם", ""), ("קדיש דרבנן", ""), ("קדיש דאתחדתא", ""), ("קדיש אחר השלמת מסכת", "")]
+_kd_items = [(t, note, next(p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] not in DUP_OF)) for t, note in _kd]
+_kd_html = '<ul class="list">' + "".join(f'<li><a href="{PURL[p["id"]]}">{esc(t)}<small>{esc(note or "הנוסח המלא בניקוד")}</small></a></li>' for t, note, p in _kd_items) + "</ul>"
+page("/kaddish/", f"קדיש: קדיש יתום, חצי קדיש, קדיש שלם וקדיש דרבנן בניקוד | {BRAND}",
+     "נוסח הקדיש המלא בניקוד: קדיש יתום, חצי קדיש, קדיש שלם (תתקבל), קדיש דרבנן וקדיש שאחרי סיום מסכת. לכל קדיש עמוד קריאה משלו, נוח לנייד ולהדפסה.",
+     "קדיש", [("סידור", "/tefila/"), ("קדיש", "/kaddish/")],
+     after=_kd_html + '<div class="prose"><p><small>הנוסחים בעמודים האלה לקוחים מסידור נוסח אשכנז שבאתר. בנוסח עדות המזרח ובנוסח ספרד הקדיש מופיע בתוך סדר התפילה.</small></p></div>'
+           + chips("בתוך סדר התפילה", [("/tefila/mizrach/shacharit/", "שחרית · נוסח עדות המזרח"), ("/tefila/sefard/shacharit/", "שחרית · נוסח ספרד"), ("/tefila/ashkenaz/shacharit/", "שחרית · נוסח אשכנז")])
+           + chips("עוד באתר", [("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"), ("/kelim/shem/", "תהילים לפי אותיות השם")]),
+     hub=True, prio="0.8", lead="כל סוגי הקדיש, לכל אחד עמוד קריאה משלו בניקוד מלא.",
+     ld=[collection("קדיש", "/kaddish/", [PURL[p["id"]] for _, _, p in _kd_items])])
 
 # ---------- at the Western Wall ----------
 # No composed "Kotel prayer" is printed here: none was found whose text can be read at its source and copied freely.
@@ -1895,7 +1924,7 @@ for c in SH_CITIES:
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. בכל דבר שתלוי בזמן יש להחמיר, ובשאלה למעשה לשאול רב.</p>'
             + chips("עוד ל" + name, [(f"/zmanei-shabbat/{slug}/", "זמני שבת ב" + name), ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"), ("/zmanei-hayom/", "זמני היום בכל הערים")])
             + chips("ערים נוספות", (lambda k: [day_links[(k + j) % len(day_links)] for j in range(1, 13)])([l[0] for l in day_links].index(f"/zmanei-hayom/{slug}/"))))
-    page(f"/zmanei-hayom/{slug}/", f"זמני היום ב{name}: הנץ, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים | {BRAND}",
+    page(f"/zmanei-hayom/{slug}/", f"זמני היום ב{name}: הנץ החמה, שקיעה וצאת הכוכבים היום | {BRAND}",
          fit_desc(f"זמני היום ב{name} להיום: עלות השחר, הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, פלג המנחה, שקיעה וצאת הכוכבים", tails=("מתעדכן בכל יום, עם לוח לשבוע הקרוב.", "מתעדכן בכל יום.")),
          f"זמני היום ב{name}", [("זמני היום", "/zmanei-hayom/"), (name, f"/zmanei-hayom/{slug}/")], after=body, hub=True, prio="0.8",
          script=DAY_JS.replace("__P__", json.dumps({"lat": lat, "lon": lon, "tz": tz})), app_hash="home", app_label="לזמני היום באפליקציה, עם תזכורות",
@@ -1907,7 +1936,7 @@ _jr = day_times(SH_CITIES[0], _today)
 dayhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]}"><a href="/zmanei-hayom/{c[0]}/"><b>{esc(c[1])}</b><small>הנץ {day_times(c, _today)["netz"]} · שקיעה {day_times(c, _today)["shkia"]}</small></a></li>' for c in SH_CITIES if day_times(c, _today)) + "</ul>"
           '<div class="prose"><h2>מה כולל לוח זמני היום</h2><p>לכל עיר: עלות השחר, זמן טלית ותפילין, הנץ החמה, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, סוף זמן תפילה, חצות, מנחה גדולה, מנחה קטנה, פלג המנחה, שקיעה וצאת הכוכבים, וגם לוח לשבוע הקרוב. הזמנים מחושבים מחדש בכל כניסה לדף.</p></div>'
           + chips("קשור", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")]))
-page("/zmanei-hayom/", f"זמני היום לפי עיר: הנץ, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים | {BRAND}",
+page("/zmanei-hayom/", f"זמני היום לפי עיר: הנץ החמה, שקיעה וצאת הכוכבים | {BRAND}",
      fit_desc(f"זמני היום ב-{len(SH_CITIES)} ערים: הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, שקיעה וצאת הכוכבים. בירושלים היום: הנץ {_jr['netz']}, שקיעה {_jr['shkia']}", tails=("מתעדכן בכל יום.",)),
      "זמני היום", [("זמני היום", "/zmanei-hayom/")], after=dayhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה", script=DAY_HUB_JS,
      lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים את כל זמני היום, מעלות השחר ועד צאת הכוכבים.",

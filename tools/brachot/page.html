@@ -1,0 +1,157 @@
+<style>
+/* מה מברכים על: a question the search box completes, one answer card, then shelves by blessing. Uses the site's own tokens. */
+.mm{--mm-tint:#E8F4FD;--warn-bg:#FFF4D6;--warn-ink:#6B4A00;--etz:#1E7A46;--adama:#8A5A12;--mezonot:#A04A16;--motzi:#7A3E8E;--shehakol:#0A6CA8;--gefen:#96214F;--multi:#6B4A00;display:grid;gap:1.35rem}
+.mm *{box-sizing:border-box}
+.mm .sr{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}
+.mm-draft{justify-self:start;background:var(--warn-bg);color:var(--warn-ink);border-radius:999px;padding:.3rem .9rem;font:700 .85rem var(--f-ui);margin:0}
+.mm h1{font:900 clamp(2rem,7.5vw,3.3rem)/1.08 var(--f-disp);margin:0;text-wrap:balance;color:var(--ink)}
+.mm h1 span{color:var(--stamp)}
+.mm-lead{margin:0;color:var(--ink2);max-inline-size:38rem;font-size:1.05rem}
+.mm-search{position:relative;max-inline-size:44rem}
+.mm-search input{inline-size:100%;min-block-size:3.9rem;border-radius:999px;border:2px solid var(--stamp);background:var(--surface);color:var(--ink);font:600 1.15rem var(--f-ui);padding-inline:1.5rem 3.6rem}
+.mm-search input::placeholder{color:var(--muted);font-weight:400}
+.mm-search>svg{position:absolute;inset-inline-end:1.35rem;inset-block-start:1.95rem;translate:0 -50%;color:var(--stamp);pointer-events:none}
+.mm input:focus-visible,.mm button:focus-visible,.mm a:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.mm-sug{position:absolute;inset-inline:0;inset-block-start:calc(100% + .35rem);z-index:6;margin:0;padding:.35rem;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:1.25rem;box-shadow:var(--sh);max-block-size:21rem;overflow:auto}
+.mm-sug li{display:grid;grid-template-columns:2.25rem minmax(0,1fr);gap:.6rem;align-items:center;min-block-size:2.9rem;padding:.3rem .6rem;border-radius:.9rem;cursor:pointer}
+.mm-sug li[aria-selected="true"],.mm-sug li:hover{background:var(--mm-tint)}
+.mm-sug svg{inline-size:1.6rem;block-size:1.6rem;justify-self:center}
+.mm-sug b{font-weight:700}.mm-sug small{display:block;color:var(--muted);font-size:.82rem;font-weight:600}
+.mm-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;color:var(--muted);font-size:.92rem}
+.mm-chip{display:inline-flex;align-items:center;gap:.45rem;min-block-size:2.75rem;padding:.35rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .93rem var(--f-ui);cursor:pointer;text-decoration:none}
+.mm-chip svg{inline-size:1.25rem;block-size:1.25rem;flex:none}
+.mm-chip:hover{border-color:var(--stamp)}
+.mm-chip[aria-pressed="true"]{background:var(--stamp);border-color:var(--stamp);color:#fff}
+.mm-chip i{font-style:normal;font-weight:800;font-size:.8rem;color:var(--muted)}.mm-chip[aria-pressed="true"] i{color:inherit}
+/* the answer */
+.mm-ans{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;padding:1.35rem;display:grid;gap:1rem;scroll-margin-top:5rem}
+.mm-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:1rem;align-items:center}
+.mm-pic{inline-size:5.75rem;block-size:5.75rem;border-radius:1.6rem;background:var(--mm-tint);display:grid;place-items:center}
+.mm-pic svg{inline-size:3.6rem;block-size:3.6rem}
+.mm-head h2{margin:0;font:600 1rem var(--f-ui);color:var(--muted)}
+.mm-head h2 b{display:block;font:900 clamp(1.5rem,5.5vw,2.15rem)/1.15 var(--f-disp);color:var(--ink)}
+.mm-pair{display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))}
+.mm-box{border-radius:1.25rem;background:var(--mm-tint);padding:1rem 1.1rem;display:grid;gap:.35rem;align-content:start}
+.mm-box small{font:800 .8rem var(--f-ui);color:var(--ink2)}
+.mm-box>b{font:900 1.3rem/1.25 var(--f-disp)}
+.mm-box p{margin:0}
+.mm-box .mm-txt{font-family:var(--f-read);font-size:1.28rem;line-height:1.7;color:var(--ink)}
+.mm-box a{color:var(--stamp);font-weight:700;font-size:.93rem}
+.mm-cond{margin:0;color:var(--ink2);font-size:.95rem;font-weight:600}
+.mm-note{margin:0;color:var(--ink2);font-size:.96rem}
+.mm-tag{justify-self:start;background:var(--warn-bg);color:var(--warn-ink);border-radius:999px;padding:.2rem .75rem;font:700 .86rem var(--f-ui);margin:0}
+.mm-ops{display:grid;gap:.6rem;margin:0;padding:0;list-style:none}
+.mm-ops li{border:1px solid var(--line);border-radius:1.1rem;padding:.8rem 1rem;display:grid;gap:.25rem}
+.mm-ops .who{font:800 .9rem var(--f-ui);color:var(--ink2)}
+.mm-ops .rul{font:800 1.08rem var(--f-disp)}
+.mm-src{margin:0;color:var(--muted);font-size:.85rem}.mm-src a{color:var(--stamp)}
+.mm-share{display:inline-flex;align-items:center;gap:.4rem;min-block-size:2.75rem;padding:.3rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .9rem var(--f-ui);cursor:pointer}
+.mm-share svg{inline-size:1.15rem;block-size:1.15rem}
+.mm-pick{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+.mm-pick button{display:grid;grid-template-columns:2.75rem minmax(0,1fr);gap:.7rem;align-items:center;text-align:start;min-block-size:4.25rem;padding:.5rem .8rem;border-radius:1.1rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:700 1rem var(--f-ui);cursor:pointer}
+.mm-pick button:hover{border-color:var(--stamp)}.mm-pick svg{inline-size:2rem;block-size:2rem;justify-self:center}
+.mm-pick small{display:block;font-weight:600;color:var(--muted);font-size:.84rem}
+/* the pantry */
+.mm-shelves{display:grid;gap:1.6rem}
+.mm-sh{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .6rem}
+.mm-sh h2{margin:0;font:900 1.3rem var(--f-disp)}
+.mm-sh span{color:var(--muted);font-size:.9rem;font-weight:600}
+.mm-sh::before{content:"";inline-size:.75rem;block-size:.75rem;border-radius:50%;background:currentColor;align-self:center;flex:none}
+.mm-grid{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(12.5rem,1fr))}
+.mm-tile{display:grid;grid-template-columns:2.75rem minmax(0,1fr);gap:.6rem;align-items:center;text-align:start;block-size:4.25rem;padding:0 .75rem;border-radius:1.1rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.mm-tile:hover{border-color:var(--stamp)}
+.mm-tile .ib{inline-size:2.75rem;block-size:2.75rem;border-radius:.9rem;background:var(--mm-tint);display:grid;place-items:center}
+.mm-tile .ib svg{inline-size:1.75rem;block-size:1.75rem}
+.mm-tile b{display:block;font:700 .95rem/1.2 var(--f-ui);overflow-wrap:anywhere;text-wrap:balance}
+.mm-tile small{display:block;font:800 .76rem/1.3 var(--f-ui)}
+.k-etz{color:var(--etz)}.k-adama{color:var(--adama)}.k-mezonot{color:var(--mezonot)}.k-motzi{color:var(--motzi)}.k-shehakol{color:var(--shehakol)}.k-gefen{color:var(--gefen)}.k-multi,.k-review{color:var(--multi)}
+.mm-foot{color:var(--muted);font-size:.88rem;display:grid;gap:.4rem;max-inline-size:46rem}.mm-foot p{margin:0}.mm-foot a{color:var(--stamp)}
+@media (max-width:30rem){.mm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}.mm-tile{padding:0 .55rem;gap:.5rem;grid-template-columns:2.5rem minmax(0,1fr)}.mm-tile .ib{inline-size:2.5rem;block-size:2.5rem}.mm-tile b{font-size:.9rem}
+  .mm-ans{padding:1rem;border-radius:1.5rem}.mm-pic{inline-size:4.75rem;block-size:4.75rem;border-radius:1.35rem}.mm-pic svg{inline-size:3rem;block-size:3rem}.mm-head{grid-template-columns:auto minmax(0,1fr)}.mm-share{grid-column:1/-1;justify-self:start}}
+</style>
+<div class="mm" id="mm">
+  <p class="mm-draft">טיוטה לבדיקת רב · לא פורסם</p>
+  <h1>מה מברכים על <span id="mm-hw">תפוח</span>?</h1>
+  <p class="mm-lead">כותבים מה אוכלים או שותים, ומקבלים את הברכה שלפני, את הברכה שאחרי ואת התנאי שמשנה את התשובה. __N__ מאכלים ומשקאות.</p>
+  <div class="mm-search">
+    <label for="mm-q" class="sr">מה אוכלים או שותים?</label>
+    <input id="mm-q" type="search" autocomplete="off" inputmode="search" placeholder="למשל: שווארמה, במבה, קפה, sushi" role="combobox" aria-expanded="false" aria-controls="mm-sug" aria-autocomplete="list">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <ul class="mm-sug" id="mm-sug" role="listbox" aria-label="הצעות" hidden></ul>
+  </div>
+  <div class="mm-row" id="mm-try"><span>נסו:</span></div>
+  <section class="mm-ans" id="mm-ans" aria-live="polite"></section>
+  <div class="mm-row" id="mm-cats" role="group" aria-label="סינון לפי ברכה"></div>
+  <div class="mm-shelves" id="mm-shelves"></div>
+  <div class="mm-foot">
+    <p>נוסחי הברכות לקוחים מ”ברכות הנהנין” שבסידור באתר. לכל מאכל מצוין המקור שממנו נלקחה ההוראה, וכשיש יותר מדעה אחת מוצגות הדעות בשם אומרן. מאכל שעוד לא נמצא לו מקור מסומן ”צריך בדיקה” ואינו מקבל תשובה.</p>
+    <p>הכלי אינו פסק הלכה. בכל ספק שואלים רב.</p>
+    <p>האיורים: Twemoji, ברישיון CC-BY 4.0, ואיורים שצוירו עבור האתר באותו סגנון.</p>
+  </div>
+</div>
+<script>
+/*SEARCH*/
+(function(){
+const D=/*DATA*/,IC=/*ICONS*/,IX=mmIndex(D);
+const B={etz:['בורא פרי העץ','בָּרוּךְ אַתָּה יְהֹוָה, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא פְּרִי הָעֵץ:','/borei-pri-haetz/'],
+  adama:['בורא פרי האדמה','בָּרוּךְ אַתָּה יְהֹוָה, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא פְּרִי הָאֲדָמָה:','/borei-pri-haadama/'],
+  mezonot:['בורא מיני מזונות','בָּרוּךְ אַתָּה יְהֹוָה, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא מִינֵי מְזוֹנוֹת:','/brachot-hanehenin/'],
+  gefen:['בורא פרי הגפן','בָּרוּךְ אַתָּה יְהֹוָה, אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, בּוֹרֵא פְּרִי הַגֶּפֶן:','/brachot-hanehenin/'],
+  shehakol:['שהכל נהיה בדברו','בָּרוּךְ אַתָּה יְהֹוָה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם שֶׁהַכֹּל נִהְיָה בִּדְבָרוֹ:','/birkat-shehakol/'],
+  motzi:['המוציא לחם מן הארץ','בָּרוּךְ אַתָּה יְ‑יָ אֱ‑לֹהֵינוּ מֶלֶךְ הָעוֹלָם הַמּוֹצִיא לֶחֶם מִן הָאָרֶץ:','/brachot-rishonot/']};
+const A={nefashot:['בורא נפשות','/borei-nefashot/'],michya:['על המחיה','/birkat-meein-shalosh/'],haetz:['על העץ','/birkat-meein-shalosh/'],hagefen:['על הגפן','/birkat-meein-shalosh/'],mazon:['ברכת המזון','/birkat-hamazon/'],
+  none:['אין ברכה אחרונה',''],review:['צריך בדיקה','']};
+const KN={motzi:'המוציא',mezonot:'מזונות',gefen:'הגפן',etz:'העץ',adama:'האדמה',shehakol:'שהכל',multi:'תלוי במקרה או בדעה',review:'צריך בדיקה'};
+const KL={motzi:'המוציא לחם מן הארץ',mezonot:'בורא מיני מזונות',gefen:'בורא פרי הגפן',etz:'בורא פרי העץ',adama:'בורא פרי האדמה',shehakol:'שהכל נהיה בדברו',multi:'תלוי במקרה או בדעה',review:'מחכים למקור'};
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shelf=f=>f.status==='review'&&!f.before&&!(f.ops||[]).length?'review':f.before||'multi';
+const srcHtml=f=>(f.src||[]).length?`<p class="mm-src">מקור: ${f.src.map(k=>{const s=D.sources[k];return s[1]?`<a href="${esc(s[1])}" rel="noopener" target="_blank">${esc(s[0])}</a>`:esc(s[0])}).join(' · ')}</p>`:'';
+const LINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
+let cur=null,cat='';
+function show(f,opts){opts=opts||{};cur=f;$('#mm-hw').textContent=f.name;
+  const head=`<div class="mm-head"><div class="mm-pic" aria-hidden="true">${IC[f.icon]}</div><h2>מה מברכים על<b>${esc(f.name)}</b></h2><button class="mm-share" type="button" id="mm-share">${LINK}<span>העתקת קישור</span></button></div>`;
+  let body='';
+  if((f.ops||[]).length){body=`<p class="mm-tag">${f.kind==='cases'?'התשובה תלויה במקרה':'יש יותר מדעה אחת'}</p>${f.cond?`<p class="mm-cond">${esc(f.cond)}</p>`:''}<ul class="mm-ops">${f.ops.map(o=>`<li><span class="who">${esc(o.who)}</span><span class="rul">${o.before?`לפני: <span class="k-${o.before}">${KN[o.before]||''}</span>`:''}${o.before&&o.after?' · ':''}${o.after?`אחרי: ${A[o.after][0]}`:''}</span>${o.text?`<span class="mm-note">${esc(o.text)}</span>`:''}</li>`).join('')}</ul>`}
+  else if(f.before){const b=B[f.before],a=A[f.after||'review'];
+    body=`<div class="mm-pair"><div class="mm-box"><small>לפני האכילה</small><b class="k-${f.before}">${b[0]}</b><p class="mm-txt">${b[1]}</p>${f.cond?`<p class="mm-cond">${esc(f.cond)}</p>`:''}<a href="${b[2]}">לברכה באתר</a></div>
+      <div class="mm-box" id="mm-after"><small>אחרי האכילה</small><b>${a[0]}</b>${f.after_cond?`<p class="mm-cond">${esc(f.after_cond)}</p>`:''}${a[1]?`<a href="${a[1]}">לנוסח המלא באתר</a>`:''}</div></div>${f.note?`<p class="mm-note">${esc(f.note)}</p>`:''}`}
+  else body=`<p class="mm-tag">צריך בדיקה</p><p class="mm-note">${esc(f.note||'עוד לא נמצא לנו מקור מתאים למאכל הזה, ולכן אין כאן תשובה. שאלו רב.')}</p>`;
+  const more=(opts.more||[]).filter(x=>x.id!==f.id).slice(0,4);
+  $('#mm-ans').innerHTML=head+body+(f.status==='review'&&(f.before||(f.ops||[]).length)?'<p class="mm-tag">מחכה לאישור רב</p>':'')+srcHtml(f)+(more.length?`<div class="mm-row"><span>אולי התכוונתם ל:</span>${more.map(m=>`<button class="mm-chip" type="button" data-f="${m.id}">${IC[m.icon]}${esc(m.name)}</button>`).join('')}</div>`:'');
+  if(opts.after&&$('#mm-after'))$('#mm-after').style.outline='3px solid var(--stamp)';
+  if(!opts.keepHash)try{history.replaceState(null,'','#'+f.id)}catch(e){location.hash=f.id}}
+function pick(c,list){cur=null;$('#mm-hw').textContent=c.term;
+  $('#mm-ans').innerHTML=`<div class="mm-head" style="grid-template-columns:minmax(0,1fr)"><h2>${esc(c.q||'איך אוכלים את זה?')}<b>${esc(c.term)}</b></h2></div><div class="mm-pick">${list.map(f=>`<button type="button" data-f="${f.id}">${IC[f.icon]}<span>${esc(f.name)}<small class="k-${shelf(f)}">${KN[shelf(f)]}</small></span></button>`).join('')}</div>`;
+  try{history.replaceState(null,'',location.pathname)}catch(e){}}
+function run(q){const r=mmSearch(D,IX,q);
+  if(r.kind==='empty'){show(IX.byId.get(D.start),{keepHash:true});return r}
+  if(r.kind==='none'){cur=null;$('#mm-hw').textContent=q.trim();$('#mm-ans').innerHTML=`<p class="mm-note"><b>”${esc(q.trim())}” עדיין לא ברשימה.</b> בדקו את הכתיב, נסו שם אחר, או בחרו מהמדפים למטה.</p>`;return r}
+  if(r.kind==='choice'){pick(r.choice,r.list);return r}
+  show(r.food,{more:r.list,after:r.after});return r}
+/* suggestions under the box, with keyboard selection */
+const q=$('#mm-q'),sug=$('#mm-sug');let sel=-1,items=[];
+function suggest(v){const r=mmSearch(D,IX,v);items=r.kind==='choice'?r.list:r.kind==='food'?[r.food].concat(r.list.filter(x=>x.id!==r.food.id)).slice(0,6):[];sel=-1;
+  if(!items.length||!v.trim()){sug.hidden=true;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant');return}
+  sug.innerHTML=items.map((f,i)=>`<li role="option" id="mm-o${i}" data-f="${f.id}" aria-selected="false">${IC[f.icon]}<span><b>${esc(f.name)}</b><small class="k-${shelf(f)}">${KN[shelf(f)]}</small></span></li>`).join('');sug.hidden=false;q.setAttribute('aria-expanded','true')}
+function move(d){if(sug.hidden||!items.length)return;sel=(sel+d+items.length)%items.length;[...sug.children].forEach((li,i)=>li.setAttribute('aria-selected',String(i===sel)));q.setAttribute('aria-activedescendant','mm-o'+sel);sug.children[sel].scrollIntoView({block:'nearest'})}
+function close(){sug.hidden=true;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant')}
+function open(id){const f=IX.byId.get(id);if(!f)return;q.value=f.name;close();show(f)}
+q.addEventListener('input',()=>{run(q.value);suggest(q.value)});
+q.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();if(sug.hidden)suggest(q.value);move(1)}else if(e.key==='ArrowUp'){e.preventDefault();move(-1)}
+  else if(e.key==='Enter'){e.preventDefault();if(sel>=0)open(items[sel].id);else{close();run(q.value)}}else if(e.key==='Escape')close()});
+q.addEventListener('blur',()=>setTimeout(close,150));
+function shelves(){$('#mm-shelves').innerHTML=Object.keys(KN).filter(k=>!cat||k===cat).map(k=>{const it=D.foods.filter(f=>shelf(f)===k);if(!it.length)return'';
+  return `<section><div class="mm-sh k-${k}"><h2>${KL[k]}</h2><span>${it.length}</span></div><div class="mm-grid">${it.map(f=>`<button class="mm-tile" type="button" data-f="${f.id}"><span class="ib" aria-hidden="true">${IC[f.icon]}</span><span><b>${esc(f.name)}</b><small class="k-${k}">${KN[k]}</small></span></button>`).join('')}</div></section>`}).join('')}
+$('#mm-cats').innerHTML=[['','הכול',D.foods.length]].concat(Object.keys(KN).map(k=>[k,KN[k],D.foods.filter(f=>shelf(f)===k).length]).filter(x=>x[2])).map(([k,n,c])=>`<button class="mm-chip" type="button" data-c="${k}" aria-pressed="${k===''}">${n}<i>${c}</i></button>`).join('');
+$('#mm-try').insertAdjacentHTML('beforeend',D.tryThese.map(t=>`<button class="mm-chip" type="button" data-q="${esc(t)}">${esc(t)}</button>`).join(''));
+document.addEventListener('click',e=>{const t=e.target.closest('#mm [data-f],#mm [data-q],#mm [data-c],#mm-share');if(!t)return;
+  if(t.id==='mm-share'){const u=location.origin+location.pathname+(cur?'#'+cur.id:''),l=t.querySelector('span');(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>{l.textContent='הקישור הועתק';setTimeout(()=>l.textContent='העתקת קישור',1800)},()=>{l.textContent=u});return}
+  if(t.dataset.q!=null){q.value=t.dataset.q;close();run(t.dataset.q)}
+  else if(t.dataset.f!=null){open(t.dataset.f);if(t.classList.contains('mm-tile'))$('#mm-ans').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}
+  else{cat=t.dataset.c;document.querySelectorAll('#mm [data-c]').forEach(b=>b.setAttribute('aria-pressed',String(b===t)));shelves()}});
+function fromHash(){const id=decodeURIComponent(location.hash.slice(1));const f=IX.byId.get(id);if(f){q.value=f.name;show(f,{keepHash:true});return true}return false}
+window.addEventListener('hashchange',fromHash);
+shelves();if(!fromHash())show(IX.byId.get(D.start),{keepHash:true});
+window.mmData=D;
+})();
+</script>

@@ -43,6 +43,22 @@ def page_file(path):
     """/tefila/x/ -> <root>/tefila/x/index.html"""
     return os.path.join(ROOT, path.strip("/"), "index.html")
 
+# ---------- drafts: pages that exist but are not published (waiting for a review). They must say noindex, carry no
+# canonical, and stay out of the sitemap; none of the publishing checks below apply to them. ----------
+DRAFTS = json.load(open(os.path.join(ROOT, "tools", "drafts.json"), encoding="utf-8")) if os.path.exists(os.path.join(ROOT, "tools", "drafts.json")) else []
+_sm = open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read() if os.path.exists(os.path.join(ROOT, "sitemap.xml")) else ""
+for _d in DRAFTS:
+    _f = os.path.join(ROOT, _d.strip("/"), "index.html")
+    if not os.path.exists(_f):
+        continue
+    _h = open(_f, encoding="utf-8").read()
+    if '<meta name="robots" content="noindex">' not in _h:
+        fail("a draft page does not say noindex", _d)
+    if 'rel="canonical"' in _h:
+        fail("a draft page carries a canonical", _d)
+    if f"{SITE}{_d}</loc>" in _sm:
+        fail("a draft page is listed in the sitemap", _d)
+
 # ---------- pages on disk ----------
 disk = {}   # url path -> file
 for top in sorted(os.listdir(ROOT)):
@@ -51,6 +67,8 @@ for top in sorted(os.listdir(ROOT)):
     for d, _, files in os.walk(os.path.join(ROOT, top)):
         if "index.html" in files:
             rel = os.path.relpath(d, ROOT).replace(os.sep, "/")
+            if "/" + rel + "/" in DRAFTS:
+                continue
             disk["/" + rel + "/"] = os.path.join(d, "index.html")
 
 # ---------- what the app can route to ----------

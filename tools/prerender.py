@@ -150,7 +150,7 @@ h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.
 .btn:hover{color:#fff;filter:brightness(1.08)}
 .applink{margin:1.5rem 0 0}
 .applink a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600}
-footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:2rem;color:var(--muted);font-size:.9rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
+footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:2rem;color:var(--muted);font-size:.9rem}.flegal{display:flex;flex-wrap:wrap;gap:.25rem .5rem;margin:.4rem 0 .5rem;font-size:.85rem}.flegal a{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;min-width:2.75rem;padding-inline:.5rem;color:inherit}.fcredit a{display:inline-flex;align-items:center;min-height:2.75rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
 .fmap{margin-block-start:.6rem}.fmap summary{cursor:pointer;min-block-size:2.75rem;display:flex;align-items:center;font-weight:600;color:var(--ink2)}.fmap nav{display:flex;flex-wrap:wrap;gap:0 1rem}
 footer{border-block-start:1px solid var(--line);color:var(--muted);font-size:.88rem}
 footer .in{max-width:40rem;margin-inline:auto;padding:1.25rem 1rem 2.5rem}
@@ -324,7 +324,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .prose{max-width:36rem}
 .prose p{margin:0 0 .9rem;color:var(--ink2)}
 .prose ul{margin:0 0 .9rem;padding-inline-start:1.2rem;color:var(--ink2)}.prose li{margin:0 0 .35rem}
-.flegal{display:flex;flex-wrap:wrap;gap:0 1.1rem;margin:.4rem 0 0;font-size:.85rem}.flegal a{display:inline-flex;align-items:center;min-height:2.75rem;color:inherit}
+.text .perek{font:700 .85rem var(--f-ui);color:var(--muted);margin:1.1rem 0 .3rem}.text h2 small{font:600 .85rem var(--f-ui);color:var(--muted);margin-inline-start:.5rem}
 .prose h2{font-family:var(--f-disp);font-weight:900;font-size:1.5rem;line-height:1.25;margin:1.6rem 0 .5rem;color:var(--ink)}
 .prose table{border-collapse:collapse;margin:0 0 1rem;font-size:.97rem}
 .prose td,.prose th{padding:.35rem .9rem .35rem 0;text-align:start;border-block-end:1px solid var(--line)}
@@ -597,7 +597,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "y", "api", "data", "icons",
+_RESERVED = {"tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1406,6 +1406,93 @@ for bi, (k, b) in enumerate(B.items()):
          b["t"], [("ספרייה", "/sefer/"), (b["t"], me)],
          text=text, meta=esc(sub), before=jump, after=after, app_hash=f"b-{k}",
          ld=[{"@type": "Book" if nsec > 1 else "CreativeWork", "name": b["t"], "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me}])
+# ---------- the weekly Torah portion: one page per portion, the full text divided into its seven aliyot ----------
+# Text: "Tanach with Nikkud" (public domain, tanach.us), stored untouched in data/torah.json by tools/get-torah.py.
+TORAH = json.load(open(os.path.join(DATA, "torah.json"), encoding="utf-8"))["books"]
+PARASHOT = json.load(open(os.path.join(ROOT, "tools", "parashot.json"), encoding="utf-8"))
+CHUMASH = {"Genesis": "בראשית", "Exodus": "שמות", "Leviticus": "ויקרא", "Numbers": "במדבר", "Deuteronomy": "דברים"}
+NAVI = {"Isaiah": "ישעיהו", "Jeremiah": "ירמיהו", "Ezekiel": "יחזקאל", "Hosea": "הושע", "Joel": "יואל", "Amos": "עמוס", "Obadiah": "עובדיה", "Jonah": "יונה", "Micah": "מיכה",
+        "Zechariah": "זכריה", "Malachi": "מלאכי", "Joshua": "יהושע", "Judges": "שופטים", "I Samuel": "שמואל א", "II Samuel": "שמואל ב", "I Kings": "מלכים א", "II Kings": "מלכים ב"}
+ALIYA = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שביעי"]
+# the source spells some names the way the verse does; the page titles use the spelling people type
+_PNAME = {"תצוה": "תצווה", "מצרע": "מצורע", "קדשים": "קדושים", "בחקתי": "בחוקותי", "בהעלתך": "בהעלותך", "חקת": "חוקת", "פינחס": "פנחס", "נצבים": "ניצבים"}
+for _p in PARASHOT:
+    _p["he"] = _PNAME.get(_p["he"], _p["he"])
+par_slug = lambda p: re.sub(r"[^a-z]+", "-", p["key"].lower().replace("'", "")).strip("-")
+PAR_PATH = {p["num"]: f"/parasha/{par_slug(p)}/" for p in PARASHOT}
+assert len(set(PAR_PATH.values())) == 54
+
+
+def _ref(c, v):
+    return f"{gem(c)}, {gem(v)}"
+
+
+def _haft(h):
+    """one reading, or several ranges: the reference only (the text of the haftarot is not on the site yet)"""
+    if not h:
+        return ""
+    hs = h if isinstance(h, list) else [h]
+    out = []
+    for x in hs:
+        (c1, v1), (c2, v2) = (map(int, x["b"].split(":")), map(int, x["e"].split(":")))
+        out.append(f'{NAVI[x["k"]]} {_ref(c1, v1)} עד {_ref(c2, v2) if c1 != c2 else gem(v2)}')
+    return "; ".join(out)
+
+
+def _verses(book, c1, v1, c2, v2):
+    out, n = "", 0
+    for c in range(c1, c2 + 1):
+        ch = TORAH[book][c - 1]
+        lo = v1 if c == c1 else 1
+        hi = v2 if c == c2 else len(ch)
+        if lo == 1 or c == c1:
+            out += f'<p class="perek">פרק {gem(c)}</p>'
+        for v in range(lo, hi + 1):
+            out += f"<p><sup>{gem(v)}</sup>{esc(ch[v - 1])}</p>"
+            n += 1
+    return out, n
+
+
+for bi, p in enumerate(PARASHOT):
+    me, book, he = PAR_PATH[p["num"]], p["book"], p["he"]
+    text, total, jump = "", 0, ""
+    for ai, (c1, v1, c2, v2) in enumerate(p["aliyot"]):
+        body, n = _verses(book, c1, v1, c2, v2)
+        total += n
+        text += f'<h2 id="a{ai + 1}">{ALIYA[ai]} <small>{CHUMASH[book]} {_ref(c1, v1)}</small></h2>' + body
+        jump += f'<a href="#a{ai + 1}">{ALIYA[ai]}</a>'
+    c1, v1 = p["aliyot"][0][:2]
+    c2, v2 = p["aliyot"][-1][2:]
+    rng = f"{CHUMASH[book]} {_ref(c1, v1)} עד {_ref(c2, v2)}"
+    ha, hs = _haft(p.get("haft")), _haft(p.get("seph"))
+    haft = ("הפטרה: " + (f"{ha} (אשכנזים), {hs} (ספרדים)" if hs and hs != ha else ha)) if ha else ""
+    prev = PARASHOT[bi - 1] if bi else None
+    nxt = PARASHOT[bi + 1] if bi + 1 < len(PARASHOT) else None
+    after = pager((PAR_PATH[prev["num"]], "פרשת " + prev["he"]) if prev else None, (PAR_PATH[nxt["num"]], "פרשת " + nxt["he"]) if nxt else None)
+    same = [q for q in PARASHOT if q["book"] == book and q["num"] != p["num"]]
+    near = sorted(same, key=lambda q: abs(q["num"] - p["num"]))[:6]
+    after += chips(f"עוד בחומש {CHUMASH[book]}", [(PAR_PATH[q["num"]], "פרשת " + q["he"]) for q in sorted(near, key=lambda q: q["num"])])
+    after += chips("עוד באתר", [("/parasha/", "כל פרשות השבוע"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה")])
+    first = TORAH[book][c1 - 1][v1 - 1]
+    before = (f'<p class="note">{esc(rng)}. {total} פסוקים, בשבע עליות.' + (f" {esc(haft)}." if haft else "") + "</p>"
+              f'<div class="related" style="margin-block-end:1rem">{jump}</div>')
+    page(me, f"פרשת {he}: הטקסט המלא בניקוד, לפי עליות | {BRAND}",
+         fit_desc(f"פרשת {he} בניקוד מלא, מחולקת לשבע העליות. {rng}, {total} פסוקים", first, tails=("לקריאה נוחה בנייד ולהדפסה.",)),
+         f"פרשת {he}", [("פרשת השבוע", "/parasha/"), (f"פרשת {he}", me)], text=text, meta=f"חומש {CHUMASH[book]} · {esc(rng)}", before=before, after=after, prio="0.8",
+         ld=[{"@type": "Chapter", "name": f"פרשת {he}", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me,
+              "isPartOf": {"@type": "Book", "name": "חמישה חומשי תורה", "inLanguage": "he"}}])
+
+_plist = ""
+for en, he in CHUMASH.items():
+    _plist += f'<h2 class="sec">חומש {he}</h2><ul class="list">' + "".join(
+        f'<li><a href="{PAR_PATH[p["num"]]}">פרשת {esc(p["he"])}<small>{he} {_ref(*p["aliyot"][0][:2])}</small></a></li>' for p in PARASHOT if p["book"] == en) + "</ul>"
+page("/parasha/", f"פרשת השבוע: כל 54 הפרשות בניקוד מלא, לפי עליות | {BRAND}",
+     "פרשת השבוע אונליין: כל 54 פרשות התורה, מבראשית ועד וזאת הברכה, בניקוד מלא ומחולקות לשבע העליות. לכל פרשה עמוד קריאה משלו, עם מראה המקום של ההפטרה.",
+     "פרשת השבוע", [("פרשת השבוע", "/parasha/")],
+     after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
+     hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.",
+     ld=[collection("פרשת השבוע", "/parasha/", list(PAR_PATH.values()))])
+
 page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה ועוד | {BRAND}",
      "ספרייה בניקוד מלא: פרקי אבות, שיר השירים, מגילת רות, מגילת אסתר, איכה, קהלת, משלי, פרק שירה, פרשת המן, סליחות, יזכור ועוד. כל ספר בעמוד קריאה משלו.",
      "ספרייה", [("ספרייה", "/sefer/")],

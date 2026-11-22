@@ -191,9 +191,12 @@ CSS_BLOCKS = [
 .text big{font-size:1.15em}
 """),
 ("rgrid", """
-.sideacts{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .8rem}
-.sideacts button,.sideacts a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.3rem 1rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .93rem var(--f-ui);text-decoration:none;cursor:pointer;border-radius:999px}
-.sideacts button:hover,.sideacts a:hover{border-color:var(--stamp);color:var(--stamp)}
+.sidebar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:0 0 .6rem}.sidebar .bar{margin:0;min-height:0;flex:0 1 auto}
+.sideacts{display:flex;gap:.35rem;margin:0}
+.sideacts button,.sideacts a{display:grid;place-items:center;inline-size:2.75rem;block-size:2.75rem;padding:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:999px}
+.sideacts button:hover,.sideacts a:hover{border-color:var(--stamp);color:var(--stamp)}.sideacts .wa{color:#128C4B;border-color:#BFE8D2;background:#F1FBF5}.sideacts .wa:hover{color:#0B6B38;border-color:#128C4B}
+.sideacts button.ok{background:var(--grad);color:#fff;border-color:transparent}
+.printhead,.printfoot{display:none}
 @media (min-width:64rem){
 .rd main{max-width:76rem;padding:0 2.5rem 4.5rem}.rd .top .in,.rd footer .in{max-width:76rem;padding-inline:2.5rem}
 .rd .rhead{padding:2.25rem 0 2rem;margin-block-end:2.25rem;background:#F1F8FE;box-shadow:0 0 0 100vmax #F1F8FE;clip-path:inset(0 -100vmax)}
@@ -201,11 +204,22 @@ CSS_BLOCKS = [
 .rgrid{display:grid;grid-template-columns:minmax(0,1fr) 21rem;column-gap:3.5rem;align-items:start}
 .rmain{grid-column:1;grid-row:1;min-width:0}
 .rside{grid-column:2;grid-row:1;position:sticky;inset-block-start:calc(var(--top) + 1.5rem);max-block-size:calc(100vh - var(--top) - 3rem);overflow:auto;padding:1.25rem;border:1px solid var(--line);border-radius:1.75rem;background:var(--surface);box-shadow:var(--sh);scrollbar-width:thin}
-.rside>*:last-child{margin-block-end:0}.rside .bar{flex-wrap:wrap;margin-block-end:.8rem}.rside .sideacts{margin-block-end:0}.rside .svctoc{margin-block-start:0}
+.rside>*:last-child{margin-block-end:0}.rside .sidebar{flex-wrap:nowrap;justify-content:space-between;margin-block-end:0}.rside .tools{gap:.3rem}.rside .tools button{padding-inline:.7rem}.rside .svctoc{margin-block-start:0}
+.rgrid{grid-template-columns:minmax(0,1fr) 22rem}
 .rd .text{max-width:none;margin:0;font-size:calc(var(--reading)*1.14);line-height:2;padding:3rem clamp(2.25rem,4vw,4rem) 3.25rem;border-radius:2.25rem}
 .rd .text p{margin-block-end:.8em}.rd .text h2{margin-block-start:1.8em}
 }
-@media print{.rside,.rhead .crumbs{display:none!important}.rgrid{display:block}}
+@media print{@page{margin:16mm 14mm 18mm}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rside,.rhead .crumbs,.rhead .lead,footer,.plainx,.svctoc,.top,.skip,.pager,.related,.applink,.rmain h2.sec,.rmain .nusrow,.rmain .note{display:none!important}.rgrid{display:block}
+.rd .rhead{background:none;box-shadow:none;clip-path:none;padding:0;margin:0 0 6mm}.rd h1{font-size:26pt;margin:0}
+.rd main{display:table!important;inline-size:100%;max-width:none;padding:0}
+.printhead{display:table-header-group!important}
+.printhead .ph{display:flex;align-items:center;justify-content:space-between;gap:8mm;padding-block-end:3mm;margin-block-end:6mm;border-block-end:1.5pt solid #0B79C0;color:#0B2E4F;font:600 10pt var(--f-ui)}
+.printhead svg{block-size:8mm;inline-size:auto}
+.printfoot{display:block!important;margin:8mm 0 0;padding-block-start:3mm;border-block-start:.75pt solid #B3E0FA;color:#27506F;font:600 9pt var(--f-ui);text-align:center}
+.rd .text{font-size:14pt;line-height:1.85;max-width:none;border:0;box-shadow:none;padding:0;border-radius:0}.text p{orphans:3;widows:3}.text h2{break-after:avoid}
+}
 """),
 ("pager", """
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.5rem 0 0}
@@ -436,8 +450,11 @@ _PRAYER_PATHS = set()
 # Someone who is already using the app and reloads, or goes back to, a page address is returned to the same screen in the app.
 # A visitor arriving from a search engine or a shared link has no such mark and gets the page itself.
 BACK_TO_APP = '<script>try{if(sessionStorage.getItem("tfapp")&&!location.hash&&!location.search)location.replace("/#__H__")}catch(e){}</script>'
+IC_COPY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>'
+IC_WA = '<svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.3.7 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/></svg>'
+IC_PRINT = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V4h10v5"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v6H7z"/></svg>'
 JS_SIDE = (";(function(){var s=document.querySelector('.sideacts');if(!s)return;var tc=document.querySelector('.rside .svctoc');if(tc&&matchMedia('(min-width:64rem)').matches)tc.open=true;s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;"
-           "if(b.dataset.act==='print'){print()}else if(b.dataset.act==='copy'){var u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',u)})}})})();")
+           "if(b.dataset.act==='print'){print()}else if(b.dataset.act==='copy'){var u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.classList.add('ok');b.setAttribute('aria-label','הקישור הועתק');setTimeout(function(){b.classList.remove('ok');b.setAttribute('aria-label','העתקת קישור')},1800)},function(){prompt('הקישור:',u)})}})})();")
 
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
@@ -461,18 +478,23 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     crumb_html = "<span>›</span>".join(f'<a href="{u}">{esc(n)}</a>' for n, u in allc[:-1])
     h1_html = esc(h1) + (f' <span class="ctx">{esc(h1_ctx)}</span>' if h1_ctx else "")
     reading = ""
+    printhead = ""
     if text:
         bar = f'<div class="bar">{TOOLS_HTML}{bar_extra}</div>'
         # on a wide screen the text gets the main column and everything that serves it sits beside it
-        side = (f'<div class="rside">{before}{bar}<div class="sideacts"><button type="button" data-act="copy">העתקת קישור</button>'
-                f'<a data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " " + url)}">וואטסאפ</a><button type="button" data-act="print">הדפסה</button></div></div>')
-        reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article><script>{JS_TOOLS}{JS_SIDE}</script>{after}'
+        side = (f'<div class="rside">{before}<div class="sidebar">{bar}<div class="sideacts"><button type="button" data-act="copy" aria-label="העתקת קישור" title="העתקת קישור">{IC_COPY}</button>'
+                f'<a class="wa" data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " | תפילה " + url)}" aria-label="שיתוף בוואטסאפ" title="שיתוף בוואטסאפ">{IC_WA}</a>'
+                f'<button type="button" data-act="print" aria-label="הדפסה או שמירה כ-PDF" title="הדפסה או שמירה כ-PDF">{IC_PRINT}</button></div></div></div>'
+                # what a printed copy or a saved PDF carries: the site's mark and address at the top, and the page address at the end
+                )
+        printhead = f'<div class="printhead" aria-hidden="true"><div class="ph">{LOGO.replace("tfg", "tfgp")}<span>סידור תפילה ותהילים · tfilah.com</span></div></div>'
+        reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article><script>{JS_TOOLS}{JS_SIDE}</script><p class="printfoot" aria-hidden="true">הודפס מתוך תפילה · {url.replace("https://", "")}</p>{after}'
                    + (f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else "") + '</div></div>')
     applink = f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else ""
     body = f"""<a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
 {NAV}</div></header>
-<main id="main"><div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
+<main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
 <nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>

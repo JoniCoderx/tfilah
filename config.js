@@ -19,7 +19,7 @@ window.TFILAH_CONFIG = {
   // 2. בפרויקט ה-Pages: Settings ← Bindings ← Add ← D1 database. Variable name: DB. לבחור את המסד ולשמור.
   // 3. כאן משנים ל-true ומעלים את האתר. הטבלאות נוצרות לבד בשימוש הראשון.
   // כש-yachad הוא true, שני שדות ה-Supabase שלמטה נשארים ריקים.
-  yachad: false,
+  yachad: true,
 
   // חלופה: Supabase. כתובת הפרויקט (Project URL). לדוגמה: "https://abcd1234.supabase.co"
   supabaseUrl: "",

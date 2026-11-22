@@ -6,7 +6,10 @@
   var sb = own ? ownBackend() : null, on = own || !!(C.supabaseUrl && C.supabaseAnonKey), loading = null;
   // אותו ממשק שהקוד למטה מצפה לו, מעל /api/yachad
   function ownBackend() {
+    var RID = "";
+    try { RID = localStorage.getItem("rid") || ""; if (!/^[a-z0-9]{8,24}$/.test(RID)) { RID = (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).slice(0, 16); localStorage.setItem("rid", RID); } } catch (e) {}
     function call(fn, args) {
+      if (RID && /^(take|claim|finish)_chapter$/.test(fn)) { args = Object.assign({}, args, { p_rid: RID }); }
       return fetch("/api/yachad", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ fn: fn, args: args || {} }) })
         .then(function (r) { return r.json().then(function (j) { return r.ok ? { data: j.data, error: null } : { data: null, error: { message: j.error || ("HTTP " + r.status) } }; }); })
         .catch(function (e) { return { data: null, error: { message: (e && e.message) || "network" } }; });
@@ -39,7 +42,7 @@
     return { docs: docs, size: docs.length, empty: !docs.length, docChanges: function () { return []; }, metadata: { fromCache: false, hasPendingWrites: false } };
   }
   function err(e) { return { code: "unavailable", message: (e && e.message) || "error" }; }
-  function memRow(r) { return { __id: r.id, name: r.name, parent: r.parent, rel: r.rel, kind: r.kind || "neshama", by: r.by_name || "", msg: r.msg || "", candles: r.candles || 0, done: r.done || 0, listed: !!r.listed, createdAt: new Date(r.created_at).getTime() }; }
+  function memRow(r) { return { __id: r.id, name: r.name, parent: r.parent, rel: r.rel, kind: r.kind || "neshama", by: r.by_name || "", msg: r.msg || "", candles: r.candles || 0, done: r.done || 0, readers: typeof r.readers === "number" ? r.readers : null, listed: !!r.listed, createdAt: new Date(r.created_at).getTime() }; }
   function chRow(r) { return { __id: String(r.n), s: r.s, by: r.by_name || "", at: new Date(r.at).getTime() }; }
 
   // path helpers: "memorials" | "memorials/<id>/chapters"

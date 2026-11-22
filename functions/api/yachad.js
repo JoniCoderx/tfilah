@@ -45,7 +45,10 @@ export async function onRequest(context) {
 async function handle({ request, env }) {
   if (!env || !env.DB) return json({ error: "not configured" }, 503);
   const db = env.DB;
-  if (!ready) ready = db.batch(SCHEMA.map(s => db.prepare(s))).catch(e => { ready = null; throw e; });
+  if (!ready) ready = db.batch(SCHEMA.map(s => db.prepare(s)))
+    // added later: who read, as an anonymous per-browser id, so readers can be counted
+    .then(() => db.prepare(`alter table chapters add column reader text not null default ''`).run().catch(() => {}))
+    .catch(e => { ready = null; throw e; });
   await ready;
   const now = () => new Date(typeof env.NOW === "function" ? env.NOW() : Date.now());
 
@@ -96,7 +99,10 @@ const FN = {
                                   from memorials where id = ? and hidden = 0`).bind(id).first();
     if (!m) return null;
     const c = await db.prepare(`select n, s, by_name, at from chapters where memorial_id = ? order by n`).bind(id).all();
-    return { memorial: pub(m), chapters: c.results || [] };
+    // a reader is a browser that took or finished a chapter; rows from before the id existed count by name
+    const r = await db.prepare(`select count(distinct case when reader <> '' then 'r:' || reader when by_name <> '' then 'n:' || by_name else 'anon' end) as c
+                                  from chapters where memorial_id = ?`).bind(id).first();
+    return { memorial: { ...pub(m), readers: (r && r.c) || 0 }, chapters: c.results || [] };
   },
 
   async light_candle(db, a, now) {
@@ -116,7 +122,7 @@ const FN = {
     if (!id || n === null) return false;
     if (!(await visible(db, id))) return false;
     if (Math.floor((n - 1) / 150) + 1 > await round(db, id)) return false;
-    return (await claim(db, id, n, by40(a.p_by), now())) === n;
+    return (await claim(db, id, n, by40(a.p_by), now(), rid(a.p_rid))) === n;
   },
 
   async take_chapter(db, a, now) {
@@ -132,7 +138,7 @@ const FN = {
       let n = null;
       for (let g = base + 1; g <= base + 150; g++) if (!taken.has(g)) { n = g; break; }
       if (n === null) return null;
-      if ((await claim(db, id, n, by, t)) === n) return n;       // lost a race for this one: look again
+      if ((await claim(db, id, n, by, t, rid(a.p_rid))) === n) return n;       // lost a race for this one: look again
     }
     return null;
   },
@@ -142,7 +148,7 @@ const FN = {
     if (!id || n === null) return null;
     if (!(await visible(db, id))) return null;
     if (Math.floor((n - 1) / 150) + 1 > await round(db, id)) return null;
-    const t = now(), iso = t.toISOString(), hourAgo = new Date(t - HOUR_MS).toISOString(), by = by40(a.p_by);
+    const t = now(), iso = t.toISOString(), hourAgo = new Date(t - HOUR_MS).toISOString(), by = by40(a.p_by), reader = rid(a.p_rid);
     const cur = await db.prepare(`select s from chapters where memorial_id = ? and n = ?`).bind(id, n).first();
     if (!cur || cur.s !== "done") {
       const c = await db.prepare(`select count(*) as c from chapters where memorial_id = ? and s = 'done' and at > ?`).bind(id, hourAgo).first();
@@ -150,10 +156,11 @@ const FN = {
     }
     // one batch = one transaction: mark it, then store the server's own count
     const res = await db.batch([
-      db.prepare(`insert into chapters (memorial_id, n, s, by_name, at) values (?1, ?2, 'done', ?3, ?4)
+      db.prepare(`insert into chapters (memorial_id, n, s, by_name, at, reader) values (?1, ?2, 'done', ?3, ?4, ?5)
                   on conflict (memorial_id, n) do update set s = 'done', at = excluded.at,
-                     by_name = case when excluded.by_name <> '' then excluded.by_name else chapters.by_name end
-                  where chapters.s <> 'done'`).bind(id, n, by, iso),
+                     by_name = case when excluded.by_name <> '' then excluded.by_name else chapters.by_name end,
+                     reader = case when excluded.reader <> '' then excluded.reader else chapters.reader end
+                  where chapters.s <> 'done'`).bind(id, n, by, iso, reader),
       db.prepare(`update memorials set done = (select count(*) from chapters where memorial_id = ?1 and s = 'done') where id = ?1`).bind(id),
       db.prepare(`select done from memorials where id = ?`).bind(id)
     ]);
@@ -163,13 +170,13 @@ const FN = {
 };
 
 // Insert the claim, or take over one that was left unfinished for a day. Returns n when it is ours.
-async function claim(db, id, n, by, t) {
+async function claim(db, id, n, by, t, reader = "") {
   const stale = new Date(t - DAY_MS).toISOString();
   const r = await db.prepare(
-    `insert into chapters (memorial_id, n, s, by_name, at) values (?1, ?2, 'claimed', ?3, ?4)
-     on conflict (memorial_id, n) do update set by_name = excluded.by_name, at = excluded.at
+    `insert into chapters (memorial_id, n, s, by_name, at, reader) values (?1, ?2, 'claimed', ?3, ?4, ?6)
+     on conflict (memorial_id, n) do update set by_name = excluded.by_name, at = excluded.at, reader = excluded.reader
      where chapters.s = 'claimed' and chapters.at < ?5
-     returning n`).bind(id, n, by, t.toISOString(), stale).first();
+     returning n`).bind(id, n, by, t.toISOString(), stale, reader).first();
   return r ? r.n : null;
 }
 
@@ -193,7 +200,9 @@ const clean = t => String(t == null ? "" : t).replace(/[​-‏‪-‮⁠-⁩﻿
 const by40 = t => clean(t).slice(0, 40);
 const key = v => (typeof v === "string" && /^[A-Za-z0-9_-]{1,40}$/.test(v) ? v : null);
 const int = v => (Number.isInteger(v) && v >= 1 && v <= 15000 ? v : null);
-function newId() { const a = new Uint8Array(8); crypto.getRandomValues(a); return [...a].map(x => x.toString(16).padStart(2, "0")).join(""); }
+const rid = v => (typeof v === "string" && /^[a-z0-9]{8,24}$/.test(v) ? v : "");
+// ten letters and digits: short enough to read out, and far too many to guess (about 3.6 * 10^15)
+function newId() { const A = "abcdefghijkmnpqrstuvwxyz23456789", a = new Uint8Array(10); crypto.getRandomValues(a); return [...a].map(x => A[x % A.length]).join(""); }
 
 function sameSite(request, env) {
   const allowed = new Set(SITE_ORIGINS);
@@ -207,6 +216,15 @@ function sameSite(request, env) {
 }
 
 export function _reset() { ready = null; }
+
+// For the share page (functions/y/[id].js): the public fields of one reading, or null.
+export async function readPublic(env, id) {
+  if (!env || !env.DB || !key(id)) return null;
+  try {
+    const m = await env.DB.prepare(`select id, name, parent, rel, kind, done from memorials where id = ? and hidden = 0`).bind(id).first();
+    return m || null;
+  } catch { return null; }
+}
 
 function json(obj, status, extra) {
   return new Response(JSON.stringify(obj), {

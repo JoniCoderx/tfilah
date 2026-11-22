@@ -24,7 +24,7 @@ const CARDS = {
     await p.setContent(`<!doctype html><html lang="he" dir="rtl"><style>
 @font-face{font-family:H;font-weight:900;src:url(${font(pick('heebo', 'hebrew', 900))})}
 @font-face{font-family:A;font-weight:600;src:url(${font(pick('assistant', 'latin', 600))})}
-*{margin:0;box-sizing:border-box}body{width:1200px;height:630px;background:linear-gradient(135deg,#fff 0%,#fff 45%,#EAF6FE 100%);padding:26px;font-family:H}
+*{margin:0;box-sizing:border-box}body{width:1200px;height:630px;background:#fff;padding:26px;font-family:H}
 .f{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 64px 0 80px;position:relative}
 .t{max-width:800px}.b{font-size:54px;font-weight:900;color:#0B2E4F;margin-bottom:18px}
 h1{display:inline-block;font-size:${big}px;line-height:1.12;font-weight:900;color:#0B2E4F;white-space:nowrap}h1 span{display:block;color:#0A6FB3}

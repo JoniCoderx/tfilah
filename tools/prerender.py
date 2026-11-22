@@ -1006,6 +1006,8 @@ for c in range(1, 151):
     after = pager((f"/tehillim/{c-1}/", f"תהילים פרק {gem(c-1)}") if c > 1 else None,
                   (f"/tehillim/{c+1}/", f"תהילים פרק {gem(c+1)}") if c < 150 else None)
     rel = [(f"/tehillim/{k}/", need_h1(k)) for k in NEED_OF.get(c, [])]
+    if c == 100:
+        rel.insert(0, ("/mizmor-letoda/", "מזמור לתודה בסידור"))
     md, wd = month_day(c), week_day(c)
     rel += [(f"/tehillim/chodesh-{d}/", f"תהילים ליום {gem(d)} בחודש") for d in md]
     rel.append((f"/tehillim/{WD_SLUG[wd]}/", f"תהילים ליום {DAYS[wd]}"))

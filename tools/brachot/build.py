@@ -61,6 +61,8 @@ head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="descri
 head = re.sub(r'(<link rel="canonical" href=")[^"]*', r"\g<1>https://tfilah.com" + PATH, head, count=1)
 head = re.sub(r'(<meta property="og:url" content=")[^"]*', r"\g<1>https://tfilah.com" + PATH, head, count=1)
 head = re.sub(r'(<meta property="og:title" content=")[^"]*', r"\g<1>" + TITLE, head, count=1)
+head, _n = re.subn(r'(<meta property="og:image" content="https://tfilah\.com/icons/)[a-z-]+(\.png)', r"\g<1>og-brachot\g<2>", head, count=1)
+assert _n == 1, "the share picture line changed"
 head = re.sub(r'(<meta property="og:description" content=")[^"]*', r"\g<1>" + DESC, head, count=1)
 LD = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "תפילה", "item": "https://tfilah.com/"},
                                                                               {"@type": "ListItem", "position": 2, "name": "מה מברכים על", "item": "https://tfilah.com" + PATH}]},

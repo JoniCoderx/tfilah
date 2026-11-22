@@ -452,8 +452,16 @@ URLS = []          # (path, priority, lastmod, fingerprint)
 TITLES = {}
 DESCS = {}
 
+# pages people pass around get a picture of their own (tools/build-og.js draws them)
+OG_OWN = (("/perek-shira/", "og-perek"), ("/sefer/perek/", "og-perek"), ("/parasha/", "og-parasha"), ("/kotel/", "og-kotel"), ("/kaddish", "og-kaddish"), ("/chatzi-kaddish", "og-kaddish"),
+          ("/nishmat-kol-chai/", "og-nishmat"), ("/mizmor-letoda/", "og-toda"), ("/tefilat-haderech/", "og-derech"), ("/birkat-hamazon/", "og-mazon"),
+          ("/kriat-shema-al-hamita/", "og-shema"), ("/modeh-ani/", "og-modeh"), ("/asher-yatzar/", "og-asher"))
+OG_V = "3"  # raise when the pictures are redrawn, so chat apps fetch them again
+
 def og_for(path):
     """the share picture that matches what the link opens"""
+    for pre, name in OG_OWN:
+        if path.startswith(pre): return name
     if path in _PRAYER_PATHS: return "og-siddur"
     for pre, name in (("/kelim/shem/", "og-shem"), ("/kelim/", "og-kelim"), ("/tehillim-yachad/", "og-yachad"), ("/tehillim/", "og-tehillim"),
                       ("/zmanei-shabbat/", "og-shabbat"), ("/zmanei-hayom/", "og-zmanim"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
@@ -541,7 +549,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 {canon}
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{SITE}/icons/{og_for(path)}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{SITE}/icons/{og_for(path)}.png?v={OG_V}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icons/favicon-96.png" type="image/png" sizes="96x96"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 

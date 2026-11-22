@@ -1993,7 +1993,10 @@ const cnt=(n,one,many)=>n===1?one:`${n} ${many}`;
 /* the public address of what is on screen: the static page when there is one */
 /* readable addresses of the prayer pages; until the list arrives the numbered address is used, and it redirects */
 let URLS=null;load('data/urls.json').then(j=>{URLS=j},()=>{});
+const PEREK_PATH='/perek-shira/';
+const isPerekRoute=h=>h==='p-sefard-32'||h==='b-perek';
 function staticOf(h){let m;
+  if(isPerekRoute(h))return PEREK_PATH;
   if((m=h.match(/^p-([a-z]+-\d+)$/)))return URLS&&URLS[m[1]]||`/tefila/${m[1]}/`;if((m=h.match(/^t-(\d+)$/)))return +m[1]>=1&&+m[1]<=150?`/tehillim/${m[1]}/`:null;
   if((m=h.match(/^b-([a-z]+)$/)))return `/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `/tehillim/${m[1]}/`;if((m=h.match(/^kli-([a-z]+)$/)))return `/kelim/${m[1]}/`;
   return {home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'}[h]||null}
@@ -2001,7 +2004,7 @@ function shareUrl(){const h=safeHash()||'home',s=staticOf(h);return location.ori
 /* Links to screens that have a page of their own carry that page's address, so they can be opened in a new tab,
    copied and followed by a crawler. A plain tap still moves inside the app. */
 function realLinks(root){(root||document).querySelectorAll('a[href^="#"]').forEach(a=>{const h=a.getAttribute('href').slice(1);if(!h||a.dataset.h||a.dataset.j!==undefined||a.closest('#pal'))return;
-  const s=staticOf(h);if(s){a.dataset.h='#'+h;a.setAttribute('href',s)}})}
+  const s=staticOf(h);if(s){if(!isPerekRoute(h))a.dataset.h='#'+h;a.setAttribute('href',s)}})}
 document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;const a=e.target.closest('a[data-h]');if(!a||a.target==='_blank')return;
   e.preventDefault();const h=a.dataset.h;if(location.hash===h)route();else location.hash=h});
 {let lt=0;const mo=new MutationObserver(()=>{clearTimeout(lt);lt=setTimeout(()=>realLinks(document.body),120)});document.addEventListener('DOMContentLoaded',()=>0);setTimeout(()=>{mo.observe(document.body,{childList:true,subtree:true});realLinks(document.body)},0)}
@@ -2654,7 +2657,7 @@ const LIB=[
  ['לימוד','book',[['b:avot','פרקי אבות'],['b:mishlei','משלי'],['r:#tehillim','ספר תהילים','150 פרקים'],['b:shir','שיר השירים']]]
 ];
 function libRes(ref){const[t,v]=[ref.slice(0,1),ref.slice(2)];
-  if(t==='b')return{href:'#b-'+v};if(t==='k')return NEEDS.some(n=>n[0]===v)?{href:'#k-'+v}:null;if(t==='r')return{href:v};
+  if(t==='b')return{href:v==='perek'?PEREK_PATH:'#b-'+v};if(t==='k')return NEEDS.some(n=>n[0]===v)?{href:'#k-'+v}:null;if(t==='r')return{href:v};
   const re=new RegExp(v);for(const n of [nus,...NUS.map(x=>x[0]).filter(x=>x!==nus)]){const ps=INDEX.prayers.filter(p=>p.n===n);const p=ps.find(p=>re.test(norm(p.t)))||ps.find(p=>re.test(p.s.map(norm).join(' ')));if(p)return{href:'#p-'+p.id,other:n!==nus?nusName(n):''}}return null}
 const libItem=ic=>([ref,t,sub])=>{const r=libRes(ref);if(!r)return'';return `<a class="libit" href="${r.href}"><span class="ib">${icon(ic)}</span><span><b>${esc(t)}</b>${sub||r.other?`<small>${esc(sub||'')}${sub&&r.other?' · ':''}${r.other?'נוסח '+esc(r.other):''}</small>`:''}</span></a>`};
 function libAll(){const out=[];LIB.forEach(([c,ic,items])=>items.forEach(([ref,t,sub])=>{const r=libRes(ref);if(r)out.push({t,sub:sub||c,href:r.href,ic})}));return out}
@@ -2753,12 +2756,16 @@ function palRender(raw){const q=norm(raw||'').trim(),out=[];
       if(exact)routes()}
     if(out.filter(x=>x[0]==='it').length<2){const dm=didYouMean(raw,4);if(dm.length){out.push(['hd','אולי התכוונתם ל…']);dm.forEach(x=>out.push(['it',x.t,x.sub||'',x.href,'book']))}}
     out.push(['hd','חיפוש בתוך הטקסט'],['it',`חיפוש "${raw.trim()}" בתוך כל התפילות`,'גם מילים מתוך התפילות עצמן, עם ובלי ניקוד','#search','search',raw.trim()])}
+  if(/^(?:פרק שירה|perek[ -]+shira)$/i.test(q)){
+    const perek=['it','פרק שירה (Perek Shira)','שירת הבריאה',PEREK_PATH,'spark'];
+    out.splice(0,out.length,['hd','ספרייה'],perek,out.at(-2),out.at(-1));
+  }
   palItems=out.filter(x=>x[0]==='it');palSel=0;let i=0;$('#palq').setAttribute('aria-activedescendant',palItems.length?'po0':'');
   $('#pallist').innerHTML=out.map(x=>x[0]==='hd'?`<div class="palhd">${esc(x[1])}</div>`:
-    `<a class="palitem" role="option" id="po${i}" aria-selected="${i===0}" data-i="${i++}" href="${x[3]}"${x[5]?` data-q="${esc(x[5])}"`:''}${x[7]?` data-hl="${esc(x[7])}"`:''}><span class="ib">${icon(x[4])}</span><span><b>${esc(x[1])}${x[6]?`<span class="nz">נוסח ${esc(x[6])}</span>`:''}</b>${x[2]?`<small>${esc(x[2])}</small>`:''}</span></a>`).join('')}
+    `<a class="palitem" role="option" id="po${i}" aria-selected="${i===0}" data-i="${i++}" href="${isPerekRoute(x[3].slice(1))?PEREK_PATH:x[3]}"${x[5]?` data-q="${esc(x[5])}"`:''}${x[7]?` data-hl="${esc(x[7])}"`:''}><span class="ib">${icon(x[4])}</span><span><b>${esc(x[1])}${x[6]?`<span class="nz">נוסח ${esc(x[6])}</span>`:''}</b>${x[2]?`<small>${esc(x[2])}</small>`:''}</span></a>`).join('')}
 function palMove(d){if(!palItems.length)return;palSel=(palSel+d+palItems.length)%palItems.length;
   $$('.palitem').forEach(a=>a.setAttribute('aria-selected',String(+a.dataset.i===palSel)));document.getElementById('po'+palSel)?.scrollIntoView({block:'nearest'});$('#palq').setAttribute('aria-activedescendant','po'+palSel)}
-function palGo(a){if(!a)return;if(a.dataset.q)store.set('q',a.dataset.q);if(a.dataset.hl)pendingHl=a.dataset.hl;closePal();const h=a.getAttribute('href');const pm=h.match(/^#p-([a-z]+)-/);if(pm&&pm[1]!==nus&&byId[h.slice(3)]){/* reading opens in the result's nusach; the saved choice stays */}if(location.hash===h)route();else location.hash=h}
+function palGo(a){if(!a)return;if(a.dataset.q)store.set('q',a.dataset.q);if(a.dataset.hl)pendingHl=a.dataset.hl;closePal();const h=a.getAttribute('href');if(h.startsWith('/')){location.assign(h);return}const pm=h.match(/^#p-([a-z]+)-/);if(pm&&pm[1]!==nus&&byId[h.slice(3)]){/* reading opens in the result's nusach; the saved choice stays */}if(location.hash===h)route();else location.hash=h}
 let palUntrap=null;
 function openPal(){if(!INDEX)return;const p=$('#pal');if(!p.hidden)return;p.hidden=false;const q=$('#palq');q.value='';palRender('');if(!PSX)ensurePSX().then(()=>{if(!p.hidden&&q.value)palRender(q.value)});palUntrap=trap(p,closePal);q.focus()}
 function closePal(){const p=$('#pal');if(p.hidden)return;p.hidden=true;const u=palUntrap;palUntrap=null;u&&u()}
@@ -2926,6 +2933,7 @@ let navId=0;
 const BASE_TITLE=document.title;
 function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{reading=false;$('#prog').style.transform='scaleX(0)';
   const h=safeHash()||'home';let m;
+  if(isPerekRoute(h)){location.replace(PEREK_PATH);return}
   {const saved=store.get('nus','mizrach');if(!/^p-/.test(h)&&nus!==saved){nus=saved;renderNus()}}
   if((m=h.match(/^p-([a-z]+-\d+)$/))){const hl=pendingHl;pendingHl=null;return viewPrayer(m[1],hl)}
   if((m=h.match(/^t-(\d+)(?:-(\d+))?$/))){const a=Math.min(150,Math.max(1,+m[1])),b=m[2]?Math.min(150,Math.max(1,+m[2])):a;return viewTehillim(Math.min(a,b),Math.max(a,b))}

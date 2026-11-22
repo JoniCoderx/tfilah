@@ -569,6 +569,24 @@ _PRAYER_PATHS.update(PURL.values())
 BYID = {p["id"]: p for plist in by_nus.values() for p in plist}
 B = json.load(open(os.path.join(DATA, "books.json"), encoding="utf-8"))
 BOOK_KEYS = list(B)
+PEREK_ID = "sefard-32"
+PEREK_PATH = PURL[PEREK_ID]
+BOOK_URL = {key: PEREK_PATH if key == "perek" else f"/sefer/{key}/" for key in B}
+BOOK_ART = {"perek": ["שמים וארץ", "יום ולילה", "עצים וצמחים", "עופות", "בהמות וחיות", "שרצים ורמשים"]}
+
+
+def book_text(key, book):
+    parts = []
+    art = BOOK_ART.get(key, [])
+    for j, section in enumerate(s for s in book["secs"] if s.get("v")):
+        if section.get("h"):
+            label = esc(section["h"]) + (": " + esc(art[j]) if j < len(art) else "")
+            parts.append(f'<h2 id="s{j+1}">{label}</h2>')
+        for i, verse in enumerate(section["v"]):
+            number = f"<sup>{gem(i+1)}</sup>" if book.get("num") else ""
+            parts.append(f"<p>{number}{clean(verse)}</p>")
+    return "".join(parts)
+
 
 def sec_of(p):
     return [x for x in (p.get("s") or []) if x]
@@ -802,7 +820,7 @@ REL = [
     [T("תפלת הנוטל תרופה"), T("מי שברך לחולה", "לחולים"), U("/tehillim/refuah/", "תהילים לרפואה")],
     [T("פרקי אבות"), U("/sefer/avot/", "פרקי אבות, ששת הפרקים")],
     [T("שיר השירים"), U("/sefer/shir/", "שיר השירים")],
-    [T("פרק שירה"), U("/sefer/perek/", "פרק שירה")],
+    [U(PEREK_PATH, "פרק שירה")],
     [T("קריאת המגילה"), T("סדר יום פורים"), U("/sefer/esther/", "מגילת אסתר")],
     [T("סדר הלל", "הלל לראש חודש ולמועדים", "ברכת הלל"), U("/tehillim/113/", "תהילים פרק קיג"), U("/tehillim/118/", "תהילים פרק קיח"), U("/tehillim/hodaya/", "תהילים להודיה ולשמחה")],
     [U("/sefer/chana/", "תפילת חנה"), U("/tehillim/banim/", "תהילים לזרע של קיימא")],
@@ -1139,10 +1157,17 @@ for n, plist in by_nus.items():
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if p["id"] == "sefard-32": _tt = f"פרק שירה עם ההקדמה ”תניא רבי אליעזר” | נוסח ספרד | {BRAND}"
+        if p["id"] == PEREK_ID:
+            _tt = f"פרק שירה (Perek Shira) | הנוסח המלא בניקוד | {BRAND}"
+            head = "פרק שירה (Perek Shira) בניקוד מלא, עם ההקדמה תניא רבי אליעזר. אפשר לקרוא גם את מהדורת תורת אמת לפי פרקים"
+            meta += ' · <span lang="en" dir="ltr">Perek Shira</span>'
+            before += '<p><a href="#torat-emet">למהדורת תורת אמת לפי פרקים</a></p>'
+            after = ('<details class="prose" id="torat-emet"><summary>פרק שירה לפי פרקים · מהדורת תורת אמת</summary>'
+                     + book_text("perek", B["perek"]) + '</details>' + after)
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         page(me, _tt, fit_desc(head, " ".join(paras[:3])),
-             p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
+             p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after,
+             app_hash="" if p["id"] == PEREK_ID else f"p-{p['id']}",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
 # ---------- service pages ----------
@@ -1257,20 +1282,17 @@ page("/tefila/", f"סידור תפילה אונליין | עדות המזרח, �
 # Library
 # =====================================================================
 PLAIN_B = json.loads(re.search(r"^const PLAIN_B=(\{.*\});$", APP_SRC, re.M).group(1))
-BOOK_ART = {"perek": ["שמים וארץ", "יום ולילה", "עצים וצמחים", "עופות", "בהמות וחיות", "שרצים ורמשים"]}
 for bi, (k, b) in enumerate(B.items()):
-    text = ""
-    b = dict(b, secs=[s for s in b["secs"] if s.get("v")])  # a heading with no text under it is not shown
-    for j, s in enumerate(b["secs"]):
-        _art = BOOK_ART.get(k, [])
-        if s.get("h"): text += f'<h2 id="s{j+1}">{esc(s["h"])}{(": " + esc(_art[j])) if j < len(_art) else ""}</h2>'
-        text += "".join(f'<p>{f"<sup>{gem(i+1)}</sup>" if b.get("num") else ""}{clean(v)}</p>' for i, v in enumerate(s["v"]))
-    me = f"/sefer/{k}/"
+    if k == "perek":
+        continue  # both editions are presented at PEREK_PATH
+    b = dict(b, secs=[s for s in b["secs"] if s.get("v")])
+    text = book_text(k, b)
+    me = BOOK_URL[k]
     pk = BOOK_KEYS[bi - 1] if bi else None
     nk = BOOK_KEYS[bi + 1] if bi + 1 < len(BOOK_KEYS) else None
-    after = pager((f"/sefer/{pk}/", B[pk]["t"]) if pk else None, (f"/sefer/{nk}/", B[nk]["t"]) if nk else None)
+    after = pager((BOOK_URL[pk], B[pk]["t"]) if pk else None, (BOOK_URL[nk], B[nk]["t"]) if nk else None)
     near = [BOOK_KEYS[x] for x in (bi - 2, bi + 2, bi - 3, bi + 3, bi - 4, bi + 4) if 0 <= x < len(BOOK_KEYS)]
-    rel = fill(CUR.get(me, [])[:6], [(f"/sefer/{x}/", B[x]["t"]) for x in near], lo=5)
+    rel = fill(CUR.get(me, [])[:6], [(BOOK_URL[x], B[x]["t"]) for x in near], lo=5)
     after += chips("קשור לעמוד הזה", rel)
     after += chips("עוד בספרייה", [("/sefer/", "כל ספרי הספרייה"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה")])
     sub = b.get("sub", "")
@@ -1288,10 +1310,10 @@ for bi, (k, b) in enumerate(B.items()):
 page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה ועוד | {BRAND}",
      "ספרייה בניקוד מלא: פרקי אבות, שיר השירים, מגילת רות, מגילת אסתר, איכה, קהלת, משלי, פרק שירה, פרשת המן, סליחות, יזכור ועוד. כל ספר בעמוד קריאה משלו.",
      "ספרייה", [("ספרייה", "/sefer/")],
-     after='<ul class="list">' + "".join(f'<li><a href="/sefer/{k}/">{esc(b["t"])}<small>{esc(b.get("sub",""))}</small></a></li>' for k, b in B.items()) + "</ul>"
+     after='<ul class="list">' + "".join(f'<li><a href="{BOOK_URL[k]}">{esc(b["t"])}<small>{esc(b.get("sub",""))}</small></a></li>' for k, b in B.items()) + "</ul>"
            + chips("עוד באתר", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/", "כלים אישיים")]),
      app_hash="sifriya", hub=True, prio="0.9", lead="ספרים ופרקים שקוראים לאורך השנה.",
-     ld=[collection("ספרייה", "/sefer/", [f"/sefer/{k}/" for k in B])])
+     ld=[collection("ספרייה", "/sefer/", list(BOOK_URL.values()))])
 
 # =====================================================================
 # Explainers that lead into the app
@@ -1677,6 +1699,7 @@ _cur = re.sub(r"# prayers: begin.*?# prayers: end\n?", "", _cur, flags=re.S).rst
 # two generations of old addresses: /tefila/<nusach>-<number>/ and /tefila/<nusach>/<name>/ (tools/old-urls.json)
 _old = json.load(open(os.path.join(ROOT, "tools", "old-urls.json"), encoding="utf-8"))
 _lines = "".join(f"/tefila/{pid}/ {path} 301\n" + (f"{_old[pid]} {path} 301\n" if _old.get(pid) and _old[pid] != path else "") for pid, path in PURL.items())
+_lines += f"/sefer/perek/ {PEREK_PATH} 301\n/sefer/perek {PEREK_PATH} 301\n"
 assert _lines.count("\n") < 1900, "Cloudflare Pages allows 2,000 static redirects"
 open(_rd, "w", encoding="utf-8").write((_cur + "\n" if _cur else "") + "# prayers: begin (written by tools/prerender.py)\n" + _lines + "# prayers: end\n")
 json.dump(PURL, open(os.path.join(DATA, "urls.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))

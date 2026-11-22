@@ -1,6 +1,6 @@
 // Tfilah.com offline support: the siddur and Tehillim keep working without internet.
 // Raise VERSION on every deploy (README, "אפליקציה בטלפון"); that is what tells phones to update.
-const VERSION = "tfilah-v60";
+const VERSION = "tfilah-v61";
 const SHELL = VERSION;              // the app and its prayer texts; replaced as a whole on every VERSION
 const PAGES = "tfilah-pages";       // static reading pages (/tehillim/23/ ...) the reader has opened
 const EXT = "tfilah-ext-v1";        // fonts and libraries from other hosts (their URLs carry a version)
@@ -12,7 +12,7 @@ const NET_TIMEOUT = 4000;           // weak signal: after 4 s use the saved copy
 // Must all exist: one missing file fails the whole install. "/" is the app (index.html);
 // "/index.html" is not listed because Cloudflare Pages answers it with a redirect to "/".
 const CORE = ["/", "/config.js", "/shim.js", "/manifest.webmanifest",
-  "/data/index.json", "/data/tehillim.json", "/data/books.json", "/icons/icon-192.png", "/brand/favicon.svg"];
+  "/perek-shira/", "/data/index.json", "/data/tehillim.json", "/data/books.json", "/icons/icon-192.png", "/brand/favicon.svg"];
 
 const EXT_HOSTS = ["fonts.googleapis.com", "fonts.gstatic.com", "cdn.jsdelivr.net"];
 const STATIC_PAGE = /^\/(tehillim|tefila|sefer|kelim|tehillim-yachad)(\/|$)/;
@@ -156,6 +156,10 @@ async function navigate(e) {
   // The app: one saved copy under "/", whatever the query string says.
   if (url.pathname === "/" || url.pathname === "/index.html") {
     const got = await networkFirst(request, SHELL, "/");
+    return got ? got.res : offlinePage();
+  }
+  if (/^\/perek-shira\/?$/.test(url.pathname)) {
+    const got = await networkFirst(request, SHELL, "/perek-shira/");
     return got ? got.res : offlinePage();
   }
   // Static reading pages: saved when opened, so they can be reopened offline as themselves.

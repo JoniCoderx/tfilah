@@ -314,7 +314,8 @@ for path, f in sorted(disk.items()):
             fail("Open Graph " + prop + " missing or wrong", path)
     om = re.search(r'<meta\s+property="og:image"[^>]*>', head, flags=re.I)
     img = attr(om.group(0), "content") if om else ""
-    if not re.fullmatch(re.escape(SITE) + r"/icons/og(-[a-z]+)?\.png", img or "") or not os.path.exists(os.path.join(ROOT, img[len(SITE) + 1:])):
+    # the address may carry ?v=N (so chat apps fetch a redrawn picture again); the file itself must still exist
+    if not re.fullmatch(re.escape(SITE) + r"/icons/og(-[a-z]+)?\.png(\?v=\d+)?", img or "") or not os.path.exists(os.path.join(ROOT, img[len(SITE) + 1:].split("?")[0])):
         fail("Open Graph og:image missing or not a file", path)
     for prop in ("og:title", "og:description", "og:type"):
         om = re.search(r'<meta\s+property="' + prop + r'"[^>]*>', head, flags=re.I)

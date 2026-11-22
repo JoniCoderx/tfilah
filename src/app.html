@@ -2067,7 +2067,7 @@ function itemRule(it,gkey,f){if(!f)return null;const t=norm(it.t),sec=(it.s||[])
 const TD_BOX="<aside class=\"tdn\" aria-label=\"מתי אומרים את תפילת הדרך בברכה\"><h3>מתי אומרים אותה בברכה?</h3><ul><li><b>לפי זמן הנסיעה:</b> בסידור עדות המזרח שבאתר נכתב שמי ששוהה בנסיעה מחוץ לעיר שעה וחמישית (72 דקות) אומר אותה בשם ומלכות, ובנסיעה קצרה מזו אינו מברך בשם ומלכות.</li><li><b>לפי המרחק:</b> בשולחן ערוך נפסק שאומרים אותה כשהדרך היא פרסה לפחות, ובפחות מפרסה אין חותמים ב”ברוך”. המשנה ברורה מוסיף שפרסה היא 8,000 אמה, ושגם הנוסע ברכבת מברך כשהוא נוסע פרסה אחת.</li><li><b>מתי בדרך:</b> אחרי שיצאו מהעיר, ולכתחילה בתחילת הדרך.</li></ul><p>כשלא חותמים, אומרים את התפילה עד ”כי אל שומע תפילה ותחנון אתה” בלי הסיום ”ברוך אתה ה׳ שומע תפילה”. יש שתי דרכי מדידה, זמן ומרחק, והאתר אינו מכריע ביניהן. מי שמסופק שואל רב.</p><p class=\"tds\">מקורות: הוראת הסידור בנוסח עדות המזרח · <a href=\"https://www.sefaria.org.il/Shulchan_Arukh%2C_Orach_Chayim.110.7\" target=\"_blank\" rel=\"noopener\">שולחן ערוך אורח חיים קי, ז</a> · <a href=\"https://www.sefaria.org.il/Mishnah_Berurah.110.30\" target=\"_blank\" rel=\"noopener\">משנה ברורה שם, ס״ק כט עד לא</a></p></aside>";
 /* "נוסח לאישה": nothing is added to the text. The siddurim already print what a woman says (שעשני כרצונו, מודָה, גויה, שפחה);
    the setting marks her wording as the one to say and folds the blessing she does not say. */
-const NO_NUS=new Set(['ashkenaz-28']);/* a psalm kept as its own entry: it is not shown as belonging to one nusach */
+const NO_NUS=new Set(['ashkenaz-28','sefard-30']);/* a psalm kept as its own entry: it is not shown as belonging to one nusach */
 let isha=store.get('isha',false);
 let pink=store.get('pink',false);const setPink=v=>{pink=v;store.set('pink',v);if(v)document.documentElement.dataset.pink='1';else delete document.documentElement.dataset.pink};if(pink)document.documentElement.dataset.pink='1';
 const ishaPl=x=>String(x).replace(/<[^>]+>/g,'').replace(NIK,'').replace(/\s+/g,' ').trim();
@@ -2146,7 +2146,7 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){nav('s
       return why&&it.id!==id?`<section id="s-${it.id}" class="skip">${head}<details><summary>${why} · להציג בכל זאת</summary>${paras}</details></section>`:`<section id="s-${it.id}">${head}${plainBox(plainFor(it.t),'',solo||it.id===id||items.length===1)}${/^תפי?לת הדרך$/.test(it.t)?TD_BOX:''}${paras}</section>`}).join('');
     const prev=gs[p.g-1],next=gs[p.g+1];
     app.innerHTML=`${tools(solo?p.t:g.parts.join(' / '),items.length>1)}
-      <h1 class="rh1">${esc(solo?p.t:g.parts.at(-1))}</h1><p class="rsub">${solo&&NO_NUS.has(p.id)?'תהילים פרק ק':'נוסח '+nusName(p.n)}${solo?' · '+esc(g.parts.join(' / ')):g.parts.length>1?' · '+esc(g.parts.slice(0,-1).join(' / ')):''}</p>${topActs(id)}
+      <h1 class="rh1">${esc(solo?p.t:g.parts.at(-1))}</h1><p class="rsub">${solo&&p.id==='ashkenaz-28'?'תהילים פרק ק':'נוסח '+nusName(p.n)}${solo?' · '+esc(g.parts.join(' / ')):g.parts.length>1?' · '+esc(g.parts.slice(0,-1).join(' / ')):''}</p>${topActs(id)}
       ${solo?'':f?`<div class="smartbar"><span>${icon('spark')}סידור חכם · מותאם ליום ${esc(f.hd.renderGematriya().replace(NIK,'').replace(/\s+\S+$/,''))}${f.after?' (מהשקיעה)':''}, ${isIL()?'ארץ ישראל':'חוץ לארץ'}</span><button type="button" id="smartoff">להציג הכל</button></div>`:(HC()?`<div class="smartbar off"><span>מוצג הסידור המלא</span><button type="button" id="smarton">להפעיל סידור חכם</button></div>`:'')}
       ${f&&!solo?(()=>{const r=prayerNotes();const arv=/ערבית|מעריב/.test(g.key),ns=(r&&r.notes||[]).filter(([a])=>!(arv&&/תחנון|צדקתך/.test(a)));return ns.length?`<p class="tday"><span>${r.after?'הלילה':'היום'}:</span>${ns.map(([a,b])=>`<b>${a}${b?' · '+b:''}</b>`).join('')}</p>`:''})():''}
       ${items.length>1?`<nav class="toc" aria-label="תוכן">${items.map(it=>`<a href="#s-${it.id}" data-j="${it.id}" class="${it.id===id?'on':''}${itemRule(it,g.key,f)?' sk':''}">${esc(it.t)}</a>`).join('')}</nav>`:''}
@@ -2774,11 +2774,11 @@ function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;c
 let BOOKS=null;const books=async()=>BOOKS||(BOOKS=await load('/data/books.json'));
 const LIB=[
  ['ישועות ובקשות','hands',[['b:chana','תפילת חנה','לזרע של קיימא'],['p:תפילת השל"ה','תפילת השל"ה','לבנים צדיקים, בערב ראש חודש סיון'],['p:על הפרנסה','תפילה על הפרנסה'],
-   ['b:haman','פרשת המן','סגולה לפרנסה'],['b:haazinu','שירת האזינו','להצלחה ולפרנסה'],['p:לחולה','מי שברך לחולה','לרפואה שלמה'],['p:לחיילי','מי שברך לחיילי צה"ל'],
+   ['b:haazinu','שירת האזינו','להצלחה ולפרנסה'],['p:לחולה','מי שברך לחולה','לרפואה שלמה'],['p:לחיילי','מי שברך לחיילי צה"ל'],
    ['k:refuah','תהילים לרפואה'],['k:parnasa','תהילים לפרנסה'],['k:shidduch','תהילים לזיווג'],['k:banim','תהילים לזרע של קיימא'],['k:leida','תהילים ללידה קלה'],['k:shmira','תהילים לשמירה'],['k:tzara','תהילים לעת צרה'],['k:hodaya','תהילים להודיה']]],
  ['סגולות','spark',[['b:perek','פרק שירה','שירת הבריאה'],['k:tikkun','תיקון הכללי','עשרה מזמורים'],['p:אגרת הרמב"ן','אגרת הרמב"ן','על ענווה ויראה'],['p:אגרת רבינו שמשון','אגרת רבי שמשון מאוסטרופולי','סגולה לשמירה'],
    ['p:^פטום ה?קטורת|^פטום קטורת','פיטום הקטורת'],['b:akeda','פרשת העקדה'],['b:yamsuf','שירת הים'],['b:chavakuk','תפילה לחבקוק'],['b:kohanim','ברכת כהנים'],
-   ['p:פתיחת אליהו','פתח אליהו'],['p:^נשמת','נשמת כל חי'],['p:מזמור לתודה','מזמור לתודה'],['p:תיקון רחל','תיקון חצות'],['p:^לשם יחוד','לשם יחוד']]],
+   ['p:פתיחת אליהו','פתח אליהו'],['p:^נשמת','נשמת כל חי'],['p:מזמור לתודה','מזמור לתודה'],['b:haman','פרשת המן','סגולה לפרנסה'],['p:תיקון רחל','תיקון רחל','רחל אמנו · מתוך תיקון חצות'],['p:^לשם יחוד','לשם יחוד']]],
  ['ברכות','wheat',[['p:^ברכת המזון','ברכת המזון'],['p:מעין שלוש|^על המחיה','ברכה מעין שלוש'],['p:ברכו?ת הנהנין','ברכות הנהנין'],['p:^אשר יצר','אשר יצר'],['p:^ברכות השחר','ברכות השחר'],
    ['p:^מודה אני','מודה אני'],['p:תפי?לת הדרך$','תפילת הדרך'],['p:האילנות','ברכת האילנות'],['p:קידוש לבנה|ברכת הלבנה','ברכת הלבנה'],['p:קריאת שמע ש?על המי?טה','קריאת שמע על המיטה']]],
  ['שבת','flame',[['p:נרות שבת','הדלקת נרות שבת'],['p:^שלום עליכם','שלום עליכם'],['p:^אשת חיל','אשת חיל'],['p:^קידוש( ליל שבת)?$','קידוש ליל שבת'],['p:^ברכת הבנים','ברכת הבנים'],

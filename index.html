@@ -28,7 +28,6 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script defer src="config.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script defer src="shim.js"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
 </head>
@@ -289,8 +288,8 @@ h1,h2,h3{text-wrap:balance;margin:0}
 /* siddur browse */
 .daily{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:8px}
 @media (max-width:620px){.daily{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.daily a{display:grid;gap:4px;padding:18px;text-decoration:none;color:#fff;border-radius:20px;min-height:110px;align-content:end}
-.daily a b{font-family:var(--f-display);font-weight:700;font-size:2.6rem;line-height:.85}
+.daily a,.daily button{display:grid;gap:4px;padding:18px;text-decoration:none;color:#fff;border-radius:20px;min-height:110px;align-content:end}
+.daily a b,.daily button b{font-family:var(--f-display);font-weight:700;font-size:2.6rem;line-height:.85}
 .daily a small{opacity:.85;font-weight:600}
 .daily .d1{background:linear-gradient(160deg,#1C5BFF,#7EC4FF)}.daily .d2{background:linear-gradient(160deg,#D2508C,#FF8A4C)}
 .daily .d3{background:linear-gradient(160deg,#0E1446,#4A3A93)}.daily .d4{background:linear-gradient(160deg,#111114,#3b3b48)}
@@ -677,7 +676,7 @@ a{color:var(--ink)}
 .daily .d2{background:linear-gradient(160deg,#F3D3B0,#E39A5A);color:var(--ink)}
 .daily .d3{background:linear-gradient(160deg,#1b1b22,#3a3346)}
 .daily .d4{background:#0B0B0C}
-.daily a b{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em}
+.daily a b,.daily button b{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em}
 .topcat{font-family:var(--f-display);font-weight:400;letter-spacing:-.04em}
 .gcard li a{background:#fff}
 .gcard li a:hover{background:var(--ink);color:#fff}
@@ -758,7 +757,33 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .kform label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
 .kform input[type=text],.kform input:not([type]),.kform input[type=date],.kform input[type=number]{font:inherit;font-weight:400;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);min-width:0;width:100%;box-sizing:border-box}
 .kform .kchk{display:flex;align-items:center;gap:8px;font-weight:400}
-.kseg{display:flex;gap:16px}.kseg label{display:flex;align-items:center;gap:6px;font-weight:400}
+.srow{display:none;align-items:center;gap:10px;inline-size:100%;min-height:48px;margin:8px 0 12px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font:inherit;font-weight:500;text-align:start;cursor:pointer}
+.srow svg{flex:none;inline-size:20px;block-size:20px;stroke:currentColor;fill:none;stroke-width:2}@media (max-width:900px){.srow{display:flex}}
+.shead{align-items:center}.snus{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink-2)}.snus select{min-height:44px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font:inherit;font-weight:700;color:var(--ink)}
+.daily button{border:0;text-align:start;font:inherit;cursor:pointer;border-radius:20px}.daily button b{font-size:clamp(1.5rem,7.4vw,2.05rem);white-space:nowrap}.daily button small{white-space:nowrap;font-size:.8rem}.daily button small{opacity:.85;font-weight:600}
+.kmore summary{list-style:none}.kmore summary::-webkit-details-marker{display:none}.kmore summary::after{content:"";margin-inline-start:auto;inline-size:8px;block-size:8px;border-inline-end:2px solid var(--ink);border-block-end:2px solid var(--ink);transform:rotate(45deg)}.kmore[open] summary::after{transform:rotate(-135deg)}
+.chiprow{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}.chiprow[hidden]{display:none}
+.chiprow a{display:inline-flex;align-items:center;min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;font-weight:600}
+.chiprow a:hover{background:var(--grad-cta);color:#fff;border-color:transparent}
+.sfold{border:1px solid var(--line);border-radius:20px;background:var(--card);margin:8px 0}.sfold summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;min-height:60px;padding:8px 18px}
+.sfold summary::-webkit-details-marker{display:none}.sfold summary b{font-size:1.15rem;white-space:nowrap}.sfold summary span{color:var(--muted);font-size:.9rem}
+.sfold summary::after{content:"";margin-inline-start:auto;inline-size:9px;block-size:9px;border-inline-end:2px solid var(--ink);border-block-end:2px solid var(--ink);transform:rotate(45deg);flex:none}
+.sfold[open] summary::after{transform:rotate(-135deg)}.sfold .ggrid{padding:0 12px 14px}.sfold .gcard{box-shadow:none}
+.hero2 h1.hfix{font-family:var(--f-display);font-weight:900;font-size:clamp(1.45rem,5.6vw,2.1rem);line-height:1.2;margin:8px 0 0;padding:0;letter-spacing:-.01em;background:none;-webkit-text-fill-color:currentColor;color:var(--ink)}
+.hero2 .skybox{max-width:340px;margin-top:30px}.hnow{margin:0;display:grid;justify-items:center;gap:0}
+.hnow small{font-weight:700;color:var(--ink-2);font-size:.95rem}.hnow span{font-weight:600;color:var(--ink-2);font-size:1rem}
+.hnow b{font-family:var(--f-display);font-weight:900;line-height:1.05;font-size:clamp(3rem,15vw,4.6rem);background:var(--chrome);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-block-end:.08em}
+.hnow.long b{font-size:clamp(2rem,9.5vw,3.2rem)}
+.hact{align-items:center;gap:6px 18px}.hall{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font-weight:700;color:#0A6FB3;text-underline-offset:4px}
+@media (max-width:620px){.hero2{padding-block:2px 10px}.hero2 h1.hfix{margin-top:4px}.hero2 .skybox{max-width:210px;margin-top:14px}.hero2 .skybox svg{max-block-size:54px}.hnow b{font-size:clamp(2.6rem,13vw,3.6rem)}.hsub{margin-top:4px;font-size:.98rem}.hact{margin-top:8px;gap:0}.hnotes{margin-top:6px}.quick4{margin-top:4px}}
+@media (max-width:430px){.q4i{flex-direction:row!important;align-items:center!important;gap:10px!important}.q4.q4i{min-height:62px;padding:8px 12px}.q4i small{display:none}}
+.kseg{display:flex;gap:16px}.kseg.kcol{flex-direction:column;gap:4px}.kseg.kcol label{min-height:44px}
+.klead{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center;padding:18px;margin:6px 0 22px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(150deg,#fff,#EEF8FF 60%,#DDF0FD)}
+.klead h2{margin:0;font-size:1.3rem}.klead p{margin:2px 0 0;color:var(--ink-2);line-height:1.5}
+.kleadrow{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}.kleadrow input{flex:1 1 12rem;min-width:0;min-height:50px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
+.kleadrow .btn{flex:0 0 auto}@media(max-width:420px){.kleadrow .btn{flex:1 1 100%}}
+.kmore{border:1px solid var(--line);border-radius:14px;padding:0 14px;background:var(--bg)}.kmore summary{cursor:pointer;min-height:46px;display:flex;align-items:center;font-weight:600}.kmore .kseg{padding:0 0 12px}
+.kcity{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:10px}.kcity select{min-height:46px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);font:inherit;font-weight:600;color:var(--ink)}.kseg label{display:flex;align-items:center;gap:6px;font-weight:400}
 .kbig{padding:22px;margin-top:16px;display:grid;gap:6px;text-align:center;justify-items:center}
 .kbig b{font-family:var(--f-read);font-size:clamp(1.6rem,6vw,2.4rem);color:var(--accent-ink)}
 .ksub{margin:20px 0 8px}
@@ -976,7 +1001,7 @@ a{color:var(--ink)}
 .daily .d1,.daily .d2{background:var(--card);border:1px solid var(--line);color:var(--ink)}
 .daily .d3{background:var(--ink-2);color:var(--on-ink)}
 .daily .d4{background:var(--ink);color:var(--on-ink)}
-.daily a b{font-family:var(--f-display);letter-spacing:0;line-height:1}
+.daily a b,.daily button b{font-family:var(--f-display);letter-spacing:0;line-height:1}
 .topcat,.libhead h1,.bookhead h1,.libsec h2,.kh,.panel h2{font-family:var(--f-display);letter-spacing:0;line-height:1.1}
 .gcard li a{background:var(--bg);border:1px solid var(--line);min-height:36px;display:inline-flex;align-items:center}
 .gcard li a:hover{background:var(--ink);color:var(--on-ink)}
@@ -1090,6 +1115,10 @@ main#app{min-height:100vh;min-height:100svh}#potd{min-height:190px}
 .endcard{margin:26px 0 6px;padding:22px 20px;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(150deg,#FFFFFF 0%,#EEF8FF 60%,#DDF0FD 100%);text-align:center;display:grid;gap:8px;justify-items:center}
 .endcard b{font:900 1.45rem/1.2 var(--f-display)}.endcard p{margin:0;color:var(--ink-2)}.endcard .row{justify-content:center;margin-top:6px}
 .nshare{margin:14px 0;padding:16px 18px;border-radius:22px;border:1px solid var(--line);background:#fff;display:grid;gap:8px}.nshare b{font:700 1.1rem/1.3 var(--f-ui)}.nshare .note{margin:0}
+footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:48px;padding-block:22px 8px;color:var(--muted);font-size:.9rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
+
+.boot{max-inline-size:40rem;margin:0 auto;padding:8vh 0 0;text-align:center}.boot h1{font:900 clamp(1.6rem,6vw,2.6rem)/1.15 var(--f-display);letter-spacing:-.022em;margin:0 0 12px;block-size:2.3em;overflow:hidden;text-wrap:balance}.boot p{color:var(--ink-2);margin:0 0 18px;block-size:4.9em;line-height:1.6;overflow:hidden}
+.boot ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}.boot a{display:flex;align-items:center;justify-content:center;block-size:44px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;font-weight:600;white-space:nowrap;overflow:hidden;font-size:.92rem}
 /* phone: one line per button, label and short title */
 .btn,.chip,.tbtn,.lnk,.tocb,.seg button,.tabs a,.hlink,.cd,.tag,#aspill button{white-space:nowrap}
 .hact .btn,.jtake,.shema .row .btn{white-space:normal;text-wrap:balance}
@@ -1258,6 +1287,15 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
 .daily .d3{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
 .shabline{background:linear-gradient(135deg,#E3F4FF,#C9EAFF);--on-ink:var(--on);color:var(--on)}
 .shabline *{color:inherit}.shabline b{color:var(--ink)}
+/* calmer surfaces: frames and shadows only where something must be found at once */
+.q4,.q4.q4i{box-shadow:none;background:var(--card)}
+.more4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}@media (max-width:700px){.more4{grid-template-columns:1fr}}
+.more4 .card{border:0!important;border-block-end:1px solid var(--line)!important;border-radius:0!important;box-shadow:none!important;background:none!important;padding:14px 2px!important;transform:none!important}
+.hnotes .tn{border:0;background:#EEF7FE;box-shadow:none}
+.sfold .gcard{border:0!important;background:none!important;box-shadow:none!important;padding:12px 6px 4px;border-block-start:1px solid var(--line)!important;border-radius:0!important}
+.sfold .ggrid{gap:0 18px}.sfold{box-shadow:none}
+.hgrid .card,.tgrid .card{box-shadow:none}
+.kcard.glass{box-shadow:none}
 </style>
 
 <div class="progress" id="prog" aria-hidden="true"></div>
@@ -1279,13 +1317,13 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
     <div class="nus" id="nus"></div>
   </div>
 </header>
-<main class="wrap" id="app"><p class="loading">פותחים את הסידור…</p></main>
+<main class="wrap" id="app"><div class="boot"><h1>תפילה: סידור תפילה ותהילים אונליין</h1><p>סידור מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים, זמני היום וקריאת תהילים משותפת.</p><ul><li><a href="/tefila/mizrach/shacharit/">תפילת שחרית</a></li><li><a href="/tefila/mizrach/mincha/">תפילת מנחה</a></li><li><a href="/tefila/mizrach/arvit/">תפילת ערבית</a></li><li><a href="/tefila/">כל הסידור</a></li><li><a href="/tehillim/">ספר תהילים</a></li><li><a href="/kelim/shem/">תהילים לפי שם</a></li><li><a href="/zmanei-shabbat/">זמני שבת</a></li><li><a href="/sefer/">ספרייה</a></li></ul></div></main>
 
 <nav class="tabbar" aria-label="ניווט ראשי">
   <a href="#home" data-r="home"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>היום</a>
   <a href="#siddur" data-r="siddur"><svg class="i" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5M9 7h6"/></svg>סידור</a>
   <a href="#tehillim" data-r="tehillim"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6M5 17a3 3 0 0 1 3-3"/></svg>תהילים</a>
-  <a href="#zikaron" data-r="zikaron"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h6v14H4zM14 5h6v6h-6zM14 15h6v4h-6z"/></svg>תהילים יחד</a>
+  <a href="#kelim" data-r="kelim"><svg class="i" viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg>כלים</a>
   <a href="#sifriya" data-r="sifriya"><svg class="i" viewBox="0 0 24 24"><path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="m16 5 3.8-1 3 15.5-3.8 1z"/></svg>ספרייה</a>
 </nav>
 
@@ -1406,7 +1444,7 @@ const dbReady=(async()=>{try{
       mems=s.docs.map(d=>({id:d.id,...d.data()}));redrawZ()},()=>{done=true;clearTimeout(timer);mems=mems||[];redrawZ()})}
   else{mems=null;redrawZ()}
 }catch(e){DB=null;redrawZ()}})();
-function redrawZ(){const h=location.hash.slice(1)||'home';if(h==='home'||h==='zikaron')drawWall();if(/^m-/.test(h))drawMemorial()}
+function redrawZ(){const h=location.hash.slice(1)||'home';if(DB){const yb=$('#yband');if(yb&&!yb.firstElementChild){yb.innerHTML=yachadBand();bindNew()}$$('[data-new]').forEach(b=>b.disabled=false)}if(h==='home'||h==='zikaron')drawWall();if(/^m-/.test(h))drawMemorial()}
 const KINDS={neshama:['לעילוי נשמת','לעילוי נשמה','שם הנפטר/ת','שם האב או האם',' ז״ל'],refuah:['לרפואה שלמה של','לרפואה','שם החולה','שם האם',''],
   zivug:['לזיווג הגון עבור','לזיווג','שם המבקש/ת','שם האם',''],hatzlacha:['להצלחה ולישועה של','להצלחה','שם','שם האם',''],general:['תפילת רבים','בקשה כללית','על מה מתפללים','','']};
 const kindOf=m=>KINDS[m&&m.kind]?m.kind:'neshama';
@@ -1451,7 +1489,10 @@ const QUICK=[['מודה אני','בקימה',/^מודה אני/],['ברכות ה
   ['ספירת העומר','פסח עד שבועות',/ספירת העומר/],['נרות חנוכה','חנוכה',/נרות חנוכה|^סדר ההדלקה/]];
 
 /* ---------- shell ---------- */
-function setNav(r){document.body.dataset.r=r||'';$$('.tabs a,.tabbar a,.top .iconbtn[data-r]').forEach(a=>a.dataset.r===r?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'))}
+function setNav(r){document.body.dataset.r=r||'';$$('.tabs a,.tabbar a,.top .iconbtn[data-r]').forEach(a=>a.dataset.r===r||(r==='zikaron'&&a.dataset.r==='tehillim'&&a.closest('.tabbar'))?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'))}
+/* a search row that is always in sight on the screens people search from */
+const searchRow=()=>`<button class="srow" type="button" data-openk>${icon('search')}<span>חפשו תפילה, ברכה או פרק</span></button>`;
+document.addEventListener('click',e=>{if(e.target.closest('[data-openk]'))openPal()});
 function renderNus(){$('#nus').innerHTML=`<label class="sr" for="nusSel">נוסח</label><select id="nusSel" title="נוסח התפילה">${NUS.map(([c,h])=>`<option value="${c}" ${c===nus?'selected':''}>${h}</option>`).join('')}</select>`}
 const sameKey=t=>norm(t).replace(/תפלת/g,'תפילת').replace(/שעל/g,'על').replace(/המטה/g,'המיטה').replace(/לימות|לימי/g,'').replace(/^(סדר|תפילת) /,'').replace(/ק"ש/g,'קריאת שמע').replace(/שלושה/g,'שלשה').replace(/אירוסין/g,'ארוסין').replace(/^ברכות (?=ארוסין)/,'')
   .replace(/^קידוש לבנה$/,'ברכת הלבנה').replace(/^(ברכה אחרונה |ברכת )?מעין שלוש$|^על המחיה$/,'מעין שלוש').replace(/\s+/g,' ').trim();
@@ -1475,7 +1516,15 @@ function setNus(v){if(!NUS.some(x=>x[0]===v)||v===nus)return;const from=nus;nus=
       else{toast(`לא מצאנו קטע מקביל בנוסח ${nusName(nus)}. הנה הסידור כולו`);location.hash='siddur'}}}
   else route()}
 $('#nus').addEventListener('change',e=>setNus(e.target.value));
-const footer=()=>`<footer><span class="fb">תפילה<span>tfilah.com</span></span><nav aria-label="עוד באתר"><a href="#siddur">סידור</a><a href="#tehillim">תהילים</a><a href="#zikaron">תהילים יחד</a><a href="#sifriya">ספרייה</a><a href="#kelim">כלים אישיים</a><a href="#rav">שאלו שאלה</a><a href="#favorites">שמורים</a><a href="#tmicha">תמיכה באתר</a></nav>הנוסחים מבוססים על מהדורות פתוחות מהארכיון של ספריא: עדות המזרח וספרד (תורת אמת, נחלת הכלל), אשכנז (דעת, נחלת הכלל) עם השלמות מסידור מצודה (CC-BY). תהילים: Tanach.us (נחלת הכלל). לוח עברי: Hebcal.</footer>`;
+const LOGO_HTML=(document.querySelector('header .logo')||{}).innerHTML||'';
+const footer=()=>`<footer class="sitefoot"><div class="fcols"><div class="fbrand"><a class="flogo" href="#home" aria-label="תפילה, לדף הבית">${LOGO_HTML}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
+  <nav aria-label="ניווט באתר"><a href="#siddur">סידור תפילה</a><a href="#tehillim">ספר תהילים</a><a href="#kli-shem">תהילים לפי שם</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
+  <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="#tmicha">תמיכה באתר</a></nav></div>
+  ${DONATE_URL?'<p class="fsup">תפילה עוזרת לכם? <a href="#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>':''}
+  <p class="fcredit">הנוסחים מבוססים על מהדורות פתוחות מהארכיון של ספריא: עדות המזרח וספרד (תורת אמת, נחלת הכלל), אשכנז (דעת, נחלת הכלל) עם השלמות מסידור מצודה (CC-BY). תהילים: Tanach.us (נחלת הכלל). לוח עברי: Hebcal.</p></footer>`;
+/* the report link carries where the reader was: address, title and nusach */
+document.addEventListener('click',e=>{const a=e.target.closest('[data-taut]');if(!a)return;const m=safeHash().match(/^p-([a-z]+)-\d+$/);
+  a.href=`/odot/?u=${encodeURIComponent(shareUrl())}&t=${encodeURIComponent(shareTitle())}${m?'&n='+encodeURIComponent(nusName(m[1])):''}#taut`});
 const tick=()=>$$('.reveal').forEach((el,i)=>el.style.animationDelay=Math.min(i*40,400)+'ms');
 
 /* ---------- dialogs: keep focus inside, Esc closes, focus returns ---------- */
@@ -1533,10 +1582,10 @@ function nowCard(){
 function zCard(){let z=null;try{z=zmanim()}catch(e){}if(!z)return'';const now=new Date();
   const KEY=['עלות השחר','הנץ החמה','סוף זמן ק״ש (גר״א)','סוף זמן תפילה (גר״א)','חצות היום','מנחה גדולה','שקיעה','צאת הכוכבים'];
   const rows=zAll?z.list:z.list.filter(([l])=>KEY.includes(l)),nextT=z.list.find(([,t])=>t>now);const st=hcShabbat()||shabbatTimes();
-  return `<section class="card zcard reveal" id="zcard"><div class="zhead"><h3>זמני היום · ${esc(z.name)}</h3><button class="lnk" type="button" id="remBtn"${rem.on?' data-on':''}>${icon('bell')}${rem.on?'תזכורות פעילות':'תזכורות'}</button></div>
+  return `<section class="card zcard reveal" id="zcard"><div class="zhead"><h3>זמני היום ב${esc(z.name)}</h3><button class="lnk" type="button" id="remBtn"${rem.on?' data-on':''}>${icon('bell')}${rem.on?'תזכורות פעילות':'תזכורות'}</button></div>
     ${rows.map(([l,t])=>`<div class="zrow${nextT&&t===nextT[1]?' next':t<now?' past':''}"><span>${l}</span><b>${fmtT(t,z.tz)}</b></div>`).join('')}
     ${st?`<div class="zshab"><div><span>הדלקת נרות</span><b>${fmtT(st.candle,st.tz)}</b></div><div><span>צאת שבת</span><b>${fmtT(st.havdala,st.tz)}</b></div>${st.rt?`<div><span>רבנו תם</span><b>${fmtT(st.rt,st.tz)}</b></div>`:''}</div>`:''}
-    <button class="zmore" type="button" id="zmore">${zAll?'הצגת הזמנים העיקריים':'כל הזמנים: מג״א, מנחה קטנה, פלג, ר״ת'}</button></section>`}
+    <button class="zmore" type="button" id="zmore">${zAll?'רק הזמנים העיקריים':'כל הזמנים'}</button></section>`}
 function bindZ(){const b=$('#zmore');if(b)b.onclick=()=>{zAll=!zAll;$('#zcard').outerHTML=zCard();bindZ();$('#zmore')?.focus({preventScroll:true})};const rb=$('#remBtn');if(rb)rb.onclick=openRem}
 function omerCard(){const om=omerToday();if(!om)return'';const p=findPrayer(/ספירת העומר/);
   return `<div class="card omer reveal"><span class="eyebrow">ספירת העומר</span><div class="cnt">${gem(om)}</div><b style="font-family:var(--f-read)">${omerText(om)}</b>${p?`<a class="chip" href="#p-${p.id}" style="justify-self:start">לנוסח הספירה</a>`:''}</div>`}
@@ -1548,7 +1597,6 @@ function viewHome(){setNav('home');
   const rng=(a,b)=>a===b?`פרק ${gem(a)}`:`פרקים ${gem(a)}–${gem(b)}`;
   app.innerHTML=`${heroNow()}
   ${quick4()}
-  ${shemaCard()}
   ${yzCard()}
   ${specials()}
 
@@ -1565,17 +1613,17 @@ function viewHome(){setNav('home');
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
       <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div>${tTrack()}</section>
     <div id="potd"></div></div>
-  ${yachadBand()}
+  <div id="yband">${DB?yachadBand():''}</div>
 
-  <div class="sec"><h2>היום בלוח</h2></div>
-  <div class="hgrid">${zCard()}<div class="stack">${parashaCard()}${holCard()}</div></div>
+  <div class="sec"><h2>זמני היום ופרשת השבוע</h2></div>
+  <div class="hgrid">${zCard()}<div class="stack">${shemaCard()}${parashaCard()}${holCard()}</div></div>
 
   <div class="sec"><h2>עוד באתר</h2></div>
   <div class="more4">
     <a class="card lift" href="#siddur"><span class="ib">${icon('book')}</span><span><b>הסידור המלא</b><small>שחרית, מנחה, ערבית, שבת וברכות</small></span></a>
     <a class="card lift" href="#tehillim"><span class="ib">${icon('spark')}</span><span><b>תהילים לפי צורך</b><small>רפואה, פרנסה, זיווג, שמירה ועוד</small></span></a>
     <a class="card lift" href="#sifriya"><span class="ib">${icon('flame')}</span><span><b>ספרייה</b><small>פרקי אבות, שיר השירים, סגולות</small></span></a>
-    <a class="card lift" href="#kelim"><span class="ib">${icon('hands')}</span><span><b>כלים אישיים</b><small>תהילים לפי שם, יארצייט, יום הולדת עברי</small></span></a></div>
+    <a class="card lift" href="#kelim"><span class="ib">${icon('hands')}</span><span><b>כלי תפילה ולוח עברי</b><small>תהילים לפי שם, יארצייט, יום הולדת עברי</small></span></a></div>
 
   <section class="card askcard" id="askcard" hidden><span class="ib">${icon('chat')}</span><div><h3>יש לכם שאלה בהלכה או בתפילה?</h3>
     <p>מורה הדרך הוא עוזר AI ולא רב. הוא עונה לפי נוסח ${nusName(nus)} ומקשר לתפילה המתאימה.</p>
@@ -1779,16 +1827,31 @@ async function viewLetters(id){setNav('zikaron');app.innerHTML='<p class="loadin
 
 /* ---------- SIDDUR ---------- */
 function viewSiddur(){setNav('siddur');const gs=groups[nus];
-  const dl=[['שחרית','בוקר',[/שחרית/,/חול/],'d1'],['מנחה','צהריים',[/מנחה/,/חול/],'d2'],['ערבית','לילה',[/ערבית|מעריב/,/חול/],'d3'],['שבת','קבלת שבת',[/קבלת שבת/],'d4']];
-  const daily=dl.map(([t,s,res,c])=>{let i=findGroup(res);if(i<0)i=findGroup([res[0]]);return i>=0?`<a class="${c} lift" href="#p-${gs[i].items[0].id}"><small>${s}</small><b>${t}</b></a>`:''}).join('');
-  const tops=[],by={};gs.forEach(g=>{const top=g.parts.length>1?g.parts[0]:'כל התפילות';if(!by[top]){by[top]=[];tops.push(top)}by[top].push(g)});
-  const slug=t=>'c'+tops.indexOf(t);
-  const body=tops.map(t=>`${tops.length>1?`<h2 class="topcat" id="${slug(t)}">${esc(t)}</h2>`:''}<div class="ggrid">${by[t].map(g=>{const its=g.items,show=its.slice(0,8);
-      return `<section class="card gcard"><h3 aria-level="2">${esc(g.parts.at(-1))}<span>${its.length}</span></h3><ul>${show.map(p=>`<li><a href="#p-${p.id}">${esc(p.t)}</a></li>`).join('')}${its.length>8?`<li><a href="#p-${its[8].id}" style="background:none;border:0;font-family:var(--f-ui);font-weight:500;text-decoration:underline">ועוד ${its.length-8}</a></li>`:''}</ul></section>`}).join('')}</div>`).join('');
-  app.innerHTML=`<div class="sec" style="margin-top:6px"><h1>סידור · נוסח ${nusName(nus)}</h1><span class="note">${INDEX.prayers.filter(p=>p.n===nus).length} תפילות וקטעים</span></div>
-    <div class="daily">${daily}</div>
-    ${tops.length>1?`<nav class="cats" aria-label="חלקי הסידור">${tops.map(t=>`<a href="#${slug(t)}" data-c="${slug(t)}">${esc(t)}</a>`).join('')}</nav>`:'<div style="height:14px"></div>'}
-    ${body}${footer()}`;
+  const first=res=>{let i=findGroup(res);if(i<0&&res.length>1)i=findGroup([res[0]]);return i>=0?gs[i].items[0]:null};
+  const dl=[['שחרית','בוקר',[/שחרית/,/חול/],'d1'],['מנחה','צהריים',[/מנחה/,/חול/],'d2'],['ערבית','לילה',[/ערבית|מעריב/,/חול/],'d3']];
+  const daily=dl.map(([t,s,res,c])=>{const p=first(res);return p?`<a class="${c} lift" href="#p-${p.id}"><small>${s}</small><b>${t}</b></a>`:''}).join('');
+  const gp=re=>{const g=gs.find(g=>re.test(g.key));return g?g.items[0]:null};
+  const shab=[['קבלת שבת',gp(/קבלת שבת|מנחה לערב שבת/)||findPrayer(/לכו נרננה|קבלת שבת/)],['ערבית',gp(/ערבית של שבת|שבת.*מעריב/)],['שחרית',gp(/שחרית של שבת|שבת.*שחרית/)],['מוסף',gp(/מוסף.*שבת|שבת.*מוסף/)],['מנחה',gp(/מנחה (של |ל)שבת|שבת \/ מנחה|שבת.*\/ מנחה/)]].filter(x=>x[1]);
+  const common=[['ברכות השחר',/^ברכות השחר/],['קריאת שמע שעל המיטה',/קריאת שמע ש?על המי?טה/],['ברכת המזון',/^ברכת המזון/],['תפילת הדרך',/תפי?לת הדרך$/],['הבדלה',/^הבדלה|סדר הבדלה/]].map(([t,re])=>{const p=findPrayer(re);return p?`<a href="#p-${p.id}">${t}</a>`:''}).join('');
+  const FOLD=['ימי חול','שבת','ראש חודש וחגים','ברכות ותפילות'],by=[[],[],[],[]];
+  const kind=g=>{const k=g.key||'',top=g.parts.length>1?g.parts[0]:'';
+    if(top==='ימי חול')return 0;if(top==='שבת')return 1;if(top==='חגים')return 2;if(top)return 3;
+    if(/ראש חודש|רגלים|חנוכה|פורים|ניסן|הגדה|סוכות|שמחת תורה|יוצרות|תעניות|סליחות|בעומר/.test(k))return 2;
+    if(/שבת|סעודה שלישית|סעודה שניה/.test(k))return 1;
+    if(/חול|השכמ|חצות|תוספות/.test(k)||!k.trim())return 0;return 3};
+  gs.forEach(g=>by[kind(g)].push(g));
+  const gname=g=>(g.parts.length>2?g.parts.slice(1):g.parts.slice(-1)).join(' · ')||'קריאת שמע על המיטה ועוד';
+  const body=FOLD.map((f,fi)=>by[fi].length?`<details class="sfold"><summary><b>${f}</b><span>${by[fi].reduce((s,g)=>s+g.items.length,0)} תפילות וקטעים</span></summary><div class="ggrid">${by[fi].map(g=>{const its=g.items,nm=gname(g);
+      return `<section class="card gcard"><h3 aria-level="2">${esc(nm)}<span>${its.length}</span></h3><ul>${its.map((p,i)=>`<li${i>=8?' class="xtra" hidden':''}><a href="#p-${p.id}">${esc(p.t)}</a></li>`).join('')}</ul>${its.length>8?`<button class="gmore" type="button" aria-expanded="false">${nm.length<22?'כל חלקי '+esc(nm):'כל החלקים'} (${its.length})</button>`:''}</section>`}).join('')}</div></details>`:'').join('');
+  app.innerHTML=`<div class="sec shead" style="margin-top:6px"><h1>סידור</h1><label class="snus"><span>נוסח</span><select id="snus">${NUS.map(([c,h])=>`<option value="${c}" ${c===nus?'selected':''}>${h}</option>`).join('')}</select></label></div>
+    ${searchRow()}
+    <div class="daily">${daily}${shab.length?`<button class="d4 lift" type="button" id="shabt" aria-expanded="false" aria-controls="shabp"><small>קבלת שבת ותפילות היום</small><b>סידור שבת</b></button>`:''}</div>
+    ${shab.length?`<nav class="chiprow" id="shabp" aria-label="סידור שבת" hidden>${shab.map(([t,p])=>`<a href="#p-${p.id}">${t}</a>`).join('')}</nav>`:''}
+    ${common?`<h2 class="ksub">תפילות וברכות נפוצות</h2><nav class="chiprow" aria-label="תפילות וברכות נפוצות">${common}</nav>`:''}
+    <h2 class="ksub">כל הסידור</h2>${body}${footer()}`;
+  $('#snus').onchange=e=>setNus(e.target.value);
+  const sb=$('#shabt');if(sb)sb.onclick=()=>{const p=$('#shabp'),o=p.hidden;p.hidden=!o;sb.setAttribute('aria-expanded',o)};
+  $$('.gmore').forEach(b=>b.onclick=()=>{$$('.xtra',b.parentNode).forEach(li=>li.hidden=false);const f=$('.xtra a',b.parentNode);b.remove();f&&f.focus()});
   $$('.cats a').forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById(a.dataset.c)?.scrollIntoView({behavior:reduce?'auto':'smooth'})});tick()}
 
 const tools=(crumb,toc)=>`<div class="rtools" id="rt"><div class="in" style="position:relative">
@@ -1825,8 +1888,8 @@ function bindTools(rerender){const apply=()=>document.documentElement.style.setP
     try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;const w=$('#wk');if(w){w.setAttribute('aria-pressed','false');w.textContent='כבוי'}});b.setAttribute('aria-pressed','true');b.textContent='פעיל';toast('המסך יישאר דולק בזמן התפילה')}
     catch(e){toast('הדפדפן לא מאפשר להשאיר את המסך דולק')}};
   $('#sh').onclick=async()=>{const title=document.querySelector('.crumb')?.textContent||'Tfilah';
-    try{if(navigator.share){await navigator.share({title,url:location.href});return}}catch(e){if(e&&e.name==='AbortError')return}
-    try{await navigator.clipboard.writeText(location.href);toast('הקישור הועתק')}catch(e){toast(location.href)}}}
+    const url=shareUrl();try{if(navigator.share){await navigator.share({title,url});return}}catch(e){if(e&&e.name==='AbortError')return}
+    try{await navigator.clipboard.writeText(url);toast('הקישור הועתק')}catch(e){toast(url)}}}
 
 
 function jump(id,quiet){const el=document.getElementById('s-'+id);if(!el)return;
@@ -1834,7 +1897,7 @@ function jump(id,quiet){const el=document.getElementById('s-'+id);if(!el)return;
   $$('.toc a').forEach(a=>a.classList.toggle('on',a.dataset.j===id));const ta=document.querySelector(`.toc a[data-j="${id}"]`);if(ta){const c=ta.parentElement;c.scrollLeft+=ta.getBoundingClientRect().left-c.getBoundingClientRect().left-(c.clientWidth-ta.offsetWidth)/2}}
 /* table of contents, one tap away while reading */
 function openToc(items,cur,go){const sh=document.createElement('div');sh.className='sheet';sh.setAttribute('role','dialog');sh.setAttribute('aria-modal','true');sh.setAttribute('aria-labelledby','tch');
-  sh.innerHTML=`<div class="panel tocsheet"><h2 id="tch" style="font-size:1.6rem;margin-bottom:10px">תוכן</h2>${items.map(([id,t,sk])=>`<a href="#" data-j="${esc(id)}"${id===cur?' aria-current="true"':''}${sk?' class="sk"':''}>${esc(t)}${sk?' · לא נאמר היום':''}</a>`).join('')}
+  sh.innerHTML=`<div class="panel tocsheet"><h2 id="tch" style="font-size:1.6rem;margin-bottom:10px">חלקי התפילה</h2>${items.map(([id,t,sk])=>`<a href="#" data-j="${esc(id)}"${id===cur?' aria-current="true"':''}${sk?' class="sk"':''}>${esc(t)}${sk?' · לא נאמר היום':''}</a>`).join('')}
     <button class="btn ghost" type="button" data-x style="margin-top:14px;width:100%">סגירה</button></div>`;
   document.body.append(sh);document.body.style.overflow='hidden';let untrap=()=>{};const close=()=>{sh.remove();document.body.style.overflow='';untrap()};untrap=trap(sh,close);
   sh.addEventListener('click',e=>{const a=e.target.closest('a[data-j]');if(a){e.preventDefault();close();go(a.dataset.j);return}if(e.target===sh||e.target.closest('[data-x]'))close()});
@@ -1917,7 +1980,8 @@ const cnt=(n,one,many)=>n===1?one:`${n} ${many}`;
 /* the public address of what is on screen: the static page when there is one */
 function shareUrl(){const h=safeHash()||'home',o=location.origin;let m;
   if((m=h.match(/^p-([a-z]+-\d+)$/)))return `${o}/tefila/${m[1]}/`;if((m=h.match(/^t-(\d+)$/)))return `${o}/tehillim/${m[1]}/`;
-  if((m=h.match(/^b-([a-z]+)$/)))return `${o}/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `${o}/tehillim/${m[1]}/`;return `${o}/#${h}`}
+  if((m=h.match(/^b-([a-z]+)$/)))return `${o}/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `${o}/tehillim/${m[1]}/`;if((m=h.match(/^kli-([a-z]+)$/)))return `${o}/kelim/${m[1]}/`;
+  const S={home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'};return S[h]?o+S[h]:`${o}/#${h}`}
 const shareTitle=()=>(($('#app h1')||{}).textContent||'תפילה').replace(/\s+/g,' ').trim();
 function endCard(){return `<section class="endcard" aria-label="סיום הקריאה"><b>סיימתם לקרוא</b><p>מכירים מישהו שישמח לקרוא את זה? שלחו לו.</p>
   <div class="row"><button class="btn primary" type="button" data-endwa>שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp>העתקת קישור</button></div></section>`}
@@ -2057,7 +2121,7 @@ async function viewTehillim(a,b){setNav('tehillim');
     app.innerHTML=`<div class="sec" style="margin-top:6px"><h1>ספר תהילים</h1><span class="note">150 פרקים בניקוד מלא</span></div>
       <nav class="quick4 tways" aria-label="דרכים לקרוא תהילים"><a class="q4" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}"><b>תהילים של היום</b><small>לפי התאריך · ${gem(hd)} בחודש · ${m[0]===m[1]?'פרק '+gem(m[0]):'פרקים '+gem(m[0])+'–'+gem(m[1])}</small></a>
         <a class="q4" href="#t-${w[0]}-${w[1]}"><b>תהילים ליום ${DAYS[new Date().getDay()]}</b><small>החלוקה השבועית · פרקים ${gem(w[0])}–${gem(w[1])}</small></a>
-        <a class="q4" href="#kli-pasuk"><b>פסוק לשמך</b><small>פסוק שמתחיל ומסתיים באותיות השם</small></a>
+        <a class="q4" href="#kli-pasuk"><b>פסוק אישי לסוף העמידה</b><small>פסוק שמתחיל ומסתיים באותיות השם</small></a>
         <a class="q4" href="#zikaron"><b>תהילים יחד</b><small>כל אחד פרק, ביחד ספר שלם</small></a></nav>
       <form class="card tname" id="tnf"><div><label for="tnq"><b>תהילים לפי שם</b></label><p class="note" style="margin:2px 0 0">פסוקי מזמור קי״ט לפי אותיות השם, לרפואה או לעילוי נשמה.</p></div>
         <div class="tnrow"><input id="tnq" maxlength="40" placeholder="למשל: אברהם בן שרה" value="${esc(store.get('kname',''))}" autocomplete="off"><button class="btn primary" type="submit">הצגת הפסוקים</button></div></form>
@@ -2481,7 +2545,7 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
     else if(wd===5)shab=`<div class="shabline"><small>הדלקת נרות</small><b>${fmtT(st.candle,st.tz)}</b><small>${untilTxt(st.candle,now)}</small></div>`}}catch(e){}
   const r=prayerNotes();
   const isArv=/ערבית|מעריב/.test(np.label||''),isKab=/^קבלת/.test(np.label||''),hn=(r&&r.notes||[]).filter(([a,b])=>!(isArv&&/תחנון|צדקתך/.test(a))&&!(isKab&&(/תחנון/.test(a)||b==='ברכת השנים')));
-  const lbl=np.label||'',cta=g?`לפתיחת ${/^(קבלת|תפילת)/.test(lbl)?'':'תפילת '}${lbl}`:'לפתיחת הסידור';
+  const lbl=np.label||'',cta=g?`פתחו ${lbl}`:'פתחו את הסידור';
   let f=null,phase='day';try{if(z){const T=l=>(z.list.find(x=>x[0]===l)||[])[1],alot=T('עלות השחר'),netz=T('הנץ החמה'),set=T('שקיעה'),tz=T('צאת הכוכבים');
     f=(now-netz)/(set-netz);phase=now<alot||now>=new Date(+tz+20*60e3)?'night':now<new Date(+netz+60*60e3)?'dawn':now<new Date(+set-75*60e3)?'day':'dusk'}
     else phase=hr<5||hr>=20?'night':hr<8?'dawn':hr<16?'day':'dusk'}catch(e){}
@@ -2493,10 +2557,11 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
       <line x1="4" y1="96" x2="356" y2="96" stroke="var(--tint)" stroke-width="1.5"/></svg>`;
   return `<section class="hero2" id="hero">
     <div class="hmeta"><span>${greet}</span><i>·</i><span>${esc(hdTxt)}</span>${par?`<i>·</i><span>${esc(par)}</span>`:''}</div>
-    <div class="skybox">${arc}<h1${lbl.length>6?' class="long"':''}>${esc(lbl)}</h1></div>
+    <h1 class="hfix">סידור תפילה ותהילים</h1>
+    <div class="skybox">${arc}<p class="hnow${lbl.length>6?' long':''}"><small>עכשיו</small><b>${esc(lbl)}</b><span>נוסח ${nusName(nus)}</span></p></div>
     <p class="hsub"><span id="cd">${z?cdText(z,now):''}</span><label class="cityin">${icon('pin')}<span class="sr">עיר לחישוב הזמנים</span><select id="city">${opts}</select></label></p>
     ${shab}
-    <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a></div>
+    <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a><a class="hall" href="#siddur">לכל הסידור</a></div>
     ${hn.length?`<div class="hnotes"><span>${isArv?'בתפילת ערבית':r.after?'הלילה בתפילה':'היום בתפילה'}</span>${hn.map(([a,b])=>`<span class="tn"><b>${a}</b>${b?` <small>${b}</small>`:''}</span>`).join('')}</div>`:''}
   </section>`}
 function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/,'road'],['שמע על המיטה','קריאת שמע לפני השינה',/קריאת שמע ש?על המי?טה/,'moon'],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/,'wheat']];
@@ -2673,9 +2738,9 @@ function allDayIcs(title,dates){const p=n=>String(n).padStart(2,'0'),f=d=>`${d.g
 const hcFn=n=>{const H=HC();return H&&(H[n]||(H.HebrewCalendar&&H.HebrewCalendar[n]))};
 
 const KELIM=[
-  ['shem','תהילים לפי השם','פרקי ״אשרי תמימי דרך״ לפי אותיות השם. נוהגים לומר לעילוי נשמה ולרפואה.','book'],
-  ['pasuk','פסוק לשמך','פסוק שמתחיל באות הראשונה של השם ומסתיים באות האחרונה, לאמירה בסוף העמידה.','star'],
-  ['gil','פרק לפי גיל','הפרק שנוהגים לומר כל יום, לפי הגיל שלכם.','sun'],
+  ['shem','תהילים לפי שם','מקלידים שם ומקבלים פסוקים מפרק קי״ט לפי אותיות השם. לרפואה או לעילוי נשמה.','book'],
+  ['pasuk','פסוק אישי לסוף תפילת העמידה','פסוק שמתחיל באות הראשונה של השם ומסתיים באות האחרונה, לאמירה בסוף העמידה.','star'],
+  ['gil','תהילים לפי גיל','הפרק שנוהגים לומר כל יום, לפי הגיל שלכם.','sun'],
   ['yahr','יום השנה (יארצייט)','מחשבים את התאריך העברי של הפטירה ואת יום השנה בשנים הבאות, ומוסיפים ליומן.','flame'],
   ['bday','יום הולדת עברי','התאריך העברי שבו נולדתם, מתי יוצא יום ההולדת השנה, ומועד בר/בת המצווה.','cake'],
   ['kivun','כיוון התפילה','מצפן שמראה לאן לפנות, אל ירושלים ואל מקום המקדש.','compass'],
@@ -2686,8 +2751,13 @@ const KIC={book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M
 const kic=k=>`<svg class="i" viewBox="0 0 24 24">${KIC[k]}</svg>`;
 
 function viewKelim(){setNav('kelim');
-  app.innerHTML=`<section class="libhead"><span class="eyebrow">כלים אישיים</span><h1>התפילה שלכם, בשבילכם.</h1><p>כלים שבדרך כלל צריך לחפש אותם ברב, בסידור ישן או בלוח שנה. כאן הכול במקום אחד, מחושב בשבילכם.</p></section>
-  <div class="kgrid">${KELIM.map(([k,t,d,ic])=>`<a class="kcard glass" href="#kli-${k}"><span class="kic">${kic(ic)}</span><b>${t}</b><small>${d}</small></a>`).join('')}</div>${yzCard()}${footer()}`;scrollTo(0,0)}
+  const card=k=>{const [,t,d,ic]=KELIM.find(x=>x[0]===k);return `<a class="kcard glass" href="#kli-${k}"><span class="kic">${kic(ic)}</span><b>${t}</b><small>${d}</small></a>`};
+  app.innerHTML=`<section class="libhead"><h1>כלי תפילה ולוח עברי</h1></section>
+  <form class="klead" id="klf"><span class="kic">${kic('book')}</span><div><h2>תהילים לפי שם</h2><p>מקלידים שם ומקבלים פסוקים מפרק קי״ט, לרפואה או לעילוי נשמה.</p></div>
+    <div class="kleadrow"><label class="sr" for="klq">שם בעברית</label><input id="klq" maxlength="40" placeholder="למשל: אברהם בן שרה" autocomplete="off" value="${esc(store.get('kname',''))}"><button class="btn primary">הצגת הפסוקים</button></div></form>
+  <h2 class="ksub">תהילים ותפילה</h2><div class="kgrid">${['pasuk','gil','kivun'].map(card).join('')}</div>
+  <h2 class="ksub">תאריכים עבריים</h2><div class="kgrid">${['yahr','bday'].map(card).join('')}</div>${yzCard()}${footer()}`;
+  $('#klf').onsubmit=e=>{e.preventDefault();const v=$('#klq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);location.hash='kli-shem'};scrollTo(0,0)}
 
 function kShell(k,inner){const it=KELIM.find(x=>x[0]===k);
   return `<div class="kpage"><a class="kback" href="#kelim">→ כל הכלים</a><h1 class="kh">${it[1]}</h1><p class="note" style="max-width:34rem">${it[2]}</p>${inner}</div>${footer()}`}
@@ -2697,13 +2767,13 @@ async function viewKli(k){setNav('kelim');if(!KELIM.some(x=>x[0]===k)){location.
 
 async function kShem(){const last=store.get('kname','');
   app.innerHTML=kShell('shem',`<form class="kform glass" id="kf"><label>שם (בעברית)<input id="kn" value="${esc(last)}" placeholder="למשל: אברהם בן שרה" maxlength="40" required></label>
-    <label class="kchk"><input type="checkbox" id="kns" ${store.get('kneshama',true)?'checked':''}> להוסיף את אותיות <b>נשמה</b> (לעילוי נשמת)</label>
+    <div class="kseg kcol" role="radiogroup" aria-label="למה קוראים?"><label><input type="radio" name="kns" value="r" ${store.get('kneshama',false)?'':'checked'}> לרפואה ולכל בקשה</label><label><input type="radio" name="kns" value="n" id="kns" ${store.get('kneshama',false)?'checked':''}> לעילוי נשמה, עם אותיות ”נשמה”</label></div>
     <button class="btn primary">הצגת הפסוקים</button><small class="note">אומרים את אותיות השם הפרטי בלבד, או גם ״בן/בת״ ושם האם, לפי המנהג.</small></form><div id="kout"></div>`);
   const my=navId,P=await tehillim();if(my!==navId)return;
   const run=()=>{const name=$('#kn').value.trim(),neshama=$('#kns').checked;store.set('kname',name);store.set('kneshama',neshama);
     const ls=[...lettersOf(name.replace(/\s+(בן|בת)\s+/,' ')),...(neshama?['נ','ש','מ','ה']:[])];
     if(!ls.length||!lettersOf(name).length){$('#kout').innerHTML='<div class="empty"><b>לא מצאנו אותיות עבריות</b>כתבו את השם באותיות עבריות.</div>';return}
-    const nurl=`${location.origin}/#shem-${encodeURIComponent(name.replace(/\s+/g,'-'))}`,ntxt=`תהילים לפי השם ${name}. הפסוקים לפי אותיות השם:`;
+    const nurl=`${location.origin}/kelim/shem/#name=${encodeURIComponent(name)}&neshama=${neshama?1:0}`,ntxt=`תהילים לפי שם: ${name}${neshama?' (לעילוי נשמה)':''}. הפסוקים מפרק קי״ט לפי אותיות השם:`;
     $('#kout').innerHTML=`<div class="nshare"><b>הפסוקים לשם ${esc(name)}</b><div class="row"><button class="btn primary" type="button" data-endwa data-url="${esc(nurl)}" data-txt="${esc(ntxt)}">שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp data-url="${esc(nurl)}">העתקת קישור</button></div><p class="note">מי שיקבל את הקישור יראה את אותם פסוקים, בלי להקליד את השם.</p></div>
       <div class="kletters">${ls.map(c=>`<span>${c}</span>`).join('')}</div><article class="text">${ls.map((c,j)=>{const i=ABC.indexOf(c);
       return `<section><h3 aria-level="2">אות ${c}${neshama&&j>=ls.length-4?' · נשמה':''}</h3>${P[118].slice(i*8,i*8+8).map((v,n)=>`<p class="verse"><sup>${gem(i*8+n+1)}</sup>${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`}).join('')}</article>`;
@@ -2731,16 +2801,16 @@ function kGil(){const last=store.get('kage','');
 
 function hebDateOf(g,after){const H=HC();let d=new H.HDate(g);if(after)d=d.next();return d}
 function kYahr(){const last=store.get('kyahr',{});
-  app.innerHTML=kShell('yahr',`<form class="kform glass" id="kf"><label>שם הנפטר/ת (לא חובה)<input id="kyn" value="${esc(last.n||'')}" maxlength="40" placeholder="למשל: שרה בת רחל"></label>
-    <label>תאריך הפטירה (לועזי)<input id="kyd" type="date" value="${esc(last.d||'')}" required></label>
-    <label class="kchk"><input type="checkbox" id="kya" ${last.a?'checked':''}> הפטירה הייתה אחרי השקיעה</label><button class="btn primary">חשבו</button></form><div id="kout"></div>`);
+  app.innerHTML=kShell('yahr',`<form class="kform glass" id="kf"><label>תאריך הפטירה (לועזי)<input id="kyd" type="date" value="${esc(last.d||'')}" required></label>
+    <label class="kchk"><input type="checkbox" id="kya" ${last.a?'checked':''}> הפטירה הייתה אחרי השקיעה</label><small class="note">היום העברי מתחיל בערב. מי שנפטר אחרי השקיעה, התאריך העברי שלו הוא של היום שלמחרת.</small>
+    <label>שם הנפטר/ת (לא חובה)<input id="kyn" value="${esc(last.n||'')}" maxlength="40" placeholder="למשל: שרה בת רחל"></label><button class="btn primary">מתי יום השנה?</button></form><div id="kout"></div>`);
   const run=()=>{const H=HC(),v=$('#kyd').value;if(!H||!v){if(!H)toast('לוח השנה עוד נטען, נסו שוב');return}
     const n=$('#kyn').value.trim(),a=$('#kya').checked;store.set('kyahr',{n,d:v,a});const [y,m,d]=v.split('-').map(Number),g=new Date(y,m-1,d),hd=hebDateOf(g,a),f=hcFn('getYahrzeit');
     const now=new H.HDate(new Date()),list=[];for(let hy=now.getFullYear();list.length<5&&hy<now.getFullYear()+7;hy++){const yd=f?f(hy,hd.greg()):null;if(yd){const gd=yd.greg();if(gd>=new Date(Date.now()-864e5))list.push([yd,gd])}}
-    $('#kout').innerHTML=`<div class="kbig glass"><span class="eyebrow">${n?esc(n):'תאריך הפטירה'}</span><b>${hd.renderGematriya()}</b><p class="note">${a?'אחרי השקיעה, לכן התאריך העברי הוא של היום הבא.':'לפני השקיעה.'}</p></div>
-      ${list.length?`<h2 class="ksub">יום השנה בשנים הקרובות</h2><ul class="klist">${list.map(([h,g],i)=>`<li class="glass"><b>${h.renderGematriya()}</b><span>${fmtG(g)}</span>${i===0?'<em>הקרוב</em>':''}</li>`).join('')}</ul>
+    $('#kout').innerHTML=`<div class="kbig glass"><span class="eyebrow">${list.length?'יום השנה הקרוב'+(n?' · '+esc(n):''):(n?esc(n):'תאריך הפטירה')}</span><b>${list.length?fmtG(list[0][1]):hd.renderGematriya()}</b><p class="note">${list.length?list[0][0].renderGematriya()+'. ':''}תאריך הפטירה העברי: ${hd.renderGematriya()}${a?' (אחרי השקיעה, לכן היום שלמחרת)':''}.</p></div>
+      ${list.length?`${list.length>1?`<h2 class="ksub">בשנים שאחרי</h2><ul class="klist">${list.slice(1).map(([h,g])=>`<li class="glass"><b>${h.renderGematriya()}</b><span>${fmtG(g)}</span></li>`).join('')}</ul>`:''}
       <p class="note">יום השנה מתחיל בערב שלפני, ובו מדליקים נר נשמה.${[H.months.ADAR_I,H.months.ADAR_II].includes(hd.getMonth())&&!hd.isLeapYear?.()?' מי שנפטר באדר בשנה רגילה: בשנה מעוברת יש מנהגים שונים אם לציין באדר א׳ או באדר ב׳, כדאי לשאול רב.':''}</p>
-      <div class="kbtns"><button class="btn primary" id="kysave" type="button">שמירה באזכרות שלי</button><button class="btn ghost" id="kics" type="button">הוספה ליומן</button><a class="btn ghost" href="#zikaron">פתחו קריאת תהילים לעילוי נשמה</a><a class="btn ghost" href="#kli-shem">תהילים לפי השם</a></div>`:''}`;
+      <div class="kbtns"><button class="btn primary" id="kysave" type="button">שמירה באזכרות שלי</button><button class="btn ghost" id="kics" type="button">הוספה ליומן</button><a class="btn ghost" href="#zikaron">פתחו קריאת תהילים לעילוי נשמה</a><a class="btn ghost" href="#kli-shem">תהילים לפי שם</a></div>`:''}`;
     $('#kout').insertAdjacentHTML('beforeend',`<h3 class="ksub" aria-level="2">האזכרות השמורות</h3>${yzCard(true)}`);bindYz();
     const sv=$('#kysave');if(sv)sv.onclick=()=>{const L=yzList();if(L.some(x=>x.d===v&&(x.n||'')===n&&!!x.a===a)){toast('האזכרה כבר שמורה');return}L.push({n,d:v,a});store.set('yz',L.slice(-50));const box=$('#yzbox');if(box){box.outerHTML=yzCard(true);bindYz()}toast('נשמר. האזכרה תופיע בדף הבית כשהתאריך יתקרב')};
     const b=$('#kics');if(b)b.onclick=()=>dlFile('yahrzeit.ics',allDayIcs(`יום השנה${n?' · '+n:''}`,list.map(x=>x[1])))};
@@ -2749,13 +2819,13 @@ function kYahr(){const last=store.get('kyahr',{});
 function kBday(){const last=store.get('kbday',{});
   app.innerHTML=kShell('bday',`<form class="kform glass" id="kf"><label>תאריך לידה (לועזי)<input id="kbd" type="date" value="${esc(last.d||'')}" required></label>
     <label class="kchk"><input type="checkbox" id="kba" ${last.a?'checked':''}> הלידה הייתה אחרי השקיעה</label>
-    <div class="kseg" role="group" aria-label="בן או בת"><label><input type="radio" name="ks" value="m" ${last.s!=='f'?'checked':''}> בן</label><label><input type="radio" name="ks" value="f" ${last.s==='f'?'checked':''}> בת</label></div>
-    <button class="btn primary">חשבו</button></form><div id="kout"></div>`);
+    <details class="kmore" id="kbm"${last.bm?' open':''}><summary>להציג גם מועד בר או בת מצווה</summary><div class="kseg" role="group" aria-label="בן או בת"><label><input type="radio" name="ks" value="m" ${last.s!=='f'?'checked':''}> בן (גיל 13)</label><label><input type="radio" name="ks" value="f" ${last.s==='f'?'checked':''}> בת (גיל 12)</label></div></details>
+    <button class="btn primary">מתי יום ההולדת העברי?</button></form><div id="kout"></div>`);
   const run=()=>{const H=HC(),v=$('#kbd').value;if(!H||!v){if(!H)toast('לוח השנה עוד נטען, נסו שוב');return}
-    const a=$('#kba').checked,s=($('input[name=ks]:checked')||{}).value||'m';store.set('kbday',{d:v,a,s});
+    const a=$('#kba').checked,s=($('input[name=ks]:checked')||{}).value||'m',bmOn=$('#kbm').open;store.set('kbday',{d:v,a,s,bm:bmOn});
     const [y,m,d]=v.split('-').map(Number),hd=hebDateOf(new Date(y,m-1,d),a),f=hcFn('getBirthdayOrAnniversary'),now=new H.HDate(new Date());
     let next=null;for(let hy=now.getFullYear();hy<now.getFullYear()+2&&!next;hy++){const b=f?f(hy,hd.greg()):null;if(b&&b.greg()>=new Date(Date.now()-864e5))next=b}
-    const mAge=s==='f'?12:13,bm=f?f(hd.getFullYear()+mAge,hd.greg()):null,age=next?next.getFullYear()-hd.getFullYear():null;
+    const mAge=s==='f'?12:13,bm=f&&bmOn?f(hd.getFullYear()+mAge,hd.greg()):null,age=next?next.getFullYear()-hd.getFullYear():null;
     /* the chapter of the year of life one is in now: current age + 1, the same rule as the age tool */
     const cur=age===null?null:Math.max(0,next.greg()<=new Date()?age:age-1),chap=cur===null?null:Math.min(150,cur+1);
     $('#kout').innerHTML=`<div class="kbig glass"><span class="eyebrow">נולדתם ב</span><b>${hd.renderGematriya()}</b></div>
@@ -2769,18 +2839,19 @@ function kBday(){const last=store.get('kbday',{});
 let compassOff=null;
 function kKivun(){const c=cityRow();
   app.innerHTML=kShell('kivun',`<div class="kcomp glass"><div class="dial" id="dial"><span class="n">צ</span><div class="arrow" id="arr"><svg viewBox="0 0 40 120" aria-hidden="true"><path d="M20 4 34 44H24v72h-8V44H6z"/></svg></div></div>
-    <b id="kdeg"></b><p class="note" id="kmsg"></p><div class="kbtns" style="justify-content:center"><button class="btn primary" id="kgo" type="button">הפעלת מצפן לפי המיקום שלי</button></div></div>
+    <b id="kdeg"></b><p class="note" id="kmsg" aria-live="polite"></p><div class="kcity"><button class="btn primary" id="kgo" type="button">לפי המיקום שלי</button><label><span class="sr">החלפת עיר</span><select id="kcity">${CITIES.map(([k,n])=>`<option value="${k}" ${k===city?'selected':''}>${n}</option>`).join('')}</select></label></div></div>
     <p class="note">בארץ ישראל מתפללים לכיוון ירושלים ומקום המקדש. בירושלים עצמה, לכיוון הר הבית. אם אין מצפן בטלפון, השתמשו במעלות: 0° צפון, 90° מזרח.</p>`);
   let lat=c[2],lon=c[3],b=bearing(lat,lon),head=null;
   const paint=()=>{if(!$('#dial'))return;$('#dial').style.transform=head==null?'':`rotate(${-head}deg)`;$('#arr').style.transform=`rotate(${b}deg)`;
     const km=distKm(lat,lon);$('#kdeg').textContent=km<12?`${Math.round(b)}° · אתם בירושלים, פנו להר הבית`:`${Math.round(b)}° · ${Math.round(km).toLocaleString('he-IL')} ק״מ לירושלים`};
-  const set=(msg)=>{$('#kmsg').textContent=msg;paint()};set(`לפי העיר ${c[1]}. לחצו כדי לחשב לפי המיקום המדויק.`);
+  const set=(msg)=>{$('#kmsg').textContent=msg;paint()};set(`כיוון משוער לפי העיר שנבחרה: ${c[1]}. אפשר להחליף עיר, או לחשב לפי המיקום שלכם.`);
+  $('#kcity').onchange=e=>{city=e.target.value;store.set('city',city);const r=cityRow();lat=r[2];lon=r[3];b=bearing(lat,lon);set(`כיוון משוער לפי העיר שנבחרה: ${r[1]}.`)};
   const onO=e=>{let h=e.webkitCompassHeading!=null?e.webkitCompassHeading:(e.absolute&&e.alpha!=null?360-e.alpha:null);if(h==null||!$('#dial')){return}head=h;paint()};
   $('#kgo').onclick=async()=>{try{if(window.DeviceOrientationEvent&&DeviceOrientationEvent.requestPermission)await DeviceOrientationEvent.requestPermission()}catch(e){}
     compassOff&&compassOff();const ev='ondeviceorientationabsolute' in window?'deviceorientationabsolute':'deviceorientation';addEventListener(ev,onO);compassOff=()=>removeEventListener(ev,onO);
-    if(!navigator.geolocation){set('הדפדפן לא נותן מיקום, החישוב לפי העיר.');return}
+    if(!navigator.geolocation){set(`הדפדפן לא נותן מיקום. הכיוון משוער, לפי העיר ${cityRow()[1]}.`);return}
     navigator.geolocation.getCurrentPosition(p=>{lat=p.coords.latitude;lon=p.coords.longitude;b=bearing(lat,lon);set(head==null?'לפי המיקום שלכם. במחשב אין מצפן: החץ מראה את הכיוון ביחס לצפון.':'החזיקו את הטלפון שטוח. החץ מצביע לכיוון ירושלים.')},
-      ()=>set('לא קיבלנו הרשאת מיקום, החישוב לפי העיר.'),{enableHighAccuracy:true,timeout:10000})}}
+      ()=>set(`לא קיבלנו הרשאת מיקום. הכיוון נשאר משוער, לפי העיר ${cityRow()[1]}.`),{enableHighAccuracy:true,timeout:10000})}}
 
 /* ---------- auto-scroll for reading ---------- */
 let asSpeed=0,asRaf=0,asLast=0,asAcc=0;
@@ -2812,7 +2883,7 @@ function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{re
   if((m=h.match(/^n-([A-Za-z0-9_-]+)$/)))return viewLetters(m[1]);
   if((m=h.match(/^k-([a-z]+)$/)))return viewNeed(m[1]);
   if((m=h.match(/^b-([a-z]+)$/)))return viewBook(m[1]);
-  if((m=h.match(/^shem-(.+)$/))){let nm='';try{nm=decodeURIComponent(m[1])}catch(e){nm=m[1]}nm=nm.replace(/[-_+]+/g,' ').replace(/[^\u05D0-\u05EA ]/g,'').trim().slice(0,40);if(nm)store.set('kname',nm);history.replaceState(null,'','#kli-shem');return viewKli('shem')}
+  if((m=h.match(/^shem-(.+)$/))){let nm='';try{nm=decodeURIComponent(m[1])}catch(e){nm=m[1]}nm=nm.replace(/[-_+]+/g,' ').replace(/[^\u05D0-\u05EA ]/g,'').trim().slice(0,40);if(nm){location.replace(`/kelim/shem/#name=${encodeURIComponent(nm)}&neshama=0`);return}history.replaceState(null,'','#kli-shem');return viewKli('shem')}
   if((m=h.match(/^kli-([a-z]+)$/)))return viewKli(m[1]);
   scrollTo(0,0);({siddur:viewSiddur,search:viewSearch,tehillim:()=>viewTehillim(),favorites:viewFavs,zikaron:viewZikaron,rav:viewRav,sifriya:viewLib,kelim:viewKelim,tmicha:viewSupport}[h]||viewHome)()};
   const run=()=>{const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(location.hash!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
@@ -2823,6 +2894,6 @@ document.documentElement.style.setProperty('--reading',fontScale+'rem');
 const start=()=>boot().catch(()=>loadErr(start));start();
 });
 </script>
-<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols"><section><h3>סידור</h3><ul><li><a href="/tefila/">סידור תפילה</a></li><li><a href="/tefila/mizrach/">סידור נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/">סידור נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/">סידור נוסח אשכנז</a></li><li><a href="/tefila/mizrach/shacharit/">שחרית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/shacharit/">שחרית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/shacharit/">שחרית נוסח אשכנז</a></li><li><a href="/tefila/mizrach/mincha/">מנחה נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/mincha/">מנחה נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/mincha/">מנחה נוסח אשכנז</a></li><li><a href="/tefila/mizrach/arvit/">ערבית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/arvit/">ערבית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/arvit/">ערבית נוסח אשכנז</a></li><li><a href="/tefila/mizrach-53/">ברכת המזון</a></li><li><a href="/tefila/mizrach-119/">תפילת הדרך</a></li><li><a href="/tefila/mizrach-37/">קריאת שמע שעל המיטה</a></li></ul></section><section><h3>תהילים</h3><ul><li><a href="/tehillim/">ספר תהילים</a></li><li><a href="/tehillim/yomi/">תהילים יומי</a></li><li><a href="/tehillim-yachad/">תהילים יחד</a></li><li><a href="/tehillim/refuah/">תהילים לרפואה שלמה</a></li><li><a href="/tehillim/parnasa/">תהילים לפרנסה</a></li><li><a href="/tehillim/shidduch/">תהילים לזיווג הגון</a></li><li><a href="/tehillim/banim/">תהילים לזרע של קיימא</a></li><li><a href="/tehillim/leida/">תהילים ללידה קלה</a></li><li><a href="/tehillim/derech/">תהילים להצלחה בדרך</a></li><li><a href="/tehillim/shmira/">תהילים לשמירה והגנה</a></li><li><a href="/tehillim/hodaya/">תהילים להודיה ולשמחה</a></li><li><a href="/tehillim/tzara/">תהילים לעת צרה</a></li><li><a href="/tehillim/neshama/">תהילים לעילוי נשמה</a></li><li><a href="/tehillim/tikkun/">תיקון הכללי</a></li><li><a href="/tehillim/kever/">תהילים לבית העלמין</a></li><li><a href="/tehillim/yom-rishon/">תהילים ליום ראשון</a></li><li><a href="/tehillim/yom-sheni/">תהילים ליום שני</a></li><li><a href="/tehillim/yom-shlishi/">תהילים ליום שלישי</a></li><li><a href="/tehillim/yom-revii/">תהילים ליום רביעי</a></li><li><a href="/tehillim/yom-chamishi/">תהילים ליום חמישי</a></li><li><a href="/tehillim/yom-shishi/">תהילים ליום שישי</a></li><li><a href="/tehillim/yom-shabbat/">תהילים ליום שבת</a></li><li><a href="/tehillim/86/">תהילים פו</a></li><li><a href="/tehillim/84/">תהילים פד</a></li><li><a href="/tehillim/1/">תהילים א</a></li><li><a href="/tehillim/20/">תהילים כ</a></li><li><a href="/tehillim/23/">תהילים כג</a></li><li><a href="/tehillim/130/">תהילים קל</a></li><li><a href="/tehillim/90/">תהילים צ</a></li><li><a href="/tehillim/100/">תהילים ק</a></li><li><a href="/tehillim/27/">תהילים כז</a></li><li><a href="/tehillim/30/">תהילים ל</a></li><li><a href="/tehillim/91/">תהילים צא</a></li><li><a href="/tehillim/121/">תהילים קכא</a></li><li><a href="/tehillim/119/">תהילים קיט</a></li><li><a href="/tehillim/13/">תהילים יג</a></li><li><a href="/tehillim/145/">תהילים קמה</a></li><li><a href="/tehillim/142/">תהילים קמב</a></li><li><a href="/tehillim/24/">תהילים כד</a></li><li><a href="/tehillim/16/">תהילים טז</a></li><li><a href="/tehillim/67/">תהילים סז</a></li><li><a href="/tehillim/51/">תהילים נא</a></li></ul></section><section><h3>ספרייה וכלים</h3><ul><li><a href="/sefer/">ספרייה</a></li><li><a href="/sefer/avot/">פרקי אבות</a></li><li><a href="/sefer/shir/">שיר השירים</a></li><li><a href="/sefer/esther/">מגילת אסתר</a></li><li><a href="/sefer/perek/">פרק שירה</a></li><li><a href="/kelim/">כלים אישיים</a></li><li><a href="/kelim/yahr/">חישוב יום השנה לפטירה</a></li><li><a href="/kelim/bday/">יום הולדת עברי לפי לועזי</a></li><li><a href="/kelim/kivun/">כיוון תפילה לירושלים</a></li><li><a href="/kelim/shem/">תהילים קיט לפי שם</a></li><li><a href="/zmanei-shabbat/">זמני כניסת ויציאת שבת</a></li><li><a href="/zmanei-shabbat/jerusalem/">זמני שבת בירושלים</a></li><li><a href="/zmanei-shabbat/tel-aviv/">זמני שבת בתל אביב</a></li><li><a href="/zmanei-shabbat/haifa/">זמני שבת בחיפה</a></li></ul></section></div></details></nav>
+<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols"><section><h3>סידור</h3><ul><li><a href="/tefila/">סידור תפילה</a></li><li><a href="/tefila/mizrach/">סידור נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/">סידור נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/">סידור נוסח אשכנז</a></li><li><a href="/tefila/mizrach/shacharit/">שחרית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/shacharit/">שחרית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/shacharit/">שחרית נוסח אשכנז</a></li><li><a href="/tefila/mizrach/mincha/">מנחה נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/mincha/">מנחה נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/mincha/">מנחה נוסח אשכנז</a></li><li><a href="/tefila/mizrach/arvit/">ערבית נוסח עדות המזרח</a></li><li><a href="/tefila/sefard/arvit/">ערבית נוסח ספרד</a></li><li><a href="/tefila/ashkenaz/arvit/">ערבית נוסח אשכנז</a></li><li><a href="/tefila/mizrach-53/">ברכת המזון</a></li><li><a href="/tefila/mizrach-119/">תפילת הדרך</a></li><li><a href="/tefila/mizrach-37/">קריאת שמע שעל המיטה</a></li></ul></section><section><h3>תהילים</h3><ul><li><a href="/tehillim/">ספר תהילים</a></li><li><a href="/tehillim/yomi/">תהילים יומי</a></li><li><a href="/tehillim-yachad/">תהילים יחד</a></li><li><a href="/tehillim/refuah/">תהילים לרפואה שלמה</a></li><li><a href="/tehillim/parnasa/">תהילים לפרנסה</a></li><li><a href="/tehillim/shidduch/">תהילים לזיווג הגון</a></li><li><a href="/tehillim/banim/">תהילים לזרע של קיימא</a></li><li><a href="/tehillim/leida/">תהילים ללידה קלה</a></li><li><a href="/tehillim/derech/">תהילים להצלחה בדרך</a></li><li><a href="/tehillim/shmira/">תהילים לשמירה והגנה</a></li><li><a href="/tehillim/hodaya/">תהילים להודיה ולשמחה</a></li><li><a href="/tehillim/tzara/">תהילים לעת צרה</a></li><li><a href="/tehillim/neshama/">תהילים לעילוי נשמה</a></li><li><a href="/tehillim/tikkun/">תיקון הכללי</a></li><li><a href="/tehillim/kever/">תהילים לבית העלמין</a></li><li><a href="/tehillim/yom-rishon/">תהילים ליום ראשון</a></li><li><a href="/tehillim/yom-sheni/">תהילים ליום שני</a></li><li><a href="/tehillim/yom-shlishi/">תהילים ליום שלישי</a></li><li><a href="/tehillim/yom-revii/">תהילים ליום רביעי</a></li><li><a href="/tehillim/yom-chamishi/">תהילים ליום חמישי</a></li><li><a href="/tehillim/yom-shishi/">תהילים ליום שישי</a></li><li><a href="/tehillim/yom-shabbat/">תהילים ליום שבת</a></li><li><a href="/tehillim/86/">תהילים פו</a></li><li><a href="/tehillim/84/">תהילים פד</a></li><li><a href="/tehillim/1/">תהילים א</a></li><li><a href="/tehillim/20/">תהילים כ</a></li><li><a href="/tehillim/23/">תהילים כג</a></li><li><a href="/tehillim/130/">תהילים קל</a></li><li><a href="/tehillim/90/">תהילים צ</a></li><li><a href="/tehillim/100/">תהילים ק</a></li><li><a href="/tehillim/27/">תהילים כז</a></li><li><a href="/tehillim/30/">תהילים ל</a></li><li><a href="/tehillim/91/">תהילים צא</a></li><li><a href="/tehillim/121/">תהילים קכא</a></li><li><a href="/tehillim/119/">תהילים קיט</a></li><li><a href="/tehillim/13/">תהילים יג</a></li><li><a href="/tehillim/145/">תהילים קמה</a></li><li><a href="/tehillim/142/">תהילים קמב</a></li><li><a href="/tehillim/24/">תהילים כד</a></li><li><a href="/tehillim/16/">תהילים טז</a></li><li><a href="/tehillim/67/">תהילים סז</a></li><li><a href="/tehillim/51/">תהילים נא</a></li></ul></section><section><h3>ספרייה וכלים</h3><ul><li><a href="/sefer/">ספרייה</a></li><li><a href="/sefer/avot/">פרקי אבות</a></li><li><a href="/sefer/shir/">שיר השירים</a></li><li><a href="/sefer/esther/">מגילת אסתר</a></li><li><a href="/sefer/perek/">פרק שירה</a></li><li><a href="/kelim/">כלים אישיים</a></li><li><a href="/kelim/yahr/">חישוב יום השנה לפטירה</a></li><li><a href="/kelim/bday/">יום הולדת עברי לפי לועזי</a></li><li><a href="/kelim/kivun/">כיוון תפילה לירושלים</a></li><li><a href="/kelim/shem/">תהילים קיט לפי שם</a></li><li><a href="/zmanei-shabbat/">זמני שבת</a></li><li><a href="/chanukah/">ברכות הדלקת נרות חנוכה</a></li><li><a href="/odot/">אודות ומקורות</a></li><li><a href="/zmanei-shabbat/jerusalem/">זמני שבת בירושלים</a></li><li><a href="/zmanei-shabbat/tel-aviv/">זמני שבת בתל אביב</a></li><li><a href="/zmanei-shabbat/haifa/">זמני שבת בחיפה</a></li></ul></section></div></details></nav>
 </body>
 </html>

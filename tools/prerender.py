@@ -149,6 +149,8 @@ h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.
 .btn:hover{color:#fff;filter:brightness(1.08)}
 .applink{margin:1.5rem 0 0}
 .applink a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:600}
+footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:2rem;color:var(--muted);font-size:.9rem}.fcols{display:grid;gap:8px 32px;grid-template-columns:1.3fr 1fr 1fr;align-items:start}.fbrand .flogo{display:inline-flex;color:var(--ink)}.fbrand .flogo svg{display:block;block-size:28px;inline-size:auto}.fbrand b{display:block;margin-block-start:8px;color:var(--ink);font-weight:700}.fbrand p{margin:2px 0 0}.fcols nav{display:grid;gap:0;margin:0}.fcols nav a{display:flex;align-items:center;min-block-size:44px;color:var(--ink);text-decoration:none;font-weight:600}.fcols nav a:hover{text-decoration:underline;text-underline-offset:4px}.fsup{margin:14px 0 0;color:var(--ink)}.fsup a{font-weight:700;color:#0A6FB3}.fcredit{margin:14px 0 0;font-size:.8rem;line-height:1.6}@media (max-width:700px){.fcols{grid-template-columns:1fr}.fcols nav{display:flex;flex-wrap:wrap;gap:0 18px}}
+.fmap{margin-block-start:.6rem}.fmap summary{cursor:pointer;min-block-size:2.75rem;display:flex;align-items:center;font-weight:600;color:var(--ink2)}.fmap nav{display:flex;flex-wrap:wrap;gap:0 1rem}
 footer{border-block-start:1px solid var(--line);color:var(--muted);font-size:.88rem}
 footer .in{max-width:40rem;margin-inline:auto;padding:1.25rem 1rem 2.5rem}
 footer p{margin:0 0 .4rem}
@@ -294,6 +296,25 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .plainx{margin:.4rem 0 1rem;padding:1rem 1.15rem;border-radius:1.25rem;background:var(--sunk)}
 .plainx b{display:block;font-size:.9rem;color:var(--stamp);margin-block-end:.3rem}.plainx p{margin:0;line-height:1.75}
 """),
+("nform", """
+.nform{display:grid;gap:.7rem;margin:1rem 0;padding:1.2rem;border:1px solid var(--line);border-radius:1.5rem;background:linear-gradient(150deg,#fff,#EEF8FF 60%,#DDF0FD)}
+.nform label{font-weight:700}.nform input[name=n]{min-height:3.2rem;padding:.6rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
+.nform fieldset{border:0;margin:0;padding:0;display:grid;gap:.4rem}.nform legend{font-weight:700;padding:0;margin-block-end:.3rem}.nform fieldset label{font-weight:400;display:flex;align-items:center;gap:.5rem;min-height:2.75rem}
+.nlet{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0}.nlet span{display:grid;place-items:center;inline-size:2.5rem;block-size:2.75rem;border-radius:.75rem;background:var(--grad);color:#fff;font-weight:700;font-size:1.25rem}
+.nact{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.btn2{min-height:3rem;padding:.4rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+@media print{.top,.crumbs,.nform,.nact,.prose,.pager,.related,.applink,footer,.note,.lead{display:none!important}}
+"""),
+("tautbox", """
+.tautbox{display:grid;gap:.5rem;margin:.6rem 0 1.2rem}.tautbox label{font-weight:700}
+.tautbox textarea{inline-size:100%;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);line-height:1.6}
+.nact{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0}.btn2{min-height:3rem;padding:.4rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+"""),
+("svctoc", """
+.svctoc{margin:.6rem 0 1rem;border:1px solid var(--line);border-radius:1.25rem;background:#fff}
+.svctoc summary{cursor:pointer;list-style:none;min-height:3.2rem;display:flex;align-items:center;padding:.5rem 1.1rem;font-weight:700}
+.svctoc summary::-webkit-details-marker{display:none}.svctoc summary::after{content:"";margin-inline-start:auto;inline-size:.55rem;block-size:.55rem;border-inline-end:2px solid var(--ink);border-block-end:2px solid var(--ink);transform:rotate(45deg)}
+.svctoc[open] summary::after{transform:rotate(-135deg)}.svctoc .grp{margin:.4rem 1.1rem 0}.svctoc .toc{margin:0;padding:0 .6rem .8rem}
+"""),
 ("note", """
 .note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}
 """),
@@ -343,10 +364,13 @@ TOOLS_HTML = ('<div class="tools" id="tools" role="group" aria-label="כלי ק�
 
 NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><a href="/tehillim/">תהילים</a>'
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')
-FOOT_NAV = ('<nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
+DONATE_ON = bool(re.search(r'donateUrl:\s*"[^"]+"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()))
+CONTACT = (re.search(r'contactEmail:\s*"([^"]*)"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()) or [None, ""])[1]
+FOOT_JS = "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-taut]');if(!a)return;var h=document.querySelector('h1');a.href='/odot/?u='+encodeURIComponent(location.origin+location.pathname)+'&t='+encodeURIComponent(h?h.textContent.replace(/\\\\s+/g,' ').trim():'')+'#taut'});"
+FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
-            '<a href="/zmanei-shabbat/">זמני שבת</a></nav>')
+            '<a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/odot/">אודות ומקורות</a></nav></details>')
 FONT_HEAD = '<link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin><style>@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-hebrew-900.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-latin-900.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-hebrew-600.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>'
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
@@ -370,6 +394,14 @@ def signature(doc):
 URLS = []          # (path, priority, lastmod, fingerprint)
 TITLES = {}
 DESCS = {}
+
+def og_for(path):
+    """the share picture that matches what the link opens"""
+    for pre, name in (("/kelim/shem/", "og-shem"), ("/kelim/", "og-kelim"), ("/tehillim-yachad/", "og-yachad"), ("/tehillim/", "og-tehillim"),
+                      ("/zmanei-shabbat/", "og-shabbat"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
+        if path.startswith(pre): return name
+    return "og"
+
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
          app_label="לפתיחה באפליקציה", h1_ctx="", hub=False, ld=None, prio="0.6", script="", notfound=False):
@@ -400,8 +432,12 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
 {NAV}</div></header>
 <main id="main"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}{before}{reading}{after}{applink}</main>
-<footer><div class="in"><p class="sig">תפילה <span>· tfilah.com</span></p><p>סידור תפילה, תהילים וזמני היום. הטקסטים מתוך מאגרי Sefaria ותורת אמת, ברשיונות חופשיים.</p>
-{FOOT_NAV}</div></footer>{f'<script>{script}</script>' if script else ''}"""
+<footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
+<nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
+<nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
+{'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}
+<p class="fcredit">הטקסטים מתוך המהדורות הפתוחות של תורת אמת, דעת ו-Tanach.us, דרך הארכיון של ספריא. <a href="/odot/">פירוט המקורות</a></p>
+{FOOT_NAV}</div></footer><script>{FOOT_JS}</script>{f'<script>{script}</script>' if script else ''}"""
     canon = ('<meta name="robots" content="noindex">' if notfound else
              f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">')
     doc = f"""<!doctype html>
@@ -412,7 +448,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 {canon}
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
-<meta property="og:image" content="{SITE}/icons/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{SITE}/icons/{og_for(path)}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 
@@ -1029,7 +1065,9 @@ for n, plist in by_nus.items():
         if p["id"] in SVC_OF:
             crumbs.append((sec_label, sec_href))
         crumbs.append((pname(p), me))
-        page(me, f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}", fit_desc(head, " ".join(paras[:3])),
+        _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
+        if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
+        page(me, _tt, fit_desc(head, " ".join(paras[:3])),
              p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
@@ -1043,7 +1081,8 @@ for n in NUS:
         name = svc_name(n, key)
         path = f"/tefila/{n}/{key}/"
         first = items[0][0]
-        body = f'<p><a class="btn" href="/tefila/{first["id"]}/">מתחילים: {esc(first["t"])}</a></p>'
+        body = ""
+        full = ""
         cur, opened, num = None, False, 0
         for p, pre in items:
             s = sec_of(p)
@@ -1053,8 +1092,13 @@ for n in NUS:
                 body += f'<h3 class="grp">{esc(lab)}</h3><ol class="toc">'
                 cur, opened = lab, True
             num += 1
-            body += f'<li><a href="/tefila/{p["id"]}/"><i>{num}</i><span><b>{esc(p["t"])}</b><small>{esc(opening(p))}</small></span></a></li>'
+            body += f'<li><a href="#k{num}"><i>{num}</i><span><b>{esc(p["t"])}</b><small>{esc(opening(p))}</small></span></a></li>'
+            _ps = TEXTS[n][p["id"]]
+            _sh = _ps[1:] if len(_ps) > 1 and _pl(_ps[0]) == _pl(p["t"]) else _ps
+            full += f'<h2 id="k{num}">{esc(p["t"])}</h2>' + "".join(f"<p>{clean(x)}</p>" for x in _sh)
         body += "</ol>"
+        toc_html = '<details class="svctoc"><summary>תוכן התפילה</summary>' + body + "</details>"
+        body = ""
         pv = SERVICES[si - 1] if si else None
         nx = SERVICES[si + 1] if si + 1 < len(SERVICES) else None
         body += pager((f"/tefila/{n}/{pv[0]}/", svc_name(n, pv[0])) if pv else None, (f"/tefila/{n}/{nx[0]}/", svc_name(n, nx[0])) if nx else None)
@@ -1065,12 +1109,12 @@ for n in NUS:
                       + [(f'/tefila/{q["id"]}/', lead_of(q)) for q in relp if q and q["id"] not in {x[0]["id"] for x in items}]
                       + [("/tehillim/", "ספר תהילים")])
         parts = "חלק אחד" if num == 1 else f"{num} חלקים"
-        desc = fit_desc(f"{name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל חלק בעמוד קריאה משלו, בניקוד מלא",
+        desc = fit_desc(f"{name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל התפילה בעמוד אחד משלו, בניקוד מלא",
                         tails=("קריאה נוחה בנייד.",))
         page(path, f"{name} | נוסח {NUS[n]}: סדר התפילה המלא | {BRAND}", desc, name,
              [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), (name, path)],
-             h1_ctx=f"נוסח {NUS[n]}", after=body, hub=True, prio="0.8", app_hash=f"p-{first['id']}", app_label="לתפילה באפליקציה",
-             lead=f"סדר תפילת {label} של ימי החול בנוסח {NUS[n]}, לפי הסדר: {parts}, כל חלק בעמוד קריאה משלו.",
+             h1_ctx=f"נוסח {NUS[n]}", text=full, before=toc_html, after=body, hub=False, prio="0.9", app_hash=f"p-{first['id']}", app_label="לתפילה באפליקציה, עם התאמות לפי היום",
+             lead=f"תפילת {label} של ימי החול בנוסח {NUS[n]}, כולה בעמוד אחד ובניקוד מלא. {parts}, לפי הסדר.",
              ld=[collection(f"{name}, נוסח {NUS[n]}", path, [f'/tefila/{p["id"]}/' for p, _ in items])])
 
 # ---------- most wanted (shared by the hubs) ----------
@@ -1178,16 +1222,19 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # =====================================================================
 # Explainers that lead into the app
 # =====================================================================
-yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p><a class="btn" href="/#zikaron">לתהילים יחד באפליקציה</a>'
-          '<small>הקריאה המשותפת נפתחת באפליקציה של תפילה.</small></div>'
-          '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="steps">'
+SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()))
+yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
+          + ('<a class="btn" href="/#zikaron">לפתיחת קריאה משותפת</a><small>פותחים קריאה, שולחים קישור, וכל אחד מקבל פרק.</small></div>' if SB_ON else
+             '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')
+          + '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="steps">'
           '<li><b>פותחים קריאה</b><span>לרפואה, לעילוי נשמה או לכל בקשה אחרת, על שם האדם שקוראים בשבילו.</span></li>'
           '<li><b>שולחים קישור</b><span>משתפים את הקישור לקריאה בוואטסאפ, עם המשפחה, החברים או הקהילה.</span></li>'
           '<li><b>כל אחד קורא פרק</b><span>כל מי שנכנס מקבל פרק תהילים, קורא ומסמן שקרא.</span></li></ol>'
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>בתהילים משותף 150 פרקי הספר מתחלקים בין כל מי שמצטרף לקריאה: כל אחד מקבל פרק, קורא אותו ומסמן שקרא. '
           'כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש.</p></div>'
-          '<p class="note">העמוד הזה מסביר איך קריאת התהילים המשותפת בנויה. פתיחת תהילים משותף והצטרפות לקריאה נעשות באפליקציה.</p>')
+          + ('<p class="note">פתיחת קריאה משותפת והצטרפות אליה נעשות באפליקציה של תפילה.</p>' if SB_ON else
+             '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
 yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים, כל 150 הפרקים"), ("/tehillim/refuah/", "תהילים לרפואה שלמה"),
                                  ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])
@@ -1202,7 +1249,7 @@ ABC = "אבגדהוזחטיכלמנסעפצקרשת"
 _letters = ('<table><tr><th>אות</th><th>פסוקים בפרק קיט</th></tr>' + "".join(
     f"<tr><td>{c}</td><td>{gem(i * 8 + 1)} עד {gem(i * 8 + 8)}</td></tr>" for i, c in enumerate(ABC)) + "</table>")
 TOOL = {
-    "shem": ("תהילים קיט לפי שם: אותיות השם ואותיות נשמה",
+    "shem": ("תהילים לפי שם: פסוקי פרק קי״ט לפי אותיות השם",
              "תהילים קיט לפי שם: מקלידים שם בעברית ומקבלים את פסוקי פרק קיט לפי אותיות השם, עם אפשרות להוסיף את אותיות נשמה לעילוי נשמת",
              ["בתהילים פרק קיט יש 176 פסוקים, שמונה פסוקים לכל אות, לפי סדר האלף-בית. הכלי עובר על אותיות השם לפי הסדר ומציג לכל אות את שמונת הפסוקים שלה.",
               "אפשר להוסיף בסוף את אותיות המילה נשמה (נ, ש, מ, ה), כפי שנוהגים לעילוי נשמת. אות סופית נחשבת כאות הרגילה, והמילים בן ובת שבין השם לשם האם אינן נספרות.",
@@ -1238,16 +1285,40 @@ TOOL = {
               "", [("/tefila/", "סידור תפילה"), ("/tefila/mizrach/shacharit/", "שחרית לימי חול"), ("/tehillim/", "ספר תהילים")]),
 }
 assert set(TOOL) == {k for k, _, _ in KELIM}, "a tool was added to the app: describe it in TOOL"
+SHEM_FORM = ('<form id="nf" class="nform"><label for="nn">שם בעברית</label>'
+             '<input id="nn" name="n" maxlength="40" placeholder="למשל: אברהם בן שרה" autocomplete="off" required>'
+             '<fieldset><legend>למה קוראים?</legend><label><input type="radio" name="m" value="r" checked> לרפואה ולכל בקשה</label>'
+             '<label><input type="radio" name="m" value="n"> לעילוי נשמה, עם אותיות ”נשמה”</label></fieldset>'
+             '<button class="btn" type="submit">הצגת הפסוקים</button></form><div id="nout" aria-live="polite"></div>')
+SHEM_JS = ("(function(){var f=document.getElementById('nf'),out=document.getElementById('nout');if(!f||!out)return;"
+           "var ABC='אבגדהוזחטיכלמנסעפצקרשת',FIN={'ך':'כ','ם':'מ','ן':'נ','ף':'פ','ץ':'צ'},P=null,NIK=/[֑-ֽֿ-ׇ]/g;"
+           "function gem(n){var H=['','ק'],T=['','י','כ','ל','מ','נ','ס','ע','פ','צ'],O=['','א','ב','ג','ד','ה','ו','ז','ח','ט'],r=n%100;return H[Math.floor(n/100)]+(r===15?'טו':r===16?'טז':T[Math.floor(r/10)]+O[r%10])}"
+           "function esc(s){return s.replace(/[&<>\"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]})}"
+           "function letters(s){return s.replace(NIK,'').split('').map(function(c){return FIN[c]||c}).filter(function(c){return ABC.indexOf(c)>=0})}"
+           "function run(push){var name=f.n.value.trim().slice(0,40),ns=f.m.value==='n',ls=letters(name.replace(/\\s+(בן|בת)\\s+/,' '));"
+           "if(!ls.length){out.innerHTML='<p class=\"note\">כתבו את השם באותיות עבריות.</p>';return}if(ns)ls=ls.concat(['נ','ש','מ','ה']);out.innerHTML='<p class=\"note\">טוען את הפסוקים…</p>';"
+           "(P?Promise.resolve(P):fetch('/data/tehillim.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){P=j;return j})).then(function(T){"
+           "var frag='#name='+encodeURIComponent(name)+'&neshama='+(ns?1:0),link=location.origin+'/kelim/shem/'+frag,h='<h2 class=\"sec\">הפסוקים לשם '+esc(name)+'</h2><div class=\"nlet\">'+ls.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'"
+           "+'<p class=\"nact\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/?text='+encodeURIComponent('תהילים לפי שם: '+name+(ns?' (לעילוי נשמה)':'')+'\\n'+link)+'\">שליחה בוואטסאפ</a><button type=\"button\" class=\"btn2\" id=\"ncp\">העתקת קישור</button><button type=\"button\" class=\"btn2\" id=\"npr\">הדפסה</button></p><article class=\"text\">';"
+           "ls.forEach(function(c,j){var i=ABC.indexOf(c);h+='<h2>אות '+c+(ns&&j>=ls.length-4?' · נשמה':'')+'</h2>';T[118].slice(i*8,i*8+8).forEach(function(v,k){h+='<p><sup>'+gem(i*8+k+1)+'</sup>'+v+'</p>'})});"
+           "out.innerHTML=h+'</article>';document.getElementById('npr').onclick=function(){print()};"
+           "document.getElementById('ncp').onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',link)})};"
+           "try{history.replaceState(null,'',location.pathname+frag)}catch(e){}if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
+           "}).catch(function(){out.innerHTML='<p class=\"note\">הטעינה נכשלה. בדקו את החיבור ונסו שוב.</p>'})}"
+           "f.addEventListener('submit',function(e){e.preventDefault();run(true)});"
+           "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),n0=h.get('name')||q.get('n'),ns0=h.has('neshama')?h.get('neshama')==='1':q.get('m')==='n';"
+           "if(n0){f.n.value=n0.replace(/[^\\u05D0-\\u05EA \\-]/g,'').slice(0,40);f.m.value=ns0?'n':'r';run(false)}}boot();addEventListener('hashchange',boot)})();")
 for i, (k, t, d) in enumerate(KELIM):
     ttl, head, paras, extra, rel = TOOL[k]
     pv, nx = (KELIM[i - 1] if i else None), (KELIM[i + 1] if i + 1 < len(KELIM) else None)
-    body = (f'<p><a class="btn" href="/#kli-{k}">לפתיחת הכלי באפליקציה</a></p><div class="prose"><h2>איך זה עובד</h2>'
+    opener = SHEM_FORM if k == "shem" else f'<p><a class="btn" href="/#kli-{k}">לפתיחת הכלי באפליקציה</a></p>'
+    body = (opener + '<div class="prose"><h2>איך זה עובד</h2>'
             + "".join(f"<p>{esc(x)}</p>" for x in paras) + extra + "</div>"
-            + '<p class="note">הכלי מחשב לפי מה שמקלידים בו, ונפתח באפליקציה של תפילה.</p>'
+            + ('<p class="note">הכלי מחשב בדפדפן שלכם. השם שמקלידים לא נשלח לשום מקום.</p>' if k == "shem" else '<p class="note">הכלי מחשב לפי מה שמקלידים בו, ונפתח באפליקציה של תפילה.</p>')
             + pager((f"/kelim/{pv[0]}/", pv[1]) if pv else None, (f"/kelim/{nx[0]}/", nx[1]) if nx else None)
             + chips("קשור לכלי הזה", rel + [("/kelim/", "כל הכלים האישיים")]))
     page(f"/kelim/{k}/", f"{ttl} | {BRAND}", fit_desc(head, tails=("הכלי נפתח באפליקציה של תפילה.", "חינם וללא הרשמה.")),
-         t, [("כלים אישיים", "/kelim/"), (t, f"/kelim/{k}/")], after=body, lead=d, hub=False, prio="0.7",
+         t, [("כלים אישיים", "/kelim/"), (t, f"/kelim/{k}/")], after=body, lead=d, hub=False, prio="0.9" if k == "shem" else "0.7", script=SHEM_JS if k == "shem" else "",
          ld=[{"@type": "WebPage", "name": t, "description": d, "url": f"{SITE}/kelim/{k}/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
 kelim = '<ul class="cards">'
@@ -1257,7 +1328,7 @@ kelim += '</ul><p class="note">הכלים מחשבים לפי מה שמקליד�
 kelim += chips("קשור לכלים", [("/tehillim/119/", "תהילים פרק קיט"), ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                               ("/sefer/yizkor/", "יזכור"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד")])
 page("/kelim/", f"כלים אישיים: תהילים לפי השם, יארצייט, יום הולדת עברי וכיוון התפילה | {BRAND}",
-     fit_desc("כלים אישיים באתר תפילה: " + ", ".join(t for _, t, _ in KELIM) + ". הסבר קצר על כל כלי וקישור לפתיחתו באפליקציה", tails=()),
+     fit_desc("כלי תפילה ולוח עברי: תהילים לפי שם, פסוק אישי לסוף העמידה, תהילים לפי גיל, יארצייט, יום הולדת עברי וכיוון התפילה. הסבר קצר על כל כלי, וחישוב בחינם", tails=()),
      "כלים אישיים", [("כלים אישיים", "/kelim/")], after=kelim, hub=True, prio="0.8", app_hash="kelim", app_label="לכל הכלים באפליקציה",
      lead=f"{len(KELIM)} כלים שמחשבים בשבילכם: לפי השם, לפי הגיל, לפי התאריך העברי ולפי המקום.",
      ld=[{"@type": "CollectionPage", "name": "כלים אישיים", "url": SITE + "/kelim/", "inLanguage": "he", "isPartOf": WEBSITE,
@@ -1370,6 +1441,55 @@ page("/zmanei-shabbat/", f"זמני כניסת שבת ויציאת שבת לפי
      lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים מתי נכנסת ומתי יוצאת השבת.",
      ld=[{"@type": "CollectionPage", "name": "זמני כניסת ויציאת שבת", "url": SITE + "/zmanei-shabbat/", "inLanguage": "he", "isPartOf": WEBSITE,
           "mainEntity": item_list([f"/zmanei-shabbat/{c[0]}/" for c in SH_CITIES])}])
+
+# ---------- Chanukah: one entry page for the candle-lighting blessings, in all three nusachim ----------
+PID = {q["id"]: q for n in NUS for q in by_nus[n]}
+CH_SETS = [("mizrach", ["mizrach-100"]), ("sefard", ["sefard-183"]), ("ashkenaz", ["ashkenaz-422", "ashkenaz-423", "ashkenaz-424"])]
+ch_text, ch_links = "", []
+for n, ids in CH_SETS:
+    ch_text += f'<h2 id="{n}">נוסח {esc(NUS[n])}</h2>'
+    for pid in ids:
+        q = PID[pid]; _ps = TEXTS[n][pid]
+        _sh = _ps[1:] if len(_ps) > 1 and _pl(_ps[0]) == _pl(q["t"]) else _ps
+        if len(ids) > 1: ch_text += f'<h3>{esc(q["t"])}</h3>'
+        ch_text += "".join(f"<p>{clean(x)}</p>" for x in _sh)
+        ch_links.append((f"/tefila/{pid}/", f'{q["t"]} · נוסח {NUS[n]}'))
+ch_before = ('<div class="prose"><p>מדליקים נר אחד בלילה הראשון ומוסיפים נר בכל לילה, עד שמונה נרות. מברכים, מדליקים, ומניחים את החנוכייה במקום שרואים אותה מבחוץ. '
+             'בלילה הראשון מברכים שלוש ברכות, ובשאר הלילות שתיים.</p>'
+             '<p>בשנת תשפ״ז הנר הראשון מודלק ביום שישי, 4 בדצמבר 2026, והנר השמיני ביום שישי, 11 בדצמבר 2026. בערב שבת מדליקים את נרות החנוכה לפני נרות השבת.</p></div>'
+             '<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#{n}">נוסח {esc(NUS[n])}</a>' for n, _ in CH_SETS) + "</div>")
+ch_after = chips("כל קטע בעמוד משלו", ch_links) + chips("עוד לחנוכה ולשבת", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")])
+page("/chanukah/", f"ברכות הדלקת נרות חנוכה: הנוסח המלא בניקוד, בשלושה נוסחים | {BRAND}",
+     "ברכות הדלקת נרות חנוכה בניקוד מלא: להדליק נר של חנוכה, שעשה נסים, שהחיינו, הנרות הללו ומעוז צור. בנוסח עדות המזרח, ספרד ואשכנז, בעמוד אחד.",
+     "ברכות הדלקת נרות חנוכה", [("חנוכה", "/chanukah/")], text=ch_text, before=ch_before, after=ch_after, prio="0.9", app_hash=f"p-{CH_SETS[0][1][0]}",
+     app_label="לסדר ההדלקה באפליקציה", lead="סדר הדלקת נרות חנוכה והברכות, בשלושת הנוסחים.",
+     ld=[{"@type": "CreativeWork", "name": "ברכות הדלקת נרות חנוכה", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + "/chanukah/", "isPartOf": WEBSITE}])
+
+# ---------- About and sources ----------
+TAUT_JS = ("(function(){var b=document.getElementById('tautbox');if(!b)return;var q=new URLSearchParams(location.search),M=%r;"
+           "function cl(s,n){return (s||'').replace(/[<>\"]/g,'').slice(0,n)}"
+           "var u=cl(q.get('u'),200),t=cl(q.get('t'),80),n=cl(q.get('n'),30);if(u&&u.indexOf(location.origin)!==0)u='';"
+           "var lines=['העמוד: '+(u||'(כתבו כאן את כתובת העמוד)'),'התפילה: '+(t||''),n?'הנוסח: '+n:'','','מה הטעות (המילים כפי שהן באתר):','','מה צריך להיות, ולפי איזה סידור:',''].filter(function(x,i){return x||i>2}),body=lines.join('\\n');"
+           "var h='<label for=\"tautt\">פרטי הדיווח</label><textarea id=\"tautt\" rows=\"8\"></textarea><p class=\"nact\">'+(M?'<a class=\"btn\" id=\"tautm\" href=\"#\">שליחה במייל</a>':'')+'<button type=\"button\" class=\"btn2\" id=\"tautc\">העתקת הפרטים</button></p>'+(M?'':'<p class=\"note\">כתובת המייל לדיווחים תתווסף כאן בקרוב. בינתיים אפשר להעתיק את הפרטים ולשמור אותם.</p>');"
+           "b.innerHTML=h;var ta=document.getElementById('tautt');ta.value=body;"
+           "var m=document.getElementById('tautm');if(m)m.onclick=function(){this.href='mailto:'+M+'?subject='+encodeURIComponent('דיווח על טעות בנוסח'+(t?': '+t:''))+'&body='+encodeURIComponent(ta.value)};"
+           "document.getElementById('tautc').onclick=function(){var x=this;(navigator.clipboard?navigator.clipboard.writeText(ta.value):Promise.reject()).then(function(){x.textContent='הפרטים הועתקו'},function(){ta.select()})};"
+           "if(location.hash==='#taut')document.getElementById('taut').scrollIntoView()})();") % CONTACT
+odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סידור אונליין בשלושה נוסחים, עדות המזרח, ספרד ואשכנז, עם ספר תהילים מלא, ספרייה של מגילות ופרקים, זמני היום וכלים אישיים. '
+        'הקריאה חופשית, בלי הרשמה ובלי פרסומות.</p>'
+        '<h2>מקורות הטקסטים</h2><p>נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. '
+        'ספר תהילים והמגילות: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא.</p>'
+        '<h2>זמני היום והלוח</h2><p>הלוח העברי, פרשת השבוע והמועדים מחושבים בספריית Hebcal. זמני היום מחושבים לפי מיקום העיר: הנץ ושקיעה אסטרונומיים, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, '
+        'וצאת השבת כשהשמש 8.5 מעלות מתחת לאופק. הזמנים עשויים לסטות בדקה או שתיים מלוחות אחרים, ולמעשה יש להחמיר.</p>'
+        '<h2 id="taut">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'
+        '<div id="tautbox" class="tautbox"></div>'
+        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב לנו: <a href="mailto:{CONTACT}">{CONTACT}</a>.' if CONTACT else 'כתובת לפניות תתפרסם כאן בקרוב.') + '</p>'
+        '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
+        + chips("להתחיל לקרוא", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
+page("/odot/", f"אודות האתר תפילה ומקורות הטקסטים | {BRAND}",
+     "מי אנחנו ומאין הטקסטים: סידור תפילה בשלושה נוסחים, ספר תהילים וספרייה ממהדורות פתוחות, שיטת חישוב זמני היום והלוח העברי, ומה מעמדם של ההסברים באתר.",
+     "אודות ומקורות", [("אודות ומקורות", "/odot/")], after=odot, hub=True, prio="0.4", script=TAUT_JS, lead="תפילה · Tfilah.com. מה יש באתר, מאין הטקסטים ואיך מחושבים הזמנים.",
+     ld=[{"@type": "AboutPage", "name": "אודות ומקורות", "url": SITE + "/odot/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
 # ---------- 404 ----------
 nf = ('<p><a class="btn" href="/">לדף הבית</a></p><ul class="cards" style="margin-block-start:1.5rem">'

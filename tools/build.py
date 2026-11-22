@@ -82,12 +82,25 @@ _groups = [
             (27, "כז"), (30, "ל"), (91, "צא"), (121, "קכא"), (119, "קיט"), (13, "יג"), (145, "קמה"), (142, "קמב"), (24, "כד"), (16, "טז"), (67, "סז"), (51, "נא"))]),
     ("ספרייה וכלים", [("/sefer/", "ספרייה"), ("/sefer/avot/", "פרקי אבות"), ("/sefer/shir/", "שיר השירים"), ("/sefer/esther/", "מגילת אסתר"),
         ("/sefer/perek/", "פרק שירה"), ("/kelim/", "כלים אישיים"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"),
-        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"),
+        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/zmanei-shabbat/", "זמני שבת"), ("/chanukah/", "ברכות הדלקת נרות חנוכה"), ("/odot/", "אודות ומקורות"),
         ("/zmanei-shabbat/jerusalem/", "זמני שבת בירושלים"), ("/zmanei-shabbat/tel-aviv/", "זמני שבת בתל אביב"), ("/zmanei-shabbat/haifa/", "זמני שבת בחיפה")]),
 ]
 SEO_NAV = ('<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols">'
   + "".join('<section><h3>%s</h3><ul>' % g + "".join('<li><a href="%s">%s</a></li>' % (h, t_) for h, t_ in links) + "</ul></section>"
             for g, links in _groups) + "</div></details></nav>")
+BOOT = ('<main class="wrap" id="app"><div class="boot"><h1>תפילה: סידור תפילה ותהילים אונליין</h1>'
+        '<p>סידור מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים, זמני היום וקריאת תהילים משותפת.</p><ul>'
+        + "".join('<li><a href="%s">%s</a></li>' % x for x in [
+            ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"),
+            ("/tefila/", "כל הסידור"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם"),
+            ("/zmanei-shabbat/", "זמני שבת"), ("/sefer/", "ספרייה")])
+        + '</ul></div></main>')
+_ph = '<main class="wrap" id="app"><p class="loading">פותחים את הסידור…</p></main>'
+assert s.count(_ph) == 1, "home placeholder"
+s = s.replace(_ph, BOOT)
+if not re.search(r'supabaseUrl:\s*"[^"]+"', open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.js"), encoding="utf-8").read()):
+    # the shared-reading service is not connected: its library is not requested at all
+    head = head.replace('<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>\n', "")
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable
 open(out, "w", encoding="utf-8").write(s)

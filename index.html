@@ -781,6 +781,9 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .dfree{display:grid;gap:6px;font-weight:600;max-inline-size:16rem}.dfree input{min-height:48px;padding:8px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
 .endsup{margin:12px 0 0;font-size:.95rem;color:var(--ink-2)}.endsup a{font-weight:700;color:#0A6FB3}
 .tklong{margin:14px 0;border-block:1px solid var(--line)}.tklong summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-family:var(--f-ui);font-weight:700;font-size:1rem}
+.toch{font-family:var(--f-ui);font-size:.9rem;font-weight:700;color:var(--muted);margin:10px 0 6px}
+.tocsvc{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}.tocsheet .tocsvc a{display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);inline-size:auto;font-weight:600}
+.tocsheet .tocsvc a[aria-current]{background:var(--grad-cta);color:#fff;border-color:transparent}
 .kseg{display:flex;gap:16px}.kseg.kcol{flex-direction:column;gap:4px}.kseg.kcol label{min-height:44px}
 .klead{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:center;padding:18px;margin:6px 0 22px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(150deg,#fff,#EEF8FF 60%,#DDF0FD)}
 .klead h2{margin:0;font-size:1.3rem}.klead p{margin:2px 0 0;color:var(--ink-2);line-height:1.5}
@@ -1872,7 +1875,7 @@ function viewSiddur(){setNav('siddur');const gs=groups[nus];
 const tools=(crumb,toc)=>`<div class="rtools" id="rt"><div class="in" style="position:relative">
   <button class="iconbtn" type="button" id="rback" aria-label="חזרה">${icon('back')}</button>
   <span class="crumb">${esc(crumb)}</span>
-  ${toc?`<button class="tocb" type="button" id="tocb" aria-haspopup="dialog">${icon('scroll')}תוכן</button>`:''}
+  ${toc?`<button class="tocb" type="button" id="tocb" aria-haspopup="dialog">${icon('scroll')}לחלקי התפילה</button>`:''}
   <button class="iconbtn" type="button" id="asgo" aria-pressed="false" aria-label="גלילה אוטומטית"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
   <button class="iconbtn" type="button" id="sh" aria-label="שיתוף">${icon('share')}</button>
   <button class="iconbtn" type="button" id="aa" aria-expanded="false" aria-controls="rpop" aria-label="הגדרות קריאה"><span style="font-family:var(--f-read);font-weight:700;font-size:1.05rem">אָא</span></button>
@@ -1911,12 +1914,12 @@ function jump(id,quiet){const el=document.getElementById('s-'+id);if(!el)return;
   el.scrollIntoView({block:'start',behavior:reduce||quiet?'auto':'smooth'});
   $$('.toc a').forEach(a=>a.classList.toggle('on',a.dataset.j===id));const ta=document.querySelector(`.toc a[data-j="${id}"]`);if(ta){const c=ta.parentElement;c.scrollLeft+=ta.getBoundingClientRect().left-c.getBoundingClientRect().left-(c.clientWidth-ta.offsetWidth)/2}}
 /* table of contents, one tap away while reading */
-function openToc(items,cur,go){const sh=document.createElement('div');sh.className='sheet';sh.setAttribute('role','dialog');sh.setAttribute('aria-modal','true');sh.setAttribute('aria-labelledby','tch');
-  sh.innerHTML=`<div class="panel tocsheet"><h2 id="tch" style="font-size:1.6rem;margin-bottom:10px">חלקי התפילה</h2>${items.map(([id,t,sk])=>`<a href="#" data-j="${esc(id)}"${id===cur?' aria-current="true"':''}${sk?' class="sk"':''}>${esc(t)}${sk?' · לא נאמר היום':''}</a>`).join('')}
+function openToc(items,cur,go,svc){const sh=document.createElement('div');sh.className='sheet';sh.setAttribute('role','dialog');sh.setAttribute('aria-modal','true');sh.setAttribute('aria-labelledby','tch');
+  sh.innerHTML=`<div class="panel tocsheet"><h2 id="tch" style="font-size:1.6rem;margin-bottom:10px">חלקי התפילה</h2>${svc&&svc.list.length>1?`<h3 class="toch">${esc(svc.name)}</h3><div class="tocsvc">${svc.list.map(([id,t,on])=>`<a href="#" data-j="${esc(id)}">${esc(t)}</a>`).join('')}</div><h3 class="toch">כל הקטעים לפי הסדר</h3>`:''}${items.map(([id,t,sk])=>`<a href="#" data-j="${esc(id)}"${id===cur?' aria-current="true"':''}${sk?' class="sk"':''}>${esc(t)}${sk?' · לא נאמר היום':''}</a>`).join('')}
     <button class="btn ghost" type="button" data-x style="margin-top:14px;width:100%">סגירה</button></div>`;
   document.body.append(sh);document.body.style.overflow='hidden';let untrap=()=>{};const close=()=>{sh.remove();document.body.style.overflow='';untrap()};untrap=trap(sh,close);
   sh.addEventListener('click',e=>{const a=e.target.closest('a[data-j]');if(a){e.preventDefault();close();go(a.dataset.j);return}if(e.target===sh||e.target.closest('[data-x]'))close()});
-  (sh.querySelector('[aria-current]')||sh.querySelector('a,button')).focus()}
+  (sh.querySelector('a[data-j][aria-current]')||sh.querySelector('[aria-current]')||sh.querySelector('a,button')).focus()}
 
 /* ---------- SMART SIDDUR: today's rules ---------- */
 function isChanukah(H,hd){try{const k=new H.HDate(25,H.months.KISLEV,hd.getFullYear()),d=hd.abs()-k.abs();return d>=0&&d<8}catch(e){return false}}
@@ -2027,7 +2030,8 @@ async function viewPrayer(id,hl){setNav('siddur');const p=byId[id];if(!p){locati
     const so=$('#smartoff'),sn=$('#smarton');if(so)so.onclick=()=>{smartOn=false;store.set('smart',false);const y=scrollY;draw();scrollTo(0,y);$('#smarton')?.focus({preventScroll:true})};if(sn)sn.onclick=()=>{smartOn=true;store.set('smart',true);const y=scrollY;draw();scrollTo(0,y);$('#smartoff')?.focus({preventScroll:true})};
     $$('.fav').forEach(b=>b.onclick=e=>{const k=b.dataset.id;favs.has(k)?favs.delete(k):favs.add(k);store.set('favs',[...favs]);b.setAttribute('aria-pressed',favs.has(k));if(favs.has(k)){burst(e.clientX,e.clientY,24);toast('נשמר')}});
     $$('.toc a').forEach(a=>a.onclick=e=>{e.preventDefault();history.replaceState(null,'','#p-'+a.dataset.j);jump(a.dataset.j)});
-    const tb=$('#tocb');if(tb)tb.onclick=()=>{const curId=(location.hash.match(/^#p-(.+)$/)||[])[1]||id;openToc(items.map(it=>[it.id,it.t,!!itemRule(it,g.key,f)]),curId,j=>{history.replaceState(null,'','#p-'+j);jump(j)})}};
+    const tb=$('#tocb');if(tb)tb.onclick=()=>{const curId=(location.hash.match(/^#p-(.+)$/)||[])[1]||id;const seenS=new Set(),svcList=[];items.forEach(it=>{const nm=it.s&&it.s[2];if(!nm||seenS.has(nm))return;seenS.add(nm);svcList.push([it.id,nm,false])});
+      openToc(items.map(it=>[it.id,it.t,!!itemRule(it,g.key,f)]),curId,j=>{history.replaceState(null,'','#p-'+j);jump(j)},{name:'קפיצה לחלק',list:svcList})}};
   draw();reading=true;if(hl)setTimeout(()=>pageFind(hl),600);if(!solo&&(g.items[0].id!==id||hl)){jump(id,true);const again=()=>{if(location.hash==='#p-'+id&&!hl)jump(id,true)};document.fonts?.ready.then(again);setTimeout(again,500)}else scrollTo(0,0);
   if(hl)setTimeout(()=>{const mk=document.querySelector(`#s-${id} mark`);if(mk)mk.scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'})},450)}
 let smartOn=store.get('smart',true);
@@ -2916,7 +2920,7 @@ function route(){if(!INDEX)return;navId++;closePal();setPhase();const go=()=>{re
   if((m=h.match(/^shem-(.+)$/))){let nm='';try{nm=decodeURIComponent(m[1])}catch(e){nm=m[1]}nm=nm.replace(/[-_+]+/g,' ').replace(/[^\u05D0-\u05EA ]/g,'').trim().slice(0,40);if(nm){location.replace(`/kelim/shem/#name=${encodeURIComponent(nm)}&neshama=0`);return}history.replaceState(null,'','#kli-shem');return viewKli('shem')}
   if((m=h.match(/^kli-([a-z]+)$/)))return viewKli(m[1]);
   scrollTo(0,0);({siddur:viewSiddur,search:viewSearch,tehillim:()=>viewTehillim(),favorites:viewFavs,zikaron:viewZikaron,rav:viewRav,sifriya:viewLib,kelim:viewKelim,tmicha:viewSupport}[h]||viewHome)()};
-  const run=()=>{const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(location.hash!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
+  const run=()=>{$$('.sheet').forEach(s=>{const x=s.querySelector('[data-x]');if(x)x.click();else s.remove()});const at=location.hash,fail=()=>{if(location.hash===at)loadErr(route)};try{Promise.resolve(go()).then(()=>{if(location.hash!==at)return;const hh=safeHash()||'home',t=$('#app h1'),x={sifriya:'ספרייה',zikaron:'תהילים יחד',tmicha:'תמיכה באתר',kelim:'כלים אישיים'}[hh]||(t&&hh!=='home'?t.textContent.replace(/\s+/g,' ').trim():'');document.title=x?x+' | תפילה':BASE_TITLE}).catch(fail)}catch(e){fail()}};
   if(document.startViewTransition&&!reduce)document.startViewTransition(run);else run()}
 addEventListener('hashchange',route);
 const setBarH=()=>document.documentElement.style.setProperty('--barh',$('#bar').offsetHeight+'px');addEventListener('resize',setBarH);setBarH();

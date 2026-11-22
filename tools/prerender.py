@@ -588,16 +588,26 @@ def _slug(title):
     return "-".join(TRANSLIT[w] for w in ws) or "tefila"
 
 
+# A bare name ("שחרית", "הלל") that in the source is a part of a special occasion must not hold the plain address:
+# /shacharit/ used to open the Chanukah additions. These records get an address that says what they are.
+FORCE_SLUG = {"mizrach-101": "shacharit-lachanukah", "mizrach-88": "musaf-rosh-chodesh", "sefard-165": "hallel-hagada",
+              "sefard-90": "tefilat-amida-erev-shabbat", "ashkenaz-299": "haftara-shabbat", "ashkenaz-141": "baruch-hashem-leolam"}
+# short addresses that moved, or that people type: one 301 hop to the page they mean
+MOVED = {"/shacharit/": "/tefila/mizrach/shacharit/", "/mincha/": "/tefila/mizrach/mincha/", "/arvit/": "/tefila/mizrach/arvit/", "/maariv/": "/tefila/mizrach/arvit/",
+         "/hallel/": "/seder-hallel/", "/musaf/": "mizrach-88", "/tefilat-amida/": "sefard-90", "/haftara/": "ashkenaz-299",
+         "/baruch-hashem-leolam-outside-of-israel/": "ashkenaz-141"}
+
+
 def _build_purl():
-    out, taken = {}, set(_RESERVED)
+    out, taken = {}, set(_RESERVED) | {m.strip("/") for m in MOVED}
     for n in ("mizrach", "sefard", "ashkenaz"):
         ps = [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])]
         base = {p["id"]: _slug(p["t"]) for p in ps}
         count = {}
         for v in base.values(): count[v] = count.get(v, 0) + 1
-        used = set(_RESERVED)
+        used = set(_RESERVED) | {m.strip("/") for m in MOVED}
         for p in ps:
-            s = base[p["id"]]
+            s = FORCE_SLUG.get(p["id"]) or base[p["id"]]
             if s in used:                                   # the first prayer with a name keeps it plain; later ones say where they belong
                 ctx = " / ".join(p["s"])
                 tags = []
@@ -659,6 +669,9 @@ for n, plist in by_nus.items():
             assert ctx not in seen, (p["id"], ctx)
             seen[ctx] = 1
             CTX[p["id"]] = ctx
+
+for pid in ("mizrach-101", "mizrach-88", "sefard-165", "sefard-90", "ashkenaz-299"):
+    CTX.setdefault(pid, " · ".join(sec_of(BYID[pid])[-2:]))
 
 # The stand-alone instance of a repeated title gets the clean <title> (its twins keep their context).
 PRIMARY = {"ashkenaz-1", "ashkenaz-3", "ashkenaz-4", "ashkenaz-13", "ashkenaz-440", "ashkenaz-441", "ashkenaz-442", "ashkenaz-443"}
@@ -1193,9 +1206,16 @@ for n, plist in by_nus.items():
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if p["id"] == "sefard-32": _tt = f"פרק שירה עם ההקדמה ”תניא רבי אליעזר” | נוסח ספרד | {BRAND}"
+        if p["id"] == "sefard-32": _tt = f"פרק שירה: הנוסח המלא בניקוד, עם ההקדמה | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
-        page(me, _tt, fit_desc(head, " ".join(paras[:3])),
+        _desc = fit_desc(head, " ".join(paras[:3]))
+        if p["id"] == "sefard-32":
+            _desc = "פרק שירה המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים, כל אחד והפסוק שלו. לקריאה בנייד, להדפסה ולשיתוף."
+            after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
+        if norm_t(p["t"]) == "תפילת הדרך":
+            _desc = fit_desc(f"תפילת הדרך המלאה בניקוד, בנוסח {NUS[n]}. נאמרת ביציאה לדרך אל מחוץ לעיר", " ".join(paras[1:3] if len(paras) > 2 else paras),
+                             tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))
+        page(me, _tt, _desc,
              p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
@@ -1334,7 +1354,10 @@ for bi, (k, b) in enumerate(B.items()):
     first_v = " ".join(b["secs"][0]["v"][:3])
     _bx = PLAIN_B.get(k, "")
     jump = (f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה {esc(b["t"])}?</b><p>{esc(_bx)}</p></aside>' if _bx else "") + jump
-    page(me, f"{b['t']} | הנוסח המלא בניקוד | {BRAND}",
+    if k == "perek":
+        after = chips("מהדורה נוספת", [(PURL["sefard-32"], "פרק שירה עם ההקדמה ”תניא רבי אליעזר”, כפי שנדפס בסידור")]) + after
+    page(me, (f"פרק שירה לפי פרקים, עם מקורות הפסוקים | {BRAND}" if k == "perek" else f"{b['t']} | הנוסח המלא בניקוד | {BRAND}"),
+         ("פרק שירה מחולק לשישה פרקים, עם מקור כל פסוק ועם הבקשה שאומרים אחרי הקריאה. מהדורת תורת אמת בניקוד מלא, בעמוד אחד. ההקדמה ”תניא רבי אליעזר” בפרק שירה שבסידור." if k == "perek" else "") or
          fit_desc(f"{b['t']} בניקוד מלא אונליין" + (f". {plain(sub)}" if sub else "") + (f". {nsec} פרקים בעמוד אחד" if nsec > 1 else ""), first_v),
          b["t"], [("ספרייה", "/sefer/"), (b["t"], me)],
          text=text, meta=esc(sub), before=jump, after=after, app_hash=f"b-{k}",
@@ -1360,14 +1383,17 @@ yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</
           '<li><b>כל אחד קורא פרק</b><span>כל מי שנכנס מקבל פרק תהילים, קורא ומסמן שקרא.</span></li></ol>'
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>בתהילים משותף 150 פרקי הספר מתחלקים בין כל מי שמצטרף לקריאה: כל אחד מקבל פרק, קורא אותו ומסמן שקרא. '
-          'כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש.</p></div>'
+          'כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש.</p>'
+          '<h2>בחינם ובלי הרשמה</h2>'
+          '<p>אין צורך בחשבון, בהורדה או בתשלום, ואפשר לפתוח יותר מקריאה אחת. מי שנכנס מהקישור יכול לקבל פרק שעוד לא נקרא או לבחור פרק בעצמו, '
+          'וכולם רואים כמה פרקים כבר נקראו, כמה נשארו וכמה קוראים הצטרפו.</p></div>'
           + ('<p class="note">פתיחת קריאה משותפת והצטרפות אליה נעשות באפליקציה של תפילה.</p>' if SB_ON else
              '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
 yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים, כל 150 הפרקים"), ("/tehillim/refuah/", "תהילים לרפואה שלמה"),
                                  ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])
-page("/tehillim-yachad/", f"תהילים יחד: קריאת תהילים משותפת, כל אחד פרק | {BRAND}",
-     "תהילים יחד: קריאת תהילים משותפת לרפואה או לעילוי נשמה. פותחים תהילים משותף, שולחים קישור בוואטסאפ, וכל אחד קורא פרק. כל אחד פרק. ביחד ספר שלם.",
+page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקריאה משותפת, בחינם | {BRAND}",
+     "תהילים יחד: חלוקת תהילים בין משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
      "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת",
      lead="קריאת תהילים משותפת: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
      ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T}])
@@ -1721,7 +1747,7 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         'וצאת השבת כשהשמש 8.5 מעלות מתחת לאופק. הזמנים עשויים לסטות בדקה או שתיים מלוחות אחרים, ולמעשה יש להחמיר.</p>'
         '<h2 id="taut">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'
         '<div id="tautbox" class="tautbox"></div>'
-        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <a href="mailto:{CONTACT}">{CONTACT}</a>.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
+        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <!--email_off--><a href="mailto:{CONTACT}">{CONTACT}</a><!--/email_off-->.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
         '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
         + chips("להתחיל לקרוא", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
 # old numbered addresses redirect to the readable ones (kept in _redirects, between the two marker lines)
@@ -1730,7 +1756,10 @@ _cur = open(_rd, encoding="utf-8").read() if os.path.exists(_rd) else ""
 _cur = re.sub(r"# prayers: begin.*?# prayers: end\n?", "", _cur, flags=re.S).rstrip("\n")
 # two generations of old addresses: /tefila/<nusach>-<number>/ and /tefila/<nusach>/<name>/ (tools/old-urls.json)
 _old = json.load(open(os.path.join(ROOT, "tools", "old-urls.json"), encoding="utf-8"))
-_lines = "".join(f"/tefila/{pid}/ {path} 301\n" + (f"{_old[pid]} {path} 301\n" if _old.get(pid) and _old[pid] != path else "") for pid, path in PURL.items())
+_moved = "".join(f"{a} {PURL.get(b, b)} 301\n" for a, b in MOVED.items())
+for a, b in MOVED.items():
+    assert a not in _PRAYER_PATHS and PURL.get(b, b) != a, a
+_lines = _moved + "".join(f"/tefila/{pid}/ {path} 301\n" + (f"{_old[pid]} {path} 301\n" if _old.get(pid) and _old[pid] != path else "") for pid, path in PURL.items())
 assert _lines.count("\n") < 1900, "Cloudflare Pages allows 2,000 static redirects"
 open(_rd, "w", encoding="utf-8").write((_cur + "\n" if _cur else "") + "# prayers: begin (written by tools/prerender.py)\n" + _lines + "# prayers: end\n")
 json.dump(PURL, open(os.path.join(DATA, "urls.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
@@ -1742,7 +1771,7 @@ page("/odot/", f"אודות האתר תפילה ומקורות הטקסטים | 
 
 # ---------- Privacy, terms, accessibility: short and in plain words ----------
 LEGAL_DATE = "כ״ב בחשוון תשפ״ז (22.11.2026)"
-_mail = f'<a href="mailto:{CONTACT}">{CONTACT}</a>' if CONTACT else '<a href="/odot/#kesher">טופס צור קשר</a>'
+_mail = f'<!--email_off--><a href="mailto:{CONTACT}">{CONTACT}</a><!--/email_off-->' if CONTACT else '<a href="/odot/#kesher">טופס צור קשר</a>'
 _legal_chips = chips("עוד על האתר", [("/odot/", "אודות ומקורות"), ("/pratiyut/", "פרטיות"), ("/tnaim/", "תנאי שימוש"), ("/negishut/", "נגישות"), ("/odot/#kesher", "צור קשר")])
 pratiyut = ('<div class="prose"><h2>בקצרה</h2><p>אין הרשמה, אין פרסומות, אין עוגיות מעקב, ואיננו מוכרים או מעבירים מידע לאף אחד. רוב מה שהאתר זוכר נשמר רק במכשיר שלכם.</p>'
             '<h2>מה נשמר במכשיר שלכם</h2><p>הנוסח שבחרתם, גודל האותיות, העיר לזמני היום, המועדפים והשמות שהקלדתם בכלים האישיים נשמרים בדפדפן שלכם בלבד, כדי שלא תצטרכו לבחור מחדש בכל כניסה. '

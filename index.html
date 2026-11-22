@@ -2829,14 +2829,15 @@ function palRender(raw){palWait=false;const q=norm(raw||'').trim(),out=[];
       const gh=groupHits(qq,first);if(gh.length){out.push(['hd','סדר התפילה · נוסח '+nusName(first)]);gh.forEach(([t,sub,id])=>out.push(['it',t,sub,`#p-${id}`,'book',null,nusName(first)]))}
       if(ps.length){out.push(['hd','תפילות · נוסח '+nusName(first)]);ps.slice(0,8).forEach(p=>out.push(['it',p.t,p.s.join(' / ')||'סידור',`#p-${p.id}`,'book',null,nusName(first)]))}
       const have0=new Set(out.filter(x=>x[0]==='it').map(x=>x[3]));
-      const lbx=libAll().filter(x=>norm(x.t).trim()===qq&&!have0.has(x.href)&&!/^#p-/.test(x.href));
+      /* פרק שירה: the search leads to the siddur page with the introduction (/perek-shira/); the library edition stays listed below */
+      const lbx=libAll().filter(x=>norm(x.t).trim()===qq&&!have0.has(x.href)&&!/^#p-/.test(x.href)).map(x=>x.href==='#b-perek'&&INDEX.prayers.some(p=>p.id==='sefard-32')?{...x,href:'#p-sefard-32',sub:'הנוסח המלא, עם ההקדמה'}:x);
       if(!ps.length&&lbx.length){out.push(['hd','ספרייה']);lbx.forEach(x=>out.push(['it',x.t,x.sub,x.href,x.ic]))}
       if(!ps.length&&!gh.length){const ih=innerHits(raw,first,3);
         if(ih===null){palWait=true;out.push(['hd','מחפש בנוסח '+nusName(first)+'…']);if(!sxLoading[first]){sxLoading[first]=text(first).then(T=>{ensureSX(first,T);const q=$('#palq');if(!$('#pal').hidden&&q.value===raw)palRender(raw)},()=>{sxLoading[first]=null})}}
         else if(ih.length){out.push(['hd','בתוך התפילות · נוסח '+nusName(first)]);ih.forEach(([p,hl,snip])=>out.push(['it',`${raw.trim()} · בתוך ${p.t}`,'…'+snip+'…',`#p-${p.id}`,'book',null,nusName(first),hl]))}}
       const seen=new Set(ps.map(p=>norm(p.t).trim())),alt=[];
       for(const n of others)for(const[sc,p]of titleHits(qq,n,true)){const k=norm(p.t).trim();if(ps.length&&seen.has(k)&&!Q.hint)continue;alt.push([n,p,sc])}
-      alt.sort((a,b)=>a[2]-b[2]);
+      alt.sort((a,b)=>a[2]-b[2]);{const got=new Set(out.filter(x=>x[0]==='it').map(x=>x[3]));for(let i=alt.length-1;i>=0;i--)if(got.has('#p-'+alt[i][1].id))alt.splice(i,1)}
       const foundHere=ps.length||gh.length||out.some(x=>x[0]==='hd'&&/^בתוך התפילות/.test(x[1]));
       if(alt.length){out.push(['hd',foundHere||palWait?'בנוסחים אחרים':'לא נמצא בנוסח '+nusName(first)+'. בנוסחים אחרים']);alt.slice(0,6).forEach(([n,p])=>out.push(['it',p.t,p.s.join(' / ')||'סידור',`#p-${p.id}`,'book',null,nusName(n)]))}
       const nd=NEEDS.filter(n=>n[2].includes(qq));if(nd.length){out.push(['hd','תהילים לבקשה']);nd.forEach(n=>out.push(['it','תהילים '+n[2],'פרקים '+n[3],`#k-${n[0]}`,n[1]]))}

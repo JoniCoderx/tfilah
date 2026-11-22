@@ -2791,6 +2791,11 @@ function palRender(raw){palWait=false;const q=norm(raw||'').trim(),out=[];
   if(!q){const np=nowPrayer(),g=groups[nus][np.g];out.push(['hd','עכשיו']);if(g)out.push(['it','התפילה של עכשיו: '+np.label,'נוסח '+nusName(nus),`#p-${g.items[0].id}`,'sun']);
     out.push(['hd','מעבר מהיר']);ROUTES.forEach(r=>out.push(['it',r[0],'',r[1],r[2]]))}
   else{const Q=parseQ(raw),qq=Q.q,first=Q.hint||nus,others=NUS.map(x=>x[0]).filter(n=>n!==first);
+    {const lat=raw.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      if(lat.length>=3&&!/[\u05D0-\u05EA]/.test(raw)&&typeof URLS==='object'&&URLS){const hit=[];
+        for(const p of INDEX.prayers){const u=URLS[p.id];if(!u)continue;const s=u.split('/')[1];const sc=s===lat?0:s.startsWith(lat)?1:s.includes(lat)?2:-1;if(sc>=0)hit.push([sc+(u.split('/').length>3?.5:0)+(p.n===first?0:.2),p])}
+        hit.sort((a,b)=>a[0]-b[0]||a[1].t.length-b[1].t.length);
+        if(hit.length){out.push(['hd','לפי השם באותיות לועזיות']);hit.slice(0,8).forEach(([,p])=>out.push(['it',p.t,p.s.join(' / ')||'סידור',`#p-${p.id}`,'book',null,nusName(p.n)]))}}}
     if(Q.ch)out.push(['hd','תהילים'],['it',`תהילים פרק ${gem(Q.ch)}`,`פרק ${Q.ch}`,`#t-${Q.ch}`,'scroll']);
     {const vh=wordsOf(raw).length>1?psalmHits(raw,4):[];if(vh.length){out.push(['hd','פסוקים בתהילים']);vh.forEach(({x,i,n})=>out.push(['it',x.W.slice(Math.max(0,i-2),i+n+4).join(' '),`תהילים ${gem(x.c)}, ${gem(x.v)}`,`#t-${x.c}`,'scroll']))}}
     if(/^שירי? המעלות$/.test(qq))out.push(['hd','תהילים'],['it','שירי המעלות','תהילים קכ עד קלד','#t-120-134','scroll']);
@@ -2816,7 +2821,7 @@ function palRender(raw){palWait=false;const q=norm(raw||'').trim(),out=[];
       const have=new Set(out.filter(x=>x[0]==='it').map(x=>x[3]));
       const lb=libAll().filter(x=>norm(x.t).includes(qq)&&!have.has(x.href)&&!have.has('lib'+x.href)&&have.add('lib'+x.href)).slice(0,8);if(lb.length){out.push(['hd','ספרייה']);lb.forEach(x=>out.push(['it',x.t,x.sub,x.href,x.ic]))}
       if(exact)routes()}
-    if(out.filter(x=>x[0]==='it').length<2){const dm=didYouMean(raw,4);if(dm.length){out.push(['hd','אולי התכוונתם ל…']);dm.forEach(x=>out.push(['it',x.t,x.sub||'',x.href,'book']))}}
+    if(out.filter(x=>x[0]==='it').length<2){const dm=didYouMean(raw,4);if(dm.length){out.push(['hd','אולי התכוונתם ל…']);dm.forEach(x=>out.push(['it',x.t,x.sub||'',x.href==='#b-perek'?'#p-sefard-32':x.href,'book']))}}
     out.push(['hd','חיפוש בתוך הטקסט'],['it',`חיפוש "${raw.trim()}" בתוך כל התפילות`,'גם מילים מתוך התפילות עצמן, עם ובלי ניקוד','#search','search',raw.trim()])}
   palItems=out.filter(x=>x[0]==='it');palSel=0;let i=0;$('#palq').setAttribute('aria-activedescendant',palItems.length?'po0':'');
   $('#pallist').innerHTML=out.map(x=>x[0]==='hd'?`<div class="palhd">${esc(x[1])}</div>`:

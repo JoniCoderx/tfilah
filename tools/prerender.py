@@ -1565,18 +1565,59 @@ for n, (pid, lo, hi) in NISHMAT.items():
          app_hash=f"p-{pid}", app_label="לתפילה המלאה באפליקציה",
          ld=[{"@type": "CreativeWork", "name": "נשמת כל חי", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
+# ---------- Kaddish in the other two nusachim ----------
+# Only the Ashkenaz siddur holds the Kaddish as entries of their own. In the other two it is printed inside the services,
+# so each page here is cut from one place where the siddur prints it in full: from "יתגדל ויתקדש" through the last
+# paragraph that still belongs to the Kaddish. Nothing is rewritten; the asserts stop the build if the entry changes.
+_KD_PARTS = ("יהא שמה", "יהא שמיה", "יתברך", "לעלא", "על ישראל", "תתקבל", "יהא שלמא", "עושה שלום")
+KD_CUT = {   # slug: (name in the title, {nusach: (entry, index of "יתגדל", the paragraph the Kaddish must reach)})
+    "chatzi-kaddish": ("חצי קדיש", {"mizrach": ("mizrach-14", 22, ""), "sefard": ("sefard-12", 5, "")}),
+    "kaddish-yatom": ("קדיש יתום", {"mizrach": ("mizrach-22", 28, "יהא שלמא"), "sefard": ("sefard-39", 106, "עושה שלום")}),
+    "kaddish-shalem": ("קדיש שלם (תתקבל)", {"mizrach": ("mizrach-20", 4, "עושה שלום"), "sefard": ("sefard-36", 18, "עושה שלום")}),
+    "kaddish-derabanan": ("קדיש דרבנן (על ישראל)", {"mizrach": ("mizrach-36", 20, "יהא שלמא"), "sefard": ("sefard-24", 12, "עושה שלום")}),
+}
+KD_NOTE = {("kaddish-yatom", "mizrach"): "בסידור עדות המזרח הקדיש הזה נקרא קדיש ”יהא שלמא”."}
+KD_PAGES = {}
+for _slug, (_name, _by) in KD_CUT.items():
+    for n, (pid, lo, must) in _by.items():
+        _src = TEXTS[n][pid]
+        assert plain(_src[lo]).startswith("יתגדל ויתקדש"), (pid, lo)
+        hi = lo + 1
+        while hi < len(_src) and plain(_src[hi]).startswith(_KD_PARTS) and hi - lo < 8:
+            hi += 1
+        _body = plain(" ".join(_src[lo:hi]))
+        assert "ואמרו אמן" in _body and (not must or must in _body), (pid, lo, hi)
+        if _slug == "chatzi-kaddish":
+            assert "יהא שלמא" not in _body and "תתקבל" not in _body, pid
+        KD_PAGES[(_slug, n)] = (f"/{_slug}/{n}/", _name, pid, lo, hi)
+for (_slug, n), (me, _name, pid, lo, hi) in KD_PAGES.items():
+    _src = TEXTS[n][pid]
+    _others = [(KD_PAGES[(_slug, m)][0], m) for m in NISHMAT if m != n and (_slug, m) in KD_PAGES]
+    _nt = KD_NOTE.get((_slug, n), "")
+    page(me, f"{_name} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
+         fit_desc(f"{_name} בנוסח {NUS[n]}, בניקוד מלא", " ".join(_src[lo:lo + 1])),
+         _name.split(" (")[0], [("סידור", "/tefila/"), ("קדיש", "/kaddish/"), (f"נוסח {NUS[n]}", me)],
+         text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
+         meta=f'<b>נוסח {esc(NUS[n])}</b> · מתוך <a href="{PURL[pid]}">{esc(BYID[pid]["t"])}</a>',
+         before=(f'<p class="note">{esc(_nt)}</p>' if _nt else "") + ('<p class="note">נאמר על ידי האבלים, במניין.</p>' if _slug == "kaddish-yatom" else ""),
+         bar_extra='<nav class="nus" aria-label="אותו קדיש בנוסח אחר"><span>גם בנוסח</span>' + "".join(f'<a href="{h}">{esc(NUS[m])}</a>' for h, m in _others) + "</nav>" if _others else "",
+         after=chips("קדיש", [("/kaddish/", "כל סוגי הקדיש בעמוד אחד")]) + chips("בתוך סדר התפילה", [(PURL[pid], f'{BYID[pid]["t"]} · נוסח {NUS[n]}')]),
+         app_hash=f"p-{pid}", app_label="לתפילה המלאה באפליקציה",
+         ld=[{"@type": "CreativeWork", "name": _name, "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
+
 # ---------- kaddish: one page that names every kind and points to its text ----------
 _kd = [("קדיש יתום", "נאמר על ידי האבלים, במניין."), ("חצי קדיש", ""), ("קדיש שלם", ""), ("קדיש דרבנן", ""), ("קדיש דאתחדתא", ""), ("קדיש אחר השלמת מסכת", "")]
 _kd_items = [(t, note, next((p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] in PRIMARY), None) or next(p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] not in DUP_OF)) for t, note in _kd]
 _kd_html = '<ul class="list">' + "".join(f'<li><a href="{PURL[p["id"]]}">{esc(t)}<small>{esc(note or "הנוסח המלא בניקוד")}</small></a></li>' for t, note, p in _kd_items) + "</ul>"
 page("/kaddish/", f"קדיש: קדיש יתום, חצי קדיש, קדיש שלם וקדיש דרבנן בניקוד | {BRAND}",
-     "נוסח הקדיש המלא בניקוד: קדיש יתום, חצי קדיש, קדיש שלם (תתקבל), קדיש דרבנן וקדיש שאחרי סיום מסכת. לכל קדיש עמוד קריאה משלו, נוח לנייד ולהדפסה.",
+     "נוסח הקדיש המלא בניקוד, בנוסח אשכנז, עדות המזרח וספרד: קדיש יתום, חצי קדיש, קדיש שלם (תתקבל) וקדיש דרבנן. לכל קדיש עמוד קריאה משלו.",
      "קדיש", [("סידור", "/tefila/"), ("קדיש", "/kaddish/")],
-     after=_kd_html + '<div class="prose"><p><small>הנוסחים בעמודים האלה לקוחים מסידור נוסח אשכנז שבאתר. בנוסח עדות המזרח ובנוסח ספרד הקדיש מופיע בתוך סדר התפילה.</small></p></div>'
+     after='<h2 class="sec">נוסח אשכנז</h2>' + _kd_html
+           + "".join(f'<h2 class="sec">נוסח {esc(NUS[m])}</h2><ul class="list">' + "".join(f'<li><a href="{v[0]}">{esc(v[1])}<small>הנוסח המלא בניקוד</small></a></li>' for (s, mm), v in KD_PAGES.items() if mm == m) + "</ul>" for m in NISHMAT)
            + chips("בתוך סדר התפילה", [("/tefila/mizrach/shacharit/", "שחרית · נוסח עדות המזרח"), ("/tefila/sefard/shacharit/", "שחרית · נוסח ספרד"), ("/tefila/ashkenaz/shacharit/", "שחרית · נוסח אשכנז")])
            + chips("עוד באתר", [("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"), ("/kelim/shem/", "תהילים לפי אותיות השם")]),
      hub=True, prio="0.8", lead="כל סוגי הקדיש, לכל אחד עמוד קריאה משלו בניקוד מלא.",
-     ld=[collection("קדיש", "/kaddish/", [PURL[p["id"]] for _, _, p in _kd_items])])
+     ld=[collection("קדיש", "/kaddish/", [PURL[p["id"]] for _, _, p in _kd_items] + [v[0] for v in KD_PAGES.values()])])
 
 # ---------- at the Western Wall ----------
 # No composed "Kotel prayer" is printed here: none was found whose text can be read at its source and copied freely.

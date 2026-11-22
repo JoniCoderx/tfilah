@@ -1349,7 +1349,7 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # =====================================================================
 SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
 yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
-          + ('<a class="btn" href="/#zikaron">לפתיחת קריאה משותפת</a><small>פותחים קריאה, שולחים קישור, וכל אחד מקבל פרק.</small></div>' if SB_ON else
+          + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a><small>ממלאים שם, מקבלים קישור, ושולחים בוואטסאפ.</small></div>' if SB_ON else
              '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')
           + '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="steps">'
           '<li><b>פותחים קריאה</b><span>לרפואה, לעילוי נשמה או לכל בקשה אחרת, על שם האדם שקוראים בשבילו.</span></li>'

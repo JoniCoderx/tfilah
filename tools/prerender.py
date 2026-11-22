@@ -19,6 +19,7 @@ Run from the site root:  python3 tools/prerender.py
 Then check the output:   python3 tools/seo-audit.py
 """
 import json, os, re, html, datetime, hashlib
+from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -188,6 +189,23 @@ CSS_BLOCKS = [
 .text h2 a:hover{color:var(--stamp);text-decoration:underline}
 .text small{color:var(--ink2);font-size:.8em}
 .text big{font-size:1.15em}
+"""),
+("rgrid", """
+.sideacts{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .8rem}
+.sideacts button,.sideacts a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.3rem 1rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .93rem var(--f-ui);text-decoration:none;cursor:pointer;border-radius:999px}
+.sideacts button:hover,.sideacts a:hover{border-color:var(--stamp);color:var(--stamp)}
+@media (min-width:64rem){
+.rd main{max-width:76rem;padding:0 2.5rem 4.5rem}.rd .top .in,.rd footer .in{max-width:76rem;padding-inline:2.5rem}
+.rd .rhead{padding:2.25rem 0 2rem;margin-block-end:2.25rem;background:#F1F8FE;box-shadow:0 0 0 100vmax #F1F8FE;clip-path:inset(0 -100vmax)}
+.rd h1{font-size:clamp(3rem,4.6vw,4.4rem);margin:.5rem 0 .4rem}.rd h1 .ctx{font-size:1.1rem}.rd .lead{font-size:1.2rem;max-width:44rem;margin-block-end:0}.rd .meta{font-size:1rem}
+.rgrid{display:grid;grid-template-columns:minmax(0,1fr) 21rem;column-gap:3.5rem;align-items:start}
+.rmain{grid-column:1;grid-row:1;min-width:0}
+.rside{grid-column:2;grid-row:1;position:sticky;inset-block-start:calc(var(--top) + 1.5rem);max-block-size:calc(100vh - var(--top) - 3rem);overflow:auto;padding:1.25rem;border:1px solid var(--line);border-radius:1.75rem;background:var(--surface);box-shadow:var(--sh);scrollbar-width:thin}
+.rside>*:last-child{margin-block-end:0}.rside .bar{flex-wrap:wrap;margin-block-end:.8rem}.rside .sideacts{margin-block-end:0}.rside .svctoc{margin-block-start:0}
+.rd .text{max-width:none;margin:0;font-size:calc(var(--reading)*1.14);line-height:2;padding:3rem clamp(2.25rem,4vw,4rem) 3.25rem;border-radius:2.25rem}
+.rd .text p{margin-block-end:.8em}.rd .text h2{margin-block-start:1.8em}
+}
+@media print{.rside,.rhead .crumbs{display:none!important}.rgrid{display:block}}
 """),
 ("pager", """
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.5rem 0 0}
@@ -415,6 +433,10 @@ def og_for(path):
 _PRAYER_PATHS = set()
 
 
+JS_SIDE = (";(function(){var s=document.querySelector('.sideacts');if(!s)return;var tc=document.querySelector('.rside .svctoc');if(tc&&matchMedia('(min-width:64rem)').matches)tc.open=true;s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;"
+           "if(b.dataset.act==='print'){print()}else if(b.dataset.act==='copy'){var u=location.origin+location.pathname;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',u)})}})})();")
+
+
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
          app_label="לפתיחה באפליקציה", h1_ctx="", hub=False, ld=None, prio="0.6", script="", notfound=False):
     """text = the sacred text as an <article> body (reading pages); before/after = page chrome around it."""
@@ -438,12 +460,16 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     reading = ""
     if text:
         bar = f'<div class="bar">{TOOLS_HTML}{bar_extra}</div>'
-        reading = f'{bar}<article class="text" id="text">{text}</article><script>{JS_TOOLS}</script>'
+        # on a wide screen the text gets the main column and everything that serves it sits beside it
+        side = (f'<div class="rside">{before}{bar}<div class="sideacts"><button type="button" data-act="copy">העתקת קישור</button>'
+                f'<a data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " " + url)}">וואטסאפ</a><button type="button" data-act="print">הדפסה</button></div></div>')
+        reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article><script>{JS_TOOLS}{JS_SIDE}</script>{after}'
+                   + (f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else "") + '</div></div>')
     applink = f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else ""
     body = f"""<a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
 {NAV}</div></header>
-<main id="main"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}{before}{reading}{after}{applink}</main>
+<main id="main"><div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
 <nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
@@ -461,14 +487,14 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <meta property="og:type" content="{'website' if hub or notfound else 'article'}"><meta property="og:site_name" content="{BRAND}"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{SITE}/icons/{og_for(path)}.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FFFFFF"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FFFFFF"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/icons/favicon-96.png" type="image/png" sizes="96x96"><link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/icon-192.png">
 
 <style>{css_for(body)}</style><script>{JS_HEAD}</script>
 {FONT_HEAD}
 {''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False, separators=(",", ":"))}</script>' for x in lds)}
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){{navigator.serviceWorker.register("/sw.js").catch(function(){{}})}});</script>
-</head><body{' class="hub"' if hub else ''}>
+</head><body{' class="hub"' if hub else ' class="rd"' if text else ''}>
 {body}
 </body></html>
 """

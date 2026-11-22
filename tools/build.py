@@ -29,7 +29,7 @@ TITLE = "תפילה | סידור, תהילים וקריאת תהילים משו�
 head = f"""<!doctype html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><script>try{{if(JSON.parse(localStorage.getItem("dark")||"false"))document.documentElement.dataset.theme="dark"}}catch(e){{}}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{TITLE}</title>
 <meta name="description" content="{DESC}">
@@ -85,7 +85,7 @@ _groups = [
             (27, "כז"), (30, "ל"), (91, "צא"), (121, "קכא"), (119, "קיט"), (13, "יג"), (145, "קמה"), (142, "קמב"), (24, "כד"), (16, "טז"), (67, "סז"), (51, "נא"))]),
     ("ספרייה וכלים", [("/sefer/", "ספרייה"), ("/sefer/avot/", "פרקי אבות"), ("/sefer/shir/", "שיר השירים"), ("/sefer/esther/", "מגילת אסתר"),
         ("/sefer/perek/", "פרק שירה"), ("/kelim/", "כלים אישיים"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"),
-        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/perek-shira/", "פרק שירה"), ("/parasha/", "פרשת השבוע"), ("/ma-mevarchim/", "מה מברכים על"), ("/zmanei-hayom/", "זמני היום לפי עיר"), ("/zmanei-hayom/jerusalem/", "זמני היום בירושלים"), ("/zmanei-hayom/tel-aviv/", "זמני היום בתל אביב"), ("/zmanei-shabbat/", "זמני שבת"), ("/chanukah/", "ברכות הדלקת נרות חנוכה"), ("/odot/", "אודות ומקורות"), ("/pratiyut/", "פרטיות"), ("/tnaim/", "תנאי שימוש"), ("/negishut/", "הצהרת נגישות"),
+        ("/kelim/bday/", "יום הולדת עברי לפי לועזי"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/kelim/shem/", "תהילים קיט לפי שם"), ("/perek-shira/", "פרק שירה"), ("/kotel/", "תפילה בכותל המערבי"), ("/parasha/", "פרשת השבוע"), ("/ma-mevarchim/", "מה מברכים על"), ("/zmanei-hayom/", "זמני היום לפי עיר"), ("/zmanei-hayom/jerusalem/", "זמני היום בירושלים"), ("/zmanei-hayom/tel-aviv/", "זמני היום בתל אביב"), ("/zmanei-shabbat/", "זמני שבת"), ("/chanukah/", "ברכות הדלקת נרות חנוכה"), ("/odot/", "אודות ומקורות"), ("/pratiyut/", "פרטיות"), ("/tnaim/", "תנאי שימוש"), ("/negishut/", "הצהרת נגישות"),
         ("/zmanei-shabbat/jerusalem/", "זמני שבת בירושלים"), ("/zmanei-shabbat/tel-aviv/", "זמני שבת בתל אביב"), ("/zmanei-shabbat/haifa/", "זמני שבת בחיפה")]),
 ]
 SEO_NAV = ('<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols">'

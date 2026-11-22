@@ -159,8 +159,10 @@ footer .sig{font-family:var(--f-disp);font-weight:900;font-size:1.15rem;color:va
 footer .sig span{font-family:var(--f-ui);font-weight:400;font-size:.88rem;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;margin-inline:-.5rem}
 footer nav a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.5rem;color:var(--ink2)}
-@media (max-width:26rem){.top .in{padding-inline:.75rem;gap:.25rem}.logo svg{height:1.625rem}.top nav a{padding-inline:.4rem;font-size:.9rem}main{padding-inline:.75rem}}
-@media (max-width:21.5rem){.logo svg{height:1.4rem}.top nav a{padding-inline:.3rem;font-size:.84rem}}
+@media (max-width:28rem){.top .in{padding-inline:.75rem;gap:.25rem}.logo svg{height:1.625rem}.top nav{margin-inline-end:-.25rem}.top nav a{padding-inline:.4rem;font-size:.9rem}}
+@media (max-width:26rem){main{padding-inline:.75rem}}
+@media (max-width:23.9rem){.logo svg{height:1.45rem}.top nav{margin-inline-end:0}.top nav a{padding-inline:.28rem;font-size:.86rem}}
+@media (max-width:21.5rem){.top .in{padding-inline:.6rem}.logo svg{height:1.3rem}.top nav a{padding-inline:.2rem;font-size:.8rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 @media print{.top,.bar,.pager,.together,.applink,.related,footer nav,.skip{display:none}.text{border:0;padding:0;box-shadow:none}}
 """
@@ -191,13 +193,15 @@ CSS_BLOCKS = [
 .text big{font-size:1.15em}
 """),
 ("rgrid", """
-.acts{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:0 0 .8rem}
+.acts{display:flex;flex-wrap:nowrap;align-items:center;gap:.4rem;margin:0 0 .8rem}
 .acts a,.acts button{display:inline-flex;align-items:center;gap:.4rem;min-height:2.75rem;padding:.3rem .9rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .93rem var(--f-ui);text-decoration:none;cursor:pointer;border-radius:999px}
 .acts a:hover,.acts button:hover{border-color:var(--stamp);color:var(--stamp)}.acts .wa{background:#0B6B38;border-color:#0B6B38;color:#fff}.acts .wa:hover{background:#08542C;border-color:#08542C;color:#fff}
 .acts button.ok,.acts button[aria-pressed=true]{background:#E1F2FE;border-color:#9CC9E8;color:#0B3F6E}.acts button[aria-pressed=true] svg{fill:currentColor}
-.acts .vcount{font:600 .85rem var(--f-ui);color:var(--muted);margin-inline-start:.3rem}
+.vcount{font:600 .85rem var(--f-ui);color:var(--muted);margin:-.4rem 0 .8rem}
+.acts a,.acts button{white-space:nowrap;justify-content:center}
 @media print{.acts{display:none!important}}
-@media (max-width:30rem){.acts [data-act=print] span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}.acts [data-act=print]{padding-inline:.75rem}}
+/* phones: the buttons always share one row and never wrap */
+@media (max-width:30rem){.acts{gap:.3rem}.acts a,.acts button{flex:1 1 auto;min-inline-size:0;padding-inline:.5rem;gap:.3rem;font-size:.9rem}.acts [data-act=print] span{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%)}.acts [data-act=print]{flex:0 0 2.75rem;padding-inline:0}}
 .sidebar{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:0 0 .6rem}.sidebar .bar{margin:0;min-height:0;flex:0 1 auto}
 .sideacts{display:flex;gap:.35rem;margin:0}
 .sideacts button,.sideacts a{display:grid;place-items:center;inline-size:2.75rem;block-size:2.75rem;padding:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;border-radius:999px}
@@ -469,7 +473,7 @@ JS_SIDE = (";(function(){var s=document.querySelector('.acts');if(!s)return;var 
            "s.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var a=b.dataset.act;"
            "if(a==='print'){print()}else if(a==='save'){var f=fv(),k=f.indexOf(b.dataset.id);if(k>=0)f.splice(k,1);else f.push(b.dataset.id);try{localStorage.setItem('favs',JSON.stringify(f))}catch(x){}paint()}"
            "else if(a==='copy'){var u=location.origin+P,l=b.querySelector('span');(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.classList.add('ok');l.textContent='הועתק';setTimeout(function(){b.classList.remove('ok');l.textContent='קישור'},1800)},function(){prompt('הקישור:',u)})}});"
-           "try{var vc=s.querySelector('.vcount'),k='tfv'+P,seen=sessionStorage.getItem(k);if(!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent))"
+           "try{var vc=document.querySelector('.vcount'),k='tfv'+P,seen=sessionStorage.getItem(k);if(!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent))"
            "fetch('/api/views'+(seen?'?p='+encodeURIComponent(P):''),seen?{}:{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({p:P})}).then(function(r){return r.json()}).then(function(d){sessionStorage.setItem(k,'1');"
            "if(vc&&d.n>=VIEWS_MIN){vc.textContent='נפתח '+d.n.toLocaleString('he-IL')+' פעמים';vc.hidden=false}}).catch(function(){})}catch(e){}})();".replace("VIEWS_MIN", str(VIEWS_MIN)))
 IC_STAR = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>'
@@ -504,7 +508,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
         _save = f'<button type="button" data-act="save" data-id="{app_hash[2:]}" aria-pressed="false">{IC_STAR}<span>שמירה</span></button>' if app_hash.startswith("p-") else ""
         acts = (f'<div class="acts" role="group" aria-label="שיתוף ושמירה"><a class="wa" data-act="wa" target="_blank" rel="noopener" href="https://wa.me/?text={quote(h1 + " | תפילה " + url)}" aria-label="שיתוף בוואטסאפ">{IC_WA}<span>שיתוף</span></a>'
                 f'<button type="button" data-act="copy" aria-label="העתקת קישור">{IC_COPY}<span>קישור</span></button>{_save}'
-                f'<button type="button" data-act="print" aria-label="הדפסה או שמירה כ-PDF">{IC_PRINT}<span>הדפסה</span></button><span class="vcount" hidden></span></div>')
+                f'<button type="button" data-act="print" aria-label="הדפסה או שמירה כ-PDF">{IC_PRINT}<span>הדפסה</span></button></div><p class="vcount" hidden></p>')
         side = (f'<div class="rside">{acts}{before}<div class="sidebar">{bar}</div></div>'
                 # what a printed copy or a saved PDF carries: the site's mark and address at the top, and the page address at the end
                 )

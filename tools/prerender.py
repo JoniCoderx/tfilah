@@ -122,7 +122,7 @@ a:hover{color:var(--ink)}
 [hidden]{display:none!important}
 .skip{position:absolute;inset-block-start:-5rem;inset-inline-start:.5rem;z-index:10;background:var(--ink);color:#fff;padding:.7rem 1.1rem;font-weight:700;text-decoration:none;border-radius:999px}
 .skip:focus{inset-block-start:.5rem;color:#fff}
-.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(255,255,255,.94);border-block-end:1px solid var(--line)}.top::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:160px;background:#fff;pointer-events:none}
+.top{position:sticky;inset-block-start:0;z-index:5;background:rgba(255,255,255,.94);border-block-end:1px solid var(--line)}.dkt{flex:none;display:inline-grid;place-items:center;inline-size:2.75rem;block-size:2.75rem;border:1px solid var(--line);border-radius:999px;background:none;color:inherit;cursor:pointer;margin-inline-start:.25rem}.dkt[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}header.top nav{margin-inline-end:0}@media(max-width:33rem){.dkt{inline-size:2.25rem;block-size:2.25rem;margin-inline-start:0}header.top .in{gap:.2rem}header.top nav a{padding-inline:.3rem;font-size:.86rem}header.top .logo svg{height:1.45rem}}@media(max-width:23.5rem){.dkt{inline-size:2rem;block-size:2rem}header.top .in{padding-inline:.5rem;gap:.1rem}header.top nav a{padding-inline:.17rem;font-size:.78rem}header.top .logo svg{height:1.25rem}}@media(max-width:21rem){header.top .in{padding-inline:.4rem;gap:0}header.top nav a{padding-inline:.1rem;font-size:.76rem}header.top .logo svg{height:1.15rem}}.top::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:160px;background:#fff;pointer-events:none}
 .top .in{max-width:40rem;margin-inline:auto;padding-inline:1rem;min-height:var(--top);display:flex;align-items:center;gap:.5rem}
 .logo{display:inline-flex;align-items:center;min-height:2.75rem;flex:none}
 .logo svg{display:block;height:1.875rem;width:auto}
@@ -530,7 +530,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     applink = f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else ""
     body = f"""<a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
-{NAV}</div></header>
+{NAV}<button class="dkt" type="button" data-dark aria-pressed="false" aria-label="מצב לילה"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></div></header>
 <main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
 <nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>

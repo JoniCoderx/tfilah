@@ -1574,7 +1574,7 @@ function setNus(v){if(!NUS.some(x=>x[0]===v)||v===nus)return;const from=nus;nus=
 $('#nus').addEventListener('change',e=>setNus(e.target.value));
 const LOGO_HTML=(document.querySelector('header .logo')||{}).innerHTML||'';
 const footer=()=>`<footer class="sitefoot"><div class="fcols"><div class="fbrand"><a class="flogo" href="#home" aria-label="תפילה, לדף הבית">${LOGO_HTML}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
-  <nav aria-label="ניווט באתר"><a href="#siddur">סידור תפילה</a><a href="#tehillim">ספר תהילים</a><a href="#kli-shem">תהילים לפי שם</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
+  <nav aria-label="ניווט באתר"><a href="#siddur">סידור תפילה</a><a href="#tehillim">ספר תהילים</a><a href="#kli-shem">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
   <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="#tmicha">תמיכה באתר</a></nav></div>
   ${DONATE_URL?'<p class="fsup">תפילה עוזרת לכם? <a href="#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>':''}
   <p class="fcredit">הנוסחים מבוססים על מהדורות פתוחות מהארכיון של ספריא: עדות המזרח וספרד (תורת אמת, נחלת הכלל), אשכנז (דעת, נחלת הכלל) עם השלמות מסידור מצודה (CC-BY). תהילים: Tanach.us (נחלת הכלל). לוח עברי: Hebcal.</p>

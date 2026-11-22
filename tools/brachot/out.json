@@ -1,0 +1,5857 @@
+{
+"foods": [
+{
+"id": "lechem",
+"icon": 0,
+"name": "לחם",
+"alias": [
+"פרוסת לחם",
+"לחם אחיד",
+"לחם מלא",
+"לחם לבן"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"H",
+"K",
+"P4-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"status": "ok"
+},
+{
+"id": "challah",
+"icon": 1,
+"name": "חלה",
+"alias": [
+"חלה רגילה",
+"בגט",
+"לחמנייה",
+"לחמניה"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"H",
+"P4-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"status": "ok"
+},
+{
+"id": "pita",
+"icon": 2,
+"name": "פיתה",
+"alias": [
+"פיתות",
+"לאפה",
+"פיתה עיראקית"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"H",
+"P4-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"status": "ok"
+},
+{
+"id": "bagel",
+"icon": 3,
+"name": "בייגל",
+"alias": [
+"בייגל לחם"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"H"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"status": "ok"
+},
+{
+"id": "toast",
+"icon": 4,
+"name": "טוסט",
+"alias": [
+"צנים",
+"צנימים",
+"כריך",
+"סנדוויץ",
+"סנדביץ"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"H",
+"P3-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את המילוי ואת כל מה שנאכל לשובע בסעודה. קינוח, כמו פרי או גלידה, מצריך ברכה ראשונה משלו.",
+"status": "ok"
+},
+{
+"id": "shawarma-pita",
+"icon": 5,
+"name": "שווארמה בפיתה או בלאפה",
+"alias": [
+"שווארמה בפיתה",
+"שווארמה בלאפה",
+"שוארמה בפיתה",
+"שוארמה בלאפה",
+"שורמה בפיתה",
+"שורמה בלאפה",
+"מנת שווארמה"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P3-6",
+"P4-6",
+"P2-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את המילוי ואת כל מה שנאכל לשובע בסעודה. קינוח, כמו פרי או גלידה, מצריך ברכה ראשונה משלו.",
+"status": "ok"
+},
+{
+"id": "shawarma-plate",
+"icon": 6,
+"name": "שווארמה בצלחת",
+"alias": [
+"שוארמה בצלחת",
+"שורמה בצלחת",
+"שווארמה בלי לחם",
+"שווארמה לבד"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "בלי פיתה ובלי לחם מברכים על הבשר עצמו. תוספות כמו צ׳יפס או אורז: ראו בערך שלהן.",
+"status": "ok"
+},
+{
+"id": "falafel-pita",
+"icon": 7,
+"name": "פלאפל בפיתה",
+"alias": [
+"מנת פלאפל",
+"פלאפל בלאפה",
+"חצי מנה פלאפל"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P3-6",
+"P4-6",
+"P2-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את המילוי ואת כל מה שנאכל לשובע בסעודה. קינוח, כמו פרי או גלידה, מצריך ברכה ראשונה משלו.",
+"status": "ok"
+},
+{
+"id": "falafel-balls",
+"icon": 7,
+"name": "פלאפל בלי פיתה",
+"alias": [
+"פלאפל לבד",
+"כדורי פלאפל",
+"פלאפל בצלחת"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "shehakol",
+"after": null,
+"text": "כך נוהגים, כי החומוס מעורב ואינו ניכר. מי שבירך האדמה יצא."
+},
+{
+"who": "הידברות",
+"before": "shehakol",
+"after": "nefashot",
+"text": ""
+}
+],
+"src": [
+"P8-12",
+"H"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "hamburger-bun",
+"icon": 8,
+"name": "המבורגר בלחמנייה",
+"alias": [
+"המבורגר בלחמניה",
+"נקניקייה בלחמנייה",
+"הוט דוג",
+"נקניקיה בלחמניה"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P3-6",
+"P4-6",
+"P2-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את המילוי ואת כל מה שנאכל לשובע בסעודה. קינוח, כמו פרי או גלידה, מצריך ברכה ראשונה משלו.",
+"status": "ok"
+},
+{
+"id": "hamburger-plate",
+"icon": 9,
+"name": "המבורגר בלי לחמנייה",
+"alias": [
+"המבורגר בצלחת",
+"קציצה בצלחת",
+"המבורגר לבד"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "sabich-pita",
+"icon": 5,
+"name": "סביח בפיתה",
+"alias": [
+"סביח בלאפה",
+"מנת סביח"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"MVs",
+"P3-6"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את החציל, הביצה, הסלט והטחינה.",
+"status": "ok"
+},
+{
+"id": "sabich-plate",
+"icon": 10,
+"name": "סביח בצלחת",
+"alias": [
+"סביח בלי פיתה",
+"סביח לבד"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": null,
+"after": "nefashot",
+"text": "האדמה על החציל המטוגן ושהכל על הביצה: כשלכל מאכל חשיבות משלו, מברכים על כל אחד את ברכתו. הטחינה והעמבה טפלות."
+}
+],
+"src": [
+"P11-5",
+"P8-3",
+"P11-1",
+"P10-4"
+],
+"cond": "פניני הלכה אינו מזכיר סביח בשמו. אלה הכללים שלו למרכיבים.",
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "yayin",
+"icon": 11,
+"name": "יין",
+"alias": [
+"יין אדום",
+"יין לבן"
+],
+"before": "gefen",
+"after": "hagefen",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "mitz-anavim",
+"icon": 12,
+"name": "מיץ ענבים",
+"alias": [
+"תירוש"
+],
+"before": "gefen",
+"after": "hagefen",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "anavim",
+"icon": 12,
+"name": "ענבים",
+"alias": [
+"ענב"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "tzimukim",
+"icon": 12,
+"name": "צימוקים",
+"alias": [
+"צימוק"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "zeitim",
+"icon": 13,
+"name": "זיתים",
+"alias": [
+"זית"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים. גם כבושים או מבושלים.",
+"status": "ok"
+},
+{
+"id": "tmarim",
+"icon": 14,
+"name": "תמרים",
+"alias": [
+"תמר"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "teena",
+"icon": 15,
+"name": "תאנה",
+"alias": [
+"תאנים",
+"תאנה מיובשת"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "rimon",
+"icon": 16,
+"name": "רימון",
+"alias": [
+"רימונים"
+],
+"before": "etz",
+"after": "haetz",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "tapuach",
+"icon": 17,
+"name": "תפוח",
+"alias": [
+"תפוח עץ",
+"תפוחים"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "agas",
+"icon": 18,
+"name": "אגס",
+"alias": [
+"אגסים",
+"חבוש"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tapuz",
+"icon": 19,
+"name": "תפוז",
+"alias": [
+"תפוזים",
+"קלמנטינה",
+"מנדרינה",
+"אשכולית",
+"פומלה"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "afarsek",
+"icon": 20,
+"name": "אפרסק",
+"alias": [
+"נקטרינה",
+"משמש",
+"שזיף",
+"אפרסמון",
+"משמש יבש"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "mango",
+"icon": 21,
+"name": "מנגו",
+"alias": [
+"גויאבה"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "avocado",
+"icon": 22,
+"name": "אבוקדו",
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "duvdevan",
+"icon": 23,
+"name": "דובדבן",
+"alias": [
+"דובדבנים"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kiwi",
+"icon": 24,
+"name": "קיווי",
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "uchmaniyot",
+"icon": 25,
+"name": "אוכמניות",
+"alias": [
+"פטל"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "sabres",
+"icon": 26,
+"name": "סברס",
+"alias": [
+"צבר"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kokus",
+"icon": 27,
+"name": "קוקוס",
+"alias": [
+"אגוז קוקוס"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "חלב קוקוס לבדו: שהכל.",
+"status": "ok"
+},
+{
+"id": "egozim",
+"icon": 28,
+"name": "אגוזים",
+"alias": [
+"אגוזי מלך",
+"פקאן",
+"קשיו",
+"פיסטוק",
+"צנובר",
+"מקדמיה",
+"ערמונים",
+"אגוז ברזיל"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "shkedim",
+"icon": 28,
+"name": "שקדים",
+"alias": [
+"שקד"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "charuv",
+"icon": 29,
+"name": "חרוב",
+"alias": [
+"חרובים"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "litchi",
+"icon": 23,
+"name": "ליצ׳י",
+"alias": [
+"שסק",
+"אנונה",
+"קרמבולה",
+"פיג׳ויה",
+"פיטנגה",
+"אתרוג"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tut-etz",
+"icon": 25,
+"name": "תות עץ",
+"alias": [
+"תות עץ לבן",
+"תותי עץ"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"K",
+"KV:תות-עץ"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "banana",
+"icon": 30,
+"name": "בננה",
+"alias": [
+"בננות",
+"בננה צ׳יפס"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "avatiach",
+"icon": 31,
+"name": "אבטיח",
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "melon",
+"icon": 32,
+"name": "מלון",
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tut-sade",
+"icon": 33,
+"name": "תות שדה",
+"alias": [
+"תותים",
+"תותי שדה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "ananas",
+"icon": 34,
+"name": "אננס",
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "agvania",
+"icon": 35,
+"name": "עגבנייה",
+"alias": [
+"עגבניה",
+"עגבניות",
+"עגבניות שרי"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "רסק עגבניות: שהכל.",
+"status": "ok"
+},
+{
+"id": "melafefon",
+"icon": 36,
+"name": "מלפפון",
+"alias": [
+"מלפפון חמוץ",
+"חמוצים"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "gezer",
+"icon": 37,
+"name": "גזר",
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "pilpel",
+"icon": 38,
+"name": "פלפל",
+"alias": [
+"גמבה",
+"פלפל אדום"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "chatzil",
+"icon": 10,
+"name": "חציל",
+"alias": [
+"חצילים",
+"חציל מטוגן"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P11-5"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "גם חצילים מטוגנים בציפוי קמח או פירורי לחם: כך המנהג.",
+"status": "ok"
+},
+{
+"id": "chasa",
+"icon": 39,
+"name": "חסה",
+"alias": [
+"כרוב",
+"סלרי"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "batzal",
+"icon": 40,
+"name": "בצל",
+"alias": [
+"בצל ירוק"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "dlaat",
+"icon": 41,
+"name": "דלעת",
+"alias": [
+"קישוא",
+"קישואים",
+"סלק",
+"קולורבי",
+"צנון",
+"שומר"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "afuna",
+"icon": 42,
+"name": "אפונה",
+"alias": [
+"שעועית",
+"עדשים",
+"פול"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "brokoli",
+"icon": 43,
+"name": "ברוקולי",
+"alias": [
+"כרובית",
+"תרד",
+"ארטישוק",
+"אספרגוס",
+"במיה",
+"לפת",
+"דלורית"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "petrozilia",
+"icon": 44,
+"name": "פטרוזיליה",
+"alias": [
+"כוסברה",
+"עשבי תיבול"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "turmus",
+"icon": 45,
+"name": "תורמוס",
+"alias": [
+"לוביה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "salat-yerakot",
+"icon": 46,
+"name": "סלט ירקות",
+"alias": [
+"סלט",
+"סלט קצוץ",
+"סלט ערבי"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "סלט טונה או סלט ביצים: שהכל.",
+"status": "ok"
+},
+{
+"id": "tapuach-adama",
+"icon": 47,
+"name": "תפוח אדמה",
+"alias": [
+"תפוחי אדמה",
+"תפוד",
+"פירה",
+"מחית תפוחי אדמה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P8-12"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "גם פירה מתפוחי אדמה. פירה מאבקה: נוהגים להורות שהכל, והרוצה רשאי לברך האדמה.",
+"status": "ok"
+},
+{
+"id": "chips",
+"icon": 48,
+"name": "צ׳יפס",
+"alias": [
+"ציפס",
+"טוגנים"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P8-12"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tapuchips",
+"icon": 49,
+"name": "תפוצ׳יפס",
+"alias": [
+"תפוציפס",
+"רפלס",
+"מקלוני צ׳יפס"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "חטיף מפרוסות או מחתיכות של תפוח אדמה.",
+"status": "ok"
+},
+{
+"id": "tiras",
+"icon": 50,
+"name": "תירס",
+"alias": [
+"קלח תירס",
+"תירס מתוק",
+"גרגירי תירס"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "botnim",
+"icon": 51,
+"name": "בוטנים",
+"alias": [
+"בוטן"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "sumsum",
+"icon": 52,
+"name": "שומשום",
+"alias": [
+"שומשום בדבש"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "bamba",
+"icon": 53,
+"name": "במבה",
+"alias": [
+"חטיף במבה",
+"bamba"
+],
+"ops": [
+{
+"who": "הרב יצחק יוסף (ילקוט יוסף); לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": "העיקר הוא התירס והחטיף עשוי לשם כך. לדבריו כך הדין גם לאשכנזים, וגם אביו הרב עובדיה יוסף הסכים לכך."
+},
+{
+"who": "הלכה ברורה חלק י, כפי שמובא בהידברות; הרב דוד יוסף, כפי שמובא בלוח מכון זר זהב",
+"before": "shehakol",
+"after": null,
+"text": "מי שבירך האדמה יצא."
+},
+{
+"who": "פניני הלכה",
+"before": "shehakol",
+"after": null,
+"text": "התירס וחמאת הבוטנים רוסקו לגמרי."
+},
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "shehakol",
+"after": "nefashot",
+"text": "כך מנהג העולם. בורא נפשות אחרי חמש עד עשר חתיכות."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"YY",
+"HQ",
+"P8-10",
+"Dbamba",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "shalva",
+"icon": 54,
+"name": "שלווה",
+"alias": [
+"שלווה חיטה תפוחה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-13"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "מעט חלב נפטר בברכת המזונות.",
+"status": "ok"
+},
+{
+"id": "prichiyot-chita",
+"icon": 55,
+"name": "פריכיות חיטה",
+"alias": [
+"פריכיות מחיטה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-13"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "hummus",
+"icon": 56,
+"name": "חומוס (ממרח)",
+"alias": [
+"ממרח חומוס",
+"סלט חומוס",
+"חומוס בצלחת"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "adama",
+"after": "nefashot",
+"text": "הכול יודעים שהוא חומוס ושמו נשאר עליו."
+},
+{
+"who": "לוח מכון זר זהב: חומוס, גם מרוסק",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "shehakol",
+"after": "nefashot",
+"text": "סלט חומוס טחון. חומוס שלם: האדמה."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": "כשהוא מרוסק."
+}
+],
+"src": [
+"P8-12",
+"P10-4",
+"KV",
+"Dhumus",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "hummus-garg",
+"icon": 45,
+"name": "גרגירי חומוס",
+"alias": [
+"חומוס גרגירים",
+"חומוס שלם",
+"ארבס"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "hummus-mana",
+"icon": 56,
+"name": "מנת חומוס עם פיתה",
+"alias": [
+"חומוס עם פיתה",
+"חומוס בפיתה",
+"ניגוב חומוס"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P3-6",
+"MV:ma-mevarchim-al-humus"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "הלחם הוא העיקר, וברכת המוציא פוטרת את החומוס.",
+"status": "ok"
+},
+{
+"id": "burgul",
+"icon": 57,
+"name": "בורגול",
+"alias": [
+"בורגול מבושל",
+"בורגול מושרה",
+"גריסים"
+],
+"ops": [
+{
+"who": "פניני הלכה; אתר דין; הרב הלל מאירס; לוח מכון זר זהב: בורגול מבושל",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה כשאכלו כזית."
+},
+{
+"who": "הרב בן ציון מוצפי; אתר דין: בורגול מושרה שלא בושל",
+"before": "adama",
+"after": "nefashot",
+"text": "כשהתרכך ונדבק: מזונות."
+},
+{
+"who": "הלכה יומית, פסקי הרב עובדיה יוסף",
+"before": null,
+"after": null,
+"text": "דגן שלם: כשהגרעינים נדבקו זה לזה מזונות, ואחרת האדמה."
+}
+],
+"src": [
+"P6-1",
+"Dburgul",
+"Dburgul2",
+"Hburgul",
+"Zburgul",
+"HY772",
+"KV"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "kusemet",
+"icon": 57,
+"name": "כוסמת מבושלת",
+"alias": [
+"כוסמת",
+"קאשה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"Hkusemet",
+"KPk"
+],
+"cond": "הכוסמת של ימינו אינה מחמשת מיני דגן. גם מבושלת: האדמה. מאפה מקמח כוסמת: שאלו רב.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "schnitzel",
+"icon": 58,
+"name": "שניצל עוף",
+"alias": [
+"שניצל",
+"שניצל דג",
+"שניצלונים",
+"שניצל מטוגן"
+],
+"ops": [
+{
+"who": "פניני הלכה, וכך למעשה לפי רוב הפוסקים (שבט הלוי, ילקוט יוסף ועוד)",
+"before": "shehakol",
+"after": null,
+"text": "הציפוי הוא תוספת חיצונית שמטעימה את הבשר, והבשר נשאר העיקר."
+},
+{
+"who": "כיפה, הרב שמואל אליהו; הידברות",
+"before": "shehakol",
+"after": "nefashot",
+"text": "בהידברות: בורא נפשות."
+},
+{
+"who": "יש אומרים (אור לציון, ברכת ה׳, פתחי הלכה)",
+"before": "mezonot",
+"after": null,
+"text": "כי מטרת הציפוי להטעים את הבשר."
+},
+{
+"who": "יש אומרים (וזאת הברכה)",
+"before": "mezonot",
+"after": null,
+"text": "רק כשהציפוי עבה."
+},
+{
+"who": "יש אומרים (קרן לדוד, להורות נתן)",
+"before": null,
+"after": null,
+"text": "כשהציפוי עבה מברכים שתי ברכות."
+}
+],
+"src": [
+"P11-5",
+"P11-5x",
+"K",
+"H"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "schnitzel-pita",
+"icon": 5,
+"name": "שניצל בפיתה",
+"alias": [
+"שניצל בלאפה",
+"שניצל בבאגט"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P3-6",
+"MV:ma-mevarchim-al-schnitzel",
+"KV"
+],
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את השניצל שבפנים.",
+"status": "ok"
+},
+{
+"id": "mastik",
+"icon": 59,
+"name": "מסטיק",
+"alias": [
+"גומי לעיסה",
+"מסטיק בלי סוכר",
+"מסטיק עם טעם"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "shehakol",
+"after": null,
+"text": "מי שלועס מסטיק מתכוון ליהנות מהטעם. יש סוברים שאין לברך עליו (ישכיל עבדי), ולהלכה מברכים, וכן המנהג."
+},
+{
+"who": "הרב בנימין שמואלי, הידברות",
+"before": null,
+"after": "none",
+"text": "מברכים רק ברכה ראשונה ולא ברכה אחרונה."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "shehakol",
+"after": "none",
+"text": ""
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": "מסטיק בלי טעם: אין מברכים."
+}
+],
+"src": [
+"P9-1",
+"Hgum",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "bisli",
+"icon": 60,
+"name": "ביסלי",
+"alias": [
+"חטיף חיטה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H",
+"K",
+"P6-10"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "עשוי מקמח חיטה, בכל הטעמים. גם כשקובעים עליו סעודה.",
+"status": "ok"
+},
+{
+"id": "beigale",
+"icon": 61,
+"name": "בייגלה",
+"alias": [
+"ביגלה",
+"בייגלך",
+"כעכים",
+"כעך"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "uga",
+"icon": 62,
+"name": "עוגה",
+"alias": [
+"עוגות",
+"עוגת שוקולד",
+"עוגה בחושה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "כשהקמח ניתן לטעם. עוגה שהקמח בה רק מדבק או מייצב: שהכל.",
+"status": "ok"
+},
+{
+"id": "biskvit",
+"icon": 63,
+"name": "ביסקוויט",
+"alias": [
+"ביסקוויטים",
+"עוגיות",
+"עוגיה",
+"פתי בר",
+"פתיבר"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "vaflim",
+"icon": 64,
+"name": "ופלים",
+"alias": [
+"וופלים",
+"ופל",
+"גלילית"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kreker",
+"icon": 65,
+"name": "קרקר",
+"alias": [
+"קרקרים"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "baklava",
+"icon": 66,
+"name": "בקלאווה",
+"alias": [
+"בקלווה",
+"שטרודל"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"H"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "pasta",
+"icon": 67,
+"name": "פסטה",
+"alias": [
+"ספגטי",
+"מקרוני",
+"אטריות",
+"פארפל"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K",
+"P6-10"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "גם כשקובעים עליה סעודה.",
+"status": "ok"
+},
+{
+"id": "kuskus",
+"icon": 57,
+"name": "קוסקוס",
+"alias": [
+"פתיתים"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K",
+"P6-10"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "blintzes",
+"icon": 68,
+"name": "בלינצ׳ס",
+"alias": [
+"חביתיות",
+"בלינצס"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kugel-itriyot",
+"icon": 67,
+"name": "קוגל אטריות",
+"alias": [
+"קוגל ירושלמי"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-10"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "גם כשקובעים עליו סעודה.",
+"status": "ok"
+},
+{
+"id": "friksa",
+"icon": 69,
+"name": "פריקסה",
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "zalabia",
+"icon": 70,
+"name": "זלאביה",
+"alias": [
+"ז׳לאביה",
+"זנגולה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "shkedei-marak",
+"icon": 54,
+"name": "שקדי מרק",
+"before": "mezonot",
+"after": "michya",
+"src": [
+"K",
+"P6-10"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "orez",
+"icon": 71,
+"name": "אורז",
+"alias": [
+"אורז לבן",
+"אורז מלא",
+"אורז מבושל"
+],
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P8-13"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "לפניו מזונות, ואחריו בורא נפשות ולא על המחיה.",
+"status": "ok"
+},
+{
+"id": "of",
+"icon": 72,
+"name": "עוף",
+"alias": [
+"חזה עוף",
+"שוקיים",
+"פרגית"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "basar",
+"icon": 9,
+"name": "בשר",
+"alias": [
+"סטייק",
+"קציצות",
+"קבב",
+"כבד",
+"אנטריקוט"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "naknik",
+"icon": 73,
+"name": "נקניקיות",
+"alias": [
+"נקניק",
+"נקניקיה",
+"פסטרמה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "dag",
+"icon": 74,
+"name": "דג",
+"alias": [
+"דגים",
+"טונה",
+"סלמון",
+"דג מטוגן"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "גם דג מטוגן בציפוי של פירורי לחם.",
+"status": "ok"
+},
+{
+"id": "beitza",
+"icon": 75,
+"name": "ביצה",
+"alias": [
+"ביצים",
+"חביתה",
+"ביצה קשה",
+"ביצת עין"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "gvina",
+"icon": 76,
+"name": "גבינה",
+"alias": [
+"גבינה צהובה",
+"קוטג׳",
+"קוטג",
+"חמאה",
+"גבינה לבנה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "maadan",
+"icon": 77,
+"name": "מעדן",
+"alias": [
+"מילקי",
+"פודינג",
+"ג׳לי",
+"גלי"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tchina",
+"icon": 78,
+"name": "טחינה",
+"alias": [
+"חלווה",
+"חלבה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "pitriyot",
+"icon": 79,
+"name": "פטריות",
+"alias": [
+"פטריה",
+"כמהין"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tofu",
+"icon": 80,
+"name": "טופו",
+"alias": [
+"סויה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "shokolad",
+"icon": 81,
+"name": "שוקולד",
+"alias": [
+"שוקולד פרה",
+"טבלת שוקולד",
+"שוקולד מריר",
+"שוקולד עם אגוזים",
+"שוקולד אגוזים"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P8-11",
+"P11-8"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "כך נוהגים. יש סוברים העץ, ומי שבירך העץ יצא.",
+"status": "ok"
+},
+{
+"id": "sukariyot",
+"icon": 59,
+"name": "סוכריות",
+"alias": [
+"סוכריה",
+"סוכרייה",
+"טופי",
+"מרשמלו"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "dvash",
+"icon": 70,
+"name": "דבש",
+"alias": [
+"סילאן",
+"ריבה",
+"סוכר",
+"קטשופ",
+"חרדל"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kornfleks",
+"icon": 54,
+"name": "קורנפלקס",
+"alias": [
+"דגני בוקר מתירס",
+"קורנפלקס עם חלב"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P8-12"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "התירס רוסק ומראהו השתנה מאוד.",
+"status": "ok"
+},
+{
+"id": "chatif-tiras",
+"icon": 50,
+"name": "חטיף תירס",
+"alias": [
+"אפרופו",
+"דוריטוס"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K",
+"YY",
+"Ddoritos",
+"Dafropo",
+"KV:דוריטוס",
+"KV:אפרופו"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "אפרופו ודוריטוס: שהכל ובורא נפשות. חטיף מקמח חיטה: מזונות.",
+"status": "ok"
+},
+{
+"id": "pringles",
+"icon": 49,
+"name": "פרינגלס",
+"alias": [
+"חטיף מקמח תפוחי אדמה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K",
+"P8-12"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "כך נוהגים להורות, כי הוא עשוי מקמח תפוחי אדמה ולא מפרוסות. הרוצה רשאי לברך האדמה.",
+"status": "ok"
+},
+{
+"id": "nevatim",
+"icon": 82,
+"name": "נבטים",
+"alias": [
+"נבט"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "נבטים שגדלים במים.",
+"status": "ok"
+},
+{
+"id": "leder",
+"icon": 59,
+"name": "לדר",
+"alias": [
+"לדר פירות"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "katzefet",
+"icon": 83,
+"name": "קצפת",
+"alias": [
+"קצפת מתוקה",
+"קרם"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K"
+],
+"after_cond": "כשאכלו כזית.",
+"note": "כשאוכלים אותה לבדה. על עוגה: מזונות על הכול.",
+"status": "ok"
+},
+{
+"id": "mayim",
+"icon": 84,
+"name": "מים",
+"alias": [
+"סודה",
+"מים מינרליים",
+"מים מוגזים"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P10-10"
+],
+"cond": "רק כששותים לצמא.",
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "kafe",
+"icon": 85,
+"name": "קפה",
+"alias": [
+"קפה הפוך",
+"נס קפה",
+"אספרסו",
+"קפה שחור",
+"קפה קר"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"H",
+"P10-10"
+],
+"after_cond": "כששותים חם בלגימות, לדעת רוב הפוסקים אין ברכה אחרונה, ויש נוהגים לברך. מי שמשאיר רביעית שתתקרר ושותה אותה ברציפות מברך בורא נפשות לכל הדעות.",
+"status": "ok"
+},
+{
+"id": "te",
+"icon": 86,
+"name": "תה",
+"alias": [
+"תה נענע",
+"חליטה",
+"תה ירוק"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"H",
+"P10-10"
+],
+"after_cond": "כששותים חם בלגימות, לדעת רוב הפוסקים אין ברכה אחרונה, ויש נוהגים לברך. מי שמשאיר רביעית שתתקרר ושותה אותה ברציפות מברך בורא נפשות לכל הדעות.",
+"status": "ok"
+},
+{
+"id": "mitz",
+"icon": 87,
+"name": "מיץ",
+"alias": [
+"מיץ תפוזים",
+"מיץ פירות",
+"לימונדה",
+"מיץ גזר",
+"מיץ תפוחים",
+"מיץ טבעי"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P10-10"
+],
+"cond": "כל מיץ פירות או ירקות, חוץ מיין וממיץ ענבים.",
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "mashke-mugaz",
+"icon": 88,
+"name": "משקה מוגז",
+"alias": [
+"קולה",
+"קולה זירו",
+"ספרייט",
+"משקה קל",
+"שתייה מתוקה",
+"פאנטה",
+"משקה אנרגיה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"MVm",
+"KV",
+"P10-10"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "chalav",
+"icon": 89,
+"name": "חלב",
+"alias": [
+"שוקו",
+"קקאו",
+"חלב חם"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P10-10"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "bira",
+"icon": 90,
+"name": "בירה",
+"alias": [
+"ערק",
+"וודקה",
+"ויסקי",
+"קוניאק",
+"יין תפוחים",
+"סיידר"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"H",
+"K",
+"P10-10"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "glida",
+"icon": 83,
+"name": "גלידה",
+"alias": [
+"גלידה בכוס",
+"גלידת וניל",
+"קסטה"
+],
+"ops": [
+{
+"who": "פניני הלכה; הידברות",
+"before": "shehakol",
+"after": "nefashot",
+"text": "דינה כאוכל: ברכה אחרונה כשאכלו כזית בתוך כשבע דקות."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "shehakol",
+"after": "none",
+"text": ""
+}
+],
+"src": [
+"P10-11",
+"P11-7",
+"H",
+"K",
+"KV"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "glida-gavia",
+"icon": 83,
+"name": "גלידה בגביע",
+"alias": [
+"טילון",
+"גביע גלידה"
+],
+"ops": [
+{
+"who": "פניני הלכה: כשהגביע רק מחזיק את הגלידה",
+"before": "shehakol",
+"after": "nefashot",
+"text": "ברכת שהכל פוטרת את הגביע."
+},
+{
+"who": "פניני הלכה: כשרוצים גם בטעם הגביע",
+"before": null,
+"after": "nefashot",
+"text": "מזונות על הגביע ושהכל על הגלידה. גם על המחיה למי שמעריך שאכל כזית מהגביע."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "כשאוכלים את הגלידה עם הגביע יחד: שהכל. בנפרד: מזונות ושהכל."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": null,
+"after": null,
+"text": "טילון בגביע מוטעם: מזונות, ועל המחיה רק כשאכלו 27 גרם מהדגן. בגביע פשוט: שהכל, בלי ברכה אחרונה."
+}
+],
+"src": [
+"P11-7",
+"K",
+"KV"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "artik",
+"icon": 91,
+"name": "ארטיק",
+"alias": [
+"קרטיב",
+"קרחון",
+"ארטיק קרח"
+],
+"ops": [
+{
+"who": "פניני הלכה: קרטיב שמלקקים או מוצצים",
+"before": "shehakol",
+"after": "none",
+"text": "דינו כשותה, ואי אפשר למצוץ רביעית ברציפות."
+},
+{
+"who": "פניני הלכה: קרטיב שנוגסים בו",
+"before": "shehakol",
+"after": "nefashot",
+"text": "דינו כאוכל: ברכה אחרונה כשאכלו כחצי ביצה בתוך כשבע דקות."
+},
+{
+"who": "הידברות; לוח מכון זר זהב",
+"before": "shehakol",
+"after": "none",
+"text": ""
+}
+],
+"src": [
+"P10-11",
+"H",
+"KV"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "marak-tzach",
+"icon": 57,
+"name": "מרק צח או מרק עוף",
+"alias": [
+"מרק צח",
+"מרק עוף",
+"מרק צלול",
+"מרק בשר"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"P8-16",
+"P11-9",
+"H"
+],
+"cond": "כל זמן שאין בו חתיכות ירק שצריך ללעוס. מרק שבושל עם בשר: שהכל.",
+"after_cond": "על הנוזל אין ברכה אחרונה, כי לא שותים רביעית ברציפות. מי שאכל כזית מהעוף או מהירקות שבמרק מברך בורא נפשות.",
+"status": "ok"
+},
+{
+"id": "marak-avka",
+"icon": 57,
+"name": "מרק מאבקה",
+"alias": [
+"מרק נמס",
+"מרק אינסטנט",
+"מרק פטריות",
+"מנה חמה"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"K",
+"P11-9"
+],
+"cond": "כשיש בו מעט מאוד ירקות. כשהירקות מיעוט חשוב: האדמה על הירקות ושהכל על המרק. כשהירקות קרוב לחצי: האדמה בלבד.",
+"after_cond": "על הנוזל אין ברכה אחרונה. על כזית ירקות בתוך כשבע דקות: בורא נפשות.",
+"status": "ok"
+},
+{
+"id": "marak-yerakot",
+"icon": 57,
+"name": "מרק ירקות",
+"alias": [
+"מרק עדשים",
+"מרק אפונה",
+"מרק בטטה",
+"מרק כתום",
+"מרק ירקות טחון"
+],
+"ops": [
+{
+"who": "פניני הלכה: מרק שטעמו מהירקות ויש בו חתיכות",
+"before": "adama",
+"after": "nefashot",
+"text": "מברכים על הירקות ופוטרים את הנוזל. בורא נפשות כשאכלו כזית ירקות."
+},
+{
+"who": "פניני הלכה: מרק צלול, בלי חתיכות ירק",
+"before": "shehakol",
+"after": "none",
+"text": "מחמת הספק. לדעת רוב הראשונים האדמה."
+},
+{
+"who": "פניני הלכה: מרק סמיך שהירק נתמעך בו, כמו עדשים, אפונה או בטטה",
+"before": "adama",
+"after": null,
+"text": ""
+},
+{
+"who": "הידברות",
+"before": null,
+"after": "nefashot",
+"text": "כשהירקות ניכרים האדמה, וכשאינם ניכרים שהכל."
+}
+],
+"src": [
+"P8-16",
+"P11-9",
+"H"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "marak-itriyot",
+"icon": 92,
+"name": "מרק עם אטריות",
+"alias": [
+"מרק אטריות"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P11-9"
+],
+"cond": "האטריות הן העיקר גם כשהן מעטות. כשיש במרק חתיכות ירק ניכרות: מזונות על האטריות והאדמה על הירקות.",
+"after_cond": "כשאכלו מהאטריות כחצי ביצה בתוך כשבע דקות.",
+"status": "ok"
+},
+{
+"id": "kube",
+"icon": 7,
+"name": "קובה",
+"alias": [
+"קובה סולת",
+"קובה בורגול",
+"קובה מטוגנת"
+],
+"ops": [
+{
+"who": "פניני הלכה; הרב בנימין שמואלי",
+"before": "mezonot",
+"after": "michya",
+"text": "למעטה הבצק יש חשיבות עצמית. על המחיה כשיש כזית בבצק לבדו. כשרק יחד עם המילוי יש כזית: בורא נפשות."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה רק כשאכלו מהדגן 27 גרם בתוך 7.5 דקות."
+},
+{
+"who": "הידברות, מה מברכים על",
+"before": "mezonot",
+"after": "nefashot",
+"text": ""
+}
+],
+"src": [
+"P11-5",
+"Hkube",
+"KV",
+"H"
+],
+"cond": "קובה שהמעטה שלה מאורז: לא נמצא מקור מפורש. ברכה אחרונה על אורז היא תמיד בורא נפשות.",
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "ugat-gvina",
+"icon": 62,
+"name": "עוגת גבינה",
+"alias": [
+"עוגת גבינה אפויה",
+"עוגת גבינה קרה",
+"עוגת גבינה פירורים"
+],
+"ops": [
+{
+"who": "אתר דין; פניני הלכה: בסיס שלא נאפה יחד עם הגבינה",
+"before": null,
+"after": null,
+"text": "שתי ברכות: שהכל על הגבינה ומזונות על הבסיס. כזית מכל אחד מחייב ברכה אחרונה משלו."
+},
+{
+"who": "אתר דין; פניני הלכה; הלכה יומית: נאפו יחד וטעם הקמח מורגש",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה כשאכלו כזית מהבצק, ואחרת בורא נפשות."
+},
+{
+"who": "אתר דין; הלכה יומית: רקיק דק, מעט פירורים, או קמח שרק מדבק",
+"before": "shehakol",
+"after": "nefashot",
+"text": ""
+}
+],
+"src": [
+"Dgvina",
+"P11-7",
+"HY4328"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "chamin",
+"icon": 57,
+"name": "חמין",
+"alias": [
+"צ׳ולנט",
+"טשולנט",
+"חמין מרוקאי"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": null,
+"after": "michya",
+"text": "מברכים תחילה על כל מאכל בנפרד: מזונות על הגריסים, האדמה על תפוח האדמה ושהכל על הבשר, ואחר כך אוכלים כתערובת. על המחיה כשאכלו כזית דגן."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": null,
+"after": null,
+"text": "כשכל מין נפרד: כל אחד כברכתו. עיסה אחת עם דגן: מזונות ובורא נפשות. עיסה אחת בלי דגן: לפי הרוב."
+}
+],
+"src": [
+"P11-4",
+"KV"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "muska",
+"icon": 10,
+"name": "מוסקה",
+"alias": [
+"מוסקה חצילים"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": null,
+"after": "nefashot",
+"text": "האדמה על החציל לבדו ושהכל על הבשר לבדו, ואחר כך אוכלים יחד, כי קשה לקבוע מי מהם העיקר."
+},
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "shehakol",
+"after": "nefashot",
+"text": "מברכים רק כברכת הבשר, אלא אם המילוי מועט."
+}
+],
+"src": [
+"P11-5",
+"Dmuska",
+"P10-4"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "pilpel-memule",
+"icon": 38,
+"name": "פלפל ממולא",
+"alias": [
+"פלפלים ממולאים"
+],
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"P11-5",
+"Dpilpel",
+"KV:ממולאים-באורז"
+],
+"cond": "כשהמילוי אורז ומעט בשר, האורז עיקר. כשהרוב בשר: שהכל. מי שמפריד: מזונות על המילוי והאדמה על הפלפל.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "salat-perot",
+"icon": 46,
+"name": "סלט פירות",
+"alias": [
+"קוקטייל פירות"
+],
+"ops": [
+{
+"who": "אתר דין, על פי משנה ברורה",
+"before": null,
+"after": null,
+"text": "מעיקר הדין הולכים אחר הרוב: רוב פירות עץ העץ על הכול, רוב פרי אדמה האדמה על הכול."
+},
+{
+"who": "המחמירים (חיי אדם, שולחן ערוך הרב)",
+"before": null,
+"after": null,
+"text": "מפרידים ומברכים על כל מין, תחילה על המועט."
+},
+{
+"who": "הידברות",
+"before": null,
+"after": "nefashot",
+"text": "לפי הרוב."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "etz",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"DIN",
+"H",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "papaya",
+"icon": 32,
+"name": "פפאיה",
+"alias": [
+"פאפיה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"DIN",
+"H",
+"K",
+"KV"
+],
+"cond": "ספק אילן ספק לא, ולכן מברכים האדמה.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "kif-kef",
+"icon": 81,
+"name": "כיף כף",
+"alias": [
+"כיפכף",
+"קיט קט"
+],
+"ops": [
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "בדרך כלל בורא נפשות, כי לא אוכלים כזית מהדגן בתוך כדי אכילת פרס."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה רק כשאכלו מהדגן 27 גרם בתוך 7.5 דקות."
+},
+{
+"who": "פניני הלכה, על חטיף ופל בשכבת שוקולד עבה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "כשהוופל נותן טעם. בורא נפשות, אלא אם יודעים בוודאות שאכלו כזית מהדגן. כשהוופל רק מעמיד את השוקולד: שהכל."
+}
+],
+"src": [
+"Dkif",
+"Dvafel",
+"KVk",
+"P11-8"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "pesek-zman",
+"icon": 81,
+"name": "פסק זמן",
+"alias": [
+"פסק זמן קלאסי"
+],
+"ops": [
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "בכל מקרה בורא נפשות, כי אין כזית דגן בתוך כדי אכילת פרס."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה רק כשאכלו מהדגן 27 גרם בתוך 7.5 דקות."
+},
+{
+"who": "פניני הלכה, על חטיף ופל בשכבת שוקולד עבה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "כשהוופל נותן טעם. בורא נפשות, אלא אם יודעים בוודאות שאכלו כזית מהדגן. כשהוופל רק מעמיד את השוקולד: שהכל."
+}
+],
+"src": [
+"Dpesek",
+"KV",
+"P11-8"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "klik-dagan",
+"icon": 81,
+"name": "קליק ביסקוויט",
+"alias": [
+"קליק עם דגן",
+"קליק ביסקוויטים"
+],
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"Hsamb",
+"K",
+"KV",
+"P11-8"
+],
+"cond": "כך השיב הרב רונן חזיזה (הידברות), וכן בלוח של כיפה.",
+"after_cond": "בורא נפשות, אלא אם יודעים בוודאות שאכלו כזית מהדגן. בלוח מכון זר זהב: על המחיה כשאכלו מהדגן 27 גרם.",
+"status": "ok"
+},
+{
+"id": "klik-bli-dagan",
+"icon": 81,
+"name": "קליק כריות או קורנפלקס",
+"alias": [
+"קליק בלי דגן",
+"קליק כריות",
+"קליק קורנפלקס",
+"קליק שוקולד",
+"קליק כדורים"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"Hsamb",
+"Dklik",
+"KV"
+],
+"cond": "יש בו רק כעשרה אחוזים דגן מנופח, והוא חסר חשיבות.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "lahit",
+"icon": 81,
+"name": "להיט",
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"K",
+"P11-8"
+],
+"cond": "ממתק שקמח החיטה בו ניתן לטעם.",
+"after_cond": "בורא נפשות, אלא אם יודעים בוודאות שאכלו כזית מהדגן.",
+"status": "ok"
+},
+{
+"id": "botnim-amerikaim",
+"icon": 51,
+"name": "בוטנים אמריקאיים",
+"alias": [
+"קבוקים",
+"קבוק",
+"בוטנים מצופים",
+"בוטן אמריקאי"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "mezonot",
+"after": "michya",
+"text": "הקמח הוא אחד ממרכיבי המאכל. על המחיה כשאכלו כזית מהקמח לבדו. כשרק יחד אכלו כזית: בורא נפשות."
+},
+{
+"who": "לוח מכון זר זהב, פסקי הרב עובדיה יוסף",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P11-5",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "botnim-mesukarim",
+"icon": 51,
+"name": "בוטנים מסוכרים",
+"alias": [
+"שקדים מסוכרים",
+"שקדים בשוקולד",
+"בוטנים בציפוי סוכר"
+],
+"before": "adama",
+"after": "review",
+"src": [
+"P11-8"
+],
+"cond": "על בוטנים האדמה ועל שקדים העץ: הבוטן או השקד הוא העיקר והציפוי מטעים אותו. כשיש ספק אם הציפוי עבה והוא העיקר: שהכל.",
+"after_cond": "הברכה האחרונה אינה כתובה במקור.",
+"status": "ok"
+},
+{
+"id": "sufganiya",
+"icon": 93,
+"name": "סופגנייה",
+"alias": [
+"סופגניה",
+"סופגניות",
+"סופגנייה אפויה"
+],
+"ops": [
+{
+"who": "פניני הלכה: מטוגנת בשמן עמוק",
+"before": "mezonot",
+"after": "michya",
+"text": "דינה כתבשיל, גם כשקובעים עליה סעודה."
+},
+{
+"who": "פניני הלכה: אפויה",
+"before": "mezonot",
+"after": "michya",
+"text": "דינה כפת הבאה בכיסנים: כשקובעים עליה סעודה, המוציא וברכת המזון."
+},
+{
+"who": "הידברות; כיפה",
+"before": "mezonot",
+"after": "michya",
+"text": ""
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "אפויה: המוציא כשאוכלים 216 גרם. מטוגנת: מזונות גם מעל 216 גרם."
+}
+],
+"src": [
+"P6-10",
+"H",
+"K",
+"KV"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "levivot",
+"icon": 47,
+"name": "לביבות",
+"alias": [
+"לביבה",
+"לטקס",
+"לביבות ירקות",
+"לביבות תפוחי אדמה"
+],
+"ops": [
+{
+"who": "הידברות; לוח מכון זר זהב: לביבות ירקות או תפוחי אדמה",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "שולחן ערוך ומשנה ברורה: קמח שניתן רק כדי לדבק",
+"before": null,
+"after": null,
+"text": "בטל ואינו קובע את הברכה, גם כשיש ממנו הרבה. הברכה לפי עיקר הלביבה."
+},
+{
+"who": "כיפה, הרב שמואל אליהו: כשקמח החיטה ניתן לטעם",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"H",
+"KV",
+"SA",
+"K",
+"P11-4"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "sambusak",
+"icon": 69,
+"name": "סמבוסק",
+"alias": [
+"סמבוסק גבינה",
+"סמבוסק חומוס",
+"סמבוסק בשר"
+],
+"ops": [
+{
+"who": "מטוגן בשמן עמוק: הרב רונן חזיזה, אתר דין, הידברות, לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "גם כשקובעים עליו סעודה."
+},
+{
+"who": "אפוי, במילוי בשר או טונה: הרב רונן חזיזה, הידברות",
+"before": "motzi",
+"after": null,
+"text": "כי אוכלים אותו כעיקר הסעודה ולא כקינוח."
+},
+{
+"who": "אפוי, במילוי ירקות, גבינה או חומוס: אתר דין, הרב בן ציון מוצפי, הרב בנימין שמואלי",
+"before": "mezonot",
+"after": null,
+"text": "הרב מוצפי: ויש מברכים המוציא. אתר דין: תלוי בתכליתו, וכשהוא עשוי לשובע טוב לאכול אותו רק בסעודת פת."
+},
+{
+"who": "לוח מכון זר זהב: אפוי",
+"before": "mezonot",
+"after": "michya",
+"text": "המוציא כשאוכלים 216 גרם."
+},
+{
+"who": "פניני הלכה, כלל המאפה הממולא",
+"before": null,
+"after": null,
+"text": "מאפה שרגילים לקבוע עליו סעודה המוציא, ומאפה לקינוח מזונות."
+}
+],
+"src": [
+"Hsamb",
+"Dsamb",
+"Zsamb",
+"Hsamb2",
+"KV",
+"H",
+"P6-8"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "burekas",
+"icon": 94,
+"name": "בורקס",
+"alias": [
+"בורקסים",
+"בורקס גבינה",
+"בורקס תפוחי אדמה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-8",
+"H",
+"K"
+],
+"cond": "גם כשהוא גדול. כשקובעים עליו סעודה: המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "malawach",
+"icon": 2,
+"name": "מלאווח",
+"alias": [
+"מלוואח",
+"מלווח"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-11",
+"H"
+],
+"cond": "מנה אחת. שתי מנות, או מנה עם עוד מאכלים עד שובע: נטילת ידיים, המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "jachnun",
+"icon": 95,
+"name": "ג׳חנון",
+"alias": [
+"גחנון",
+"ג'חנון"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "mezonot",
+"after": "michya",
+"text": "נאפה בסיר ודינו כמאפה: כשקובעים עליו סעודה, המוציא וברכת המזון. רק ג׳חנון רך עם נוזלים רבים דינו כתבשיל."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "בסיר או במחבת סגורה: מזונות גם מעל 216 גרם. בסיר פתוח או בתנור: המוציא כשאוכלים 216 גרם."
+},
+{
+"who": "הידברות",
+"before": "mezonot",
+"after": "michya",
+"text": ""
+}
+],
+"src": [
+"P6-11",
+"KV",
+"H"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "kubane",
+"icon": 0,
+"name": "כובאנה",
+"alias": [
+"קובנה",
+"כובנה"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-11",
+"KV:כובאנה"
+],
+"cond": "נאפית בסיר ודינה כמאפה. כשקובעים עליה סעודה: המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "lachuch",
+"icon": 68,
+"name": "לחוח",
+"alias": [
+"לחוח תימני"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "mezonot",
+"after": "michya",
+"text": "צורתו הסופית כמאפה ודינו כפת הבאה בכיסנים: כשקובעים עליו סעודה, המוציא וברכת המזון."
+},
+{
+"who": "יש נוהגים",
+"before": "mezonot",
+"after": "michya",
+"text": "להחשיב לחוח כתבשיל, שברכתו לעולם מזונות."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P6-11",
+"KV"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "pancake",
+"icon": 68,
+"name": "פנקייק",
+"alias": [
+"ופל בלגי",
+"קרפ",
+"פנקייקים",
+"קרפ צרפתי"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-11",
+"KV"
+],
+"cond": "כשקובעים עליו סעודה: המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tortiya",
+"icon": 96,
+"name": "טורטייה",
+"alias": [
+"טורטיה",
+"טורטיה מקמח",
+"ראפ"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "mezonot",
+"after": "michya",
+"text": "דקה ומיועדת לאכילת ארעי ולמילוי. כשקובעים עליה סעודה דינה כלחם."
+},
+{
+"who": "הידברות; לוח מכון זר זהב: מקמח חיטה",
+"before": "motzi",
+"after": "mazon",
+"text": ""
+},
+{
+"who": "הידברות: מקמח תירס",
+"before": "shehakol",
+"after": "nefashot",
+"text": ""
+}
+],
+"src": [
+"P6-11",
+"H",
+"KV"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "pitza",
+"icon": 97,
+"name": "פיצה",
+"alias": [
+"משולש פיצה",
+"פיצה משפחתית",
+"pizza"
+],
+"ops": [
+{
+"who": "פניני הלכה: בצק לחם רגיל, ברוב המקרים",
+"before": "motzi",
+"after": "mazon",
+"text": "גם על מעט. התוספות אינן משנות."
+},
+{
+"who": "פניני הלכה: בצק שנילוש במי ביצים, בחלב או במי פירות וטעמו שונה",
+"before": "mezonot",
+"after": "michya",
+"text": "כשקובעים עליה סעודה: המוציא וברכת המזון."
+},
+{
+"who": "הידברות",
+"before": null,
+"after": null,
+"text": "בצק מקמח ומים המוציא וברכת המזון, ובצק שנילוש במי פירות מזונות ועל המחיה."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "mezonot",
+"after": null,
+"text": ""
+},
+{
+"who": "דעה שפניני הלכה מביא ודוחה, בשם הרב פיינשטיין",
+"before": "mezonot",
+"after": null,
+"text": "על משולש אחד ברחוב."
+}
+],
+"src": [
+"P6-9",
+"H",
+"K"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "matza",
+"icon": 98,
+"name": "מצה",
+"alias": [
+"מצות",
+"מצה שמורה"
+],
+"ops": [
+{
+"who": "בפסח, לכל המנהגים",
+"before": "motzi",
+"after": "mazon",
+"text": "גם על מעט."
+},
+{
+"who": "בשאר השנה, מנהג יוצאי אשכנז",
+"before": "motzi",
+"after": "mazon",
+"text": "גם כשאוכלים דרך ארעי."
+},
+{
+"who": "בשאר השנה, מנהג יוצאי ספרד",
+"before": "mezonot",
+"after": "michya",
+"text": "כשאוכלים שלא בתוך סעודה. כשקובעים עליה סעודה: המוציא וברכת המזון. לכתחילה טוב לאכול אותה בתוך סעודת לחם."
+}
+],
+"src": [
+"P6-7",
+"H"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "chala-metuka",
+"icon": 1,
+"name": "חלה מתוקה",
+"alias": [
+"לחמנייה מתוקה",
+"לחמניה מתוקה",
+"חלה מתוקה של שבת"
+],
+"ops": [
+{
+"who": "פניני הלכה, למעשה",
+"before": "motzi",
+"after": "mazon",
+"text": "גם על מעט, כי זה מה שקוראים לו לחם, חלה או לחמנייה."
+},
+{
+"who": "מנהג רבים מיוצאי ספרד",
+"before": "mezonot",
+"after": "michya",
+"text": "שלא בסעודה. לכתחילה טוב לאכול אותה רק בתוך סעודה."
+},
+{
+"who": "הידברות",
+"before": null,
+"after": null,
+"text": "לבני ספרד מזונות, לבני אשכנז המוציא."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "michya",
+"text": "המוציא כשאוכלים 216 גרם."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P6-6",
+"H",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "krembo",
+"icon": 99,
+"name": "קרמבו",
+"alias": [
+"קרמבו וניל",
+"קרמבו מוקה"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": null,
+"after": "nefashot",
+"text": "שהכל על הקרם ומזונות על הביסקוויט. בורא נפשות על הקרם, ועל הביסקוויט אין ברכה אחרונה כי אין בו כזית."
+},
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": null,
+"after": "nefashot",
+"text": "שתי ברכות: מפרידים מעט ומברכים מזונות ושהכל. בקרמבו אחד שנאכל בתוך כדי אכילת פרס: בורא נפשות."
+},
+{
+"who": "הרב בנימין שמואלי, הידברות",
+"before": null,
+"after": null,
+"text": "פוסקי ספרד: די בברכת שהכל על הקרם, והביסקוויט נפטר. אשכנזים: שתי ברכות."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "כשאוכלים יחד שהכל, וכשאוכלים בנפרד מזונות ושהכל."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": null,
+"after": "none",
+"text": "שהכל ואחר כך מזונות."
+}
+],
+"src": [
+"P11-7",
+"Dkrembo",
+"Dkrembo2",
+"Hkrembo",
+"K",
+"KV"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "popcorn",
+"icon": 100,
+"name": "פופקורן",
+"alias": [
+"פופקורן מתוק",
+"פופקורן מלוח"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "shehakol",
+"after": null,
+"text": "כך המנהג הרווח. רבים כתבו לברך האדמה, כי הגרעין לא רוסק."
+},
+{
+"who": "הידברות; לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P8-13",
+"H",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "prichiyot-orez",
+"icon": 55,
+"name": "פריכיות אורז",
+"alias": [
+"פריכיות",
+"פריכית אורז"
+],
+"ops": [
+{
+"who": "פניני הלכה",
+"before": "shehakol",
+"after": null,
+"text": "כך המנהג, כי השתנו מאוד. והבוחר יבחר."
+},
+{
+"who": "הרב שלמה זלמן אויערבאך, אור לציון, חזון עובדיה; הידברות; לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "הרב אלישיב, פתחי הלכה",
+"before": "mezonot",
+"after": null,
+"text": ""
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P8-13",
+"H",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "pitzputzei-orez",
+"icon": 55,
+"name": "פצפוצי אורז",
+"alias": [
+"אורז תפוח",
+"פתיתי אורז",
+"רייס קריספיס"
+],
+"ops": [
+{
+"who": "הלכה יומית (בשם הרב משה פיינשטיין); אתר דין; הרב בן ציון מוצפי; לוח מכון זר זהב",
+"before": "mezonot",
+"after": "nefashot",
+"text": "הפצפוצים מבושלים לפני ההתפחה, ואורז מבושל ברכתו מזונות."
+},
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "shehakol",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"HY772",
+"Dorez",
+"Zorez",
+"KV",
+"K"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "garinim",
+"icon": 101,
+"name": "גרעינים",
+"alias": [
+"גרעיני חמנייה",
+"גרעינים שחורים",
+"גרעיני דלעת",
+"גרעיני אבטיח",
+"פיצוחים"
+],
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "adama",
+"after": null,
+"text": "גרעינים שחורים האדמה. גרעיני אבטיח, מלון ודלעת האדמה אם נזרעו לשם הגרעינים, ואחרת או בספק שהכל."
+},
+{
+"who": "הידברות",
+"before": "shehakol",
+"after": "nefashot",
+"text": ""
+}
+],
+"src": [
+"K",
+"H"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "limon",
+"icon": 102,
+"name": "לימון",
+"alias": [
+"לימונים"
+],
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "לימון מתוק: העץ. לימון חמוץ: מי שנהנה ממנו מברך שהכל, ומי שלא נהנה אינו מברך."
+}
+],
+"src": [
+"K"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "shum",
+"icon": 103,
+"name": "שום",
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": "adama",
+"after": null,
+"text": ""
+},
+{
+"who": "הידברות",
+"before": "shehakol",
+"after": null,
+"text": "בין חי ובין מבושל."
+}
+],
+"src": [
+"K",
+"H"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "kugel-tapuchei-adama",
+"icon": 47,
+"name": "קוגל תפוחי אדמה",
+"alias": [
+"קיגל תפוחי אדמה"
+],
+"ops": [
+{
+"who": "הידברות",
+"before": null,
+"after": "nefashot",
+"text": "כשתפוחי האדמה ניכרים: האדמה. כשאינם ניכרים: שהכל."
+}
+],
+"src": [
+"H"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "vitaminim",
+"icon": 104,
+"name": "ויטמינים ותרופות",
+"alias": [
+"ויטמין",
+"תרופה",
+"סירופ",
+"כדור"
+],
+"ops": [
+{
+"who": "הידברות; כיפה",
+"before": null,
+"after": null,
+"text": "בלי טעם: אין מברכים. בטעם טוב: שהכל."
+}
+],
+"src": [
+"H",
+"K"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "rachat-lokum",
+"icon": 59,
+"name": "רחת לוקום",
+"alias": [
+"חלקום",
+"לוקום"
+],
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "מתירס וסוכר: שהכל. מעמילן חיטה: מזונות."
+}
+],
+"src": [
+"K"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "pilpel-charif",
+"icon": 105,
+"name": "פלפל חריף",
+"alias": [
+"צ׳ילי"
+],
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "כבוש: האדמה. חי: מי שנהנה ורגיל לאכול אותו כך האדמה, ואחרת שהכל. יבש: אין מברכים."
+}
+],
+"src": [
+"K"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "daysa",
+"icon": 54,
+"name": "דייסה",
+"alias": [
+"קוואקר",
+"דייסת שיבולת שועל",
+"דייסת סולת",
+"דייסת קורנפלור"
+],
+"ops": [
+{
+"who": "כיפה, הרב שמואל אליהו",
+"before": null,
+"after": null,
+"text": "דייסה סמיכה מחמשת מיני דגן או מסולת: מזונות. דלילה, או מקמח תירס: שהכל."
+},
+{
+"who": "פניני הלכה",
+"before": "mezonot",
+"after": "michya",
+"text": "דייסה ממיני דגן, גם כשקובעים עליה סעודה."
+}
+],
+"src": [
+"K",
+"P6-10"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "sushi",
+"icon": 106,
+"name": "סושי",
+"alias": [
+"sushi",
+"רול סושי",
+"מאקי",
+"סושי רול"
+],
+"ops": [
+{
+"who": "הרב הלל מאירס, הידברות",
+"before": null,
+"after": null,
+"text": "כשרוב הסושי אורז: מזונות. כשרובו ירקות: האדמה. כשאין רוב: מפרידים ומברכים על כל מין."
+},
+{
+"who": "אתר דין: כשהדג ניכר",
+"before": null,
+"after": "nefashot",
+"text": "מפרידים: מזונות על האורז ושהכל על הדג. כשהדג מרוסק ואינו ניכר: מזונות בלבד. בכל מקרה ברכה אחרונה בורא נפשות."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "mezonot",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "פניני הלכה, על אורז שעירבו בו טונה",
+"before": "mezonot",
+"after": null,
+"text": "האורז עיקר ופוטר את הטונה. סושי אינו נזכר שם בשמו."
+}
+],
+"src": [
+"Hsushi",
+"Dsushi",
+"Dsushi2",
+"KVs",
+"P11-3"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "majadra",
+"icon": 71,
+"name": "מג׳דרה",
+"alias": [
+"מגדרה",
+"מג'דרה",
+"מגאדרה",
+"מג׳אדרה",
+"אורז ועדשים"
+],
+"ops": [
+{
+"who": "פניני הלכה; דורש ציון: כשהרוב אורז",
+"before": "mezonot",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "פניני הלכה; דורש ציון: כשהרוב עדשים",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "הרב בנימין שמואלי, הידברות",
+"before": null,
+"after": "nefashot",
+"text": "ברכה אחרונה על אורז היא תמיד בורא נפשות."
+}
+],
+"src": [
+"P11-3",
+"DZ",
+"Hmaj",
+"Dmaj"
+],
+"cond": "מג׳דרה מבורגול אינה נזכרת במקורות. הכלל בפניני הלכה: תערובת שיש בה מחמשת מיני דגן ברכתה מזונות.",
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "lazanya",
+"icon": 67,
+"name": "לזניה",
+"alias": [
+"לזניה בשר",
+"לזניה גבינות",
+"lasagna"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"KVl"
+],
+"cond": "גם כשאוכלים ממנה הרבה (מעל 216 גרם).",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "sashimi",
+"icon": 106,
+"name": "סשימי",
+"alias": [
+"sashimi",
+"דג נא"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:דגים",
+"H"
+],
+"cond": "פרוסות דג בלי אורז. המקורות אינם מזכירים סשימי בשמו: זה דין הדג.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "arayes",
+"icon": 5,
+"name": "עראייס בפיתה",
+"alias": [
+"עראיס",
+"ערייס",
+"arayes"
+],
+"before": "motzi",
+"after": "mazon",
+"src": [
+"P6-8",
+"P3-6"
+],
+"cond": "מאפה שרגילים לקבוע עליו סעודה דינו כלחם. פניני הלכה אינו מזכיר עראיס בשמו.",
+"after_cond": "מי שאוכל כזית מהלחם. נטילת ידיים בברכה כשמתכוונים לאכול לחם כשיעור ביצה.",
+"note": "ברכת המוציא פוטרת את הבשר.",
+"status": "ok"
+},
+{
+"id": "shawarma-orez",
+"icon": 71,
+"name": "שווארמה על אורז",
+"alias": [
+"בשר עם אורז",
+"עוף עם אורז",
+"אורז עם בשר"
+],
+"ops": [
+{
+"who": "פניני הלכה; אתר דין: כששני המאכלים מונחים זה לצד זה",
+"before": null,
+"after": null,
+"text": "מברכים על כל אחד את ברכתו: מזונות על האורז ושהכל על הבשר."
+},
+{
+"who": "אתר דין: כשהתבשלו יחד כתבשיל אחד",
+"before": null,
+"after": null,
+"text": "ברכה אחת."
+},
+{
+"who": "פניני הלכה: תערובת גמורה של בשר ואורז, כמו קציצה",
+"before": "shehakol",
+"after": null,
+"text": "הבשר חשוב יותר. יש אומרים שהולכים תמיד אחר הרוב."
+},
+{
+"who": "הידברות: אורז עם תוספת, כשהרוב אורז",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"P11-1",
+"Dtaarovet",
+"P11-3",
+"Horez"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "fish-and-chips",
+"icon": 74,
+"name": "פיש אנד צ׳יפס",
+"alias": [
+"פיש אנד ציפס",
+"fish and chips",
+"דג וצ׳יפס"
+],
+"ops": [
+{
+"who": "פניני הלכה: דג ותפוחי אדמה בצלחת אחת",
+"before": null,
+"after": "nefashot",
+"text": "שתי ברכות: האדמה על תפוחי האדמה ושהכל על הדג. גם על דג בציפוי: שהכל."
+}
+],
+"src": [
+"P11-1",
+"P11-5"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "poke",
+"icon": 46,
+"name": "פוקי",
+"alias": [
+"פוקה",
+"poke",
+"קערת פוקי"
+],
+"note": "לא נמצא מקור שמזכיר פוקי בשמו. הקרוב ביותר הוא סושי: ראו בערך סושי.",
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "mekupelet",
+"icon": 81,
+"name": "מקופלת",
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:מקופלת"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "taami",
+"icon": 81,
+"name": "טעמי",
+"alias": [
+"טעמי חטיף"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:טעמי-חטיף"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "bamba-nougat",
+"icon": 53,
+"name": "במבה נוגט",
+"alias": [
+"במבה במילוי",
+"במבה ממולאת",
+"במבה אדומה"
+],
+"ops": [
+{
+"who": "הרב בן ציון מוצפי",
+"before": "adama",
+"after": null,
+"text": "כמו כל במבה."
+},
+{
+"who": "לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "shehakol",
+"after": "nefashot",
+"text": "כך מנהג העולם על במבה ועל במבה נוגט."
+}
+],
+"src": [
+"Znougat",
+"KV:במבה-נוגט",
+"Dbamba"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "twist",
+"icon": 81,
+"name": "טוויסט",
+"alias": [
+"twist"
+],
+"ops": [
+{
+"who": "אתר דין, רבני בית ההוראה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "לכאורה מזונות. בורא נפשות, כי אין בו שיעור דגן לעל המחיה."
+},
+{
+"who": "פניני הלכה, על חטיף ופל בשכבת שוקולד עבה",
+"before": "mezonot",
+"after": "nefashot",
+"text": "כשהוופל נותן טעם. בורא נפשות, אלא אם יודעים בוודאות שאכלו כזית מהדגן. כשהוופל רק מעמיד את השוקולד: שהכל."
+}
+],
+"src": [
+"Dtwist",
+"P11-8"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "sukariyot-gumi",
+"icon": 59,
+"name": "סוכריות גומי",
+"alias": [
+"דובונים",
+"גומי",
+"סוכריות ג׳לי",
+"גומי דובים"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:דובונים"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "searot-savta",
+"icon": 59,
+"name": "שערות סבתא",
+"alias": [
+"צמר גפן מתוק"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"KV:שערות-סבתא"
+],
+"status": "ok"
+},
+{
+"id": "chamtzutzim",
+"icon": 59,
+"name": "חמצוצים",
+"alias": [
+"סוכריות חמוצות"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:חמצוצים"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "cheetos",
+"icon": 50,
+"name": "צ׳יטוס",
+"alias": [
+"ציטוס",
+"cheetos"
+],
+"note": "לא נמצא מקור שמזכיר את המוצר בשמו. על דוריטוס ועל אפרופו, שעשויים מקמח תירס, השיבו באתר דין: שהכל ובורא נפשות.",
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "croissant",
+"icon": 94,
+"name": "קרואסון",
+"alias": [
+"קוראסון",
+"קרואסון חמאה",
+"קרואסון שוקולד"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-2",
+"P6-5"
+],
+"cond": "פת הבאה בכיסנים. כשקובעים עליו סעודה (נפח ארבע ביצים ושביעה): המוציא וברכת המזון. קרואסון גדול מכיל יותר מנפח ארבע ביצים.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "rogalach",
+"icon": 94,
+"name": "רוגלך",
+"alias": [
+"רוגלעך",
+"רוגלך שוקולד"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P6-2",
+"Dshmarim"
+],
+"cond": "מאפה ממולא, פת הבאה בכיסנים. כשקובעים עליו סעודה: המוציא וברכת המזון. רוגלך אינו נזכר במקורות בשמו.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "cinnabon",
+"icon": 94,
+"name": "סינבון",
+"alias": [
+"שבלול קינמון",
+"cinnabon",
+"עוגת שמרים",
+"עוגת שמרים שוקולד"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"Dshmarim",
+"Dshmarim2",
+"KV"
+],
+"cond": "עוגת שמרים עם מילוי מתוק ברכתה מזונות, גם כשהבצק כשל לחם. כשאוכלים 216 גרם: המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "pretzel",
+"icon": 61,
+"name": "פרעצל רך",
+"alias": [
+"פרעצל",
+"פרצל",
+"בייגל גרמני",
+"בייגל חם"
+],
+"ops": [
+{
+"who": "אתר דין; הרב בנימין שמואלי: בייגל חם ורך, או חלוט ואפוי",
+"before": "motzi",
+"after": null,
+"text": "פת גמורה."
+},
+{
+"who": "אתר דין; הרב בנימין שמואלי: כשהוא מתוק מאוד (ספרדים) או שרובו מי פירות (אשכנזים)",
+"before": "mezonot",
+"after": null,
+"text": ""
+}
+],
+"src": [
+"Dbeigel",
+"Dbeigel2",
+"Hbeigel"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "pachzanit",
+"icon": 66,
+"name": "פחזנית",
+"alias": [
+"פחזניה",
+"פחזניות",
+"אקלר"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"KV:פחזניה"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "brioche",
+"icon": 1,
+"name": "בריוש",
+"alias": [
+"לחמניית בריוש"
+],
+"ops": [
+{
+"who": "פניני הלכה, על חלה ולחמנייה מתוקה",
+"before": "motzi",
+"after": "mazon",
+"text": "מיועדות לסעודה ולא לקינוח. בריוש אינו נזכר בשמו."
+},
+{
+"who": "לוח מכון זר זהב, על לחמנייה מתוקה",
+"before": "mezonot",
+"after": "michya",
+"text": "המוציא כשאוכלים 216 גרם."
+}
+],
+"src": [
+"P6-6",
+"KV"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "macaron",
+"icon": 63,
+"name": "מקרון שקדים",
+"alias": [
+"מקרונים",
+"macaron"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"P8-10"
+],
+"cond": "לפי דין מרציפן משקדים מרוסקים. פניני הלכה אינו מזכיר מקרון בשמו.",
+"after_cond": "כשאכלו כזית. הברכה האחרונה אינה כתובה במקור על המאכל הזה, והיא לפי הכלל שבפניני הלכה: בורא נפשות על כל מה שאינו משבעת המינים.",
+"status": "review",
+"ask": "מקרון שקדים: האם דינו כמרציפן (שהכל), ומה כשיש בו קמח?"
+},
+{
+"id": "ugiyot-kokus",
+"icon": 63,
+"name": "עוגיות קוקוס",
+"alias": [
+"קוקוסים",
+"עוגיות קוקוס לפסח",
+"ממתק קוקוס"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:קוקוס-ממתק",
+"P8-12"
+],
+"cond": "נוסף בו הרבה סוכר והקוקוס התרסק, ולכן אינו נתפס כפרי.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "lechem-lelo-gluten",
+"icon": 0,
+"name": "לחם ללא גלוטן",
+"alias": [
+"לחם בלי גלוטן",
+"לחמנייה ללא גלוטן"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:לחם-ללא-גלוטן"
+],
+"cond": "לחם אורז: מזונות ובורא נפשות.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "quinoa",
+"icon": 52,
+"name": "קינואה",
+"alias": [
+"קינואה מבושלת"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"KV:קינואה"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "pashtida",
+"icon": 107,
+"name": "פשטידת ירקות",
+"alias": [
+"פשטידה",
+"פשטידת תפוחי אדמה",
+"פשטידת ברוקולי"
+],
+"ops": [
+{
+"who": "פניני הלכה: כשהקמח ניתן לטעם או לשובע",
+"before": "mezonot",
+"after": null,
+"text": "על המחיה רק כשהקמח רוב התערובת, או כשאכלו כזית מהקמח עצמו. אחרת בורא נפשות."
+},
+{
+"who": "פניני הלכה ושולחן ערוך: כשהקמח רק מדביק",
+"before": null,
+"after": "nefashot",
+"text": "הקמח טפל, והברכה לפי שאר המרכיבים. בפשטידת ירקות: האדמה."
+}
+],
+"src": [
+"P11-4",
+"SA",
+"MV:ma-mevarchim-al-pashtida"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "quiche",
+"icon": 107,
+"name": "קיש",
+"alias": [
+"קיש עם בצק",
+"קיש גבינות",
+"קיש ירקות"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"P11-7",
+"MV:ma-mevarchim-al-pashtida"
+],
+"cond": "בצק ומילוי שנאפו יחד, והבצק עיקר.",
+"after_cond": "על המחיה כשאכלו כזית מהבצק. כשאין כזית בבצק אבל יחד אכלו כזית: בורא נפשות.",
+"status": "ok"
+},
+{
+"id": "marak-kneidlach",
+"icon": 57,
+"name": "מרק קניידלך",
+"alias": [
+"קניידלך",
+"כופתאות",
+"קניידלעך"
+],
+"ops": [
+{
+"who": "פניני הלכה: כשיש הרבה כופתאות",
+"before": "mezonot",
+"after": null,
+"text": "הכופתאות עיקר, והברכה עליהן פוטרת את המרק."
+},
+{
+"who": "פניני הלכה: כשיש מעט כופתאות",
+"before": null,
+"after": null,
+"text": "מזונות על הכופתאות ושהכל על המרק."
+},
+{
+"who": "לוח מכון זר זהב: קניידלך",
+"before": "mezonot",
+"after": "michya",
+"text": ""
+}
+],
+"src": [
+"P11-9",
+"KV:קניידלך"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "schnitzel-tiras",
+"icon": 58,
+"name": "שניצל תירס",
+"alias": [
+"שניצל סויה",
+"שניצל צמחוני",
+"שניצל טבעול"
+],
+"ops": [
+{
+"who": "הרב ירוחם ארלנגר, אתר דין: שניצל תירס",
+"before": null,
+"after": null,
+"text": "כשיש בו גרגירי תירס בכמות רבה: האדמה. כשרובו מרוסק: שהכל."
+},
+{
+"who": "הידברות; לוח מכון זר זהב: שניצל תירס",
+"before": "adama",
+"after": "nefashot",
+"text": "הרוב תירס, והשאר רק מדביק."
+},
+{
+"who": "פניני הלכה: שניצל סויה",
+"before": "shehakol",
+"after": null,
+"text": "הסויה נטחנה ואינה ניכרת. מי שבירך האדמה יצא."
+}
+],
+"src": [
+"Dtiras",
+"Htiras",
+"KV:שניצל-תירס",
+"P8-11"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "kariyot",
+"icon": 54,
+"name": "כריות עם חלב",
+"alias": [
+"כריות",
+"דגני בוקר ממולאים",
+"כריות נוגט"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"KV:כריות-עם-חלב"
+],
+"after_cond": "על המחיה רק כשאכלו מהדגן 27 גרם בתוך 7.5 דקות.",
+"status": "ok"
+},
+{
+"id": "muesli",
+"icon": 54,
+"name": "מוזלי",
+"alias": [
+"מיוזלי",
+"muesli",
+"גרנולה ביוגורט"
+],
+"ops": [
+{
+"who": "הידברות: כשהדגן נעשה גוש אחד",
+"before": "mezonot",
+"after": null,
+"text": ""
+},
+{
+"who": "הידברות: כשהיוגורט עיקר והדגן רק מפוזר בו",
+"before": "shehakol",
+"after": null,
+"text": ""
+},
+{
+"who": "הרב ירוחם ארלנגר, אתר דין",
+"before": "adama",
+"after": null,
+"text": "גרנולה ביוגורט. כשהושרתה בחלב זמן רב עד שהתרככה מאוד: מזונות."
+}
+],
+"src": [
+"Hmuesli",
+"Dgranola"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "granola",
+"icon": 54,
+"name": "גרנולה",
+"alias": [
+"גרנולה קלויה",
+"גרנולה מוכנה"
+],
+"ops": [
+{
+"who": "פניני הלכה (וכן הורה באור לציון)",
+"before": "mezonot",
+"after": "michya",
+"text": "מאכל חשוב שהוכן כל צורכו. מעט חלב נפטר בברכת המזונות. על חלב מעבר למה שצריך להטעמה מברכים שהכל בנפרד."
+},
+{
+"who": "הרב יהודה הלוי עמיחי, מכון התורה והארץ; הרב ירוחם ארלנגר, אתר דין; לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": "כשהיא יבשה או ביוגורט, כי היא קלויה ולא מבושלת. גרנולה שהושרתה בחלב זמן רב עד שהתרככה ונדבקה: מזונות."
+}
+],
+"src": [
+"P6-13",
+"TL",
+"TL2",
+"Dgranola",
+"KV:גרנולה"
+],
+"cond": "הברכה האחרונה תלויה בדעה: על המחיה או בורא נפשות.",
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "french-toast",
+"icon": 0,
+"name": "פרנץ׳ טוסט",
+"alias": [
+"פרנץ טוסט",
+"לחם מטוגן",
+"french toast"
+],
+"ops": [
+{
+"who": "לוח מכון זר זהב: פרוסות בשיעור כזית ומעלה",
+"before": "motzi",
+"after": "mazon",
+"text": ""
+},
+{
+"who": "לוח מכון זר זהב: חתיכות קטנות מכזית",
+"before": "mezonot",
+"after": "michya",
+"text": "גם כשאוכלים מהן הרבה."
+}
+],
+"src": [
+"KV:לחם-מטוגן-בשיעור-כזית",
+"KV:לחם-מטוגן-פחות-מכזית"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "yogurt",
+"icon": 89,
+"name": "יוגורט",
+"alias": [
+"לבן",
+"שמנת",
+"יוגורט פירות",
+"סקיר",
+"skyr"
+],
+"ops": [
+{
+"who": "פניני הלכה; אתר דין; הידברות",
+"before": "shehakol",
+"after": "nefashot",
+"text": "כשהוא נאכל בכפית דינו כאוכל: ברכה אחרונה על כזית בתוך כדי אכילת פרס."
+},
+{
+"who": "הרב עובדיה יוסף, כפי שמובא בהידברות; לוח מכון זר זהב",
+"before": "shehakol",
+"after": "none",
+"text": "אין ברכה אחרונה על יוגורט, אלא כששותים רביעית בבת אחת."
+}
+],
+"src": [
+"P10-11",
+"Dyogurt",
+"Hyogurt",
+"KV:יוגורט"
+],
+"cond": "סקיר אינו נזכר במקורות בשמו. דינו כיוגורט.",
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "daysat-orez",
+"icon": 71,
+"name": "דייסת אורז",
+"alias": [
+"אורז בחלב"
+],
+"note": "לא נמצא מקור שנקרא במלואו. על אורז מבושל: מזונות ובורא נפשות.",
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "shakshuka",
+"icon": 108,
+"name": "שקשוקה",
+"alias": [
+"shakshuka",
+"שקשוקה אדומה",
+"שקשוקה ירוקה",
+"שקשוקה תרד"
+],
+"ops": [
+{
+"who": "פניני הלכה, כלל התערובת: כשהכול מעורב לגמרי",
+"before": null,
+"after": "nefashot",
+"text": "הולכים אחר הרוב: רוב ירקות האדמה, רוב ביצים שהכל."
+},
+{
+"who": "פניני הלכה: כשהביצים והירקות ניכרים",
+"before": null,
+"after": "nefashot",
+"text": "ספק, ומברכים על כל מין: שהכל על הביצים והאדמה על הירקות."
+},
+{
+"who": "פניני הלכה: עם לחם בסעודה",
+"before": "motzi",
+"after": "mazon",
+"text": "ברכת המוציא פוטרת את מה שנאכל לשובע בסעודה, למי שאוכל כזית מהלחם."
+}
+],
+"src": [
+"P11-3",
+"P8-3",
+"P3-6"
+],
+"cond": "פניני הלכה אינו מזכיר שקשוקה בשמה. אלה כללי התערובת שלו.",
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "mashke-shibolet",
+"icon": 89,
+"name": "משקה שיבולת שועל",
+"alias": [
+"חלב שיבולת שועל",
+"חלב סויה",
+"משקה סויה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"P8-3",
+"P8-15",
+"P10-10",
+"KV:חלב-קוקוס-שקדים"
+],
+"cond": "מאכל שנעשה משקה ברכתו שהכל.",
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "mashke-shkedim",
+"icon": 89,
+"name": "משקה שקדים",
+"alias": [
+"חלב שקדים",
+"חלב קוקוס"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:חלב-קוקוס-שקדים",
+"P10-10"
+],
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "shake-perot",
+"icon": 88,
+"name": "שייק פירות",
+"alias": [
+"שייק",
+"סמודי",
+"smoothie",
+"מחית פירות"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"P8-10",
+"P8-15",
+"P10-10"
+],
+"cond": "פירות שרוסקו לגמרי או נעשו משקה איבדו את ברכתם. כשנשארו חתיכות פרי: העץ, והיא פוטרת את השאר.",
+"after_cond": "כששתו רביעית (כ-75 מ״ל) ברציפות. בלגימות לאורך זמן אין ברכה אחרונה.",
+"status": "ok"
+},
+{
+"id": "milkshake",
+"icon": 88,
+"name": "מילקשייק",
+"alias": [
+"מילק שייק",
+"אייס קפה",
+"milkshake"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"KV:מילק-שייק"
+],
+"cond": "עם חתיכות פרי: לפי הרוב.",
+"status": "ok"
+},
+{
+"id": "barad",
+"icon": 91,
+"name": "ברד",
+"alias": [
+"ברד קפוא",
+"סלאש"
+],
+"before": "shehakol",
+"after": "none",
+"src": [
+"P10-11",
+"KV"
+],
+"cond": "אינו נזכר בשמו. דינו כקרטיב שמוצצים, שנחשב שתייה.",
+"after_cond": "אי אפשר לשתות ממנו רביעית ברציפות.",
+"status": "ok"
+},
+{
+"id": "cocktail",
+"icon": 109,
+"name": "קוקטייל אלכוהולי",
+"alias": [
+"קוקטייל",
+"מוחיטו"
+],
+"note": "לא נמצא מקור. על ליקר: ראו בערך ליקר.",
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "kombucha",
+"icon": 88,
+"name": "קומבוצ׳ה",
+"alias": [
+"קומבוצה",
+"kombucha"
+],
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "batata",
+"icon": 110,
+"name": "בטטה",
+"alias": [
+"בטטות",
+"בטטה אפויה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"KV:בטטה"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "sheuit-yeruka",
+"icon": 42,
+"name": "שעועית ירוקה",
+"alias": [
+"שעועית לבנה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"KV:שעועית-לבנה-וירוקה"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "edamame",
+"icon": 42,
+"name": "אדממה",
+"alias": [
+"edamame",
+"פולי סויה"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"P8-1"
+],
+"cond": "פירות הארץ, כמו אפונה ועדשים. מוצרי סויה מעובדים: שהכל.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "artishok-yerushalmi",
+"icon": 47,
+"name": "ארטישוק ירושלמי",
+"alias": [
+"תפוח אדמה ירושלמי"
+],
+"note": "לא נמצא מקור. בלוח מכון זר זהב מופיע רק ארטישוק רגיל: האדמה.",
+"status": "review",
+"ask": "לא נמצא מקור. מה הברכה הראשונה והאחרונה?"
+},
+{
+"id": "pri-drakon",
+"icon": 32,
+"name": "פרי דרקון",
+"alias": [
+"פיטאיה",
+"פיטאייה",
+"dragon fruit"
+],
+"before": "etz",
+"after": "nefashot",
+"src": [
+"Hpitaya",
+"KPp",
+"TLd",
+"P10-4"
+],
+"cond": "כך השיבו הרב הלל מאירס (הידברות) וכיפה. במכון התורה והארץ נפסק שדינו כעץ לערלה ולתרומות ומעשרות.",
+"after_cond": "כשאכלו כזית. הברכה האחרונה אינה כתובה במקור על המאכל הזה, והיא לפי הכלל שבפניני הלכה: בורא נפשות על כל מה שאינו משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "pasiflora",
+"icon": 32,
+"name": "פסיפלורה",
+"alias": [
+"פסיפלורות",
+"passion fruit"
+],
+"ops": [
+{
+"who": "הרב יהודה הלוי עמיחי, מכון התורה והארץ; אתר דין; פניני הלכה; לוח מכון זר זהב",
+"before": "adama",
+"after": "nefashot",
+"text": "מספק: ברכת האדמה כוללת גם את העץ. הסוברים שהיא ירק: רדב״ז, בן איש חי, ילקוט יוסף, הרב מרדכי אליהו. הסוברים שהיא אילן: כרם ציון, והרב אלישיב."
+},
+{
+"who": "כיפה, שאל את הרב",
+"before": null,
+"after": null,
+"text": "יש פוסקים שמחשיבים אותה כעץ, ולכן העץ לאשכנזים."
+}
+],
+"src": [
+"TLp",
+"TLp2",
+"Dpasi",
+"P8-2",
+"KV:פסיפלורה",
+"KPs"
+],
+"status": "ok",
+"kind": "opinions"
+},
+{
+"id": "perot-yeveshim",
+"icon": 12,
+"name": "פירות יבשים מעורבים",
+"alias": [
+"פירות יבשים",
+"תערובת פירות יבשים"
+],
+"ops": [
+{
+"who": "אתר דין; פניני הלכה",
+"before": "etz",
+"after": null,
+"text": "מברכים על פרי משבעת המינים, והברכה פוטרת את שאר פירות העץ. סדר הקדימה: זית, תמר, ענבים, תאנה, רימון."
+},
+{
+"who": "פניני הלכה: ברכה אחרונה",
+"before": null,
+"after": null,
+"text": "על העץ על כזית מפירות שבעת המינים, ובורא נפשות על השאר. על בננה או אננס מיובשים: האדמה בנפרד."
+}
+],
+"src": [
+"Dyevesh",
+"P9-10",
+"P10-3",
+"MV:ma-mevarchim-al-peirot-yeveshim"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "injera",
+"icon": 2,
+"name": "אינג׳רה",
+"alias": [
+"אינגרה",
+"אנג׳רה",
+"injera",
+"לחם טף"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"Dtef",
+"P10-4"
+],
+"cond": "לקמח טף אין דין חמשת מיני דגן, ודינו כקטניות שעל הקמח שלהן מברכים שהכל.",
+"after_cond": "כשאכלו כזית. הברכה האחרונה אינה כתובה במקור על המאכל הזה, והיא לפי הכלל שבפניני הלכה: בורא נפשות על כל מה שאינו משבעת המינים.",
+"status": "ok"
+},
+{
+"id": "gondi-chumus",
+"icon": 7,
+"name": "גונדי מחומוס",
+"alias": [
+"גונדי חומוס"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV:גונדי-חומוס"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "gondi-orez",
+"icon": 7,
+"name": "גונדי מאורז",
+"alias": [
+"גונדי אורז"
+],
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"KV:גונדי-אורז"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "dolma",
+"icon": 39,
+"name": "עלי גפן ממולאים",
+"alias": [
+"דולמה",
+"דולמות",
+"ממולאים באורז",
+"יפרח"
+],
+"before": "mezonot",
+"after": "nefashot",
+"src": [
+"KV:ממולאים-באורז",
+"P11-5"
+],
+"cond": "כשהמילוי אורז, האורז עיקר.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tabule",
+"icon": 46,
+"name": "טבולה",
+"alias": [
+"טאבולה",
+"סלט בורגול",
+"tabbouleh"
+],
+"ops": [
+{
+"who": "הרב בן ציון מוצפי; אתר דין: בורגול מושרה שלא בושל",
+"before": "adama",
+"after": "nefashot",
+"text": ""
+},
+{
+"who": "פניני הלכה; אתר דין: בורגול מבושל",
+"before": "mezonot",
+"after": "michya",
+"text": "על המחיה כשאכלו כזית בורגול."
+}
+],
+"src": [
+"Zburgul",
+"Dburgul2",
+"P6-1"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "ful-medames",
+"icon": 45,
+"name": "פול מדמס",
+"alias": [
+"פול חם",
+"פול מצרי"
+],
+"before": "adama",
+"after": "nefashot",
+"src": [
+"KV:פול"
+],
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "ozen-haman",
+"icon": 63,
+"name": "אוזן המן",
+"alias": [
+"אוזני המן",
+"המנטשן"
+],
+"before": "mezonot",
+"after": "michya",
+"src": [
+"Dozen",
+"P6-2"
+],
+"cond": "פת הבאה בכיסנים. כשקובעים עליהן סעודה: המוציא וברכת המזון.",
+"after_cond": "כשאכלו כזית.",
+"status": "ok"
+},
+{
+"id": "tapuach-bidvash",
+"icon": 17,
+"name": "תפוח בדבש",
+"alias": [
+"תפוח בדבש של ראש השנה",
+"סימני ראש השנה"
+],
+"ops": [
+{
+"who": "פניני הלכה, ימים נוראים",
+"before": "etz",
+"after": null,
+"text": "בסימני ליל ראש השנה נכון לברך העץ על התמר, והוא פוטר את התפוח ואת שאר פירות העץ."
+},
+{
+"who": "אתר דין, על פי בן איש חי",
+"before": "etz",
+"after": null,
+"text": "מברכים על הסימנים אף שכבר בירכו המוציא, כי אינם שייכים לסעודה."
+},
+{
+"who": "ברכה אחרונה",
+"before": null,
+"after": null,
+"text": "בתוך הסעודה: ברכת המזון פוטרת."
+}
+],
+"src": [
+"PY",
+"Dtapuach"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "matza-brei",
+"icon": 98,
+"name": "מצה בריי",
+"alias": [
+"מצה מטוגנת",
+"מצה בריי בפסח"
+],
+"ops": [
+{
+"who": "לוח מכון זר זהב: חתיכות קטנות מכזית",
+"before": "mezonot",
+"after": "michya",
+"text": "גם כשאוכלים מהן הרבה."
+},
+{
+"who": "לוח מכון זר זהב: חתיכות גדולות מכזית",
+"before": "motzi",
+"after": "mazon",
+"text": ""
+}
+],
+"src": [
+"KV:מצה-בפסח-מטוגנת-בפחות-מכזית",
+"KV:מצה-בפסח-מטוגנת-יותר-מכזית"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "lachmania-pesach",
+"icon": 1,
+"name": "לחמנייה לפסח",
+"alias": [
+"לחמניות פסח",
+"לחמנייה כשרה לפסח",
+"לחמניות כשרות לפסח"
+],
+"ops": [
+{
+"who": "פניני הלכה, על מאכלים מקמח תפוחי אדמה; לוח מכון זר זהב, על לחם ללא גלוטן",
+"before": "shehakol",
+"after": "nefashot",
+"text": "נוהגים להורות שהכל, והרוצה רשאי לברך האדמה."
+},
+{
+"who": "פניני הלכה, על פירורי לחם קטנים מכזית שגובשו ונאפו",
+"before": "mezonot",
+"after": "michya",
+"text": "לחמנייה מקמח מצה אינה נזכרת במקור בשמה."
+}
+],
+"src": [
+"P8-12",
+"P6-12",
+"KV:לחם-ללא-גלוטן"
+],
+"status": "review",
+"ask": "לחמנייה לפסח מקמח מצה: האם דינה כפירורי לחם שגובשו ונאפו (מזונות)?",
+"kind": "cases"
+},
+{
+"id": "charoset",
+"icon": 70,
+"name": "חרוסת",
+"alias": [
+"חרוסת של פסח"
+],
+"ops": [
+{
+"who": "לוח מכון זר זהב: בלילה עבה",
+"before": "etz",
+"after": "none",
+"text": ""
+},
+{
+"who": "לוח מכון זר זהב: בלילה דקה",
+"before": "shehakol",
+"after": "none",
+"text": ""
+}
+],
+"src": [
+"KV:חרוסת-בלילה-עבה",
+"KV:חרוסת-בלילה-דקה"
+],
+"status": "ok",
+"kind": "cases"
+},
+{
+"id": "liker",
+"icon": 109,
+"name": "ליקר",
+"alias": [
+"ליקר שוקולד",
+"ליקר קפה"
+],
+"before": "shehakol",
+"after": "nefashot",
+"src": [
+"KV",
+"P10-10"
+],
+"after_cond": "כששתו רביעית ברציפות. בכוסית קטנה אין ברכה אחרונה.",
+"status": "ok"
+}
+],
+"choices": [
+{
+"term": "שווארמה",
+"alias": [
+"שוארמה",
+"שורמה",
+"שאוורמה"
+],
+"ids": [
+"shawarma-pita",
+"shawarma-plate"
+],
+"q": "איך אוכלים את זה?"
+},
+{
+"term": "פלאפל",
+"alias": [],
+"ids": [
+"falafel-pita",
+"falafel-balls"
+],
+"q": "איך אוכלים את זה?"
+},
+{
+"term": "המבורגר",
+"alias": [],
+"ids": [
+"hamburger-bun",
+"hamburger-plate"
+],
+"q": "איך אוכלים את זה?"
+},
+{
+"term": "סביח",
+"alias": [
+"sabich",
+"sabih"
+],
+"ids": [
+"sabich-pita",
+"sabich-plate"
+],
+"q": "איך אוכלים את זה?"
+},
+{
+"term": "תות",
+"alias": [],
+"ids": [
+"tut-sade",
+"tut-etz"
+],
+"q": "איזה תות?"
+},
+{
+"term": "חומוס",
+"alias": [],
+"ids": [
+"hummus",
+"hummus-garg",
+"hummus-mana"
+],
+"q": "איזה חומוס?"
+},
+{
+"term": "שניצל",
+"alias": [],
+"ids": [
+"schnitzel",
+"schnitzel-tiras",
+"schnitzel-pita"
+],
+"q": "איזה שניצל?"
+},
+{
+"term": "מרק",
+"alias": [],
+"ids": [
+"marak-tzach",
+"marak-yerakot",
+"marak-itriyot",
+"marak-avka",
+"marak-kneidlach"
+],
+"q": "איזה מרק?"
+},
+{
+"term": "קליק",
+"alias": [],
+"ids": [
+"klik-dagan",
+"klik-bli-dagan"
+],
+"q": "איזה קליק?"
+},
+{
+"term": "קוגל",
+"alias": [
+"קיגל"
+],
+"ids": [
+"kugel-itriyot",
+"kugel-tapuchei-adama"
+],
+"q": "איזה קוגל?"
+},
+{
+"term": "גונדי",
+"alias": [],
+"ids": [
+"gondi-chumus",
+"gondi-orez"
+],
+"q": "איזה גונדי?"
+}
+],
+"sources": {
+"H": [
+"הידברות, ”מה מברכים על”, על פי הלכה יומית (פסקי הרב עובדיה יוסף)",
+"https://www.hidabroot.org/magazine/category/56955"
+],
+"K": [
+"כיפה, לוח ברכות הנהנין, הרב שמואל אליהו",
+"https://www.kipa.co.il/שאל-את-הרב/לוח-ברכות-הנהנין/"
+],
+"P3-6": [
+"פניני הלכה, ברכות ג, ו",
+"https://ph.yhb.org.il/10-03-06/"
+],
+"P3-7": [
+"פניני הלכה, ברכות ג, ז",
+"https://ph.yhb.org.il/10-03-07/"
+],
+"P6-6": [
+"פניני הלכה, ברכות ו, ו",
+"https://ph.yhb.org.il/10-06-06/"
+],
+"P6-7": [
+"פניני הלכה, ברכות ו, ז",
+"https://ph.yhb.org.il/10-06-07/"
+],
+"P6-8": [
+"פניני הלכה, ברכות ו, ח",
+"https://ph.yhb.org.il/10-06-08/"
+],
+"P6-9": [
+"פניני הלכה, ברכות ו, ט",
+"https://ph.yhb.org.il/10-06-09/"
+],
+"P6-10": [
+"פניני הלכה, ברכות ו, י",
+"https://ph.yhb.org.il/10-06-10/"
+],
+"P6-11": [
+"פניני הלכה, ברכות ו, יא",
+"https://ph.yhb.org.il/10-06-11/"
+],
+"P6-13": [
+"פניני הלכה, ברכות ו, יג",
+"https://ph.yhb.org.il/10-06-13/"
+],
+"P8-10": [
+"פניני הלכה, ברכות ח, י",
+"https://ph.yhb.org.il/10-08-10/"
+],
+"P8-11": [
+"פניני הלכה, ברכות ח, יא",
+"https://ph.yhb.org.il/10-08-11/"
+],
+"P8-12": [
+"פניני הלכה, ברכות ח, יב",
+"https://ph.yhb.org.il/10-08-12/"
+],
+"P8-13": [
+"פניני הלכה, ברכות ח, יג",
+"https://ph.yhb.org.il/10-08-13/"
+],
+"P8-16": [
+"פניני הלכה, ברכות ח, טז",
+"https://ph.yhb.org.il/10-08-16/"
+],
+"P10-10": [
+"פניני הלכה, ברכות י, י",
+"https://ph.yhb.org.il/10-10-10/"
+],
+"P10-11": [
+"פניני הלכה, ברכות י, יא",
+"https://ph.yhb.org.il/10-10-11/"
+],
+"P11-1": [
+"פניני הלכה, ברכות יא, א",
+"https://ph.yhb.org.il/10-11-01/"
+],
+"P11-4": [
+"פניני הלכה, ברכות יא, ד",
+"https://ph.yhb.org.il/10-11-04/"
+],
+"P11-5": [
+"פניני הלכה, ברכות יא, ה",
+"https://ph.yhb.org.il/10-11-05/"
+],
+"P11-5x": [
+"הרחבות לפניני הלכה, ברכות יא, ה",
+"https://ph.yhb.org.il/plus/10-11-05/"
+],
+"P11-7": [
+"פניני הלכה, ברכות יא, ז",
+"https://ph.yhb.org.il/10-11-07/"
+],
+"P11-8": [
+"פניני הלכה, ברכות יא, ח",
+"https://ph.yhb.org.il/10-11-08/"
+],
+"P11-9": [
+"פניני הלכה, ברכות יא, ט",
+"https://ph.yhb.org.il/10-11-09/"
+],
+"P2-6": [
+"פניני הלכה, ברכות ב, ו",
+"https://ph.yhb.org.il/10-02-06/"
+],
+"P4-6": [
+"פניני הלכה, ברכות ד, ו",
+"https://ph.yhb.org.il/10-04-06/"
+],
+"YY": [
+"ילקוט יוסף, הרב יצחק יוסף, ברכת הבמבה",
+"https://yalkutyosef.co.il/2021/05/09/מה-מברכים-על-במבה-פסק-מרן-הרב-יצחק-יוסף/"
+],
+"HQ": [
+"הידברות, שאל את הרב, על פי הלכה ברורה חלק י",
+"https://www.hidabroot.org/question/264893"
+],
+"TL": [
+"הרב יהודה הלוי עמיחי, מכון התורה והארץ",
+"https://www.toraland.org.il/7250"
+],
+"MVs": [
+"מברכים, סביח (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-sabich/"
+],
+"CHg": [
+"חב״ד, שאל את הרב: ברכה על מסטיק (נקרא מתקציר חיפוש בלבד, הדף חסום)",
+"https://www.chabad.org.il/Questions/PrintQuestion.asp?ArticleID=7697&CategoryID=68"
+],
+"CHb": [
+"חב״ד, שאל את הרב: כוסמת ובורגול (נקרא מתקציר חיפוש בלבד, הדף חסום)",
+"https://www.chabad.org.il/Questions/PrintQuestion.asp?ArticleID=9212&CategoryID=68"
+],
+"TL2": [
+"הרב יהודה הלוי עמיחי, ברכה אחרונה על גרנולה",
+"https://www.toraland.org.il/שאלות-ותשובות/שונות/לפני-מיון/נושאים-נוספים/ברכה-אחרונה-על-גרנולה/"
+],
+"KV": [
+"לוח הברכות של מכון זר זהב, על פי פסקי הרב עובדיה יוסף (ארגון קרבנו)",
+"https://karvenu.co.il/מה-מברכים/"
+],
+"KVk": [
+"לוח מכון זר זהב: כיף כף",
+"https://karvenu.co.il/מה-מברכים/כיף-כף/"
+],
+"KVs": [
+"לוח מכון זר זהב: סושי",
+"https://karvenu.co.il/מה-מברכים/סושי/"
+],
+"KVl": [
+"לוח מכון זר זהב: לזניה",
+"https://karvenu.co.il/מה-מברכים/לזניה/"
+],
+"MVb": [
+"מברכים, ביצה ושקשוקה (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-beitza/"
+],
+"MVm": [
+"מברכים, משקה מוגז (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-mashke-muggaz/"
+],
+"DIN": [
+"אתר דין, רבני בית ההוראה: פפאיה וסלט פירות",
+"https://din.org.il/2023/01/27/ברכה-על-פפאיה-ברכה-על-סלט-פירות/"
+],
+"DZ": [
+"דורש ציון, שאל את הרב: מג׳דרה",
+"https://www.doresh-tzion.co.il/qas/315948"
+],
+"SA": [
+"שולחן ערוך, אורח חיים רח, ב, עם משנה ברורה",
+"https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_רח_ב"
+],
+"KV:דגים": [
+"לוח מכון זר זהב: דגים",
+"https://karvenu.co.il/מה-מברכים/דגים/"
+],
+"MV:ma-mevarchim-al-sushi": [
+"מברכים, סושי וסשימי (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-sushi/"
+],
+"MV:ma-mevarchim-al-arayes": [
+"מברכים, עראייס (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-arayes/"
+],
+"KV:מקופלת": [
+"לוח מכון זר זהב: מקופלת",
+"https://karvenu.co.il/מה-מברכים/מקופלת/"
+],
+"KV:טעמי-חטיף": [
+"לוח מכון זר זהב: טעמי חטיף",
+"https://karvenu.co.il/מה-מברכים/טעמי-חטיף/"
+],
+"KV:במבה-נוגט": [
+"לוח מכון זר זהב: במבה נוגט",
+"https://karvenu.co.il/מה-מברכים/במבה-נוגט/"
+],
+"KV:דובונים": [
+"לוח מכון זר זהב: דובונים",
+"https://karvenu.co.il/מה-מברכים/דובונים/"
+],
+"KV:שערות-סבתא": [
+"לוח מכון זר זהב: שערות סבתא",
+"https://karvenu.co.il/מה-מברכים/שערות-סבתא/"
+],
+"KV:חמצוצים": [
+"לוח מכון זר זהב: חמצוצים",
+"https://karvenu.co.il/מה-מברכים/חמצוצים/"
+],
+"KV:דוריטוס": [
+"לוח מכון זר זהב: דוריטוס",
+"https://karvenu.co.il/מה-מברכים/דוריטוס/"
+],
+"KV:אפרופו": [
+"לוח מכון זר זהב: אפרופו",
+"https://karvenu.co.il/מה-מברכים/אפרופו/"
+],
+"MV:ma-mevarchim-al-kruasson": [
+"מברכים, קרואסון (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-kruasson/"
+],
+"KV:פחזניה": [
+"לוח מכון זר זהב: פחזניה",
+"https://karvenu.co.il/מה-מברכים/פחזניה/"
+],
+"MV:מה-מברכים-על-בריוש": [
+"מברכים, בריוש (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-בריוש/"
+],
+"MV:ma-mevarchim-al-macarons": [
+"מברכים, מקרונים (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-macarons/"
+],
+"KV:קוקוס-ממתק": [
+"לוח מכון זר זהב: קוקוס ממתק",
+"https://karvenu.co.il/מה-מברכים/קוקוס-ממתק/"
+],
+"KV:לחם-ללא-גלוטן": [
+"לוח מכון זר זהב: לחם ללא גלוטן",
+"https://karvenu.co.il/מה-מברכים/לחם-ללא-גלוטן/"
+],
+"KV:קינואה": [
+"לוח מכון זר זהב: קינואה",
+"https://karvenu.co.il/מה-מברכים/קינואה/"
+],
+"MV:מה-מברכים-על-כוסמת": [
+"מברכים, כוסמת (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-כוסמת/"
+],
+"MV:ma-mevarchim-al-pashtida": [
+"מברכים, פשטידה (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-pashtida/"
+],
+"KV:קניידלך": [
+"לוח מכון זר זהב: קניידלך",
+"https://karvenu.co.il/מה-מברכים/קניידלך/"
+],
+"KV:שניצל-תירס": [
+"לוח מכון זר זהב: שניצל תירס",
+"https://karvenu.co.il/מה-מברכים/שניצל-תירס/"
+],
+"MV:טבלת-ברכות": [
+"מברכים, טבלת הברכות (על פי פניני הלכה)",
+"https://mevarhim.co.il/טבלת-ברכות/"
+],
+"KV:כריות-עם-חלב": [
+"לוח מכון זר זהב: כריות עם חלב",
+"https://karvenu.co.il/מה-מברכים/כריות-עם-חלב/"
+],
+"KV:גרנולה": [
+"לוח מכון זר זהב: גרנולה",
+"https://karvenu.co.il/מה-מברכים/גרנולה/"
+],
+"KV:לחם-מטוגן-בשיעור-כזית": [
+"לוח מכון זר זהב: לחם מטוגן בשיעור כזית",
+"https://karvenu.co.il/מה-מברכים/לחם-מטוגן-בשיעור-כזית/"
+],
+"KV:לחם-מטוגן-פחות-מכזית": [
+"לוח מכון זר זהב: לחם מטוגן פחות מכזית",
+"https://karvenu.co.il/מה-מברכים/לחם-מטוגן-פחות-מכזית/"
+],
+"KV:יוגורט": [
+"לוח מכון זר זהב: יוגורט",
+"https://karvenu.co.il/מה-מברכים/יוגורט/"
+],
+"MV:ma-mevarchim-al-shakshuka": [
+"מברכים, שקשוקה (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-shakshuka/"
+],
+"MV:מה-מברכים-על-חלב-שיבולת-שועל": [
+"מברכים, חלב שיבולת שועל (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-חלב-שיבולת-שועל/"
+],
+"KV:חלב-קוקוס-שקדים": [
+"לוח מכון זר זהב: חלב קוקוס שקדים",
+"https://karvenu.co.il/מה-מברכים/חלב-קוקוס-שקדים/"
+],
+"MV:ma-mevarchim-al-shake-perot": [
+"מברכים, שייק פירות (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-shake-perot/"
+],
+"KV:מילק-שייק": [
+"לוח מכון זר זהב: מילק שייק",
+"https://karvenu.co.il/מה-מברכים/מילק-שייק/"
+],
+"MV:מה-מברכים-על-ברד": [
+"מברכים, ברד (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-ברד/"
+],
+"KV:בטטה": [
+"לוח מכון זר זהב: בטטה",
+"https://karvenu.co.il/מה-מברכים/בטטה/"
+],
+"KV:שעועית-לבנה-וירוקה": [
+"לוח מכון זר זהב: שעועית לבנה וירוקה",
+"https://karvenu.co.il/מה-מברכים/שעועית-לבנה-וירוקה/"
+],
+"MV:מה-מברכים-על-אדממה": [
+"מברכים, אדממה (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-אדממה/"
+],
+"KPf": [
+"כיפה, כתבה על פירות קיץ (בלי שם רב)",
+"https://www.kipa.co.il/יהדות/6-פירות-קיץ-מוזרים-שלא-הייתם-בטוחים-מה-ל/"
+],
+"KV:פסיפלורה": [
+"לוח מכון זר זהב: פסיפלורה",
+"https://karvenu.co.il/מה-מברכים/פסיפלורה/"
+],
+"KV:תות-עץ": [
+"לוח מכון זר זהב: תות עץ",
+"https://karvenu.co.il/מה-מברכים/תות-עץ/"
+],
+"KV:כובאנה": [
+"לוח מכון זר זהב: כובאנה",
+"https://karvenu.co.il/מה-מברכים/כובאנה/"
+],
+"KV:גונדי-חומוס": [
+"לוח מכון זר זהב: גונדי חומוס",
+"https://karvenu.co.il/מה-מברכים/גונדי-חומוס/"
+],
+"KV:גונדי-אורז": [
+"לוח מכון זר זהב: גונדי אורז",
+"https://karvenu.co.il/מה-מברכים/גונדי-אורז/"
+],
+"KV:ממולאים-באורז": [
+"לוח מכון זר זהב: ממולאים באורז",
+"https://karvenu.co.il/מה-מברכים/ממולאים-באורז/"
+],
+"MV:ma-mevarchim-al-tabule": [
+"מברכים, טבולה (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-tabule/"
+],
+"KV:פול": [
+"לוח מכון זר זהב: פול",
+"https://karvenu.co.il/מה-מברכים/פול/"
+],
+"KV:מצה-בפסח-מטוגנת-בפחות-מכזית": [
+"לוח מכון זר זהב: מצה בפסח מטוגנת בפחות מכזית",
+"https://karvenu.co.il/מה-מברכים/מצה-בפסח-מטוגנת-בפחות-מכזית/"
+],
+"KV:מצה-בפסח-מטוגנת-יותר-מכזית": [
+"לוח מכון זר זהב: מצה בפסח מטוגנת יותר מכזית",
+"https://karvenu.co.il/מה-מברכים/מצה-בפסח-מטוגנת-יותר-מכזית/"
+],
+"MV:מה-מברכים-על-לחמניות-כשרות-לפסח": [
+"מברכים, לחמניות לפסח (על פי פניני הלכה)",
+"https://mevarhim.co.il/מה-מברכים-על-לחמניות-כשרות-לפסח/"
+],
+"KV:חרוסת-בלילה-עבה": [
+"לוח מכון זר זהב: חרוסת בלילה עבה",
+"https://karvenu.co.il/מה-מברכים/חרוסת-בלילה-עבה/"
+],
+"KV:חרוסת-בלילה-דקה": [
+"לוח מכון זר זהב: חרוסת בלילה דקה",
+"https://karvenu.co.il/מה-מברכים/חרוסת-בלילה-דקה/"
+],
+"P9-1": [
+"פניני הלכה, ברכות ט, א",
+"https://ph.yhb.org.il/10-09-01/"
+],
+"P6-1": [
+"פניני הלכה, ברכות ו, א",
+"https://ph.yhb.org.il/10-06-01/"
+],
+"P6-2": [
+"פניני הלכה, ברכות ו, ב",
+"https://ph.yhb.org.il/10-06-02/"
+],
+"P6-5": [
+"פניני הלכה, ברכות ו, ה",
+"https://ph.yhb.org.il/10-06-05/"
+],
+"P6-12": [
+"פניני הלכה, ברכות ו, יב",
+"https://ph.yhb.org.il/10-06-12/"
+],
+"P8-1": [
+"פניני הלכה, ברכות ח, א",
+"https://ph.yhb.org.il/10-08-01/"
+],
+"P8-2": [
+"פניני הלכה, ברכות ח, ב",
+"https://ph.yhb.org.il/10-08-02/"
+],
+"P8-3": [
+"פניני הלכה, ברכות ח, ג",
+"https://ph.yhb.org.il/10-08-03/"
+],
+"P8-15": [
+"פניני הלכה, ברכות ח, טו",
+"https://ph.yhb.org.il/10-08-15/"
+],
+"P9-10": [
+"פניני הלכה, ברכות ט, י",
+"https://ph.yhb.org.il/10-09-10/"
+],
+"P10-3": [
+"פניני הלכה, ברכות י, ג",
+"https://ph.yhb.org.il/10-10-03/"
+],
+"P10-4": [
+"פניני הלכה, ברכות י, ד",
+"https://ph.yhb.org.il/10-10-04/"
+],
+"P11-3": [
+"פניני הלכה, ברכות יא, ג",
+"https://ph.yhb.org.il/10-11-03/"
+],
+"P11-6": [
+"פניני הלכה, ברכות יא, ו",
+"https://ph.yhb.org.il/10-11-06/"
+],
+"PY": [
+"פניני הלכה, ימים נוראים ג, יג",
+"https://ph.yhb.org.il/15-03-13/"
+],
+"HY772": [
+"הלכה יומית, פסקי הרב עובדיה יוסף: ברכת דגן שלם ופצפוצי אורז",
+"https://halachayomit.co.il/he/default.aspx?HalachaID=772"
+],
+"HY4328": [
+"הלכה יומית, פסקי הרב עובדיה יוסף: עוגת גבינה",
+"https://halachayomit.co.il/he/default.aspx?HalachaID=4328"
+],
+"Dburgul": [
+"אתר דין, רבני בית ההוראה: בורגול מבושל",
+"https://din.org.il/2018/05/07/מה-מברכים-על-בורגול/"
+],
+"Dburgul2": [
+"אתר דין, רבני בית ההוראה: בורגול מושרה",
+"https://din.org.il/2011/11/21/ברכה-על-בורגול/"
+],
+"Dkrembo": [
+"אתר דין, רבני בית ההוראה: קרמבו",
+"https://din.org.il/2019/11/12/ברכה-על-קרמבו/"
+],
+"Dkrembo2": [
+"אתר דין, רבני בית ההוראה: ברכה אחרונה על קרמבו",
+"https://din.org.il/2021/12/27/ברכה-אחרונה-על-קרמבו/"
+],
+"Dsushi": [
+"אתר דין, רבני בית ההוראה: סושי",
+"https://din.org.il/2010/06/09/ברכה-על-סושי/"
+],
+"Dsushi2": [
+"אתר דין, רבני בית ההוראה: סושי כתערובת",
+"https://din.org.il/2018/06/17/ברכה-על-סושי-3/"
+],
+"Dorez": [
+"אתר דין, רבני בית ההוראה: פצפוצי אורז ופריכיות",
+"https://din.org.il/2014/09/11/מה-מברכים-על-פיצפוצי-אורז-ועל-פריכיות-א/"
+],
+"Dtiras": [
+"אתר דין, רבני בית ההוראה: שניצל תירס (הרב ירוחם ארלנגר)",
+"https://din.org.il/2015/10/15/ברכה-על-שניצל-תירס/"
+],
+"Dpasi": [
+"אתר דין, רבני בית ההוראה: פסיפלורה",
+"https://din.org.il/2025/11/25/ברכה-על-פסיפלורה-2/"
+],
+"Dbamba": [
+"אתר דין, רבני בית ההוראה: במבה ובמבה נוגט",
+"https://din.org.il/2019/12/31/ברכה-על-במבה-3/"
+],
+"Dsamb": [
+"אתר דין, רבני בית ההוראה: סמבוסק",
+"https://din.org.il/2016/11/30/מי-סבון-לנטילה-סמבוסק/"
+],
+"Dkif": [
+"אתר דין, רבני בית ההוראה: כיף כף",
+"https://din.org.il/2018/01/31/ברכה-על-כיף-כיף/"
+],
+"Dpesek": [
+"אתר דין, רבני בית ההוראה: פסק זמן",
+"https://din.org.il/2019/12/30/ברכה-על-פסק-זמן/"
+],
+"Dvafel": [
+"אתר דין, רבני בית ההוראה: חטיפי ופל",
+"https://din.org.il/2012/04/19/ברכה-על-כיף-כיף-וכדו/"
+],
+"Dklik": [
+"אתר דין, רבני בית ההוראה: קליק כריות",
+"https://din.org.il/2017/03/06/ברכה-אחרונה-על-קליק-כריות/"
+],
+"Dgvina": [
+"אתר דין, רבני בית ההוראה: עוגת גבינה עם פירורים",
+"https://din.org.il/2024/02/08/ברכה-על-עוגת-גבינה-עם-פירורים-למטה/"
+],
+"Dmuska": [
+"אתר דין, רבני בית ההוראה: מוסקה",
+"https://din.org.il/2013/06/12/מה-מברכים-על-מוסקה-מחצילים-עם-מילוי-בשר/"
+],
+"Dpilpel": [
+"אתר דין, רבני בית ההוראה: פלפל ממולא",
+"https://din.org.il/2015/12/26/ברכה-על-פלפל-ממולא/"
+],
+"Dmaj": [
+"אתר דין, רבני בית ההוראה: תערובת שני מינים",
+"https://din.org.il/2017/12/17/תערובת-שני-מינים-לענין-ברכות/"
+],
+"Dhumus": [
+"אתר דין, רבני בית ההוראה: חומוס",
+"https://din.org.il/2021/05/06/ברכה-על-חומוס-2/"
+],
+"Dtaarovet": [
+"אתר דין, רבני בית ההוראה: תבשיל אחד או שני תבשילים",
+"https://din.org.il/2022/01/07/ברכה-בסתם-אם-פוטר-את-הטפל/"
+],
+"Dtwist": [
+"אתר דין, רבני בית ההוראה: טוויסט",
+"https://din.org.il/2015/09/29/ברכה-על-טוויסט/"
+],
+"Ddoritos": [
+"אתר דין, רבני בית ההוראה: דוריטוס",
+"https://din.org.il/2010/12/16/ברכת-הדוריטוס/"
+],
+"Dafropo": [
+"אתר דין, רבני בית ההוראה: אפרופו",
+"https://din.org.il/2012/06/17/מה-מברכים-על-אפרופו/"
+],
+"Dshmarim": [
+"אתר דין, רבני בית ההוראה: עוגת שמרים",
+"https://din.org.il/2019/05/31/עוגת-שמרים-מבצק-של-חלות/"
+],
+"Dshmarim2": [
+"אתר דין, רבני בית ההוראה: עוגת שמרים עם הרבה בצק",
+"https://din.org.il/2023/09/18/ברכה-ראשונה-על-עוגת-שמרים-עם-הרבה-בצק/"
+],
+"Dbeigel": [
+"אתר דין, רבני בית ההוראה: בייגל חם ומתוק",
+"https://din.org.il/2016/01/19/ברכה-על-בייגל-מתוק/"
+],
+"Dbeigel2": [
+"אתר דין, רבני בית ההוראה: בייגל חלוט",
+"https://din.org.il/2026/05/25/ברכה-על-בייגל-חלוט/"
+],
+"Dgranola": [
+"אתר דין, רבני בית ההוראה: גרנולה (הרב ירוחם ארלנגר)",
+"https://din.org.il/2021/11/12/ברכה-על-גרנולה-4/"
+],
+"Dyogurt": [
+"אתר דין, רבני בית ההוראה: ברכה אחרונה על יוגורט",
+"https://din.org.il/2022/08/25/ברכה-אחרונה-על-יוגורט-קוטג/"
+],
+"Dyevesh": [
+"אתר דין, רבני בית ההוראה: פירות יבשים",
+"https://din.org.il/2019/01/19/ברכה-על-פירות-יבשים/"
+],
+"Dtef": [
+"אתר דין, רבני בית ההוראה: מאפה מקמח טף",
+"https://din.org.il/2021/07/15/ברכה-על-מאפה-מקמח-טף/"
+],
+"Dozen": [
+"אתר דין, רבני בית ההוראה: אוזני המן",
+"https://din.org.il/2014/02/25/מה-מברכים-על-אוזני-המן/"
+],
+"Dtapuach": [
+"אתר דין, רבני בית ההוראה: תפוח בדבש בראש השנה",
+"https://din.org.il/2012/09/14/ענין-אכילת-תפוח-בדבש-בראש-השנה-וברכה-על/"
+],
+"Hgum": [
+"הידברות, שאל את הרב: מסטיק (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/336987"
+],
+"Hburgul": [
+"הידברות, שאל את הרב: בורגול (הרב הלל מאירס)",
+"https://www.hidabroot.org/question/287644"
+],
+"Hkusemet": [
+"הידברות, שאל את הרב: כוסמת (הרב הלל מאירס)",
+"https://www.hidabroot.org/question/224371"
+],
+"Hkrembo": [
+"הידברות, שאל את הרב: קרמבו (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/19385"
+],
+"Hsushi": [
+"הידברות, שאל את הרב: סושי (הרב הלל מאירס)",
+"https://www.hidabroot.org/question/215528"
+],
+"Htiras": [
+"הידברות, שאל את הרב: שניצל תירס",
+"https://www.hidabroot.org/question/89739"
+],
+"Hpitaya": [
+"הידברות, שאל את הרב: פיטאיה (הרב הלל מאירס)",
+"https://www.hidabroot.org/question/234512"
+],
+"Hsamb": [
+"הידברות, שאל את הרב: סמבוסק וקליק (הרב רונן חזיזה)",
+"https://www.hidabroot.org/article/174012"
+],
+"Hsamb2": [
+"הידברות, שאל את הרב: סמבוסק חומוס (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/67969"
+],
+"Hkube": [
+"הידברות, שאל את הרב: קובה (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/97314"
+],
+"Hmaj": [
+"הידברות, שאל את הרב: מג׳דרה (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/250287"
+],
+"Horez": [
+"הידברות, שאל את הרב: אורז עם תוספת",
+"https://www.hidabroot.org/question/103804"
+],
+"Hmuesli": [
+"הידברות, שאל את הרב: מוזלי",
+"https://www.hidabroot.org/question/117155"
+],
+"Hyogurt": [
+"הידברות, שאל את הרב: ברכה אחרונה על יוגורט",
+"https://www.hidabroot.org/question/251952"
+],
+"Hbeigel": [
+"הידברות, שאל את הרב: בייגל (הרב בנימין שמואלי)",
+"https://www.hidabroot.org/question/242915"
+],
+"Zburgul": [
+"דורש ציון, הרב בן ציון מוצפי: בורגול",
+"https://www.doresh-tzion.co.il/QAShowAnswer.aspx?qaid=188047"
+],
+"Zorez": [
+"דורש ציון, הרב בן ציון מוצפי: פצפוצי אורז",
+"https://www.doresh-tzion.co.il/QAShowAnswer.aspx?qaid=219116"
+],
+"Znougat": [
+"דורש ציון, הרב בן ציון מוצפי: במבה נוגט",
+"https://www.doresh-tzion.co.il/QAShowAnswer.aspx?qaid=26911"
+],
+"Zsamb": [
+"דורש ציון, הרב בן ציון מוצפי: סמבוסק גבינה",
+"https://www.doresh-tzion.co.il/QAShowAnswer.aspx?qaid=35037"
+],
+"TLp": [
+"מכון התורה והארץ, הרב יהודה הלוי עמיחי: פסיפלורה",
+"https://www.toraland.org.il/שאלות-ותשובות/שונות/ברכות-ותפילה/ברכות/ברכת-הפסיפלורה/"
+],
+"TLp2": [
+"אנציקלופדיה הלכתית-חקלאית, מכון התורה והארץ: פסיפלורה",
+"https://www.toraland.org.il/אנציקלופדיה-הלכתית-חקלאית/פסיפלורה/"
+],
+"TLd": [
+"אנציקלופדיה הלכתית-חקלאית, מכון התורה והארץ: פיטאיה",
+"https://www.toraland.org.il/אנציקלופדיה-הלכתית-חקלאית/פיטאיה/"
+],
+"KPp": [
+"כיפה, שאל את הרב: פיטאיה",
+"https://www.kipa.co.il/שאל-את-הרב/פיטאיה/"
+],
+"KPk": [
+"כיפה, הרב בניהו ברונר: כוסמת",
+"https://www.kipa.co.il/שאל-את-הרב/ברכות-על-כוסמת/"
+],
+"KPs": [
+"כיפה, שאל את הרב: פסיפלורה",
+"https://www.kipa.co.il/שאל-את-הרב/מה-מברכים-על-פסיפלורה/"
+],
+"MV:ma-mevarchim-al-humus": [
+"מברכים, חומוס (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-humus/"
+],
+"MV:ma-mevarchim-al-schnitzel": [
+"מברכים, שניצל (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-schnitzel/"
+],
+"MV:ma-mevarchim-al-peirot-yeveshim": [
+"מברכים, פירות יבשים (על פי פניני הלכה)",
+"https://mevarhim.co.il/ma-mevarchim-al-peirot-yeveshim/"
+]
+},
+"start": "tapuach",
+"tryThese": [
+"שווארמה",
+"במבה",
+"קרמבו",
+"קפה",
+"מג׳דרה",
+"sushi"
+]
+}

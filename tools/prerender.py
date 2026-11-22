@@ -601,7 +601,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1628,15 +1628,15 @@ SHEM_JS = ("(function(){var f=document.getElementById('nf'),out=document.getElem
            "function run(push){var name=f.n.value.trim().slice(0,40),ns=f.m.value==='n',ls=letters(name.replace(/\\s+(בן|בת)\\s+/,' '));"
            "if(!ls.length){out.innerHTML='<p class=\"note\">כתבו את השם באותיות עבריות.</p>';return}if(ns)ls=ls.concat(['נ','ש','מ','ה']);out.innerHTML='<p class=\"note\">טוען את הפסוקים…</p>';"
            "(P?Promise.resolve(P):fetch('/data/tehillim.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){P=j;return j})).then(function(T){"
-           "var frag='#name='+encodeURIComponent(name)+'&neshama='+(ns?1:0),link=location.origin+'/kelim/shem/'+frag,h='<h2 class=\"sec\">הפסוקים לשם '+esc(name)+'</h2><div class=\"nlet\">'+ls.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'"
-           "+'<p class=\"nact\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/?text='+encodeURIComponent('תהילים לפי שם: '+name+(ns?' (לעילוי נשמה)':'')+'\\n'+link)+'\">שליחה בוואטסאפ</a><button type=\"button\" class=\"btn2\" id=\"ncp\">העתקת קישור</button><button type=\"button\" class=\"btn2\" id=\"npr\">הדפסה</button></p><article class=\"text\">';"
+           "var path='/'+(ns?'leiluy-nishmat':'shem')+'/'+name.replace(/[^\\u05D0-\\u05EA ]/g,'').trim().replace(/\\s+/g,'-'),link=location.origin+path,h='<h2 class=\"sec\">הפסוקים לשם '+esc(name)+'</h2><div class=\"nlet\">'+ls.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'"
+           "+'<p class=\"nact\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/?text='+encodeURIComponent((ns?'תהילים לעילוי נשמת '+name:'תהילים לפי שם: '+name)+'\\nפסוקי פרק קי״ט לפי אותיות השם:\\n'+link)+'\">שליחה בוואטסאפ</a><button type=\"button\" class=\"btn2\" id=\"ncp\">העתקת קישור</button><button type=\"button\" class=\"btn2\" id=\"npr\">הדפסה</button></p><article class=\"text\">';"
            "ls.forEach(function(c,j){var i=ABC.indexOf(c);h+='<h2>אות '+c+(ns&&j>=ls.length-4?' · נשמה':'')+'</h2>';T[118].slice(i*8,i*8+8).forEach(function(v,k){h+='<p><sup>'+gem(i*8+k+1)+'</sup>'+v+'</p>'})});"
            "out.innerHTML=h+'</article>';document.getElementById('npr').onclick=function(){print()};"
            "document.getElementById('ncp').onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',link)})};"
-           "try{history.replaceState(null,'',location.pathname+frag)}catch(e){}if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
+           "try{history.replaceState(null,'',path)}catch(e){}if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
            "}).catch(function(){out.innerHTML='<p class=\"note\">הטעינה נכשלה. בדקו את החיבור ונסו שוב.</p>'})}"
            "f.addEventListener('submit',function(e){e.preventDefault();run(true)});"
-           "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),n0=h.get('name')||q.get('n'),ns0=h.has('neshama')?h.get('neshama')==='1':q.get('m')==='n';"
+           "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),w=window.__shem,n0=h.get('name')||q.get('n')||(w&&w.name),ns0=h.has('neshama')?h.get('neshama')==='1':q.has('m')?q.get('m')==='n':!!(w&&w.neshama);"
            "if(n0){f.n.value=n0.replace(/[^\\u05D0-\\u05EA \\-]/g,'').slice(0,40);f.m.value=ns0?'n':'r';run(false)}}boot();addEventListener('hashchange',boot)})();")
 for i, (k, t, d) in enumerate(KELIM):
     ttl, head, paras, extra, rel = TOOL[k]

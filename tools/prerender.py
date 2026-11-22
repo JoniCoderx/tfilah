@@ -1263,6 +1263,16 @@ for n, plist in by_nus.items():
             _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
+        if p["id"] == "ashkenaz-28":
+            assert len(shown) == 2 and shown[0].startswith("<small>") and "מִזְמוֹר לְתוֹדָה" in shown[1], "the entry changed: look at the page again"
+            text = f"<p>{clean(shown[1])}</p>"
+            _tt = f"מזמור לתודה (תהילים ק): המזמור המלא בניקוד | {BRAND}"
+            _desc = "מזמור לתודה, תהילים פרק ק, בניקוד מלא: ”הריעו לה׳ כל הארץ, עבדו את ה׳ בשמחה”. נאמר בפסוקי דזמרה של ימי חול. לקריאה בנייד, להדפסה ולשיתוף."
+            meta = '<a href="/tehillim/100/">תהילים פרק ק</a> · נאמר בפסוקי דזמרה של ימי חול'
+            crumbs = [("ספר תהילים", "/tehillim/"), (p["t"], me)]
+            ctx, switch = "", ""
+            after = ('<div class="prose"><h2 class="sec">מתי אומרים את המזמור</h2><p>' + plain(clean(shown[0])) + '</p><p><small>מתוך הוראות הסידור (נוסח אשכנז).</small></p></div>'
+                     + chips("עוד מזמורים", [("/tehillim/100/", "תהילים פרק ק, עם הפרקים שלפניו ואחריו"), ("/tehillim/hodaya/", "תהילים להודיה"), ("/tehillim/", "ספר תהילים")]) + after)
         if norm_t(p["t"]) == "תפילת הדרך":
             _desc = fit_desc(f"תפילת הדרך המלאה בניקוד, בנוסח {NUS[n]}. נאמרת ביציאה לדרך אל מחוץ לעיר", " ".join(paras[1:3] if len(paras) > 2 else paras),
                              tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))

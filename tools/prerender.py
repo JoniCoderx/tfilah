@@ -737,7 +737,8 @@ for _n, _pl in by_nus.items():
     _first = {}
     for p in _pl:
         _first.setdefault(p["t"], p)
-    PRIMARY |= {p["id"] for p in _first.values() if p["id"] in CTX}
+    _own = {BYID[i]["t"] for i in PRIMARY if BYID[i]["n"] == _n}   # names that already have a stand-alone page chosen by hand
+    PRIMARY |= {p["id"] for p in _first.values() if p["id"] in CTX and p["t"] not in _own}
 
 # How people type the name. The source title stays as the H1; these only lead the <title> and description.
 SPELL = {"תפלת הדרך": "תפילת הדרך", "פטום הקטורת": "פיטום הקטורת", "פטום קטורת": "פיטום הקטורת",
@@ -1566,7 +1567,7 @@ for n, (pid, lo, hi) in NISHMAT.items():
 
 # ---------- kaddish: one page that names every kind and points to its text ----------
 _kd = [("קדיש יתום", "נאמר על ידי האבלים, במניין."), ("חצי קדיש", ""), ("קדיש שלם", ""), ("קדיש דרבנן", ""), ("קדיש דאתחדתא", ""), ("קדיש אחר השלמת מסכת", "")]
-_kd_items = [(t, note, next(p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] not in DUP_OF)) for t, note in _kd]
+_kd_items = [(t, note, next((p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] in PRIMARY), None) or next(p for p in by_nus["ashkenaz"] if p["t"] == t and p["id"] not in DUP_OF)) for t, note in _kd]
 _kd_html = '<ul class="list">' + "".join(f'<li><a href="{PURL[p["id"]]}">{esc(t)}<small>{esc(note or "הנוסח המלא בניקוד")}</small></a></li>' for t, note, p in _kd_items) + "</ul>"
 page("/kaddish/", f"קדיש: קדיש יתום, חצי קדיש, קדיש שלם וקדיש דרבנן בניקוד | {BRAND}",
      "נוסח הקדיש המלא בניקוד: קדיש יתום, חצי קדיש, קדיש שלם (תתקבל), קדיש דרבנן וקדיש שאחרי סיום מסכת. לכל קדיש עמוד קריאה משלו, נוח לנייד ולהדפסה.",

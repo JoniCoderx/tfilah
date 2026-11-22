@@ -67,9 +67,13 @@ _root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _idx = json.load(open(os.path.join(_root, "data", "index.json"), encoding="utf-8"))
 _app = open(os.path.join(_root, "src", "app.html"), encoding="utf-8").read()
 _needs = re.findall(r"\['([a-z]+)','[a-z]+','([^']+)','[^']*',\[[\d,]+\]\]", re.search(r"const NEEDS=(\[.*?\]);", _app, flags=re.S).group(1))
+_urls = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "urls.json"), encoding="utf-8"))
+
+
 def _prayer(title, nus="mizrach"):
     norm = lambda t: t.replace("תפלת", "תפילת")
-    return next("/tefila/%s/" % p["id"] for p in _idx["prayers"] if p["n"] == nus and norm(p["t"]) == title)
+    # readable addresses come from data/urls.json, which tools/prerender.py writes (run it first)
+    return next(_urls[p["id"]] for p in _idx["prayers"] if p["n"] == nus and norm(p["t"]) == title)
 _groups = [
     ("סידור", [("/tefila/", "סידור תפילה")] + [("/tefila/%s/" % n, "סידור נוסח " + t) for n, t in _idx["nusachim"].items()]
         + [("/tefila/%s/%s/" % (n, k), "%s נוסח %s" % (l, t)) for k, l in (("shacharit", "שחרית"), ("mincha", "מנחה"), ("arvit", "ערבית")) for n, t in _idx["nusachim"].items()]

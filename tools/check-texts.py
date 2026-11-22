@@ -8,6 +8,9 @@ I = json.load(open(R + 'data/index.json', encoding='utf-8'))
 TAG = re.compile(r'<[^>]+>'); NIK = re.compile('[֑-ׇ]')
 words = lambda s: re.sub(r'[^א-ת ]', '', NIK.sub('', html.unescape(TAG.sub(' ', s)))).split()
 sm = open(R + 'sitemap.xml', encoding='utf-8').read()
+URLS = json.load(open(R + 'data/urls.json', encoding='utf-8'))
+RD = open(R + '_redirects', encoding='utf-8').read()
+noredir = []
 bad, nomap, nikud, empty, dup = [], [], [], [], collections.defaultdict(list)
 for n in ('mizrach', 'sefard', 'ashkenaz'):
     T = json.load(open(R + f'data/{n}.json', encoding='utf-8'))
@@ -22,7 +25,9 @@ for n in ('mizrach', 'sefard', 'ashkenaz'):
         if '�' in raw or re.search(r'(^|[\s>])[ְ-ׇֽֿׁׂׅׄ]', raw):
             nikud.append(p['id'])
         dup[' '.join(words(raw))].append(p['id'])
-        f = R + f"tefila/{p['id']}/index.html"
+        f = R + URLS[p['id']].strip('/') + '/index.html'
+        if f"/tefila/{p['id']}/ {URLS[p['id']]} 301" not in RD:
+            noredir.append(p['id'])
         if not os.path.exists(f):
             bad.append((p['id'], 'no page')); continue
         h = open(f, encoding='utf-8').read()
@@ -35,16 +40,18 @@ for n in ('mizrach', 'sefard', 'ashkenaz'):
             b2 = words(' '.join(ps[1:])) if len(ps) > 1 else b
             if a != b2:
                 bad.append((p['id'], f'words differ: page {len(a)} data {len(b)}'))
-        if f"/tefila/{p['id']}/</loc>" not in sm:
+        if f"{URLS[p['id']]}</loc>" not in sm:
             nomap.append(p['id'])
 print('records', len(I['prayers']), '| pages whose text differs from the data:', len(bad), bad[:8])
-print('not in sitemap:', len(nomap), nomap[:8])
+print('not in sitemap:', len(nomap), nomap[:8], '| old address without a redirect:', len(noredir), noredir[:8])
+if len(set(URLS.values())) != len(URLS):
+    print('RESULT: FAILED (two prayers share an address)'); sys.exit(1)
 print('empty records:', empty, '| damaged nikud:', nikud[:10])
 d = [v for k, v in dup.items() if len(v) > 1 and len(k.split()) > 30]
 print('identical bodies (over 30 words): groups', len(d), '| records', sum(len(v) for v in d))
 same_n = [v for v in d if len({x.split('-')[0] for x in v}) < len(v)]
 print('  of them inside one nusach:', len(same_n), same_n[:6])
 
-if bad or nomap or empty:
+if bad or nomap or empty or noredir:
     print('RESULT: FAILED'); sys.exit(1)
 print('RESULT: OK')

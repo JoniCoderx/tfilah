@@ -509,6 +509,48 @@ I = json.load(open(os.path.join(DATA, "index.json"), encoding="utf-8"))
 NUS = I["nusachim"]
 TEXTS = {n: json.load(open(os.path.join(DATA, f"{n}.json"), encoding="utf-8")) for n in NUS}
 by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] for n in NUS}
+
+# ---------- readable addresses for prayer pages: /tefila/<nusach>/<name in Latin letters>/ ----------
+TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
+_SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
+             ("ערבית", "arvit"), ("מעריב", "arvit"), ("מוסף", "musaf"), ("סעוד", "seuda"), ("חנוכה", "chanukah"), ("סוכות", "sukkot"), ("הגדה", "hagada"), ("קדיש", "kaddish")]
+
+
+def _slug(title):
+    ws = re.findall(r"[א-ת\"'׳״]+|[A-Za-z0-9]+", NIK.sub("", title))
+    miss = [w for w in ws if w not in TRANSLIT]
+    assert not miss, f"tools/translit.json has no entry for {miss} (title {title!r}); add it"
+    return "-".join(TRANSLIT[w] for w in ws) or "tefila"
+
+
+def _build_purl():
+    out, old = {}, {}
+    for n in ("mizrach", "sefard", "ashkenaz"):
+        ps = [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])]
+        base = {p["id"]: _slug(p["t"]) for p in ps}
+        count = {}
+        for v in base.values(): count[v] = count.get(v, 0) + 1
+        used = {"shacharit", "mincha", "arvit"}          # the three whole-service pages live at these names
+        for p in ps:
+            s = base[p["id"]]
+            if s in used:                                   # the first prayer with a name keeps it plain; later ones say where they belong
+                ctx = " / ".join(p["s"])
+                tags = []
+                for he, la in _SLUG_CTX:
+                    if he in ctx and la not in tags and la not in s.split("-"):
+                        tags.append(la)
+                s2 = "-".join([s] + tags[:2]) if tags else s
+                k, cand = 2, s2
+                while cand in used:
+                    cand = f"{s2}-{k}"; k += 1
+                s = cand
+            assert s not in used, s
+            used.add(s)
+            out[p["id"]] = f"/tefila/{n}/{s}/"
+    return out
+
+
+PURL = _build_purl()
 BYID = {p["id"]: p for plist in by_nus.values() for p in plist}
 B = json.load(open(os.path.join(DATA, "books.json"), encoding="utf-8"))
 BOOK_KEYS = list(B)
@@ -765,10 +807,10 @@ for grp in REL:
     for n in NUS:
         members = per_nus[n]
         for p in members:
-            me = f"/tefila/{p['id']}/"
+            me = f"{PURL[p['id']]}"
             for q in members:
                 if q is not p and norm_t(q["t"]) != norm_t(p["t"]):
-                    cur_add(me, f"/tefila/{q['id']}/", lead_of(q))
+                    cur_add(me, f"{PURL[q['id']]}", lead_of(q))
             for href, label in fixed:
                 cur_add(me, href, label)
     for href, label in fixed:
@@ -776,13 +818,13 @@ for grp in REL:
             cur_add(href, h2, l2)
         for n in NUS:
             for q in per_nus[n]:
-                cur_add(href, f"/tefila/{q['id']}/", f"{lead_of(q)} · נוסח {NUS[n]}")
+                cur_add(href, f"{PURL[q['id']]}", f"{lead_of(q)} · נוסח {NUS[n]}")
 
 # Ashkenaz lists single psalms as parts of the service ("תהילים קמו"): link them to the chapter page and back.
 for p in by_nus.get("ashkenaz", []):
     m = re.fullmatch(r"תהילים ([א-ת]{1,3})", p["t"])
     if m and 1 <= ungem(m.group(1)) <= 150:
-        cur_add(f"/tefila/{p['id']}/", f"/tehillim/{ungem(m.group(1))}/", f"תהילים פרק {m.group(1)}, הפרק המלא")
+        cur_add(f"{PURL[p['id']]}", f"/tehillim/{ungem(m.group(1))}/", f"תהילים פרק {m.group(1)}, הפרק המלא")
 
 NEED_OF = {}   # chapter -> [need keys]
 for k, t, chs in NEEDS:
@@ -1026,37 +1068,37 @@ for n, plist in by_nus.items():
         _px = next((x for r, x in PLAIN if re.search(r, p["t"])), "")
         plain_html = f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה התפילה הזאת?</b><p>{esc(_px)}</p></aside>' if _px else ""
         assert plain(text), p["id"]
-        me = f"/tefila/{p['id']}/"
+        me = f"{PURL[p['id']]}"
         prev = plist[i - 1] if i > 0 else None
         nxt = plist[i + 1] if i + 1 < len(plist) else None
-        after = pager((f'/tefila/{prev["id"]}/', prev["t"]) if prev else None, (f'/tefila/{nxt["id"]}/', nxt["t"]) if nxt else None)
+        after = pager((f'{PURL[prev["id"]]}', prev["t"]) if prev else None, (f'{PURL[nxt["id"]]}', nxt["t"]) if nxt else None)
         same = SAME[p["id"]]
         switch = ""
         if same:
-            after += chips("אותה תפילה בנוסח אחר", [(f'/tefila/{q["id"]}/', f'{q["t"]} · נוסח {NUS[q["n"]]}') for q in same])
+            after += chips("אותה תפילה בנוסח אחר", [(f'{PURL[q["id"]]}', f'{q["t"]} · נוסח {NUS[q["n"]]}') for q in same])
             switch = ('<nav class="nus" aria-label="אותה תפילה בנוסח אחר"><span>גם בנוסח</span>'
-                      + "".join(f'<a href="/tefila/{q["id"]}/">{esc(NUS[q["n"]])}</a>' for q in same) + "</nav>")
+                      + "".join(f'<a href="{PURL[q["id"]]}">{esc(NUS[q["n"]])}</a>' for q in same) + "</nav>")
         s = sec_of(p)
         ctx = CTX.get(p["id"], "")
         lead_name, also = lead_of(p), also_of(p)
         sec_href, sec_label = section_link(p)
 
         # related: curated first, then the nearest prayers of the same section
-        skip = {me} | {f'/tefila/{q["id"]}/' for q in (prev, nxt) if q}
+        skip = {me} | {f'{PURL[q["id"]]}' for q in (prev, nxt) if q}
         full = [q for q in plist if sec_of(q) == s]
         grp = GROUPS[n][GROUP_OF[p["id"]]][1]
         cands = sorted(full, key=lambda q: abs(plist.index(q) - i)) + sorted(grp, key=lambda q: abs(plist.index(q) - i)) \
             + sorted(plist, key=lambda q: abs(plist.index(q) - i))[:12]
         extra = []
         for q in cands:
-            h = f'/tefila/{q["id"]}/'
+            h = f'{PURL[q["id"]]}'
             if h not in skip and norm_t(q["t"]) != norm_t(p["t"]):
                 same_sec = sec_of(q) == s
                 extra.append((h, q["t"] if same_sec or not sec_of(q) else f'{q["t"]} ({sec_of(q)[-1]})'))
         rel = fill([x for x in CUR.get(me, []) if x[0] not in skip][:6], extra, lo=5)
         if p["id"] in WANT_IDS and n in NUS_NOTE:
             other = next((q for q in same if q["n"] == NUS_NOTE[n][1]), None)
-            after += nus_note(n, f'/tefila/{other["id"]}/' if other else f"/tefila/{NUS_NOTE[n][1]}/",
+            after += nus_note(n, f'{PURL[other["id"]]}' if other else f"/tefila/{NUS_NOTE[n][1]}/",
                               f'{lead_of(other)} בנוסח {NUS[other["n"]]}' if other else f"סידור נוסח {NUS[NUS_NOTE[n][1]]}")
         after += chips("תפילות קשורות", rel)
         after += chips("בסידור", [(sec_href, f"{sec_label}: כל הסדר"), (f"/tefila/{n}/", f"סידור נוסח {NUS[n]}"), ("/tefila/", "כל הנוסחים")])
@@ -1082,7 +1124,7 @@ for n, plist in by_nus.items():
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if me == "/tefila/sefard-32/": _tt = f"פרק שירה עם ההקדמה ”תניא רבי אליעזר” | נוסח ספרד | {BRAND}"
+        if p["id"] == "sefard-32": _tt = f"פרק שירה עם ההקדמה ”תניא רבי אליעזר” | נוסח ספרד | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         page(me, _tt, fit_desc(head, " ".join(paras[:3])),
              p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
@@ -1123,7 +1165,7 @@ for n in NUS:
         body += chips(f"{label} בנוסח אחר", [(f"/tefila/{m}/{key}/", f"{svc_name(m, key)} · נוסח {NUS[m]}") for m in NUS if m != n])
         relp = [by_title(n, t) for t in ("ברכת המזון", "תפילת הדרך", "קריאת שמע על המיטה", "ספירת העומר")]
         body += chips("עוד בסידור", [(f"/tefila/{n}/", f"סידור נוסח {NUS[n]}, כל התפילות")]
-                      + [(f'/tefila/{q["id"]}/', lead_of(q)) for q in relp if q and q["id"] not in {x[0]["id"] for x in items}]
+                      + [(f'{PURL[q["id"]]}', lead_of(q)) for q in relp if q and q["id"] not in {x[0]["id"] for x in items}]
                       + [("/tehillim/", "ספר תהילים")])
         parts = "חלק אחד" if num == 1 else f"{num} חלקים"
         desc = fit_desc(f"{name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל התפילה בעמוד אחד משלו, בניקוד מלא",
@@ -1132,7 +1174,7 @@ for n in NUS:
              [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), (name, path)],
              h1_ctx=f"נוסח {NUS[n]}", text=full, before=toc_html, after=body, hub=False, prio="0.9", app_hash=f"p-{first['id']}", app_label="לתפילה באפליקציה, עם התאמות לפי היום",
              lead=f"תפילת {label} של ימי החול בנוסח {NUS[n]}, כולה בעמוד אחד ובניקוד מלא. {parts}, לפי הסדר.",
-             ld=[collection(f"{name}, נוסח {NUS[n]}", path, [f'/tefila/{p["id"]}/' for p, _ in items])])
+             ld=[collection(f"{name}, נוסח {NUS[n]}", path, [f'{PURL[p["id"]]}' for p, _ in items])])
 
 # ---------- most wanted (shared by the hubs) ----------
 WANT_REPORT = []
@@ -1148,7 +1190,7 @@ def want_block(only=None):
             if only is None:
                 WANT_REPORT.append((label, n, q["id"] if q else None, q["t"] if q else None))
             if q and only in (None, n):
-                links += f'<a href="/tefila/{q["id"]}/" title="{esc(label)} בנוסח {esc(NUS[n])}: {esc(pname(q))}">{"נוסח " + esc(NUS[n]) if only is None else "לתפילה"}</a>'
+                links += f'<a href="{PURL[q["id"]]}" title="{esc(label)} בנוסח {esc(NUS[n])}: {esc(pname(q))}">{"נוסח " + esc(NUS[n]) if only is None else "לתפילה"}</a>'
         if links:
             out += f'<li><b>{esc(label)}</b><span>{links}</span></li>'
     for n in NUS:   # whole sections that people look for by name
@@ -1161,7 +1203,7 @@ def nusach_lists(n, hlevel, prefix):
     out = ""
     for gi, (lab, ps) in enumerate(GROUPS[n]):
         out += f'<{hlevel} class="grp" id="{prefix}{gi + 1}">{esc(lab)}</{hlevel}><ul class="list">'
-        out += "".join(f'<li><a href="/tefila/{p["id"]}/">{esc(p["t"])}</a></li>' for p in ps) + "</ul>"
+        out += "".join(f'<li><a href="{PURL[p["id"]]}">{esc(p["t"])}</a></li>' for p in ps) + "</ul>"
     return out
 
 # ---------- nusach hubs ----------
@@ -1181,7 +1223,7 @@ for n in NUS:
          f"סידור נוסח {NUS[n]}", [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", path)], after=body, hub=True, prio="0.9",
          app_hash="siddur", app_label="לסידור באפליקציה",
          lead=f"{cnt} תפילות וברכות בנוסח {NUS[n]}, בניקוד מלא. כל תפילה בעמוד קריאה משלה.",
-         ld=[collection(f"סידור נוסח {NUS[n]}", path, [f"/tefila/{n}/{k}/" for k, _, _ in SERVICES] + [f'/tefila/{p["id"]}/' for p in by_nus[n]])])
+         ld=[collection(f"סידור נוסח {NUS[n]}", path, [f"/tefila/{n}/{k}/" for k, _, _ in SERVICES] + [f'{PURL[p["id"]]}' for p in by_nus[n]])])
 
 # ---------- siddur hub ----------
 hub = '<ul class="cards">' + "".join(
@@ -1475,7 +1517,7 @@ for n, ids in CH_SETS:
         _sh = _ps[1:] if len(_ps) > 1 and _pl(_ps[0]) == _pl(q["t"]) else _ps
         if len(ids) > 1: ch_text += f'<h3>{esc(q["t"])}</h3>'
         ch_text += "".join(f"<p>{clean(x)}</p>" for x in _sh)
-        ch_links.append((f"/tefila/{pid}/", f'{q["t"]} · נוסח {NUS[n]}'))
+        ch_links.append((f"{PURL[pid]}", f'{q["t"]} · נוסח {NUS[n]}'))
 ch_before = ('<div class="prose"><p>מדליקים נר אחד בלילה הראשון ומוסיפים נר בכל לילה, עד שמונה נרות. מברכים, מדליקים, ומניחים את החנוכייה במקום שרואים אותה מבחוץ. '
              'בלילה הראשון מברכים שלוש ברכות, ובשאר הלילות שתיים.</p>'
              '<p>בשנת תשפ״ז הנר הראשון מודלק ביום שישי, 4 בדצמבר 2026, והנר השמיני ביום שישי, 11 בדצמבר 2026. בערב שבת מדליקים את נרות החנוכה לפני נרות השבת.</p></div>'
@@ -1503,6 +1545,14 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <a href="mailto:{CONTACT}">{CONTACT}</a>.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
         '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
         + chips("להתחיל לקרוא", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
+# old numbered addresses redirect to the readable ones (kept in _redirects, between the two marker lines)
+_rd = os.path.join(ROOT, "_redirects")
+_cur = open(_rd, encoding="utf-8").read() if os.path.exists(_rd) else ""
+_cur = re.sub(r"# prayers: begin.*?# prayers: end\n?", "", _cur, flags=re.S).rstrip("\n")
+_lines = "".join(f"/tefila/{pid}/ {path} 301\n/tefila/{pid} {path} 301\n" for pid, path in PURL.items())
+open(_rd, "w", encoding="utf-8").write((_cur + "\n" if _cur else "") + "# prayers: begin (written by tools/prerender.py)\n" + _lines + "# prayers: end\n")
+json.dump(PURL, open(os.path.join(DATA, "urls.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+
 page("/odot/", f"אודות האתר תפילה ומקורות הטקסטים | {BRAND}",
      "מי אנחנו ומאין הטקסטים: סידור תפילה בשלושה נוסחים, ספר תהילים וספרייה ממהדורות פתוחות, שיטת חישוב זמני היום והלוח העברי, ומה מעמדם של ההסברים באתר.",
      "אודות ומקורות", [("אודות ומקורות", "/odot/")], after=odot, hub=True, prio="0.4", script=TAUT_JS, lead="תפילה · Tfilah.com. מה יש באתר, מאין הטקסטים ואיך מחושבים הזמנים.",

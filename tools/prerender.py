@@ -456,7 +456,7 @@ DESCS = {}
 OG_OWN = (("/perek-shira/", "og-perek"), ("/sefer/perek/", "og-perek"), ("/parasha/", "og-parasha"), ("/kotel/", "og-kotel"), ("/kaddish", "og-kaddish"), ("/chatzi-kaddish", "og-kaddish"),
           ("/nishmat-kol-chai/", "og-nishmat"), ("/mizmor-letoda/", "og-toda"), ("/tefilat-haderech/", "og-derech"), ("/birkat-hamazon/", "og-mazon"),
           ("/kriat-shema-al-hamita/", "og-shema"), ("/modeh-ani/", "og-modeh"), ("/asher-yatzar/", "og-asher"))
-OG_V = "3"  # raise when the pictures are redrawn, so chat apps fetch them again
+OG_V = "4"  # raise when the pictures are redrawn, so chat apps fetch them again
 
 def og_for(path):
     """the share picture that matches what the link opens"""

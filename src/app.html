@@ -2792,6 +2792,7 @@ const LIB=[
  ['לימוד','book',[['b:avot','פרקי אבות'],['b:mishlei','משלי'],['r:#tehillim','ספר תהילים','150 פרקים'],['b:shir','שיר השירים']]]
 ];
 function libRes(ref){const[t,v]=[ref.slice(0,1),ref.slice(2)];
+  if(ref==='p:^נשמת')return{href:nus==='ashkenaz'?'/nishmat-kol-chai/':'/nishmat-kol-chai/'+nus+'/'};/* its own page in each nusach */
   if(t==='b')return{href:'#b-'+v};if(t==='k')return NEEDS.some(n=>n[0]===v)?{href:'#k-'+v}:null;if(t==='r')return{href:v};
   const re=new RegExp(v);for(const n of [nus,...NUS.map(x=>x[0]).filter(x=>x!==nus)]){const ps=INDEX.prayers.filter(p=>p.n===n);const p=ps.find(p=>re.test(norm(p.t)))||ps.find(p=>re.test(p.s.map(norm).join(' ')));if(p)return{href:'#p-'+p.id,other:n!==nus&&!NO_NUS.has(p.id)?nusName(n):''}}return null}
 const libItem=ic=>([ref,t,sub])=>{const r=libRes(ref);if(!r)return'';return `<a class="libit" href="${r.href}"><span class="ib">${icon(ic)}</span><span><b>${esc(t)}</b>${sub||r.other?`<small>${esc(sub||'')}${sub&&r.other?' · ':''}${r.other?'נוסח '+esc(r.other):''}</small>`:''}</span></a>`};

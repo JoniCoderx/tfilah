@@ -1263,6 +1263,10 @@ for n, plist in by_nus.items():
             _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
+        if p["id"] == "ashkenaz-264":
+            _nl = [("/nishmat-kol-chai/mizrach/", "mizrach"), ("/nishmat-kol-chai/sefard/", "sefard")]
+            switch = '<nav class="nus" aria-label="אותה תפילה בנוסח אחר"><span>גם בנוסח</span>' + "".join(f'<a href="{h}">{esc(NUS[m])}</a>' for h, m in _nl) + "</nav>"
+            after = chips("אותה תפילה בנוסח אחר", [(h, f"נשמת כל חי · נוסח {NUS[m]}") for h, m in _nl]) + after
         if p["id"] == "ashkenaz-28":
             assert len(shown) == 2 and shown[0].startswith("<small>") and "מִזְמוֹר לְתוֹדָה" in shown[1], "the entry changed: look at the page again"
             text = f"<p>{clean(shown[1])}</p>"
@@ -1510,6 +1514,31 @@ page("/parasha/", f"פרשת השבוע: כל 54 הפרשות בניקוד מל�
      after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
      hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.",
      ld=[collection("פרשת השבוע", "/parasha/", list(PAR_PATH.values()))])
+
+# ---------- נשמת כל חי in the other two nusachim ----------
+# Only the Ashkenaz siddur holds it as an entry of its own. In the other two it sits inside the Shabbat morning service,
+# so its page is cut from there: from "נשמת כל חי" up to, and not including, the passage that quotes "רננו צדיקים".
+# Nothing is rewritten; the asserts stop the build if the siddur entry ever changes under the cut.
+NISHMAT = {"mizrach": ("mizrach-57", 19, 22), "sefard": ("sefard-102", 89, 90)}
+_n_px = next(x for r, x in PLAIN if re.search(r, "נשמת כל חי"))
+_n_all = [("ashkenaz", "/nishmat-kol-chai/")] + [(n, f"/nishmat-kol-chai/{n}/") for n in NISHMAT]
+for n, (pid, lo, hi) in NISHMAT.items():
+    _src = TEXTS[n][pid]
+    assert plain(_src[lo]).startswith("נשמת כל חי") and "רננו צדיקים" not in plain(" ".join(_src[lo:hi])) and "רננו צדיקים" in plain(" ".join(_src[hi:hi + 8])), n
+    me = f"/nishmat-kol-chai/{n}/"
+    _svc = PURL[pid]
+    page(me, f"נשמת כל חי נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
+         fit_desc(f"נשמת כל חי בנוסח {NUS[n]}, בניקוד מלא. נאמרת בתפילת שחרית של שבת ויום טוב", " ".join(_src[lo:lo + 1])),
+         "נשמת כל חי", [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), ("נשמת כל חי", me)],
+         text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
+         meta=f'<b>נוסח {esc(NUS[n])}</b> · מתוך <a href="{_svc}">פסוקי דזמרה של שבת</a>',
+         before=f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה התפילה הזאת?</b><p>{esc(_n_px)}</p></aside><p class="note">נאמרת בתפילת שחרית של שבת ויום טוב.</p>',
+         bar_extra='<nav class="nus" aria-label="אותה תפילה בנוסח אחר"><span>גם בנוסח</span>' + "".join(f'<a href="{h}">{esc(NUS[m])}</a>' for m, h in _n_all if m != n) + "</nav>",
+         after='<div class="prose"><p><small>בסידור התפילה ממשיכה מכאן עד ברכת ”ישתבח”. הנוסח המלא נמצא בתוך סדר התפילה.</small></p></div>'
+               + chips("להמשך התפילה", [(_svc, f"פסוקי דזמרה של שבת · נוסח {NUS[n]}")])
+               + chips("אותה תפילה בנוסח אחר", [(h, f"נשמת כל חי · נוסח {NUS[m]}") for m, h in _n_all if m != n]),
+         app_hash=f"p-{pid}", app_label="לתפילה המלאה באפליקציה",
+         ld=[{"@type": "CreativeWork", "name": "נשמת כל חי", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
 # ---------- at the Western Wall ----------
 # No composed "Kotel prayer" is printed here: none was found whose text can be read at its source and copied freely.

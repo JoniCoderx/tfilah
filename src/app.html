@@ -1937,7 +1937,7 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
   scrollTo(0,y);
   const lb=$('#light');if(lb)lb.onclick=async()=>{if(ro||lb.disabled)return;lb.disabled=true;const n=(m.candles||0)+1;
     try{await DB.doc('memorials/'+id).update({candles:n});m.candles=n;$('#cn').textContent=n.toLocaleString('he-IL');toast('הנר הודלק')}catch(err){toast('לא הצלחנו להדליק כרגע. נסו שוב.')}finally{setTimeout(()=>{const b=$('#light');if(b)b.disabled=false},1500)}};
-  $('#shimg').onclick=()=>shareCard({eyebrow:'תהילים יחד',text:'כל אחד פרק. ביחד ספר שלם.',foot:kindOf(m)==='general'?m.name:mLine(m),url,msg:shareText(readTotal,m)});
+  $('#shimg').onclick=()=>shareCard({eyebrow:'תהילים יחד',pre:kindOf(m)==='general'?'קוראים יחד תהילים':mPre(m),name:kindOf(m)==='general'?m.name:mWho(m),note:m.msg||'',text:'כל אחד פרק. ביחד ספר שלם.',url,msg:shareText(readTotal,m)});
   const sn=$('#shnative');if(sn)sn.onclick=async()=>{try{await navigator.share({title:'תהילים יחד '+mLine(m),text:shareText(readTotal,m),url})}catch(e){}};
   $('#share').onclick=async()=>{try{await navigator.clipboard.writeText(url);toast('הקישור הועתק');const s=$('#share span');if(s){s.textContent='הועתק';setTimeout(()=>{const x=$('#share span');if(x)x.textContent='העתקה'},1800)}}catch(e){toast(url)}};
   $('#myn').oninput=e=>{myName=e.target.value.trim();store.set('myname',myName)};
@@ -2617,19 +2617,31 @@ function pageFindGo(d,quiet){const n=fnd.r.length,out=$('#pfn');if(!n){if(out)ou
   if(window.CSS&&CSS.highlights)CSS.highlights.set('fndc',new Highlight(r));if(out)out.textContent=`${fnd.i+1} מתוך ${n}`;
   const el=r.startContainer.parentElement,dt=el.closest('details');if(dt)dt.open=true;const y=r.getBoundingClientRect().top+scrollY-innerHeight*.35;scrollTo({top:Math.max(0,y),behavior:reduce||quiet?'auto':'smooth'})}
 /* a picture to share: drawn on a canvas so it works in WhatsApp status and stories */
-async function shareCard({eyebrow,text,foot,url,msg}){try{await document.fonts.load('900 60px Heebo');await document.fonts.load('400 40px Heebo')}catch(e){}
+async function shareCard({eyebrow,text,foot,url,msg,pre,name,note}){try{await document.fonts.load('900 60px Heebo');await document.fonts.load('400 40px Heebo')}catch(e){}
   const W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
   x.fillStyle='#fff';x.fillRect(0,0,W,H);let g=x.createRadialGradient(W/2,-120,40,W/2,-120,1100);g.addColorStop(0,'#CFEBFF');g.addColorStop(.55,'#F1F9FF');g.addColorStop(1,'#FFFFFF');x.fillStyle=g;x.fillRect(0,0,W,H);
   x.save();x.translate(W/2-80,96);x.scale(5,5);g=x.createLinearGradient(0,0,32,32);g.addColorStop(0,'#6CC6F7');g.addColorStop(.52,'#35A9EC');g.addColorStop(1,'#1493DB');x.strokeStyle=g;x.fillStyle=g;x.lineWidth=5.6;x.lineCap='round';x.lineJoin='round';
   x.stroke(new Path2D('M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5'));x.beginPath();x.arc(16,19.4,2.6,0,7);x.fill();x.restore();
   x.direction='rtl';x.textAlign='center';x.fillStyle='#46677F';x.font='700 38px Heebo, Arial';x.fillText(eyebrow,W/2,340);
   const plain=String(text).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();let size=plain.length>90?62:plain.length>50?74:92,lines;
+  const wrap=(s,font,max)=>{x.font=font;const out=[];let cur='';for(const w of String(s).replace(/\s+/g,' ').trim().split(' ')){const u=cur?cur+' '+w:w;if(x.measureText(u).width>max&&cur){out.push(cur);cur=w}else cur=u}if(cur)out.push(cur);return out};
+  if(name){/* a reading for a person */
+    let ns=118,nl;for(;;){nl=wrap(name,`900 ${ns}px Heebo, Arial`,W-150);if(nl.length<=2||ns<=62)break;ns-=8}nl=nl.slice(0,3);
+    let tl=note?wrap('”'+note+'”','400 40px Heebo, Arial',W-220):[];if(tl.length>3){tl=tl.slice(0,3);tl[2]=tl[2].replace(/.{0,3}$/,'…')}
+    const blockH=64+nl.length*ns*1.2+(tl.length?40+tl.length*56:0);let y=400+(560-blockH)/2+44;
+    x.fillStyle='#0A6CA8';x.font='700 46px Heebo, Arial';x.fillText(pre||'',W/2,y);y+=30;
+    x.fillStyle='#0B2E4F';x.font=`900 ${ns}px Heebo, Arial`;nl.forEach(l=>{y+=ns*1.2;x.fillText(l,W/2,y)});
+    if(tl.length){y+=44;x.fillStyle='#27506F';x.font='400 40px Heebo, Arial';tl.forEach(l=>{y+=56;x.fillText(l,W/2,y)})}
+    x.strokeStyle='#CFE6F7';x.lineWidth=3;x.beginPath();x.moveTo(W/2-90,1010);x.lineTo(W/2+90,1010);x.stroke();
+    x.fillStyle='#0B2E4F';x.font='900 54px Heebo, Arial';x.fillText(plain,W/2,1090);
+    x.fillStyle='#0A6CA8';x.font='700 36px Heebo, Arial';x.fillText('הצטרפו וקבלו פרק',W/2,1150);
+  }else{
   for(;;){x.font=`900 ${size}px Heebo, Arial`;lines=[];let cur='';for(const w of plain.split(' ')){const t=cur?cur+' '+w:w;if(x.measureText(t).width>W-170&&cur){lines.push(cur);cur=w}else cur=t}lines.push(cur);if(lines.length*size*1.42<620||size<=44)break;size-=6}
   x.fillStyle='#0B2E4F';const lh=size*1.42,y0=400+(700-lines.length*lh)/2+size;lines.forEach((l,i)=>x.fillText(l,W/2,y0+i*lh));
-  if(foot){x.fillStyle='#0A6CA8';x.font='700 40px Heebo, Arial';x.fillText(foot,W/2,1150)}
+  if(foot){x.fillStyle='#0A6CA8';x.font='700 40px Heebo, Arial';x.fillText(foot,W/2,1150)}}
   x.fillStyle='#0B2E4F';x.font='900 46px Heebo, Arial';x.fillText('תפילה',W/2,1250);x.fillStyle='#46677F';x.font='400 30px Heebo, Arial';x.direction='ltr';x.fillText('tfilah.com',W/2,1296);
   const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('לא הצלחנו ליצור תמונה');return}
-  shareSheet(blob,c.toDataURL('image/png'),{text:msg||`${plain}${foot?'\n'+foot:''}`,url:url||location.origin})}
+  window.__lastCard=c;shareSheet(blob,c.toDataURL('image/png'),{text:msg||`${plain}${foot?'\n'+foot:''}`,url:url||location.origin})}
 /* one place to share from: see the picture, then send it, copy it or save it */
 function shareSheet(blob,dataUrl,o){const old=$('#shsheet');if(old)old.remove();
   const file=new File([blob],'tfilah.png',{type:'image/png'}),canFiles=!!(navigator.canShare&&navigator.canShare({files:[file]})),canCopy=!!(navigator.clipboard&&window.ClipboardItem);

@@ -354,6 +354,9 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .nact{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.btn2{min-height:3rem;padding:.4rem 1.2rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
 @media print{.top,.crumbs,.nform,.nact,.prose,.pager,.related,.applink,footer,.note,.lead{display:none!important}}
 """),
+("fbl", """
+.fbl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;margin:22px auto 0;padding:4px 6px 4px 14px;padding-inline:14px 6px;max-inline-size:34rem;border-radius:999px;background:#F1F8FE;border:1px solid var(--line);color:var(--ink2);font-size:.92rem;line-height:1.4;text-align:center}.fbl[hidden]{display:none}.fbl a{display:inline-flex;align-items:center;gap:6px;min-block-size:44px;color:#1257BD;font-weight:700;text-decoration:underline;text-underline-offset:3px}.fbl button{display:grid;place-items:center;inline-size:44px;block-size:44px;border:0;background:none;color:inherit;cursor:pointer;border-radius:50%;opacity:.75}@media(max-width:560px){.fbl{border-radius:20px;padding-block:10px 2px}.fbl span{flex:1 1 100%}}@media print{.fbl{display:none}}html[data-theme=dark] .fbl a{filter:invert(1) hue-rotate(180deg)}
+"""),
 ("tautbox", """
 .tautbox{margin:.8rem 0 0}
 .cgrid{display:grid;gap:1rem;margin-block:2rem 1rem;align-items:start}@media(min-width:54rem){.cgrid{grid-template-columns:1fr 1fr;gap:1.25rem}}
@@ -399,6 +402,8 @@ JS_HEAD = ("(function(){try{var v=JSON.parse(localStorage.getItem('fs'));"
 
 # Runs right after the text: size and nikud tools. Keys shared with the app:
 # "fs" = JSON number (rem, .95 to 2.6, step .12, default 1.32); "nikud" = JSON true/false.
+FBL = '<p class="fbl" id="fbl" hidden><span>פסוק יומי וקריאות תהילים משותפות, גם בפייסבוק.</span><a href="https://www.facebook.com/tfilahcom" target="_blank" rel="noopener" data-fbgo><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>עקבו אחרינו</a><button type="button" data-fbx aria-label="סגירת ההזמנה לפייסבוק"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></p>'
+FBL_JS = "(function(){" + "var FBE=Date.UTC(2026,10,25,21,59),fbS=function(){try{return JSON.parse(localStorage.getItem('fbl')||'{}')||{}}catch(e){return{}}},fbP=function(o){try{localStorage.setItem('fbl',JSON.stringify(o))}catch(e){}},fbD=function(){return new Date().toISOString().slice(0,10)},fbOk=function(){var s=fbS();return Date.now()<FBE&&!s.off&&s.day!==fbD()&&!/^\\/(shem|leiluy-nishmat|n|y|kelim\\/shem|tehillim-yachad)\\//.test(location.pathname)};document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-fbx],[data-fbgo]');if(!t)return;fbP({off:1});var b=t.closest('.fbl');if(b&&t.hasAttribute('data-fbx'))b.remove()});addEventListener('scroll',function(){var b=document.querySelector('.fbl:not([hidden])');if(!b)return;var r=b.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){var s=fbS();if(s.day!==fbD()){s.day=fbD();fbP(s)}}},{passive:true});" + "var b=document.getElementById('fbl');if(b&&fbOk())b.hidden=false})();"
 JS_TOOLS = r"""(function(){
 var art=document.getElementById('text'),bar=document.getElementById('tools');if(!art||!bar)return;
 var NIK=/[֑-ֽֿ-ׇ]/g,orig=null,MIN=.95,MAX=2.6,STEP=.12;
@@ -539,7 +544,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
                 # what a printed copy or a saved PDF carries: the site's mark and address at the top, and the page address at the end
                 )
         printhead = f'<div class="printhead" aria-hidden="true"><div class="ph">{LOGO.replace("tfg", "tfgp")}<span>סידור תפילה ותהילים · tfilah.com</span></div></div>'
-        reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article><script>{JS_TOOLS}{JS_SIDE}</script><p class="printfoot" aria-hidden="true">הודפס מתוך תפילה · {url.replace("https://", "")}</p>{after}'
+        reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article>{FBL}<script>{JS_TOOLS}{JS_SIDE}{FBL_JS}</script><p class="printfoot" aria-hidden="true">הודפס מתוך תפילה · {url.replace("https://", "")}</p>{after}'
                    + (f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else "") + '</div></div>')
     applink = f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else ""
     body = f"""<a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>

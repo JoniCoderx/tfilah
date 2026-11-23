@@ -1277,7 +1277,9 @@ html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:tran
 @media (min-width:621px){.hact .btn.primary{min-inline-size:22rem}}
 .logo{color:var(--ink)}
 /* gradients and rounds, all in the one hue */
-body[data-r="home"]::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--wash)}
+/* a fixed layer the size of the screen, behind everything, on every screen: newer iPhone Safari colours the strip above the page from fixed layers that reach the top edge. The home page had one (its wash), which is why the strip was solid there and showed the scrolling page everywhere else. */
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);pointer-events:none}@media print{body::after{display:none}}
+body[data-r="home"]::after{background:var(--wash)}
 body[data-r="home"] .top:not(.scrolled){background:transparent}
 body[data-r="home"]::before{background:transparent}
 .btn{border-radius:999px}

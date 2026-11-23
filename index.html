@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://tfilah.com/">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":"Tfilah.com","url":"https://tfilah.com/","inLanguage":"he","description":"סידור תפילה אונליין בניקוד מלא, בנוסח עדות המזרח, ספרד ואשכנז, עם ספר תהילים, פרשת השבוע, זמני היום ותהילים יחד. חינם, בלי פרסומות, נוח לקריאה בנייד."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":"Tfilah.com","url":"https://tfilah.com/","inLanguage":"he","description":"סידור תפילה אונליין בניקוד מלא, בנוסח עדות המזרח, ספרד ואשכנז, עם ספר תהילים, פרשת השבוע, זמני היום ותהילים יחד. חינם, בלי פרסומות, נוח לקריאה בנייד.","publisher":{"@type":"Organization","name":"תפילה","url":"https://tfilah.com/","logo":"https://tfilah.com/icons/icon-512.png","sameAs":["https://www.facebook.com/tfilahcom"]}}</script>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin>
 <link rel="preload" as="fetch" href="/data/index.json" crossorigin="anonymous">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1543,7 +1543,7 @@ $('#nus').addEventListener('change',e=>setNus(e.target.value));
 const LOGO_HTML=(document.querySelector('header .logo')||{}).innerHTML||'';
 const footer=()=>`<footer class="sitefoot"><div class="fcols"><div class="fbrand"><a class="flogo" href="#home" aria-label="תפילה, לדף הבית">${LOGO_HTML}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
   <nav aria-label="ניווט באתר"><a href="#siddur">סידור תפילה</a><a href="#tehillim">ספר תהילים</a><a href="#kli-shem">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/kotel/">תפילה בכותל</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
-  <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="#tmicha">תמיכה באתר</a></nav></div>
+  <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="https://www.facebook.com/tfilahcom" target="_blank" rel="noopener">תפילה בפייסבוק</a><a href="#tmicha">תמיכה באתר</a></nav></div>
   ${DONATE_URL?'<p class="fsup">תפילה עוזרת לכם? <a href="#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>':''}
   <p class="fcredit">הנוסחים מבוססים על מהדורות פתוחות מהארכיון של ספריא: עדות המזרח וספרד (תורת אמת, נחלת הכלל), אשכנז (דעת, נחלת הכלל) עם השלמות מסידור מצודה (CC-BY). תהילים: Tanach.us (נחלת הכלל). לוח עברי: Hebcal.</p>
   <p class="flegal"><a href="/pratiyut/">פרטיות</a><a href="/tnaim/">תנאי שימוש</a><a href="/negishut/">נגישות</a><button type="button" class="dkb" data-dark aria-pressed="false">${icon('moon')}<span>מצב לילה</span></button></p></footer>`;

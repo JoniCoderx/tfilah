@@ -1794,18 +1794,16 @@ SHEM_JS = ("(function(){var f=document.getElementById('nf'),out=document.getElem
            "function run(push){var name=f.n.value.trim().slice(0,40),ns=f.m.value==='n',ls=letters(name.replace(/\\s+(בן|בת)\\s+/,' '));"
            "if(!ls.length){out.innerHTML='<p class=\"note\">כתבו את השם באותיות עבריות.</p>';return}if(ns)ls=ls.concat(['נ','ש','מ','ה']);out.innerHTML='<p class=\"note\">טוען את הפסוקים…</p>';"
            "(P?Promise.resolve(P):fetch('/data/tehillim.json').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){P=j;return j})).then(function(T){"
-           "function shemSlug(s){var A='אבגדהוזחטיכלמנסעפצקרשת',L='abgdhvzxjyklmnsepcqrwt',F={'ך':'k','ם':'m','ן':'n','ף':'p','ץ':'c'};return s.replace(/[^\\u05D0-\\u05EA ]/g,'').trim().split(/\\s+/).map(function(w){var o='';for(var i=0;i<w.length;i++){var c=w.charAt(i),last=i===w.length-1;if(F[c])o+=F[c];else{var l=L.charAt(A.indexOf(c));o+=l+(last&&'kmnpc'.indexOf(l)>=0?'0':'')}}return o}).join('-')}var path='/'+(ns?'leiluy-nishmat':'shem')+'/'+shemSlug(name),link=location.origin+path,h='<h2 class=\"sec\">הפסוקים לשם '+esc(name)+'</h2><div class=\"nlet\">'+ls.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'"
+           "function shemSlug(s){var A='אבגדהוזחטיכלמנסעפצקרשת',L='abgdhvzxjyklmnsepcqrwt',F={'ך':'k','ם':'m','ן':'n','ף':'p','ץ':'c'};return s.replace(/[^\\u05D0-\\u05EA ]/g,'').trim().split(/\\s+/).map(function(w){var o='';for(var i=0;i<w.length;i++){var c=w.charAt(i),last=i===w.length-1;if(F[c])o+=F[c];else{var l=L.charAt(A.indexOf(c));o+=l+(last&&'kmnpc'.indexOf(l)>=0?'0':'')}}return o}).join('-')}var path=(ns?'/leiluy-nishmat/':'/kelim/shem/')+'?n='+name.replace(/[^\\u05D0-\\u05EA ]/g,'').trim().replace(/\\s+/g,'+'),link=location.origin+path,h='<h2 class=\"sec\">הפסוקים לשם '+esc(name)+'</h2><div class=\"nlet\">'+ls.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>'"
            "+'<p class=\"nact\"><a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://wa.me/?text='+encodeURIComponent((ns?'תהילים לעילוי נשמת '+name:'תהילים לפי שם: '+name)+'\\nפסוקי פרק קי״ט לפי אותיות השם:\\n'+link)+'\">שליחה בוואטסאפ</a><button type=\"button\" class=\"btn2\" id=\"ncp\">העתקת קישור</button><button type=\"button\" class=\"btn2\" id=\"npr\">הדפסה</button></p><article class=\"text\">';"
            "ls.forEach(function(c,j){var i=ABC.indexOf(c);h+='<h2>אות '+c+(ns&&j>=ls.length-4?' · נשמה':'')+'</h2>';T[118].slice(i*8,i*8+8).forEach(function(v,k){h+='<p><sup>'+gem(i*8+k+1)+'</sup>'+v+'</p>'})});"
            "out.innerHTML=h+'</article>';document.getElementById('npr').onclick=function(){print()};"
            "document.getElementById('ncp').onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',link)})};"
            "try{history.replaceState(null,'',path)}catch(e){}"
-           "try{fetch('/api/shem',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,neshama:ns})}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.id)return;"
-           "var old=link;link=location.origin+'/n/'+j.id;var a=out.querySelector('.nact a');if(a)a.href=a.href.split(encodeURIComponent(old)).join(encodeURIComponent(link));try{history.replaceState(null,'','/n/'+j.id)}catch(e){}}).catch(function(){})}catch(e){}"
            "if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
            "}).catch(function(){out.innerHTML='<p class=\"note\">הטעינה נכשלה. בדקו את החיבור ונסו שוב.</p>'})}"
            "f.addEventListener('submit',function(e){e.preventDefault();run(true)});"
-           "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),w=window.__shem,n0=h.get('name')||q.get('n')||(w&&w.name),ns0=h.has('neshama')?h.get('neshama')==='1':q.has('m')?q.get('m')==='n':!!(w&&w.neshama);"
+           "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),w=window.__shem,n0=h.get('name')||q.get('n')||(w&&w.name),ns0=h.has('neshama')?h.get('neshama')==='1':q.has('m')?q.get('m')==='n':w?!!w.neshama:(location.pathname.indexOf('/leiluy-nishmat')===0||f.m.value==='n');"
            "if(n0){f.n.value=n0.replace(/[^\\u05D0-\\u05EA \\-]/g,'').slice(0,40);f.m.value=ns0?'n':'r';run(false)}}boot();addEventListener('hashchange',boot)})();")
 for i, (k, t, d) in enumerate(KELIM):
     ttl, head, paras, extra, rel = TOOL[k]
@@ -1824,6 +1822,15 @@ for i, (k, t, d) in enumerate(KELIM):
     page(f"/kelim/{k}/", f"{ttl} | {BRAND}", fit_desc(head, tails=("הכלי נפתח באפליקציה של תפילה.", "חינם וללא הרשמה.")),
          t, [("כלים אישיים", "/kelim/"), (t, f"/kelim/{k}/")], after=body, lead=d, hub=False, prio="0.9" if k == "shem" else "0.7", script=SHEM_JS if k == "shem" else "",
          ld=[{"@type": "WebPage", "name": t, "description": d, "url": f"{SITE}/kelim/{k}/", "inLanguage": "he", "isPartOf": WEBSITE}])
+    if k == "shem":
+        # the same tool under the name people search for, with "for the elevation of a soul" chosen from the start
+        _lb = body.replace('value="r" checked', 'value="r"').replace('value="n">', 'value="n" checked>')
+        assert _lb != body and _lb.count("checked") == body.count("checked"), "the form changed: look at the landing page again"
+        page("/leiluy-nishmat/", f"תהילים אותיות נשמה: לפי שם הנפטר, מפרק קי״ט | {BRAND}",
+             "תהילים אותיות נשמה לעילוי נשמת הנפטר: מקלידים את השם ומקבלים את פסוקי פרק קי״ט לפי אותיות השם ואותיות נ, ש, מ, ה, בניקוד מלא. חינם ובלי הרשמה.",
+             "תהילים אותיות נשמה", [("ספר תהילים", "/tehillim/"), ("תהילים אותיות נשמה", "/leiluy-nishmat/")], after=_lb, hub=False, prio="0.9", script=SHEM_JS,
+             lead="מקלידים את שם הנפטר ומקבלים את הפסוקים לפי אותיות השם ואותיות ”נשמה”.",
+             ld=[{"@type": "WebPage", "name": "תהילים אותיות נשמה", "url": f"{SITE}/leiluy-nishmat/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
 kelim = '<ul class="cards">'
 for k, t, d in KELIM:

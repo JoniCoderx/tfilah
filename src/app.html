@@ -817,7 +817,7 @@ html[data-theme=dark]{background:#fff;filter:invert(1) hue-rotate(180deg)}html[d
 .yhero .yact{display:grid;gap:8px;justify-items:center}.yhero .ybtn{background:#fff;color:#0B3F6E;min-height:60px;padding:14px 30px;font-size:1.1rem;font-weight:800;border-radius:999px;box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
 .yhero .ybtn:hover{background:#EAF5FD;color:#0B3F6E}.yhero .yact a{color:#fff;font-weight:700;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
 .yhero .wall{grid-column:1/-1}.yhero .wall:empty{display:none}
-@media (max-width:760px){.yhero{grid-template-columns:1fr;gap:16px}.yhero .yact{justify-items:stretch;gap:0}.yhero .ybtn{inline-size:100%}.yhero .yact a{justify-content:center}.ysteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.ysteps li{flex-direction:column;justify-content:flex-start;gap:6px;text-align:center;padding:10px 6px;border-radius:16px;background:rgba(255,255,255,.12);font-size:.9rem;line-height:1.25}.yhero .wall{margin-top:0;grid-template-columns:1fr}}
+@media (max-width:760px){.yhero{grid-template-columns:1fr;gap:16px}.yhero .yact{justify-items:stretch;gap:0}.yhero .ybtn{inline-size:100%}.yhero .yact a{justify-content:center}.ysteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.ysteps li{flex-direction:column;justify-content:flex-start;gap:6px;text-align:center;padding:10px 4px;border-radius:16px;background:rgba(255,255,255,.12);font-size:.9rem;line-height:1.25;white-space:nowrap}@media (max-width:350px){.ysteps li{font-size:.8rem}}.yhero .wall{margin-top:0;grid-template-columns:1fr}}
 .yhero .wall:not(:empty)::before{content:"קריאות פתוחות עכשיו";grid-column:1/-1;font-weight:700;font-size:.92rem;color:#EAF5FD}
 .card.shema{display:grid;grid-template-columns:1fr;gap:10px;padding:18px}.shema .shst{margin:0;line-height:1.5}
 .shl{margin:0;display:grid}.shl div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:9px 0;border-block-start:1px solid var(--line)}
@@ -1181,6 +1181,8 @@ h3.arth{display:flex;align-items:center;gap:12px}h3.arth .art{flex:none;color:va
 .seo-cols a{display:block;padding:7px 0;color:var(--ink-2);text-decoration:none;font-size:.95rem}.seo-cols a:hover{color:var(--stamp);text-decoration:underline}
 @media (max-width:600px){.seo-links summary{flex-wrap:wrap;gap:2px 12px}.seo-links summary small{flex-basis:calc(100% - 44px);order:3}}
 /* nothing below the app is on screen before the app has drawn, so the first render moves nothing */
+html::before{content:"";position:fixed;inset-inline:0;top:-240px;block-size:240px;background:var(--bg);z-index:2147483000;pointer-events:none}
+.totop{position:fixed;inset-inline-end:14px;bottom:calc(var(--tabh,0px) + 16px + env(safe-area-inset-bottom,0px));z-index:44;display:none;place-items:center;inline-size:48px;block-size:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);box-shadow:0 8px 22px -10px rgba(11,46,79,.45);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease,visibility 0s .25s}.totop.on{opacity:1;visibility:visible;transform:none;transition:opacity .2s ease,transform .2s ease}@media (max-width:820px){.totop{display:grid}}@media (prefers-reduced-motion:reduce){.totop{transition:none}}@media print{.totop{display:none!important}}
 main#app{min-height:0}main#app:has(>.loading){min-height:100vh;min-height:100svh}#potd{min-height:190px}   /* full height only while loading; a short screen ends where its content ends */
 /* the site-map box under the app carries the clearance for the bottom bar, so the app itself ends right above it */
 main#app{padding-bottom:18px!important}
@@ -1395,6 +1397,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--
   </div>
 </header>
 <main class="wrap" id="app"><p class="loading">פותחים את הסידור…</p></main>
+<button type="button" class="totop" id="totop" aria-label="חזרה לראש העמוד" tabindex="-1"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 
 <nav class="tabbar" aria-label="ניווט ראשי">
   <a href="#home" data-r="home"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>היום</a>
@@ -2507,6 +2510,7 @@ const PARS='bereshit noach lech-lecha vayera chayei-sara toldot vayetzei vayishl
 function parLinks(desc){const s=String(desc||'').replace(/^Parashat\s+/,'').toLowerCase().replace(/['’]/g,'').replace(/[^a-z]+/g,'-').replace(/^-|-$/g,'');if(PARS.includes(s))return[s];
   const k=s.split('-');for(let i=1;i<k.length;i++){const a=k.slice(0,i).join('-'),b=k.slice(i).join('-');if(PARS.includes(a)&&PARS.includes(b))return[a,b]}return[]}
 window.tfParLinks=parLinks;
+(function(){var b=document.getElementById('totop');if(!b)return;var t=0,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;function off(){b.classList.remove('on');b.tabIndex=-1}addEventListener('scroll',function(){clearTimeout(t);if((window.scrollY||0)<900){off();return}b.classList.add('on');b.tabIndex=0;t=setTimeout(off,2200)},{passive:true});b.addEventListener('click',function(){off();window.scrollTo({top:0,behavior:rm?'auto':'smooth'})})})();
 {const on=()=>document.documentElement.dataset.theme==='dark',paint=()=>{const d=on();$$('[data-dark]').forEach(b=>{if(b.getAttribute('aria-pressed')!==String(d))b.setAttribute('aria-pressed',d);const s=b.querySelector('span'),w=d?'מצב יום':'מצב לילה';if(s&&s.textContent!==w)s.textContent=w});const m=document.querySelector('meta[name=theme-color]'),k=d?'#000000':'#FFFFFF';if(m&&m.content!==k)m.content=k};
   document.addEventListener('click',e=>{const b=e.target.closest('[data-dark]');if(!b)return;const d=!on();if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;store.set('dark',d);paint();toast(d?'מצב לילה פעיל':'מצב יום')});
   paint();new MutationObserver(paint).observe(document.getElementById('app'),{childList:true,subtree:true})}
@@ -2791,7 +2795,7 @@ function bindYz(){$$('[data-yzdel]').forEach(b=>b.onclick=()=>{const L=yzList();
 function yachadBand(){return `<section class="yhero" aria-labelledby="zh"><div class="ytxt"><span class="yeye">תהילים יחד</span>
     <h2 id="zh">מישהו קרוב זקוק לתפילה?</h2>
     <p>פותחים קריאת תהילים על שמו, שולחים קישור בוואטסאפ, וכל מי שנכנס קורא פרק. כל אחד פרק, ביחד ספר שלם.</p>
-    <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים בוואטסאפ</li><li><b>3</b>כל אחד קורא פרק</li></ol></div>
+    <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים לחברים</li><li><b>3</b>קוראים ביחד</li></ol></div>
     <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">איך זה עובד</a></div>
     <div class="wall" id="wall"></div></section>`}
 function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;const els=$$('#app .sec, #app .hgrid, #app .tgrid, #app .needs, #app .tiles, #app .askcard, #app .donate, #app .spcs');

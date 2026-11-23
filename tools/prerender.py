@@ -1074,9 +1074,9 @@ for c in range(1, 151):
     rel = fill(rel, [(f"/tehillim/{x}/", f"תהילים פרק {gem(x)}") for x in near], lo=6)
     rel.append(("/tehillim/", "כל 150 פרקי התהילים"))
     after += TOGETHER + chips("עוד בתהילים", rel)
-    first = snippet(vs[0], 40)
     nv = "פסוק אחד" if len(vs) == 1 else f"{len(vs)} פסוקים"
     name = f"תהילים פרק {gem(c)}"
+    first = snippet(vs[0], max(16, 62 - len(f"{name} ({c}) |  | {BRAND}")))
     page(f"/tehillim/{c}/",
          f"{name} ({c}) | {first} | {BRAND}",
          fit_desc(f"{name} ({c}), מזמור {gem(c)}, בניקוד מלא, {nv}", " ".join(vs[:3])),

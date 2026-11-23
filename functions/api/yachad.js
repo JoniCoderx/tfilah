@@ -71,7 +71,7 @@ async function handle({ request, env }) {
   const a = (b && typeof b.args === "object" && b.args) || {};
   const fn = FN[b && b.fn];
   if (!fn) return json({ error: "unknown function" }, 400);
-  const out = await fn(db, a, now);
+  const out = await fn(db, a, now, env && typeof env.RAND === "function" ? env.RAND : Math.random);
   if (out && out.error) return json({ error: out.error }, out.status || 400);
   return json({ data: out === undefined ? null : out });
 }
@@ -135,7 +135,7 @@ const FN = {
     return (await claim(db, id, n, by40(a.p_by), now(), rid(a.p_rid))) === n;
   },
 
-  async take_chapter(db, a, now) {
+  async take_chapter(db, a, now, rand = Math.random) {
     const id = key(a.p_mid);
     if (!id || !(await visible(db, id))) return null;
     const by = by40(a.p_by);
@@ -145,9 +145,10 @@ const FN = {
       const base = (r - 1) * 150, t = now(), stale = new Date(t - DAY_MS).toISOString();
       const rows = (await db.prepare(`select n, s, at from chapters where memorial_id = ? and n between ? and ?`).bind(id, base + 1, base + 150).all()).results || [];
       const taken = new Set(rows.filter(x => x.s === "done" || x.at >= stale).map(x => x.n));
-      let n = null;
-      for (let g = base + 1; g <= base + 150; g++) if (!taken.has(g)) { n = g; break; }
-      if (n === null) return null;
+      const open = [];
+      for (let g = base + 1; g <= base + 150; g++) if (!taken.has(g)) open.push(g);
+      if (!open.length) return null;
+      const n = open[Math.min(open.length - 1, Math.floor(rand() * open.length))];
       if ((await claim(db, id, n, by, t, rid(a.p_rid))) === n) return n;       // lost a race for this one: look again
     }
     return null;

@@ -161,7 +161,8 @@ document.addEventListener('click',e=>{const t=e.target.closest('#mm [data-f],#mm
   else if(t.dataset.f!=null){open(t.dataset.f);if(t.classList.contains('mm-tile'))$('#mm-ans').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}});
 function fromHash(){const id=decodeURIComponent(location.hash.slice(1));const f=IX.byId.get(id);if(f){q.value=f.name;show(f,{keepHash:true});return true}return false}
 window.addEventListener('hashchange',fromHash);
-shelves();if(!fromHash())show(IX.byId.get(D.start),{keepHash:true});
+shelves();let QP='';try{QP=(new URLSearchParams(location.search).get('q')||'').trim().slice(0,40)}catch(e){}
+if(QP){q.value=QP;run(QP);try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(!fromHash())show(IX.byId.get(D.start),{keepHash:true});
 window.mmData=D;
 })();
 </script>

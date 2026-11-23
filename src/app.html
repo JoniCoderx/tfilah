@@ -1262,7 +1262,7 @@ html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:tran
 .shema .row{gap:8px}.shema .row .btn{min-height:44px;padding:8px 18px;font-size:.92rem;flex:0 1 auto!important}
 .tways{margin-bottom:10px}
 .tname{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px 20px;align-items:center}
-.tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
+.fchips{margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fchips span{font-size:.9rem;font-weight:700;color:var(--ink-2)}.fchips a{display:inline-flex;align-items:center;min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:.95rem;text-decoration:none}.fchips a:hover{border-color:var(--accent,currentColor)}.tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
 @media (max-width:700px){.tname{grid-template-columns:1fr}.tnrow{flex-wrap:wrap}.tnrow .btn{flex:1 1 100%}}
 .jwho{margin:14px 0 0;color:rgba(var(--onc),.94);font-size:.95rem}.jwho b{font-size:1.15rem}
 .whol{list-style:none;margin:0;padding:6px 0;counter-reset:none}
@@ -1719,6 +1719,13 @@ function viewHome(){setNav('home');
   ${quick4()}
   <div id="yband">${DB?yachadBand():''}</div>
   ${yzCard()}
+
+  <section class="nameband foodband" aria-labelledby="fbh">
+    <div class="nbtxt"><span class="eyebrow">לפני שאוכלים ואחרי</span><h2 id="fbh">מה מברכים על…</h2>
+      <p>כותבים מאכל או משקה ומקבלים מיד את הברכה שלפניו ואת הברכה שאחריו.</p></div>
+    <form id="hff" action="/ma-mevarchim/" method="get"><label class="sr" for="hfq">מאכל או משקה</label>
+      <div class="tnrow"><input id="hfq" name="q" type="search" maxlength="40" placeholder="למשל: שווארמה, קפה, במבה" autocomplete="off"><button class="btn primary" type="submit">מה מברכים?</button></div>
+      <p class="fchips"><span>נפוצים:</span><a href="/ma-mevarchim/kafe/">קפה</a><a href="/ma-mevarchim/pitza/">פיצה</a><a href="/ma-mevarchim/bamba/">במבה</a><a href="/ma-mevarchim/orez/">אורז</a><a href="/ma-mevarchim/banana/">בננה</a><a href="/ma-mevarchim/shokolad/">שוקולד</a></p></form></section>
 
   <section class="nameband" aria-labelledby="nbh">
     <div class="nbtxt"><span class="eyebrow">לרפואה, לעילוי נשמה ולכל בקשה</span><h2 id="nbh">תהילים לפי שם</h2>
@@ -2881,7 +2888,7 @@ function yachadBand(){return `<section class="yhero" aria-labelledby="zh"><div c
 let yStats=null;
 function drawYstat(){const el=$('#ystat');if(!el||el.dataset.done)return;
   const paint=s=>{const el=$('#ystat');if(!el||el.dataset.done||!s||!(s.chapters>0))return;el.dataset.done='1';const n=s.chapters,fmt=v=>Math.round(v).toLocaleString('he-IL');
-    el.innerHTML=`<b>${reduce?fmt(n):'0'}</b><span>פרקי תהילים נקראו כאן יחד</span><small>${s.readings===1?'בקריאה אחת':'ב־'+fmt(s.readings)+' קריאות'}${s.books>0?' · '+(s.books===1?'ספר שלם אחד':fmt(s.books)+' ספרים שלמים'):''}</small>`;
+    el.innerHTML=`<b>${reduce?fmt(n):'0'}</b><span>פרקי תהילים כבר נקראו כאן יחד</span><small>${[s.readings>=100?'ב־'+fmt(s.readings)+' קריאות':'',s.books>0?(s.books===1?'ספר שלם אחד הושלם':fmt(s.books)+' ספרים שלמים הושלמו'):''].filter(Boolean).join(' · ')||'כל פרק שתקראו מצטרף'}</small>`;
     if(reduce)return;const b=el.querySelector('b'),run=()=>{const t0=performance.now(),D=1100;const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);b.textContent=fmt(n*e);if(k<1&&b.isConnected)requestAnimationFrame(step)};requestAnimationFrame(step)};
     if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();run()}},{threshold:.4});io.observe(el)}else run()};
   if(yStats){paint(yStats);return}

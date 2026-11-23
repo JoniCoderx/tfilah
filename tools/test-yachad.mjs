@@ -122,5 +122,23 @@ ok("and allowed again later", (await mk()).s === 200);
   ok("a malformed id is sent to the explanation page", bad.status === 302 && bad.headers.get("location").endsWith("/tehillim-yachad/"));
 }
 
+// ---- an older private reading can be put on the list by whoever holds its id; a newer one keeps its opener's choice ----
+{
+  const keep = clock;
+  DB = fakeD1(); _reset();          // a fresh database: the checks above leave the rate limit used up
+  clock = Date.parse("2026-11-22T20:00:00Z");
+  const mkOld = await mk({ p_name: "ישן" }); const oldId = mkOld.d;
+  ok("the older reading was created", typeof oldId === "string", mkOld.j);
+  clock = Date.parse("2026-11-23T12:00:00Z");
+  const newId2 = (await mk({ p_name: "חדש" })).d;
+  ok("an older private reading starts unlisted", !(await list()).some(m => m.id === oldId));
+  ok("listing an older private reading works", (await post("list_legacy", { p_id: oldId })).d === true && (await list()).some(m => m.id === oldId));
+  ok("listing it again still answers yes", (await post("list_legacy", { p_id: oldId })).d === true);
+  ok("a newer private reading cannot be listed this way", (await post("list_legacy", { p_id: newId2 })).d === false && !(await list()).some(m => m.id === newId2));
+  ok("an unknown id is not listed", (await post("list_legacy", { p_id: "nope" })).d === false);
+  ok("a missing id is refused", (await post("list_legacy", {})).s === 400);
+  clock = keep;
+}
+
 console.log(`${pass + fail} checks, ${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

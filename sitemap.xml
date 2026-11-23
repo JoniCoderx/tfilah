@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tfilah.com/</loc><lastmod>2026-11-22</lastmod><priority>1.0</priority></url>
+  <url><loc>https://tfilah.com/</loc><lastmod>2026-11-23</lastmod><priority>1.0</priority></url>
   <url><loc>https://tfilah.com/tehillim/1/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--33f02f25fcf1-->
   <url><loc>https://tfilah.com/tehillim/2/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--e7827400348f-->
   <url><loc>https://tfilah.com/tehillim/3/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--eb018e0b4597-->
@@ -356,7 +356,7 @@
   <url><loc>https://tfilah.com/parashat-hateshuva/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--ada8dcade8ce-->
   <url><loc>https://tfilah.com/parashat-haman/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--768a0e129a91-->
   <url><loc>https://tfilah.com/bakashot-leachar-hatefila/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--be0c4a3ab31a-->
-  <url><loc>https://tfilah.com/perek-shira/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--f9cad10f2d31-->
+  <url><loc>https://tfilah.com/perek-shira/</loc><lastmod>2026-11-23</lastmod><priority>0.6</priority></url><!--67498af48c70-->
   <url><loc>https://tfilah.com/korbanot-mincha/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--a2aee61f1e62-->
   <url><loc>https://tfilah.com/kria-letaanit-tzibur/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--542cf84ced1a-->
   <url><loc>https://tfilah.com/amida-mincha/sefard/</loc><lastmod>2026-11-22</lastmod><priority>0.6</priority></url><!--88082c433aab-->
@@ -1063,45 +1063,45 @@
   <url><loc>https://tfilah.com/zmanei-shabbat/miami/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--73190c37baed-->
   <url><loc>https://tfilah.com/zmanei-shabbat/london/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--c25e6fed6c1e-->
   <url><loc>https://tfilah.com/zmanei-shabbat/paris/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--7fcbf066a116-->
-  <url><loc>https://tfilah.com/zmanei-hayom/jerusalem/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--2484ca0e9de1-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tel-aviv/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--7253473e90eb-->
-  <url><loc>https://tfilah.com/zmanei-hayom/haifa/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--f0efc13533b7-->
-  <url><loc>https://tfilah.com/zmanei-hayom/bnei-brak/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--ca13042140aa-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beer-sheva/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--475eac307a7e-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ashdod/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--eda9c7d0854b-->
-  <url><loc>https://tfilah.com/zmanei-hayom/petah-tikva/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--ca029398875f-->
-  <url><loc>https://tfilah.com/zmanei-hayom/netanya/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--618d23226aba-->
-  <url><loc>https://tfilah.com/zmanei-hayom/rishon-lezion/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--2acadb09d9db-->
-  <url><loc>https://tfilah.com/zmanei-hayom/holon/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--b082048788cb-->
-  <url><loc>https://tfilah.com/zmanei-hayom/bat-yam/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--349393dc7d9d-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ramat-gan/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--dd5578ac2824-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ashkelon/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--90e90ca4aaac-->
-  <url><loc>https://tfilah.com/zmanei-hayom/rehovot/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--545028820ead-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beit-shemesh/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--2c99857ab63a-->
-  <url><loc>https://tfilah.com/zmanei-hayom/modiin/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--dda270d3b326-->
-  <url><loc>https://tfilah.com/zmanei-hayom/modiin-illit/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--7bd953a10a3e-->
-  <url><loc>https://tfilah.com/zmanei-hayom/elad/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--c70ce9760a71-->
-  <url><loc>https://tfilah.com/zmanei-hayom/herzliya/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--b6c9de2dcf3d-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kfar-saba/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--1359dd5cdcce-->
-  <url><loc>https://tfilah.com/zmanei-hayom/raanana/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--f9c37af4689e-->
-  <url><loc>https://tfilah.com/zmanei-hayom/hadera/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--0fde2932a9f9-->
-  <url><loc>https://tfilah.com/zmanei-hayom/lod/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--d44482f5a4b9-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ramla/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--e2ef7b0b26c6-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tzfat/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--c83c0a0f7cb3-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tiberias/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--59d6d1ee065a-->
-  <url><loc>https://tfilah.com/zmanei-hayom/afula/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--fda161eed7ca-->
-  <url><loc>https://tfilah.com/zmanei-hayom/nahariya/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--15aa3d5d52f8-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-shmona/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--a168a84da166-->
-  <url><loc>https://tfilah.com/zmanei-hayom/eilat/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--e650fb6aa277-->
-  <url><loc>https://tfilah.com/zmanei-hayom/netivot/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--3eb52cdfd183-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-gat/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--9f9947799e6f-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beitar-illit/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--4e8a951b1a5b-->
-  <url><loc>https://tfilah.com/zmanei-hayom/new-york/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--79c89149e699-->
-  <url><loc>https://tfilah.com/zmanei-hayom/los-angeles/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--947e1c47bbed-->
-  <url><loc>https://tfilah.com/zmanei-hayom/miami/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--4758387e4158-->
-  <url><loc>https://tfilah.com/zmanei-hayom/london/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--611f623b2cd3-->
-  <url><loc>https://tfilah.com/zmanei-hayom/paris/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--1d514d535a22-->
-  <url><loc>https://tfilah.com/zmanei-hayom/</loc><lastmod>2026-11-22</lastmod><priority>0.9</priority></url><!--1497bba37d8c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/jerusalem/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--531faac8374a-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tel-aviv/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--9b069e3d926e-->
+  <url><loc>https://tfilah.com/zmanei-hayom/haifa/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--c322b088d8f3-->
+  <url><loc>https://tfilah.com/zmanei-hayom/bnei-brak/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--73964a4bfd40-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beer-sheva/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--d8e6547cb980-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ashdod/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--2b5759327c69-->
+  <url><loc>https://tfilah.com/zmanei-hayom/petah-tikva/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--44290de3c054-->
+  <url><loc>https://tfilah.com/zmanei-hayom/netanya/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--9f49dbe62ea4-->
+  <url><loc>https://tfilah.com/zmanei-hayom/rishon-lezion/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--c85576434675-->
+  <url><loc>https://tfilah.com/zmanei-hayom/holon/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--c07212bd74b2-->
+  <url><loc>https://tfilah.com/zmanei-hayom/bat-yam/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--af182c141784-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ramat-gan/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--81b2f483bd95-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ashkelon/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--4c91e0bba65c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/rehovot/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--75694e62a0a9-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beit-shemesh/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--014da9cafb9c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/modiin/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--c041a3cd5ee2-->
+  <url><loc>https://tfilah.com/zmanei-hayom/modiin-illit/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--9432d43776e8-->
+  <url><loc>https://tfilah.com/zmanei-hayom/elad/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--1c9e94f5f5c6-->
+  <url><loc>https://tfilah.com/zmanei-hayom/herzliya/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--09a7ec6738a9-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kfar-saba/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--7506df2bc0ee-->
+  <url><loc>https://tfilah.com/zmanei-hayom/raanana/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--abdadef098f9-->
+  <url><loc>https://tfilah.com/zmanei-hayom/hadera/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--2c6dd3c85293-->
+  <url><loc>https://tfilah.com/zmanei-hayom/lod/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--dc03c05d1823-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ramla/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--d4a46c09def9-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tzfat/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--b1880fa57276-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tiberias/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--3d4a917517cf-->
+  <url><loc>https://tfilah.com/zmanei-hayom/afula/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--539f4824315d-->
+  <url><loc>https://tfilah.com/zmanei-hayom/nahariya/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--5c41d9fb8d47-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-shmona/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--48e6d69ede76-->
+  <url><loc>https://tfilah.com/zmanei-hayom/eilat/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--50b699c012be-->
+  <url><loc>https://tfilah.com/zmanei-hayom/netivot/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--377406ac38e7-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-gat/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--6c10f3ae9897-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beitar-illit/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--34df6de5ec0d-->
+  <url><loc>https://tfilah.com/zmanei-hayom/new-york/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--bec1e39ff08d-->
+  <url><loc>https://tfilah.com/zmanei-hayom/los-angeles/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--7d372cdb62ae-->
+  <url><loc>https://tfilah.com/zmanei-hayom/miami/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--69d7384aca18-->
+  <url><loc>https://tfilah.com/zmanei-hayom/london/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--de347309e529-->
+  <url><loc>https://tfilah.com/zmanei-hayom/paris/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--2001aba299a0-->
+  <url><loc>https://tfilah.com/zmanei-hayom/</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url><!--1e7ec78efc93-->
   <url><loc>https://tfilah.com/zmanei-shabbat/</loc><lastmod>2026-11-22</lastmod><priority>0.9</priority></url><!--2c63c9643797-->
   <url><loc>https://tfilah.com/chanukah/</loc><lastmod>2026-11-22</lastmod><priority>0.9</priority></url><!--e1d1278706dd-->
   <url><loc>https://tfilah.com/odot/</loc><lastmod>2026-11-22</lastmod><priority>0.4</priority></url><!--2d4bcb18f0db-->

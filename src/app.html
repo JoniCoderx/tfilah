@@ -1087,6 +1087,8 @@ body[data-r=tehillim] #nus,body[data-r=kelim] #nus,body[data-r=zikaron] #nus{dis
 
 /* reader: the text gets the room */
 .rtools{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}
+/* the reading toolbar is what stays at the top once the header slides away: it carries the same cover above it */
+#rt::before{content:"";position:absolute;inset-inline:0;inset-block-end:100%;block-size:200px;background:var(--bg);pointer-events:none}
 .rtools .tocb{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer;font-weight:500;color:var(--ink);flex:none}
 .rh1{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,6vw,2.8rem);line-height:1.15;max-width:40rem;margin:18px auto 0}
 .rsub{max-width:40rem;margin:4px auto 0;color:var(--muted);font-size:.92rem}

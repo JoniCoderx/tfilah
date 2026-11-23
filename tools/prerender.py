@@ -1832,7 +1832,8 @@ for i, (k, t, d) in enumerate(KELIM):
              lead="מקלידים את שם הנפטר ומקבלים את הפסוקים לפי אותיות השם ואותיות ”נשמה”.",
              ld=[{"@type": "WebPage", "name": "תהילים אותיות נשמה", "url": f"{SITE}/leiluy-nishmat/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
-kelim = '<ul class="cards">'
+kelim = ('<ul class="cards"><li><a href="/ma-mevarchim/"><b>מה מברכים על?</b><small>כותבים שם של מאכל ומקבלים את הברכה הראשונה והאחרונה.</small>'
+         '<small>ברכה ראשונה ואחרונה לכל מאכל, עם מקור לכל הוראה</small></a></li>')
 for k, t, d in KELIM:
     kelim += f'<li><a href="/kelim/{k}/"><b>{esc(t)}</b><small>{esc(d)}</small><small>{esc(TOOL[k][0])}</small></a></li>'
 kelim += '</ul><p class="note">הכלים מחשבים לפי מה שמקלידים בהם, ונפתחים באפליקציה של תפילה.</p>'

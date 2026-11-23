@@ -4,9 +4,9 @@ Generates real, crawlable HTML for:
   /tehillim/<1-150>/            every Tehillim chapter
   /tehillim/<need>/             Tehillim by need (the app's NEEDS list), chapters in full
   /tehillim/yomi/               the monthly and weekly division of the book
-  /tefila/<nusach>-<n>/         every prayer, per nusach
-  /tefila/<nusach>/             nusach hub
-  /tefila/<nusach>/<service>/   weekday shacharit / mincha / arvit: ordered contents
+  /siddur/<nusach>-<n>/         every prayer, per nusach
+  /siddur/<nusach>/             nusach hub
+  /siddur/<nusach>/<service>/   weekday shacharit / mincha / arvit: ordered contents
   /sefer/<key>/                 library books
   /tehillim-yachad/, /kelim/    explainers that lead into the app
   hubs, 404.html and sitemap.xml
@@ -424,7 +424,7 @@ TOOLS_HTML = ('<div class="tools" id="tools" role="group" aria-label="כלי ק�
               '<button type="button" id="fp" class="az" aria-label="א+ הגדלת הטקסט">א+</button>'
               '<button type="button" id="nk" aria-pressed="true">ניקוד</button></div>')
 
-NAV = ('<nav aria-label="ניווט ראשי"><a href="/tefila/">סידור</a><a href="/tehillim/">תהילים</a>'
+NAV = ('<nav aria-label="ניווט ראשי"><a href="/siddur/">סידור</a><a href="/tehillim/">תהילים</a>'
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')
 DONATE_ON = bool(re.search(r'donateUrl:\s*"[^"]+"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()))
 CONTACT = (re.search(r'contactEmail:\s*"([^"]*)"', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read()) or [None, ""])[1]
@@ -434,7 +434,7 @@ TOP_JS = "(function(){var b=document.getElementById('totop');if(!b)return;var t=
 DARK_JS = "(function(){function on(){return document.documentElement.dataset.theme==='dark'}function paint(){var d=on();document.querySelectorAll('[data-dark]').forEach(function(b){if(b.getAttribute('aria-pressed')!==String(d))b.setAttribute('aria-pressed',d);var s=b.querySelector('span'),w=d?'מצב יום':'מצב לילה';if(s&&s.textContent!==w)s.textContent=w});var m=document.querySelector('meta[name=theme-color]'),k=d?'#000000':'#FFFFFF';if(m&&m.content!==k)m.content=k}document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-dark]');if(!b)return;var d=!on();if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('dark',JSON.stringify(d))}catch(x){}paint()});paint();new MutationObserver(paint).observe(document.body,{childList:true,subtree:true})})();"
 DARK_EARLY = '<script>try{if(JSON.parse(localStorage.getItem("dark")||"false"))document.documentElement.dataset.theme="dark"}catch(e){}</script>'
 FOOT_JS = "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-taut]');if(!a)return;var h=document.querySelector('h1');a.href='/odot/?u='+encodeURIComponent(location.origin+location.pathname)+'&t='+encodeURIComponent(h?h.textContent.replace(/\\\\s+/g,' ').trim():'')+'#taut'});"
-FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
+FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/siddur/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
             '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/kotel/">תפילה בכותל</a><a href="/odot/">אודות ומקורות</a></nav><p class="dclose"><button type="button" data-dclose><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>סגירה</button></p></details>')
@@ -474,7 +474,7 @@ def og_for(path):
         if path.startswith(pre): return name
     if path in _PRAYER_PATHS: return "og-siddur"
     for pre, name in (("/kelim/shem/", "og-shem"), ("/kelim/", "og-kelim"), ("/tehillim-yachad/", "og-yachad"), ("/tehillim/", "og-tehillim"),
-                      ("/zmanei-shabbat/", "og-shabbat"), ("/zmanei-hayom/", "og-zmanim"), ("/chanukah/", "og-chanukah"), ("/tefila/", "og-siddur")):
+                      ("/zmanei-shabbat/", "og-shabbat"), ("/zmanei-hayom/", "og-zmanim"), ("/chanukah/", "og-chanukah"), ("/siddur/", "og-siddur")):
         if path.startswith(pre): return name
     return "og"
 
@@ -543,7 +543,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 {NAV}<button class="dkt" type="button" data-dark aria-pressed="false" aria-label="מצב לילה"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></div></header>
 <main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p></div>
-<nav aria-label="ניווט באתר"><a href="/tefila/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
+<nav aria-label="ניווט באתר"><a href="/siddur/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
 {'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}
 <p class="fcredit">הטקסטים מתוך המהדורות הפתוחות של תורת אמת, דעת ו-Tanach.us, דרך הארכיון של ספריא. <a href="/odot/">פירוט המקורות</a></p>
@@ -649,7 +649,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"n", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"n", "siddur", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -668,7 +668,7 @@ def _slug(title):
 FORCE_SLUG = {"mizrach-101": "shacharit-lachanukah", "mizrach-88": "musaf-rosh-chodesh", "sefard-165": "hallel-hagada",
               "sefard-90": "tefilat-amida-erev-shabbat", "ashkenaz-299": "haftara-shabbat", "ashkenaz-141": "baruch-hashem-leolam"}
 # short addresses that moved, or that people type: one 301 hop to the page they mean
-MOVED = {"/shacharit/": "/tefila/mizrach/shacharit/", "/mincha/": "/tefila/mizrach/mincha/", "/arvit/": "/tefila/mizrach/arvit/", "/maariv/": "/tefila/mizrach/arvit/",
+MOVED = {"/shacharit/": "/siddur/mizrach/shacharit/", "/mincha/": "/siddur/mizrach/mincha/", "/arvit/": "/siddur/mizrach/arvit/", "/maariv/": "/siddur/mizrach/arvit/",
          "/hallel/": "/seder-hallel/", "/musaf/": "mizrach-88", "/tefilat-amida/": "sefard-90", "/haftara/": "ashkenaz-299",
          "/baruch-hashem-leolam-outside-of-israel/": "ashkenaz-141"}
 
@@ -930,9 +930,9 @@ def section_link(p):
     n = p["n"]
     if p["id"] in SVC_OF:
         k = SVC_OF[p["id"]]
-        return f"/tefila/{n}/{k}/", svc_name(n, k)
+        return f"/siddur/{n}/{k}/", svc_name(n, k)
     gi = GROUP_OF[p["id"]]
-    return f"/tefila/{n}/#g{gi + 1}", GROUPS[n][gi][0]
+    return f"/siddur/{n}/#g{gi + 1}", GROUPS[n][gi][0]
 
 # ---------- most wanted ----------
 WANT = [
@@ -1240,7 +1240,7 @@ page("/tehillim/", f"ספר תהילים אונליין | כל 150 הפרקים 
 # Prayers
 # =====================================================================
 def siddur_of(n):
-    return {"@type": "CreativeWork", "name": f"סידור תפילה, נוסח {NUS[n]}", "inLanguage": "he", "url": f"{SITE}/tefila/{n}/"}
+    return {"@type": "CreativeWork", "name": f"סידור תפילה, נוסח {NUS[n]}", "inLanguage": "he", "url": f"{SITE}/siddur/{n}/"}
 
 PLAIN = json.loads(re.search(r"^const PLAIN=(\[.*\]);$", APP_SRC, re.M).group(1))
 PLAIN_T = json.loads(re.search(r"^const PLAIN_T=(\{.*\});$", APP_SRC, re.M).group(1))
@@ -1284,10 +1284,10 @@ for n, plist in by_nus.items():
         rel = fill([x for x in CUR.get(me, []) if x[0] not in skip][:6], extra, lo=5)
         if p["id"] in WANT_IDS and n in NUS_NOTE:
             other = next((q for q in same if q["n"] == NUS_NOTE[n][1]), None)
-            after += nus_note(n, f'{PURL[other["id"]]}' if other else f"/tefila/{NUS_NOTE[n][1]}/",
+            after += nus_note(n, f'{PURL[other["id"]]}' if other else f"/siddur/{NUS_NOTE[n][1]}/",
                               f'{lead_of(other)} בנוסח {NUS[other["n"]]}' if other else f"סידור נוסח {NUS[NUS_NOTE[n][1]]}")
         after += chips("תפילות קשורות", rel)
-        after += chips("בסידור", [(sec_href, f"{sec_label}: כל הסדר"), (f"/tefila/{n}/", f"סידור נוסח {NUS[n]}"), ("/tefila/", "כל הנוסחים")])
+        after += chips("בסידור", [(sec_href, f"{sec_label}: כל הסדר"), (f"/siddur/{n}/", f"סידור נוסח {NUS[n]}"), ("/siddur/", "כל הנוסחים")])
 
         tname = TNAME[p["id"]]
         where = ctx or " · ".join(s)
@@ -1313,10 +1313,10 @@ for n, plist in by_nus.items():
             meta += f" · נכתב גם: {esc(alt)}"
         before = f'<p class="note">{esc(when)}</p>' if when else ""
         if p["id"] == "mizrach-11":
-            before += '<p class="note">זהו קטע הפתיחה בלבד. <a href="/tefila/mizrach/shacharit/">לסדר תפילת שחרית המלא, נוסח עדות המזרח</a></p>'
+            before += '<p class="note">זהו קטע הפתיחה בלבד. <a href="/siddur/mizrach/shacharit/">לסדר תפילת שחרית המלא, נוסח עדות המזרח</a></p>'
         if norm_t(p["t"]) == "תפילת הדרך":
             before += TD_BOX
-        crumbs = [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/")]
+        crumbs = [("סידור", "/siddur/"), (f"נוסח {NUS[n]}", f"/siddur/{n}/")]
         if p["id"] in SVC_OF:
             crumbs.append((sec_label, sec_href))
         crumbs.append((pname(p), me))
@@ -1385,7 +1385,7 @@ for n in NUS:
     for si, (key, label, cfg) in enumerate(SERVICES):
         items = SVC[(n, key)]
         name = svc_name(n, key)
-        path = f"/tefila/{n}/{key}/"
+        path = f"/siddur/{n}/{key}/"
         first = items[0][0]
         body = ""
         full = ""
@@ -1407,18 +1407,18 @@ for n in NUS:
         body = ""
         pv = SERVICES[si - 1] if si else None
         nx = SERVICES[si + 1] if si + 1 < len(SERVICES) else None
-        body += pager((f"/tefila/{n}/{pv[0]}/", svc_name(n, pv[0])) if pv else None, (f"/tefila/{n}/{nx[0]}/", svc_name(n, nx[0])) if nx else None)
-        body += nus_note(n, f"/tefila/{NUS_NOTE[n][1]}/{key}/", f"{svc_name(NUS_NOTE[n][1], key)} בנוסח {NUS[NUS_NOTE[n][1]]}") if n in NUS_NOTE else ""
-        body += chips(f"{label} בנוסח אחר", [(f"/tefila/{m}/{key}/", f"{svc_name(m, key)} · נוסח {NUS[m]}") for m in NUS if m != n])
+        body += pager((f"/siddur/{n}/{pv[0]}/", svc_name(n, pv[0])) if pv else None, (f"/siddur/{n}/{nx[0]}/", svc_name(n, nx[0])) if nx else None)
+        body += nus_note(n, f"/siddur/{NUS_NOTE[n][1]}/{key}/", f"{svc_name(NUS_NOTE[n][1], key)} בנוסח {NUS[NUS_NOTE[n][1]]}") if n in NUS_NOTE else ""
+        body += chips(f"{label} בנוסח אחר", [(f"/siddur/{m}/{key}/", f"{svc_name(m, key)} · נוסח {NUS[m]}") for m in NUS if m != n])
         relp = [by_title(n, t) for t in ("ברכת המזון", "תפילת הדרך", "קריאת שמע על המיטה", "ספירת העומר")]
-        body += chips("עוד בסידור", [(f"/tefila/{n}/", f"סידור נוסח {NUS[n]}, כל התפילות")]
+        body += chips("עוד בסידור", [(f"/siddur/{n}/", f"סידור נוסח {NUS[n]}, כל התפילות")]
                       + [(f'{PURL[q["id"]]}', lead_of(q)) for q in relp if q and q["id"] not in {x[0]["id"] for x in items}]
                       + [("/tehillim/", "ספר תהילים")])
         parts = "חלק אחד" if num == 1 else f"{num} חלקים"
         desc = fit_desc(f"תפילת {name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל התפילה בעמוד אחד משלו, בניקוד מלא",
                         tails=("קריאה נוחה בנייד.",))
         page(path, f"תפילת {name} נוסח {NUS[n]}: הסדר המלא | {BRAND}", desc, f"תפילת {name}",
-             [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), (name, path)],
+             [("סידור", "/siddur/"), (f"נוסח {NUS[n]}", f"/siddur/{n}/"), (name, path)],
              h1_ctx=f"נוסח {NUS[n]}", text=full, before=toc_html, after=body, hub=False, prio="0.9", app_hash=f"p-{first['id']}", app_label="לתפילה באפליקציה, עם התאמות לפי היום",
              lead=f"תפילת {label} של ימי החול בנוסח {NUS[n]}, כולה בעמוד אחד ובניקוד מלא. {parts}, לפי הסדר.",
              ld=[collection(f"{name}, נוסח {NUS[n]}", path, [f'{PURL[p["id"]]}' for p, _ in items])])
@@ -1428,7 +1428,7 @@ WANT_REPORT = []
 def want_block(only=None):
     out = '<ul class="want">'
     for key, label, _ in SERVICES:
-        links = "".join(f'<a href="/tefila/{n}/{key}/" title="{esc(svc_name(n, key))} בנוסח {esc(NUS[n])}">נוסח {esc(NUS[n])}</a>' for n in NUS if only in (None, n))
+        links = "".join(f'<a href="/siddur/{n}/{key}/" title="{esc(svc_name(n, key))} בנוסח {esc(NUS[n])}">נוסח {esc(NUS[n])}</a>' for n in NUS if only in (None, n))
         out += f'<li><b>{esc(label)} לימי חול</b><span>{links}</span></li>'
     for label, titles in WANT:
         links = ""
@@ -1443,7 +1443,7 @@ def want_block(only=None):
     for n in NUS:   # whole sections that people look for by name
         for gi, (lab, ps) in enumerate(GROUPS[n]):
             if lab == "הגדה של פסח" and only in (None, n):
-                out += f'<li><b>הגדה של פסח</b><span><a href="/tefila/{n}/#g{gi + 1}" title="הגדה של פסח בנוסח {esc(NUS[n])}, {len(ps)} חלקים">{"נוסח " + esc(NUS[n]) if only is None else "לסדר ההגדה"}</a></span></li>'
+                out += f'<li><b>הגדה של פסח</b><span><a href="/siddur/{n}/#g{gi + 1}" title="הגדה של פסח בנוסח {esc(NUS[n])}, {len(ps)} חלקים">{"נוסח " + esc(NUS[n]) if only is None else "לסדר ההגדה"}</a></span></li>'
     return out + "</ul>"
 
 def nusach_lists(n, hlevel, prefix):
@@ -1455,35 +1455,35 @@ def nusach_lists(n, hlevel, prefix):
 
 # ---------- nusach hubs ----------
 for n in NUS:
-    path = f"/tefila/{n}/"
-    body = (nus_note(n, f"/tefila/{NUS_NOTE[n][1]}/", f"סידור נוסח {NUS[NUS_NOTE[n][1]]}") if n in NUS_NOTE else "")
+    path = f"/siddur/{n}/"
+    body = (nus_note(n, f"/siddur/{NUS_NOTE[n][1]}/", f"סידור נוסח {NUS[NUS_NOTE[n][1]]}") if n in NUS_NOTE else "")
     body += '<h2 class="sec">תפילות ימי החול</h2><ul class="cards">'
     for key, label, _ in SERVICES:
         items = SVC[(n, key)]
-        body += f'<li><a href="/tefila/{n}/{key}/"><b>{esc(svc_name(n, key))}</b><small>{len(items)} חלקים, מ{esc(items[0][0]["t"])} ועד {esc(items[-1][0]["t"])}</small></a></li>'
+        body += f'<li><a href="/siddur/{n}/{key}/"><b>{esc(svc_name(n, key))}</b><small>{len(items)} חלקים, מ{esc(items[0][0]["t"])} ועד {esc(items[-1][0]["t"])}</small></a></li>'
     body += '</ul><h2 class="sec" id="mevukashot">התפילות המבוקשות</h2>' + want_block(n)
-    body += chips("הסידור בנוסח אחר", [(f"/tefila/{m}/", f"סידור נוסח {NUS[m]}") for m in NUS if m != n])
+    body += chips("הסידור בנוסח אחר", [(f"/siddur/{m}/", f"סידור נוסח {NUS[m]}") for m in NUS if m != n])
     body += f'<h2 class="sec big" id="kol">כל התפילות בנוסח {esc(NUS[n])}</h2>' + nusach_lists(n, "h3", "g")
     cnt = len(by_nus[n])
     page(path, f"סידור נוסח {NUS[n]} אונליין: כל התפילות בניקוד מלא | {BRAND}",
          fit_desc(f"סידור תפילה בנוסח {NUS[n]}, {cnt} תפילות וברכות בניקוד מלא: שחרית, מנחה וערבית לימי חול, שבת, ראש חודש וחגים, ברכת המזון, תפילת הדרך וקריאת שמע שעל המיטה", tails=()),
-         f"סידור נוסח {NUS[n]}", [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", path)], after=body, hub=True, prio="0.9",
+         f"סידור נוסח {NUS[n]}", [("סידור", "/siddur/"), (f"נוסח {NUS[n]}", path)], after=body, hub=True, prio="0.9",
          app_hash="siddur", app_label="לסידור באפליקציה",
          lead=f"{cnt} תפילות וברכות בנוסח {NUS[n]}, בניקוד מלא. כל תפילה בעמוד קריאה משלה.",
-         ld=[collection(f"סידור נוסח {NUS[n]}", path, [f"/tefila/{n}/{k}/" for k, _, _ in SERVICES] + [f'{PURL[p["id"]]}' for p in by_nus[n]])])
+         ld=[collection(f"סידור נוסח {NUS[n]}", path, [f"/siddur/{n}/{k}/" for k, _, _ in SERVICES] + [f'{PURL[p["id"]]}' for p in by_nus[n]])])
 
 # ---------- siddur hub ----------
 hub = '<ul class="cards">' + "".join(
-    f'<li><a href="/tefila/{n}/"><b>נוסח {esc(NUS[n])}</b><small>{len(by_nus[n])} תפילות וברכות, שחרית, מנחה וערבית</small></a></li>' for n in NUS) + "</ul>"
+    f'<li><a href="/siddur/{n}/"><b>נוסח {esc(NUS[n])}</b><small>{len(by_nus[n])} תפילות וברכות, שחרית, מנחה וערבית</small></a></li>' for n in NUS) + "</ul>"
 hub += '<h2 class="sec" id="mevukashot">התפילות המבוקשות</h2>' + want_block()
 hub += '<h2 class="sec">כל התפילות לפי נוסח</h2><div class="related">' + "".join(f'<a href="#{n}">נוסח {esc(NUS[n])}</a>' for n in NUS) + "</div>"
 for n in NUS:
-    hub += f'<h2 class="sec big" id="{n}"><a href="/tefila/{n}/">נוסח {esc(NUS[n])}</a></h2>' + nusach_lists(n, "h3", n + "-g")
-page("/tefila/", f"סידור תפילה אונליין | עדות המזרח, ספרד ואשכנז | {BRAND}",
+    hub += f'<h2 class="sec big" id="{n}"><a href="/siddur/{n}/">נוסח {esc(NUS[n])}</a></h2>' + nusach_lists(n, "h3", n + "-g")
+page("/siddur/", f"סידור תפילה אונליין | עדות המזרח, ספרד ואשכנז | {BRAND}",
      "סידור תפילה מלא אונליין בניקוד: שחרית, מנחה, ערבית, ברכת המזון, תפילת הדרך, קריאת שמע שעל המיטה, שבת וחגים, בנוסח עדות המזרח, ספרד ואשכנז.",
-     "סידור תפילה", [("סידור", "/tefila/")], after=hub, app_hash="siddur", hub=True, prio="0.9",
+     "סידור תפילה", [("סידור", "/siddur/")], after=hub, app_hash="siddur", hub=True, prio="0.9",
      lead="כל התפילות בשלושה נוסחים, בניקוד מלא. כל תפילה בעמוד קריאה משלה.",
-     ld=[collection("סידור תפילה", "/tefila/", [f"/tefila/{n}/" for n in NUS])])
+     ld=[collection("סידור תפילה", "/siddur/", [f"/siddur/{n}/" for n in NUS])])
 
 # =====================================================================
 # Library
@@ -1504,7 +1504,7 @@ for bi, (k, b) in enumerate(B.items()):
     near = [BOOK_KEYS[x] for x in (bi - 2, bi + 2, bi - 3, bi + 3, bi - 4, bi + 4) if 0 <= x < len(BOOK_KEYS)]
     rel = fill(CUR.get(me, [])[:6], [(f"/sefer/{x}/", B[x]["t"]) for x in near], lo=5)
     after += chips("קשור לעמוד הזה", rel)
-    after += chips("עוד בספרייה", [("/sefer/", "כל ספרי הספרייה"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה")])
+    after += chips("עוד בספרייה", [("/sefer/", "כל ספרי הספרייה"), ("/tehillim/", "ספר תהילים"), ("/siddur/", "סידור תפילה")])
     sub = b.get("sub", "")
     nsec = len([s for s in b["secs"] if s.get("h")])
     jump = ('<div class="related" style="margin-block-end:1rem">' + "".join(
@@ -1586,7 +1586,7 @@ for bi, p in enumerate(PARASHOT):
     same = [q for q in PARASHOT if q["book"] == book and q["num"] != p["num"]]
     near = sorted(same, key=lambda q: abs(q["num"] - p["num"]))[:6]
     after += chips(f"עוד בחומש {CHUMASH[book]}", [(PAR_PATH[q["num"]], "פרשת " + q["he"]) for q in sorted(near, key=lambda q: q["num"])])
-    after += chips("עוד באתר", [("/parasha/", "כל פרשות השבוע"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה")])
+    after += chips("עוד באתר", [("/parasha/", "כל פרשות השבוע"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/siddur/", "סידור תפילה")])
     first = TORAH[book][c1 - 1][v1 - 1]
     before = (f'<p class="note">{esc(rng)}. {total} פסוקים, בשבע עליות.' + (f" {esc(haft)}." if haft else "") + "</p>"
               f'<div class="related" style="margin-block-end:1rem">{jump}</div>')
@@ -1612,7 +1612,7 @@ PWEEK_JS = ("(function(){var M=" + json.dumps({p["key"]: [p["he"], PAR_PATH[p["n
 page("/parasha/", f"פרשת השבוע: כל 54 הפרשות בניקוד מלא, לפי עליות | {BRAND}",
      "פרשת השבוע אונליין: כל 54 פרשות התורה, מבראשית ועד וזאת הברכה, בניקוד מלא ומחולקות לשבע העליות. לכל פרשה עמוד קריאה משלו, עם מראה המקום של ההפטרה.",
      "פרשת השבוע", [("פרשת השבוע", "/parasha/")],
-     after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
+     after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/siddur/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
      hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.", script=PWEEK_JS,
      before='<p class="pweek" id="pweek" aria-live="polite"></p>',
      ld=[collection("פרשת השבוע", "/parasha/", list(PAR_PATH.values()))])
@@ -1631,7 +1631,7 @@ for n, (pid, lo, hi) in NISHMAT.items():
     _svc = PURL[pid]
     page(me, f"נשמת כל חי נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
          fit_desc(f"נשמת כל חי בנוסח {NUS[n]}, בניקוד מלא. נאמרת בתפילת שחרית של שבת ויום טוב", " ".join(_src[lo:lo + 1])),
-         "נשמת כל חי", [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), ("נשמת כל חי", me)],
+         "נשמת כל חי", [("סידור", "/siddur/"), (f"נוסח {NUS[n]}", f"/siddur/{n}/"), ("נשמת כל חי", me)],
          text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
          meta=f'<b>נוסח {esc(NUS[n])}</b> · מתוך <a href="{_svc}">פסוקי דזמרה של שבת</a>',
          before=f'<aside class="plainx" aria-label="הסבר קצר"><b>על מה התפילה הזאת?</b><p>{esc(_n_px)}</p></aside><p class="note">נאמרת בתפילת שחרית של שבת ויום טוב.</p>',
@@ -1673,7 +1673,7 @@ for (_slug, n), (me, _name, pid, lo, hi) in KD_PAGES.items():
     _nt = KD_NOTE.get((_slug, n), "")
     page(me, f"{_name} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
          fit_desc(f"{_name} בנוסח {NUS[n]}, בניקוד מלא", " ".join(_src[lo:lo + 1])),
-         _name.split(" (")[0], [("סידור", "/tefila/"), ("קדיש", "/kaddish/"), (f"נוסח {NUS[n]}", me)],
+         _name.split(" (")[0], [("סידור", "/siddur/"), ("קדיש", "/kaddish/"), (f"נוסח {NUS[n]}", me)],
          text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
          meta=f'<b>נוסח {esc(NUS[n])}</b> · מתוך <a href="{PURL[pid]}">{esc(BYID[pid]["t"])}</a>',
          before=(f'<p class="note">{esc(_nt)}</p>' if _nt else "") + ('<p class="note">נאמר על ידי האבלים, במניין.</p>' if _slug == "kaddish-yatom" else ""),
@@ -1688,10 +1688,10 @@ _kd_items = [(t, note, next((p for p in by_nus["ashkenaz"] if p["t"] == t and p[
 _kd_html = '<ul class="list">' + "".join(f'<li><a href="{PURL[p["id"]]}">{esc(t)}<small>{esc(note or "הנוסח המלא בניקוד")}</small></a></li>' for t, note, p in _kd_items) + "</ul>"
 page("/kaddish/", f"קדיש: קדיש יתום, חצי קדיש, קדיש שלם וקדיש דרבנן בניקוד | {BRAND}",
      "נוסח הקדיש המלא בניקוד, בנוסח אשכנז, עדות המזרח וספרד: קדיש יתום, חצי קדיש, קדיש שלם (תתקבל) וקדיש דרבנן. לכל קדיש עמוד קריאה משלו.",
-     "קדיש", [("סידור", "/tefila/"), ("קדיש", "/kaddish/")],
+     "קדיש", [("סידור", "/siddur/"), ("קדיש", "/kaddish/")],
      after='<h2 class="sec">נוסח אשכנז</h2>' + _kd_html
            + "".join(f'<h2 class="sec">נוסח {esc(NUS[m])}</h2><ul class="list">' + "".join(f'<li><a href="{v[0]}">{esc(v[1])}<small>הנוסח המלא בניקוד</small></a></li>' for (s, mm), v in KD_PAGES.items() if mm == m) + "</ul>" for m in NISHMAT)
-           + chips("בתוך סדר התפילה", [("/tefila/mizrach/shacharit/", "שחרית · נוסח עדות המזרח"), ("/tefila/sefard/shacharit/", "שחרית · נוסח ספרד"), ("/tefila/ashkenaz/shacharit/", "שחרית · נוסח אשכנז")])
+           + chips("בתוך סדר התפילה", [("/siddur/mizrach/shacharit/", "שחרית · נוסח עדות המזרח"), ("/siddur/sefard/shacharit/", "שחרית · נוסח ספרד"), ("/siddur/ashkenaz/shacharit/", "שחרית · נוסח אשכנז")])
            + chips("עוד באתר", [("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/kelim/yahr/", "חישוב יום השנה לפטירה"), ("/kelim/shem/", "תהילים לפי אותיות השם")]),
      hub=True, prio="0.8", lead="כל סוגי הקדיש, לכל אחד עמוד קריאה משלו בניקוד מלא.",
      ld=[collection("קדיש", "/kaddish/", [PURL[p["id"]] for _, _, p in _kd_items] + [v[0] for v in KD_PAGES.values()])])
@@ -1726,7 +1726,7 @@ k_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
            '<a href="https://www.sefaria.org.il/Bach%2C_Orach_Chayim.561" target="_blank" rel="noopener">ב״ח שם</a> · '
            '<a href="https://www.sefaria.org.il/Mishnah_Berurah.561.6" target="_blank" rel="noopener">משנה ברורה שם, ס״ק ו</a>.</li>'
            '<li>נוסח הפסוקים: תהילים מתוך ספר התהילים שבאתר, והפסוק מישעיהו מתוך ”תנ״ך עם ניקוד” (נחלת הכלל).</li></ul></div>'
-           + chips("עוד באתר", [("/tehillim/", "ספר תהילים"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/tefilat-haderech/", "תפילת הדרך"), ("/tefila/", "סידור תפילה")]))
+           + chips("עוד באתר", [("/tehillim/", "ספר תהילים"), ("/kelim/kivun/", "כיוון תפילה לירושלים"), ("/tefilat-haderech/", "תפילת הדרך"), ("/siddur/", "סידור תפילה")]))
 page("/kotel/", f"תפילה בכותל המערבי: פסוקים ומזמורים שנהגו לומר | {BRAND}",
      "מה אומרים בכותל המערבי: הפסוקים שנאמרים כשמגיעים אל הכותל ומזמורי התהילים שנהגו לומר שם, בניקוד מלא ועם המקור של כל מנהג.",
      "תפילה בכותל המערבי", [("תפילה בכותל המערבי", "/kotel/")], text=k_text, before=k_before, after=k_after, prio="0.8",
@@ -1778,7 +1778,7 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
      "ספרייה בניקוד מלא: פרקי אבות, שיר השירים, מגילת רות, מגילת אסתר, איכה, קהלת, משלי, פרק שירה, פרשת המן, סליחות, יזכור ועוד. כל ספר בעמוד קריאה משלו.",
      "ספרייה", [("ספרייה", "/sefer/")],
      after='<ul class="list">' + "".join(f'<li><a href="/sefer/{k}/">{esc(b["t"])}<small>{esc(b.get("sub",""))}</small></a></li>' for k, b in B.items()) + "</ul>"
-           + chips("עוד באתר", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/", "כלים אישיים")]),
+           + chips("עוד באתר", [("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/", "כלים אישיים")]),
      app_hash="sifriya", hub=True, prio="0.9", lead="ספרים ופרקים שקוראים לאורך השנה.",
      ld=[collection("ספרייה", "/sefer/", [f"/sefer/{k}/" for k in B])])
 
@@ -1848,7 +1848,7 @@ TOOL = {
               ["הכלי מחשב את הכיוון מהמקום שבו אתם נמצאים אל ירושלים, במעלות מהצפון (0 צפון, 90 מזרח), ואת המרחק בקילומטרים.",
                "בטלפון שיש בו מצפן החץ מצביע לירושלים כשמחזיקים את הטלפון שטוח. במכשיר בלי מצפן החץ מראה את הכיוון ביחס לצפון. בלי הרשאת מיקום החישוב נעשה לפי העיר שנבחרה באתר.",
                "מתפללים לכיוון ירושלים ומקום המקדש, ובירושלים עצמה לכיוון הר הבית."],
-              "", [("/tefila/", "סידור תפילה"), ("/tefila/mizrach/shacharit/", "שחרית לימי חול"), ("/tehillim/", "ספר תהילים")]),
+              "", [("/siddur/", "סידור תפילה"), ("/siddur/mizrach/shacharit/", "שחרית לימי חול"), ("/tehillim/", "ספר תהילים")]),
 }
 assert set(TOOL) == {k for k, _, _ in KELIM}, "a tool was added to the app: describe it in TOOL"
 SHEM_FORM = ('<form id="nf" class="nform"><label for="nn">שם בעברית</label>'
@@ -2004,7 +2004,7 @@ for c in SH_CITIES:
             f'<div class="prose"><p>השבת הקרובה ב{esc(name)}, ערב שבת <span id="zq3">{dtxt(f0)}</span>, נכנסת בשעה <b id="zq1">{cand}</b> (הדלקת נרות) ויוצאת במוצאי שבת בשעה <b id="zq2">{hav}</b>. '
             f'הדף מחשב את הזמנים מחדש בכל כניסה, כך שתמיד מוצגת השבת הקרובה.</p></div>'
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. הדלקת נרות לפי המנהג המקובל במקום ({mins} דקות לפני השקיעה). למעשה יש להחמיר ולהקדים.</p>'
-            + chips("לקראת שבת", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד"), ("/zmanei-shabbat/", "זמני שבת בכל הערים")])
+            + chips("לקראת שבת", [("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד"), ("/zmanei-shabbat/", "זמני שבת בכל הערים")])
             + chips("ערים נוספות", [l for l in sh_links if l[0] != f"/zmanei-shabbat/{slug}/"][:12]))
     page(f"/zmanei-shabbat/{slug}/", f"זמני שבת ב{name}: כניסת שבת ויציאת שבת השבוע | {BRAND}",
          f"מתי נכנסת ומתי יוצאת שבת ב{name}: שעת הדלקת נרות, שעת צאת השבת וזמן רבנו תם לשבת הקרובה, ולוח זמנים לשבתות הבאות, מחושב לפי מיקום העיר.",
@@ -2101,7 +2101,7 @@ for c in SH_CITIES:
             'צאת הכוכבים מחושב 13.5 דקות זמניות אחרי השקיעה, כמקובל בלוחות של עדות המזרח, ולצידו מוצג גם הזמן המחמיר, כשהשמש 8.5 מעלות מתחת לאופק. '
             'הנץ והשקיעה מחושבים בגובה פני הים, בלי התחשבות בהרים שמסתירים את האופק. הדף מחשב את הזמנים מחדש בכל כניסה, כך שתמיד מוצג היום הנוכחי.</p></div>'
             f'<p class="note">הזמנים מחושבים לפי מיקום {esc(name)} ושעון המקום, ועשויים לסטות בדקה או שתיים מלוחות אחרים. בכל דבר שתלוי בזמן יש להחמיר, ובשאלה למעשה לשאול רב.</p>'
-            + chips("עוד ל" + name, [(f"/zmanei-shabbat/{slug}/", "זמני שבת ב" + name), ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"), ("/zmanei-hayom/", "זמני היום בכל הערים")])
+            + chips("עוד ל" + name, [(f"/zmanei-shabbat/{slug}/", "זמני שבת ב" + name), ("/siddur/mizrach/shacharit/", "תפילת שחרית"), ("/siddur/mizrach/mincha/", "תפילת מנחה"), ("/siddur/mizrach/arvit/", "תפילת ערבית"), ("/zmanei-hayom/", "זמני היום בכל הערים")])
             + chips("ערים נוספות", (lambda k: [day_links[(k + j) % len(day_links)] for j in range(1, 13)])([l[0] for l in day_links].index(f"/zmanei-hayom/{slug}/"))))
     page(f"/zmanei-hayom/{slug}/", f"זמני היום ב{name}: הנץ החמה, שקיעה וצאת הכוכבים היום | {BRAND}",
          fit_desc(f"זמני היום ב{name} להיום: עלות השחר, הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, פלג המנחה, שקיעה וצאת הכוכבים", tails=("מתעדכן בכל יום, עם לוח לשבוע הקרוב.", "מתעדכן בכל יום.")),
@@ -2114,7 +2114,7 @@ for c in SH_CITIES:
 _jr = day_times(SH_CITIES[0], _today)
 dayhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]}"><a href="/zmanei-hayom/{c[0]}/"><b>{esc(c[1])}</b><small>הנץ {day_times(c, _today)["netz"]} · שקיעה {day_times(c, _today)["shkia"]}</small></a></li>' for c in SH_CITIES if day_times(c, _today)) + "</ul>"
           '<div class="prose"><h2>מה כולל לוח זמני היום</h2><p>לכל עיר: עלות השחר, זמן טלית ותפילין, הנץ החמה, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, סוף זמן תפילה, חצות, מנחה גדולה, מנחה קטנה, פלג המנחה, שקיעה וצאת הכוכבים, וגם לוח לשבוע הקרוב. הזמנים מחושבים מחדש בכל כניסה לדף.</p></div>'
-          + chips("קשור", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")]))
+          + chips("קשור", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")]))
 page("/zmanei-hayom/", f"זמני היום לפי עיר: הנץ החמה, שקיעה וצאת הכוכבים | {BRAND}",
      fit_desc(f"זמני היום ב-{len(SH_CITIES)} ערים: הנץ החמה, סוף זמן קריאת שמע ותפילה, חצות, מנחה גדולה, שקיעה וצאת הכוכבים. בירושלים היום: הנץ {_jr['netz']}, שקיעה {_jr['shkia']}", tails=("מתעדכן בכל יום.",)),
      "זמני היום", [("זמני היום", "/zmanei-hayom/")], after=dayhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה", script=DAY_HUB_JS,
@@ -2150,7 +2150,7 @@ ch_before = ('<div class="prose"><p>מדליקים נר אחד בלילה הרא
              'בלילה הראשון מברכים שלוש ברכות, ובשאר הלילות שתיים.</p>'
              '<p>בשנת תשפ״ז הנר הראשון מודלק ביום שישי, 4 בדצמבר 2026, והנר השמיני ביום שישי, 11 בדצמבר 2026. בערב שבת מדליקים את נרות החנוכה לפני נרות השבת.</p></div>'
              '<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#{n}">נוסח {esc(NUS[n])}</a>' for n, _ in CH_SETS) + "</div>")
-ch_after = chips("כל קטע בעמוד משלו", ch_links) + chips("עוד לחנוכה ולשבת", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")])
+ch_after = chips("כל קטע בעמוד משלו", ch_links) + chips("עוד לחנוכה ולשבת", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")])
 page("/chanukah/", f"ברכות הדלקת נרות חנוכה: הנוסח המלא בניקוד, בשלושה נוסחים | {BRAND}",
      "ברכות הדלקת נרות חנוכה בניקוד מלא: להדליק נר של חנוכה, שעשה נסים, שהחיינו, הנרות הללו ומעוז צור. בנוסח עדות המזרח, ספרד ואשכנז, בעמוד אחד.",
      "ברכות הדלקת נרות חנוכה", [("חנוכה", "/chanukah/")], text=ch_text, before=ch_before, after=ch_after, prio="0.9", app_hash=f"p-{CH_SETS[0][1][0]}",
@@ -2172,13 +2172,18 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         '<div id="tautbox" class="tautbox"></div>'
         '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <!--email_off--><a href="mailto:{CONTACT}">{CONTACT}</a><!--/email_off-->.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
         '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
-        + chips("להתחיל לקרוא", [("/tefila/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
+        + chips("להתחיל לקרוא", [("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
 # old numbered addresses redirect to the readable ones (kept in _redirects, between the two marker lines)
 _rd = os.path.join(ROOT, "_redirects")
 _cur = open(_rd, encoding="utf-8").read() if os.path.exists(_rd) else ""
 _cur = re.sub(r"# prayers: begin.*?# prayers: end\n?", "", _cur, flags=re.S).rstrip("\n")
 # two generations of old addresses: /tefila/<nusach>-<number>/ and /tefila/<nusach>/<name>/ (tools/old-urls.json)
 _old = json.load(open(os.path.join(ROOT, "tools", "old-urls.json"), encoding="utf-8"))
+MOVED["/tefila/"] = "/siddur/"
+for _n in NUS:
+    MOVED[f"/tefila/{_n}/"] = f"/siddur/{_n}/"
+    for _k in ("shacharit", "mincha", "arvit"):
+        MOVED[f"/tefila/{_n}/{_k}/"] = f"/siddur/{_n}/{_k}/"
 _moved = "".join(f"{a} {PURL.get(b, b)} 301\n" for a, b in MOVED.items())
 for a, b in MOVED.items():
     assert a not in _PRAYER_PATHS and PURL.get(b, b) != a, a
@@ -2248,7 +2253,7 @@ page("/negishut/", f"הצהרת נגישות | {BRAND}",
 
 # ---------- 404 ----------
 nf = ('<p><a class="btn" href="/">לדף הבית</a></p><ul class="cards" style="margin-block-start:1.5rem">'
-      '<li><a href="/tefila/"><b>סידור תפילה</b><small>עדות המזרח, ספרד ואשכנז</small></a></li>'
+      '<li><a href="/siddur/"><b>סידור תפילה</b><small>עדות המזרח, ספרד ואשכנז</small></a></li>'
       '<li><a href="/tehillim/"><b>ספר תהילים</b><small>כל 150 הפרקים ותהילים לפי בקשה</small></a></li>'
       '<li><a href="/sefer/"><b>ספרייה</b><small>פרקי אבות, מגילות, פרק שירה ועוד</small></a></li>'
       '<li><a href="/tehillim-yachad/"><b>תהילים יחד</b><small>כל אחד פרק. ביחד ספר שלם.</small></a></li>'

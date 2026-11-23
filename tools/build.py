@@ -75,8 +75,8 @@ def _prayer(title, nus="mizrach"):
     # readable addresses come from data/urls.json, which tools/prerender.py writes (run it first)
     return next(_urls[p["id"]] for p in _idx["prayers"] if p["n"] == nus and norm(p["t"]) == title)
 _groups = [
-    ("סידור", [("/tefila/", "סידור תפילה")] + [("/tefila/%s/" % n, "סידור נוסח " + t) for n, t in _idx["nusachim"].items()]
-        + [("/tefila/%s/%s/" % (n, k), "%s נוסח %s" % (l, t)) for k, l in (("shacharit", "שחרית"), ("mincha", "מנחה"), ("arvit", "ערבית")) for n, t in _idx["nusachim"].items()]
+    ("סידור", [("/siddur/", "סידור תפילה")] + [("/siddur/%s/" % n, "סידור נוסח " + t) for n, t in _idx["nusachim"].items()]
+        + [("/siddur/%s/%s/" % (n, k), "%s נוסח %s" % (l, t)) for k, l in (("shacharit", "שחרית"), ("mincha", "מנחה"), ("arvit", "ערבית")) for n, t in _idx["nusachim"].items()]
         + [(_prayer("ברכת המזון"), "ברכת המזון"), (_prayer("תפילת הדרך"), "תפילת הדרך"), (_prayer("קריאת שמע שעל המיטה"), "קריאת שמע שעל המיטה")]),
     ("תהילים", [("/tehillim/", "ספר תהילים"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד")]
         + [("/tehillim/%s/" % k, "תיקון הכללי" if k == "tikkun" else "תהילים " + t) for k, t in _needs]
@@ -95,8 +95,8 @@ SEO_NAV = ('<nav class="seo-links" aria-label="מפת האתר"><details><summar
 BOOT = ('<main class="wrap" id="app"><div class="boot"><h1>תפילה: סידור תפילה ותהילים אונליין</h1>'
         '<p>סידור מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים, זמני היום וקריאת תהילים משותפת.</p><ul>'
         + "".join('<li><a href="%s">%s</a></li>' % x for x in [
-            ("/tefila/mizrach/shacharit/", "תפילת שחרית"), ("/tefila/mizrach/mincha/", "תפילת מנחה"), ("/tefila/mizrach/arvit/", "תפילת ערבית"),
-            ("/tefila/", "כל הסידור"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם"),
+            ("/siddur/mizrach/shacharit/", "תפילת שחרית"), ("/siddur/mizrach/mincha/", "תפילת מנחה"), ("/siddur/mizrach/arvit/", "תפילת ערבית"),
+            ("/siddur/", "כל הסידור"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם"),
             ("/zmanei-hayom/", "זמני היום"), ("/zmanei-shabbat/", "זמני שבת")])
         + '</ul></div></main>')
 _ph = '<main class="wrap" id="app"><p class="loading">פותחים את הסידור…</p></main>'

@@ -382,7 +382,7 @@ else:
         fail("404", "404.html has a relative URL (it is served on any path)")
     check_copy("/404.html", nf)
     check_links("/404.html", nf)
-    for hubp in ("/tefila/", "/tehillim/", "/sefer/"):
+    for hubp in ("/siddur/", "/tehillim/", "/sefer/"):
         if f'href="{hubp}"' not in nf:
             fail("404", f"404.html does not link to {hubp}")
 
@@ -429,7 +429,7 @@ def kind(p):
     if parts[0] == "tehillim": return "tehillim by need"
     if parts[0] == "kelim": return "tool"
     if p in _PNUS: return "prayer"
-    if parts[0] == "tefila": return "nusach hub" if len(parts) == 2 else "service"
+    if parts[0] == "siddur": return "nusach hub" if len(parts) == 2 else "service"
     return parts[0] + " page"
 count = collections.Counter(kind(p) for p in disk)
 print("SEO audit of", ROOT)

@@ -2183,7 +2183,7 @@ let URLS=null;
 function staticOf(h){let m;
   if((m=h.match(/^p-([a-z]+-\d+)$/)))return URLS&&URLS[m[1]]||null;if((m=h.match(/^t-(\d+)$/)))return +m[1]>=1&&+m[1]<=150?`/tehillim/${m[1]}/`:null;
   if((m=h.match(/^b-([a-z]+)$/)))return `/sefer/${m[1]}/`;if((m=h.match(/^k-([a-z]+)$/)))return `/tehillim/${m[1]}/`;if((m=h.match(/^kli-([a-z]+)$/)))return `/kelim/${m[1]}/`;
-  return {home:'/',siddur:'/tefila/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'}[h]||null}
+  return {home:'/',siddur:'/siddur/',tehillim:'/tehillim/',kelim:'/kelim/',sifriya:'/sefer/',zikaron:'/tehillim-yachad/'}[h]||null}
 function shareUrl(){const h=safeHash()||'home',s=staticOf(h);return location.origin+(s||'/#'+h)}
 /* Links to screens that have a page of their own carry that page's address, so they can be opened in a new tab,
    copied and followed by a crawler. A plain tap still moves inside the app. */
@@ -3186,7 +3186,7 @@ const addrOf=h=>{const m=h.match(/^m-([A-Za-z0-9_-]+)$/);if(m)return '/y/'+m[1];
   if(/^t-\d+$/.test(h)){try{const c=JSON.parse(sessionStorage.getItem('mctx')||'null');if(c&&'t-'+c.n===h)return '/#'+h}catch(e){}}
   return staticOf(h)||'/#'+h};
 let PATHS=null;
-function pathRoute(path){let m;if(!PATHS){PATHS={'/':'home','/tefila/':'siddur','/tehillim/':'tehillim','/kelim/':'kelim','/sefer/':'sifriya','/tehillim-yachad/':'zikaron'};if(URLS)for(const k in URLS)PATHS[URLS[k]]='p-'+k}
+function pathRoute(path){let m;if(!PATHS){PATHS={'/':'home','/siddur/':'siddur','/tefila/':'siddur','/tehillim/':'tehillim','/kelim/':'kelim','/sefer/':'sifriya','/tehillim-yachad/':'zikaron'};if(URLS)for(const k in URLS)PATHS[URLS[k]]='p-'+k}
   if(!path.endsWith('/'))path+='/';if(PATHS[path])return PATHS[path];
   if((m=path.match(/^\/tehillim\/(\d+)\/$/)))return 't-'+m[1];if((m=path.match(/^\/tehillim\/([a-z]+)\/$/))&&NEEDS.some(n=>n[0]===m[1]))return 'k-'+m[1];
   if((m=path.match(/^\/y\/([A-Za-z0-9_-]+)\/$/)))return 'm-'+m[1];if((m=path.match(/^\/sefer\/([a-z]+)\/$/)))return 'b-'+m[1];if((m=path.match(/^\/kelim\/([a-z]+)\/$/)))return 'kli-'+m[1];return null}

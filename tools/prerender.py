@@ -355,7 +355,11 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 @media print{.top,.crumbs,.nform,.nact,.prose,.pager,.related,.applink,footer,.note,.lead{display:none!important}}
 """),
 ("tautbox", """
-.tautbox{margin:.6rem 0 1.2rem}.cform{display:grid;gap:.5rem}.cform label{font-weight:700;margin-block-start:.3rem}
+.tautbox{margin:.8rem 0 0}
+.cgrid{display:grid;gap:1rem;margin-block:2rem 1rem;align-items:start}@media(min-width:54rem){.cgrid{grid-template-columns:1fr 1fr;gap:1.25rem}}
+.ccard{padding:clamp(1.1rem,3.5vw,1.6rem);border-radius:1.4rem;border:1px solid var(--line);background:linear-gradient(160deg,#fff,#F3FAFF);scroll-margin-top:.75rem;min-inline-size:0}
+.ccard h2{font-family:var(--f-disp);font-weight:900;font-size:1.4rem;line-height:1.25;margin:0 0 .4rem;color:var(--ink)}.ccard>p{margin:0;color:var(--ink2);line-height:1.6}
+.cform .nact{margin:.5rem 0 0}.cform .btn{inline-size:100%;min-block-size:3rem;border:0;justify-content:center}.cform{display:grid;gap:.5rem}.cform label{font-weight:700;margin-block-start:.3rem}
 .cform textarea,.cform input[type=email]{inline-size:100%;padding:.8rem 1rem;border-radius:1rem;border:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);line-height:1.6}
 .cform input[type=email]{min-block-size:3rem;text-align:left}.cform .chp{position:absolute;inset-inline-start:-9999px;inline-size:1px;block-size:1px;opacity:0}
 .cwhere{margin:0;padding:.7rem 1rem;border-radius:1rem;background:#EEF7FE;color:var(--ink);line-height:1.5;overflow-wrap:anywhere}.cwhere span{font-size:.85rem;color:var(--muted)}
@@ -2168,10 +2172,10 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         'בנוסח אשכנז, ”ויתן לך” מתוך סידור ושננתם, ו”במה מדליקין” מתוך תורת אמת. הפתיחה והתפילות של תיקון הכללי: מהדורת rabenubook.com.</p>'
         '<h2>זמני היום והלוח</h2><p>הלוח העברי, פרשת השבוע והמועדים מחושבים בספריית Hebcal. זמני היום מחושבים לפי מיקום העיר: הנץ ושקיעה אסטרונומיים, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, '
         'וצאת השבת כשהשמש 8.5 מעלות מתחת לאופק. הזמנים עשויים לסטות בדקה או שתיים מלוחות אחרים, ולמעשה יש להחמיר.</p>'
-        '<h2 id="taut">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'
-        '<div id="tautbox" class="tautbox"></div>'
-        '<h2 id="kesher">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <!--email_off--><a href="mailto:{CONTACT}">{CONTACT}</a><!--/email_off-->.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div>'
         '<h2>ההסברים במילים פשוטות</h2><p>ההסברים הקצרים שליד התפילות, המזמורים והספרים נכתבו עבור האתר, כדי לתת הקשר למי שקורא. הם אינם פסק הלכה ואינם באים במקום רב.</p></div>'
+        '<div class="cgrid"><section class="ccard" id="taut" aria-labelledby="tauth"><h2 id="tauth">דיווח על טעות בנוסח</h2><p>מצאתם מילה חסרה, ניקוד שגוי או קטע שלא במקומו? כתבו לנו. כל דיווח נבדק מול המהדורה שהטקסט נלקח ממנה, ורק אחר כך מתוקן.</p>'
+        '<div id="tautbox" class="tautbox"></div></section>'
+        '<section class="ccard" id="kesher" aria-labelledby="kesherh"><h2 id="kesherh">צור קשר</h2><p id="kesherp">' + (f'אפשר לכתוב כאן, או ישירות למייל <!--email_off--><a href="mailto:{CONTACT}">{CONTACT}</a><!--/email_off-->.' if CONTACT else 'אפשר לכתוב לנו כאן.') + '</p><div id="kesherbox" class="tautbox"></div></section></div>'
         + chips("להתחיל לקרוא", [("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים"), ("/sefer/", "ספרייה"), ("/kelim/", "כלים אישיים"), ("/zmanei-shabbat/", "זמני שבת")]))
 # old numbered addresses redirect to the readable ones (kept in _redirects, between the two marker lines)
 _rd = os.path.join(ROOT, "_redirects")

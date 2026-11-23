@@ -722,7 +722,7 @@ article.text mark.ins-mark{background:var(--gold-soft);color:#5a3d06;box-shadow:
 .mfor{margin:10px 0 0;font-size:clamp(1.05rem,3.6vw,1.3rem);font-weight:700;color:rgba(var(--onc),.9)}.mhead .mfor+h1{margin-top:2px}
 .jstats{list-style:none;margin:16px 0 0;padding:0;display:flex;gap:8px;inline-size:100%}.jstats li{flex:1 1 0;min-inline-size:0}
 .jstats li{display:grid;gap:2px;padding:12px 8px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid var(--line);text-align:center}
-.jstats b{font-family:var(--f-display);font-weight:900;font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}.jstats span{font-size:.82rem;font-weight:600;color:var(--ink-2)}
+.jnow span{display:inline-flex;align-items:center;justify-content:center;gap:6px}.jnow i{inline-size:8px;block-size:8px;border-radius:50%;background:#1FA463;flex:none;animation:jnow 1.6s ease-in-out infinite}@keyframes jnow{50%{opacity:.35}}@media(prefers-reduced-motion:reduce){.jnow i{animation:none}}.jstats b{font-family:var(--f-display);font-weight:900;font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}.jstats span{font-size:.82rem;font-weight:600;color:var(--ink-2)}
 .mlinkrow{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;border-radius:16px;background:var(--sunk);border:1px solid var(--line)}.mlinkt{flex:1;min-inline-size:0;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-size:.95rem}.mcopy{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}.invg .btn{gap:7px}.mcandle{display:flex;align-items:center;gap:12px;inline-size:100%;text-align:start;padding:12px 14px;border-radius:16px;border:1px solid #F3D9A4;background:linear-gradient(135deg,#FFF8E6,#FFEFC9);color:#5A3A00;font:inherit;cursor:pointer}.mcandle:disabled{opacity:.6;cursor:default}.mcf{flex:none;display:grid;place-items:center;inline-size:42px;block-size:42px;border-radius:50%;background:#fff;color:#E08A00;box-shadow:0 0 0 4px rgba(255,197,61,.28)}.mct{display:grid;gap:2px}.mct b{font-size:1rem}.mct small{font-size:.86rem;color:#6B4A0C}.mhow{margin:2px 0 0;font-size:.9rem;color:var(--ink-2);text-align:center;text-wrap:balance}.mpriv{margin:0;font-size:.84rem;color:var(--muted);text-align:center}
 .minv{grid-template-columns:minmax(0,1fr)}@media (max-width:350px){.invg{grid-template-columns:minmax(0,1fr)}}.invw{inline-size:100%;justify-content:center;gap:8px;min-height:52px}
 @media (min-width:760px){.minv{grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:center;padding:22px 24px!important}.minv>*{grid-column:1/-1}.minv>.mlinkrow{grid-column:1}.minv>.invw{grid-column:2;inline-size:auto;min-inline-size:15rem;min-height:58px}.minv>.invg{display:flex;gap:10px}.minv>.invg .btn{inline-size:auto;padding-inline:22px}.minv>.invg .btn:last-child:nth-child(odd){grid-column:auto}.minv>.mhow,.minv>.mpriv{text-align:start;margin:0}.minv>.mlinkrow{min-height:58px}#app>.plain.yexpl{max-width:none}}
@@ -1186,7 +1186,7 @@ html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:tran
 .shema .row{gap:8px}.shema .row .btn{min-height:44px;padding:8px 18px;font-size:.92rem;flex:0 1 auto!important}
 .tways{margin-bottom:10px}
 .tname{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:12px 20px;align-items:center}
-.fchips{margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fchips span{font-size:.9rem;font-weight:700;color:var(--ink-2)}.fchips a{display:inline-flex;align-items:center;min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:.95rem;text-decoration:none}.fchips a:hover{border-color:var(--accent,currentColor)}.tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
+.foodband{background:linear-gradient(150deg,#FFFDF8 0%,#FFF3DA 60%,#FFE7BC 100%);border-color:#F0DDB0;box-shadow:0 18px 40px -30px rgba(160,100,10,.45)}.foodband .eyebrow{color:#8A4B08}.foodband h2{color:#4A2A05}.foodband p{color:#5C4320}.foodband .btn.primary{background:linear-gradient(135deg,#C2610C,#9A4A06);box-shadow:0 10px 22px -12px rgba(154,74,6,.8)}.foodband .tnrow input,.foodband .fchips a{border-color:#EBD6A6}.foodband .fchips span{color:#6B4A14}.foodband .fchips a{color:#4A2A05}.foodband .fchips a:hover{border-color:#C2610C}html[data-theme=dark] .foodband{background:linear-gradient(150deg,#2B2112 0%,#3A2A12 100%);border-color:#5C4520}html[data-theme=dark] .foodband h2{color:#FFE9C4}html[data-theme=dark] .foodband p,html[data-theme=dark] .foodband .eyebrow,html[data-theme=dark] .foodband .fchips span{color:#EBD3A4}html[data-theme=dark] .foodband .fchips a,html[data-theme=dark] .foodband .tnrow input{background:#1F1809;color:#FFE9C4;border-color:#5C4520}.vshn{font-size:.82rem;font-weight:700;color:var(--ink-2);justify-self:end}.verse-day .vtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.mlinkrow .mcopy{order:-1}.mlinkrow{padding:6px 6px 6px 14px;padding-inline:6px 14px}@media (min-width:760px){.glass.minv{grid-template-columns:auto minmax(0,1fr)}.glass.minv>.invw{grid-column:1;grid-row:2}.glass.minv>.mlinkrow{grid-column:2;grid-row:2}}@media (min-width:1100px){.glass.minv{grid-template-columns:auto minmax(0,1fr) auto}.glass.minv>.invg{grid-column:3;grid-row:2}}.fchips{margin:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fchips span{font-size:.9rem;font-weight:700;color:var(--ink-2)}.fchips a{display:inline-flex;align-items:center;min-height:44px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:.95rem;text-decoration:none}.fchips a:hover{border-color:var(--accent,currentColor)}.tnrow{display:flex;gap:8px}.tnrow input{flex:1;min-width:0;min-height:48px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font:inherit;color:var(--ink)}
 @media (max-width:700px){.tname{grid-template-columns:1fr}.tnrow{flex-wrap:wrap}.tnrow .btn{flex:1 1 100%}}
 .jwho{margin:14px 0 0;color:rgba(var(--onc),.94);font-size:.95rem}.jwho b{font-size:1.15rem}
 .whol{list-style:none;margin:0;padding:6px 0;counter-reset:none}
@@ -1633,13 +1633,6 @@ function viewHome(){setNav('home');
   <div id="yband">${DB?yachadBand():''}</div>
   ${yzCard()}
 
-  <section class="nameband foodband" aria-labelledby="fbh">
-    <div class="nbtxt"><span class="eyebrow">לפני שאוכלים ואחרי</span><h2 id="fbh">מה מברכים על…</h2>
-      <p>כותבים מאכל או משקה ומקבלים מיד את הברכה שלפניו ואת הברכה שאחריו.</p></div>
-    <form id="hff" action="/ma-mevarchim/" method="get"><label class="sr" for="hfq">מאכל או משקה</label>
-      <div class="tnrow"><input id="hfq" name="q" type="search" maxlength="40" placeholder="למשל: שווארמה, קפה, במבה" autocomplete="off"><button class="btn primary" type="submit">מה מברכים?</button></div>
-      <p class="fchips"><span>נפוצים:</span><a href="/ma-mevarchim/kafe/">קפה</a><a href="/ma-mevarchim/pitza/">פיצה</a><a href="/ma-mevarchim/bamba/">במבה</a><a href="/ma-mevarchim/orez/">אורז</a><a href="/ma-mevarchim/banana/">בננה</a><a href="/ma-mevarchim/shokolad/">שוקולד</a></p></form></section>
-
   <section class="nameband" aria-labelledby="nbh">
     <div class="nbtxt"><span class="eyebrow">לרפואה, לעילוי נשמה ולכל בקשה</span><h2 id="nbh">תהילים לפי שם</h2>
       <p>כותבים שם, ולכל אות בו מקבלים את הפסוקים שלה ממזמור קי״ט. כך קוראים תהילים על אדם אחד מסוים.</p></div>
@@ -1653,6 +1646,13 @@ function viewHome(){setNav('home');
       <div style="display:grid;gap:8px;margin-top:4px"><a class="btn light" href="#t-${m[0]}${m[0]===m[1]?'':'-'+m[1]}">להתחיל לקרוא ${icon('go')}</a>
       <a class="btn ghost" href="#t-${w[0]}-${w[1]}">שבועי · יום ${DAYS[d.getDay()]} · ${rng(w[0],w[1])}</a></div>${tTrack()}</section>
     <div id="potd"></div></div>
+
+  <section class="nameband foodband" aria-labelledby="fbh">
+    <div class="nbtxt"><span class="eyebrow">לפני שאוכלים ואחרי</span><h2 id="fbh">מה מברכים על…</h2>
+      <p>כותבים מאכל או משקה ומקבלים מיד את הברכה שלפניו ואת הברכה שאחריו.</p></div>
+    <form id="hff" action="/ma-mevarchim/" method="get"><label class="sr" for="hfq">מאכל או משקה</label>
+      <div class="tnrow"><input id="hfq" name="q" type="search" maxlength="40" placeholder="למשל: שווארמה, קפה, במבה" autocomplete="off"><button class="btn primary" type="submit">מה מברכים?</button></div>
+      <p class="fchips"><span>נפוצים:</span><a href="/ma-mevarchim/kafe/">קפה</a><a href="/ma-mevarchim/pitza/">פיצה</a><a href="/ma-mevarchim/bamba/">במבה</a><a href="/ma-mevarchim/orez/">אורז</a><a href="/ma-mevarchim/banana/">בננה</a><a href="/ma-mevarchim/shokolad/">שוקולד</a></p></form></section>
 
   <div class="sec"><h2>זמני היום ופרשת השבוע</h2></div>
   <div class="hgrid">${zCard()}<div class="stack">${shemaCard()}${parashaCard()}</div>${holCard()}</div>
@@ -1839,7 +1839,7 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
   if(!m){app.innerHTML=`<div class="empty" style="margin-top:30px"><b>הקריאה לא נמצאה</b>ייתכן שהקישור שגוי או שהקריאה הוסרה. <a href="#zikaron">לתהילים יחד</a></div>${footer()}`;return}
   document.title=`תהילים יחד ${mLine(m)} | תפילה`;
   const RD=roundOf(),base=(RD-1)*150,CH=n=>chapters[base+n];
-  let done=0,claimed=0;for(let n=1;n<=150;n++){const c=CH(n);if(c)c.s==='done'?done++:claimed++}
+  let done=0,claimed=0,nowRd=0;const tOf=v=>typeof v==='number'?v:(v&&v.toMillis?v.toMillis():Date.parse(v)||0),fresh=Date.now()-30*60e3;for(let n=1;n<=150;n++){const c=CH(n);if(c){if(c.s==='done')done++;else{claimed++;if(tOf(c.at)>=fresh)nowRd++}}}
   const ro=canWrite===false,free=150-done-claimed,isN=kindOf(m)==='neshama';
   const letters=[...m.name.replace(/[^א-ת]/g,'')].map(c=>KFIN[c]||c).filter(c=>LET.includes(c));
   const y=scrollY,url=memUrl(id),opener=store.get('opened',[]).includes(id);
@@ -1858,7 +1858,7 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
       <div class="jname"><button class="btn gold jtake" type="button" id="rnd" ${ro||!free?'disabled':''}>${free?'קבלו פרק לקריאה':'כל הפרקים נלקחו'}</button>
         <details class="jnm"><summary>${myName?'קוראים בשם '+esc(myName)+' · שינוי':'רוצים להופיע בשם? (לא חובה)'}</summary><label for="myn">השם שלי</label><input id="myn" maxlength="40" value="${esc(myName)}" placeholder="למשל: רחל" autocomplete="given-name"></details></div>
       <ol class="jsteps"><li>מקבלים פרק</li><li>קוראים</li><li>מסמנים שקראתי</li></ol>
-      <ul class="jstats" aria-label="הקריאה עד עכשיו"><li><b>${(readTotal).toLocaleString('he-IL')}</b><span>פרקים נקראו</span></li><li><b>${claimed}</b><span>בקריאה עכשיו</span></li><li><b>${readers.toLocaleString('he-IL')}</b><span>${readers===1?'קורא':'קוראים'}</span></li>${RD>1?`<li><b>${RD-1}</b><span>${RD-1===1?'ספר שלם':'ספרים שלמים'}</span></li>`:''}</ul>
+      <ul class="jstats" aria-label="הקריאה עד עכשיו"><li><b>${(readTotal).toLocaleString('he-IL')}</b><span>פרקים נקראו</span></li>${nowRd?`<li class="jnow" title="פרקים שקוראים לקחו בחצי השעה האחרונה ועוד לא סימנו"><b>${nowRd}</b><span><i aria-hidden="true"></i>בקריאה עכשיו</span></li>`:''}<li><b>${readers.toLocaleString('he-IL')}</b><span>${readers===1?'קורא':'קוראים'}</span></li>${RD>1?`<li><b>${RD-1}</b><span>${RD-1===1?'ספר שלם':'ספרים שלמים'}</span></li>`:''}</ul>
       ${!readTotal&&!claimed?'<p class="jwho">עוד לא הצטרפו קוראים. היו הראשונים.</p>':''}
   </section>
   ${mineList(id)}
@@ -2643,9 +2643,13 @@ async function drawVerse(){const el=$('#potd');if(!el)return;let P;try{P=await t
   const d=new Date(),seed=d.getFullYear()*372+d.getMonth()*31+d.getDate();let h=seed;h=(h^61)^(h>>>16);h=h+(h<<3);h^=h>>>4;h=Math.imul(h,0x27d4eb2d);h^=h>>>15;h=Math.abs(h);
   const pool=[];P.forEach((ch,ci)=>ch.forEach((v,vi)=>{const L=stripTags(v).replace(NIK,'').length;if(L>40&&L<120)pool.push([ci,vi])}));
   const [ci,vi]=pool[h%pool.length];if(!$('#potd'))return;
-  el.innerHTML=`<section class="verse-day glass reveal"><span class="eyebrow">פסוק להיום</span>
+  el.innerHTML=`<section class="verse-day glass reveal"><div class="vtop"><span class="eyebrow">פסוק להיום</span><span class="vshn" id="vshn" aria-live="off"></span></div>
     <blockquote>${P[ci][vi]}</blockquote><div class="vrow"><a href="#t-${ci+1}" class="vref">תהילים ${gem(ci+1)}, ${gem(vi+1)} ←</a><button class="chip" type="button" id="vshare">${icon('share')}שיתוף</button></div></section>`;
-  $('#vshare').onclick=()=>shareCard({eyebrow:'פסוק להיום',text:P[ci][vi],foot:`תהילים ${gem(ci+1)}, ${gem(vi+1)}`,url:location.origin+'/tehillim/'+(ci+1)+'/'})}
+  const SK='/s/pasuk-'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'/',showN=n=>{const e=$('#vshn');if(e&&n>=10)e.textContent=n.toLocaleString('he-IL')+' שיתפו היום'};
+  fetch('/api/views?p='+encodeURIComponent(SK)).then(r=>r.ok?r.json():null).then(j=>{if(j)showN(j.n)}).catch(()=>{});
+  $('#vshare').onclick=()=>{let seen=false;try{seen=sessionStorage.getItem('tfs'+SK);sessionStorage.setItem('tfs'+SK,'1')}catch(e){}
+    if(!seen)fetch('/api/views',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({p:SK})}).then(r=>r.ok?r.json():null).then(j=>{if(j)showN(j.n)}).catch(()=>{});
+    shareCard({eyebrow:'פסוק להיום',text:P[ci][vi],foot:`תהילים ${gem(ci+1)}, ${gem(vi+1)}`,url:location.origin+'/tehillim/'+(ci+1)+'/'})}}
 
 /* ---------- FAVORITES ---------- */
 function viewFavs(){setNav('favorites');const list=[...favs].map(id=>byId[id]).filter(Boolean);
@@ -2793,8 +2797,8 @@ function bindYz(){$$('[data-yzdel]').forEach(b=>b.onclick=()=>{const L=yzList();
 /* the home page's invitation to open a shared reading: what it is, three steps, one button */
 function yachadBand(){return `<section class="yhero" aria-labelledby="zh"><div class="ytxt"><span class="yeye">תהילים יחד</span>
     <h2 id="zh">מישהו קרוב זקוק לתפילה?</h2>
-    <p>פותחים קריאת תהילים על שמו, שולחים קישור בוואטסאפ, וכל מי שנכנס קורא פרק. כל אחד פרק, ביחד ספר שלם.</p>
-    <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים לחברים</li><li><b>3</b>קוראים ביחד</li></ol></div>
+    <p>פותחים קריאת תהילים על שמו, שולחים את הקישור למשפחה ולחברים, וכל מי שנכנס קורא פרק. כל אחד פרק, ביחד ספר שלם.</p>
+    <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים למשפחה</li><li><b>3</b>קוראים ביחד</li></ol></div>
     <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">לכל הקריאות הפתוחות</a><p class="ystat" id="ystat" aria-live="off"></p></div>
     <div class="wall" id="wall"></div></section>`}
 /* how much was read here together: the real totals from the server, counted up once when they come into view */

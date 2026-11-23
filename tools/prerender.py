@@ -335,11 +335,12 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .zt{inline-size:100%;border-collapse:collapse;margin:.6rem 0 1rem;font-variant-numeric:tabular-nums}
 .zt th,.zt td{padding:.7rem .4rem;text-align:start;border-block-end:1px solid var(--line);white-space:nowrap}.zt th{font-size:.85rem;color:var(--muted);font-weight:600}
 .zt td b{font-size:1.1rem}.zt tr.now td{background:var(--sunk);font-weight:700}.zt tr.past{display:none}
+@media (max-width:380px){.zt th,.zt td{padding:.6rem .25rem}.zt td:first-child{white-space:normal}.zt td b{font-size:1rem}}
 .znow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:1rem 0}.znow div{padding:1rem;border-radius:1.25rem;background:var(--sunk);display:grid;gap:.2rem}
 .znow span{font-size:.85rem;color:var(--muted);font-weight:600}.znow b{font-family:var(--f-disp);font-weight:900;font-size:clamp(1.6rem,7vw,2.3rem);line-height:1;font-variant-numeric:tabular-nums}
 .znow small{color:var(--muted)}
 .zday td small{color:var(--muted);white-space:normal}.zday td:first-child{white-space:normal;font-weight:600}.zt.zday tr.past{display:table-row}
-.zscroll{overflow-x:auto;margin-inline:-.25rem;padding-inline:.25rem}.zweek td,.zweek th{padding-inline:.35rem;font-size:.95rem}
+.zscroll{overflow-x:auto;margin-inline:-.25rem;padding-inline:.25rem}.zweek td,.zweek th{padding-inline:.35rem;font-size:.95rem}@media (max-width:520px){.zweek td,.zweek th{padding-inline:.2rem;font-size:.86rem}.zweek td:first-child{white-space:normal;min-inline-size:4.4rem;line-height:1.3}.zweek td b{font-size:.92rem}}@media (max-width:350px){.zweek td,.zweek th{padding-inline:.1rem;font-size:.78rem}.zweek td:first-child{min-inline-size:3.5rem}.zweek td b{font-size:.82rem}}
 """),
 ("plainx", """
 .plainx{margin:.4rem 0 1rem;padding:1rem 1.15rem;border-radius:1.25rem;background:var(--sunk)}
@@ -370,8 +371,14 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .svctoc summary::-webkit-details-marker{display:none}.svctoc summary::after{content:"";margin-inline-start:auto;inline-size:.55rem;block-size:.55rem;border-inline-end:2px solid var(--ink);border-block-end:2px solid var(--ink);transform:rotate(45deg)}
 .svctoc[open] summary::after{transform:rotate(-135deg)}.svctoc .grp{margin:.4rem 1.1rem 0}.svctoc .toc{margin:0;padding:0 .6rem .8rem}
 """),
+("pask", """
+.pask{background:#FFF3C4;color:inherit;font-family:var(--f-ui,inherit);font-size:.8em;font-weight:700;padding:.1em .4em;border-radius:6px}
+"""),
+("pweek", """
+.pweek{margin:.2rem 0 1rem;min-block-size:5.9rem;padding:.9rem 1.1rem;border-radius:18px;background:var(--sunk);font-size:1.08rem;box-sizing:border-box}.pweek a{font-weight:800}.pweek small{display:block;color:var(--muted);font-size:.86rem;margin-top:.15rem}.pweek:empty{background:none}
+"""),
 ("note", """
-.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}.pask{background:#FFF3C4;color:inherit;font-family:var(--f-ui,inherit);font-size:.8em;font-weight:700;padding:.1em .4em;border-radius:6px}.tdn{margin:1rem 0 1.25rem;padding:.9rem 1rem;border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:12px;background:var(--accent-soft,#f3f6ff);font-family:var(--f-ui,inherit);font-size:.95rem;line-height:1.65;color:var(--ink);text-align:start}.tdn h2{margin:0 0 .4rem;font-size:1.05rem}.tdn ul{margin:0;padding-inline-start:1.1rem}.tdn li{margin:.3rem 0}.tdn p{margin:.6rem 0 0}.tdn .tds{font-size:.85rem;color:var(--muted)}.tdn a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
+.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}.tdn{margin:1rem 0 1.25rem;padding:.9rem 1rem;border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:12px;background:var(--accent-soft,#f3f6ff);font-family:var(--f-ui,inherit);font-size:.95rem;line-height:1.65;color:var(--ink);text-align:start}.tdn h2{margin:0 0 .4rem;font-size:1.05rem}.tdn ul{margin:0;padding-inline-start:1.1rem}.tdn li{margin:.3rem 0}.tdn p{margin:.6rem 0 0}.tdn .tds{font-size:.85rem;color:var(--muted)}.tdn a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
 """),
 ]
 
@@ -1561,11 +1568,21 @@ _plist = ""
 for en, he in CHUMASH.items():
     _plist += f'<h2 class="sec">חומש {he}</h2><ul class="list">' + "".join(
         f'<li><a href="{PAR_PATH[p["num"]]}">פרשת {esc(p["he"])}<small>{he} {_ref(*p["aliyot"][0][:2])}</small></a></li>' for p in PARASHOT if p["book"] == en) + "</ul>"
+PWEEK_JS = ("(function(){var M=" + json.dumps({p["key"]: [p["he"], PAR_PATH[p["num"]]] for p in PARASHOT}, ensure_ascii=False, separators=(",", ":")) + ";"
+            "var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@hebcal/core@6.14.5/dist/bundle.min.js';"
+            "s.onload=function(){try{var H=window.hebcal,box=document.getElementById('pweek'),d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+((6-d.getDay()+7)%7));"
+            "var p=H.HebrewCalendar.calendar({start:d,end:d,sedrot:true,il:true}).filter(function(e){return e.getFlags()&H.flags.PARSHA_HASHAVUA})[0],"
+            "date=d.toLocaleDateString('he-IL',{day:'numeric',month:'long'});"
+            "if(!p){box.textContent='בשבת הקרובה, '+date+', אין פרשת שבוע רגילה לפי הלוח.';return}"
+            "var L=(p.parsha||[]).filter(function(k){return M[k]});if(!L.length||L.length!==p.parsha.length)return;"
+            "box.innerHTML='<b>פרשת השבוע:</b> '+L.map(function(k){return '<a href=\"'+M[k][1]+'\">פרשת '+M[k][0]+'</a>'}).join(' ו')"
+            "+'<small>שבת, '+date+' · לפי לוח ארץ ישראל</small>'}catch(e){}};document.head.appendChild(s)})()")
 page("/parasha/", f"פרשת השבוע: כל 54 הפרשות בניקוד מלא, לפי עליות | {BRAND}",
      "פרשת השבוע אונליין: כל 54 פרשות התורה, מבראשית ועד וזאת הברכה, בניקוד מלא ומחולקות לשבע העליות. לכל פרשה עמוד קריאה משלו, עם מראה המקום של ההפטרה.",
      "פרשת השבוע", [("פרשת השבוע", "/parasha/")],
      after=_plist + chips("עוד באתר", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/tefila/", "סידור תפילה"), ("/sefer/", "ספרייה")]),
-     hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.",
+     hub=True, prio="0.9", lead="חמישה חומשי תורה לפי סדר הפרשות. כל פרשה בניקוד מלא, מחולקת לשבע העליות.", script=PWEEK_JS,
+     before='<p class="pweek" id="pweek" aria-live="polite"></p>',
      ld=[collection("פרשת השבוע", "/parasha/", list(PAR_PATH.values()))])
 
 # ---------- נשמת כל חי in the other two nusachim ----------

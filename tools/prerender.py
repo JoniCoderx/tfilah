@@ -611,7 +611,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"n", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1799,7 +1799,10 @@ SHEM_JS = ("(function(){var f=document.getElementById('nf'),out=document.getElem
            "ls.forEach(function(c,j){var i=ABC.indexOf(c);h+='<h2>אות '+c+(ns&&j>=ls.length-4?' · נשמה':'')+'</h2>';T[118].slice(i*8,i*8+8).forEach(function(v,k){h+='<p><sup>'+gem(i*8+k+1)+'</sup>'+v+'</p>'})});"
            "out.innerHTML=h+'</article>';document.getElementById('npr').onclick=function(){print()};"
            "document.getElementById('ncp').onclick=function(){var b=this;(navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(function(){b.textContent='הקישור הועתק'},function(){prompt('הקישור:',link)})};"
-           "try{history.replaceState(null,'',path)}catch(e){}if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
+           "try{history.replaceState(null,'',path)}catch(e){}"
+           "try{fetch('/api/shem',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:name,neshama:ns})}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!j.id)return;"
+           "var old=link;link=location.origin+'/n/'+j.id;var a=out.querySelector('.nact a');if(a)a.href=a.href.split(encodeURIComponent(old)).join(encodeURIComponent(link));try{history.replaceState(null,'','/n/'+j.id)}catch(e){}}).catch(function(){})}catch(e){}"
+           "if(push)out.scrollIntoView({behavior:'smooth',block:'start'})"
            "}).catch(function(){out.innerHTML='<p class=\"note\">הטעינה נכשלה. בדקו את החיבור ונסו שוב.</p>'})}"
            "f.addEventListener('submit',function(e){e.preventDefault();run(true)});"
            "function boot(){var h=new URLSearchParams(location.hash.slice(1)),q=new URLSearchParams(location.search),w=window.__shem,n0=h.get('name')||q.get('n')||(w&&w.name),ns0=h.has('neshama')?h.get('neshama')==='1':q.has('m')?q.get('m')==='n':!!(w&&w.neshama);"

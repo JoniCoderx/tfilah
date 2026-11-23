@@ -137,7 +137,7 @@ main{max-width:40rem;margin-inline:auto;padding:1rem 1rem 3rem}
 .crumbs a:hover{color:var(--stamp);text-decoration:underline}
 .crumbs span{padding-inline:.15rem}
 h1{font-family:var(--f-disp);font-weight:900;font-size:clamp(2.2rem,7.4vw,3.3rem);line-height:1.12;margin:.2rem 0 .3rem;letter-spacing:-.022em}
-h1 .ctx{display:block;font-family:var(--f-ui);font-weight:600;font-size:.95rem;line-height:1.4;color:var(--ink2);letter-spacing:0;margin-block-start:.3rem}
+.hctx{margin:.3rem 0 0;font-family:var(--f-ui);font-weight:600;font-size:.95rem;line-height:1.4;color:var(--ink2)}.rd .hctx{font-size:1.1rem}h1 .ctx{display:block;font-family:var(--f-ui);font-weight:600;font-size:.95rem;line-height:1.4;color:var(--ink2);letter-spacing:0;margin-block-start:.3rem}
 .meta{margin:0 0 .5rem;color:var(--muted);font-size:.93rem}
 .meta b{color:var(--ink);font-weight:700}
 .meta a{color:var(--ink2);display:inline-block;padding-block:.8rem;margin-block:-.8rem}
@@ -511,7 +511,7 @@ IC_STAR = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="c
 
 
 def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after="", before="", lead="", app_hash="",
-         app_label="לפתיחה באפליקציה", h1_ctx="", hub=False, ld=None, prio="0.6", script="", notfound=False, canon_to=""):
+         app_label="לפתיחה באפליקציה", h1_ctx="", ctx_out=False, hub=False, ld=None, prio="0.6", script="", notfound=False, canon_to=""):
     """text = the sacred text as an <article> body (reading pages); before/after = page chrome around it."""
     url = SITE + path
     assert notfound or (path.startswith("/") and path.endswith("/")), path
@@ -529,7 +529,8 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     for x in ld or []:
         lds.append({"@context": "https://schema.org", **x})
     crumb_html = "<span>›</span>".join(f'<a href="{u}">{esc(n)}</a>' for n, u in allc[:-1])
-    h1_html = esc(h1) + (f' <span class="ctx">{esc(h1_ctx)}</span>' if h1_ctx else "")
+    h1_html = esc(h1) + (f' <span class="ctx">{esc(h1_ctx)}</span>' if h1_ctx and not ctx_out else "")
+    ctx_under = f'<p class="hctx">{esc(h1_ctx)}</p>' if h1_ctx and ctx_out else ""
     reading = ""
     printhead = ""
     if text:
@@ -550,7 +551,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
     body = f"""<a class="skip" href="#{'text' if text else 'main'}">{'דילוג לטקסט' if text else 'דילוג לתוכן'}</a>
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
 {NAV}<button class="dkt" type="button" data-dark aria-pressed="false" aria-label="מצב לילה"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></div></header>
-<main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
+<main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{ctx_under}{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
 <footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p><a class="ffb" href="https://www.facebook.com/tfilahcom" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>עקבו אחרינו בפייסבוק</a></div>
 <nav aria-label="ניווט באתר"><a href="/siddur/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
@@ -1242,7 +1243,7 @@ hub += ('<h2 class="sec">סדר קריאה</h2><ul class="cards">'
 page("/tehillim/", f"ספר תהילים אונליין | כל 150 הפרקים בניקוד מלא | {BRAND}",
      "ספר תהילים המלא אונליין בניקוד: כל 150 הפרקים, פרק בכל עמוד, תהילים לפי בקשה (לרפואה, לפרנסה, לעילוי נשמה), תיקון הכללי וחלוקה יומית.",
      "ספר תהילים", [("תהילים", "/tehillim/")], after=hub, app_hash="tehillim", hub=True, prio="0.9",
-     lead="כל 150 הפרקים בניקוד מלא. בחרו פרק והתחילו לקרוא.",
+     lead="ספר תהילים (תהלים): כל 150 הפרקים בניקוד מלא. בחרו פרק והתחילו לקרוא.",
      ld=[collection("ספר תהילים", "/tehillim/", [f"/tehillim/{c}/" for c in range(1, 151)])])
 
 # =====================================================================
@@ -1382,7 +1383,7 @@ for n, plist in by_nus.items():
             _desc = fit_desc(f"תפילת הדרך המלאה בניקוד, בנוסח {NUS[n]}. נאמרת ביציאה לדרך אל מחוץ לעיר", " ".join(paras[1:3] if len(paras) > 2 else paras),
                              tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))
         page(me, _tt, _desc,
-             h1_name, crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
+             h1_name, crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, ctx_out=True, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
              canon_to=PURL[DUP_OF[p["id"]]] if p["id"] in DUP_OF else "", script=_t40js if p["id"] == "sefard-32" else "",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
@@ -1918,7 +1919,7 @@ for k, t, d in KELIM:
 kelim += '</ul><p class="note">הכלים מחשבים לפי מה שמקלידים בהם, ונפתחים באפליקציה של תפילה.</p>'
 kelim += chips("קשור לכלים", [("/tehillim/119/", "תהילים פרק קיט"), ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                               ("/sefer/yizkor/", "יזכור"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד")])
-page("/kelim/", f"כלים אישיים: תהילים לפי השם, יארצייט, יום הולדת עברי וכיוון התפילה | {BRAND}",
+page("/kelim/", f"כלים אישיים: תהילים לפי שם, יארצייט ויום הולדת עברי | {BRAND}",
      fit_desc("כלי תפילה ולוח עברי: תהילים לפי שם, פסוק אישי לסוף העמידה, תהילים לפי גיל, יארצייט, יום הולדת עברי וכיוון התפילה. הסבר קצר על כל כלי, וחישוב בחינם", tails=()),
      "כלים אישיים", [("כלים אישיים", "/kelim/")], after=kelim, hub=True, prio="0.8", app_hash="kelim", app_label="לכל הכלים באפליקציה",
      lead=f"{len(KELIM)} כלים שמחשבים בשבילכם: לפי השם, לפי הגיל, לפי התאריך העברי ולפי המקום.",

@@ -82,7 +82,7 @@
 @media (max-width:22.4rem){.mm-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 <div class="mm" id="mm">
-  <h1>מה מברכים על <span id="mm-hw">תפוח</span>?</h1>
+  <h1>מה מברכים על <span id="mm-hw">כל מאכל</span>?</h1>
   <p class="mm-lead">כותבים מה אוכלים או שותים, ומקבלים את הברכה שלפני, את הברכה שאחרי ואת התנאי שמשנה את התשובה. __N__ מאכלים ומשקאות.</p>
   <div class="mm-search">
     <label for="mm-q" class="sr">מה אוכלים או שותים?</label>
@@ -119,7 +119,7 @@ const shelf=f=>f.status==='review'&&!f.before&&!(f.ops||[]).length?'review':f.be
 const srcHtml=f=>(f.src||[]).length?`<p class="mm-src">מקור: ${f.src.map(k=>{const s=D.sources[k];return s[1]?`<a href="${esc(s[1])}" rel="noopener" target="_blank">${esc(s[0])}</a>`:esc(s[0])}).join(' · ')}</p>`:'';
 const LINK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>';
 let cur=null;
-function show(f,opts){opts=opts||{};cur=f;$('#mm-hw').textContent=f.name;
+function show(f,opts){opts=opts||{};cur=f;$('#mm-hw').textContent=opts.noHead?'כל מאכל':f.name;
   const head=`<div class="mm-head"><div class="mm-pic" aria-hidden="true">${IC[f.icon]}</div><h2>מה מברכים על<b>${esc(f.name)}</b></h2><button class="mm-share" type="button" id="mm-share">${LINK}<span>העתקת קישור</span></button></div>`;
   let body='';
   if((f.ops||[]).length){body=`<p class="mm-tag">${f.kind==='cases'?'התשובה תלויה במקרה':'יש יותר מדעה אחת'}</p>${f.cond?`<p class="mm-cond">${esc(f.cond)}</p>`:''}<ul class="mm-ops">${f.ops.map(o=>`<li><span class="who">${esc(o.who)}</span><span class="rul">${o.before?`לפני: <span class="k-${o.before}">${KN[o.before]||''}</span>`:''}${o.before&&o.after?' · ':''}${o.after?`אחרי: ${A[o.after][0]}`:''}</span>${o.text?`<span class="mm-note">${esc(o.text)}</span>`:''}</li>`).join('')}</ul>`}
@@ -135,7 +135,7 @@ function pick(c,list){cur=null;$('#mm-hw').textContent=c.term;
   $('#mm-ans').innerHTML=`<div class="mm-head" style="grid-template-columns:minmax(0,1fr)"><h2>${esc(c.q||'איך אוכלים את זה?')}<b>${esc(c.term)}</b></h2></div><div class="mm-pick">${list.map(f=>`<button type="button" data-f="${f.id}">${IC[f.icon]}<span>${esc(f.name)}<small class="k-${shelf(f)}">${KN[shelf(f)]}</small></span></button>`).join('')}</div>`;
   try{history.replaceState(null,'',location.pathname)}catch(e){}}
 function run(q){const r=mmSearch(D,IX,q);
-  if(r.kind==='empty'){show(IX.byId.get(D.start),{keepHash:true});return r}
+  if(r.kind==='empty'){show(IX.byId.get(D.start),{keepHash:true,noHead:true});return r}
   if(r.kind==='none'){cur=null;$('#mm-hw').textContent=q.trim();$('#mm-ans').innerHTML=`<p class="mm-note"><b>”${esc(q.trim())}” עדיין לא ברשימה.</b> בדקו את הכתיב, נסו שם אחר, או בחרו מהמדפים למטה.</p>`;return r}
   if(r.kind==='choice'){pick(r.choice,r.list);return r}
   show(r.food,{more:r.list,after:r.after});return r}
@@ -162,7 +162,7 @@ document.addEventListener('click',e=>{const t=e.target.closest('#mm [data-f],#mm
 function fromHash(){const id=decodeURIComponent(location.hash.slice(1));const f=IX.byId.get(id);if(f){q.value=f.name;show(f,{keepHash:true});return true}return false}
 window.addEventListener('hashchange',fromHash);
 shelves();let QP='';try{QP=(new URLSearchParams(location.search).get('q')||'').trim().slice(0,40)}catch(e){}
-if(QP){q.value=QP;run(QP);try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(!fromHash())show(IX.byId.get(D.start),{keepHash:true});
+if(QP){q.value=QP;run(QP);try{history.replaceState(null,'',location.pathname)}catch(e){}}else if(!fromHash())show(IX.byId.get(D.start),{keepHash:true,noHead:true});
 window.mmData=D;
 })();
 </script>

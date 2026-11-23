@@ -56,6 +56,7 @@ head = f"""<!doctype html>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script defer src="/shim.js"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{{}}));</script>
+<noscript><style>.boot{{visibility:visible!important;animation:none!important}}</style></noscript>
 </head>
 <body>
 """

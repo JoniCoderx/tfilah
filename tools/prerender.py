@@ -446,7 +446,7 @@ FOOT_JS = "document.addEventListener('click',function(e){var a=e.target.closest&
 FOOT_NAV = ('<details class="fmap"><summary>עוד דפים באתר</summary><nav aria-label="קישורי תחתית"><a href="/siddur/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a>'
             '<a href="/tehillim/#bakasha">תהילים לפי בקשה</a><a href="/tehillim/yomi/">תהילים יומי</a>'
             '<a href="/tehillim-yachad/">תהילים יחד</a><a href="/sefer/">ספרייה</a><a href="/kelim/">כלים אישיים</a>'
-            '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/kotel/">תפילה בכותל</a><a href="/odot/">אודות ומקורות</a></nav><p class="dclose"><button type="button" data-dclose><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>סגירה</button></p></details>')
+            '<a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a><a href="/chanukah/">חנוכה</a><a href="/tisha-beav/">תשעה באב</a><a href="/kotel/">תפילה בכותל</a><a href="/odot/">אודות ומקורות</a></nav><p class="dclose"><button type="button" data-dclose><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>סגירה</button></p></details>')
 FONT_HEAD = '<link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-900.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-hebrew-400.woff2" crossorigin><link rel="preload" as="font" type="font/woff2" href="/fonts/heebo-hebrew-400.woff2" crossorigin><style>@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/heebo-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/heebo-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-hebrew-900.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Heebo";font-style:normal;font-weight:900;font-display:optional;src:url(/fonts/heebo-latin-900.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-hebrew-400.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/assistant-latin-400.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-hebrew-600.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:600;font-display:optional;src:url(/fonts/assistant-latin-600.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-hebrew-700.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}@font-face{font-family:"Assistant";font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/assistant-latin-700.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>'
 
 WEBSITE = {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}
@@ -659,7 +659,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"n", "siddur", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"n", "siddur", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "tisha-beav", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -836,11 +836,13 @@ def weekday_amida(p):
     return p["t"] == "עמידה" and s and ("לימי החול" in s[0] or "לימות החול" in s[0])
 
 def lead_of(p):
+    if weekday_amida(p):
+        return "תפילת שמונה עשרה"
     return LEAD_ID.get(p["id"]) or SPELL.get(p["t"]) or LEAD.get(p["t"]) or p["t"]
 
 def also_of(p):
     if weekday_amida(p):
-        return "שמונה עשרה"
+        return "עמידה"
     return ALSO.get(p["t"], "")
 
 def title_name(p):
@@ -1314,6 +1316,8 @@ for n, plist in by_nus.items():
         if lead_name != p["t"] and p["t"] in SPELL:
             h1_name = lead_name
             meta += f" · בסידור נכתב: {esc(p['t'])}"
+        if weekday_amida(p):
+            h1_name = lead_name
         if p["id"] == "mizrach-11":
             h1_name = lead_name
             meta += f" · כותרת הקטע בסידור: {esc(p['t'])}"
@@ -1403,15 +1407,18 @@ for n in NUS:
         for p, pre in items:
             s = sec_of(p)
             lab = " · ".join(s[len(pre):]) or s[-1]
+            if lab == "עמידה" and s[0] == "ימי חול":
+                lab = "תפילת שמונה עשרה"
+            _nm = lead_of(p) if weekday_amida(p) else p["t"]
             if lab != cur:
                 if opened: body += "</ol>"
                 body += f'<h3 class="grp">{esc(lab)}</h3><ol class="toc">'
                 cur, opened = lab, True
             num += 1
-            body += f'<li><a href="#k{num}"><i>{num}</i><span><b>{esc(p["t"])}</b><small>{esc(opening(p))}</small></span></a></li>'
+            body += f'<li><a href="#k{num}"><i>{num}</i><span><b>{esc(_nm)}</b><small>{esc(opening(p))}</small></span></a></li>'
             _ps = TEXTS[n][p["id"]]
             _sh = _ps[1:] if len(_ps) > 1 and _pl(_ps[0]) == _pl(p["t"]) else _ps
-            full += f'<h2 id="k{num}">{esc(p["t"])}</h2>' + "".join(f"<p>{clean(x)}</p>" for x in _sh)
+            full += f'<h2 id="k{num}">{esc(_nm)}</h2>' + "".join(f"<p>{clean(x)}</p>" for x in _sh)
         body += "</ol>"
         toc_html = '<details class="svctoc"><summary>תוכן התפילה</summary>' + body + "</details>"
         body = ""
@@ -2166,6 +2173,23 @@ page("/chanukah/", f"ברכות הדלקת נרות חנוכה: הנוסח המ�
      "ברכות הדלקת נרות חנוכה", [("חנוכה", "/chanukah/")], text=ch_text, before=ch_before, after=ch_after, prio="0.9", app_hash=f"p-{CH_SETS[0][1][0]}",
      app_label="לסדר ההדלקה באפליקציה", lead="סדר הדלקת נרות חנוכה והברכות, בשלושת הנוסחים.",
      ld=[{"@type": "CreativeWork", "name": "ברכות הדלקת נרות חנוכה", "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + "/chanukah/", "isPartOf": WEBSITE}])
+
+
+# ---------- Tisha B'Av: what the site has for the day, gathered on one page. Statements about the day are the siddurim's own printed instructions. ----------
+tb = ('<div class="prose"><p>תשעה באב הוא יום הצום על חורבן בית המקדש. ריכזנו כאן את מה שיש באתר ליום הזה.</p>'
+      '<h2>מגילת איכה</h2><p>המגילה שקוראים בתשעה באב, בניקוד מלא.</p></div>'
+      + '<div class="related"><a href="/sefer/eicha/">מגילת איכה</a></div>'
+      + '<div class="prose"><h2>תפילת ”נחם”</h2><p>בסידורים שבאתר ”נחם” מודפס בתוך תפילת העמידה, בברכת בונה ירושלים, עם ההוראה שלצידו: '
+      'בנוסח עדות המזרח ”בתשעה באב מוסיפים”, ובנוסח ספרד ובנוסח אשכנז ”במנחת תשעה באב”.</p></div>'
+      + '<div class="related">' + "".join(f'<a href="{PURL[i]}">{esc(l)}</a>' for i, l in [
+          ("mizrach-16", "שחרית · נוסח עדות המזרח"), ("mizrach-28", "מנחה · נוסח עדות המזרח"), ("sefard-35", "מנחה · נוסח ספרד"), ("ashkenaz-120", "מנחה · נוסח אשכנז")]) + "</div>"
+      + chips("קריאת התורה לתענית ציבור", [(PURL["mizrach-125"], "נוסח עדות המזרח"), (PURL["sefard-203"], "נוסח ספרד")])
+      + '<div class="prose"><h2>קינות</h2><p>הקינות עדיין אינן באתר. נוסיף אותן כשתהיה בידינו מהדורה שמותר לפרסם.</p></div>'
+      + chips("צומות נוספים", [(PURL[i], l) for i, l in [("mizrach-123", "סליחות לי״ז בתמוז"), ("mizrach-121", "סליחות לעשרה בטבת"), ("mizrach-120", "סליחות לצום גדליה"), ("mizrach-122", "סליחות לתענית אסתר")]]))
+page("/tisha-beav/", f"תשעה באב: מגילת איכה, נחם וקריאת התורה | {BRAND}",
+     "תשעה באב באתר תפילה: מגילת איכה בניקוד מלא, תפילת נחם בתוך העמידה בשלושת הנוסחים וקריאת התורה לתענית ציבור. הכול בחינם ובלי הרשמה.",
+     "תשעה באב", [("תשעה באב", "/tisha-beav/")], after=tb, hub=True, prio="0.7", lead="מגילת איכה, תפילת נחם וקריאת התורה ליום הצום.",
+     ld=[{"@type": "CollectionPage", "name": "תשעה באב", "url": SITE + "/tisha-beav/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
 # ---------- About and sources ----------
 TAUT_JS = open(os.path.join(ROOT, "tools", "odot.js"), encoding="utf-8").read().replace("__MAIL__", CONTACT)

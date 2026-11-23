@@ -2943,8 +2943,10 @@ function libTeaser(){const pick=[['b:perek','פרק שירה','spark'],['k:tikku
   return `<div class="sec"><h2>מהספרייה</h2><a href="#sifriya">כל הספרייה</a></div><div class="libgrid">${items}</div>`}
 const HOLMAP=[[/חנוכה/,'p:נרות חנוכה|^סדר ההדלקה','סדר ההדלקה'],[/פורים|תענית אסתר/,'b:esther','מגילת אסתר'],[/פסח/,'p:^קדש$','הגדה של פסח'],[/שבועות/,'b:ruth','מגילת רות'],
   [/תשעה באב/,'b:eicha','מגילת איכה'],[/סוכות|שמיני עצרת/,'b:kohelet','קהלת'],[/ל״ג בעומר|ל"ג בעומר/,'p:^בר יוחאי$','שירי בר יוחאי'],[/ראש חודש/,'p:^(סדר |ברכת )?הלל','הלל'],
-  [/צום|עשרה בטבת|תמוז|גדליה|ראש השנה|כיפור/,'b:selichot','סליחות'],[/ט״ו בשבט|ט"ו בשבט/,'p:האילנות','ברכת האילנות']];
-function holLink(name){if(/חנוכה/.test(name))return '<a class="hlink" href="/chanukah/">סדר ההדלקה ←</a>';for(const[re,ref,label]of HOLMAP)if(re.test(name)){const r=libRes(ref);if(r)return `<a class="hlink" href="${r.href}">${label} ←</a>`}return''}
+  /* a fast day leads to the selichot of that fast in the reader's own nusach (f: = this nusach only, or no link); the book of selichot said before Rosh Hashana is for those days alone */
+  [/עשרה בטבת/,'f:^(סליחות ל)?עשרה בטבת$','סליחות לעשרה בטבת'],[/תמוז/,'f:^(סליחות לי.?ז בתמוז|סליחות לשבעה עשר בתמוז|שבעה עשר בתמוז)$','סליחות לי״ז בתמוז'],[/גדליה/,'f:^(סליחות ל)?צום גדליה$','סליחות לצום גדליה'],
+  [/ראש השנה|כיפור/,'b:selichot','סליחות'],[/ט״ו בשבט|ט"ו בשבט/,'p:האילנות','ברכת האילנות']];
+function holLink(name){if(/חנוכה/.test(name))return '<a class="hlink" href="/chanukah/">סדר ההדלקה ←</a>';for(const[re,ref,label]of HOLMAP)if(re.test(name)){if(ref.startsWith('f:')){const rx=new RegExp(ref.slice(2)),q=INDEX.prayers.find(p=>p.n===nus&&rx.test(norm(p.t)));return q?`<a class="hlink" href="#p-${q.id}">${label} ←</a>`:''}const r=libRes(ref);if(r)return `<a class="hlink" href="${r.href}">${label} ←</a>`}return''}
 
 /* ---------- quick search (command palette) ---------- */
 const ROUTES=[['זמני היום ופרשת השבוע','#home','sun'],['כל הסידור','#siddur','book'],['ספר תהילים','#tehillim','scroll'],['תהילים יחד: קריאה משותפת','#zikaron','scroll'],['כלים אישיים','#kelim','star'],['שאלו שאלה בהלכה','#rav','chat'],['התפילות השמורות שלי','#favorites','star'],['תזכורות: שלא יעבור הזמן','#home','bell'],['ספרייה: כל התפילות והסגולות','#sifriya','book']];

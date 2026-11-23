@@ -1107,6 +1107,11 @@ a{color:var(--ink)}
 .dial{border-color:var(--line)}.dial .arrow svg{fill:var(--stamp)}
 .kform input[type=text],.kform input:not([type]),.kform input[type=date],.kform input[type=number]{background:var(--bg);min-height:48px}
 .kback{display:inline-flex;align-items:center;min-height:44px}
+/* shared reading: the "I read the chapter" button stays in view while reading */
+.finbar{position:fixed;inset-inline:12px;bottom:calc(var(--tabh,0px) + 12px + env(safe-area-inset-bottom,0px));z-index:43;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px -12px rgba(11,46,79,.5);max-inline-size:34rem;margin-inline:auto;transition:opacity .2s ease,transform .2s ease}
+.finbar span{flex:1;min-inline-size:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:.92rem}.finbar .btn{flex:none;min-height:46px;padding:0 18px;white-space:nowrap}
+.finbar.away{opacity:0;transform:translateY(10px);pointer-events:none}html.hidebars .finbar{bottom:calc(12px + env(safe-area-inset-bottom,0px))}html:has(#finbar:not(.away)) .totop{display:none!important}
+@media print{.finbar{display:none}}
 .pask-h{margin:1.4em 0 .5em;font-family:var(--f-display);font-size:1.05em}.pask{font-size:.8em;font-family:var(--f-ui);font-weight:700;padding:.1em .4em;border-radius:6px}
 .dkt[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 /* Psalms, the personal tools and the shared readings are the same in every nusach: the nusach picker is not shown there */
@@ -2360,6 +2365,8 @@ async function viewTehillim(a,b){setNav('tehillim');
     $('#tnf').onsubmit=e=>{e.preventDefault();const v=$('#tnq').value.trim();if(!v){toast('כתבו שם בעברית');return}store.set('kname',v);nav('kli-shem')};return}
   app.innerHTML='<p class="loading">טוען…</p>';const my=navId,P=await tehillim();if(my!==navId)return;b=b||a;
   let ctx=null;try{ctx=JSON.parse(sessionStorage.getItem('mctx')||'null')}catch(e){}if(ctx&&!(a===b&&ctx.n===a))ctx=null;
+  if(!ctx&&a===b){const mine=store.get('mine',{}),ids=Object.keys(mine);for(let i=ids.length-1;i>=0&&!ctx;i--){const k=(mine[ids[i]]||[]).slice().reverse().find(k=>(k-1)%150+1===a);if(k)ctx={id:ids[i],n:a,k}}
+    if(ctx){try{viewMemorialData(ctx.id)}catch(e){}}}
   const draw=()=>{let body='';for(let c=a;c<=b;c++)body+=`<section><h3 aria-level="2">פרק ${gem(c)}</h3>${plainBox(PLAIN_T[c],'על מה המזמור הזה?',a===b)}${P[c-1].map((v,i)=>`<p class="verse"><sup>${gem(i+1)}</sup>${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`;
     const m=ctx&&memById(ctx.id);
     app.innerHTML=`${tools(a===b?`תהילים · פרק ${gem(a)}`:`תהילים · ${gem(a)}–${gem(b)}`)}
@@ -2368,12 +2375,16 @@ async function viewTehillim(a,b){setNav('tehillim');
       ${ctx?`<div class="finish glass" id="finbox"><b>קראתם את פרק ${gem(a)}?</b><button class="btn gold" type="button" id="fin">קראתי את הפרק</button></div>
         <section class="endcard" aria-label="הזמנת קורא נוסף"><b>הזמינו עוד קורא</b><p>${m?'שלחו את הקריאה '+esc(mLine(m))+' למי שיכול לקרוא פרק.':'שלחו את הקריאה המשותפת למי שיכול לקרוא פרק.'}</p>
         <div class="row"><button class="btn primary" type="button" data-endwa data-url="${esc(memUrl(ctx.id))}" data-txt="${esc(shareText(0,m).replace(/ לקבלת פרק: $/,''))}">שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp data-url="${esc(memUrl(ctx.id))}">העתקת קישור</button></div></section>`:endCard()}
+      ${ctx?`<div class="finbar" id="finbar"><span>${m?esc(mLine(m)):'תהילים יחד'}</span><button class="btn gold" type="button" id="fin2">קראתי את הפרק</button></div>`:''}
       <nav class="pager">${ctx?`<a class="glass spot" href="#m-${esc(ctx.id)}"><small>→ חזרה</small><b>לדף הקריאה</b></a>`:(a>1?`<a class="glass spot" href="#t-${a-1}"><small>→ הקודם</small><b>פרק ${gem(a-1)}</b></a>`:'')}${!ctx&&b<150?`<a class="glass spot next" href="#t-${b+1}"><small>הבא ←</small><b>פרק ${gem(b+1)}</b></a>`:''}</nav>${footer()}`;
     bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)});
+    $('#fin2')&&($('#fin2').onclick=()=>{const f=$('#fin');if(!f)return;$('#finbox').scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});f.click()});
+    if($('#finbar')&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>{const bar=$('#finbar');if(bar)bar.classList.toggle('away',es[0].isIntersecting)});io.observe($('#finbox'))}
     $('#fin')&&($('#fin').onclick=async e=>{const btn=e.currentTarget;if(btn.disabled)return;btn.disabled=true;await dbReady;if(!DB){btn.disabled=false;toast('אין חיבור כרגע. הפרק לא סומן');return}
       try{const out=await DB.doc(`memorials/${ctx.id}/chapters/${ctx.k||a}`).set({s:'done',by:myName||'',at:Date.now()});let n=out&&typeof out.done==='number'?out.done:null;
         if(n==null){const s=await DB.collection(`memorials/${ctx.id}/chapters`).get();n=s.docs.filter(d=>d.data().s==='done').length;await DB.doc('memorials/'+ctx.id).update({done:n})}
         const id=ctx.id,inR=n%150,whole=n>0&&inR===0;sessionStorage.removeItem('mctx');
+        {const mine=store.get('mine',{}),kk=ctx.k||a;if(mine[id]){mine[id]=mine[id].filter(x=>x!==kk);if(!mine[id].length)delete mine[id];store.set('mine',mine)}}$('#finbar')?.remove();
         const box=$('#finbox');if(box){box.innerHTML=`<b>${whole?'הספר נשלם. יהי רצון שתתקבל התפילה.':`תודה. פרק ${gem(a)} נרשם.`}</b>
           <p style="margin:0">${whole?'כל 150 הפרקים נקראו. אפשר להתחיל סבב חדש.':`${inR} מתוך 150 פרקים נקראו.`}</p>
           <span class="pbar" style="background:var(--sunk)" aria-hidden="true"><i style="background:var(--ink);inline-size:${((whole?150:inR)/150*100).toFixed(1)}%"></i></span>

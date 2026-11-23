@@ -90,7 +90,7 @@ _groups = [
 ]
 SEO_NAV = ('<nav class="seo-links" aria-label="מפת האתר"><details><summary><span>מפת האתר</span><small>כל התפילות, הפרקים והדפים במקום אחד</small></summary><div class="seo-cols">'
   + "".join('<section><h3>%s</h3><ul>' % g + "".join('<li><a href="%s">%s</a></li>' % (h, t_) for h, t_ in links) + "</ul></section>"
-            for g, links in _groups) + "</div></details></nav>")
+            for g, links in _groups) + "</div><p class=\"dclose\"><button type=\"button\" data-dclose><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 15 6-6 6 6\"/></svg>סגירה</button></p></details></nav>")
 BOOT = ('<main class="wrap" id="app"><div class="boot"><h1>תפילה: סידור תפילה ותהילים אונליין</h1>'
         '<p>סידור מלא בניקוד בנוסח עדות המזרח, ספרד ואשכנז, ספר תהילים, זמני היום וקריאת תהילים משותפת.</p><ul>'
         + "".join('<li><a href="%s">%s</a></li>' % x for x in [

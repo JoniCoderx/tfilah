@@ -34,3 +34,10 @@
 # Font files: a new version would get a new file name, so they can be cached for a year.
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# The same site is also served on the pages.dev addresses (production and branch previews).
+# They are kept out of search engines: tfilah.com is the only address meant for the index.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

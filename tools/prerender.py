@@ -51,7 +51,8 @@ def clean(s):
 
 def plain(s):
     """a derived, unpointed one-line rendering for titles, descriptions and opening lines (never shown as the text itself)"""
-    return re.sub(r"\s+", " ", NIK.sub("", TAG.sub(" ", s).replace("־", " ")).replace("—", " ")).replace("יהוה", "ה'").strip()
+    s = re.sub(r"(?<=[\u0591-\u05EA])</?(?:b|big)>(?=[\u05D0-\u05EA])", "", s)
+    return re.sub(r" ([,.:;])", r"\1", re.sub(r"\s+", " ", NIK.sub("", TAG.sub(" ", s).replace("־", " ")).replace("—", " "))).replace("יהוה", "ה'").strip()
 
 def snippet(s, n=150):
     s = plain(s)
@@ -748,7 +749,7 @@ SPELL = {"תפלת הדרך": "תפילת הדרך", "פטום הקטורת": "�
          "תפלת הנוטל תרופה": "תפילת הנוטל תרופה"}
 LEAD = {"סדר הבדלה": "הבדלה למוצאי שבת", "סדר הדלקת נרות שבת": "הדלקת נרות שבת",
         "סדר הדלקת נרות חנוכה": "הדלקת נרות חנוכה", "הבדלה": "הבדלה למוצאי שבת"}
-LEAD_ID = {"ashkenaz-211": "קידוש לליל שבת", "sefard-132": "הלל לראש חודש (סדר הלל)"}
+LEAD_ID = {"mizrach-11": "פתיחה לתפילת שחרית (לשם יחוד)", "ashkenaz-211": "קידוש לליל שבת", "sefard-132": "הלל לראש חודש (סדר הלל)"}
 ALSO = {"קידוש לבנה": "ברכת הלבנה", "ברכת הלבנה": "קידוש לבנה", "ברכת מעין שלוש": "על המחיה",
         "ברכה אחרונה מעין שלוש": "על המחיה", "על המחיה": "ברכה מעין שלוש"}
 
@@ -1257,15 +1258,25 @@ for n, plist in by_nus.items():
             where = " · ".join(s[-2:]) + (" · " + ctx.rsplit(" · ", 1)[-1] if "חלק " in ctx.rsplit(" · ", 1)[-1] else "")
         alt = ALT_SPELL.get(p["t"], "")
         head = f"{lead_name} בנוסח {NUS[n]}" + (f" ({also or alt})" if also or alt else "") + (f", {where}" if where and p["id"] not in PRIMARY else "")
+        when = CONTEXT_ID.get(p["id"]) or CONTEXT.get(p["t"]) or CONTEXT.get(norm_t(p["t"]))
+        if when and len(head) + len(when) <= 96:
+            head += ". " + when.rstrip(". ")
         meta = f'<b>נוסח {esc(NUS[n])}</b>' + (f' · <a href="{sec_href}">{esc(" · ".join(s))}</a>' if s and not ctx else "")
+        # the heading uses the spelling people write; the spelling of the source is noted beside it
+        h1_name = p["t"]
         if lead_name != p["t"] and p["t"] in SPELL:
-            meta += f" · כתיב נפוץ: {esc(lead_name)}"
+            h1_name = lead_name
+            meta += f" · בסידור נכתב: {esc(p['t'])}"
+        if p["id"] == "mizrach-11":
+            h1_name = lead_name
+            meta += f" · כותרת הקטע בסידור: {esc(p['t'])}"
         if also:
             meta += f" · נקראת גם {esc(also)}"
         if alt:
             meta += f" · נכתב גם: {esc(alt)}"
-        when = CONTEXT_ID.get(p["id"]) or CONTEXT.get(p["t"]) or CONTEXT.get(norm_t(p["t"]))
         before = f'<p class="note">{esc(when)}</p>' if when else ""
+        if p["id"] == "mizrach-11":
+            before += '<p class="note">זהו קטע הפתיחה בלבד. <a href="/tefila/mizrach/shacharit/">לסדר תפילת שחרית המלא, נוסח עדות המזרח</a></p>'
         if norm_t(p["t"]) == "תפילת הדרך":
             before += TD_BOX
         crumbs = [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/")]
@@ -1283,7 +1294,17 @@ for n, plist in by_nus.items():
                 if len(_cand) <= 62 and _cand not in TITLES and len(_parts) >= _k:
                     _tt = _cand
                     break
-        _desc = fit_desc(head, " ".join(paras[:3]))
+        _open = []
+        for x in shown[:8]:
+            if re.fullmatch(r"\s*<big>.*?</big>\s*", x, re.S):
+                continue                                   # a printed heading
+            _m = re.fullmatch(r"\s*<small>(.*)</small>\s*", x, re.S)
+            if _m and "<small>" not in _m.group(1) and (len(plain(x)) < 70 or (len(plain(x)) < 260 and re.search(r"יאמר|יקרא|אומרים|יטול|נוהגים|צריך ל|יש להפסיק|אומר ", plain(x)))):
+                continue                                   # a printed instruction
+            x = re.sub(r"<small>(.*?)</small>", lambda m: " " if len(plain(m.group(1))) < 60 else m.group(0), x, flags=re.S)
+            if len(plain(x)) > 3:
+                _open.append(x)
+        _desc = fit_desc(head, " ".join(_open[:3]) if _open else " ".join(paras[:3]))
         if p["id"] == "sefard-32":
             _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
@@ -1313,7 +1334,7 @@ for n, plist in by_nus.items():
             _desc = fit_desc(f"תפילת הדרך המלאה בניקוד, בנוסח {NUS[n]}. נאמרת ביציאה לדרך אל מחוץ לעיר", " ".join(paras[1:3] if len(paras) > 2 else paras),
                              tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))
         page(me, _tt, _desc,
-             p["t"], crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
+             h1_name, crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
              canon_to=PURL[DUP_OF[p["id"]]] if p["id"] in DUP_OF else "",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
@@ -1355,9 +1376,9 @@ for n in NUS:
                       + [(f'{PURL[q["id"]]}', lead_of(q)) for q in relp if q and q["id"] not in {x[0]["id"] for x in items}]
                       + [("/tehillim/", "ספר תהילים")])
         parts = "חלק אחד" if num == 1 else f"{num} חלקים"
-        desc = fit_desc(f"{name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל התפילה בעמוד אחד משלו, בניקוד מלא",
+        desc = fit_desc(f"תפילת {name} בנוסח {NUS[n]}: סדר התפילה המלא לפי הסדר, {parts}, מ{plain(items[0][0]['t'])} ועד {plain(items[-1][0]['t'])}. כל התפילה בעמוד אחד משלו, בניקוד מלא",
                         tails=("קריאה נוחה בנייד.",))
-        page(path, f"{name} | נוסח {NUS[n]}: סדר התפילה המלא | {BRAND}", desc, name,
+        page(path, f"תפילת {name} נוסח {NUS[n]}: הסדר המלא | {BRAND}", desc, f"תפילת {name}",
              [("סידור", "/tefila/"), (f"נוסח {NUS[n]}", f"/tefila/{n}/"), (name, path)],
              h1_ctx=f"נוסח {NUS[n]}", text=full, before=toc_html, after=body, hub=False, prio="0.9", app_hash=f"p-{first['id']}", app_label="לתפילה באפליקציה, עם התאמות לפי היום",
              lead=f"תפילת {label} של ימי החול בנוסח {NUS[n]}, כולה בעמוד אחד ובניקוד מלא. {parts}, לפי הסדר.",

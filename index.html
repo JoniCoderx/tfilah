@@ -1225,6 +1225,11 @@ footer.sitefoot{border-block-start:1px solid var(--line);margin-block-start:48px
 .btn,.chip,.tbtn,.lnk,.tocb,.seg button,.tabs a,.hlink,.cd,.tag,#aspill button{white-space:nowrap}
 .hact .btn,.jtake,.shema .row .btn{white-space:normal;text-wrap:balance}
 .q4 b,.more4 b,.need b,.kcard b,.libit b,.tile b{text-wrap:balance}
+/* the four shortcut tiles: every line stays on one row at every width, so the tiles are always the same height */
+.q4 b,.q4 small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:400px){.q4.q4i{padding:8px 10px}.q4i{gap:8px!important}.q4i .ib{inline-size:34px;block-size:34px}.q4 b{font-size:.9rem}}
+@media (max-width:350px){.q4 b{font-size:.76rem}.q4i{gap:6px!important}.q4i .ib{inline-size:28px;block-size:28px;border-radius:10px}.q4.q4i{padding:8px 7px}}
+@media (max-width:330px){.q4 b{font-size:.72rem}.q4i .ib{inline-size:26px;block-size:26px}.q4.q4i{padding:8px 6px}.quick4{gap:6px}}
 .need small,.q4 small,.more4 small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:430px){
   .rtools .in{gap:6px}.rtools .tocb{padding:0 10px;font-size:0;gap:0}.rtools .tocb svg{inline-size:20px;block-size:20px}
@@ -2798,7 +2803,7 @@ function heroNow(){const now=new Date(),np=nowPrayer(now),g=groups[nus][np.g],H=
     <div class="hact"><a class="btn primary" href="#${g?'p-'+g.items[0].id:'siddur'}">${esc(cta)}</a><a class="hall" href="#siddur">לכל הסידור</a></div>
     ${(()=>{const sp=specials();return hn.length||sp?`<div class="hnotes"><span>${!hn.length?'מיוחד להיום':isArv?'בתפילת ערבית':r.after?'הלילה בתפילה':'היום בתפילה'}</span>${hn.map(([a,b])=>`<span class="tn"><b>${a}</b>${b?` <small>${b}</small>`:''}</span>`).join('')}${sp}</div>`:''})()}
   </section>`}
-function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/,'road'],['שמע על המיטה','קריאת שמע לפני השינה',/קריאת שמע ש?על המי?טה/,'moon'],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/,'wheat']];
+function quick4(){const q=[['תפילת הדרך','לפני שיוצאים',/תפי?לת הדרך$/,'road'],['שמע על המיטה','לפני השינה',/קריאת שמע ש?על המי?טה/,'moon'],['ברכת המזון','אחרי הסעודה',/^ברכת המזון/,'wheat']];
   return `<nav class="quick4" aria-label="קיצורים">${q.map(([t,sb,re,ic])=>{const p=findPrayer(re);return p?`<a class="q4 q4i" href="#p-${p.id}"><span class="ib">${icon(ic)}</span><span><b>${t}</b><small>${sb}</small></span></a>`:''}).join('')}<a class="q4 q4i" href="#tehillim"><span class="ib">${icon('book')}</span><span><b>תהילים</b><small>כל 150 הפרקים</small></span></a></nav>`}
 const durTxt=ms=>{const mins=Math.max(1,Math.round(ms/60e3)),h=Math.floor(mins/60),m=mins%60;return h?`${h}:${String(m).padStart(2,'0')} ש׳`:`${m} דק׳`};
 /* Shema by the clock: both opinions for the morning limit, and when the evening Shema begins */

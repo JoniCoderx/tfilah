@@ -370,7 +370,7 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .svctoc[open] summary::after{transform:rotate(-135deg)}.svctoc .grp{margin:.4rem 1.1rem 0}.svctoc .toc{margin:0;padding:0 .6rem .8rem}
 """),
 ("note", """
-.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}.tdn{margin:1rem 0 1.25rem;padding:.9rem 1rem;border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:12px;background:var(--accent-soft,#f3f6ff);font-family:var(--f-ui,inherit);font-size:.95rem;line-height:1.65;color:var(--ink);text-align:start}.tdn h2{margin:0 0 .4rem;font-size:1.05rem}.tdn ul{margin:0;padding-inline-start:1.1rem}.tdn li{margin:.3rem 0}.tdn p{margin:.6rem 0 0}.tdn .tds{font-size:.85rem;color:var(--muted)}.tdn a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
+.note{margin:1rem 0;color:var(--muted);font-size:.93rem;max-width:36rem}.pask{background:#FFF3C4;color:inherit;font-family:var(--f-ui,inherit);font-size:.8em;font-weight:700;padding:.1em .4em;border-radius:6px}.tdn{margin:1rem 0 1.25rem;padding:.9rem 1rem;border:1px solid var(--line);border-inline-start:3px solid var(--accent);border-radius:12px;background:var(--accent-soft,#f3f6ff);font-family:var(--f-ui,inherit);font-size:.95rem;line-height:1.65;color:var(--ink);text-align:start}.tdn h2{margin:0 0 .4rem;font-size:1.05rem}.tdn ul{margin:0;padding-inline-start:1.1rem}.tdn li{margin:.3rem 0}.tdn p{margin:.6rem 0 0}.tdn .tds{font-size:.85rem;color:var(--muted)}.tdn a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
 """),
 ]
 
@@ -1286,6 +1286,11 @@ for n, plist in by_nus.items():
             _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
+            # the request said after Perek Shira, from the book edition (data/books.json), with the place for a personal request marked
+            _ask = next(s for s in B["perek"]["secs"] if "בקשה" in s["h"])
+            assert len(_ask["v"]) == 3 and "כאן יוסיף" in plain(_ask["v"][2]), "the request changed: look at the page again"
+            text += f'<h2 id="bakasha">{esc(_ask["h"])}</h2>' + "".join(
+                "<p>" + re.sub(r"<small>\(([^<]*)\)</small>", r'<mark class="pask">(\1)</mark>', clean(x), count=1 if i else 0) + "</p>" for i, x in enumerate(_ask["v"][1:]))
         if p["t"].startswith(("קדיש", "חצי קדיש")):
             after = chips("קדיש", [("/kaddish/", "כל סוגי הקדיש בעמוד אחד")]) + after
         if p["id"] == "ashkenaz-264":

@@ -13,6 +13,7 @@ RD = open(R + '_redirects', encoding='utf-8').read()
 OLD = json.load(open(R + 'tools/old-urls.json', encoding='utf-8'))
 noredir = []
 DUPC = json.load(open(R + 'tools/dup-canon.json', encoding='utf-8'))
+ASK = next(s for s in json.load(open(R + 'data/books.json', encoding='utf-8'))['perek']['secs'] if 'בקשה' in s['h'])
 bad, nomap, nikud, empty, dup = [], [], [], [], collections.defaultdict(list)
 for n in ('mizrach', 'sefard', 'ashkenaz'):
     T = json.load(open(R + f'data/{n}.json', encoding='utf-8'))
@@ -40,7 +41,10 @@ for n in ('mizrach', 'sefard', 'ashkenaz'):
         if a != b:
             # the page may drop a first paragraph that only repeats the title
             b2 = words(' '.join(ps[1:])) if len(ps) > 1 else b
-            if a != b2:
+            # Perek Shira ends with the request said after it, taken from the book edition (data/books.json):
+            # the page must then be the siddur text followed by exactly that request, and nothing else
+            extra = words(ASK['h'] + ' ' + ' '.join(ASK['v'][1:])) if p['id'] == 'sefard-32' else None
+            if a != b2 and not (extra is not None and a in (b + extra, b2 + extra)):
                 bad.append((p['id'], f'words differ: page {len(a)} data {len(b)}'))
         if f"{URLS[p['id']]}</loc>" not in sm:
             if URLS[p['id']] not in DUPC: nomap.append(p['id'])   # an exact repeat names the first copy as canonical and is left out on purpose

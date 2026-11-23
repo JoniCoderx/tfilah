@@ -8,7 +8,8 @@ const SITE = "https://tfilah.com";
 let pass = 0, fail = 0, clock = Date.parse("2026-11-22T10:00:00Z");
 const ok = (name, cond, extra) => { cond ? pass++ : fail++; if (!cond) console.log("FAIL ", name, extra === undefined ? "" : JSON.stringify(extra)); };
 let DB = fakeD1(); _reset();
-const env = () => ({ DB, NOW: () => clock });
+let dice = () => 0;                      // which free chapter a reader gets: 0 = the lowest, so the checks below can name chapters
+const env = () => ({ DB, NOW: () => clock, RAND: () => dice() });
 const post = async (fn, args, { headers = {}, e = env(), raw } = {}) => {
   const r = await onRequest({ request: new Request(SITE + "/api/yachad", { method: "POST", headers: { "content-type": "application/json", origin: SITE, ...headers }, body: raw !== undefined ? raw : JSON.stringify({ fn, args }) }), env: e });
   let j = null; try { j = await r.json(); } catch {} return { s: r.status, j, d: j && j.data };
@@ -138,6 +139,18 @@ ok("and allowed again later", (await mk()).s === 200);
   ok("an unknown id is not listed", (await post("list_legacy", { p_id: "nope" })).d === false);
   ok("a missing id is refused", (await post("list_legacy", {})).s === 400);
   clock = keep;
+}
+
+// ---- a reader gets any free chapter, not the next in order ----
+{
+  DB = fakeD1(); _reset(); clock = Date.parse("2026-11-23T12:00:00Z");
+  const r = (await mk({ p_name: "אקראי" })).d;
+  dice = () => 0.999; ok("the draw can give the last chapter", (await post("take_chapter", { p_mid: r, p_by: "" })).d === 150);
+  dice = () => 0.5; const mid = (await post("take_chapter", { p_mid: r, p_by: "" })).d; ok("the draw can give a chapter from the middle", mid > 60 && mid < 90, mid);
+  dice = Math.random; const got = new Set(); for (let i = 0; i < 40; i++) got.add((await post("take_chapter", { p_mid: r, p_by: "" })).d);
+  ok("forty draws give forty different free chapters", got.size === 40 && !got.has(150) && !got.has(mid) && [...got].every(n => n >= 1 && n <= 150));
+  ok("the draws are not in order", [...got].some((n, i, a) => i && n < a[i - 1]));
+  dice = () => 0;
 }
 
 console.log(`${pass + fail} checks, ${pass} passed, ${fail} failed`);

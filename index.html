@@ -772,10 +772,10 @@ background:linear-gradient(135deg,#0B3F6E 0%,#0B6FB3 55%,#1389D6 100%);box-shado
 .yhero p{margin:0;max-inline-size:38rem;font-size:1.06rem;line-height:1.6;color:#EAF5FD}
 .ysteps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:700}.ysteps li{display:inline-flex;align-items:center;gap:8px}
 .ysteps b{display:grid;place-items:center;inline-size:28px;block-size:28px;border-radius:50%;background:#fff;color:#0B5C99;font-size:.9rem}
-.yhero .yact{display:grid;gap:8px;justify-items:center}.yhero .ybtn{background:#fff;color:#0B3F6E;min-height:60px;padding:14px 30px;font-size:1.1rem;font-weight:800;border-radius:999px;box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
-.yhero .ybtn:hover{background:#EAF5FD;color:#0B3F6E}.yhero .yact a{color:#fff;font-weight:700;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center}
+.yhero .yact{display:grid;gap:10px;justify-items:stretch}.yhero .ybtn{background:#fff;color:#0B3F6E;min-height:60px;padding:14px 30px;font-size:1.1rem;font-weight:800;border-radius:999px;box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
+.yhero .ybtn:hover{background:#EAF5FD;color:#0B3F6E}.yhero .yact a{color:#fff;font-weight:700;text-decoration:none;min-height:50px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;white-space:nowrap}.yhero .yact a:hover{background:rgba(255,255,255,.14);border-color:#fff}
 .yhero .wall{grid-column:1/-1}.yhero .wall:empty{display:none}
-@media (max-width:760px){.yhero{grid-template-columns:1fr;gap:16px}.yhero .yact{justify-items:stretch;gap:0}.yhero .ybtn{inline-size:100%}.yhero .yact a{justify-content:center}.ysteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.ysteps li{flex-direction:column;justify-content:flex-start;gap:6px;text-align:center;padding:10px 4px;border-radius:16px;background:rgba(255,255,255,.12);font-size:.9rem;line-height:1.25;white-space:nowrap}@media (max-width:350px){.ysteps li{font-size:.8rem}}.yhero .wall{margin-top:0;grid-template-columns:1fr}}
+@media (max-width:760px){.yhero{grid-template-columns:1fr;gap:16px}.yhero .yact{justify-items:stretch;gap:10px}.yhero .ybtn{inline-size:100%}.yhero .yact a{justify-content:center}.ysteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.ysteps li{flex-direction:column;justify-content:flex-start;gap:6px;text-align:center;padding:10px 4px;border-radius:16px;background:rgba(255,255,255,.12);font-size:.9rem;line-height:1.25;white-space:nowrap}@media (max-width:350px){.ysteps li{font-size:.8rem}}.yhero .wall{margin-top:0;grid-template-columns:1fr}}
 .yhero .wall:not(:empty)::before{content:"קריאות פתוחות עכשיו";grid-column:1/-1;font-weight:700;font-size:.92rem;color:#EAF5FD}
 .card.shema{display:grid;grid-template-columns:1fr;gap:10px;padding:18px}.shema .shst{margin:0;line-height:1.5}
 .shl{margin:0;display:grid}.shl div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:9px 0;border-block-start:1px solid var(--line)}
@@ -1883,6 +1883,8 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
     <a class="btn ghost" href="#n-${encodeURIComponent(id)}">לקריאת הפסוקים</a>
     ${(()=>{const k=findPrayer(/^קדיש יתום/)||findPrayer(/^קדיש יתום/,'ashkenaz');return k?` <a class="btn ghost" href="#p-${k.id}">קדיש יתום</a>`:''})()}</div>
   `:''}
+  <section class="endcard" aria-label="שיתוף הקריאה"><b>שתפו את הקריאה</b><p>ככל שיצטרפו יותר קוראים, הספר יושלם מהר יותר.</p>
+    <div class="row"><button class="btn primary" type="button" data-endwa data-url="${esc(url)}" data-txt="${esc(shareText(readTotal,m).replace(/ לקבלת פרק: $/,''))}">שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp data-url="${esc(url)}">העתקת קישור</button></div></section>
   ${donateBlock(m)}${footer()}`;
   scrollTo(0,y);
   const lb=$('#light');if(lb)lb.onclick=async()=>{if(ro||lb.disabled)return;lb.disabled=true;const n=(m.candles||0)+1;
@@ -1916,7 +1918,7 @@ async function viewLetters(id){setNav('zikaron');app.innerHTML='<p class="loadin
   const draw=()=>{const body=letters.map((l,i)=>{const k=LET.indexOf(l),vs=ps.slice(k*8,k*8+8);
       return `<section><h3 aria-level="2">${l}${i===letters.length-4?' <small style="font-family:var(--f-ui);font-size:.45em;color:var(--muted)">נשמה</small>':''}</h3>${vs.map((v,j)=>`<p class="verse"><sup>${gem(k*8+j+1)}</sup>${nikud?v:v.replace(NIK,'')}</p>`).join('')}</section>`}).join('');
     app.innerHTML=`${tools(m?`אותיות הנשמה · ${fullName(m)} ז״ל`:'אותיות הנשמה')}<h1 class="rh1">אותיות הנשמה</h1><article class="text">${body}</article>
-      <div class="pager"><a class="glass spot" href="#m-${esc(id)}"><small>→ חזרה</small><b>לדף הקריאה</b></a></div>${footer()}`;bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)})};
+      <div class="pager"><a class="glass spot" href="#m-${esc(id)}"><small>→ חזרה</small><b>לקריאה המשותפת</b></a></div>${footer()}`;bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)})};
   draw();reading=true;scrollTo(0,0)}
 
 /* ---------- SIDDUR ---------- */
@@ -2298,7 +2300,7 @@ async function viewTehillim(a,b){setNav('tehillim');
         <section class="endcard" aria-label="הזמנת קורא נוסף"><b>הזמינו עוד קורא</b><p>${m?'שלחו את הקריאה '+esc(mLine(m))+' למי שיכול לקרוא פרק.':'שלחו את הקריאה המשותפת למי שיכול לקרוא פרק.'}</p>
         <div class="row"><button class="btn primary" type="button" data-endwa data-url="${esc(memUrl(ctx.id))}" data-txt="${esc(shareText(0,m).replace(/ לקבלת פרק: $/,''))}">שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp data-url="${esc(memUrl(ctx.id))}">העתקת קישור</button></div></section>`:endCard()}
       ${ctx?`<div class="finbar" id="finbar"><span>${m?esc(mLine(m)):'תהילים יחד'}</span><button class="btn gold" type="button" id="fin2">קראתי את הפרק</button></div>`:''}
-      <nav class="pager">${ctx?`<a class="glass spot" href="#m-${esc(ctx.id)}"><small>→ חזרה</small><b>לדף הקריאה</b></a>`:(a>1?`<a class="glass spot" href="#t-${a-1}"><small>→ הקודם</small><b>פרק ${gem(a-1)}</b></a>`:'')}${!ctx&&b<150?`<a class="glass spot next" href="#t-${b+1}"><small>הבא ←</small><b>פרק ${gem(b+1)}</b></a>`:''}</nav>${footer()}`;
+      <nav class="pager">${ctx?`<a class="glass spot" href="#m-${esc(ctx.id)}"><small>→ חזרה</small><b>לקריאה המשותפת</b></a>`:(a>1?`<a class="glass spot" href="#t-${a-1}"><small>→ הקודם</small><b>פרק ${gem(a-1)}</b></a>`:'')}${!ctx&&b<150?`<a class="glass spot next" href="#t-${b+1}"><small>הבא ←</small><b>פרק ${gem(b+1)}</b></a>`:''}</nav>${footer()}`;
     bindTools(()=>{const y=scrollY;draw();scrollTo(0,y)});
     $('#fin2')&&($('#fin2').onclick=()=>{const f=$('#fin');if(!f)return;$('#finbox').scrollIntoView({block:'center',behavior:reduce?'auto':'smooth'});f.click()});
     if($('#finbar')&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>{const bar=$('#finbar');if(bar)bar.classList.toggle('away',es[0].isIntersecting)});io.observe($('#finbox'))}
@@ -2310,7 +2312,7 @@ async function viewTehillim(a,b){setNav('tehillim');
         const box=$('#finbox');if(box){box.innerHTML=`<b>${whole?'הספר נשלם. יהי רצון שתתקבל התפילה.':`תודה. פרק ${gem(a)} נרשם.`}</b>
           <p style="margin:0">${whole?'כל 150 הפרקים נקראו. אפשר להתחיל סבב חדש.':`${inR} מתוך 150 פרקים נקראו.`}</p>
           <span class="pbar" style="background:var(--sunk)" aria-hidden="true"><i style="background:var(--ink);inline-size:${((whole?150:inR)/150*100).toFixed(1)}%"></i></span>
-          <div class="row" style="justify-content:center"><button class="btn gold" type="button" id="more">לקבלת פרק נוסף</button><a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(shareText(n,memById(id))+memUrl(id))}">שליחה בוואטסאפ</a><a class="btn ghost" href="#m-${esc(id)}">לדף הקריאה</a></div>
+          <div class="row" style="justify-content:center"><button class="btn gold" type="button" id="more">לקבלת פרק נוסף</button><a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(shareText(n,memById(id))+memUrl(id))}">שליחה בוואטסאפ</a><a class="btn ghost" href="#m-${esc(id)}">לקריאה המשותפת</a></div>
           ${DONATE_URL?'<p class="note" style="margin:0">רוצים לעזור לנו להשאיר את האתר פתוח לכולם? <a href="#tmicha">לתמיכה באתר</a></p>':''}`;
           box.setAttribute('role','status');const mb=$('#more');mb.onclick=async()=>{if(mb.disabled)return;mb.disabled=true;viewMemorialData(id);const r=await giveChapter(id);if(r==null)mb.disabled=false};mb.focus()}
         ctx=null}catch(err){btn.disabled=false;toast('הפרק לא סומן. בדקו את החיבור ונסו שוב')}})};
@@ -2778,7 +2780,7 @@ function yachadBand(){return `<section class="yhero" aria-labelledby="zh"><div c
     <h2 id="zh">מישהו קרוב זקוק לתפילה?</h2>
     <p>פותחים קריאת תהילים על שמו, שולחים קישור בוואטסאפ, וכל מי שנכנס קורא פרק. כל אחד פרק, ביחד ספר שלם.</p>
     <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים לחברים</li><li><b>3</b>קוראים ביחד</li></ol></div>
-    <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">איך זה עובד</a></div>
+    <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">לכל הקריאות הפתוחות</a></div>
     <div class="wall" id="wall"></div></section>`}
 function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;const els=$$('#app .sec, #app .hgrid, #app .tgrid, #app .needs, #app .tiles, #app .askcard, #app .donate, #app .spcs');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});

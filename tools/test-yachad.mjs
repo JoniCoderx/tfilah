@@ -141,6 +141,19 @@ ok("and allowed again later", (await mk()).s === 200);
   clock = keep;
 }
 
+// ---- totals for the home page ----
+{
+  DB = fakeD1(); _reset(); clock = Date.parse("2026-11-23T12:00:00Z");
+  const stats = async () => (await (await onRequest({ request: new Request(SITE + "/api/yachad?stats=1"), env: env() })).json()).data;
+  ok("totals start at zero", JSON.stringify(await stats()) === JSON.stringify({ chapters: 0, readings: 0, books: 0 }), await stats());
+  const a1 = (await mk({ p_name: "א" })).d, a2 = (await mk({ p_name: "ב" })).d;
+  for (let n = 1; n <= 150; n++) await post("finish_chapter", { p_mid: a1, p_n: n, p_by: "" });
+  for (let n = 1; n <= 7; n++) await post("finish_chapter", { p_mid: a2, p_n: n, p_by: "" });
+  const s = await stats();
+  ok("totals count chapters, readings and whole books, private readings included", s.chapters === 157 && s.readings === 2 && s.books === 1, s);
+  ok("totals carry no names", !/[א-ת]/.test(JSON.stringify(s)));
+}
+
 // ---- a reader gets any free chapter, not the next in order ----
 {
   DB = fakeD1(); _reset(); clock = Date.parse("2026-11-23T12:00:00Z");

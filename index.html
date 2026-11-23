@@ -312,7 +312,7 @@ article.text mark{background:var(--mark);color:inherit;border-radius:4px;padding
 .pager a small{display:block;color:var(--muted);font-weight:600;font-size:.8rem}
 .pager a b{font-weight:700}
 .pager a.next{text-align:left;grid-column:2}
-.finish{margin:16px auto 0;max-width:40rem;padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;text-align:start}.finish .fint{display:grid;gap:2px;flex:1 1 14rem;min-inline-size:0}.finish .fint b{font-size:1.12rem;line-height:1.25}.finish .fint small{color:var(--muted);font-size:.92rem;line-height:1.35}.finish .btn{flex:0 0 auto;min-height:52px;white-space:nowrap}@media (max-width:460px){.finish .btn{flex:1 1 100%}}
+.finish{margin:16px auto 0;max-width:40rem;padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;text-align:start}.finish .finfor{flex:1 1 100%;margin:0;padding-block-end:12px;border-block-end:1px solid var(--line);text-align:center;font-weight:800;font-size:1.1rem;line-height:1.35;text-wrap:balance}.finish .fint{display:grid;gap:2px;flex:1 1 14rem;min-inline-size:0}.finish .fint b{font-size:1.12rem;line-height:1.25}.finish .fint small{color:var(--muted);font-size:.92rem;line-height:1.35}.finish .btn{flex:0 0 auto;min-height:52px;white-space:nowrap}@media (max-width:460px){.finish .btn{flex:1 1 100%}}
 .progress{position:fixed;top:env(safe-area-inset-top,0px);inset-inline:0;height:3px;z-index:45;transform-origin:right;transform:scaleX(0);background:var(--accent);pointer-events:none}
 .searchbox input{width:100%;padding:15px 16px 15px 46px;border-radius:16px;border:1px solid var(--line);background:#fff;font-size:1.05rem}
 .searchbox input:focus{outline:none;border-color:var(--accent)}
@@ -776,7 +776,7 @@ background:linear-gradient(135deg,#0B3F6E 0%,#0B6FB3 55%,#1389D6 100%);box-shado
 .ysteps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-weight:700}.ysteps li{display:inline-flex;align-items:center;gap:8px}
 .ysteps b{display:grid;place-items:center;inline-size:28px;block-size:28px;border-radius:50%;background:#fff;color:#0B5C99;font-size:.9rem}
 .yhero .yact{display:grid;gap:10px;justify-items:stretch}.yhero .ybtn{background:#fff;color:#0B3F6E;min-height:60px;padding:14px 30px;font-size:1.1rem;font-weight:800;border-radius:999px;box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
-.yhero .ybtn:hover{background:#EAF5FD;color:#0B3F6E}.yhero .yact a{color:#fff;font-weight:700;text-decoration:none;min-height:50px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;white-space:nowrap}.yhero .yact a:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.yhero .ybtn:hover{background:#EAF5FD;color:#0B3F6E}.ystat{margin:10px 0 0;min-block-size:84px;display:grid;gap:2px;align-content:center;justify-items:center;text-align:center;color:#fff}.ystat:empty{visibility:hidden}.ystat b{font:900 2.3rem/1 var(--f-display);letter-spacing:-.01em;font-variant-numeric:tabular-nums}.ystat span{font-size:.95rem;font-weight:700}.ystat small{font-size:.82rem;font-weight:600;color:#DCEEFB}.yhero .yact a{color:#fff;font-weight:700;text-decoration:none;min-height:50px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;white-space:nowrap}.yhero .yact a:hover{background:rgba(255,255,255,.14);border-color:#fff}
 .yhero .wall{grid-column:1/-1}.yhero .wall:empty{display:none}
 @media (max-width:760px){.yhero{grid-template-columns:1fr;gap:16px}.yhero .yact{justify-items:stretch;gap:10px}.yhero .ybtn{inline-size:100%}.yhero .yact a{justify-content:center}.ysteps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}.ysteps li{flex-direction:column;justify-content:flex-start;gap:6px;text-align:center;padding:10px 4px;border-radius:16px;background:rgba(255,255,255,.12);font-size:.9rem;line-height:1.25;white-space:nowrap}@media (max-width:350px){.ysteps li{font-size:.8rem}}.yhero .wall{margin-top:0;grid-template-columns:1fr}}
 .yhero .wall:not(:empty)::before{content:"קריאות פתוחות עכשיו";grid-column:1/-1;font-weight:700;font-size:.92rem;color:#EAF5FD}
@@ -1024,7 +1024,8 @@ a{color:var(--ink)}
 .dial{border-color:var(--line)}.dial .arrow svg{fill:var(--stamp)}
 .kform input[type=text],.kform input:not([type]),.kform input[type=date],.kform input[type=number]{background:var(--bg);min-height:48px}
 .kback{display:inline-flex;align-items:center;min-height:44px}
-.dd150{margin-top:18px;border:1px solid var(--line);border-radius:22px;background:var(--card)}.dd150 summary{display:flex;align-items:center;gap:12px;min-height:66px;padding:10px 18px;cursor:pointer;list-style:none}.dd150 summary::-webkit-details-marker{display:none}.dd150 summary span{display:grid;gap:2px}.dd150 summary b{font:900 1.15rem/1.2 var(--f-display);color:var(--ink)}.dd150 summary small{color:var(--muted);font-size:.92rem}.dd150 summary::after{content:"";margin-inline-start:auto;flex:none;inline-size:30px;block-size:30px;border-radius:50%;background:var(--sunk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B2E4F' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/16px no-repeat}.dd150[open] summary::after{transform:rotate(180deg)}.dd150 .ddin{padding:0 14px 6px}
+.mtop{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px}.mleft{display:inline-flex;align-items:center;gap:.3em;min-height:32px;padding:2px 14px;border-radius:999px;background:rgba(var(--onc),.08);border:1px solid rgba(var(--onc),.16);color:rgb(var(--onc));font-size:.9rem;font-weight:600;white-space:nowrap}.mleft b{font-weight:900;font-size:1.05em}
+.ddwho+.dd150,.ddwho+p+.dd150{margin-top:10px}.ddwho .whol{margin:0}.ddwho .empty{margin:0}.dd150{margin-top:18px;border:1px solid var(--line);border-radius:22px;background:var(--card)}.dd150 summary{display:flex;align-items:center;gap:12px;min-height:66px;padding:10px 18px;cursor:pointer;list-style:none}.dd150 summary::-webkit-details-marker{display:none}.dd150 summary span{display:grid;gap:2px}.dd150 summary b{font:900 1.15rem/1.2 var(--f-display);color:var(--ink)}.dd150 summary small{color:var(--muted);font-size:.92rem}.dd150 summary::after{content:"";margin-inline-start:auto;flex:none;inline-size:30px;block-size:30px;border-radius:50%;background:var(--sunk) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B2E4F' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/16px no-repeat}.dd150[open] summary::after{transform:rotate(180deg)}.dd150 .ddin{padding:0 14px 6px}
 .finbar{position:fixed;inset-inline:12px;bottom:calc(var(--tabh,0px) + 12px + env(safe-area-inset-bottom,0px));z-index:43;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px -12px rgba(11,46,79,.5);max-inline-size:34rem;margin-inline:auto;transition:opacity .2s ease,transform .2s ease}
 .finbar span{flex:1;min-inline-size:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;font-size:.92rem}.finbar .btn{flex:none;min-height:46px;padding:0 18px;white-space:nowrap}
 .finbar.away{opacity:0;transform:translateY(10px);pointer-events:none}html.hidebars .finbar{bottom:calc(12px + env(safe-area-inset-bottom,0px))}html:has(#finbar:not(.away)) .totop{display:none!important}
@@ -1690,7 +1691,7 @@ function bindDonate(){const a=$('#dgo');if(!a)return;let amt=AMOUNTS[1][0];
   const f=$('#dfree');if(f)f.oninput=()=>{const v=Math.floor(+f.value);if(v>=5&&v<=20000){amt=v;$$('[data-amt]').forEach(x=>x.setAttribute('aria-pressed','false'));upd()}};
   $$('input[name=dfreq]').forEach(r=>r.onchange=upd);upd()}
 
-function drawWall(){const wall=$('#wall');if(!wall)return;const full=(ROUTE==='zikaron');
+function drawWall(){const wall=$('#wall');if(!wall)return;const full=(ROUTE==='zikaron');if(!full)drawYstat();
   if(mems===null&&!DB){wall.innerHTML=`<div class="empty" style="grid-column:1/-1"><b>תהילים יחד ייפתח בקרוב</b>הקריאה המשותפת עוד לא מחוברת. בינתיים אפשר לקרוא תהילים באתר.</div>`;$$('[data-new]').forEach(b=>b.disabled=true);return}
   if(mems===null){wall.innerHTML='<p class="loading" style="grid-column:1/-1">טוען קריאות…</p>';return}
   /* the list from the server may be up to 15 seconds old: this reader's own listed readings are added from their own fresh copies */
@@ -1787,7 +1788,7 @@ let memId=null, chapters={}, selected=new Set(), chUnsub=null, memOne=null, mUns
 /* A reading is called "not found" only when the server says so twice in a row at the start, or three times in a row once it is on screen.
    One failed or empty answer (a dropped connection, a busy server) never replaces a reading with "removed". */
 let memMiss=0, memMissAt=0, memErr=false;
-let bookOpen=false;document.addEventListener('toggle',e=>{if(e.target&&e.target.id==='dd150')bookOpen=e.target.open},true);
+let bookOpen=false,whoOpen=false;document.addEventListener('toggle',e=>{if(e.target&&e.target.id==='dd150')bookOpen=e.target.open;if(e.target&&e.target.id==='ddwho')whoOpen=e.target.open},true);
 function viewMemorial(id){setNav('zikaron');
   if(memId!==id){memId=id;chapters={};selected=new Set();chUnsub?.();chUnsub=null;mUnsub?.();mUnsub=null;memOne=null;memMiss=0;memErr=false}
   app.innerHTML='<p class="loading">פותחים את הקריאה…</p>';
@@ -1838,7 +1839,7 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
   const readTotal=Object.values(chapters).filter(c=>c&&c.s==='done').length,readers=typeof m.readers==='number'&&m.readers>=0?Math.max(m.readers,Object.keys(who).length):Object.keys(who).length+(anon[0]+anon[1]?1:0);
   const names=Object.entries(who).sort((a,b)=>(b[1][0]+b[1][1])-(a[1][0]+a[1][1])||a[0].localeCompare(b[0],'he')),nAnon=anon[0]+anon[1],totalAll=names.reduce((s,[,v])=>s+v[0]+v[1],0)+nAnon;
   app.innerHTML=`
-  <section class="mhead"><span class="eyebrow">תהילים יחד</span>
+  <section class="mhead"><div class="mtop"><span class="eyebrow">תהילים יחד</span><span class="mleft">${done>=150?'הספר נשלם':(150-done===1?'עוד <b>פרק אחד</b> לספר שלם':`עוד <b>${150-done}</b> פרקים לספר שלם`)}</span></div>
       <p class="mfor">${kindOf(m)==='general'?'קוראים יחד תהילים':'קוראים יחד תהילים '+esc(mPre(m))}</p>
       <h1>${esc(fullName(m))}${isN?' <span class="zl">ז״ל</span>':''}</h1>
       ${m.msg?`<p class="msg">${esc(m.msg)}</p>`:`<p class="msg">קוראים יחד את כל ספר התהילים. כל אחד פרק, ביחד ספר שלם.</p>`}${m.by?`<p class="note" style="margin:0">${isN?'הוקדש על ידי':'נפתח על ידי'} ${esc(m.by)}</p>`:''}
@@ -1862,10 +1863,11 @@ function drawMemorial(){const id=ROUTE.slice(2);if(!id||id!==memId)return;
     <p class="mpriv">${m.listed?'הקריאה פתוחה לכולם ומופיעה ברשימת הקריאות באתר.':'קריאה פרטית: רואה אותה רק מי שקיבל את הקישור.'}</p></div>
   <details class="plain yexpl" style="margin-top:14px"><summary>מה זה תהילים יחד?</summary><p>כשמבקשים רחמים על חולה, לעילוי נשמה או על כל צרה, נוהגים שרבים קוראים יחד את כל ספר התהילים: מחלקים את 150 הפרקים, וכל אחד קורא את חלקו. כאן החלוקה נעשית לבד. כל מי שנכנס מקבל פרק שעוד לא נקרא, וכשכל הפרקים נקראו הספר נשלם ומתחילים סבב חדש.</p></details>
 
-  <div class="sec"><h2>מי קורא</h2><span class="note">${names.length+(nAnon?1:0)?`${cnt(totalAll,'פרק אחד','פרקים')} · ${cnt(names.length,'קורא אחד','קוראים')} בשם`:'עדיין ריק'}</span></div>
+  <details class="dd150 ddwho" id="ddwho" ${whoOpen?'open':''}><summary><span><b>מי קורא</b><small>${names.length+(nAnon?1:0)?`${cnt(totalAll,'פרק אחד','פרקים')} · ${names.length?cnt(names.length,'קורא אחד','קוראים')+' בשם':'בלי שמות'}`:'עוד אין קוראים'}</small></span></summary><div class="ddin">
   ${names.length||nAnon?`<ol class="whol card">${names.map(([nm,[c,d]],i)=>`<li><span class="wn">${i+1}</span><b>${esc(nm)}</b><span class="wc">${d?cnt(d,'פרק אחד נקרא','פרקים נקראו'):''}${d&&c?' · ':''}${c?cnt(c,'פרק אחד בקריאה','בקריאה'):''}</span></li>`).join('')}${nAnon?`<li><span class="wn">${names.length+1}</span><b>קוראים בלי שם</b><span class="wc">${anon[1]?cnt(anon[1],'פרק אחד נקרא','פרקים נקראו'):''}${anon[1]&&anon[0]?' · ':''}${anon[0]?cnt(anon[0],'פרק אחד בקריאה','בקריאה'):''}</span></li>`:''}</ol>`
     :'<div class="empty"><b>עוד אין קוראים</b>שלחו את הקישור, וכל מי שיקבל פרק יופיע כאן עם מספר הפרקים שלו.</div>'}
   <p class="note" style="margin:8px 0 0">כדי להופיע בשם, לחצו למעלה על ”רוצים להופיע בשם?”, מתחת לכפתור.</p>
+  <p class="dclose"><button type="button" data-dclose><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>סגירה</button></p></div></details>
 
   ${done>=150?`<p class="note" style="margin:14px 0 0"><b>${isN?'הספר נשלם. תהא נשמתו צרורה בצרור החיים.':'הספר נשלם. יהי רצון שתתקבל התפילה.'}</b></p>`:''}
   <details class="dd150" id="dd150" ${bookOpen?'open':''}><summary><span><b>בחירת פרק מסוים</b><small>${free} פרקים פנויים מתוך 150</small></span></summary><div class="ddin">
@@ -2301,7 +2303,7 @@ async function viewTehillim(a,b){setNav('tehillim');
     app.innerHTML=`${tools(a===b?`תהילים · פרק ${gem(a)}`:`תהילים · ${gem(a)}–${gem(b)}`)}
       <h1 class="rh1">${a===b?`תהילים פרק ${gem(a)}`:`תהילים ${gem(a)}–${gem(b)}`}</h1>${m?'':topActs()}${m?`<p class="forwho"><small>תהילים יחד</small>קוראים את הפרק הזה <b>${esc(mLine(m))}</b></p>`:''}
       <article class="text">${body}</article>
-      ${ctx?`<div class="finish glass" id="finbox"><span class="fint"><b>סיימתם לקרוא?</b><small>סמנו את פרק ${gem(a)} כנקרא, וכולם יראו שהספר מתקדם.</small></span><button class="btn gold" type="button" id="fin">${OK_IC}קראתי את הפרק</button></div>
+      ${ctx?`<div class="finish glass" id="finbox">${m?`<p class="finfor">${esc(mLine(m))}${kindOf(m)==='refuah'?', בתוך שאר חולי ישראל':''}</p>`:''}<span class="fint"><b>סיימתם לקרוא?</b><small>סמנו את פרק ${gem(a)} כנקרא, וכולם יראו שהספר מתקדם.</small></span><button class="btn gold" type="button" id="fin">${OK_IC}קראתי את הפרק</button></div>
         <section class="endcard" aria-label="הזמנת קורא נוסף"><b>הזמינו עוד קורא</b><p>${m?'שלחו את הקריאה '+esc(mLine(m))+' למי שיכול לקרוא פרק.':'שלחו את הקריאה המשותפת למי שיכול לקרוא פרק.'}</p>
         <div class="row"><button class="btn primary" type="button" data-endwa data-url="${esc(memUrl(ctx.id))}" data-txt="${esc(shareText(0,m).replace(/ לקבלת פרק: $/,''))}">${WA_IC}שליחה בוואטסאפ</button><button class="btn ghost" type="button" data-endcp data-url="${esc(memUrl(ctx.id))}">${CP_IC}העתקת קישור</button></div></section>`:endCard()}
       ${ctx?`<div class="finbar" id="finbar"><span>${m?esc(mLine(m)):'תהילים יחד'}</span><button class="btn gold" type="button" id="fin2">${OK_IC}קראתי את הפרק</button></div>`:''}
@@ -2785,8 +2787,17 @@ function yachadBand(){return `<section class="yhero" aria-labelledby="zh"><div c
     <h2 id="zh">מישהו קרוב זקוק לתפילה?</h2>
     <p>פותחים קריאת תהילים על שמו, שולחים קישור בוואטסאפ, וכל מי שנכנס קורא פרק. כל אחד פרק, ביחד ספר שלם.</p>
     <ol class="ysteps"><li><b>1</b>פותחים קריאה</li><li><b>2</b>שולחים לחברים</li><li><b>3</b>קוראים ביחד</li></ol></div>
-    <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">לכל הקריאות הפתוחות</a></div>
+    <div class="yact"><button class="btn ybtn" type="button" data-new>פתחו קריאה משותפת</button><a href="#zikaron">לכל הקריאות הפתוחות</a><p class="ystat" id="ystat" aria-live="off"></p></div>
     <div class="wall" id="wall"></div></section>`}
+/* how much was read here together: the real totals from the server, counted up once when they come into view */
+let yStats=null;
+function drawYstat(){const el=$('#ystat');if(!el||el.dataset.done)return;
+  const paint=s=>{const el=$('#ystat');if(!el||el.dataset.done||!s||!(s.chapters>0))return;el.dataset.done='1';const n=s.chapters,fmt=v=>Math.round(v).toLocaleString('he-IL');
+    el.innerHTML=`<b>${reduce?fmt(n):'0'}</b><span>פרקי תהילים נקראו כאן יחד</span><small>${s.readings===1?'בקריאה אחת':'ב־'+fmt(s.readings)+' קריאות'}${s.books>0?' · '+(s.books===1?'ספר שלם אחד':fmt(s.books)+' ספרים שלמים'):''}</small>`;
+    if(reduce)return;const b=el.querySelector('b'),run=()=>{const t0=performance.now(),D=1100;const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);b.textContent=fmt(n*e);if(k<1&&b.isConnected)requestAnimationFrame(step)};requestAnimationFrame(step)};
+    if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();run()}},{threshold:.4});io.observe(el)}else run()};
+  if(yStats){paint(yStats);return}
+  fetch('/api/yachad?stats=1').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.data){yStats=j.data;paint(yStats)}}).catch(()=>{})}
 function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;const els=$$('#app .sec, #app .hgrid, #app .tgrid, #app .needs, #app .tiles, #app .askcard, #app .donate, #app .spcs');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
   els.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv','pre');io.observe(el)}})}

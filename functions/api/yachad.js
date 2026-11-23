@@ -54,6 +54,11 @@ async function handle({ request, env }) {
 
   if (request.method === "GET") {
     const u = new URL(request.url);
+    // totals for the home page: how much was read here together. Counts only, no names.
+    if (u.searchParams.has("stats")) {
+      const s = await db.prepare(`select coalesce(sum(done), 0) as chapters, count(*) as readings, coalesce(sum(done / 150), 0) as books from memorials where hidden = 0`).first();
+      return json({ data: { chapters: (s && s.chapters) || 0, readings: (s && s.readings) || 0, books: (s && s.books) || 0 } }, 200, { "cache-control": "public, max-age=60" });
+    }
     if (!u.searchParams.has("list")) return json({ error: "bad request" }, 400);
     const r = await db.prepare(
       `select id, name, parent, rel, kind, by_name, msg, candles, done, listed, created_at from memorials

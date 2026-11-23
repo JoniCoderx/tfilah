@@ -116,7 +116,7 @@ CSS_BASE = """
 --reading:1.32rem;--f-disp:"Heebo","Assistant",system-ui,Arial,sans-serif;--f-ui:"Assistant",system-ui,"Segoe UI",Arial,sans-serif;--f-read:"Heebo","Assistant",system-ui,Arial,sans-serif;--top:3.5rem}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--top) + .75rem)}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:1rem;line-height:1.6;overflow-wrap:break-word}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:1rem;line-height:1.6;overflow-wrap:break-word}body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--paper);pointer-events:none}@media print{body::after{display:none}}
 a{color:var(--stamp);text-underline-offset:.2em;text-decoration-thickness:1px}
 a:hover{color:var(--ink)}
 :focus-visible{outline:2px solid var(--stamp);outline-offset:2px;border-radius:.5rem}

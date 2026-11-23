@@ -1200,7 +1200,8 @@ html.hidebars #bar{transform:translateY(-110%);visibility:hidden;transition:tran
 .hact .btn.primary{border-radius:18px;min-height:58px}
 @media (min-width:621px){.hact .btn.primary{min-inline-size:22rem}}
 .logo{color:var(--ink)}
-body[data-r="home"]::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--wash)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);pointer-events:none}@media print{body::after{display:none}}
+body[data-r="home"]::after{background:var(--wash)}
 body[data-r="home"] .top:not(.scrolled){background:transparent}
 body[data-r="home"]::before{background:transparent}
 .btn{border-radius:999px}

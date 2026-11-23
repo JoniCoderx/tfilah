@@ -586,6 +586,36 @@ def pager(prev, nxt):
     b = f'<a class="next" href="{nxt[0]}" rel="next"><small>הבא</small>{esc(nxt[1])}</a>' if nxt else "<span></span>"
     return f'<nav class="pager" aria-label="הקודם והבא">{a}{b}</nav>'
 
+# what the site says about the custom of forty days of Perek Shira (see the sources named in the text itself)
+PEREK40_NOTE = ('<p class="note">יש נוהגים לומר פרק שירה ארבעים יום ברצף. לא מצאנו מקור קדום למספר ארבעים דווקא: ההקדמה לפרק שירה מדברת על מי שעוסק בו ”בכל יום”. '
+                'באתר הידברות השיבו רבנים שאמירת פרק שירה בכל יום היא ”מנהג עתיק יומין” ושאפשר להמשיך גם אחרי ארבעים יום '
+                '(<a href="https://www.hidabroot.org/question/26515" rel="noopener" target="_blank">תשובה</a>), '
+                'שהקבלה נעשית בלי נדר ושגם שבתות וחגים נכללים בארבעים הימים '
+                '(<a href="https://www.hidabroot.org/question/44616" rel="noopener" target="_blank">תשובה</a>), '
+                'ושמותר לומר אותו גם בלילה '
+                '(<a href="https://www.hidabroot.org/question/260017" rel="noopener" target="_blank">תשובה</a>). '
+                'המעקב כאן הוא עזר לזיכרון בלבד, ואין בו הבטחה לתוצאה.</p>')
+
+
+def track40(key, idle):
+    """(html, script) of a forty-day tracker; key names its saved state and its element ids"""
+    g, s, r = key + "g", key + "s", key + "r"
+    html_ = ('<style>.r40g{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;max-width:26rem;margin:.8rem 0}@media(min-width:40rem){.r40g{grid-template-columns:repeat(8,1fr);max-width:32rem}}'
+             '.r40g button{min-height:2.75rem;border:1px solid var(--line);border-radius:.8rem;background:var(--surface,#fff);color:inherit;font:inherit;font-weight:700;cursor:pointer}'
+             '.r40g button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}.r40x{margin-block-start:.3rem}</style>'
+             f'<h2 class="sec" id="maakav">מעקב 40 יום</h2><p class="note" id="{s}" aria-live="polite">{esc(idle)}</p>'
+             f'<div class="r40g" id="{g}" role="group" aria-label="ארבעים הימים">' + "".join(f'<button type="button" data-d="{i}" aria-pressed="false" aria-label="יום {i}">{i}</button>' for i in range(1, 41)) + '</div>'
+             f'<p><button type="button" class="btn2 r40x" id="{r}" hidden>התחלה מחדש</button></p><p class="note">הסימון נשמר רק במכשיר הזה.</p>')
+    js = ("(function(){var g=document.getElementById('" + g + "'),s=document.getElementById('" + s + "'),r=document.getElementById('" + r + "');if(!g)return;var K='" + key + "',d=[];"
+          "try{d=JSON.parse(localStorage.getItem(K)||'[]')||[]}catch(e){}if(!(d instanceof Array))d=[];"
+          "function save(){try{localStorage.setItem(K,JSON.stringify(d))}catch(e){}}"
+          "function paint(){var b=g.querySelectorAll('button'),n=0;for(var i=0;i<b.length;i++){var on=d.indexOf(i+1)>=0;if(on)n++;b[i].setAttribute('aria-pressed',on?'true':'false')}"
+          "s.textContent=n===0?" + json.dumps(idle, ensure_ascii=False) + ":n>=40?'סומנו כל 40 הימים.':'סומנו '+n+' מתוך 40 ימים. נשארו '+(40-n)+'.';r.hidden=n===0}"
+          "g.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(!b)return;var k=+b.getAttribute('data-d'),i=d.indexOf(k);if(i>=0)d.splice(i,1);else d.push(k);save();paint()});"
+          "r.addEventListener('click',function(){if(confirm('למחוק את כל הסימונים ולהתחיל מחדש?')){d=[];save();paint()}});paint()})();")
+    return html_, js
+
+
 def chips(title, links, hid=""):
     """links = [(href, label)]"""
     if not links:
@@ -1292,7 +1322,7 @@ for n, plist in by_nus.items():
         crumbs.append((pname(p), me))
         _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if p["id"] == "sefard-32": _tt = f"פרק שירה (Perek Shira): הנוסח המלא בניקוד | {BRAND}"
+        if p["id"] == "sefard-32": _tt = f"פרק שירה המלא בניקוד, עם מעקב 40 יום (Perek Shira) | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         if len(_tt) > 62 and CTX.get(p["id"]) and p["id"] not in PRIMARY:
             _parts = CTX[p["id"]].split(" · ")
@@ -1313,8 +1343,10 @@ for n, plist in by_nus.items():
                 _open.append(x)
         _desc = fit_desc(head, " ".join(_open[:3]) if _open else " ".join(paras[:3]))
         if p["id"] == "sefard-32":
-            _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. לקריאה בנייד, להדפסה ולשיתוף."
-            meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span>'
+            _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. עם מעקב 40 יום למי שנוהג לומר אותו ברצף."
+            meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span> · <a href="#maakav">מעקב 40 יום</a>'
+            _t40, _t40js = track40("perek40", "מסמנים כל יום שבו קראתם את פרק שירה.")
+            after = _t40 + PEREK40_NOTE + after
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after
             # the request said after Perek Shira, from the book edition (data/books.json), with the place for a personal request marked
             _ask = next(s for s in B["perek"]["secs"] if "בקשה" in s["h"])
@@ -1342,7 +1374,7 @@ for n, plist in by_nus.items():
                              tails=("גם בנוסחים האחרים, להדפסה ולשיתוף.",))
         page(me, _tt, _desc,
              h1_name, crumbs, text=text, meta=meta, before=plain_html + before, h1_ctx=ctx, bar_extra=switch, after=after, app_hash=f"p-{p['id']}",
-             canon_to=PURL[DUP_OF[p["id"]]] if p["id"] in DUP_OF else "",
+             canon_to=PURL[DUP_OF[p["id"]]] if p["id"] in DUP_OF else "", script=_t40js if p["id"] == "sefard-32" else "",
              ld=[{"@type": "CreativeWork", "name": pname(p), "inLanguage": "he", "isAccessibleForFree": True, "url": SITE + me, "isPartOf": siddur_of(n)}])
 
 # ---------- service pages ----------

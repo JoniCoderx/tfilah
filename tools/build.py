@@ -106,6 +106,11 @@ if not re.search(r'supabaseUrl:\s*"[^"]+"', open(os.path.join(os.path.dirname(os
     # the shared-reading service is not connected: its library is not requested at all
     head = head.replace('<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>\n', "")
 s = head + s.strip() + "\n" + SEO_NAV + "\n</body>\n</html>\n"
+# the styles are shipped without their comments and indentation (the source keeps them)
+def _slim_css(m):
+    c = re.sub(r"/\*.*?\*/", "", m.group(2), flags=re.S)
+    return m.group(1) + re.sub(r"\s*\n\s*", "\n", c).strip() + "</style>"
+s = re.sub(r"(<style[^>]*>)(.*?)</style>", _slim_css, s, flags=re.S)
 s = s.replace("קוראים לעילוי נשמת", "קוראים לעילוי נשמת")  # no-op, keeps file stable
 open(out, "w", encoding="utf-8").write(s)
 print("ok", len(s))

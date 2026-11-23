@@ -92,6 +92,16 @@ const FN = {
     return id;
   },
 
+  // Readings opened before the form made the choice visible were private by an unnoticed default.
+  // Their opener may put such a reading on the public list. Readings opened later keep what their opener chose.
+  async list_legacy(db, a) {
+    const id = key(a.p_id);
+    if (!id) return { error: "bad fields" };
+    await db.prepare(`update memorials set listed = 1 where id = ? and hidden = 0 and listed = 0 and created_at < ?`).bind(id, "2026-11-23T07:12:00.000Z").run();
+    const m = await db.prepare(`select listed from memorials where id = ? and hidden = 0`).bind(id).first();
+    return !!(m && m.listed === 1);
+  },
+
   async get_memorial(db, a) {
     const id = key(a.p_id);
     if (!id) return null;

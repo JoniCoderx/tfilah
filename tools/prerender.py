@@ -485,7 +485,7 @@ DESCS = {}
 OG_OWN = (("/perek-shira/", "og-perek"), ("/sefer/perek/", "og-perek"), ("/parasha/", "og-parasha"), ("/kotel/", "og-kotel"), ("/kaddish", "og-kaddish"), ("/chatzi-kaddish", "og-kaddish"),
           ("/nishmat-kol-chai/", "og-nishmat"), ("/mizmor-letoda/", "og-toda"), ("/tefilat-haderech/", "og-derech"), ("/birkat-hamazon/", "og-mazon"),
           ("/kriat-shema-al-hamita/", "og-shema"), ("/modeh-ani/", "og-modeh"), ("/asher-yatzar/", "og-asher"))
-OG_V = "4"  # raise when the pictures are redrawn, so chat apps fetch them again
+OG_V = "5"  # raise when the pictures are redrawn, so chat apps fetch them again
 
 def og_for(path):
     """the share picture that matches what the link opens"""
@@ -554,7 +554,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
         side = (f'<div class="rside">{acts}{before}<div class="sidebar">{bar}</div></div>'
                 # what a printed copy or a saved PDF carries: the site's mark and address at the top, and the page address at the end
                 )
-        printhead = f'<div class="printhead" aria-hidden="true"><div class="ph">{LOGO.replace("tfg", "tfgp")}<span>סידור תפילה ותהילים · tfilah.com</span></div></div>'
+        printhead = f'<div class="printhead" aria-hidden="true"><div class="ph">{LOGO.replace("tfg", "tfgp")}<span>כל התפילות במקום אחד · tfilah.com</span></div></div>'
         reading = (f'<div class="rgrid">{side}<div class="rmain"><article class="text" id="text">{text}</article>{FBL}<script>{JS_TOOLS}{JS_SIDE}{FBL_JS}</script><p class="printfoot" aria-hidden="true">הודפס מתוך תפילה · {url.replace("https://", "")}</p>{after}'
                    + (f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else "") + '</div></div>')
     applink = f'<p class="applink"><a href="/#{app_hash}">{esc(app_label)}</a></p>' if app_hash else ""
@@ -562,7 +562,7 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
 <header class="top"><div class="in"><a class="logo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a>
 {NAV}<button class="dkt" type="button" data-dark aria-pressed="false" aria-label="מצב לילה"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></div></header>
 <main id="main">{printhead if text else ''}<div class="rhead"><nav class="crumbs" aria-label="מיקום באתר">{crumb_html}</nav><h1>{h1_html}</h1>{ctx_under}{f'<p class="meta">{meta}</p>' if meta else ''}{f'<p class="lead">{esc(lead)}</p>' if lead else ''}</div>{reading if text else before + after + applink}</main>
-<footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>סידור תפילה, תהילים וזמני היום</p><a class="ffb" href="https://www.facebook.com/tfilahcom" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>עקבו אחרינו בפייסבוק</a></div>
+<footer class="sitefoot"><div class="in"><div class="fcols"><div class="fbrand"><a class="flogo" href="/" aria-label="תפילה, לדף הבית">{LOGO}</a><b>תפילה · Tfilah.com</b><p>כל התפילות. במקום אחד.</p><a class="ffb" href="https://www.facebook.com/tfilahcom" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>עקבו אחרינו בפייסבוק</a></div>
 <nav aria-label="ניווט באתר"><a href="/siddur/">סידור תפילה</a><a href="/tehillim/">ספר תהילים</a><a href="/kelim/shem/">תהילים לפי שם</a><a href="/ma-mevarchim/">מה מברכים על</a><a href="/zmanei-hayom/">זמני היום</a><a href="/zmanei-shabbat/">זמני שבת</a></nav>
 <nav aria-label="מקורות, דיווח ותמיכה"><a href="/odot/">מקורות ונוסחים</a><a href="/odot/#taut" data-taut>דיווח על טעות בנוסח</a><a href="/odot/#kesher">צור קשר</a><a href="/#tmicha">תמיכה באתר</a></nav></div>
 {'<p class="fsup">תפילה עוזרת לכם? <a href="/#tmicha">אפשר לתמוך בתחזוקת האתר.</a></p>' if DONATE_ON else ''}

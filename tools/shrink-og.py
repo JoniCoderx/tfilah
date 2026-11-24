@@ -14,7 +14,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 for f in sorted(glob.glob(os.path.join(ROOT, "icons", "og*.png"))):
     im = Image.open(f)
     if im.mode != "P":
-        im.convert("RGB").quantize(colors=160, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.FLOYDSTEINBERG).save(f, optimize=True)
+        im.convert("RGB").save(f, optimize=True)          # full colour first: the straight gradient compresses well as it is
+        if os.path.getsize(f) / 1024 >= 280:              # only a picture that is still heavy has its colours reduced
+            im.convert("RGB").quantize(colors=256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.FLOYDSTEINBERG).save(f, optimize=True)
     kb = os.path.getsize(f) / 1024
     assert kb < 300, f"{f}: {kb:.0f} KB is too heavy for a link preview"
     print(f"{os.path.basename(f)} {kb:.0f} KB")

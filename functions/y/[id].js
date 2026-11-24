@@ -20,7 +20,7 @@ export async function onRequest({ params, env, request }) {
 <title>${esc(title)} | תפילה</title><meta name="description" content="${esc(desc)}"><meta name="robots" content="noindex">
 <meta property="og:type" content="website"><meta property="og:site_name" content="תפילה"><meta property="og:locale" content="he_IL">
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${self}">
-<meta property="og:image" content="https://tfilah.com/icons/og-yachad.png?v=4"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://tfilah.com/icons/og-yachad.png?v=5"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
 <style>body{margin:0;font-family:Arial,sans-serif;background:#fff;color:#0B2E4F;display:grid;place-items:center;min-height:100vh;text-align:center;padding:24px}a{display:inline-block;margin-top:16px;background:#0B79C0;color:#fff;text-decoration:none;font-weight:bold;padding:14px 28px;border-radius:999px}h1{font-size:1.5rem;margin:0 0 8px}p{margin:0;line-height:1.6}</style>
 <script>location.replace(${JSON.stringify(app)})</script></head>

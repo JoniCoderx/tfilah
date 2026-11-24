@@ -190,6 +190,12 @@ def food_page(f):
             desc += " " + extra
     if len(title) > 58:
         title = f"מה מברכים על {name}?"
+    # only a true second name of the same food goes in the title; most aliases are related foods, not synonyms
+    aka = {"pilpel": "גמבה", "chamin": "צ׳ולנט"}.get(f["id"])
+    if aka and aka in f.get("alias", []):
+        t2 = title.replace(f"על {name}?", f"על {name} ({aka})?", 1)
+        if len(t2) <= 58:
+            title = t2
     title += " | תפילה"
     src = "מקור: " + " · ".join(f'<a href="{E(data.SOURCES[k][1])}" rel="noopener" target="_blank">{E(data.SOURCES[k][0])}</a>' if data.SOURCES[k][1] else E(data.SOURCES[k][0]) for k in f["src"])
     alias = [x for x in f.get("alias", []) if heb_only(x)]

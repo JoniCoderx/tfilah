@@ -357,6 +357,17 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 ("fbl", """
 .fbl{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;margin:22px auto 0;padding:4px 6px 4px 14px;padding-inline:14px 6px;max-inline-size:34rem;border-radius:999px;background:#F1F8FE;border:1px solid var(--line);color:var(--ink2);font-size:.92rem;line-height:1.4;text-align:center}.fbl[hidden]{display:none}.fbl a{display:inline-flex;align-items:center;gap:6px;min-block-size:44px;color:#1257BD;font-weight:700;text-decoration:underline;text-underline-offset:3px}.fbl button{display:grid;place-items:center;inline-size:44px;block-size:44px;border:0;background:none;color:inherit;cursor:pointer;border-radius:50%;opacity:.75}@media(max-width:560px){.fbl{border-radius:20px;padding-block:10px 2px}.fbl span{flex:1 1 100%}}@media print{.fbl{display:none}}html[data-theme=dark] .fbl a{filter:invert(1) hue-rotate(180deg)}
 """),
+("kala", """
+.kala{position:relative;margin:0 0 1.1rem;padding:1.3rem 1.2rem 1.25rem;border-radius:22px;border:1px solid #F5C6D6;background:linear-gradient(150deg,#FFF6F9 0%,#FFE9F0 60%,#FFDDE8 100%);color:#7A1238;text-align:center;font-family:var(--f-ui);overflow:hidden}
+.kala::before,.kala::after{content:"";position:absolute;inline-size:9rem;block-size:9rem;border-radius:50%;border:1px solid rgba(214,84,128,.22);pointer-events:none}
+.kala::before{inset-block-start:-4.5rem;inset-inline-start:-3.5rem}.kala::after{inset-block-end:-5rem;inset-inline-end:-3rem}
+.kala-ic{color:#C2255C;margin:0 auto .35rem;display:block}
+.kala h2{margin:0 0 .35rem;font:900 1.3rem/1.25 var(--f-disp);color:#7A1238}
+.kala p{margin:0 auto .95rem;max-inline-size:26rem;font-size:.98rem;line-height:1.6;color:#8A2B4C}
+.kala-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:.45rem 1.5rem;border:0;border-radius:999px;background:#B81F55;color:#fff;font:700 1rem var(--f-ui);cursor:pointer;box-shadow:0 .7rem 1.4rem -.7rem rgba(184,31,85,.8)}
+.kala-btn:hover{background:#A31A4B}.kala-btn svg{inline-size:1.2rem;block-size:1.2rem}
+@media (prefers-reduced-motion:no-preference){.kala-btn{transition:transform .15s ease,background .15s ease}.kala-btn:active{transform:scale(.97)}}
+"""),
 ("zshare", """
 .zshare{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 1rem}
 .zshare .zwa{gap:.5rem;background:#0E7A41;box-shadow:0 .5rem 1.2rem -.6rem rgba(14,122,65,.7)}
@@ -677,7 +688,7 @@ by_nus = {n: [p for p in I["prayers"] if p["n"] == n and TEXTS[n].get(p["id"])] 
 # The name alone is the address (tfilah.com/perek-shira/). When the same prayer exists in more than one nusach,
 # the first in the order Edot HaMizrach, Sefard, Ashkenaz has the plain address and the others add their nusach
 # after the name (tfilah.com/tefilat-haderech/ashkenaz/).
-_RESERVED = {"n", "siddur", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "tisha-beav", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
+_RESERVED = {"n", "siddur", "birkat-kala", "segulat-rachel-imenu", "kaddish", "shem", "leiluy-nishmat", "kotel", "tefila", "tehillim", "sefer", "kelim", "odot", "chanukah", "tisha-beav", "zmanei-hayom", "zmanei-shabbat", "tehillim-yachad", "pratiyut", "tnaim", "negishut", "parasha", "ma-mevarchim", "y", "api", "data", "icons",
              "brand", "fonts", "src", "tools", "functions", "mizrach", "sefard", "ashkenaz", "index", "sitemap", "robots", "config", "shim", "sw", "404"}
 TRANSLIT = json.load(open(os.path.join(ROOT, "tools", "translit.json"), encoding="utf-8"))
 _SLUG_CTX = [("שבת", "shabbat"), ("ראש חודש", "rosh-chodesh"), ("רגלים", "regalim"), ("קבלת שבת", "kabbalat"), ("שחרית", "shacharit"), ("מנחה", "mincha"),
@@ -1801,7 +1812,7 @@ r_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
            + "".join(f'<li>תיאור המנהג: <a href="{u}" target="_blank" rel="noopener">{esc(t)}</a>.</li>' for u, t in _R_SRC)
            + '<li>נוסח התפילה: כפי שהוא נפוץ בין הנוהגות בסגולה. המחבר והמקור הראשון אינם ידועים לנו.</li><li>נוסח הפסוקים: ”תנ״ך עם ניקוד” (נחלת הכלל).</li></ul>'
            '<p><small>האתר מתאר את המנהג כפי שהוא מתואר במקורות האלה ואינו פוסק בו. מי שרוצה הדרכה שואל רב.</small></p></div>'
-           + chips("עוד באתר", [("/tikun-rachel/", "תיקון רחל"), ("/mizmor-letoda/", "מזמור לתודה"), ("/nishmat-kol-chai/", "נשמת כל חי"), ("/sefer/haman/", "פרשת המן"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם")]))
+           + chips("עוד באתר", [("/tikun-rachel/", "תיקון רחל"), ("/birkat-kala/", "ברכת כלה"), ("/mizmor-letoda/", "מזמור לתודה"), ("/nishmat-kol-chai/", "נשמת כל חי"), ("/sefer/haman/", "פרשת המן"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם")]))
 page("/segulat-rachel-imenu/", f"סגולת רחל אמנו 40 יום: התפילה ואיך נוהגים | {BRAND}",
      "סגולת רחל אמנו ל-40 יום: איך נוהגים שלב אחרי שלב, התפילה ”קומי רחל אמנו” בניקוד מלא, מעקב ימים שנשמר בטלפון והפסוקים על רחל אמנו.",
      "סגולת רחל אמנו", [("סגולת רחל אמנו", "/segulat-rachel-imenu/")], text=r_text, before=r_before, after=r_after, prio="0.8", script=R40_JS,
@@ -2215,6 +2226,69 @@ page("/tisha-beav/", f"תשעה באב: מגילת איכה, נחם וקריאת
      "תשעה באב", [("תשעה באב", "/tisha-beav/")], after=tb, hub=True, prio="0.7", lead="מגילת איכה, תפילת נחם וקריאת התורה ליום הצום.",
      ld=[{"@type": "CollectionPage", "name": "תשעה באב", "url": SITE + "/tisha-beav/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
+
+# ---------- The bride's prayer for her wedding day. The wording is the Wikisource page (data/kala.json, CC BY-SA 4.0), laid out, never edited. ----------
+KALA = json.load(open(os.path.join(DATA, "kala.json"), encoding="utf-8"))
+
+
+def _kala_ref(m):
+    a, b = m.group(1), m.group(2)
+    lab = b if b and (not b.startswith("שם") or "#" in a) else a
+    assert "#" not in lab, lab
+    book, verse = lab.rsplit(" ", 1)
+    return f' <small>({book}, {verse})</small>'
+
+
+def kala_blocks(raw):
+    """the page's own markup turned into paragraphs: verse references in brackets, line breaks kept, footnotes and instructions taken aside"""
+    body = re.sub(r"\[\[קטגוריה:[^\]]*\]\]", "", raw.split("\n", 1)[1])
+    intro = re.search(r"\{\{הור2\|(.*?)\}\}\n", body, flags=re.S)
+    body = body.replace(intro.group(0), "", 1)
+    notes = []
+
+    def note(m):
+        notes.append(m.group(1))
+        return ""
+    body = re.sub(r"\{\{הערה\|([^{}]*)\}\}", note, body)
+    out = []
+    for p in re.split(r"\n\s*\n", body.strip()):
+        ins = re.match(r"\{\{הור\|([^{}]*)\}\}\{\{ש\}\}\n", p)
+        if ins:
+            p = p[ins.end():]
+        t = html.escape(p.strip(), quote=False)
+        t = re.sub(r"\{\{ממס\|([^{}|]*)(?:\|([^{}]*))?\}\}", _kala_ref, t)
+        t = re.sub(r"\{\{סי\|([^{}]*)\}\}", r"<b>\1</b>", t)
+        t = re.sub(r"\s*\{\{ש\}\}\s*", "<br>", t)
+        assert "{{" not in t and "}}" not in t and "\n" not in t, t[:80]
+        out.append((html.escape(ins.group(1), quote=False) if ins else "", t))
+    assert len(out) == 6 and len(notes) == 2 and out[5][0] and not any(x[0] for x in out[:5]), "the source page changed shape: read it again before publishing"
+    return out, notes
+
+
+_kb, _kn = kala_blocks(KALA["wikitext"])
+_k_note1 = html.escape(_kn[0].split(" (ויקיעורך")[0], quote=False)
+k_text = ('<h2 id="chupa">תפילת הכלה ביום חופתה</h2>' + "".join(f"<p>{t}</p>" for _, t in _kb[:2])
+          + f'<p><small>{_k_note1}</small></p>' + "".join(f"<p>{t}</p>" for _, t in _kb[2:5])
+          + f'<h2 id="tamid">תפילה נוספת</h2><p><small>{_kb[5][0]}</small></p><p>{_kb[5][1]}</p>')
+K_JS = "(function(){var b=document.getElementById('kpr');if(b)b.onclick=function(){print()}})();"
+k_before = ('<aside class="kala" aria-label="הדפסה"><svg class="kala-ic" viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+            '<circle cx="18" cy="29" r="11"/><circle cx="30" cy="29" r="11"/><path d="m21 9 3-4 3 4-3 3z"/></svg>'
+            '<h2>מדפיסים ולוקחים לחופה</h2><p>הנוסח המלא בניקוד, בעמוד נקי בלי תפריטים. אפשר להדפיס אותו או לשמור כקובץ PDF ולשלוח לכלה.</p>'
+            f'<button type="button" class="kala-btn" id="kpr">{IC_PRINT}<span>הדפסה או שמירה כ-PDF</span></button></aside>'
+            '<div class="prose"><p>תפילה שהכלה אומרת ביום שבו היא נכנסת לחופה. היא מבקשת בה על הבית שהיא עומדת להקים: אהבה ושלום, ילדים בריאים וברכה.</p>'
+            '<p>הנוסח לקוח מהספר ”חופת חתנים” של ר׳ רפאל מילדולה. שם התפילה מיוחסת לר׳ יוסף בן סאמון, מחבר הספר ”עדות ביהוסף”.</p></div>')
+k_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
+           f'<li>נוסח התפילה: <a href="{KALA["url"]}" target="_blank" rel="noopener">ויקיטקסט, ”תפילה לכלה ביום חופתה”</a>, מתוך הספר ”חופת חתנים”. '
+           f'הטקסט מובא לפי רישיון <a href="{KALA["license_url"]}" target="_blank" rel="noopener">CC BY-SA 4.0</a>, והנוסח לא שונה. מראי המקום של הפסוקים מוצגים בסוגריים.</li>'
+           '<li>במהדורת ויקיטקסט מצוין שבספר נוסף לפני ”ובכן יהי רצון” משפט ”לשם יחוד” שנאמר לקראת טבילה. הוא אינו מובא שם בגוף התפילה, וכך גם כאן.</li></ul>'
+           '<p><small>האתר מביא את התפילה כפי שהיא במקור ואינו פוסק מתי ואיך לומר אותה. מי שרוצה הדרכה שואלת רב.</small></p></div>'
+           + chips("עוד באתר", [("/segulat-rachel-imenu/", "סגולת רחל אמנו"), ("/nishmat-kol-chai/", "נשמת כל חי"), ("/mizmor-letoda/", "מזמור לתודה"), ("/sefer/shir/", "שיר השירים"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם")]))
+page("/birkat-kala/", f"ברכת כלה: תפילת הכלה ביום חופתה, מנוקד להדפסה | {BRAND}",
+     "ברכת כלה בניקוד מלא: התפילה שהכלה אומרת ביום חופתה, מתוך הספר ”חופת חתנים”. עמוד נקי להדפסה או לשמירה כקובץ PDF, בחינם ובלי הרשמה.",
+     "ברכת כלה", [("ברכת כלה", "/birkat-kala/")], text=k_text, before=k_before, after=k_after, prio="0.8", script=K_JS,
+     lead="תפילת הכלה ביום חופתה, בניקוד מלא. מוכנה להדפסה.",
+     ld=[{"@type": "Article", "headline": "ברכת כלה: תפילת הכלה ביום חופתה", "inLanguage": "he", "url": SITE + "/birkat-kala/", "license": KALA["license_url"]}])
+
 # ---------- About and sources ----------
 TAUT_JS = open(os.path.join(ROOT, "tools", "odot.js"), encoding="utf-8").read().replace("__MAIL__", CONTACT)
 TAUT_JS = re.sub(r"/\*.*?\*/", "", TAUT_JS, flags=re.S)
@@ -2225,7 +2299,7 @@ odot = ('<div class="prose"><h2>מה יש באתר</h2><p>תפילה הוא סי
         'האתר אינו פוסק הלכה ואינו בא במקום רב. לפניות ולהערות אפשר לכתוב לנו בטופס שבתחתית העמוד.</p>'
         '<h2>מקורות הטקסטים</h2><p>נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. '
         'ספר תהילים והמגילות: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא. '
-        'בנוסח אשכנז, ”ויתן לך” מתוך סידור ושננתם, ו”במה מדליקין” מתוך תורת אמת. הפתיחה והתפילות של תיקון הכללי: מהדורת rabenubook.com.</p>'
+        'בנוסח אשכנז, ”ויתן לך” מתוך סידור ושננתם, ו”במה מדליקין” מתוך תורת אמת. הפתיחה והתפילות של תיקון הכללי: מהדורת rabenubook.com. ברכת כלה: ויקיטקסט, מתוך הספר ”חופת חתנים”, ברישיון CC BY-SA 4.0.</p>'
         '<h2>איך שומרים על דיוק הטקסט</h2><p>הטקסטים אינם מוקלדים ביד. הם מועתקים מהמהדורות הפתוחות כמות שהן, ובכל עדכון של האתר נבדק אוטומטית שכל עמוד מציג בדיוק את המילים שבמהדורה, שאין קטע ריק ושאין קישור שבור. '
         'ההסברים שליד התפילות נכתבו עבור האתר ואינם חלק מהנוסח. מי שמוצא טעות יכול לדווח עליה למטה, והיא נבדקת מול המהדורה לפני שמתקנים.</p>'
         '<h2>זמני היום והלוח</h2><p>הלוח העברי, פרשת השבוע והמועדים מחושבים בספריית Hebcal. זמני היום מחושבים לפי מיקום העיר: הנץ ושקיעה אסטרונומיים, סוף זמן קריאת שמע לפי המגן אברהם ולפי הגר״א, '

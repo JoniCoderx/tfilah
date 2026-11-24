@@ -5,7 +5,7 @@ const root = path.join(__dirname, '..');
 const font = f => 'data:font/woff2;base64,' + fs.readFileSync(path.join(root, 'fonts', f)).toString('base64');
 const mark = fs.readFileSync(path.join(root, 'brand', 'mark.svg'), 'utf8');
 const CARDS = {
-  'og': ['סידור תפילה', 'ותהילים'],
+  'og': ['כל התפילות.', 'במקום אחד.'],
   'og-yachad': ['כל אחד פרק.', 'ביחד ספר שלם.'],
   'og-siddur': ['סידור תפילה', 'בשלושה נוסחים'],
   'og-tehillim': ['ספר תהילים', 'מנוקד, לפי פרקים'],

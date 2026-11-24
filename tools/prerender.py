@@ -1255,7 +1255,7 @@ hub += ('<h2 class="sec">סדר קריאה</h2><ul class="cards">'
 page("/tehillim/", f"ספר תהילים אונליין | כל 150 הפרקים בניקוד מלא | {BRAND}",
      "ספר תהילים המלא אונליין בניקוד: כל 150 הפרקים, פרק בכל עמוד, תהילים לפי בקשה (לרפואה, לפרנסה, לעילוי נשמה), תיקון הכללי וחלוקה יומית.",
      "ספר תהילים", [("תהילים", "/tehillim/")], after=hub, app_hash="tehillim", hub=True, prio="0.9",
-     lead="ספר תהילים (תהלים): כל 150 הפרקים בניקוד מלא. בחרו פרק והתחילו לקרוא.",
+     lead="ספר תהילים המלא (תהלים): כל 150 הפרקים בניקוד מלא. בחרו פרק והתחילו לקרוא.",
      ld=[collection("ספר תהילים", "/tehillim/", [f"/tehillim/{c}/" for c in range(1, 151)])])
 
 # =====================================================================
@@ -1477,7 +1477,7 @@ def nusach_lists(n, hlevel, prefix):
     out = ""
     for gi, (lab, ps) in enumerate(GROUPS[n]):
         out += f'<{hlevel} class="grp" id="{prefix}{gi + 1}">{esc(lab)}</{hlevel}><ul class="list">'
-        out += "".join(f'<li><a href="{PURL[p["id"]]}">{esc(p["t"])}</a></li>' for p in ps) + "</ul>"
+        out += "".join(f'<li><a href="{PURL[p["id"]]}">{esc(lead_of(p) if weekday_amida(p) else p["t"])}</a></li>' for p in ps) + "</ul>"
     return out
 
 # ---------- nusach hubs ----------
@@ -1832,9 +1832,9 @@ yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים,
                                  ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])
 page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקריאה משותפת, בחינם | {BRAND}",
-     "תהילים יחד: חלוקת תהילים בין משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
+     "תהילים יחד: קוראים תהילים ביחד, משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
      "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת",
-     lead="קריאת תהילים משותפת: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
+     lead="קוראים תהילים ביחד: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
      ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T}])
 
 # ---------- personal tools: what each one does and how it calculates (read from the app's own code), then into the app ----------

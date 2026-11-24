@@ -183,7 +183,7 @@ CSS_BLOCKS = [
 .nus a{display:inline-flex;align-items:center;min-height:2.75rem;padding-inline:.45rem;font-weight:600}
 .bar{flex-wrap:nowrap}.nus{flex-wrap:nowrap;white-space:nowrap}
 @media (max-width:30rem){.nus span{display:none}}
-@media (max-width:22rem){.bar{flex-wrap:wrap}}
+@media (max-width:30rem){.bar{flex-wrap:wrap}}
 .text{background:var(--surface);border:1px solid var(--line);border-radius:1.75rem;box-shadow:var(--sh);padding:1.4rem clamp(1.1rem,4.5vw,2.25rem) 1.6rem;font-family:var(--f-read);font-size:var(--reading);font-weight:400;line-height:1.9;text-align:start;max-width:38rem;margin-inline:auto}
 .text p{margin:0 0 .65em}.text p:last-child{margin-block-end:0}
 .text sup{color:var(--stamp);font-family:var(--f-ui);font-weight:600;font-size:.58em;margin-inline-end:.4em;vertical-align:.5em;line-height:1}
@@ -414,11 +414,21 @@ if(typeof fs!=='number'||!(fs>=MIN&&fs<=MAX))fs=1.32;
 nik=nik!==false;
 var fm=document.getElementById('fm'),fp=document.getElementById('fp'),nk=document.getElementById('nk');
 function size(){document.documentElement.style.setProperty('--reading',fs+'rem');fm.disabled=fs<=MIN;fp.disabled=fs>=MAX}
-function nikud(){if(orig==null)orig=art.innerHTML;art.innerHTML=nik?orig:orig.replace(NIK,'');nk.setAttribute('aria-pressed',nik?'true':'false')}
+var ish=get('isha',false)===true,ib=document.getElementById('ish'),IM={'מודה':'מודה','גויה':'גוי','שפחה':'עבד'};
+function pl(h){return h.replace(/<[^>]+>/g,'').replace(NIK,'').replace(/\s+/g,' ').trim()}
+function fem(html){return html.replace(/<p>([\s\S]*?)<\/p>/g,function(all,x){var s=pl(x);
+if(/שלא עשני אשה\s*[:׃.]?$/.test(s))return'';
+if(/^\(?\s*נשים (אומרות|מברכות)/.test(s)){var h=x.replace(/^\(\s*([\s\S]*?)\)\s*$/,'$1').replace(/<small>\s*נשים (?:אומרות|מברכות):?\s*<\/small>\s*/,'').replace(/^\s*נשים (?:אומרות|מברכות)\s*[-:]\s*/,'');return pl(h)?'<p>'+h+'</p>':''}
+var m=x.match(/\s*<small>(?:האשה|האישה) אומרת:\s*(?:<b>)?([^<]+?)(?:<\/b>)?\s*<\/small>/);
+if(m){var f=m[1].trim(),ml=IM[f.replace(NIK,'')];if(ml){var re=new RegExp('(^|[\\s>])'+ml.split('').map(function(c){return c+'[\\u0591-\\u05C7]*'}).join('')+'(?=[\\s:׃<.,]|$)'),h2=x.replace(m[0],'');if(re.test(h2))return'<p>'+h2.replace(re,'$1'+f)+'</p>'}}
+return'<p>'+x.replace(/^<b>מוֹדֶה אֲנִי<\/b>/,'<b>מודָה אֲנִי</b>')+'</p>'})}
+function hasF(h){return /האשה אומרת|האישה אומרת|נשים אומרות|נשים מברכות|שלא עשני אשה/.test(pl(h))||/<p><b>מוֹדֶה אֲנִי<\/b>/.test(h)}
+function nikud(){if(orig==null)orig=art.innerHTML;var h=ish&&hasF(orig)?fem(orig):orig;art.innerHTML=nik?h:h.replace(NIK,'');nk.setAttribute('aria-pressed',nik?'true':'false');if(ib)ib.setAttribute('aria-pressed',ish?'true':'false')}
 fm.onclick=function(){fs=Math.max(MIN,+(fs-STEP).toFixed(2));set('fs',fs);size()};
 fp.onclick=function(){fs=Math.min(MAX,+(fs+STEP).toFixed(2));set('fs',fs);size()};
 nk.onclick=function(){nik=!nik;set('nikud',nik);nikud()};
-size();if(!nik)nikud();else nk.setAttribute('aria-pressed','true');
+if(ib&&hasF(art.innerHTML)){ib.hidden=false;ib.onclick=function(){ish=!ish;set('isha',ish);nikud()}}
+size();if(!nik||(ish&&hasF(art.innerHTML)))nikud();else nk.setAttribute('aria-pressed','true');
 bar.hidden=false;
 })()"""
 
@@ -431,7 +441,7 @@ JS_TODAY = ("(function(){try{var d=new Date(),h=+new Intl.DateTimeFormat('en-u-c
 TOOLS_HTML = ('<div class="tools" id="tools" role="group" aria-label="כלי קריאה" hidden>'
               '<button type="button" id="fm" class="az sm" aria-label="א− הקטנת הטקסט">א−</button>'
               '<button type="button" id="fp" class="az" aria-label="א+ הגדלת הטקסט">א+</button>'
-              '<button type="button" id="nk" aria-pressed="true">ניקוד</button></div>')
+              '<button type="button" id="nk" aria-pressed="true">ניקוד</button><button type="button" id="ish" aria-pressed="false" hidden>נוסח לאישה</button></div>')
 
 NAV = ('<nav aria-label="ניווט ראשי"><a href="/siddur/">סידור</a><a href="/tehillim/">תהילים</a>'
        '<a href="/sefer/">ספרייה</a><a href="/tehillim-yachad/">תהילים יחד</a></nav>')

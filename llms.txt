@@ -1,0 +1,30 @@
+# תפילה (Tfilah)
+
+> אתר תפילה בעברית, בחינם ובלי הרשמה: סידור תפילה מנוקד בשלושה נוסחים, ספר תהילים, קריאת תהילים משותפת, ברכות על מאכלים, פרשת השבוע וזמני היום והשבת.
+> A free Hebrew prayer site, no sign-up: a vowelized siddur in three rites (Edot HaMizrach, Sefard, Ashkenaz), the Book of Psalms, shared Psalms reading for groups, blessings over foods, the weekly Torah portion, and daily and Shabbat times.
+
+הטקסטים של התפילות מועתקים ממקורות מזוהים, והמקורות מפורטים בדף אודות. הוראות הלכה מובאות בשם אומרן, עם קישור למקור. האתר אינו פוסק הלכה.
+
+## עמודים ראשיים
+
+- [סידור תפילה](https://tfilah.com/siddur/): שחרית, מנחה, ערבית, ברכת המזון, שבת וחגים, בנוסח עדות המזרח, ספרד ואשכנז
+- [ספר תהילים](https://tfilah.com/tehillim/): כל 150 הפרקים בניקוד מלא, פרק בכל עמוד
+- [תהילים יחד](https://tfilah.com/tehillim-yachad/): קריאת תהילים משותפת. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור, וכל משתתף קורא פרק
+- [מה מברכים על](https://tfilah.com/ma-mevarchim/): הברכה לפני ואחרי על יותר מ-200 מאכלים, עם מקור לכל הוראה
+- [פרשת השבוע](https://tfilah.com/parasha/): כל 54 הפרשות בניקוד מלא, לפי עליות
+- [זמני היום](https://tfilah.com/zmanei-hayom/): הנץ החמה, סוף זמן קריאת שמע, שקיעה וצאת הכוכבים לפי עיר
+- [זמני שבת](https://tfilah.com/zmanei-shabbat/): כניסת שבת ויציאת שבת לפי עיר
+
+## כלים
+
+- [תהילים לפי שם](https://tfilah.com/kelim/shem/): פסוקי פרק קי״ט לפי אותיות השם
+- [תהילים לעילוי נשמה](https://tfilah.com/leiluy-nishmat/): פסוקי פרק קי״ט לפי שם הנפטר ואותיות נשמה
+- [ברכות הדלקת נרות חנוכה](https://tfilah.com/chanukah/): הנוסח המלא בשלושה נוסחים, עם תאריכי הנרות
+- [ברכת כלה](https://tfilah.com/birkat-kala/): תפילת הכלה ביום חופתה, מנוקד להדפסה
+- [סגולת רחל אמנו](https://tfilah.com/segulat-rachel-imenu/)
+- [ספרייה](https://tfilah.com/sefer/): שיר השירים, פרקי אבות, פרק שירה ועוד
+
+## על האתר
+
+- [אודות ומקורות](https://tfilah.com/odot/): מאין הטקסטים וברישיון של מי
+- [מפת האתר](https://tfilah.com/sitemap.xml)

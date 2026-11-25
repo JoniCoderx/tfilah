@@ -66,6 +66,59 @@ public class MainActivity extends Activity {
     final ArrayList<Screen> stack = new ArrayList<>();
     final java.util.HashMap<Screen, View> views = new java.util.HashMap<>();
     List<String[]> prayers, psalms, foods;
+    /** the one place the app talks to the site: the shared reading. Replaced by a stand-in in the tests. */
+    interface Net { String call(String query, String body) throws Exception; }
+    interface Got { void got(Object data); }
+    Net net = (query, body) -> {
+        java.net.HttpURLConnection c = (java.net.HttpURLConnection) new java.net.URL(SITE + "/api/yachad" + query).openConnection();
+        c.setConnectTimeout(10000); c.setReadTimeout(15000);
+        c.setRequestProperty("User-Agent", "TfilahApp/1.1 (Android)");
+        if (body != null) {
+            c.setRequestMethod("POST"); c.setDoOutput(true);
+            c.setRequestProperty("Content-Type", "application/json");
+            // the server takes writes only from the site itself; the app is the site's own, and says so in both headers it reads
+            c.setRequestProperty("Origin", SITE);
+            c.setRequestProperty("Referer", SITE + "/");
+            try (java.io.OutputStream o = c.getOutputStream()) { o.write(body.getBytes("UTF-8")); }
+        }
+        try (InputStream in = c.getResponseCode() >= 400 ? c.getErrorStream() : c.getInputStream()) {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] b = new byte[8192];
+            for (int n; in != null && (n = in.read(b)) > 0; ) out.write(b, 0, n);
+            return out.toString("UTF-8");
+        } finally { c.disconnect(); }
+    };
+    java.util.concurrent.Executor io = java.util.concurrent.Executors.newSingleThreadExecutor();
+    static final Object FAILED = new Object();
+
+    /** asks the server; the answer (its "data", or FAILED) comes back on the main thread */
+    void ask(final String fn, final org.json.JSONObject args, final Got then) {
+        io.execute(() -> {
+            Object out = FAILED;
+            try {
+                String raw = fn == null ? net.call("?list=1", null) : net.call("", new org.json.JSONObject().put("fn", fn).put("args", args).toString());
+                org.json.JSONObject j = new org.json.JSONObject(raw);
+                if (!j.has("error")) out = j.opt("data");
+            } catch (Exception e) { out = FAILED; }
+            final Object res = out;
+            runOnUiThread(() -> { if (!isFinishing()) then.got(res); });
+        });
+    }
+
+    String rid() {
+        String r = prefs.getString("rid", "");
+        if (r.isEmpty()) {
+            StringBuilder b = new StringBuilder();
+            java.util.Random x = new java.security.SecureRandom();
+            for (int i = 0; i < 16; i++) b.append("abcdefghijklmnopqrstuvwxyz0123456789".charAt(x.nextInt(36)));
+            r = b.toString();
+            prefs.edit().putString("rid", r).apply();
+        }
+        return r;
+    }
+
+    void say(String s) { android.widget.Toast.makeText(this, s, android.widget.Toast.LENGTH_LONG).show(); }
+
     GeolocationPermissions.Callback geoCb;
     String geoOrigin;
 
@@ -86,7 +139,23 @@ public class MainActivity extends Activity {
         root.addView(content, new LinearLayout.LayoutParams(-1, 0, 1));
         setContentView(root);
         stack.add(new Home());
+        String id = sharedId(getIntent());
+        if (id != null) { stack.add(new Yachad()); stack.add(new Reading(id, "")); }
         render();
+    }
+
+    /** a shared-reading link (tfilah.com/y/...) that opened the app */
+    static String sharedId(Intent i) {
+        Uri u = i == null ? null : i.getData();
+        if (u == null || !"tfilah.com".equals(u.getHost()) || u.getPathSegments().size() != 2 || !"y".equals(u.getPathSegments().get(0))) return null;
+        String id = u.getPathSegments().get(1);
+        return id.matches("[A-Za-z0-9_-]{1,40}") ? id : null;
+    }
+
+    @Override protected void onNewIntent(Intent i) {
+        super.onNewIntent(i);
+        String id = sharedId(i);
+        if (id != null) open(new Reading(id, ""));
     }
 
     @Override public void onBackPressed() {
@@ -100,6 +169,8 @@ public class MainActivity extends Activity {
         if (v instanceof WebView) ((WebView) v).destroy();
         Screen now = stack.get(stack.size() - 1);
         if (now instanceof Home) views.remove(now);
+        if (now instanceof Reading) { ((Reading) now).data = null; views.remove(now); }
+        if (now instanceof Yachad) { ((Yachad) now).list = null; views.remove(now); }
         render();
     }
 
@@ -172,9 +243,14 @@ public class MainActivity extends Activity {
             for (View w : views.values()) if (w instanceof WebView) ((WebView) w).destroy();
             Screen top = stack.get(stack.size() - 1); View keep = views.get(top); views.clear(); if (keep != null) views.put(top, keep); refresh(); });
         bar.addView(dk, new LinearLayout.LayoutParams(dp(44), dp(44)));
-        content.removeAllViews();
         View v = views.get(s);
-        if (v == null) { v = s.build(); views.put(s, v); }
+        if (v == null) {
+            v = s.build();
+            // an answer that arrived while the screen was being built has already drawn the newer view: keep that one
+            if (stack.get(stack.size() - 1) != s) return;
+            if (views.get(s) != null) v = views.get(s); else views.put(s, v);
+        }
+        content.removeAllViews();
         content.addView(v, new FrameLayout.LayoutParams(-1, -1));
     }
 
@@ -204,7 +280,7 @@ public class MainActivity extends Activity {
 
     static String bare(String s) { return s.replaceAll("[֑-ׇ​-‍]", ""); }
 
-    static String norm(String s) { return bare(s).replaceAll("[\"'׳״`.,?!]", "").replaceAll("\\s+", " ").trim().toLowerCase(); }
+    static String norm(String s) { return bare(s).replaceAll("[\"'׳״`.,?!]", "").replaceAll("\\s+", " ").trim().toLowerCase(java.util.Locale.ROOT); }
 
     // ---------- small view helpers ----------
     int dp(float v) { return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, v, getResources().getDisplayMetrics())); }
@@ -358,7 +434,7 @@ public class MainActivity extends Activity {
                 TextView d = label(tiles[i][2], 14, fUi, cMuted); d.setPadding(0, dp(3), 0, 0); t.addView(d);
                 tap(t, 20, v -> {
                     if (k == 0) open(new Siddur()); else if (k == 1) open(new Tehillim()); else if (k == 2) open(new Brachot());
-                    else if (k == 3) open(new Web("קריאה משותפת", SITE + "/tehillim-yachad/?utm_source=app"));
+                    else if (k == 3) open(new Yachad());
                     else if (k == 4) open(new Web("זמני היום", SITE + "/zmanei-hayom/?utm_source=app"));
                     else open(new Web("זמני שבת", SITE + "/zmanei-shabbat/?utm_source=app"));
                 });
@@ -507,7 +583,7 @@ public class MainActivity extends Activity {
             LinearLayout col = column();
             col.addView(para("מה זה תפילה", "סידור בשלושה נוסחים, ספר תהילים מלא והכלי ”מה מברכים על”. חינם, בלי הרשמה ובלי פרסומות. האפליקציה מופעלת בידי צוות מתנדבים, לזיכוי הרבים. היא אינה פוסקת הלכה ואינה באה במקום רב."));
             col.addView(para("מקורות הטקסטים", "נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. ספר תהילים: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא. הם אינם מוקלדים ביד, והם מובאים כמות שהם.\n\nמה מברכים על: כל תשובה מובאת עם המקור שלה."), gap(10));
-            col.addView(para("פרטיות", "הסידור, התהילים והברכות שמורים במכשיר. מה שסימנתם ושמרתם נשאר רק אצלכם. קריאה משותפת, זמני היום וזמני שבת נפתחים מהאתר וצריכים חיבור לאינטרנט."), gap(10));
+            col.addView(para("פרטיות", "הסידור, התהילים והברכות שמורים במכשיר. מה שסימנתם ושמרתם נשאר רק אצלכם. קריאה משותפת צריכה חיבור לאינטרנט: השם שכותבים לקריאה והפרקים שנקראו נשמרים בשרת של האתר, כדי שכל המשתתפים יראו אותם. זמני היום וזמני שבת נפתחים מהאתר."), gap(10));
             col.addView(row("מדיניות הפרטיות המלאה", "", v -> link(SITE + "/pratiyut/")), gap(10));
             col.addView(row("דיווח על טעות בנוסח", "כל דיווח נבדק מול המהדורה", v -> link(SITE + "/odot/#taut")), gap(8));
             col.addView(row("יצירת קשר", "", v -> link(SITE + "/odot/#kesher")), gap(8));
@@ -545,7 +621,9 @@ public class MainActivity extends Activity {
     // ---------- reading ----------
     class Reader implements Screen {
         final String kind, id, name;
+        String mid; int globalN; boolean sending;
         Reader(String k, String i, String n) { kind = k; id = i; name = n; }
+        Reader shared(String m, int n) { mid = m; globalN = n; return this; }
         public String title() { return name; }
         public View build() {
             prefs.edit().putString("last", kind + "\t" + id + "\t" + name).apply();
@@ -603,7 +681,21 @@ public class MainActivity extends Activity {
                 }
             }
             final int place = prefs.getInt("pos\t" + key, 0);
-            if ("t".equals(kind)) {
+            if (mid != null) {
+                TextView done = pill(sending ? "שולח…" : "✓ סיימתי לקרוא את הפרק", true, v -> {
+                    if (sending) return;
+                    sending = true; refresh();
+                    try {
+                        ask("finish_chapter", new org.json.JSONObject().put("p_mid", mid).put("p_n", globalN).put("p_by", "").put("p_rid", rid()), d -> {
+                            sending = false;
+                            if (d == FAILED || d == null || d == org.json.JSONObject.NULL) { say("לא הצלחנו לעדכן. בדקו את החיבור ונסו שוב."); refresh(); return; }
+                            say("תודה. הפרק נרשם.");
+                            if (stack.get(stack.size() - 1) == Reader.this) onBackPressed();
+                        });
+                    } catch (Exception e) { sending = false; }
+                });
+                col.addView(done, new LinearLayout.LayoutParams(-1, dp(54)) {{ topMargin = dp(16); }});
+            } else if ("t".equals(kind)) {
                 final int n = Integer.parseInt(id);
                 LinearLayout nav = new LinearLayout(MainActivity.this);
                 if (n > 1) nav.addView(pill("› הפרק הקודם", false, v -> swap(n - 1)), new LinearLayout.LayoutParams(0, dp(48), 1));
@@ -712,6 +804,228 @@ public class MainActivity extends Activity {
         }
     }
 
+    // ---------- shared reading ----------
+    static final String[] KIND = {"refuah", "neshama", "zivug", "hatzlacha", "general"};
+    static final String[][] KIND_HE = {{"לרפואה שלמה של", "לרפואה", "שם החולה", "שם האם", ""}, {"לעילוי נשמת", "לעילוי נשמה", "שם הנפטר/ת", "שם האב או האם", " ז״ל"},
+            {"לזיווג הגון עבור", "לזיווג", "שם המבקש/ת", "שם האם", ""}, {"להצלחה ולישועה של", "להצלחה", "שם", "שם האם", ""}, {"תפילת רבים", "בקשה כללית", "על מה מתפללים", "", ""}};
+
+    static int kindIndex(String k) { for (int i = 0; i < KIND.length; i++) if (KIND[i].equals(k)) return i; return 1; }
+
+    /** the line a reading is known by, in the site's own wording */
+    static String lineOf(org.json.JSONObject m) {
+        int k = kindIndex(m.optString("kind"));
+        if (k == 4) return m.optString("name");
+        return KIND_HE[k][0] + " " + m.optString("name") + " " + ("בת".equals(m.optString("rel")) ? "בת" : "בן") + " " + m.optString("parent") + KIND_HE[k][4];
+    }
+
+    void remember(String id, String line) {
+        StringBuilder b = new StringBuilder(id + "\t" + line.replace('\t', ' ').replace('\n', ' '));
+        int kept = 1;
+        for (String row : prefs.getString("mine", "").split("\n")) if (!row.isEmpty() && !row.startsWith(id + "\t") && kept++ < 30) b.append("\n").append(row);
+        prefs.edit().putString("mine", b.toString()).apply();
+    }
+
+    TextView note(String s) { TextView t = label(s, 16, fUi, cInk2); t.setLineSpacing(0, 1.45f); t.setPadding(dp(4), 0, dp(4), 0); return t; }
+
+    class Yachad implements Screen {
+        org.json.JSONArray list; boolean failed, asking;
+        public String title() { return "קריאה משותפת"; }
+        public View build() {
+            LinearLayout col = column();
+            col.addView(heading("מישהו צריך תפילה?"));
+            col.addView(note("פותחים קריאת תהילים על שמו, שולחים קישור למשפחה ולחברים, וכל אחד לוקח פרק. ביחד מסיימים את הספר."));
+            col.addView(pill("פתיחת קריאה חדשה", true, v -> open(new NewReading())), new LinearLayout.LayoutParams(-1, dp(54)) {{ topMargin = dp(14); }});
+            String mine = prefs.getString("mine", "");
+            if (!mine.isEmpty()) {
+                col.addView(heading("הקריאות שלי"), gap(24));
+                for (String row : mine.split("\n")) { final String[] r = row.split("\t", -1); if (r.length == 2) col.addView(row(r[1], "", v -> open(new Reading(r[0], r[1]))), gap(8)); }
+            }
+            col.addView(heading("קריאות פתוחות לכולם"), gap(24));
+            if (list == null && !failed) {
+                col.addView(note("טוען…"));
+                if (!asking) { asking = true; ask(null, null, d -> { asking = false; if (d instanceof org.json.JSONArray) list = (org.json.JSONArray) d; else failed = true; if (stack.get(stack.size() - 1) == Yachad.this) refresh(); else views.remove(Yachad.this); }); }
+            } else if (failed) {
+                col.addView(note("לא הצלחנו לטעון את הרשימה. בדקו את החיבור לאינטרנט."));
+                col.addView(pill("לנסות שוב", false, v -> { failed = false; refresh(); }), new LinearLayout.LayoutParams(-2, dp(46)) {{ topMargin = dp(10); }});
+            } else if (list.length() == 0) col.addView(note("אין כרגע קריאות פתוחות."));
+            else for (int i = 0; i < list.length() && i < 60; i++) {
+                final org.json.JSONObject m = list.optJSONObject(i);
+                if (m == null) continue;
+                final String line = lineOf(m);
+                int done = m.optInt("done");
+                col.addView(row(line, done == 0 ? "עוד לא נקרא פרק. תהיו הראשונים." : done == 1 ? "נקרא פרק אחד" : "נקראו " + done + " פרקים", v -> open(new Reading(m.optString("id"), line))), gap(8));
+            }
+            return scroll(col);
+        }
+    }
+
+    class Reading implements Screen {
+        final String id; String line;
+        org.json.JSONObject data; boolean failed, missing, asking, taking;
+        Reading(String i, String l) { id = i; line = l; }
+        public String title() { return "קריאה משותפת"; }
+        void load() { if (asking) return; asking = true;
+            try { ask("get_memorial", new org.json.JSONObject().put("p_id", id), d -> { asking = false;
+                if (d instanceof org.json.JSONObject) { data = (org.json.JSONObject) d; org.json.JSONObject m = data.optJSONObject("memorial"); if (m != null) line = lineOf(m); }
+                else if (d == FAILED) failed = true; else missing = true;
+                if (stack.get(stack.size() - 1) == Reading.this) refresh(); else views.remove(Reading.this); }); } catch (Exception e) { asking = false; failed = true; } }
+        void go(int n) {
+            remember(id, line);
+            int ch = (n - 1) % 150 + 1;
+            open(new Reader("t", String.valueOf(ch), "תהילים פרק " + psalms.get(ch - 1)[1]).shared(id, n));
+        }
+        public View build() {
+            LinearLayout col = column();
+            if (!line.isEmpty()) col.addView(heading(line));
+            if (missing) { col.addView(note("הקריאה הזו לא נמצאה. ייתכן שהקישור שגוי.")); return scroll(col); }
+            if (failed) {
+                col.addView(note("לא הצלחנו לטעון את הקריאה. בדקו את החיבור לאינטרנט."));
+                col.addView(pill("לנסות שוב", false, v -> { failed = false; refresh(); }), new LinearLayout.LayoutParams(-2, dp(46)) {{ topMargin = dp(10); }});
+                return scroll(col);
+            }
+            if (data == null) { col.addView(note("טוען…")); load(); return scroll(col); }
+            org.json.JSONObject m = data.optJSONObject("memorial");
+            org.json.JSONArray ch = data.optJSONArray("chapters");
+            if (m == null) m = new org.json.JSONObject();
+            if (ch == null) ch = new org.json.JSONArray();
+            // the round being read now: the first one that does not yet have all 150 chapters done (the server's own rule)
+            java.util.HashMap<Integer, Integer> perRound = new java.util.HashMap<>();
+            for (int i = 0; i < ch.length(); i++) { org.json.JSONObject c = ch.optJSONObject(i); if (c != null && "done".equals(c.optString("s"))) { int r = (c.optInt("n") - 1) / 150 + 1; Integer k = perRound.get(r); perRound.put(r, k == null ? 1 : k + 1); } }
+            int round = 1;
+            while (round <= 100 && perRound.get(round) != null && perRound.get(round) >= 150) round++;
+            final int base = (round - 1) * 150;
+            final int[] state = new int[151];   // 0 free, 1 taken by someone in the last day, 2 done
+            String dayAgo = stamp(System.currentTimeMillis() - 24 * 3600 * 1000L);
+            int done = 0;
+            for (int i = 0; i < ch.length(); i++) {
+                org.json.JSONObject c = ch.optJSONObject(i);
+                if (c == null) continue;
+                int n = c.optInt("n") - base;
+                if (n < 1 || n > 150) continue;
+                if ("done".equals(c.optString("s"))) { state[n] = 2; done++; }
+                else if (c.optString("at").compareTo(dayAgo) >= 0) state[n] = 1;
+            }
+            String msg = m.optString("msg");
+            if (!msg.isEmpty()) col.addView(note(msg));
+            LinearLayout card = new LinearLayout(MainActivity.this);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(dp(18), dp(16), dp(18), dp(18));
+            card.setBackground(shape(cSurface, cLine, 20));
+            card.addView(label((round > 1 ? "סבב " + round + " · " : "") + "נקראו " + done + " מתוך 150 פרקים", 19, fDisp, cInk));
+            LinearLayout track = new LinearLayout(MainActivity.this);
+            track.setBackground(shape(cSoft, 0, 999));
+            track.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+            View fill = new View(MainActivity.this);
+            fill.setBackground(shape(cPrimary, 0, 999));
+            if (done > 0) track.addView(fill, new LinearLayout.LayoutParams(0, -1, done));
+            if (done < 150) track.addView(new View(MainActivity.this), new LinearLayout.LayoutParams(0, -1, 150 - done));
+            card.addView(track, new LinearLayout.LayoutParams(-1, dp(12)) {{ topMargin = dp(10); }});
+            int readers = m.optInt("readers");
+            if (readers > 0) { TextView r = label(readers == 1 ? "קורא אחד השתתף עד עכשיו" : readers + " קוראים השתתפו עד עכשיו", 15, fUi, cMuted); r.setPadding(0, dp(8), 0, 0); card.addView(r); }
+            col.addView(card, gap(12));
+            col.addView(pill(taking ? "בוחר פרק…" : "קחו פרק לקריאה", true, v -> {
+                if (taking) return;
+                taking = true; refresh();
+                try { ask("take_chapter", new org.json.JSONObject().put("p_mid", id).put("p_by", "").put("p_rid", rid()), d -> { taking = false;
+                    if (d instanceof Number) go(((Number) d).intValue());
+                    else { say(d == FAILED ? "לא הצלחנו. בדקו את החיבור ונסו שוב." : "כל הפרקים כבר נלקחו. נסו שוב מאוחר יותר."); refresh(); } }); } catch (Exception e) { taking = false; }
+            }), new LinearLayout.LayoutParams(-1, dp(56)) {{ topMargin = dp(14); }});
+            final String shareLine = line;
+            col.addView(pill("שליחת הקישור למשפחה ולחברים", false, v -> {
+                Intent i = new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, shareLine + "\nקוראים יחד תהילים. כל אחד לוקח פרק:\n" + SITE + "/y/" + id);
+                try { startActivity(Intent.createChooser(i, "שיתוף")); } catch (Exception e) { /* nothing to share with */ }
+            }), new LinearLayout.LayoutParams(-1, dp(50)) {{ topMargin = dp(8); }});
+            col.addView(heading("או בוחרים פרק"), gap(24));
+            col.addView(note("מלא: נקרא. מסומן: מישהו קורא עכשיו. ריק: פנוי."));
+            LinearLayout rowL = null;
+            for (int n = 1; n <= 150; n++) {
+                if ((n - 1) % 6 == 0) { rowL = new LinearLayout(MainActivity.this); col.addView(rowL, gap(6)); }
+                final int g = base + n, st = state[n];
+                TextView b = label(psalms.get(n - 1)[1], 16, fBold, st == 2 ? 0xFFFFFFFF : cInk);
+                b.setGravity(Gravity.CENTER);
+                b.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                b.setBackground(shape(st == 2 ? cPrimary : st == 1 ? cSoft : cSurface, st == 2 ? 0 : st == 1 ? cPrimary : cLine, 12));
+                b.setContentDescription("פרק " + psalms.get(n - 1)[1] + (st == 2 ? ", נקרא" : st == 1 ? ", מישהו קורא" : ", פנוי"));
+                if (st == 0) tap(b, 12, v -> {
+                    try { ask("claim_chapter", new org.json.JSONObject().put("p_mid", id).put("p_n", g).put("p_by", "").put("p_rid", rid()), d -> {
+                        if (Boolean.TRUE.equals(d)) go(g); else { say(d == FAILED ? "לא הצלחנו. בדקו את החיבור ונסו שוב." : "מישהו כבר לקח את הפרק הזה. בחרו אחר."); data = null; refresh(); } }); } catch (Exception e) { /* nothing */ }
+                });
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(46), 1);
+                if ((n - 1) % 6 > 0) lp.setMarginStart(dp(6));
+                rowL.addView(b, lp);
+            }
+            return scroll(col);
+        }
+    }
+
+    static String stamp(long ms) {
+        java.text.SimpleDateFormat f = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", java.util.Locale.US);
+        f.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+        return f.format(new java.util.Date(ms));
+    }
+
+    class NewReading implements Screen {
+        int kind = 0; boolean bat, listed, sending;
+        String name = "", parent = "";
+        public String title() { return "קריאה חדשה"; }
+        public View build() {
+            LinearLayout col = column();
+            col.addView(heading("על מה קוראים?"));
+            LinearLayout kinds = null;
+            for (int i = 0; i < KIND.length; i++) {
+                if (i % 3 == 0) { kinds = new LinearLayout(MainActivity.this); col.addView(kinds, gap(8)); }
+                final int k = i;
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(46), 1);
+                if (i % 3 > 0) lp.setMarginStart(dp(8));
+                kinds.addView(pill(KIND_HE[i][1], i == kind, v -> { kind = k; refresh(); }), lp);
+            }
+            final EditText n = field(KIND_HE[kind][2]);
+            n.setText(name);
+            n.addTextChangedListener(watch(s -> name = s));
+            col.addView(n, new LinearLayout.LayoutParams(-1, dp(56)) {{ topMargin = dp(18); }});
+            if (kind != 4) {
+                LinearLayout rel = new LinearLayout(MainActivity.this);
+                rel.addView(pill("בן", !bat, v -> { bat = false; refresh(); }), new LinearLayout.LayoutParams(0, dp(46), 1));
+                rel.addView(pill("בת", bat, v -> { bat = true; refresh(); }), new LinearLayout.LayoutParams(0, dp(46), 1) {{ setMarginStart(dp(8)); }});
+                col.addView(rel, gap(10));
+                final EditText pr = field(KIND_HE[kind][3]);
+                pr.setText(parent);
+                pr.addTextChangedListener(watch(s -> parent = s));
+                col.addView(pr, new LinearLayout.LayoutParams(-1, dp(56)) {{ topMargin = dp(10); }});
+            }
+            col.addView(pill(listed ? "✓ מוצגת ברשימה הפתוחה לכולם" : "להציג גם ברשימה הפתוחה לכולם", listed, v -> { listed = !listed; refresh(); }), new LinearLayout.LayoutParams(-1, dp(48)) {{ topMargin = dp(16); }});
+            col.addView(note(listed ? "כל מי שנכנס יראה את הקריאה ויוכל להצטרף." : "כרגע רק מי שיקבל מכם את הקישור יראה את הקריאה."), gap(8));
+            col.addView(pill(sending ? "פותח…" : "פתיחת הקריאה", true, v -> {
+                if (sending) return;
+                final String nm = name.trim(), pa = parent.trim();
+                if (nm.isEmpty() || nm.length() > 60 || (kind != 4 && (pa.isEmpty() || pa.length() > 40))) { say(kind == 4 ? "כתבו על מה מתפללים." : "כתבו את השם ואת שם ההורה."); return; }
+                sending = true; refresh();
+                try {
+                    final org.json.JSONObject a = new org.json.JSONObject().put("p_name", nm).put("p_parent", kind == 4 ? "" : pa).put("p_rel", bat ? "בת" : "בן").put("p_kind", KIND[kind]).put("p_by", "").put("p_msg", "").put("p_listed", listed);
+                    ask("create_memorial", a, d -> {
+                        sending = false;
+                        if (!(d instanceof String)) { say("לא הצלחנו לפתוח את הקריאה. בדקו את החיבור ונסו שוב."); refresh(); return; }
+                        String line = "";
+                        try { line = lineOf(new org.json.JSONObject().put("name", nm).put("parent", pa).put("rel", bat ? "בת" : "בן").put("kind", KIND[kind])); } catch (Exception e) { /* keeps the empty line */ }
+                        remember((String) d, line);
+                        views.remove(stack.remove(stack.size() - 1));
+                        open(new Reading((String) d, line));
+                    });
+                } catch (Exception e) { sending = false; }
+            }), new LinearLayout.LayoutParams(-1, dp(56)) {{ topMargin = dp(18); }});
+            return scroll(col);
+        }
+    }
+
+    interface Typed { void typed(String s); }
+    TextWatcher watch(final Typed t) {
+        return new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int a, int b, int c) { }
+            public void onTextChanged(CharSequence s, int a, int b, int c) { }
+            public void afterTextChanged(Editable e) { t.typed(e.toString()); }
+        };
+    }
+
     // ---------- the two tools that need the network ----------
     class Web implements Screen {
         final String name, url;
@@ -723,7 +1037,7 @@ public class MainActivity extends Activity {
             w.getSettings().setJavaScriptEnabled(true);
             w.getSettings().setDomStorageEnabled(true);
             w.getSettings().setGeolocationEnabled(true);
-            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/1.0");
+            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/1.1");
             w.setWebViewClient(new WebViewClient() {
                 @Override public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest r) {
                     Uri u = r.getUrl();

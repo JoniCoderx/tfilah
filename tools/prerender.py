@@ -316,6 +316,36 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .steps b{font-family:var(--f-disp);font-weight:900;font-size:1.3rem;line-height:1.3}
 .steps span{color:var(--ink2);grid-column:2}
 """),
+("yhero", """
+.yhero{margin:1rem 0 1.4rem;padding:1.7rem 1.4rem 1.5rem;background:var(--grad);color:#fff;border-radius:1.75rem;box-shadow:var(--sh);text-align:center}
+.yhero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.9rem,7.5vw,2.7rem);line-height:1.15}
+.yhero .btn{background:#fff;color:#0B3F6E;box-shadow:0 10px 24px -12px rgba(2,30,66,.6);min-height:56px;padding-inline:1.8rem;font-size:1.1rem}
+.yhero .btn:hover{filter:none;color:#0A6CA8}
+.yhero small{display:block;margin-block-start:.9rem;color:#E4F3FE;font-size:.95rem}
+.ynum{display:flex;justify-content:center;gap:.6rem;margin:1.2rem 0 0;padding:0;list-style:none}
+.ynum li{flex:1;max-inline-size:11rem;background:rgba(255,255,255,.16);border-radius:1rem;padding:.6rem .4rem;font-size:.88rem;color:#E4F3FE;line-height:1.3}
+.ynum b{display:block;font-family:var(--f-disp);font-weight:900;font-size:1.6rem;color:#fff;font-variant-numeric:tabular-nums}
+"""),
+("st3", """
+.st3{list-style:none;margin:.8rem 0 1.4rem;padding:.3rem 1rem;counter-reset:st;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.st3 li{counter-increment:st;display:grid;grid-template-columns:auto 1fr;gap:0 .8rem;align-items:center;padding:.75rem 0}
+.st3 li+li{border-block-start:1px solid var(--line)}
+.st3 li::before{content:counter(st);grid-row:span 2;display:grid;place-items:center;inline-size:2.1rem;block-size:2.1rem;border-radius:50%;background:var(--grad);color:#fff;font-weight:700;font-size:1.05rem}
+.st3 b{font-family:var(--f-disp);font-weight:900;font-size:1.12rem;line-height:1.25}
+.st3 span{color:var(--ink2);font-size:.93rem;line-height:1.35}
+"""),
+("yrec", """
+.yrec{list-style:none;margin:.8rem 0 .6rem;padding:0;display:grid;gap:.6rem}
+@media (min-width:640px){.yrec{grid-template-columns:1fr 1fr}}
+.yrec a{display:block;padding:.9rem 1.1rem 1rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);color:var(--ink);text-decoration:none}
+.yrec a:hover{border-color:var(--stamp)}
+.yrec small{display:block;color:var(--muted);font-size:.85rem;font-weight:600}
+.yrec b{display:block;font-family:var(--f-disp);font-weight:700;font-size:1.08rem;line-height:1.3;margin:.1rem 0 .6rem;overflow-wrap:anywhere}
+.yrec i{display:block;block-size:.45rem;border-radius:99px;background:var(--sunk);overflow:hidden}
+.yrec i u{display:block;block-size:100%;border-radius:99px;background:var(--grad)}
+.yrec em{display:flex;justify-content:space-between;gap:.5rem;margin-block-start:.45rem;font-style:normal;font-size:.88rem;color:var(--ink2)}
+.yrec em span{color:var(--stamp);font-weight:700}
+"""),
 ("hero", """
 .hero{margin:1rem 0 1.5rem;padding:1.6rem 1.5rem 1.7rem;background:linear-gradient(160deg,#FFFFFF,#F3FAFF 55%,#E4F3FE);border:1px solid var(--line);color:var(--ink);border-radius:1.75rem;box-shadow:var(--sh)}
 .hero p{margin:0 0 1.1rem;font-family:var(--f-disp);font-weight:900;font-size:clamp(1.7rem,6vw,2.4rem);line-height:1.2}
@@ -1832,13 +1862,27 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # Explainers that lead into the app
 # =====================================================================
 SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
-yachad = ('<div class="hero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
-          + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a><small>ממלאים שם, מקבלים קישור, ושולחים בוואטסאפ.</small></div>' if SB_ON else
+Y_JS = ("(function(){var K={neshama:['לעילוי נשמה','לעילוי נשמת ',' ז״ל'],refuah:['לרפואה שלמה','','']};"
+        "function get(u,f){fetch(u).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.data)f(j.data)}).catch(function(){})}"
+        "function el(t,x){var e=document.createElement(t);if(x!=null)e.textContent=x;return e}"
+        "get('/api/yachad?stats=1',function(d){var b=document.getElementById('ynum');if(!b||!(d.chapters>0))return;"
+        "b.querySelectorAll('[data-k]').forEach(function(x){x.textContent=Number(d[x.getAttribute('data-k')]||0).toLocaleString('he-IL')});b.hidden=false});"
+        "get('/api/yachad?list=1',function(a){var s=document.getElementById('yrec');if(!s||!a.length)return;var ul=s.querySelector('ul');"
+        "a.slice(0,6).forEach(function(m){if(!m||!/^[a-z0-9]+$/.test(m.id||''))return;var k=K[m.kind],done=+m.done||0,inr=done%150,rnd=Math.floor(done/150),"
+        "nm=String(m.name||'').trim()+(k&&m.parent?' '+(m.rel||'בן')+' '+String(m.parent).trim():'');if(!nm)return;"
+        "var li=el('li'),a2=el('a');a2.href='/y/'+m.id;a2.appendChild(el('small',k?k[0]:'קריאה משותפת'));a2.appendChild(el('b',k?k[1]+nm+k[2]:nm));"
+        "var bar=el('i'),u=el('u');u.style.inlineSize=Math.max(2,Math.round(inr/150*100))+'%';bar.appendChild(u);a2.appendChild(bar);"
+        "var em=el('em');em.appendChild(document.createTextNode((rnd?'סבב '+(rnd+1)+' · ':'')+inr+' מתוך 150 פרקים'));em.appendChild(el('span','להצטרפות ‹'));a2.appendChild(em);"
+        "li.appendChild(a2);ul.appendChild(li)});if(ul.children.length)s.hidden=false})})();")
+yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
+          + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a><small>בחינם ובלי הרשמה. דקה אחת וזה פתוח.</small>'
+             '<ul class="ynum" id="ynum" hidden><li><b data-k="chapters">0</b>פרקים נקראו</li><li><b data-k="readings">0</b>קריאות נפתחו</li></ul></div>' if SB_ON else
              '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')
-          + '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="steps">'
-          '<li><b>פותחים קריאה</b><span>לרפואה, לעילוי נשמה או לכל בקשה אחרת, על שם האדם שקוראים בשבילו.</span></li>'
-          '<li><b>שולחים קישור</b><span>משתפים את הקישור לקריאה בוואטסאפ, עם המשפחה, החברים או הקהילה.</span></li>'
-          '<li><b>כל אחד קורא פרק</b><span>כל מי שנכנס מקבל פרק תהילים, קורא ומסמן שקרא.</span></li></ol>'
+          + '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="st3">'
+          '<li><b>פותחים קריאה</b><span>לרפואה, לעילוי נשמה או לכל בקשה.</span></li>'
+          '<li><b>שולחים קישור</b><span>בוואטסאפ, למשפחה ולחברים.</span></li>'
+          '<li><b>כל אחד קורא פרק</b><span>ומסמן שקרא, עד שהספר נשלם.</span></li></ol>'
+          + ('<section id="yrec" hidden><h2 class="sec">נפתחו לאחרונה</h2><ul class="yrec"></ul><p class="note">קריאות שפותחיהן בחרו להציג לכולם. נכנסים, לוקחים פרק ומצטרפים.</p></section>' if SB_ON else '') +
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>בתהילים משותף 150 פרקי הספר מתחלקים בין כל מי שמצטרף לקריאה: כל אחד מקבל פרק, קורא אותו ומסמן שקרא. '
           'כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש.</p>'
@@ -1852,7 +1896,7 @@ yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים,
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])
 page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקריאה משותפת, בחינם | {BRAND}",
      "תהילים יחד: קוראים תהילים ביחד, משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
-     "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת",
+     "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת", script=Y_JS if SB_ON else "",
      lead="קוראים תהילים ביחד: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
      ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T}])
 

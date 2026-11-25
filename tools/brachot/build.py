@@ -173,7 +173,7 @@ def food_page(f):
                    '<li><span class="who">' + E(o["who"]) + '</span><span class="rul">'
                    + (f'לפני: <span class="k-{o["before"]}">{BN[o["before"]]}</span>' if o.get("before") else "") + (" · " if o.get("before") and o.get("after") else "")
                    + (f'אחרי: {AT[o["after"]][0]}' if o.get("after") else "") + "</span>" + (f'<span class="mm-note">{E(o["text"])}</span>' if o.get("text") else "") + "</li>" for o in ops) + "</ul>")
-        desc = cut(lead + " " + " ".join(f"{o['who']}: {BN[o['before']] if o.get('before') else ''}{' ' + o['text'] if o.get('text') else ''}".strip() for o in ops), 156)
+        desc = cut(lead + " " + " ".join(f"{o['who']}: {BN[o['before']] if o.get('before') else ''}{' ' + o['text'] if o.get('text') else ''}".replace(":  ", ": ").strip() for o in ops), 156)
     else:
         b, a = BT[f["before"]], AT[f.get("after") or "review"]
         tail_s = {"none": "אין אחריו ברכה אחרונה.", "review": "הברכה האחרונה מחכה לבדיקה."}.get(f.get("after") or "review", f"הברכה האחרונה: {a[0]}.")

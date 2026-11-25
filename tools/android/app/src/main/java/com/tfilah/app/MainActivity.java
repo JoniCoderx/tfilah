@@ -141,8 +141,21 @@ public class MainActivity extends Activity {
         stack.add(new Home());
         String id = sharedId(getIntent());
         if (id != null) { stack.add(new Yachad()); stack.add(new Reading(id, "")); }
+        go(getIntent(), false);
         render();
+        Remind.schedule(this);
     }
+
+    /** a reminder that was tapped */
+    void go(Intent i, boolean draw) {
+        String g = i == null ? null : i.getStringExtra("go");
+        if (g == null) return;
+        Screen s = "shabbat".equals(g) ? new Web("זמני שבת", SITE + "/zmanei-shabbat/?utm_source=app") : "yomi".equals(g) ? new Tehillim() : null;
+        if (s == null) return;
+        if (draw) open(s); else stack.add(s);
+    }
+
+    void buzz(View v) { v.performHapticFeedback(android.os.Build.VERSION.SDK_INT >= 30 ? android.view.HapticFeedbackConstants.CONFIRM : android.view.HapticFeedbackConstants.VIRTUAL_KEY); }
 
     /** a shared-reading link (tfilah.com/y/...) that opened the app */
     static String sharedId(Intent i) {
@@ -156,6 +169,7 @@ public class MainActivity extends Activity {
         super.onNewIntent(i);
         String id = sharedId(i);
         if (id != null) open(new Reading(id, ""));
+        go(i, true);
     }
 
     @Override public void onBackPressed() {
@@ -198,6 +212,7 @@ public class MainActivity extends Activity {
     @Override public void onRequestPermissionsResult(int code, String[] perms, int[] res) {
         boolean ok = false;
         for (int r : res) ok |= r == PackageManager.PERMISSION_GRANTED;
+        if (code == 2) { if (stack.get(stack.size() - 1) instanceof Reminders) refresh(); return; }
         if (geoCb != null) geoCb.invoke(geoOrigin, ok, false);
         geoCb = null;
     }
@@ -448,7 +463,8 @@ public class MainActivity extends Activity {
                 for (final String[] r : prayers) if (favs.contains("p\t" + r[0])) col.addView(row(r[4], NUS_HE[nusIndex(r[1])], v -> open(new Reader("p", r[0], r[4]))), gap(8));
                 for (final String[] r : psalms) if (favs.contains("t\t" + r[0])) col.addView(row("תהילים פרק " + r[1], r[2], v -> open(new Reader("t", r[0], "תהילים פרק " + r[1]))), gap(8));
             }
-            col.addView(row("אודות ומקורות", "מאיפה הטקסטים, פרטיות ויצירת קשר", v -> open(new About())), gap(24));
+            col.addView(row("תזכורות", "תהילים יומי, ויום שישי לפני שבת", v -> open(new Reminders())), gap(24));
+            col.addView(row("אודות ומקורות", "מאיפה הטקסטים, פרטיות ויצירת קשר", v -> open(new About())), gap(8));
             TextView foot = label("tfilah.com · חינם, בלי הרשמה ובלי פרסומות", 14, fUi, cMuted);
             foot.setGravity(Gravity.CENTER);
             foot.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -583,7 +599,7 @@ public class MainActivity extends Activity {
             LinearLayout col = column();
             col.addView(para("מה זה תפילה", "סידור בשלושה נוסחים, ספר תהילים מלא והכלי ”מה מברכים על”. חינם, בלי הרשמה ובלי פרסומות. האפליקציה מופעלת בידי צוות מתנדבים, לזיכוי הרבים. היא אינה פוסקת הלכה ואינה באה במקום רב."));
             col.addView(para("מקורות הטקסטים", "נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. ספר תהילים: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא. הם אינם מוקלדים ביד, והם מובאים כמות שהם.\n\nמה מברכים על: כל תשובה מובאת עם המקור שלה."), gap(10));
-            col.addView(para("פרטיות", "הסידור, התהילים והברכות שמורים במכשיר. מה שסימנתם ושמרתם נשאר רק אצלכם. קריאה משותפת צריכה חיבור לאינטרנט: השם שכותבים לקריאה והפרקים שנקראו נשמרים בשרת של האתר, כדי שכל המשתתפים יראו אותם. זמני היום וזמני שבת נפתחים מהאתר."), gap(10));
+            col.addView(para("פרטיות", "הסידור, התהילים והברכות שמורים במכשיר. מה שסימנתם ושמרתם, וגם התזכורות, נשארים רק אצלכם. קריאה משותפת צריכה חיבור לאינטרנט: השם שכותבים לקריאה והפרקים שנקראו נשמרים בשרת של האתר, כדי שכל המשתתפים יראו אותם. זמני היום וזמני שבת נפתחים מהאתר."), gap(10));
             col.addView(row("מדיניות הפרטיות המלאה", "", v -> link(SITE + "/pratiyut/")), gap(10));
             col.addView(row("דיווח על טעות בנוסח", "כל דיווח נבדק מול המהדורה", v -> link(SITE + "/odot/#taut")), gap(8));
             col.addView(row("יצירת קשר", "", v -> link(SITE + "/odot/#kesher")), gap(8));
@@ -599,6 +615,22 @@ public class MainActivity extends Activity {
         public String title() { return "תהילים"; }
         public View build() {
             LinearLayout col = column();
+            col.addView(heading("תהילים יומי"));
+            java.util.Calendar now = java.util.Calendar.getInstance();
+            final int wd = now.get(java.util.Calendar.DAY_OF_WEEK) - 1;
+            final String wn = wd == 6 ? "שבת" : "יום " + WEEKDAYS[wd];
+            col.addView(row("לפי ימי השבוע: " + wn, range(WEEKLY[wd][0], WEEKLY[wd][1]), v -> open(new Portion("תהילים ל" + wn, WEEKLY[wd][0], WEEKLY[wd][1], ""))), gap(4));
+            final int[] hd = hebDay();
+            if (hd != null) {
+                final int d = hd[0];
+                final boolean both = d == 29 && hd[1] == 29;   // in a month of 29 days the last day carries the portion of day 30 too
+                final int a = MONTHLY[d - 1][0], b = both ? 150 : MONTHLY[d - 1][1];
+                final String extra = d == 25 ? "פרק קיט, אותיות א עד ל" : d == 26 ? "פרק קיט, אותיות מ עד ת" : "";
+                final String dn = "יום " + psalms.get(d - 1)[1] + " בחודש";
+                col.addView(row("לפי ימי החודש: " + dn, extra.isEmpty() ? range(a, b) : extra, v -> open(new Portion("תהילים ל" + dn, a, b, extra))), gap(8));
+                TextView n = label("היום העברי מתחיל בערב שלפניו.", 13, fUi, cMuted); n.setPadding(dp(4), dp(6), dp(4), 0); col.addView(n);
+            }
+            col.addView(heading("כל הפרקים"), gap(22));
             col.addView(label("בוחרים פרק", 15, fUiB, cMuted));
             LinearLayout line = null;
             for (int i = 0; i < psalms.size(); i++) {
@@ -614,6 +646,76 @@ public class MainActivity extends Activity {
                 if (i % 5 > 0) lp.setMarginStart(dp(8));
                 line.addView(b, lp);
             }
+            return scroll(col);
+        }
+    }
+
+    // the two divisions of the book, as the site has them
+    static final int[][] MONTHLY = {{1, 9}, {10, 17}, {18, 22}, {23, 28}, {29, 34}, {35, 38}, {39, 43}, {44, 48}, {49, 54}, {55, 59}, {60, 65}, {66, 68}, {69, 71}, {72, 76}, {77, 78}, {79, 82}, {83, 87}, {88, 89},
+            {90, 96}, {97, 103}, {104, 105}, {106, 107}, {108, 112}, {113, 118}, {119, 119}, {119, 119}, {120, 134}, {135, 139}, {140, 144}, {145, 150}};
+    static final int[][] WEEKLY = {{1, 29}, {30, 50}, {51, 72}, {73, 89}, {90, 106}, {107, 119}, {120, 150}};
+    static final String[] WEEKDAYS = {"ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"};
+
+    String range(int a, int b) { return a == b ? "פרק " + psalms.get(a - 1)[1] : "פרקים " + psalms.get(a - 1)[1] + " עד " + psalms.get(b - 1)[1]; }
+
+    /** today's day in the Hebrew month and the length of that month; null where the phone cannot tell */
+    static int[] hebDay() { return hebDayAt(java.util.Calendar.getInstance().getTimeInMillis()); }
+
+    static int[] hebDayAt(long ms) {
+        if (android.os.Build.VERSION.SDK_INT < 24) return null;
+        try {
+            android.icu.util.HebrewCalendar hc = new android.icu.util.HebrewCalendar();
+            hc.setTimeInMillis(ms);
+            int d = hc.get(android.icu.util.Calendar.DAY_OF_MONTH);
+            return d >= 1 && d <= 30 ? new int[]{d, hc.getActualMaximum(android.icu.util.Calendar.DAY_OF_MONTH)} : null;
+        } catch (Exception e) { return null; }
+    }
+
+    class Portion implements Screen {
+        final String name, extra; final int from, to;
+        Portion(String n, int a, int b, String x) { name = n; from = a; to = b; extra = x; }
+        public String title() { return name; }
+        public View build() {
+            LinearLayout col = column();
+            col.addView(label(extra.isEmpty() ? range(from, to) : extra, 15, fUiB, cMuted));
+            for (int n = from; n <= to; n++) { final String[] r = psalms.get(n - 1); col.addView(row("פרק " + r[1], r[2], v -> open(new Reader("t", r[0], "תהילים פרק " + r[1]))), gap(8)); }
+            return scroll(col);
+        }
+    }
+
+    // ---------- reminders ----------
+    class Reminders implements Screen {
+        public String title() { return "תזכורות"; }
+        String clock(int m) { return String.format(java.util.Locale.US, "%02d:%02d", m / 60, m % 60); }
+        void block(LinearLayout col, String head, String body, final String key, final String keyAt, final int def, final boolean friday) {
+            final boolean on = prefs.getBoolean(key, false);
+            final int at = prefs.getInt(keyAt, def);
+            LinearLayout b = new LinearLayout(MainActivity.this);
+            b.setOrientation(LinearLayout.VERTICAL);
+            b.setPadding(dp(18), dp(16), dp(18), dp(16));
+            b.setBackground(shape(cSurface, cLine, 20));
+            b.addView(label(head, 19, fDisp, cInk));
+            TextView t = label(body, 15, fUi, cInk2); t.setPadding(0, dp(4), 0, dp(12)); t.setLineSpacing(0, 1.4f); b.addView(t);
+            LinearLayout line = new LinearLayout(MainActivity.this);
+            line.addView(pill(on ? "✓ פועלת" : "כבויה", on, v -> {
+                prefs.edit().putBoolean(key, !on).apply();
+                if (!on && android.os.Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 2);
+                Remind.schedule(MainActivity.this); buzz(v); refresh(); }), new LinearLayout.LayoutParams(0, dp(48), 1));
+            line.addView(pill("שעה: " + clock(at), false, v -> new android.app.TimePickerDialog(MainActivity.this, (picker, h, m) -> {
+                int chosen = h * 60 + m;
+                if (friday && chosen >= 15 * 60) { chosen = 14 * 60; say("ביום שישי התזכורת נשלחת עד 14:59, כדי שלא תגיע בשבת."); }
+                prefs.edit().putInt(keyAt, chosen).apply();
+                Remind.schedule(MainActivity.this); refresh(); }, at / 60, at % 60, true).show()), new LinearLayout.LayoutParams(0, dp(48), 1) {{ setMarginStart(dp(8)); }});
+            b.addView(line);
+            col.addView(b, gap(10));
+        }
+        public View build() {
+            LinearLayout col = column();
+            col.addView(note("התזכורות נשמרות במכשיר בלבד. הן לא נשלחות בשבת וביום טוב."));
+            block(col, "תהילים יומי", "פעם ביום, בשעה שתבחרו. לחיצה על התזכורת פותחת את הפרקים של היום.", "rDaily", "rDailyAt", 8 * 60, false);
+            block(col, "יום שישי, לפני שבת", "תזכורת לבדוק את זמני כניסת השבת ויציאתה.", "rFri", "rFriAt", 13 * 60, true);
+            if (android.os.Build.VERSION.SDK_INT >= 33 && (prefs.getBoolean("rDaily", false) || prefs.getBoolean("rFri", false)) && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED)
+                col.addView(note("כדי שהתזכורות יופיעו צריך לאשר לאפליקציה לשלוח התראות, בהגדרות הטלפון."), gap(12));
             return scroll(col);
         }
     }
@@ -643,6 +745,7 @@ public class MainActivity extends Activity {
             LinearLayout.LayoutParams m3 = new LinearLayout.LayoutParams(-2, dp(44));
             tools.addView(pill(favs.contains(key) ? "★ נשמר" : "☆ שמירה", favs.contains(key), v -> {
                 if (!favs.remove(key)) favs.add(key);
+                buzz(v);
                 prefs.edit().putStringSet("favs", favs).apply(); refresh(); }), m3);
             LinearLayout.LayoutParams m4 = new LinearLayout.LayoutParams(-2, dp(44)); m4.setMarginStart(dp(6));
             tools.addView(pill("שיתוף", false, v -> share()), m4);
@@ -689,6 +792,7 @@ public class MainActivity extends Activity {
                         ask("finish_chapter", new org.json.JSONObject().put("p_mid", mid).put("p_n", globalN).put("p_by", "").put("p_rid", rid()), d -> {
                             sending = false;
                             if (d == FAILED || d == null || d == org.json.JSONObject.NULL) { say("לא הצלחנו לעדכן. בדקו את החיבור ונסו שוב."); refresh(); return; }
+                            buzz(root);
                             say("תודה. הפרק נרשם.");
                             if (stack.get(stack.size() - 1) == Reader.this) onBackPressed();
                         });
@@ -1037,7 +1141,7 @@ public class MainActivity extends Activity {
             w.getSettings().setJavaScriptEnabled(true);
             w.getSettings().setDomStorageEnabled(true);
             w.getSettings().setGeolocationEnabled(true);
-            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/1.1");
+            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/1.2");
             w.setWebViewClient(new WebViewClient() {
                 @Override public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest r) {
                     Uri u = r.getUrl();

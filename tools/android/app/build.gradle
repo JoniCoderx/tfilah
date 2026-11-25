@@ -1,0 +1,12 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.tfilah.app'
+    compileSdk 35
+    defaultConfig { applicationId 'com.tfilah.app'; minSdk 23; targetSdk 35; versionCode 3; versionName '0.3-test' }
+    signingConfigs { test { storeFile file(System.getenv('TFILAH_KEYSTORE') ?: 'test.keystore'); storePassword 'tfilah-test-only'; keyAlias 'tfilah-test'; keyPassword 'tfilah-test-only' } }
+    buildTypes { release { minifyEnabled false; signingConfig signingConfigs.test } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    lint { checkReleaseBuilds false }
+}
+android { testOptions { unitTests { includeAndroidResources = true; all { systemProperty 'robolectric.graphicsMode', 'NATIVE'; systemProperty 'shots', System.getProperty('shots', ''); maxHeapSize = '2g' } } } }
+dependencies { testImplementation 'junit:junit:4.13.2'; testImplementation 'org.robolectric:robolectric:4.14.1' }

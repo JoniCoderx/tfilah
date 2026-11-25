@@ -345,6 +345,9 @@ h3.grp{font-family:var(--f-ui);font-weight:700;font-size:1rem;color:var(--ink2);
 .yrec i u{display:block;block-size:100%;border-radius:99px;background:var(--grad)}
 .yrec em{display:flex;justify-content:space-between;gap:.5rem;margin-block-start:.45rem;font-style:normal;font-size:.88rem;color:var(--ink2)}
 .yrec em span{color:var(--stamp);font-weight:700}
+.ypin{grid-template-columns:1fr!important;margin-block:0 1.2rem}.ypin a{border-block-start:4px solid #FFD35A}.ypin small{color:#7A5200}
+.ysrch{display:block;margin:.6rem 0 .2rem}.ysrch input{inline-size:100%;min-block-size:48px;padding:0 1.1rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 1rem var(--f-ui)}
+.ysrch input:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
 """),
 ("hero", """
 .hero{margin:1rem 0 1.5rem;padding:1.6rem 1.5rem 1.7rem;background:linear-gradient(160deg,#FFFFFF,#F3FAFF 55%,#E4F3FE);border:1px solid var(--line);color:var(--ink);border-radius:1.75rem;box-shadow:var(--sh)}
@@ -1862,27 +1865,39 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # Explainers that lead into the app
 # =====================================================================
 SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
-Y_JS = ("(function(){var K={neshama:['לעילוי נשמה','לעילוי נשמת ',' ז״ל'],refuah:['לרפואה שלמה','','']};"
+Y_PIN = "93fe6ej9xd"  # the standing reading for the soldiers; shown first only while it is on the public list
+Y_JS = ("(function(){var PIN='" + Y_PIN + "',K={neshama:['לעילוי נשמה','לעילוי נשמת ',' ז״ל'],refuah:['לרפואה שלמה','','']};"
         "function get(u,f){fetch(u).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.data)f(j.data)}).catch(function(){})}"
         "function el(t,x){var e=document.createElement(t);if(x!=null)e.textContent=x;return e}"
-        "get('/api/yachad?stats=1',function(d){var b=document.getElementById('ynum');if(!b||!(d.chapters>0))return;"
-        "b.querySelectorAll('[data-k]').forEach(function(x){x.textContent=Number(d[x.getAttribute('data-k')]||0).toLocaleString('he-IL')});b.hidden=false});"
-        "get('/api/yachad?list=1',function(a){var s=document.getElementById('yrec');if(!s||!a.length)return;var ul=s.querySelector('ul');"
-        "a.slice(0,6).forEach(function(m){if(!m||!/^[a-z0-9]+$/.test(m.id||''))return;var k=K[m.kind],done=+m.done||0,inr=done%150,rnd=Math.floor(done/150),"
-        "nm=String(m.name||'').trim()+(k&&m.parent?' '+(m.rel||'בן')+' '+String(m.parent).trim():'');if(!nm)return;"
-        "var li=el('li'),a2=el('a');a2.href='/y/'+m.id;a2.appendChild(el('small',k?k[0]:'קריאה משותפת'));a2.appendChild(el('b',k?k[1]+nm+k[2]:nm));"
+        "function nm(m){var k=K[m.kind];return String(m.name||'').trim()+(k&&m.parent?' '+(m.rel||'בן')+' '+String(m.parent).trim():'')}"
+        "function card(m,tag){var k=K[m.kind],done=+m.done||0,inr=done%150,rnd=Math.floor(done/150),n=nm(m);"
+        "var li=el('li'),a2=el('a');a2.href='/y/'+m.id;a2.appendChild(el('small',tag||(k?k[0]:'קריאה משותפת')));a2.appendChild(el('b',k?k[1]+n+k[2]:n));"
         "var bar=el('i'),u=el('u');u.style.inlineSize=Math.max(2,Math.round(inr/150*100))+'%';bar.appendChild(u);a2.appendChild(bar);"
         "var em=el('em');em.appendChild(document.createTextNode((rnd?'סבב '+(rnd+1)+' · ':'')+inr+' מתוך 150 פרקים'));em.appendChild(el('span','להצטרפות ‹'));a2.appendChild(em);"
-        "li.appendChild(a2);ul.appendChild(li)});if(ul.children.length)s.hidden=false})})();")
+        "li.appendChild(a2);return li}"
+        "function norm(x){return String(x||'').replace(/[\\u0591-\\u05C7\"'׳״.,\\-–]/g,'').replace(/\\s+/g,' ').trim()}"
+        "get('/api/yachad?stats=1',function(d){var b=document.getElementById('ynum');if(!b||!(d.chapters>0))return;"
+        "b.querySelectorAll('[data-k]').forEach(function(x){x.textContent=Number(d[x.getAttribute('data-k')]||0).toLocaleString('he-IL')});b.hidden=false});"
+        "get('/api/yachad?list=1',function(a){a=(a||[]).filter(function(m){return m&&/^[a-z0-9]+$/.test(m.id||'')&&nm(m)});if(!a.length)return;"
+        "var s=document.getElementById('yrec'),ul=s.querySelector('ul'),q=document.getElementById('yq'),none=document.getElementById('ynone'),"
+        "pin=a.filter(function(m){return m.id===PIN})[0],rest=a.filter(function(m){return m.id!==PIN});"
+        "if(pin){var ps=document.getElementById('ypin');ps.querySelector('ul').appendChild(card(pin,'קריאה קבועה · פתוחה לכולם'));ps.hidden=false}"
+        "function draw(){var v=norm(q.value),L=v?a.filter(function(m){return norm(nm(m)).indexOf(v)>=0}).slice(0,20):rest.slice(0,6);"
+        "ul.textContent='';L.forEach(function(m){ul.appendChild(card(m))});none.hidden=!v||L.length>0}"
+        "q.addEventListener('input',draw);draw();if(rest.length||pin)s.hidden=false})})();")
 yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
           + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a><small>בחינם ובלי הרשמה. דקה אחת וזה פתוח.</small>'
              '<ul class="ynum" id="ynum" hidden><li><b data-k="chapters">0</b>פרקים נקראו</li><li><b data-k="readings">0</b>קריאות נפתחו</li></ul></div>' if SB_ON else
              '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')
+          + ('<section id="ypin" hidden><ul class="yrec ypin"></ul></section>' if SB_ON else '')
           + '<h2 class="sec">איך פותחים קריאת תהילים משותפת</h2><ol class="st3">'
           '<li><b>פותחים קריאה</b><span>לרפואה, לעילוי נשמה או לכל בקשה.</span></li>'
           '<li><b>שולחים קישור</b><span>בוואטסאפ, למשפחה ולחברים.</span></li>'
           '<li><b>כל אחד קורא פרק</b><span>ומסמן שקרא, עד שהספר נשלם.</span></li></ol>'
-          + ('<section id="yrec" hidden><h2 class="sec">נפתחו לאחרונה</h2><ul class="yrec"></ul><p class="note">קריאות שפותחיהן בחרו להציג לכולם. נכנסים, לוקחים פרק ומצטרפים.</p></section>' if SB_ON else '') +
+          + ('<section id="yrec" hidden><h2 class="sec">נפתחו לאחרונה</h2>'
+             '<div class="ysrch"><input type="search" id="yq" aria-label="חיפוש קריאה לפי שם" placeholder="חיפוש קריאה לפי שם" autocomplete="off" enterkeyhint="search"></div>'
+             '<ul class="yrec"></ul><p class="note" id="ynone" hidden>לא נמצאה קריאה פתוחה בשם הזה. אפשר לפתוח קריאה חדשה בכפתור שלמעלה.</p>'
+             '<p class="note">מוצגות רק קריאות שפותחיהן בחרו להציג לכולם. נכנסים, לוקחים פרק ומצטרפים.</p></section>' if SB_ON else '') +
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>בתהילים משותף 150 פרקי הספר מתחלקים בין כל מי שמצטרף לקריאה: כל אחד מקבל פרק, קורא אותו ומסמן שקרא. '
           'כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש.</p>'

@@ -1,0 +1,1 @@
+[{"relation": ["delegate_permission/common.handle_all_urls"], "target": {"namespace": "android_app", "package_name": "com.tfilah.app", "sha256_cert_fingerprints": ["E8:35:DB:0D:13:6A:98:CC:08:6E:18:1B:16:41:62:1A:5E:7D:EF:93:C9:C2:94:FE:C9:AE:11:9E:F3:13:B9:C9"]}}]

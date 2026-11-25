@@ -106,6 +106,71 @@ public class SmokeTest {
         sharedReading();
     }
 
+    static long at(int y, int mo, int d, int h) { java.util.Calendar c = java.util.Calendar.getInstance(); c.set(y, mo - 1, d, h, 0, 0); return c.getTimeInMillis(); }
+
+    @Test public void remindersKeepShabbatAndWork() throws Exception {
+        a = Robolectric.buildActivity(MainActivity.class).setup().get();
+        // 27 November 2026 is a Friday
+        java.util.Calendar fri = java.util.Calendar.getInstance(); fri.setTimeInMillis(at(2026, 11, 27, 10));
+        assertEquals(java.util.Calendar.FRIDAY, fri.get(java.util.Calendar.DAY_OF_WEEK));
+        assertFalse("Friday morning", Remind.rest(at(2026, 11, 27, 10)));
+        assertTrue("Friday afternoon", Remind.rest(at(2026, 11, 27, 16)));
+        assertTrue("Shabbat morning", Remind.rest(at(2026, 11, 28, 9)));
+        assertTrue("Shabbat 20:00", Remind.rest(at(2026, 11, 28, 20)));
+        assertFalse("after Shabbat", Remind.rest(at(2026, 11, 28, 22)));
+        assertFalse("a weekday", Remind.rest(at(2026, 11, 25, 8)));
+        // Yom Kippur and the first day of Pesach, found by their Hebrew dates
+        android.icu.util.HebrewCalendar hc = new android.icu.util.HebrewCalendar();
+        for (int[] md : new int[][]{{android.icu.util.HebrewCalendar.TISHRI, 10}, {android.icu.util.HebrewCalendar.NISAN, 15}, {android.icu.util.HebrewCalendar.SIVAN, 6}, {android.icu.util.HebrewCalendar.TISHRI, 1}}) {
+            hc.set(5787, md[0], md[1], 10, 0, 0);
+            assertTrue("yom tov " + md[0] + "/" + md[1], Remind.rest(hc.getTimeInMillis()));
+            assertTrue("its eve", Remind.rest(hc.getTimeInMillis() - 18 * 3600 * 1000L));
+        }
+        hc.set(5787, android.icu.util.HebrewCalendar.KISLEV, 25, 10, 0, 0);   // Chanukah is a weekday
+        java.util.Calendar ch = java.util.Calendar.getInstance(); ch.setTimeInMillis(hc.getTimeInMillis());
+        if (ch.get(java.util.Calendar.DAY_OF_WEEK) != java.util.Calendar.SATURDAY) assertFalse(Remind.rest(hc.getTimeInMillis()));
+        // the next Friday reminder falls on a Friday, in the future
+        long nf = Remind.next(13 * 60, true, at(2026, 11, 25, 8));
+        java.util.Calendar c = java.util.Calendar.getInstance(); c.setTimeInMillis(nf);
+        assertEquals(java.util.Calendar.FRIDAY, c.get(java.util.Calendar.DAY_OF_WEEK)); assertEquals(13, c.get(java.util.Calendar.HOUR_OF_DAY));
+        assertTrue(Remind.next(8 * 60, false, at(2026, 11, 25, 9)) > at(2026, 11, 25, 9));
+        // turning a reminder on sets an alarm; turning it off removes it
+        click("תזכורות"); shot("20-reminders");
+        org.robolectric.shadows.ShadowAlarmManager am = org.robolectric.Shadows.shadowOf((android.app.AlarmManager) a.getSystemService(android.content.Context.ALARM_SERVICE));
+        assertEquals(0, am.getScheduledAlarms().size());
+        ArrayList<TextView> l = new ArrayList<>(); texts(a.root, l);
+        TextView off = null; for (TextView t : l) if (t.getText().toString().equals("כבויה")) { off = t; break; }
+        off.performClick(); ShadowLooper.idleMainLooper();
+        assertEquals(1, am.getScheduledAlarms().size());
+        assertTrue(a.prefs.getBoolean("rDaily", false));
+        find("✓ פועלת"); shot("21-reminder-on");
+        // the alarm fires: a notification, and the next alarm is set
+        org.robolectric.Shadows.shadowOf(a.getApplication()).grantPermissions("android.permission.POST_NOTIFICATIONS");
+        Remind.show(a, 1, "תהילים יומי", "הפרקים של היום מחכים לכם.", "yomi");
+        org.robolectric.shadows.ShadowNotificationManager nm = org.robolectric.Shadows.shadowOf((android.app.NotificationManager) a.getSystemService(android.content.Context.NOTIFICATION_SERVICE));
+        assertEquals(1, nm.getAllNotifications().size());
+        new Remind().onReceive(a, new android.content.Intent(a, Remind.class).setAction(Remind.DAILY));
+        assertEquals(1, am.getScheduledAlarms().size());
+        click("✓ פועלת");
+        assertEquals(0, am.getScheduledAlarms().size());
+        a.onBackPressed();
+        // daily Psalms: the weekday portion always opens, and its chapters are the site's
+        click("תהילים");
+        find("תהילים יומי"); shot("22-yomi");
+        int wd = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_WEEK) - 1;
+        a.open(a.new Portion("x", MainActivity.WEEKLY[wd][0], MainActivity.WEEKLY[wd][1], "")); shot("23-portion");
+        int sum = 0; for (int[] r : MainActivity.WEEKLY) sum += r[1] - r[0] + 1; assertEquals(150, sum);
+        assertEquals(30, MainActivity.MONTHLY.length); assertEquals(150, MainActivity.MONTHLY[29][1]); assertEquals(1, MainActivity.MONTHLY[0][0]);
+        for (int i = 1; i < 30; i++) assertTrue(MainActivity.MONTHLY[i][0] == MainActivity.MONTHLY[i - 1][1] + 1 || MainActivity.MONTHLY[i][0] == 119);
+        // the Hebrew day: 25 November 2026 is 15 Kislev (checked against another calendar), a month of 30 days
+        assertEquals(15, MainActivity.hebDayAt(at(2026, 11, 25, 10))[0]);
+        assertEquals(30, MainActivity.hebDayAt(at(2026, 11, 25, 10))[1]);
+        assertEquals(MainActivity.hebDayAt(java.util.Calendar.getInstance().getTimeInMillis())[0], MainActivity.hebDay()[0]);
+        // a tapped reminder opens the right screen
+        a.go(new android.content.Intent().putExtra("go", "yomi"), true);
+        assertTrue(a.stack.get(a.stack.size() - 1) instanceof MainActivity.Tehillim);
+    }
+
     /** a stand-in for the site's shared-reading server, keeping the same rules for the calls the app makes */
     static class FakeServer implements MainActivity.Net {
         final org.json.JSONArray memorials = new org.json.JSONArray();

@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
     LinearLayout root, bar;
     FrameLayout content;
     final ArrayList<Screen> stack = new ArrayList<>();
+    final java.util.HashMap<Screen, View> views = new java.util.HashMap<>();
     List<String[]> prayers, psalms, foods;
     GeolocationPermissions.Callback geoCb;
     String geoOrigin;
@@ -72,7 +73,8 @@ public class MainActivity extends Activity {
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         prefs = getSharedPreferences("tf", MODE_PRIVATE);
-        dark = prefs.getBoolean("dark", false);
+        dark = prefs.contains("dark") ? prefs.getBoolean("dark", false)
+                : (getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES;
         fDisp = font("heebo-hebrew-900"); fBold = font("heebo-hebrew-700"); fText = font("assistant-hebrew-400"); fUi = font("assistant-hebrew-600"); fUiB = font("assistant-hebrew-700");
         prayers = table("index.tsv"); psalms = table("tehillim.tsv"); foods = table("brachot.tsv");
         root = new LinearLayout(this);
@@ -88,7 +90,38 @@ public class MainActivity extends Activity {
     }
 
     @Override public void onBackPressed() {
-        if (stack.size() > 1) { stack.remove(stack.size() - 1); render(); } else super.onBackPressed();
+        Screen top = stack.get(stack.size() - 1);
+        View v = views.get(top);
+        if (top instanceof Web && v instanceof WebView && ((WebView) v).canGoBack()) { ((WebView) v).goBack(); return; }
+        if (stack.size() <= 1) { super.onBackPressed(); return; }
+        keepPlace();
+        stack.remove(stack.size() - 1);
+        views.remove(top);
+        if (v instanceof WebView) ((WebView) v).destroy();
+        Screen now = stack.get(stack.size() - 1);
+        if (now instanceof Home) views.remove(now);
+        render();
+    }
+
+    @Override protected void onPause() { super.onPause(); keepPlace(); }
+
+    /** remembers how far down the open text was read */
+    void keepPlace() {
+        Screen top = stack.get(stack.size() - 1);
+        View v = views.get(top);
+        if (top instanceof Reader && v instanceof ScrollView) prefs.edit().putInt("pos\t" + ((Reader) top).kind + "\t" + ((Reader) top).id, v.getScrollY()).apply();
+    }
+
+    /** builds the open screen again after a setting changed, staying at the same place in the text */
+    void refresh() {
+        Screen top = stack.get(stack.size() - 1);
+        View old = views.remove(top);
+        float at = -1;
+        if (old instanceof ScrollView && ((ScrollView) old).getChildCount() > 0) { int h = ((ScrollView) old).getChildAt(0).getHeight(); if (h > 0) at = old.getScrollY() / (float) h; }
+        render();
+        final View now = views.get(top);
+        final float f = at;
+        if (f > 0 && now instanceof ScrollView) now.post(() -> { if (((ScrollView) now).getChildCount() > 0) now.scrollTo(0, Math.round(f * ((ScrollView) now).getChildAt(0).getHeight())); });
     }
 
     @Override public void onRequestPermissionsResult(int code, String[] perms, int[] res) {
@@ -135,10 +168,14 @@ public class MainActivity extends Activity {
         TextView dk = label(dark ? "☀" : "☾", 22, fUiB, cInk2);
         dk.setGravity(Gravity.CENTER);
         dk.setContentDescription("מצב לילה");
-        tap(dk, 999, v -> { dark = !dark; prefs.edit().putBoolean("dark", dark).apply(); render(); });
+        tap(dk, 999, v -> { dark = !dark; prefs.edit().putBoolean("dark", dark).apply();
+            for (View w : views.values()) if (w instanceof WebView) ((WebView) w).destroy();
+            Screen top = stack.get(stack.size() - 1); View keep = views.get(top); views.clear(); if (keep != null) views.put(top, keep); refresh(); });
         bar.addView(dk, new LinearLayout.LayoutParams(dp(44), dp(44)));
         content.removeAllViews();
-        content.addView(s.build(), new FrameLayout.LayoutParams(-1, -1));
+        View v = views.get(s);
+        if (v == null) { v = s.build(); views.put(s, v); }
+        content.addView(v, new FrameLayout.LayoutParams(-1, -1));
     }
 
     void palette() {
@@ -238,6 +275,8 @@ public class MainActivity extends Activity {
     TextView pill(String s, boolean on, View.OnClickListener l) {
         TextView t = label(s, 15, fUiB, on ? 0xFFFFFFFF : cInk);
         t.setGravity(Gravity.CENTER);
+        t.setMaxLines(1);
+        t.setEllipsize(TextUtils.TruncateAt.END);
         t.setPadding(dp(14), 0, dp(14), 0);
         t.setMinHeight(dp(44));
         t.setBackground(shape(on ? cPrimary : cSurface, on ? 0 : cLine, 999));
@@ -288,12 +327,19 @@ public class MainActivity extends Activity {
             sub.setLineSpacing(0, 1.35f);
             hero.addView(sub);
             col.addView(hero);
+            TextView find = label("🔍  חיפוש תפילה או פרק תהילים", 17, fUi, cMuted);
+            find.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
+            find.setPadding(dp(20), 0, dp(20), 0);
+            find.setBackground(shape(cSurface, cLine, 999));
+            tap(find, 999, v -> open(new Search()));
+            LinearLayout.LayoutParams fl = new LinearLayout.LayoutParams(-1, dp(54)); fl.topMargin = dp(14);
+            col.addView(find, fl);
             final String last = prefs.getString("last", "");
             if (!last.isEmpty()) {
                 final String[] p = last.split("\t", -1);
                 if (p.length == 3) col.addView(row("להמשיך מאיפה שעצרתם", p[2], v -> open(new Reader(p[0], p[1], p[2]))), gap(14));
             }
-            String[][] tiles = {{"📖", "סידור", "שחרית, מנחה, ערבית ועוד"}, {"🎵", "תהילים", "כל 150 הפרקים"}, {"🍎", "מה מברכים על", "כותבים מאכל, מקבלים ברכה"},
+            String[][] tiles = {{"📖", "סידור", "שחרית, מנחה, ערבית ועוד"}, {"📜", "תהילים", "כל 150 הפרקים"}, {"🍎", "מה מברכים על", "כותבים מאכל, מקבלים ברכה"},
                     {"🤝", "קריאה משותפת", "קוראים תהילים ביחד"}, {"🌅", "זמני היום", "לפי העיר שלכם"}, {"🕯️", "זמני שבת", "כניסה ויציאה"}};
             LinearLayout line = null;
             for (int i = 0; i < tiles.length; i++) {
@@ -326,6 +372,7 @@ public class MainActivity extends Activity {
                 for (final String[] r : prayers) if (favs.contains("p\t" + r[0])) col.addView(row(r[4], NUS_HE[nusIndex(r[1])], v -> open(new Reader("p", r[0], r[4]))), gap(8));
                 for (final String[] r : psalms) if (favs.contains("t\t" + r[0])) col.addView(row("תהילים פרק " + r[1], r[2], v -> open(new Reader("t", r[0], "תהילים פרק " + r[1]))), gap(8));
             }
+            col.addView(row("אודות ומקורות", "מאיפה הטקסטים, פרטיות ויצירת קשר", v -> open(new About())), gap(24));
             TextView foot = label("tfilah.com · חינם, בלי הרשמה ובלי פרסומות", 14, fUi, cMuted);
             foot.setGravity(Gravity.CENTER);
             foot.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -347,29 +394,129 @@ public class MainActivity extends Activity {
                 final String n = NUS[i];
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(46), 1);
                 if (i > 0) lp.setMarginStart(dp(8));
-                seg.addView(pill(NUS_HE[i], n.equals(nus), v -> { prefs.edit().putString("nus", n).apply(); render(); }), lp);
+                seg.addView(pill(NUS_HE[i], n.equals(nus), v -> { prefs.edit().putString("nus", n).apply(); refresh(); }), lp);
             }
             col.addView(seg);
             LinkedHashMap<String, Integer> groups = new LinkedHashMap<>();
             for (String[] r : prayers) if (r[1].equals(nus)) { Integer c = groups.get(r[2]); groups.put(r[2], c == null ? 1 : c + 1); }
             for (final Map.Entry<String, Integer> e : groups.entrySet())
-                col.addView(row(e.getKey(), e.getValue() == 1 ? "תפילה אחת" : e.getValue() + " תפילות", v -> open(new Group(nus, e.getKey()))), gap(10));
+                col.addView(row(e.getKey(), e.getValue() == 1 ? "תפילה אחת" : e.getValue() + " תפילות", v -> open(new Group(nus, e.getKey(), null))), gap(10));
             return scroll(col);
         }
     }
 
+    static String head(String path) { int i = path.indexOf(" · "); return i < 0 ? path : path.substring(0, i); }
+    static String rest(String path) { int i = path.indexOf(" · "); return i < 0 ? "" : path.substring(i + 3); }
+
     class Group implements Screen {
-        final String nus, name;
-        Group(String n, String g) { nus = n; name = g; }
-        public String title() { return name; }
+        final String nus, name, sub;
+        Group(String n, String g, String s) { nus = n; name = g; sub = s; }
+        public String title() { return sub == null || sub.isEmpty() ? name : sub; }
         public View build() {
             LinearLayout col = column();
-            TextView n = label("נוסח " + NUS_HE[nusIndex(nus)], 14, fUiB, cMuted);
-            col.addView(n);
-            for (final String[] r : prayers) if (r[1].equals(nus) && r[2].equals(name)) col.addView(row(r[4], r[3], v -> open(new Reader("p", r[0], r[4]))), gap(10));
+            col.addView(label("נוסח " + NUS_HE[nusIndex(nus)] + (sub == null || sub.isEmpty() ? "" : " · " + name), 14, fUiB, cMuted));
+            LinkedHashMap<String, Integer> subs = new LinkedHashMap<>();
+            int all = 0;
+            for (String[] r : prayers) if (r[1].equals(nus) && r[2].equals(name)) { all++; String h = head(r[3]); Integer c = subs.get(h); subs.put(h, c == null ? 1 : c + 1); }
+            if (sub == null && all > 24 && subs.size() > 1) {
+                for (final Map.Entry<String, Integer> e : subs.entrySet())
+                    col.addView(row(e.getKey().isEmpty() ? "כללי" : e.getKey(), e.getValue() == 1 ? "תפילה אחת" : e.getValue() + " תפילות", v -> open(new Group(nus, name, e.getKey()))), gap(10));
+                return scroll(col);
+            }
+            String lastHead = "";
+            for (final String[] r : prayers) {
+                if (!r[1].equals(nus) || !r[2].equals(name) || (sub != null && !head(r[3]).equals(sub))) continue;
+                String h = sub == null ? r[3] : rest(r[3]);
+                if (!h.equals(lastHead)) { lastHead = h; if (!h.isEmpty()) { TextView t = label(h, 15, fUiB, cPrimary); t.setPadding(dp(4), dp(8), dp(4), 0); col.addView(t, gap(10)); } }
+                col.addView(row(r[4], "", v -> open(new Reader("p", r[0], r[4]))), gap(8));
+            }
             return scroll(col);
         }
     }
+
+    // ---------- search ----------
+    class Search implements Screen {
+        String q = "";
+        public String title() { return "חיפוש"; }
+        public View build() {
+            LinearLayout col = column();
+            final EditText in = field("שם של תפילה, או מספר פרק");
+            in.setText(q);
+            col.addView(in, new LinearLayout.LayoutParams(-1, dp(56)));
+            final LinearLayout list = new LinearLayout(MainActivity.this);
+            list.setOrientation(LinearLayout.VERTICAL);
+            col.addView(list);
+            fill(list);
+            in.addTextChangedListener(new TextWatcher() {
+                public void beforeTextChanged(CharSequence s, int a, int b, int c) { }
+                public void onTextChanged(CharSequence s, int a, int b, int c) { }
+                public void afterTextChanged(Editable e) { q = e.toString(); fill(list); }
+            });
+            in.requestFocus();
+            return scroll(col);
+        }
+        void fill(LinearLayout list) {
+            list.removeAllViews();
+            String n = norm(q);
+            if (n.isEmpty()) { TextView t = label("כותבים כמה אותיות, למשל ”עלינו” או ”קכא”.", 16, fUi, cInk2); t.setPadding(dp(4), dp(18), dp(4), 0); list.addView(t); return; }
+            int shown = 0;
+            String digits = n.replaceAll("[^0-9]", ""), word = n.replace("תהילים", "").replace("תהלים", "").replace("פרק", "").trim();
+            for (final String[] r : psalms) if (r[0].equals(digits) || r[1].equals(word)) { shown++; list.addView(row("תהילים פרק " + r[1], r[2], v -> open(new Reader("t", r[0], "תהילים פרק " + r[1]))), gap(10)); }
+            String mine = prefs.getString("nus", "mizrach");
+            for (int pass = 0; pass < 2 && shown < 40; pass++)
+                for (final String[] r : prayers) {
+                    if (r[1].equals(mine) != (pass == 0) || !norm(r[4]).contains(n)) continue;
+                    if (shown++ >= 40) break;
+                    list.addView(row(r[4], "נוסח " + NUS_HE[nusIndex(r[1])] + " · " + r[2] + (head(r[3]).isEmpty() ? "" : " · " + head(r[3])), v -> open(new Reader("p", r[0], r[4]))), gap(10));
+                }
+            if (shown == 0) { TextView t = label("לא מצאנו. נסו מילה אחרת.", 16, fUi, cInk2); t.setPadding(dp(4), dp(18), dp(4), 0); list.addView(t); }
+        }
+    }
+
+    EditText field(String hint) {
+        EditText in = new EditText(this);
+        in.setHint(hint);
+        in.setHintTextColor(cMuted);
+        in.setTextColor(cInk);
+        in.setTypeface(fBold);
+        in.setTextSize(20);
+        in.setMaxLines(1);
+        in.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        in.setHorizontallyScrolling(false);
+        in.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        in.setTextDirection(View.TEXT_DIRECTION_RTL);
+        in.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
+        in.setPadding(dp(20), 0, dp(20), 0);
+        in.setBackground(shape(cSurface, cPrimary, 999));
+        return in;
+    }
+
+    // ---------- about ----------
+    class About implements Screen {
+        public String title() { return "אודות ומקורות"; }
+        View para(String head, String body) {
+            LinearLayout b = new LinearLayout(MainActivity.this);
+            b.setOrientation(LinearLayout.VERTICAL);
+            b.setPadding(dp(18), dp(16), dp(18), dp(16));
+            b.setBackground(shape(cSurface, cLine, 20));
+            b.addView(label(head, 19, fDisp, cInk));
+            TextView t = label(body, 16, fUi, cInk2); t.setPadding(0, dp(6), 0, 0); t.setLineSpacing(0, 1.45f); b.addView(t);
+            return b;
+        }
+        public View build() {
+            LinearLayout col = column();
+            col.addView(para("מה זה תפילה", "סידור בשלושה נוסחים, ספר תהילים מלא והכלי ”מה מברכים על”. חינם, בלי הרשמה ובלי פרסומות. האפליקציה מופעלת בידי צוות מתנדבים, לזיכוי הרבים. היא אינה פוסקת הלכה ואינה באה במקום רב."));
+            col.addView(para("מקורות הטקסטים", "נוסח עדות המזרח ונוסח ספרד: מהדורות פתוחות ממאגר תורת אמת, שבנחלת הכלל. נוסח אשכנז: מאגר דעת, שבנחלת הכלל, עם השלמות מסידור מצודה ברישיון CC-BY. ספר תהילים: Tanach.us, בנחלת הכלל. הטקסטים נאספו דרך המהדורות הפתוחות בארכיון של ספריא. הם אינם מוקלדים ביד, והם מובאים כמות שהם.\n\nמה מברכים על: כל תשובה מובאת עם המקור שלה."), gap(10));
+            col.addView(para("פרטיות", "הסידור, התהילים והברכות שמורים במכשיר. מה שסימנתם ושמרתם נשאר רק אצלכם. קריאה משותפת, זמני היום וזמני שבת נפתחים מהאתר וצריכים חיבור לאינטרנט."), gap(10));
+            col.addView(row("מדיניות הפרטיות המלאה", "", v -> link(SITE + "/pratiyut/")), gap(10));
+            col.addView(row("דיווח על טעות בנוסח", "כל דיווח נבדק מול המהדורה", v -> link(SITE + "/odot/#taut")), gap(8));
+            col.addView(row("יצירת קשר", "", v -> link(SITE + "/odot/#kesher")), gap(8));
+            col.addView(row("האתר המלא", "tfilah.com", v -> link(SITE + "/?utm_source=app")), gap(8));
+            return scroll(col);
+        }
+    }
+
+    void link(String url) { try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url))); } catch (Exception e) { /* no browser */ } }
 
     // ---------- psalms ----------
     class Tehillim implements Screen {
@@ -409,16 +556,16 @@ public class MainActivity extends Activity {
             LinearLayout col = column();
             LinearLayout tools = new LinearLayout(MainActivity.this);
             tools.setGravity(Gravity.CENTER_VERTICAL);
-            tools.addView(pill("א−", false, v -> { prefs.edit().putFloat("size", Math.max(16f, size - 2f)).apply(); render(); }), new LinearLayout.LayoutParams(dp(52), dp(44)));
+            tools.addView(pill("א−", false, v -> { prefs.edit().putFloat("size", Math.max(16f, size - 2f)).apply(); refresh(); }), new LinearLayout.LayoutParams(dp(52), dp(44)));
             LinearLayout.LayoutParams m = new LinearLayout.LayoutParams(dp(52), dp(44)); m.setMarginStart(dp(6));
-            tools.addView(pill("א+", false, v -> { prefs.edit().putFloat("size", Math.min(40f, size + 2f)).apply(); render(); }), m);
+            tools.addView(pill("א+", false, v -> { prefs.edit().putFloat("size", Math.min(40f, size + 2f)).apply(); refresh(); }), m);
             LinearLayout.LayoutParams m2 = new LinearLayout.LayoutParams(-2, dp(44)); m2.setMarginStart(dp(6));
-            tools.addView(pill("ניקוד", nikud, v -> { prefs.edit().putBoolean("nikud", !nikud).apply(); render(); }), m2);
+            tools.addView(pill("ניקוד", nikud, v -> { prefs.edit().putBoolean("nikud", !nikud).apply(); refresh(); }), m2);
             tools.addView(new View(MainActivity.this), new LinearLayout.LayoutParams(0, 1, 1));
             LinearLayout.LayoutParams m3 = new LinearLayout.LayoutParams(-2, dp(44));
             tools.addView(pill(favs.contains(key) ? "★ נשמר" : "☆ שמירה", favs.contains(key), v -> {
                 if (!favs.remove(key)) favs.add(key);
-                prefs.edit().putStringSet("favs", favs).apply(); render(); }), m3);
+                prefs.edit().putStringSet("favs", favs).apply(); refresh(); }), m3);
             LinearLayout.LayoutParams m4 = new LinearLayout.LayoutParams(-2, dp(44)); m4.setMarginStart(dp(6));
             tools.addView(pill("שיתוף", false, v -> share()), m4);
             col.addView(tools);
@@ -440,6 +587,22 @@ public class MainActivity extends Activity {
                 card.addView(t, gap(head ? 14 : 10));
             }
             col.addView(card, gap(12));
+            if ("p".equals(kind)) {
+                String[] prev = null, next = null, me = null;
+                for (String[] r : prayers) {
+                    if (r[0].equals(id)) { me = r; continue; }
+                    if (me == null) prev = r; else { next = r; break; }
+                }
+                if (me != null) {
+                    final String[] a = prev != null && prev[1].equals(me[1]) && prev[2].equals(me[2]) ? prev : null, b = next != null && next[1].equals(me[1]) && next[2].equals(me[2]) ? next : null;
+                    LinearLayout nav = new LinearLayout(MainActivity.this);
+                    nav.setOrientation(LinearLayout.VERTICAL);
+                    if (b != null) nav.addView(pill("הבא: " + b[4] + " ‹", true, v -> swapTo(b)), new LinearLayout.LayoutParams(-1, dp(50)));
+                    if (a != null) { LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-1, dp(46)); lp.topMargin = dp(8); nav.addView(pill("› הקודם: " + a[4], false, v -> swapTo(a)), lp); }
+                    col.addView(nav, gap(14));
+                }
+            }
+            final int place = prefs.getInt("pos\t" + key, 0);
             if ("t".equals(kind)) {
                 final int n = Integer.parseInt(id);
                 LinearLayout nav = new LinearLayout(MainActivity.this);
@@ -447,9 +610,13 @@ public class MainActivity extends Activity {
                 if (n < psalms.size()) { LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(48), 1); if (n > 1) lp.setMarginStart(dp(8)); nav.addView(pill("הפרק הבא ‹", true, v -> swap(n + 1)), lp); }
                 col.addView(nav, gap(14));
             }
-            return scroll(col);
+            final ScrollView sv = scroll(col);
+            if (place > 0) sv.post(() -> sv.scrollTo(0, place));
+            return sv;
         }
-        void swap(int n) { stack.remove(stack.size() - 1); open(new Reader("t", String.valueOf(n), "תהילים פרק " + psalms.get(n - 1)[1])); }
+        void leave() { prefs.edit().remove("pos\t" + kind + "\t" + id).apply(); views.remove(stack.remove(stack.size() - 1)); }
+        void swap(int n) { leave(); open(new Reader("t", String.valueOf(n), "תהילים פרק " + psalms.get(n - 1)[1])); }
+        void swapTo(String[] r) { leave(); open(new Reader("p", r[0], r[4])); }
         void share() {
             String url = SITE + "/";
             if ("t".equals(kind)) url = SITE + "/tehillim/" + id + "/";
@@ -465,20 +632,7 @@ public class MainActivity extends Activity {
         public String title() { return "מה מברכים על"; }
         public View build() {
             LinearLayout col = column();
-            final EditText in = new EditText(MainActivity.this);
-            in.setHint("כתבו מאכל או משקה");
-            in.setHintTextColor(cMuted);
-            in.setTextColor(cInk);
-            in.setTypeface(fBold);
-            in.setTextSize(20);
-            in.setMaxLines(1);
-            in.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-            in.setHorizontallyScrolling(false);
-            in.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-            in.setTextDirection(View.TEXT_DIRECTION_RTL);
-            in.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);
-            in.setPadding(dp(20), 0, dp(20), 0);
-            in.setBackground(shape(cSurface, cPrimary, 999));
+            final EditText in = field("כתבו מאכל או משקה");
             in.setText(q);
             col.addView(in, new LinearLayout.LayoutParams(-1, dp(56)));
             final LinearLayout list = new LinearLayout(MainActivity.this);
@@ -569,13 +723,18 @@ public class MainActivity extends Activity {
             w.getSettings().setJavaScriptEnabled(true);
             w.getSettings().setDomStorageEnabled(true);
             w.getSettings().setGeolocationEnabled(true);
-            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/0.3");
+            w.getSettings().setUserAgentString(w.getSettings().getUserAgentString() + " TfilahApp/1.0");
             w.setWebViewClient(new WebViewClient() {
                 @Override public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest r) {
                     Uri u = r.getUrl();
                     if ("https".equals(u.getScheme()) && "tfilah.com".equals(u.getHost())) return false;
                     try { startActivity(new Intent(Intent.ACTION_VIEW, u)); } catch (Exception e) { /* no app for this link */ }
                     return true;
+                }
+                @Override public void onReceivedError(WebView v, WebResourceRequest r, android.webkit.WebResourceError e) {
+                    if (r.isForMainFrame()) v.loadDataWithBaseURL(null, "<!doctype html><html lang=he dir=rtl><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
+                            + "<body style='font-family:sans-serif;text-align:center;padding:22vh 24px 0;color:#27506F'><h1 style='font-size:24px;color:#0B2E4F'>אין חיבור לאינטרנט</h1>"
+                            + "<p style='font-size:17px'>החלק הזה צריך חיבור. הסידור, התהילים והברכות עובדים גם בלי.</p></body></html>", "text/html", "utf-8", null);
                 }
             });
             w.setWebChromeClient(new WebChromeClient() {

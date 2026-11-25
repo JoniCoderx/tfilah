@@ -68,11 +68,25 @@ public class SmokeTest {
         ShadowLooper.idleMainLooper(); shot("7-brachot");
         click("בננה"); find("בורא פרי האדמה"); find("בורא נפשות"); shot("8-food");
         a.onBackPressed(); a.onBackPressed();
-        a.dark = true; a.render(); shot("9-dark");
+        a.dark = true; a.views.clear(); a.render(); shot("9-dark");
         // every prayer and every chapter has its text file
         for (String[] r : a.prayers) assertFalse(r[0], a.asset("p/" + r[0] + ".txt").isEmpty());
         for (String[] r : a.psalms) assertFalse(r[0], a.asset("t/" + r[0] + ".txt").isEmpty());
         // every food opens
         for (String[] f : a.foods) { a.open(a.new Food(f)); a.onBackPressed(); }
+        // every group and sub-section opens, and every prayer builds its screen
+        long t0 = System.currentTimeMillis();
+        for (String[] r : a.prayers) { a.open(a.new Reader("p", r[0], r[4])); a.onBackPressed(); }
+        System.out.println("all prayers built in ms: " + (System.currentTimeMillis() - t0));
+        a.dark = false; a.views.clear(); a.render();
+        a.prefs.edit().putString("nus", "ashkenaz").commit();
+        click("סידור"); click("שבת"); shot("10-subs"); click("שחרית"); shot("11-list"); a.onBackPressed(); a.onBackPressed(); a.onBackPressed();
+        click("🔍  חיפוש תפילה או פרק תהילים");
+        l = new ArrayList<>(); texts(a.root, l);
+        for (TextView t : l) if (t instanceof EditText) t.setText("עלינו");
+        ShadowLooper.idleMainLooper(); shot("12-search"); a.onBackPressed();
+        click("אודות ומקורות"); shot("13-about"); a.onBackPressed();
+        a.open(a.new Reader("p", "mizrach-2", "ברכות השחר")); shot("14-next"); 
+        assertEquals(1, a.stack.size() - 1);
     }
 }

@@ -142,7 +142,7 @@ style = body.split("</style>", 1)[0] + (
     ".mmf-links{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none}"
     ".mmf-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 .95rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font:700 .95rem var(--f-ui)}"
     ".mmf-links a:hover{border-color:var(--stamp)}.mmf h2.mmf-h{margin:.4rem 0 0;font:900 1.2rem var(--f-disp);color:var(--ink)}"
-    ".mmf-back{justify-self:start;display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:0 1.3rem;border-radius:999px;background:var(--stamp);color:#fff;text-decoration:none;font:800 1rem var(--f-ui)}"
+    ".mmf-back{justify-self:start;display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:0 1.3rem;border-radius:999px;background:var(--stamp);color:#fff;text-decoration:none;font:700 1rem var(--f-ui)}"
     ".mmf .mm-head{grid-template-columns:auto minmax(0,1fr)}.mmf-alias{margin:0;color:var(--muted);font-size:.92rem}"
     "</style>")
 foot_html = re.search(r'<div class="mm-foot">.*?</div>', body, re.S).group(0)

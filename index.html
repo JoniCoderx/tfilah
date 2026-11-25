@@ -2823,7 +2823,10 @@ function drawYstat(){const el=$('#ystat');if(!el||el.dataset.done)return;
     if(reduce)return;const b=el.querySelector('b'),run=()=>{const t0=performance.now(),D=1100;const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);b.textContent=fmt(n*e);if(k<1&&b.isConnected)requestAnimationFrame(step)};requestAnimationFrame(step)};
     if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();run()}},{threshold:.4});io.observe(el)}else run()};
   if(yStats){paint(yStats);return}
-  fetch('/api/yachad?stats=1').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.data){yStats=j.data;paint(yStats)}}).catch(()=>{})}
+  if(drawYstat.asked)return;drawYstat.asked=1;
+  const ask=()=>fetch('/api/yachad?stats=1').then(r=>r.ok?r.json():null).then(j=>{if(j&&j.data){yStats=j.data;paint(yStats)}}).catch(()=>{drawYstat.asked=0}),
+    idle=()=>(window.requestIdleCallback?requestIdleCallback(ask,{timeout:4000}):setTimeout(ask,1500));
+  if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})}
 function revealOnScroll(){if(reduce||!('IntersectionObserver'in window))return;const els=$$('#app .sec, #app .hgrid, #app .tgrid, #app .needs, #app .tiles, #app .askcard, #app .donate, #app .spcs');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
   els.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv','pre');io.observe(el)}})}

@@ -1397,9 +1397,9 @@ for n, plist in by_nus.items():
         if p["id"] in SVC_OF:
             crumbs.append((sec_label, sec_href))
         crumbs.append((pname(p), me))
-        _tt = f"{tname} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}"
+        _tt = f"{tname}: הנוסח המלא בניקוד | נוסח {NUS[n]} | {BRAND}"
         # where the same name opens two different editions, the title says which one this is
-        if p["id"] == "sefard-32": _tt = f"פרק שירה המלא בניקוד, עם מעקב 40 יום (Perek Shira) | {BRAND}"
+        if p["id"] == "sefard-32": _tt = f"פרק שירה המלא בניקוד: שירת הבריאה, עם מעקב 40 יום | {BRAND}"
         if len(_tt) > 62 and f"{tname} | נוסח {NUS[n]} | {BRAND}" not in TITLES: _tt = f"{tname} | נוסח {NUS[n]} | {BRAND}"
         if len(_tt) > 62 and CTX.get(p["id"]) and p["id"] not in PRIMARY:
             _parts = CTX[p["id"]].split(" · ")
@@ -1420,7 +1420,7 @@ for n, plist in by_nus.items():
                 _open.append(x)
         _desc = fit_desc(head, " ".join(_open[:3]) if _open else " ".join(paras[:3]))
         if p["id"] == "sefard-32":
-            _desc = "פרק שירה (Perek Shira) המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. עם מעקב 40 יום למי שנוהג לומר אותו ברצף."
+            _desc = "פרק שירה המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. עם מעקב 40 יום למי שנוהג לומר אותו ברצף."
             meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span> · <a href="#maakav">מעקב 40 יום</a>'
             _t40, _t40js = track40("perek40", "מסמנים כל יום שבו קראתם את פרק שירה.")
             after = _t40 + PEREK40_NOTE + after
@@ -1708,7 +1708,7 @@ for n, (pid, lo, hi) in NISHMAT.items():
     assert plain(_src[lo]).startswith("נשמת כל חי") and "רננו צדיקים" not in plain(" ".join(_src[lo:hi])) and "רננו צדיקים" in plain(" ".join(_src[hi:hi + 8])), n
     me = f"/nishmat-kol-chai/{n}/"
     _svc = PURL[pid]
-    page(me, f"נשמת כל חי נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
+    page(me, f"נשמת כל חי: הנוסח המלא בניקוד | נוסח {NUS[n]} | {BRAND}",
          fit_desc(f"נשמת כל חי בנוסח {NUS[n]}, בניקוד מלא. נאמרת בתפילת שחרית של שבת ויום טוב", " ".join(_src[lo:lo + 1])),
          "נשמת כל חי", [("סידור", "/siddur/"), (f"נוסח {NUS[n]}", f"/siddur/{n}/"), ("נשמת כל חי", me)],
          text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
@@ -1750,7 +1750,7 @@ for (_slug, n), (me, _name, pid, lo, hi) in KD_PAGES.items():
     _src = TEXTS[n][pid]
     _others = [(KD_PAGES[(_slug, m)][0], m) for m in NISHMAT if m != n and (_slug, m) in KD_PAGES]
     _nt = KD_NOTE.get((_slug, n), "")
-    page(me, f"{_name} נוסח {NUS[n]}: טקסט מנוקד לקריאה | {BRAND}",
+    page(me, f"{_name}: הנוסח המלא בניקוד | נוסח {NUS[n]} | {BRAND}",
          fit_desc(f"{_name} בנוסח {NUS[n]}, בניקוד מלא", " ".join(_src[lo:lo + 1])),
          _name.split(" (")[0], [("סידור", "/siddur/"), ("קדיש", "/kaddish/"), (f"נוסח {NUS[n]}", me)],
          text="".join(f"<p>{clean(x)}</p>" for x in _src[lo:hi]),
@@ -2237,7 +2237,7 @@ shhub = ('<ul class="cards">' + "".join(f'<li data-p="{c[2]},{c[3]},{c[4]},{c[5]
          '<p class="note">הזמנים בכרטיסים הם לשבת הקרובה, ומתעדכנים מעצמם בכל שבוע. בדף של כל עיר יש גם לוח לשבתות הבאות.</p>'
          '<div class="prose"><h2>מתי יוצאת שבת השבוע?</h2><p>צאת השבת משתנה מעיר לעיר ומשבוע לשבוע, כי היא תלויה בשעת השקיעה במקום. '
          'בחרו עיר מהרשימה כדי לראות את שעת כניסת השבת (הדלקת נרות), את שעת צאת השבת במוצאי שבת ואת זמן רבנו תם.</p></div>')
-page("/zmanei-shabbat/", f"זמני כניסת שבת ויציאת שבת לפי עיר: מתי נכנסת ומתי יוצאת שבת | {BRAND}",
+page("/zmanei-shabbat/", f"זמני כניסת שבת ויציאת שבת השבוע, לפי עיר | {BRAND}",
      "מתי נכנסת שבת ומתי יוצאת שבת השבוע: זמני הדלקת נרות, צאת שבת ומוצאי שבת בירושלים, תל אביב, חיפה, באר שבע ובעוד עשרות ערים. מתעדכן מעצמו בכל שבוע.",
      "זמני כניסת ויציאת שבת", [("זמני שבת", "/zmanei-shabbat/")], after=shhub, hub=True, prio="0.9", app_hash="home", app_label="לזמני היום באפליקציה", script=SH_HUB_JS,
      lead=f"{len(SH_CITIES)} ערים. בוחרים עיר ורואים מתי נכנסת ומתי יוצאת השבת.",

@@ -598,6 +598,10 @@ def page(path, title, desc, h1, crumbs, text="", meta="", bar_extra="", after=""
         bc = [{"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + u} for i, (n, u) in enumerate(allc)]
         lds.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": bc})
     for x in ld or []:
+        x = dict(x)
+        # the share image is also named as the page's preferred image, which Google reads for the result thumbnail
+        if x.get("@type") in ("WebPage", "CollectionPage", "CreativeWork") and not notfound and "primaryImageOfPage" not in x:
+            x["primaryImageOfPage"] = {"@type": "ImageObject", "url": f"{SITE}/icons/{og_for(path)}.png?v={OG_V}", "width": 1200, "height": 630}
         lds.append({"@context": "https://schema.org", **x})
     crumb_html = "<span>›</span>".join(f'<a href="{u}">{esc(n)}</a>' for n, u in allc[:-1])
     h1_html = esc(h1) + (f' <span class="ctx">{esc(h1_ctx)}</span>' if h1_ctx and not ctx_out else "")

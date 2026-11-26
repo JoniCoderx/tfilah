@@ -46,3 +46,8 @@ https://:version.:project.pages.dev/*
 /llms.txt
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=3600
+
+# The admin dashboard: never indexed, never cached.
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store

@@ -15,7 +15,7 @@ import os, re, sys, html, json, collections
 
 ROOT = os.getcwd()
 SITE = "https://tfilah.com"
-NOT_PAGES = {"data", "brand", "icons", "src", "tools", "functions", "node_modules"}
+NOT_PAGES = {"data", "brand", "icons", "src", "tools", "functions", "node_modules", "admin", "docs"}
 MAX_EXAMPLES = 5
 DESC_MIN, DESC_MAX = 120, 160
 
@@ -378,7 +378,7 @@ else:
         fail("404", "404.html should carry robots noindex")
     if 'rel="canonical"' in nf:
         fail("404", "404.html must not carry a canonical")
-    if re.search(r'(?:href|src)="(?!/|https?:|#|data:)', nf):
+    if re.search(r'(?:href|src)="(?!/|https?:|#|data:|mailto:)', nf):
         fail("404", "404.html has a relative URL (it is served on any path)")
     check_copy("/404.html", nf)
     check_links("/404.html", nf)

@@ -335,6 +335,10 @@ html[data-theme=dark] .yhero{filter:invert(1) hue-rotate(180deg)}
 .st3 b{font-family:var(--f-disp);font-weight:900;font-size:1.12rem;line-height:1.25}
 .st3 span{color:var(--ink2);font-size:.93rem;line-height:1.35}
 """),
+("yfig", """
+.yfig{margin:.4rem auto 1.4rem;max-inline-size:360px}.yfig img{display:block;inline-size:100%;block-size:auto;border-radius:24px;box-shadow:var(--sh)}
+html[data-theme=dark] .yfig img{filter:invert(1) hue-rotate(180deg)}
+"""),
 ("qa", """
 .qa{border-block-end:1px solid var(--line)}.qa:first-of-type{border-block-start:1px solid var(--line)}
 .qa summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;min-block-size:52px;padding:.5rem .2rem;cursor:pointer;list-style:none;font:700 1.02rem var(--f-ui);color:var(--ink)}
@@ -1922,6 +1926,8 @@ yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.<
              '</section>' if SB_ON else '') +
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>150 פרקי הספר מתחלקים בין כל מי שמצטרף. כל אחד לוקח פרק, קורא ומסמן שקרא.</p></div>'
+          '<figure class="yfig"><img src="/icons/tehillim-yachad.png?v=1" width="1200" height="1200" loading="lazy" decoding="async" '
+          'alt="תהילים יחד: קריאת תהילים משותפת באתר תפילה, כפי שהיא נראית בטלפון, עם מספר הפרקים שנקראו וכפתור לקבלת פרק"></figure>'
           + "".join(f'<details class="qa"><summary>{q}</summary><p>{a_}</p></details>' for q, a_ in Y_QA)
           + ('' if SB_ON else '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
 yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים, כל 150 הפרקים"), ("/kelim/shem/", "תהילים לפי שם"), ("/tehillim/refuah/", "תהילים לרפואה שלמה"),
@@ -1931,7 +1937,9 @@ page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקר�
      "תהילים יחד: קוראים תהילים ביחד, משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
      "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת", script=Y_JS if SB_ON else "",
      lead="קוראים תהילים ביחד: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
-     ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T}])
+     ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T,
+          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/icons/tehillim-yachad.png?v=1", "width": 1200, "height": 1200,
+                                 "caption": "תהילים יחד: קריאת תהילים משותפת באתר תפילה"}}])
 
 # ---------- personal tools: what each one does and how it calculates (read from the app's own code), then into the app ----------
 ABC = "אבגדהוזחטיכלמנסעפצקרשת"

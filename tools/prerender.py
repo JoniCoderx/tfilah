@@ -335,6 +335,13 @@ html[data-theme=dark] .yhero{filter:invert(1) hue-rotate(180deg)}
 .st3 b{font-family:var(--f-disp);font-weight:900;font-size:1.12rem;line-height:1.25}
 .st3 span{color:var(--ink2);font-size:.93rem;line-height:1.35}
 """),
+("qa", """
+.qa{border-block-end:1px solid var(--line)}.qa:first-of-type{border-block-start:1px solid var(--line)}
+.qa summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;min-block-size:52px;padding:.5rem .2rem;cursor:pointer;list-style:none;font:700 1.02rem var(--f-ui);color:var(--ink)}
+.qa summary::-webkit-details-marker{display:none}.qa summary::after{content:"+";flex:none;font:400 1.5rem/1 var(--f-ui);color:var(--stamp)}.qa[open] summary::after{content:"−"}
+.qa summary:focus-visible{outline:2px solid var(--stamp);outline-offset:2px;border-radius:8px}
+.qa p{margin:0 .2rem 1rem;color:var(--ink2)}
+"""),
 ("yrec", """
 .yrec{list-style:none;margin:.8rem 0 .6rem;padding:0;display:grid;gap:.6rem}
 @media (min-width:640px){.yrec{grid-template-columns:1fr 1fr}}
@@ -1291,7 +1298,7 @@ page("/tehillim/yomi/", f"תהילים יומי: חלוקת התהילים לי�
 SEFARIM = [("ספר ראשון", 1, 41), ("ספר שני", 42, 72), ("ספר שלישי", 73, 89), ("ספר רביעי", 90, 106), ("ספר חמישי", 107, 150)]
 POPULAR = [86, 84, 1, 20, 23, 130, 90, 100, 27, 30, 91, 121, 119, 13, 145, 142, 24, 16, 67, 51]
 hub = '<h2 class="sec" style="margin-block-start:.5rem">הפרקים המבוקשים</h2><div class="related">' + "".join(
-    f'<a href="/tehillim/{c}/">תהילים פרק {gem(c)}</a>' for c in POPULAR) + '</div><h2 class="sec">כל 150 הפרקים</h2>'
+    f'<a href="/tehillim/{c}/">תהילים פרק {gem(c)}</a>' for c in POPULAR) + '</div><h2 class="sec">תהילים לפי פרקים: כל 150 הפרקים</h2>'
 for name, a, b in SEFARIM:
     hub += (f'<h3 class="grp">{name}: {rng(a, b)}</h3><div class="grid">'
             + "".join(f'<a href="/tehillim/{c}/" title="תהילים פרק {gem(c)} ({c})">{gem(c)}</a>' for c in range(a, b + 1)) + "</div>")
@@ -1306,7 +1313,7 @@ hub += ('<h2 class="sec">סדר קריאה</h2><ul class="cards">'
         '<li><a href="/tehillim/yomi/"><b>תהילים יומי</b><small>החלוקה לימי החודש ולימי השבוע</small></a></li>'
         '<li><a href="/tehillim-yachad/"><b>תהילים יחד</b><small>כל אחד פרק. ביחד ספר שלם.</small></a></li>'
         '<li><a href="/kelim/"><b>כלים אישיים</b><small>תהילים לפי השם, פרק לפי גיל ועוד</small></a></li></ul>')
-page("/tehillim/", f"ספר תהילים אונליין | כל 150 הפרקים בניקוד מלא | {BRAND}",
+page("/tehillim/", f"ספר תהילים אונליין לפי פרקים: כל 150 הפרקים בניקוד מלא | {BRAND}",
      "ספר תהילים המלא אונליין בניקוד: כל 150 הפרקים, פרק בכל עמוד, תהילים לפי בקשה (לרפואה, לפרנסה, לעילוי נשמה), תיקון הכללי וחלוקה יומית.",
      "ספר תהילים", [("תהילים", "/tehillim/")], after=hub, app_hash="tehillim", hub=True, prio="0.9",
      lead="ספר תהילים המלא (תהלים): כל 150 הפרקים בניקוד מלא. בחרו פרק והתחילו לקרוא.",
@@ -1875,6 +1882,7 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # Explainers that lead into the app
 # =====================================================================
 SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
+Y_QA = [('איך מצטרפים לקריאה קיימת?', 'נכנסים לקישור שקיבלתם, או בוחרים קריאה מהרשימה. לוקחים פרק, קוראים ולוחצים ”סיימתי”.'), ('על מה אפשר לפתוח קריאה?', 'לרפואה שלמה, לעילוי נשמה, לזיווג הגון, להצלחה ולישועה, או לבקשה כללית.'), ('זה עולה כסף? צריך להירשם?', 'לא. בלי חשבון, בלי הורדה ובלי תשלום.'), ('מי רואה את הקריאה שפתחתי?', 'מי שקיבל מכם את הקישור. ברשימה כאן היא מופיעה רק אם בחרתם בכך.'), ('לקחתי פרק ולא הספקתי לקרוא', 'אחרי 24 שעות הפרק חוזר להיות פנוי, ומישהו אחר יכול לקחת אותו.'), ('מה קורה כשכל הספר נקרא?', 'הספר נשלם, ומתחיל סבב חדש.')]
 Y_PIN = "93fe6ej9xd"  # the standing reading for the soldiers; shown first only while it is on the public list
 Y_JS = ("(function(){var PIN='" + Y_PIN + "',K={neshama:['לעילוי נשמה','לעילוי נשמת ',' ז״ל'],refuah:['לרפואה שלמה','',''],zivug:['לזיווג הגון','',''],hatzlacha:['להצלחה ולישועה','','']};"
         "function get(u,f){fetch(u).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.data)f(j.data)}).catch(function(){})}"
@@ -1907,24 +1915,11 @@ yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.<
           + ('<section id="yrec" hidden><h2 class="sec">נפתחו לאחרונה</h2>'
              '<div class="ysrch"><input type="search" id="yq" aria-label="חיפוש קריאה לפי שם" placeholder="חיפוש קריאה לפי שם" autocomplete="off" enterkeyhint="search"></div>'
              '<ul class="yrec"></ul><p class="note" id="ynone" hidden>לא נמצאה קריאה פתוחה בשם הזה. אפשר לפתוח קריאה חדשה בכפתור שלמעלה.</p>'
-             '<p class="note">מוצגות רק קריאות שפותחיהן בחרו להציג לכולם. נכנסים, לוקחים פרק ומצטרפים.</p></section>' if SB_ON else '') +
+             '</section>' if SB_ON else '') +
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
-          '<p>בקריאת תהילים משותפת 150 פרקי הספר מתחלקים בין כל מי שמצטרף: כל אחד לוקח פרק, קורא אותו ומסמן שקרא. '
-          'כך ספר שלם נקרא בתוך זמן קצר, גם כשלכל אחד יש רק כמה דקות.</p>'
-          '<h3>איך מצטרפים לקריאה קיימת?</h3>'
-          '<p>נכנסים לקישור שקיבלתם, או בוחרים קריאה מהרשימה שבעמוד הזה. מקבלים פרק שעוד לא נקרא, או בוחרים פרק בעצמכם, קוראים ולוחצים ”סיימתי”.</p>'
-          '<h3>על מה אפשר לפתוח קריאה?</h3>'
-          '<p>לרפואה שלמה, לעילוי נשמה, לזיווג הגון, להצלחה ולישועה, או לבקשה כללית של רבים. אפשר לפתוח יותר מקריאה אחת.</p>'
-          '<h3>זה עולה כסף? צריך להירשם?</h3>'
-          '<p>לא. אין חשבון, אין הורדה ואין תשלום. פותחים, מקבלים קישור ושולחים.</p>'
-          '<h3>מי רואה את הקריאה שפתחתי?</h3>'
-          '<p>מי שקיבל מכם את הקישור. הקריאה מופיעה ברשימה שבעמוד הזה רק אם בחרתם בכך כשפתחתם אותה.</p>'
-          '<h3>לקחתי פרק ולא הספקתי לקרוא. מה קורה?</h3>'
-          '<p>פרק שלא סומן כנקרא בתוך 24 שעות חוזר להיות פנוי, ומשתתף אחר יכול לקחת אותו.</p>'
-          '<h3>מה קורה כשכל הספר נקרא?</h3>'
-          '<p>כשכל 150 הפרקים נקראו הספר נשלם, ומתחיל סבב חדש. כולם רואים כמה פרקים נקראו, כמה נשארו וכמה קוראים הצטרפו.</p></div>'
-          + ('<p class="note">פתיחת קריאה משותפת והצטרפות אליה נעשות כאן באתר, ישירות בדפדפן.</p>' if SB_ON else
-             '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
+          '<p>150 פרקי הספר מתחלקים בין כל מי שמצטרף. כל אחד לוקח פרק, קורא ומסמן שקרא.</p></div>'
+          + "".join(f'<details class="qa"><summary>{q}</summary><p>{a_}</p></details>' for q, a_ in Y_QA)
+          + ('' if SB_ON else '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
 yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים, כל 150 הפרקים"), ("/kelim/shem/", "תהילים לפי שם"), ("/tehillim/refuah/", "תהילים לרפואה שלמה"),
                                  ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])

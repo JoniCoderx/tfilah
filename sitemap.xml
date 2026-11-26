@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tfilah.com/</loc><lastmod>2026-11-25</lastmod><priority>1.0</priority></url>
+  <url><loc>https://tfilah.com/</loc><lastmod>2026-11-26</lastmod><priority>1.0</priority></url>
   <url><loc>https://tfilah.com/tehillim/1/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9e5f6ad98366-->
   <url><loc>https://tfilah.com/tehillim/2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--56a39245f6aa-->
   <url><loc>https://tfilah.com/tehillim/3/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--44148f935182-->
@@ -202,445 +202,445 @@
   <url><loc>https://tfilah.com/tehillim/chodesh-30/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url><!--30f48df9a3cf-->
   <url><loc>https://tfilah.com/tehillim/yomi/</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url><!--bf27d1a97714-->
   <url><loc>https://tfilah.com/tehillim/</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url><!--607d53079fef-->
-  <url><loc>https://tfilah.com/modeh-ani/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--deb1c93dae60-->
-  <url><loc>https://tfilah.com/brachot-hashachar/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4a74b386a455-->
-  <url><loc>https://tfilah.com/brachot-hatora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--54ac8fee6b85-->
-  <url><loc>https://tfilah.com/leshem-yichud/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b64d7ff32dec-->
-  <url><loc>https://tfilah.com/tikun-rachel/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--72c2212adad2-->
-  <url><loc>https://tfilah.com/tikun-lea/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--52877f621f8f-->
-  <url><loc>https://tfilah.com/petichat-eliyahu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--969370f7b616-->
-  <url><loc>https://tfilah.com/seder-atifat-tzitzit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d02f453e80cc-->
-  <url><loc>https://tfilah.com/seder-hanachat-tefilin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c441762bef7f-->
-  <url><loc>https://tfilah.com/vatitpalel-chana/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3a3dd0ec0128-->
+  <url><loc>https://tfilah.com/modeh-ani/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--180ab52dd1df-->
+  <url><loc>https://tfilah.com/brachot-hashachar/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dc54e30c196d-->
+  <url><loc>https://tfilah.com/brachot-hatora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b02802cf9e64-->
+  <url><loc>https://tfilah.com/leshem-yichud/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--15981f1b65f4-->
+  <url><loc>https://tfilah.com/tikun-rachel/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--09cd90951871-->
+  <url><loc>https://tfilah.com/tikun-lea/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5f9e3286183e-->
+  <url><loc>https://tfilah.com/petichat-eliyahu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d34cd6fde058-->
+  <url><loc>https://tfilah.com/seder-atifat-tzitzit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8441a1090e14-->
+  <url><loc>https://tfilah.com/seder-hanachat-tefilin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7fdc1c3775c5-->
+  <url><loc>https://tfilah.com/vatitpalel-chana/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--25cfb9a8b811-->
   <url><loc>https://tfilah.com/tefilat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e8a1e1c4a5da-->
-  <url><loc>https://tfilah.com/pitum-haketoret/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e4eb7c6fac67-->
-  <url><loc>https://tfilah.com/hodu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--89025054009c-->
-  <url><loc>https://tfilah.com/pesukei-dezimra/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a02ed21efc2f-->
-  <url><loc>https://tfilah.com/kriat-shema-uvirchoteha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--01489fbd9b44-->
+  <url><loc>https://tfilah.com/pitum-haketoret/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ad81b06f6cbc-->
+  <url><loc>https://tfilah.com/hodu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--630eea0d07a4-->
+  <url><loc>https://tfilah.com/pesukei-dezimra/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e7a8185e9d5b-->
+  <url><loc>https://tfilah.com/kriat-shema-uvirchoteha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3cef5a2b96b4-->
   <url><loc>https://tfilah.com/amida/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a00c444d6cbe-->
-  <url><loc>https://tfilah.com/vidui/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e4b2a6c20dd0-->
-  <url><loc>https://tfilah.com/kriat-hatora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b8750445ad58-->
-  <url><loc>https://tfilah.com/ashrei/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b1f8acafd6de-->
-  <url><loc>https://tfilah.com/uva-letzion/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--92367e24c75d-->
-  <url><loc>https://tfilah.com/beit-yaakov/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5fe55dc85e9b-->
-  <url><loc>https://tfilah.com/shir-shel-yom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--42b74c497e55-->
-  <url><loc>https://tfilah.com/kave/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--006e2dbc9693-->
-  <url><loc>https://tfilah.com/aleinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e581a5c6f15c-->
-  <url><loc>https://tfilah.com/shlosha-asar-ikarim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ce89876fc18c-->
-  <url><loc>https://tfilah.com/asar-zechirot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4629148b5842-->
-  <url><loc>https://tfilah.com/korbanot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2929beccb842-->
+  <url><loc>https://tfilah.com/vidui/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dac28524049b-->
+  <url><loc>https://tfilah.com/kriat-hatora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a7479244e972-->
+  <url><loc>https://tfilah.com/ashrei/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6f5929c5ae36-->
+  <url><loc>https://tfilah.com/uva-letzion/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0cfd17633f85-->
+  <url><loc>https://tfilah.com/beit-yaakov/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2d7f8284b531-->
+  <url><loc>https://tfilah.com/shir-shel-yom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0ebd766182fb-->
+  <url><loc>https://tfilah.com/kave/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7779038bfdb0-->
+  <url><loc>https://tfilah.com/aleinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--01fd8cc76732-->
+  <url><loc>https://tfilah.com/shlosha-asar-ikarim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3f95a59a853d-->
+  <url><loc>https://tfilah.com/asar-zechirot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d545ffeab788-->
+  <url><loc>https://tfilah.com/korbanot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a2b4a36e1805-->
   <url><loc>https://tfilah.com/amida-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f948923a9731-->
   <url><loc>https://tfilah.com/vidui-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2ac97b5e39b6-->
-  <url><loc>https://tfilah.com/barchu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bdb1e1dc24f8-->
+  <url><loc>https://tfilah.com/barchu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--17541896f8a9-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--88e768ea1141-->
   <url><loc>https://tfilah.com/amida-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6abd7e668491-->
-  <url><loc>https://tfilah.com/sefirat-haomer/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--648cf2bb9dd3-->
+  <url><loc>https://tfilah.com/sefirat-haomer/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--818212069fa2-->
   <url><loc>https://tfilah.com/birkat-halevana/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bebce6128752-->
-  <url><loc>https://tfilah.com/kriat-shema-sheal-hamita/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e4a10c5be5f6-->
-  <url><loc>https://tfilah.com/seder-hadlakat-nerot-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c416c3895878-->
-  <url><loc>https://tfilah.com/shir-hashirim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6964e7b924f8-->
-  <url><loc>https://tfilah.com/kabbalat-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9a9d7f670d34-->
-  <url><loc>https://tfilah.com/barchu-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fb681a33fa1f-->
+  <url><loc>https://tfilah.com/kriat-shema-sheal-hamita/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4d6dca93e431-->
+  <url><loc>https://tfilah.com/seder-hadlakat-nerot-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a87d8c5fccfd-->
+  <url><loc>https://tfilah.com/shir-hashirim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--47d357402045-->
+  <url><loc>https://tfilah.com/kabbalat-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--071078512e35-->
+  <url><loc>https://tfilah.com/barchu-shabbat-arvit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9dbe9cb2de8e-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e3bccb665125-->
-  <url><loc>https://tfilah.com/tefilat-sheva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1217a41b8313-->
+  <url><loc>https://tfilah.com/tefilat-sheva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--caa0e994952d-->
   <url><loc>https://tfilah.com/aleinu-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d27f992cf045-->
-  <url><loc>https://tfilah.com/shalom-aleichem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2d7501be8c5a-->
-  <url><loc>https://tfilah.com/eshet-chayil/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c5f29f365c23-->
-  <url><loc>https://tfilah.com/atkinu-seudata/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--df5efec946da-->
-  <url><loc>https://tfilah.com/kiddush-leil-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ea763ba39da4-->
-  <url><loc>https://tfilah.com/birkat-habanim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ff5c1c3ef78d-->
-  <url><loc>https://tfilah.com/seuda-rishona/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5deec4e033b5-->
-  <url><loc>https://tfilah.com/zohar-laseuda-rishona/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--71bca78a4b99-->
-  <url><loc>https://tfilah.com/shirei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1b286127f591-->
-  <url><loc>https://tfilah.com/birkat-hamazon/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1311075a24ea-->
+  <url><loc>https://tfilah.com/shalom-aleichem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d43cd1c97b7a-->
+  <url><loc>https://tfilah.com/eshet-chayil/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--36b042b4881b-->
+  <url><loc>https://tfilah.com/atkinu-seudata/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d1a4cbfbe7d6-->
+  <url><loc>https://tfilah.com/kiddush-leil-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1f766edcaeb9-->
+  <url><loc>https://tfilah.com/birkat-habanim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--755d9ddca1ab-->
+  <url><loc>https://tfilah.com/seuda-rishona/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--272e171fea3a-->
+  <url><loc>https://tfilah.com/zohar-laseuda-rishona/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--424003527a58-->
+  <url><loc>https://tfilah.com/shirei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8685b9e491ca-->
+  <url><loc>https://tfilah.com/birkat-hamazon/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--83e404c8d707-->
   <url><loc>https://tfilah.com/birkat-meein-shalosh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d6a83870ec4f-->
-  <url><loc>https://tfilah.com/brachot-hanehenin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e92f9bec86dd-->
-  <url><loc>https://tfilah.com/leyom-hashabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--849e50dc3e89-->
+  <url><loc>https://tfilah.com/brachot-hanehenin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cea72ec5774a-->
+  <url><loc>https://tfilah.com/leyom-hashabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3754059fc982-->
   <url><loc>https://tfilah.com/pesukei-dezimra-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7a6ef2ef0a3e-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ba8e34191123-->
   <url><loc>https://tfilah.com/amida-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9719a3b57b1c-->
   <url><loc>https://tfilah.com/kriat-hatora-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--44378f53ae0d-->
-  <url><loc>https://tfilah.com/birkat-hagomel/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0569f34b48b2-->
-  <url><loc>https://tfilah.com/seder-zeved-habat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--926350ff2805-->
-  <url><loc>https://tfilah.com/leshabbat-chatan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d5435df4993c-->
-  <url><loc>https://tfilah.com/brachot-hahaftara/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--da12bdb8a5a3-->
-  <url><loc>https://tfilah.com/hachrazat-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--edf2148caae3-->
-  <url><loc>https://tfilah.com/hachrazat-taanit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--868141dcd0c6-->
-  <url><loc>https://tfilah.com/mi-sheberach-lakahal/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--49372550ec2e-->
-  <url><loc>https://tfilah.com/ashrei-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--36bfebf2ec4b-->
-  <url><loc>https://tfilah.com/amida-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4baa63dafe85-->
-  <url><loc>https://tfilah.com/seder-seuda-shniya/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5c9ba0b904b1-->
-  <url><loc>https://tfilah.com/kiddush-hayom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2f6850fc6fbf-->
+  <url><loc>https://tfilah.com/birkat-hagomel/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--738edf1dcb43-->
+  <url><loc>https://tfilah.com/seder-zeved-habat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4e402c848bb1-->
+  <url><loc>https://tfilah.com/leshabbat-chatan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--eedf96399db5-->
+  <url><loc>https://tfilah.com/brachot-hahaftara/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0ab06aeeb456-->
+  <url><loc>https://tfilah.com/hachrazat-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--113cd45477cd-->
+  <url><loc>https://tfilah.com/hachrazat-taanit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--26fd6274b597-->
+  <url><loc>https://tfilah.com/mi-sheberach-lakahal/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--47d9de0149cf-->
+  <url><loc>https://tfilah.com/ashrei-shabbat-shacharit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--87f3f84fbf32-->
+  <url><loc>https://tfilah.com/amida-shabbat-musaf/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--608853d76f9c-->
+  <url><loc>https://tfilah.com/seder-seuda-shniya/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ba2f18c7b3d5-->
+  <url><loc>https://tfilah.com/kiddush-hayom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d82426a09385-->
   <url><loc>https://tfilah.com/korbanot-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c6c7fd2b36f3-->
-  <url><loc>https://tfilah.com/uva-letzion-goel/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f78f4a37c375-->
-  <url><loc>https://tfilah.com/amida-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dc6abd6cfb8c-->
-  <url><loc>https://tfilah.com/seuda-shlishit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--625a4afb2791-->
-  <url><loc>https://tfilah.com/kodem-havdala/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ce2a54b29169-->
-  <url><loc>https://tfilah.com/seder-havdala/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1276fab7209a-->
-  <url><loc>https://tfilah.com/shirim-lemotzaei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ce88f5af6328-->
-  <url><loc>https://tfilah.com/veyiten-lecha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b95249fdcd5b-->
-  <url><loc>https://tfilah.com/seuda-reviit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--493b50c91b5d-->
-  <url><loc>https://tfilah.com/seder-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--547508afa91b-->
+  <url><loc>https://tfilah.com/uva-letzion-goel/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b7a3e5ed87b7-->
+  <url><loc>https://tfilah.com/amida-shabbat-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3dd544929164-->
+  <url><loc>https://tfilah.com/seuda-shlishit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8df5fc7173ed-->
+  <url><loc>https://tfilah.com/kodem-havdala/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--622023a5556e-->
+  <url><loc>https://tfilah.com/seder-havdala/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--89d76c148a46-->
+  <url><loc>https://tfilah.com/shirim-lemotzaei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ca22300e8a7c-->
+  <url><loc>https://tfilah.com/veyiten-lecha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--70b075c4781c-->
+  <url><loc>https://tfilah.com/seuda-reviit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--34534e5c581e-->
+  <url><loc>https://tfilah.com/seder-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7425a3819911-->
   <url><loc>https://tfilah.com/hallel-lerosh-chodesh-ulemoadim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7bb09459828e-->
   <url><loc>https://tfilah.com/uva-letzion-goel-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--20959be3443c-->
   <url><loc>https://tfilah.com/shir-shel-yom-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--600f014242e3-->
-  <url><loc>https://tfilah.com/musaf-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--09714f85665f-->
-  <url><loc>https://tfilah.com/barchi-nafshi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8660e638812f-->
-  <url><loc>https://tfilah.com/kave-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a03fd4c03ff4-->
+  <url><loc>https://tfilah.com/musaf-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--14537311ffef-->
+  <url><loc>https://tfilah.com/barchi-nafshi/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--296300e7052b-->
+  <url><loc>https://tfilah.com/kave-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ce2ff206f2d7-->
   <url><loc>https://tfilah.com/pitum-haketoret-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b2b9323c2133-->
-  <url><loc>https://tfilah.com/tefila-leshalosh-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e9f6841ab89e-->
-  <url><loc>https://tfilah.com/mizmor-lepesach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--295183edc76e-->
-  <url><loc>https://tfilah.com/mizmor-leshavuot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bb4d7379e1d0-->
-  <url><loc>https://tfilah.com/mizmor-lesukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--84af4cd29e73-->
-  <url><loc>https://tfilah.com/mizmor-lishmini-atzeret/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8e51da77e382-->
+  <url><loc>https://tfilah.com/tefila-leshalosh-regalim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--afccfa4ddf3c-->
+  <url><loc>https://tfilah.com/mizmor-lepesach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--46d4f785fa7b-->
+  <url><loc>https://tfilah.com/mizmor-leshavuot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fe9ceedc00fa-->
+  <url><loc>https://tfilah.com/mizmor-lesukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5f2f6d252ea1-->
+  <url><loc>https://tfilah.com/mizmor-lishmini-atzeret/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3c6114e4e28e-->
   <url><loc>https://tfilah.com/amida-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c9517bc3f2d0-->
   <url><loc>https://tfilah.com/musaf-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ec7ac4a51355-->
-  <url><loc>https://tfilah.com/seder-hahadlaka/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0c033a8b4e40-->
-  <url><loc>https://tfilah.com/shacharit-lachanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5218abe8a1d2-->
-  <url><loc>https://tfilah.com/shabbat-zachor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7f8058dc1dd1-->
-  <url><loc>https://tfilah.com/kriat-hamegila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4fccce967467-->
-  <url><loc>https://tfilah.com/seder-yom-purim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--25f127276f08-->
-  <url><loc>https://tfilah.com/seder-birkat-hailanot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7589f10f4d83-->
-  <url><loc>https://tfilah.com/seder-limud-lechodesh-nisan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aa5f1646c15d-->
-  <url><loc>https://tfilah.com/seder-erusin-venisuin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--964f8070d2f4-->
-  <url><loc>https://tfilah.com/seder-sheva-brachot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c0bd6c67e8dd-->
-  <url><loc>https://tfilah.com/seder-brit-mila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--eac7e5b820ff-->
-  <url><loc>https://tfilah.com/seder-pidyon-haben/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--daf678f417d8-->
-  <url><loc>https://tfilah.com/birkat-hamezuza/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--437194429e93-->
-  <url><loc>https://tfilah.com/birkat-hamaake/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--01e4da18f5c2-->
-  <url><loc>https://tfilah.com/seder-hafrashat-chala/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d65505705524-->
-  <url><loc>https://tfilah.com/birkat-tevilat-kelim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--db38dfcc366d-->
+  <url><loc>https://tfilah.com/seder-hahadlaka/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--45232d1be7c9-->
+  <url><loc>https://tfilah.com/shacharit-lachanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3fb39c1e7ac7-->
+  <url><loc>https://tfilah.com/shabbat-zachor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--11fb1f16435e-->
+  <url><loc>https://tfilah.com/kriat-hamegila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4307f8f26020-->
+  <url><loc>https://tfilah.com/seder-yom-purim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--87e6b6481f07-->
+  <url><loc>https://tfilah.com/seder-birkat-hailanot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--df5ccce3fb27-->
+  <url><loc>https://tfilah.com/seder-limud-lechodesh-nisan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--57362e47ad39-->
+  <url><loc>https://tfilah.com/seder-erusin-venisuin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1a92aac18e01-->
+  <url><loc>https://tfilah.com/seder-sheva-brachot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--77b6d9ff7be5-->
+  <url><loc>https://tfilah.com/seder-brit-mila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6ae6cdf43dac-->
+  <url><loc>https://tfilah.com/seder-pidyon-haben/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--493344073eb3-->
+  <url><loc>https://tfilah.com/birkat-hamezuza/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d37e0b824119-->
+  <url><loc>https://tfilah.com/birkat-hamaake/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2552426d98e2-->
+  <url><loc>https://tfilah.com/seder-hafrashat-chala/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c918b62759c9-->
+  <url><loc>https://tfilah.com/birkat-tevilat-kelim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a2cf2821a482-->
   <url><loc>https://tfilah.com/seder-hafrashat-terumot-umaasrot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--98e8a1f99c6f-->
-  <url><loc>https://tfilah.com/birkat-hakeshet/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fb5f7b13db70-->
-  <url><loc>https://tfilah.com/birkat-brakim-ureamim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e2473647f7f3-->
-  <url><loc>https://tfilah.com/tefilat-hanotel-terufa/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ee0102ec48ff-->
-  <url><loc>https://tfilah.com/tefilat-haderech/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--13d8c5f97cb1-->
-  <url><loc>https://tfilah.com/selichot-letzom-gedalya/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aced86eb0e72-->
-  <url><loc>https://tfilah.com/selichot-laasara-betevet/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ba9b2b7cff21-->
-  <url><loc>https://tfilah.com/selichot-letaanit-ester/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9aa979c2f12c-->
-  <url><loc>https://tfilah.com/selichot-le-17-betamuz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9c29dfc22be6-->
-  <url><loc>https://tfilah.com/avelut/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3de2297eb20c-->
+  <url><loc>https://tfilah.com/birkat-hakeshet/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--44f7a2c80c2d-->
+  <url><loc>https://tfilah.com/birkat-brakim-ureamim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--03752eacb778-->
+  <url><loc>https://tfilah.com/tefilat-hanotel-terufa/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3c5ff473000b-->
+  <url><loc>https://tfilah.com/tefilat-haderech/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1d84be7a30dc-->
+  <url><loc>https://tfilah.com/selichot-letzom-gedalya/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3a8bc0d350b2-->
+  <url><loc>https://tfilah.com/selichot-laasara-betevet/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f8c435f80d20-->
+  <url><loc>https://tfilah.com/selichot-letaanit-ester/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b002a7f91f70-->
+  <url><loc>https://tfilah.com/selichot-le-17-betamuz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6f3d5764361a-->
+  <url><loc>https://tfilah.com/avelut/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f55defd68219-->
   <url><loc>https://tfilah.com/kriat-hatora-letaanit-tzibur/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d4194dd5541d-->
-  <url><loc>https://tfilah.com/laseuda-rishona/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cb1ae530201b-->
+  <url><loc>https://tfilah.com/laseuda-rishona/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--71294706ea6f-->
   <url><loc>https://tfilah.com/mishnayot-shabbat-laseuda-shniya/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fa980d766998-->
   <url><loc>https://tfilah.com/mishnayot-shabbat-laseuda-shlishit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--926db604b282-->
-  <url><loc>https://tfilah.com/pirkei-avot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3726704e6d22-->
-  <url><loc>https://tfilah.com/modeh-ani/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a586aaae1d55-->
-  <url><loc>https://tfilah.com/talit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8ee3d9c8c76a-->
-  <url><loc>https://tfilah.com/tefilin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bb0d08c0f2e0-->
-  <url><loc>https://tfilah.com/tefila-kodem-hatefila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e6ee580930f3-->
-  <url><loc>https://tfilah.com/seder-halicha-leveit-hachnasat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--51d693aaa76b-->
-  <url><loc>https://tfilah.com/brachot-hashachar/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--27e0d0d4b690-->
-  <url><loc>https://tfilah.com/brachot-hatora/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--288fc391b287-->
-  <url><loc>https://tfilah.com/tefilat-hashachar/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--627e68306535-->
-  <url><loc>https://tfilah.com/korbanot/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b5f1698c9319-->
-  <url><loc>https://tfilah.com/baraita-derabbi-yishmael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0db0ef3577cc-->
-  <url><loc>https://tfilah.com/hodu/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--43bbcdff3d9b-->
-  <url><loc>https://tfilah.com/yishtabach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fa84020fb7ab-->
-  <url><loc>https://tfilah.com/kriat-shema-uvirchoteha/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e37a6569aaeb-->
-  <url><loc>https://tfilah.com/amida/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c0691f4e2efe-->
-  <url><loc>https://tfilah.com/tachanun/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9db6dea61ea4-->
-  <url><loc>https://tfilah.com/avinu-malkeinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a8c2d48377b2-->
-  <url><loc>https://tfilah.com/lasheni-vachamishi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b519d14138a5-->
-  <url><loc>https://tfilah.com/kriat-hatora/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--13c1ce09cfc5-->
-  <url><loc>https://tfilah.com/ashrei/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1f45a2baedb8-->
-  <url><loc>https://tfilah.com/beit-yaakov/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c040766f6b1a-->
-  <url><loc>https://tfilah.com/shir-shel-yom/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cd2bdeb8d483-->
-  <url><loc>https://tfilah.com/barchi-nafshi/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5443f3dd10b1-->
-  <url><loc>https://tfilah.com/ledavid-hashem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--57034584e162-->
-  <url><loc>https://tfilah.com/kave/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9fa229857c6f-->
-  <url><loc>https://tfilah.com/aleinu/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cb7402527189-->
-  <url><loc>https://tfilah.com/shesh-zechirot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2ce8d2f1d741-->
-  <url><loc>https://tfilah.com/shlosha-asar-ikarim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fe395cf78d94-->
-  <url><loc>https://tfilah.com/parashat-hayira/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d98e1be59508-->
-  <url><loc>https://tfilah.com/parashat-hateshuva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f08edd4b2f56-->
-  <url><loc>https://tfilah.com/parashat-haman/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3a1784cbfbe0-->
-  <url><loc>https://tfilah.com/bakashot-leachar-hatefila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a34f7ef8a77b-->
-  <url><loc>https://tfilah.com/perek-shira/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--274e6def0d91-->
-  <url><loc>https://tfilah.com/korbanot-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1c660df867e5-->
-  <url><loc>https://tfilah.com/kria-letaanit-tzibur/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--62dc0f5d9f8e-->
+  <url><loc>https://tfilah.com/pirkei-avot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2a25955636f5-->
+  <url><loc>https://tfilah.com/modeh-ani/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--14202e92f49c-->
+  <url><loc>https://tfilah.com/talit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e13bb52dbbe0-->
+  <url><loc>https://tfilah.com/tefilin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--16678d551173-->
+  <url><loc>https://tfilah.com/tefila-kodem-hatefila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fe2bfb7f5c82-->
+  <url><loc>https://tfilah.com/seder-halicha-leveit-hachnasat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ca589903fa98-->
+  <url><loc>https://tfilah.com/brachot-hashachar/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dce3082f04c8-->
+  <url><loc>https://tfilah.com/brachot-hatora/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--33d06475f77b-->
+  <url><loc>https://tfilah.com/tefilat-hashachar/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6c3ef16e98cb-->
+  <url><loc>https://tfilah.com/korbanot/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4f2a7e7920ac-->
+  <url><loc>https://tfilah.com/baraita-derabbi-yishmael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cfb6599dddb8-->
+  <url><loc>https://tfilah.com/hodu/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ca896736f918-->
+  <url><loc>https://tfilah.com/yishtabach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e9c0caaf4c83-->
+  <url><loc>https://tfilah.com/kriat-shema-uvirchoteha/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--94d89d0a05f5-->
+  <url><loc>https://tfilah.com/amida/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b8fc101502f1-->
+  <url><loc>https://tfilah.com/tachanun/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e4693f5cd77c-->
+  <url><loc>https://tfilah.com/avinu-malkeinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--54d025607011-->
+  <url><loc>https://tfilah.com/lasheni-vachamishi/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--08ad988fd6ba-->
+  <url><loc>https://tfilah.com/kriat-hatora/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--969fff3425a9-->
+  <url><loc>https://tfilah.com/ashrei/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cc1be4076cb5-->
+  <url><loc>https://tfilah.com/beit-yaakov/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2993d306d538-->
+  <url><loc>https://tfilah.com/shir-shel-yom/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fae3419552f7-->
+  <url><loc>https://tfilah.com/barchi-nafshi/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b6c2c6095981-->
+  <url><loc>https://tfilah.com/ledavid-hashem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4c44f4398e10-->
+  <url><loc>https://tfilah.com/kave/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d2ec3dc2798c-->
+  <url><loc>https://tfilah.com/aleinu/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2ce9362e8e0b-->
+  <url><loc>https://tfilah.com/shesh-zechirot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bca9531b303a-->
+  <url><loc>https://tfilah.com/shlosha-asar-ikarim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a304e64beb64-->
+  <url><loc>https://tfilah.com/parashat-hayira/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f79513d252ba-->
+  <url><loc>https://tfilah.com/parashat-hateshuva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b99d66fe3f20-->
+  <url><loc>https://tfilah.com/parashat-haman/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f0353df2768a-->
+  <url><loc>https://tfilah.com/bakashot-leachar-hatefila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5a688a5a6407-->
+  <url><loc>https://tfilah.com/perek-shira/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--269558b28231-->
+  <url><loc>https://tfilah.com/korbanot-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2e292a086bb0-->
+  <url><loc>https://tfilah.com/kria-letaanit-tzibur/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d8e57d65b07e-->
   <url><loc>https://tfilah.com/amida-mincha/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5773930a2300-->
-  <url><loc>https://tfilah.com/tachanun-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d6a7c7adbf30-->
+  <url><loc>https://tfilah.com/tachanun-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1df6bc9182c7-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-arvit/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8b53d6d7c4ff-->
   <url><loc>https://tfilah.com/amida-arvit/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4784fb2e8615-->
-  <url><loc>https://tfilah.com/arvit-lemotzaei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--507dfa99dacd-->
-  <url><loc>https://tfilah.com/sefirat-haomer/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f31cf958c11b-->
-  <url><loc>https://tfilah.com/kiddush-levana/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c6b96cea9b93-->
-  <url><loc>https://tfilah.com/kriat-shema-sheal-hamita/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--74f346916996-->
-  <url><loc>https://tfilah.com/amar-rabbi-akiva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--400eedd65877-->
-  <url><loc>https://tfilah.com/ashreinu-ma-tov-chelkenu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f856388d03ae-->
-  <url><loc>https://tfilah.com/ashreinu-uma-naim-goraleinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c5c0b65a3a9c-->
-  <url><loc>https://tfilah.com/bar-yochai/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6aac810670e9-->
-  <url><loc>https://tfilah.com/bar-yochai-butzina-kadisha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--70c9a9673d2b-->
-  <url><loc>https://tfilah.com/bar-yochai-hashem-amcha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aa282e189b39-->
-  <url><loc>https://tfilah.com/bar-yochai-yesod-olam/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--23953c1620a6-->
-  <url><loc>https://tfilah.com/bar-yochai-tagel-yoladtecha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d55e5067b33c-->
-  <url><loc>https://tfilah.com/vaamartem-ko-lechai/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--278bff1e1b54-->
+  <url><loc>https://tfilah.com/arvit-lemotzaei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3b4cad33ea19-->
+  <url><loc>https://tfilah.com/sefirat-haomer/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7aded9c0d58e-->
+  <url><loc>https://tfilah.com/kiddush-levana/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f667fa60ecbd-->
+  <url><loc>https://tfilah.com/kriat-shema-sheal-hamita/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--92eba382ae4b-->
+  <url><loc>https://tfilah.com/amar-rabbi-akiva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d02a83bd01c2-->
+  <url><loc>https://tfilah.com/ashreinu-ma-tov-chelkenu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3adca46c2565-->
+  <url><loc>https://tfilah.com/ashreinu-uma-naim-goraleinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--24ebe4b90dde-->
+  <url><loc>https://tfilah.com/bar-yochai/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c8c42f99f653-->
+  <url><loc>https://tfilah.com/bar-yochai-butzina-kadisha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bb72f6e2b40b-->
+  <url><loc>https://tfilah.com/bar-yochai-hashem-amcha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d09de003a2a0-->
+  <url><loc>https://tfilah.com/bar-yochai-yesod-olam/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e40631669395-->
+  <url><loc>https://tfilah.com/bar-yochai-tagel-yoladtecha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4b74e0c7d8fd-->
+  <url><loc>https://tfilah.com/vaamartem-ko-lechai/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9100241ecb2e-->
   <url><loc>https://tfilah.com/lichvod-hatana-haeloki-rabbi-shimon-bar-yochai/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fbac1b8ff79a-->
-  <url><loc>https://tfilah.com/naale-venavo-el-shaarei-meron/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--644856e55956-->
-  <url><loc>https://tfilah.com/seder-brachot-erusin-venisuin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d02dfc385768-->
-  <url><loc>https://tfilah.com/seder-sheva-brachot/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bc173e231dcf-->
-  <url><loc>https://tfilah.com/seder-brit-mila/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--22d119f086ca-->
-  <url><loc>https://tfilah.com/geula-livrit-mila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--73f87136077a-->
-  <url><loc>https://tfilah.com/seder-pidyon-haben/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--780aad86f225-->
-  <url><loc>https://tfilah.com/seder-seuda-uvirchoteha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7fbfdeeef338-->
-  <url><loc>https://tfilah.com/birkat-hamazon/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a8f26d832b45-->
-  <url><loc>https://tfilah.com/harachaman-livrit-mila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0185a831cf50-->
-  <url><loc>https://tfilah.com/brachot-hanehenin/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e595ecfb5bac-->
+  <url><loc>https://tfilah.com/naale-venavo-el-shaarei-meron/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8093fc0148df-->
+  <url><loc>https://tfilah.com/seder-brachot-erusin-venisuin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dab5af36f383-->
+  <url><loc>https://tfilah.com/seder-sheva-brachot/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--43f16a2b8b93-->
+  <url><loc>https://tfilah.com/seder-brit-mila/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--18bb7f94d0ac-->
+  <url><loc>https://tfilah.com/geula-livrit-mila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d4e39cfa1ecf-->
+  <url><loc>https://tfilah.com/seder-pidyon-haben/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3f362d3dd132-->
+  <url><loc>https://tfilah.com/seder-seuda-uvirchoteha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9d7d86523a64-->
+  <url><loc>https://tfilah.com/birkat-hamazon/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--57d5a1b1248d-->
+  <url><loc>https://tfilah.com/harachaman-livrit-mila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3ba1f27f481c-->
+  <url><loc>https://tfilah.com/brachot-hanehenin/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c9c728312078-->
   <url><loc>https://tfilah.com/bracha-acharona-meein-shalosh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--964395a0965e-->
-  <url><loc>https://tfilah.com/borei-pri-haetz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--25590365ab3d-->
-  <url><loc>https://tfilah.com/borei-pri-haadama/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--625d4d04bda7-->
-  <url><loc>https://tfilah.com/birkat-shehakol/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f344fd6b813d-->
-  <url><loc>https://tfilah.com/borei-nefashot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ef159a1a9ebc-->
-  <url><loc>https://tfilah.com/birkat-shehecheyanu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c778afab69c1-->
-  <url><loc>https://tfilah.com/reiach-besamim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--868370770c0c-->
-  <url><loc>https://tfilah.com/reiach-tov-shebaasavim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4256c6357ff3-->
-  <url><loc>https://tfilah.com/reiach-tov-shebaetzim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--071e59f6324b-->
-  <url><loc>https://tfilah.com/reiach-tov-shebaperot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e75a68be8bf2-->
-  <url><loc>https://tfilah.com/shemen-afarsemon/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dc2189fa4e6b-->
-  <url><loc>https://tfilah.com/birkat-brakim-ureamim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1bca8859f8fa-->
-  <url><loc>https://tfilah.com/birkat-hakeshet/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--14f035482593-->
-  <url><loc>https://tfilah.com/hayam-hagadol/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--782698188cb6-->
-  <url><loc>https://tfilah.com/birkat-hailanot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4b97bcb4382b-->
-  <url><loc>https://tfilah.com/brachot-shonot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--948d7c28e1b1-->
-  <url><loc>https://tfilah.com/birkat-tevilat-kelim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--25c0fce14346-->
-  <url><loc>https://tfilah.com/birkat-hamezuza/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--53e4c8db2659-->
-  <url><loc>https://tfilah.com/seder-hafrashat-chala/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--354058c53692-->
-  <url><loc>https://tfilah.com/seder-hafrashat-terumot-umaasrot/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d2c022962159-->
-  <url><loc>https://tfilah.com/tefilat-haderech/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d1a85788c88d-->
-  <url><loc>https://tfilah.com/tefilat-haderech-latasim-baaviron/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--758347af8643-->
-  <url><loc>https://tfilah.com/seder-eruv-tavshilin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--139824d6306d-->
-  <url><loc>https://tfilah.com/seder-hadlakat-nerot-shabbat/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a8f47bb8620e-->
-  <url><loc>https://tfilah.com/shir-hashirim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ac3c8faee211-->
-  <url><loc>https://tfilah.com/mincha-leerev-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--790eb5b2ed28-->
-  <url><loc>https://tfilah.com/tefilat-amida-erev-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--969ddfb86760-->
-  <url><loc>https://tfilah.com/kabbalat-shabbat/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dc0ea2e4f6aa-->
-  <url><loc>https://tfilah.com/tefilat-arvit-shel-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--629cbaccf9ea-->
+  <url><loc>https://tfilah.com/borei-pri-haetz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e63c1470b371-->
+  <url><loc>https://tfilah.com/borei-pri-haadama/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e51d546ca4a5-->
+  <url><loc>https://tfilah.com/birkat-shehakol/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--77e95aa60148-->
+  <url><loc>https://tfilah.com/borei-nefashot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b68dc72cd130-->
+  <url><loc>https://tfilah.com/birkat-shehecheyanu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f6e3a6c69c0e-->
+  <url><loc>https://tfilah.com/reiach-besamim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b06ec43e0bd0-->
+  <url><loc>https://tfilah.com/reiach-tov-shebaasavim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f83d424d54f1-->
+  <url><loc>https://tfilah.com/reiach-tov-shebaetzim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--40e009438064-->
+  <url><loc>https://tfilah.com/reiach-tov-shebaperot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ce98387ace2d-->
+  <url><loc>https://tfilah.com/shemen-afarsemon/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--27487faf210a-->
+  <url><loc>https://tfilah.com/birkat-brakim-ureamim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4bbeb61a23e7-->
+  <url><loc>https://tfilah.com/birkat-hakeshet/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--13ae5d1365d4-->
+  <url><loc>https://tfilah.com/hayam-hagadol/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dfb7dcb1ed64-->
+  <url><loc>https://tfilah.com/birkat-hailanot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e40ff627d077-->
+  <url><loc>https://tfilah.com/brachot-shonot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bb245365afb4-->
+  <url><loc>https://tfilah.com/birkat-tevilat-kelim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--831b162925e4-->
+  <url><loc>https://tfilah.com/birkat-hamezuza/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e438ff7e5096-->
+  <url><loc>https://tfilah.com/seder-hafrashat-chala/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--78399f01fb3c-->
+  <url><loc>https://tfilah.com/seder-hafrashat-terumot-umaasrot/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--866c8626e0a5-->
+  <url><loc>https://tfilah.com/tefilat-haderech/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--da18961c6bb7-->
+  <url><loc>https://tfilah.com/tefilat-haderech-latasim-baaviron/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b09404c76193-->
+  <url><loc>https://tfilah.com/seder-eruv-tavshilin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f39961fb9e67-->
+  <url><loc>https://tfilah.com/seder-hadlakat-nerot-shabbat/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--11d622b67507-->
+  <url><loc>https://tfilah.com/shir-hashirim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--aa9af9f8812d-->
+  <url><loc>https://tfilah.com/mincha-leerev-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--af2ad4341fa4-->
+  <url><loc>https://tfilah.com/tefilat-amida-erev-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7216d1640641-->
+  <url><loc>https://tfilah.com/kabbalat-shabbat/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--518f402fce7f-->
+  <url><loc>https://tfilah.com/tefilat-arvit-shel-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a3aad7975484-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-shabbat-arvit/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d0ba10ad97fc-->
   <url><loc>https://tfilah.com/tefilat-amida-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3977c76c43aa-->
-  <url><loc>https://tfilah.com/vayechulu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ce68c704358b-->
-  <url><loc>https://tfilah.com/birkat-habanim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2ca8d6c230b5-->
-  <url><loc>https://tfilah.com/shalom-aleichem/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f47a45ac440e-->
-  <url><loc>https://tfilah.com/eshet-chayil/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2f059c20c8f0-->
-  <url><loc>https://tfilah.com/atkinu-seudata/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--de5cf70d52a6-->
-  <url><loc>https://tfilah.com/kiddush-leil-shabbat/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e6c222344591-->
-  <url><loc>https://tfilah.com/zemirot-leleil-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d4f95d0ef2ef-->
-  <url><loc>https://tfilah.com/pesukei-dezimra/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--37b3615442ed-->
+  <url><loc>https://tfilah.com/vayechulu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--06d13bc5deb1-->
+  <url><loc>https://tfilah.com/birkat-habanim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--85fc4f4c64af-->
+  <url><loc>https://tfilah.com/shalom-aleichem/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--423e91c128fa-->
+  <url><loc>https://tfilah.com/eshet-chayil/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--62518ed75b3d-->
+  <url><loc>https://tfilah.com/atkinu-seudata/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b34d9e7d4d4a-->
+  <url><loc>https://tfilah.com/kiddush-leil-shabbat/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--59f2233dc1a3-->
+  <url><loc>https://tfilah.com/zemirot-leleil-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8d7bf74a6581-->
+  <url><loc>https://tfilah.com/pesukei-dezimra/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3e9713d13cbd-->
   <url><loc>https://tfilah.com/kriat-shema-uvirchoteha-shabbat-shacharit/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f57273aad5a0-->
   <url><loc>https://tfilah.com/tefilat-amida-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ea338a9f83b6-->
-  <url><loc>https://tfilah.com/seder-kriat-hatora-beshabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--05c54a026026-->
-  <url><loc>https://tfilah.com/birkat-hatora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6af04e63c524-->
-  <url><loc>https://tfilah.com/mi-sheberach-laole-latora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7689c2bde323-->
-  <url><loc>https://tfilah.com/mi-sheberach-layoledet/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f057f81f735a-->
-  <url><loc>https://tfilah.com/mi-sheberach-lachole/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--98d225d182f8-->
-  <url><loc>https://tfilah.com/mevarchin-behab/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5edaf5938db8-->
-  <url><loc>https://tfilah.com/birkat-hagomel/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e717324e5696-->
-  <url><loc>https://tfilah.com/lanaar-bar-mitzva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cc7bb29aea17-->
-  <url><loc>https://tfilah.com/hagbahat-sefer-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0ab1e035f36c-->
-  <url><loc>https://tfilah.com/brachot-hahaftara/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--386c19f8d43b-->
-  <url><loc>https://tfilah.com/birkat-hachodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--822f746f63b4-->
-  <url><loc>https://tfilah.com/hazkarat-neshamot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7c4417e0b38d-->
-  <url><loc>https://tfilah.com/av-harachamim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bde437ebd3e3-->
-  <url><loc>https://tfilah.com/musaf-shel-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--61c836eaefbc-->
-  <url><loc>https://tfilah.com/seder-tikunei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--514a338725a1-->
-  <url><loc>https://tfilah.com/kiddush-leyom-hashabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c902ea21723b-->
-  <url><loc>https://tfilah.com/zemirot-leyom-hashabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c8954af67ee8-->
-  <url><loc>https://tfilah.com/korbanot-shabbat-mincha/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--731ebbbfd2c3-->
+  <url><loc>https://tfilah.com/seder-kriat-hatora-beshabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a49f79807fc1-->
+  <url><loc>https://tfilah.com/birkat-hatora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a9ef21c46f9c-->
+  <url><loc>https://tfilah.com/mi-sheberach-laole-latora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3a6de7446f83-->
+  <url><loc>https://tfilah.com/mi-sheberach-layoledet/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0b3ab2e2ccd2-->
+  <url><loc>https://tfilah.com/mi-sheberach-lachole/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--690cd4e41816-->
+  <url><loc>https://tfilah.com/mevarchin-behab/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--defcf7efdeae-->
+  <url><loc>https://tfilah.com/birkat-hagomel/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bf0285732ca6-->
+  <url><loc>https://tfilah.com/lanaar-bar-mitzva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ef3b6dedbea3-->
+  <url><loc>https://tfilah.com/hagbahat-sefer-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--10ce11492447-->
+  <url><loc>https://tfilah.com/brachot-hahaftara/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ccb03d0f2a78-->
+  <url><loc>https://tfilah.com/birkat-hachodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ad878799fe5d-->
+  <url><loc>https://tfilah.com/hazkarat-neshamot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8bb585ce6e82-->
+  <url><loc>https://tfilah.com/av-harachamim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3288456ea33d-->
+  <url><loc>https://tfilah.com/musaf-shel-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--88ffdb8b9191-->
+  <url><loc>https://tfilah.com/seder-tikunei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6365330e9636-->
+  <url><loc>https://tfilah.com/kiddush-leyom-hashabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a092ef58f0e4-->
+  <url><loc>https://tfilah.com/zemirot-leyom-hashabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--30c80ade7b8a-->
+  <url><loc>https://tfilah.com/korbanot-shabbat-mincha/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3c4755c0abcc-->
   <url><loc>https://tfilah.com/tefilat-amida-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4595ddda32f6-->
-  <url><loc>https://tfilah.com/pirkei-avot/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c99acfa7ccb6-->
-  <url><loc>https://tfilah.com/zemirot-laseuda-shlishit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d461c3011382-->
-  <url><loc>https://tfilah.com/seder-motzaei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--eac829fb8ac6-->
-  <url><loc>https://tfilah.com/bakasha-lemotzaei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7bf70ffd6f28-->
-  <url><loc>https://tfilah.com/seder-havdala/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--165cca633ae4-->
-  <url><loc>https://tfilah.com/zemer-lemotzaei-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fcba8ee5430e-->
-  <url><loc>https://tfilah.com/zemirot-liseudat-melave-malka/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0cb67cc44dbb-->
-  <url><loc>https://tfilah.com/seder-netilat-lulav/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--de19a0e54f3d-->
-  <url><loc>https://tfilah.com/seder-hallel/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--94076bcc4158-->
-  <url><loc>https://tfilah.com/shir-shel-yom-rosh-chodesh/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ab08ec82811e-->
-  <url><loc>https://tfilah.com/barchi-nafshi-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--922f2bc2cd95-->
-  <url><loc>https://tfilah.com/kriat-hatora-lerosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7e7b4ef25efa-->
-  <url><loc>https://tfilah.com/ashrei-uva-letzion/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8f8d9f53621b-->
-  <url><loc>https://tfilah.com/hachzarat-sefer-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aa42155583a7-->
-  <url><loc>https://tfilah.com/musaf-lerosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--73db78bbb14e-->
-  <url><loc>https://tfilah.com/kiddush-leshalosh-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--08c644acd0d2-->
+  <url><loc>https://tfilah.com/pirkei-avot/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--eeac28cef6f6-->
+  <url><loc>https://tfilah.com/zemirot-laseuda-shlishit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1484e040099c-->
+  <url><loc>https://tfilah.com/seder-motzaei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a6ce262c101e-->
+  <url><loc>https://tfilah.com/bakasha-lemotzaei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--11c4df5054e0-->
+  <url><loc>https://tfilah.com/seder-havdala/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--69fa5a517c89-->
+  <url><loc>https://tfilah.com/zemer-lemotzaei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a1d7cbb2ac27-->
+  <url><loc>https://tfilah.com/zemirot-liseudat-melave-malka/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6b65cf65f022-->
+  <url><loc>https://tfilah.com/seder-netilat-lulav/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7f3376ef4dcd-->
+  <url><loc>https://tfilah.com/seder-hallel/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--709e26fb5528-->
+  <url><loc>https://tfilah.com/shir-shel-yom-rosh-chodesh/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5afbf2a13913-->
+  <url><loc>https://tfilah.com/barchi-nafshi-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0f69c416bd37-->
+  <url><loc>https://tfilah.com/kriat-hatora-lerosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--797c2fa8b1c5-->
+  <url><loc>https://tfilah.com/ashrei-uva-letzion/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7a8c22ffc551-->
+  <url><loc>https://tfilah.com/hachzarat-sefer-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2d207d5c2bdb-->
+  <url><loc>https://tfilah.com/musaf-lerosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--db954e2c5350-->
+  <url><loc>https://tfilah.com/kiddush-leshalosh-regalim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--be363f8e04ce-->
   <url><loc>https://tfilah.com/tefilat-3-regalim-learvit-leshacharit-ulemincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--257ed4f37f52-->
   <url><loc>https://tfilah.com/tefilat-amida-leshacharit-mincha-vearvit-shel-3-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b944028ddc07-->
-  <url><loc>https://tfilah.com/seder-hazkarat-neshamot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fb4be2eb60cf-->
+  <url><loc>https://tfilah.com/seder-hazkarat-neshamot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--78f8ecb0808d-->
   <url><loc>https://tfilah.com/tefilat-tal-leyom-rishon-shel-pesach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f616c4798325-->
-  <url><loc>https://tfilah.com/tefilat-geshem-lishmini-atzeret/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7357c27ef0df-->
-  <url><loc>https://tfilah.com/musaf-le-3-regalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c7eb8fd1c71e-->
+  <url><loc>https://tfilah.com/tefilat-geshem-lishmini-atzeret/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e7e857286342-->
+  <url><loc>https://tfilah.com/musaf-le-3-regalim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--949407aee386-->
   <url><loc>https://tfilah.com/seder-kiddusha-raba-le-3-regalim-ulerosh-hashana/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b28e9bad935c-->
-  <url><loc>https://tfilah.com/tefila-keshenichnasim-lasukka/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--436ef3e20848-->
-  <url><loc>https://tfilah.com/parashat-hanesiim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1454df87ccda-->
-  <url><loc>https://tfilah.com/seder-bedikat-chametz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f3418900d94c-->
-  <url><loc>https://tfilah.com/seder-sreifat-chametz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dde530d16545-->
-  <url><loc>https://tfilah.com/seder-amirat-korban-pesach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c896a1bcfec9-->
+  <url><loc>https://tfilah.com/tefila-keshenichnasim-lasukka/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4df7a6be2662-->
+  <url><loc>https://tfilah.com/parashat-hanesiim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--aa26cac6045e-->
+  <url><loc>https://tfilah.com/seder-bedikat-chametz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--80898495dfdd-->
+  <url><loc>https://tfilah.com/seder-sreifat-chametz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d30130e95d9b-->
+  <url><loc>https://tfilah.com/seder-amirat-korban-pesach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b8e76e91a782-->
   <url><loc>https://tfilah.com/igeret-rabeinu-shimshon-magid-meostropolia/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--52f872ecf965-->
-  <url><loc>https://tfilah.com/kadesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--319180f24f94-->
-  <url><loc>https://tfilah.com/urechatz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ac0106bdd6c6-->
-  <url><loc>https://tfilah.com/karpas/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ae72634f7379-->
-  <url><loc>https://tfilah.com/yachatz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3aea1bc76277-->
-  <url><loc>https://tfilah.com/magid/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--26e527bfe3ce-->
-  <url><loc>https://tfilah.com/rachtza/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9d9591167b4d-->
-  <url><loc>https://tfilah.com/motzi-matza/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b58a373e2d9f-->
-  <url><loc>https://tfilah.com/maror/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e6edd88bc5d1-->
-  <url><loc>https://tfilah.com/korech/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--29bd5caec4f5-->
-  <url><loc>https://tfilah.com/shulchan-orech/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--31c3ccee8548-->
-  <url><loc>https://tfilah.com/tzafun/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--54cdbd47c008-->
-  <url><loc>https://tfilah.com/barech/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b9897fed74f2-->
-  <url><loc>https://tfilah.com/hallel-hagada/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0cf587f9365f-->
-  <url><loc>https://tfilah.com/nirtza/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cb470f3d7797-->
-  <url><loc>https://tfilah.com/shir-hashirim-hagada/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--229dda4d5251-->
-  <url><loc>https://tfilah.com/seder-hoshanot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d2b7c8cb4049-->
+  <url><loc>https://tfilah.com/kadesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7c95ebeb6a67-->
+  <url><loc>https://tfilah.com/urechatz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b8a1d7254a2f-->
+  <url><loc>https://tfilah.com/karpas/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a9ec218282ef-->
+  <url><loc>https://tfilah.com/yachatz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--04b633d8d112-->
+  <url><loc>https://tfilah.com/magid/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3676dab37e7d-->
+  <url><loc>https://tfilah.com/rachtza/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--52fd44d29bcb-->
+  <url><loc>https://tfilah.com/motzi-matza/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--97774818c2ed-->
+  <url><loc>https://tfilah.com/maror/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ef1e90c4271a-->
+  <url><loc>https://tfilah.com/korech/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--672bb5a6d0e3-->
+  <url><loc>https://tfilah.com/shulchan-orech/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--81b3fa20aa0d-->
+  <url><loc>https://tfilah.com/tzafun/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--168f7578dcb3-->
+  <url><loc>https://tfilah.com/barech/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6767a881dad5-->
+  <url><loc>https://tfilah.com/hallel-hagada/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4d8dc6524f68-->
+  <url><loc>https://tfilah.com/nirtza/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fac9bae88cbc-->
+  <url><loc>https://tfilah.com/shir-hashirim-hagada/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--68b44ddd054c-->
+  <url><loc>https://tfilah.com/seder-hoshanot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--52451d02cd4b-->
   <url><loc>https://tfilah.com/hoshanot-leyom-tov-rishon-ulechol-hamoed/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8bf6aa8d14c6-->
-  <url><loc>https://tfilah.com/hoshanot-leshabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9362d72dc95c-->
-  <url><loc>https://tfilah.com/hoshanot-lehoshana-raba/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a096c8296c01-->
-  <url><loc>https://tfilah.com/hakafot-lesimchat-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4c74c1c233ea-->
-  <url><loc>https://tfilah.com/seder-hakria-leleil-simchat-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d1dc671eac47-->
-  <url><loc>https://tfilah.com/shavuot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--75371a3cf4a4-->
-  <url><loc>https://tfilah.com/yotzer-lefarashat-shekalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f2ed1bcc3dd4-->
-  <url><loc>https://tfilah.com/musaf-lefarashat-shekalim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ed9a104402b2-->
-  <url><loc>https://tfilah.com/yotzer-lefarashat-zachor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e8bfc1eb1bab-->
-  <url><loc>https://tfilah.com/yotzer-lefarashat-para/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--40a09ab3e56a-->
-  <url><loc>https://tfilah.com/yotzer-lefarashat-hachodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--eb858fce4b3a-->
-  <url><loc>https://tfilah.com/musaf-lefarashat-hachodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e4d30f2646ce-->
-  <url><loc>https://tfilah.com/yotzer-leshabbat-hagadol/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cfaf2e09bf00-->
-  <url><loc>https://tfilah.com/hagada-shabbat-parashat-leshabbat-hagadol/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7e8704978388-->
-  <url><loc>https://tfilah.com/seder-hadlakat-nerot-chanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--33879e87646f-->
-  <url><loc>https://tfilah.com/kriat-hatora-chanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c4415660bb40-->
-  <url><loc>https://tfilah.com/zemer-leshabbat-chanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--793c0e224907-->
-  <url><loc>https://tfilah.com/parashat-zachor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--52e8c66314d8-->
-  <url><loc>https://tfilah.com/kriat-hamegila/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--30f132756c82-->
-  <url><loc>https://tfilah.com/seder-yom-purim/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--764f84ca6d95-->
-  <url><loc>https://tfilah.com/krovetz-lepurim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dd340ef4817e-->
-  <url><loc>https://tfilah.com/kriat-hatora-lepurim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c85bcae14c70-->
-  <url><loc>https://tfilah.com/seder-yom-kippur-katan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7a4334e67537-->
+  <url><loc>https://tfilah.com/hoshanot-leshabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--86ae965a66a8-->
+  <url><loc>https://tfilah.com/hoshanot-lehoshana-raba/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4d76b8e69a4a-->
+  <url><loc>https://tfilah.com/hakafot-lesimchat-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b7e2e34d4402-->
+  <url><loc>https://tfilah.com/seder-hakria-leleil-simchat-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ace0be426e00-->
+  <url><loc>https://tfilah.com/shavuot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--390d09c8edd6-->
+  <url><loc>https://tfilah.com/yotzer-lefarashat-shekalim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--71755c2ba40a-->
+  <url><loc>https://tfilah.com/musaf-lefarashat-shekalim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f824d23c9194-->
+  <url><loc>https://tfilah.com/yotzer-lefarashat-zachor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f901e8a4c558-->
+  <url><loc>https://tfilah.com/yotzer-lefarashat-para/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e3f6d52944a5-->
+  <url><loc>https://tfilah.com/yotzer-lefarashat-hachodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--58d3bea4cecf-->
+  <url><loc>https://tfilah.com/musaf-lefarashat-hachodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8197130de491-->
+  <url><loc>https://tfilah.com/yotzer-leshabbat-hagadol/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--23cb78186c13-->
+  <url><loc>https://tfilah.com/hagada-shabbat-parashat-leshabbat-hagadol/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f8cce60e7e9a-->
+  <url><loc>https://tfilah.com/seder-hadlakat-nerot-chanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3ba027222ea5-->
+  <url><loc>https://tfilah.com/kriat-hatora-chanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1d984d7712f9-->
+  <url><loc>https://tfilah.com/zemer-leshabbat-chanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f2db18b516f1-->
+  <url><loc>https://tfilah.com/parashat-zachor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a59e8656cce6-->
+  <url><loc>https://tfilah.com/kriat-hamegila/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--610acf1fe379-->
+  <url><loc>https://tfilah.com/seder-yom-purim/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5a6a78e7acb7-->
+  <url><loc>https://tfilah.com/krovetz-lepurim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--39a2291c383f-->
+  <url><loc>https://tfilah.com/kriat-hatora-lepurim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a041c4c85780-->
+  <url><loc>https://tfilah.com/seder-yom-kippur-katan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3906a96f4c73-->
   <url><loc>https://tfilah.com/selichot-letaaniyot-sheni-vachamishi-vesheni/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0dd83ffde5d8-->
-  <url><loc>https://tfilah.com/selichot-lasheni-kama/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7be3a4be0203-->
-  <url><loc>https://tfilah.com/selichot-lachamishi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4ad1fc0e81f3-->
-  <url><loc>https://tfilah.com/selichot-lasheni-batra/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4545c69e70ca-->
-  <url><loc>https://tfilah.com/selichot-laasara-betevet/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5a10d0b12888-->
-  <url><loc>https://tfilah.com/selichot-letaanit-ester/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fb9d76847b83-->
-  <url><loc>https://tfilah.com/selichot-le-20-sivan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--af3030e1fe29-->
-  <url><loc>https://tfilah.com/el-male-rachamim-shel-20-sivan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d6b56cd08e46-->
-  <url><loc>https://tfilah.com/selichot-leshiva-asar-betamuz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cde87e0a840e-->
-  <url><loc>https://tfilah.com/selichot-letachaluei-yeladim-rl/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fa86d903eccb-->
+  <url><loc>https://tfilah.com/selichot-lasheni-kama/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--15d9d6da15d6-->
+  <url><loc>https://tfilah.com/selichot-lachamishi/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--56b7a03b0303-->
+  <url><loc>https://tfilah.com/selichot-lasheni-batra/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a672baa027f1-->
+  <url><loc>https://tfilah.com/selichot-laasara-betevet/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--631cf878ad7c-->
+  <url><loc>https://tfilah.com/selichot-letaanit-ester/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--50516ed61c50-->
+  <url><loc>https://tfilah.com/selichot-le-20-sivan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--21b4cedd2f39-->
+  <url><loc>https://tfilah.com/el-male-rachamim-shel-20-sivan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--76374fe42e9b-->
+  <url><loc>https://tfilah.com/selichot-leshiva-asar-betamuz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--be05b7e6b54f-->
+  <url><loc>https://tfilah.com/selichot-letachaluei-yeladim-rl/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6ba79844dc4d-->
   <url><loc>https://tfilah.com/kriot-leshabbat-bemincha-vesheni-vachamishi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b36d416e3890-->
-  <url><loc>https://tfilah.com/kria-batora-letaanit-tzibur/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f7dadd6c1c4e-->
-  <url><loc>https://tfilah.com/haftara-letaanit-tzibur-bemincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5209d7bbf307-->
-  <url><loc>https://tfilah.com/kria-lerosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c1e089911f0a-->
-  <url><loc>https://tfilah.com/kria-lechol-hamoed-pesach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ea917a85e3fc-->
-  <url><loc>https://tfilah.com/kria-lechol-hamoed-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--db790b122ba6-->
-  <url><loc>https://tfilah.com/seder-birkat-kohanim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1338b580b590-->
-  <url><loc>https://tfilah.com/lachash-leayin-hara/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--03e19504c832-->
-  <url><loc>https://tfilah.com/igeret-haramban/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d31c872cc960-->
-  <url><loc>https://tfilah.com/tefilat-hashelah-hakadosh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8cc0a8f1b416-->
+  <url><loc>https://tfilah.com/kria-batora-letaanit-tzibur/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--87cb6fdfd7a9-->
+  <url><loc>https://tfilah.com/haftara-letaanit-tzibur-bemincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f9066e08aabd-->
+  <url><loc>https://tfilah.com/kria-lerosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cb67239b38f7-->
+  <url><loc>https://tfilah.com/kria-lechol-hamoed-pesach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2bcbcc8665f2-->
+  <url><loc>https://tfilah.com/kria-lechol-hamoed-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e1104b73ac5b-->
+  <url><loc>https://tfilah.com/seder-birkat-kohanim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ddd5a3e1fd80-->
+  <url><loc>https://tfilah.com/lachash-leayin-hara/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--87b9d140b109-->
+  <url><loc>https://tfilah.com/igeret-haramban/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e3515f4fd3cb-->
+  <url><loc>https://tfilah.com/tefilat-hashelah-hakadosh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7999bb4cb19d-->
   <url><loc>https://tfilah.com/parashat-haman-shemot-leyom-shlishi-parashat-beshalach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0c38853d303e-->
-  <url><loc>https://tfilah.com/tefila-al-haparnasa/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c223981e22d3-->
+  <url><loc>https://tfilah.com/tefila-al-haparnasa/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1cf93bd55e62-->
   <url><loc>https://tfilah.com/tefila-noraa-ukedusha-merabeinu-tam-zia/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4c081d047d70-->
-  <url><loc>https://tfilah.com/modeh-ani/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c877bb56b04a-->
-  <url><loc>https://tfilah.com/netilat-yadayim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c803cb80523a-->
-  <url><loc>https://tfilah.com/asher-yatzar/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6520ad913891-->
-  <url><loc>https://tfilah.com/elohai-neshama/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6de60df9965a-->
-  <url><loc>https://tfilah.com/tzitzit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--82516c9f8103-->
-  <url><loc>https://tfilah.com/brachot-hatora/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--611f9bf585a2-->
-  <url><loc>https://tfilah.com/limud-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5c31f9a09598-->
-  <url><loc>https://tfilah.com/talit/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e980889bce45-->
-  <url><loc>https://tfilah.com/tefilin/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4c36d6567c09-->
-  <url><loc>https://tfilah.com/ma-tovu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--17ff46bd4b57-->
-  <url><loc>https://tfilah.com/adon-olam/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c04942710223-->
-  <url><loc>https://tfilah.com/yigdal/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--24e7c48d6828-->
-  <url><loc>https://tfilah.com/brachot-hashachar/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--31d392e99e50-->
-  <url><loc>https://tfilah.com/akeda/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5a970edd4e1f-->
-  <url><loc>https://tfilah.com/ol-malchut-shamayim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--efb5bb5fad08-->
-  <url><loc>https://tfilah.com/parashat-hakiyor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6774661ca1e0-->
-  <url><loc>https://tfilah.com/parashat-terumat-hadeshen/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f04debbe4212-->
-  <url><loc>https://tfilah.com/parashat-korban-tamid/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6dc59750c8cb-->
-  <url><loc>https://tfilah.com/parashat-haketoret/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--672ee499e482-->
-  <url><loc>https://tfilah.com/seder-hamaaracha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e3acfe41b229-->
-  <url><loc>https://tfilah.com/dinei-zevachim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a8755bad1105-->
-  <url><loc>https://tfilah.com/baraita-derabbi-yishmael/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3768111a5c3e-->
+  <url><loc>https://tfilah.com/modeh-ani/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9156ed034f13-->
+  <url><loc>https://tfilah.com/netilat-yadayim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a4f855286402-->
+  <url><loc>https://tfilah.com/asher-yatzar/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8e4abcd9d23e-->
+  <url><loc>https://tfilah.com/elohai-neshama/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fd8b02f39211-->
+  <url><loc>https://tfilah.com/tzitzit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9395b84f4d67-->
+  <url><loc>https://tfilah.com/brachot-hatora/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2cad254164b7-->
+  <url><loc>https://tfilah.com/limud-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--40a1c63b1701-->
+  <url><loc>https://tfilah.com/talit/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ba39d818d6af-->
+  <url><loc>https://tfilah.com/tefilin/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9d2e35559531-->
+  <url><loc>https://tfilah.com/ma-tovu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c17eb9c3edae-->
+  <url><loc>https://tfilah.com/adon-olam/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7af922913f59-->
+  <url><loc>https://tfilah.com/yigdal/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0b2786eea12e-->
+  <url><loc>https://tfilah.com/brachot-hashachar/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b8276ea994fc-->
+  <url><loc>https://tfilah.com/akeda/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--952195adf13c-->
+  <url><loc>https://tfilah.com/ol-malchut-shamayim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ab312ef02d23-->
+  <url><loc>https://tfilah.com/parashat-hakiyor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--909e5ee2799b-->
+  <url><loc>https://tfilah.com/parashat-terumat-hadeshen/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e0666eef9bc8-->
+  <url><loc>https://tfilah.com/parashat-korban-tamid/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--25d24d09391f-->
+  <url><loc>https://tfilah.com/parashat-haketoret/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b14161293298-->
+  <url><loc>https://tfilah.com/seder-hamaaracha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--aab4a200e3f1-->
+  <url><loc>https://tfilah.com/dinei-zevachim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--254f03045b9f-->
+  <url><loc>https://tfilah.com/baraita-derabbi-yishmael/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7919bd146038-->
   <url><loc>https://tfilah.com/kaddish-derabanan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e75652998d57-->
-  <url><loc>https://tfilah.com/mizmor-shir/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e532807312f0-->
+  <url><loc>https://tfilah.com/mizmor-shir/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6922e35601da-->
   <url><loc>https://tfilah.com/kaddish-yatom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--59c57a6f6b79-->
-  <url><loc>https://tfilah.com/baruch-sheamar/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1be8ed70e0d9-->
-  <url><loc>https://tfilah.com/hodu/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a0c07d8f0a34-->
+  <url><loc>https://tfilah.com/baruch-sheamar/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--08b8489ded49-->
+  <url><loc>https://tfilah.com/hodu/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cac2c4215527-->
   <url><loc>https://tfilah.com/mizmor-letoda/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dd01b577f428-->
-  <url><loc>https://tfilah.com/yehi-kavod/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--79c6128ecaec-->
-  <url><loc>https://tfilah.com/ashrei/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1a1a2616a085-->
-  <url><loc>https://tfilah.com/tehilim-146/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--04694c90a38e-->
-  <url><loc>https://tfilah.com/tehilim-147/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--52c374bb14fe-->
-  <url><loc>https://tfilah.com/tehilim-148/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ac95cc2ad2df-->
-  <url><loc>https://tfilah.com/tehilim-149/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e478180211c0-->
-  <url><loc>https://tfilah.com/tehilim-150/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e627c6198318-->
-  <url><loc>https://tfilah.com/baruch-hashem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b3ed8a61dbd7-->
-  <url><loc>https://tfilah.com/vayevarech-david/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--354f202aa276-->
-  <url><loc>https://tfilah.com/ata-hu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--41d73e5d7ae6-->
-  <url><loc>https://tfilah.com/az-yashir/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a67e54aa750b-->
-  <url><loc>https://tfilah.com/yishtabach/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fded91226ff2-->
-  <url><loc>https://tfilah.com/tehilim-130/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6ca05a593562-->
+  <url><loc>https://tfilah.com/yehi-kavod/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6ee50a5957db-->
+  <url><loc>https://tfilah.com/ashrei/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8f78a4f5d976-->
+  <url><loc>https://tfilah.com/tehilim-146/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--62ef015b0585-->
+  <url><loc>https://tfilah.com/tehilim-147/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--32e4739232fe-->
+  <url><loc>https://tfilah.com/tehilim-148/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a22c9abe303d-->
+  <url><loc>https://tfilah.com/tehilim-149/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4859586ac659-->
+  <url><loc>https://tfilah.com/tehilim-150/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--867015614480-->
+  <url><loc>https://tfilah.com/baruch-hashem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--06ed11aadaf0-->
+  <url><loc>https://tfilah.com/vayevarech-david/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--649023b7c5bd-->
+  <url><loc>https://tfilah.com/ata-hu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e163554955f9-->
+  <url><loc>https://tfilah.com/az-yashir/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7b693640da37-->
+  <url><loc>https://tfilah.com/yishtabach/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2aa58febc2fd-->
+  <url><loc>https://tfilah.com/tehilim-130/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a19b853b3100-->
   <url><loc>https://tfilah.com/chatzi-kaddish/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a38895df4a66-->
-  <url><loc>https://tfilah.com/barchu/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e00896ac2037-->
-  <url><loc>https://tfilah.com/yotzer-or/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ace3ddbe10d9-->
-  <url><loc>https://tfilah.com/ahavat-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--82ed4c2f1710-->
-  <url><loc>https://tfilah.com/shema/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4e401f479d4e-->
-  <url><loc>https://tfilah.com/gaal-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8a8cf2c3dc5d-->
-  <url><loc>https://tfilah.com/avot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6314c2be35d2-->
-  <url><loc>https://tfilah.com/gevurot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e481c4ee8e8f-->
-  <url><loc>https://tfilah.com/kedushat-hashem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--76f36f743507-->
-  <url><loc>https://tfilah.com/kedusha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--31ab35ec75d1-->
-  <url><loc>https://tfilah.com/daat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e105f6179d03-->
-  <url><loc>https://tfilah.com/teshuva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--753bf1020726-->
-  <url><loc>https://tfilah.com/selicha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4b73f0c6c7f1-->
-  <url><loc>https://tfilah.com/geula/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a22745b7a251-->
-  <url><loc>https://tfilah.com/refua/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--101788cef694-->
-  <url><loc>https://tfilah.com/birkat-hashanim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0ae3838c1c36-->
-  <url><loc>https://tfilah.com/kibutz-galuyot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e7064ce6c5dd-->
-  <url><loc>https://tfilah.com/mishpat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3f5f59fd8463-->
-  <url><loc>https://tfilah.com/birkat-haminim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1e3fc4348b95-->
-  <url><loc>https://tfilah.com/al-hatzadikim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cdf03ba12bd8-->
-  <url><loc>https://tfilah.com/binyan-yerushalayim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3e90b58b584e-->
-  <url><loc>https://tfilah.com/malchut-beit-david/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e56840705a70-->
-  <url><loc>https://tfilah.com/shomea-tefila/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e0084d114118-->
-  <url><loc>https://tfilah.com/avoda/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--20586141791f-->
-  <url><loc>https://tfilah.com/modim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--522f7b62beed-->
-  <url><loc>https://tfilah.com/birkat-kohanim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4d777158bcda-->
-  <url><loc>https://tfilah.com/sim-shalom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b32e980e9b4e-->
-  <url><loc>https://tfilah.com/elohai-netzor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ab1801f8bb4c-->
-  <url><loc>https://tfilah.com/vidui-ve-13-midot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--73bde4dcb647-->
-  <url><loc>https://tfilah.com/avinu-malkeinu/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--23eef64f93e2-->
-  <url><loc>https://tfilah.com/vehu-rachum/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--26cdd06db263-->
-  <url><loc>https://tfilah.com/nefilat-apayim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--041c9f53eba9-->
-  <url><loc>https://tfilah.com/hashem-el-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--188530686310-->
-  <url><loc>https://tfilah.com/shomer-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ccde3dafed6a-->
+  <url><loc>https://tfilah.com/barchu/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c4d24fd3b6d5-->
+  <url><loc>https://tfilah.com/yotzer-or/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bc51bcba0bbe-->
+  <url><loc>https://tfilah.com/ahavat-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f2d33d598a1a-->
+  <url><loc>https://tfilah.com/shema/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2b6567b20a0d-->
+  <url><loc>https://tfilah.com/gaal-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3b263a0a46d1-->
+  <url><loc>https://tfilah.com/avot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--96f0dafb601d-->
+  <url><loc>https://tfilah.com/gevurot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--012e35bdb73e-->
+  <url><loc>https://tfilah.com/kedushat-hashem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3ad86a83630a-->
+  <url><loc>https://tfilah.com/kedusha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f911fc177f1e-->
+  <url><loc>https://tfilah.com/daat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f87d8380a1d5-->
+  <url><loc>https://tfilah.com/teshuva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e4d798d897f9-->
+  <url><loc>https://tfilah.com/selicha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cf3f972ca99b-->
+  <url><loc>https://tfilah.com/geula/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e6e74fc6d707-->
+  <url><loc>https://tfilah.com/refua/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6693c6dffbd7-->
+  <url><loc>https://tfilah.com/birkat-hashanim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--83a2100592b8-->
+  <url><loc>https://tfilah.com/kibutz-galuyot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e79a906af901-->
+  <url><loc>https://tfilah.com/mishpat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--01abd292c345-->
+  <url><loc>https://tfilah.com/birkat-haminim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1259a58c42e2-->
+  <url><loc>https://tfilah.com/al-hatzadikim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a66b897fe3c8-->
+  <url><loc>https://tfilah.com/binyan-yerushalayim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d732d5c471db-->
+  <url><loc>https://tfilah.com/malchut-beit-david/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e7dc185d8b37-->
+  <url><loc>https://tfilah.com/shomea-tefila/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6f3beb89c7b5-->
+  <url><loc>https://tfilah.com/avoda/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--60742d9f7ded-->
+  <url><loc>https://tfilah.com/modim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b3e6ebbc5501-->
+  <url><loc>https://tfilah.com/birkat-kohanim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--089c3bd120f2-->
+  <url><loc>https://tfilah.com/sim-shalom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--648ce91454d5-->
+  <url><loc>https://tfilah.com/elohai-netzor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7da4a45a8d1a-->
+  <url><loc>https://tfilah.com/vidui-ve-13-midot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--fba203b1906d-->
+  <url><loc>https://tfilah.com/avinu-malkeinu/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3d691888c14e-->
+  <url><loc>https://tfilah.com/vehu-rachum/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e7af94542be1-->
+  <url><loc>https://tfilah.com/nefilat-apayim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8082a35c17f5-->
+  <url><loc>https://tfilah.com/hashem-el-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e5e899fbf0b0-->
+  <url><loc>https://tfilah.com/shomer-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--71a8f8b57b49-->
   <url><loc>https://tfilah.com/chatzi-kaddish-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--691dfd6cedfd-->
-  <url><loc>https://tfilah.com/el-erech-apayim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--02af4615e2fa-->
-  <url><loc>https://tfilah.com/vayehi-binsoa/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--827c05fe1e9f-->
-  <url><loc>https://tfilah.com/brich-shmei/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d4c9f9b0176d-->
-  <url><loc>https://tfilah.com/lecha-hashem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--92e9627f6770-->
-  <url><loc>https://tfilah.com/av-harachamim/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--97c1e8a49184-->
-  <url><loc>https://tfilah.com/vetigale-veterae/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--13ee66c455ae-->
-  <url><loc>https://tfilah.com/birkat-hatora/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--add76c25b1bc-->
-  <url><loc>https://tfilah.com/birkat-hagomel/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--28495d28bcdc-->
+  <url><loc>https://tfilah.com/el-erech-apayim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b664fb0d5568-->
+  <url><loc>https://tfilah.com/vayehi-binsoa/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7b2636fe6135-->
+  <url><loc>https://tfilah.com/brich-shmei/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--effdaf3b02f0-->
+  <url><loc>https://tfilah.com/lecha-hashem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--384693f64930-->
+  <url><loc>https://tfilah.com/av-harachamim/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--17c93bbfc721-->
+  <url><loc>https://tfilah.com/vetigale-veterae/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--181d2e566bb1-->
+  <url><loc>https://tfilah.com/birkat-hatora/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9ef2a47b8834-->
+  <url><loc>https://tfilah.com/birkat-hagomel/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ac0f12543653-->
   <url><loc>https://tfilah.com/chatzi-kaddish-shacharit-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fe1b52d6acd8-->
-  <url><loc>https://tfilah.com/hagbaha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--400c2c04d8a1-->
-  <url><loc>https://tfilah.com/yehalelu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a786ea938ac4-->
-  <url><loc>https://tfilah.com/ledavid-mizmor/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0d36b7d7c282-->
-  <url><loc>https://tfilah.com/uvenucho-yomar/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b4ea19bf1823-->
+  <url><loc>https://tfilah.com/hagbaha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--67e0da70002a-->
+  <url><loc>https://tfilah.com/yehalelu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--39684235bda1-->
+  <url><loc>https://tfilah.com/ledavid-mizmor/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--dda572ca95f6-->
+  <url><loc>https://tfilah.com/uvenucho-yomar/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--637f377664f5-->
   <url><loc>https://tfilah.com/ashrei-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b3cf388ad6f0-->
-  <url><loc>https://tfilah.com/lamenatzeach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--07a43576da8a-->
-  <url><loc>https://tfilah.com/uva-letzion/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--46db4a0c7aa9-->
+  <url><loc>https://tfilah.com/lamenatzeach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e60f98d8bd56-->
+  <url><loc>https://tfilah.com/uva-letzion/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--09f17511a414-->
   <url><loc>https://tfilah.com/kaddish-shalem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c4f85da6d334-->
-  <url><loc>https://tfilah.com/aleinu/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3561334ceddb-->
-  <url><loc>https://tfilah.com/shir-shel-yom/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--25e377046790-->
-  <url><loc>https://tfilah.com/barchi-nafshi/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7b466c002609-->
-  <url><loc>https://tfilah.com/ledavid/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fd90a876ea74-->
-  <url><loc>https://tfilah.com/ein-keloheinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--35ba366e1aa0-->
+  <url><loc>https://tfilah.com/aleinu/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--775ba2eaa74a-->
+  <url><loc>https://tfilah.com/shir-shel-yom/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--69d0eb163821-->
+  <url><loc>https://tfilah.com/barchi-nafshi/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a0d866a51475-->
+  <url><loc>https://tfilah.com/ledavid/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9895b6c04c95-->
+  <url><loc>https://tfilah.com/ein-keloheinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--23065e0f4174-->
   <url><loc>https://tfilah.com/pitum-ketoret/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aea83e96da61-->
   <url><loc>https://tfilah.com/kaddish-yatom-shacharit-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--32a233da7a33-->
-  <url><loc>https://tfilah.com/shesh-zechirot/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1ef087063c3c-->
-  <url><loc>https://tfilah.com/aseret-hadibrot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4b9231e70819-->
-  <url><loc>https://tfilah.com/13-ikarei-emuna/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2c7a02d60269-->
+  <url><loc>https://tfilah.com/shesh-zechirot/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3cc17ff3bfe8-->
+  <url><loc>https://tfilah.com/aseret-hadibrot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--840dedb3ab1b-->
+  <url><loc>https://tfilah.com/13-ikarei-emuna/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--64fbd898f46f-->
   <url><loc>https://tfilah.com/ashrei-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--55c2ecaca2ee-->
   <url><loc>https://tfilah.com/avot-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3d18641e42f8-->
   <url><loc>https://tfilah.com/binyan-yerushalayim-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3c056b62a35c-->
@@ -650,11 +650,11 @@
   <url><loc>https://tfilah.com/elohai-netzor-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2a30bbe54754-->
   <url><loc>https://tfilah.com/avinu-malkeinu-mincha/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--95bf62b260d7-->
   <url><loc>https://tfilah.com/vehu-rachum-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8b6c8827a9ee-->
-  <url><loc>https://tfilah.com/barchu-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e0e10deb0f16-->
-  <url><loc>https://tfilah.com/hamaariv-aravim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--42ad0e161099-->
-  <url><loc>https://tfilah.com/ahavat-olam/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f1e9667fb213-->
-  <url><loc>https://tfilah.com/emet-veemuna/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f3df5eb3fa8b-->
-  <url><loc>https://tfilah.com/hashkiveinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--56f35b9013a1-->
+  <url><loc>https://tfilah.com/barchu-arvit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--750e3b996268-->
+  <url><loc>https://tfilah.com/hamaariv-aravim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9985ac15d704-->
+  <url><loc>https://tfilah.com/ahavat-olam/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ac1202adcd29-->
+  <url><loc>https://tfilah.com/emet-veemuna/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--58790dbb2a6a-->
+  <url><loc>https://tfilah.com/hashkiveinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--148906e63c4b-->
   <url><loc>https://tfilah.com/baruch-hashem-leolam/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a14c114bae5f-->
   <url><loc>https://tfilah.com/chatzi-kaddish-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bd054e556354-->
   <url><loc>https://tfilah.com/avot-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--36648c8f429f-->
@@ -669,49 +669,49 @@
   <url><loc>https://tfilah.com/sim-shalom-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bd4579d546a5-->
   <url><loc>https://tfilah.com/elohai-netzor-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3b9596883d94-->
   <url><loc>https://tfilah.com/kaddish-shalem-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ba31ddcf123b-->
-  <url><loc>https://tfilah.com/vayehi-noam/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0ec1557c00b3-->
-  <url><loc>https://tfilah.com/veyiten-lecha/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e966e24f5e8d-->
-  <url><loc>https://tfilah.com/sefirat-haomer/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dee51b96ab0d-->
-  <url><loc>https://tfilah.com/birkat-halevana/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--73d156668f3f-->
-  <url><loc>https://tfilah.com/kriat-shema-al-hamita/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ed47aa3c00e4-->
-  <url><loc>https://tfilah.com/yedid-nefesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7496a44795ca-->
-  <url><loc>https://tfilah.com/tehilim-95/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7f900b4891e8-->
-  <url><loc>https://tfilah.com/tehilim-96/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--466ec7726f57-->
-  <url><loc>https://tfilah.com/tehilim-97/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f27d4eec9c9e-->
-  <url><loc>https://tfilah.com/tehilim-98/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e6cc6a74113c-->
-  <url><loc>https://tfilah.com/tehilim-99/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1b7bed39843f-->
-  <url><loc>https://tfilah.com/tehilim-29/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2a3baa13ef14-->
-  <url><loc>https://tfilah.com/ana-bechoach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--36307b7e8c20-->
-  <url><loc>https://tfilah.com/lecha-dodi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2f0ca3e9fdaf-->
-  <url><loc>https://tfilah.com/tehilim-92/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5d3a8fa4890b-->
-  <url><loc>https://tfilah.com/tehilim-93/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ef267448fd54-->
-  <url><loc>https://tfilah.com/bame-madlikin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--811219123d60-->
-  <url><loc>https://tfilah.com/barchu-shabbat-arvit/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3ab6cb43733b-->
+  <url><loc>https://tfilah.com/vayehi-noam/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4a48e826aa32-->
+  <url><loc>https://tfilah.com/veyiten-lecha/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6c6fe2eb4a0b-->
+  <url><loc>https://tfilah.com/sefirat-haomer/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4e85dcd7712b-->
+  <url><loc>https://tfilah.com/birkat-halevana/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d6a1cf00774c-->
+  <url><loc>https://tfilah.com/kriat-shema-al-hamita/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e3a9cf1a3171-->
+  <url><loc>https://tfilah.com/yedid-nefesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--41a048f7273a-->
+  <url><loc>https://tfilah.com/tehilim-95/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--beb1da023555-->
+  <url><loc>https://tfilah.com/tehilim-96/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--273e2641421f-->
+  <url><loc>https://tfilah.com/tehilim-97/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--44aad7c84add-->
+  <url><loc>https://tfilah.com/tehilim-98/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ab339b9bd8ee-->
+  <url><loc>https://tfilah.com/tehilim-99/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4f6903ce46ae-->
+  <url><loc>https://tfilah.com/tehilim-29/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7747751d3681-->
+  <url><loc>https://tfilah.com/ana-bechoach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--50c101fb1b0d-->
+  <url><loc>https://tfilah.com/lecha-dodi/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e99d5f85ceb6-->
+  <url><loc>https://tfilah.com/tehilim-92/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--33f0fb3d2e7d-->
+  <url><loc>https://tfilah.com/tehilim-93/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e3b5092c4fc2-->
+  <url><loc>https://tfilah.com/bame-madlikin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3383c17c325b-->
+  <url><loc>https://tfilah.com/barchu-shabbat-arvit/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d0dd15aafcae-->
   <url><loc>https://tfilah.com/emet-veemuna-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ad9a7d7b368f-->
-  <url><loc>https://tfilah.com/hashkiveinu-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--982c20b7d787-->
-  <url><loc>https://tfilah.com/veshamru/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a21ce7cba866-->
+  <url><loc>https://tfilah.com/hashkiveinu-shabbat-arvit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5012990a2a94-->
+  <url><loc>https://tfilah.com/veshamru/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5642b2f2976b-->
   <url><loc>https://tfilah.com/avot-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e6dbdaa1faec-->
   <url><loc>https://tfilah.com/gevurot-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--caf1dcd6864f-->
   <url><loc>https://tfilah.com/kedushat-hashem-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aafc773b4d1d-->
-  <url><loc>https://tfilah.com/kedushat-hayom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4487db22f121-->
+  <url><loc>https://tfilah.com/kedushat-hayom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--597c9ba41f47-->
   <url><loc>https://tfilah.com/modim-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bf2d697df47f-->
-  <url><loc>https://tfilah.com/shalom-rav/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--93a6d4f36337-->
-  <url><loc>https://tfilah.com/vayechulu/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0d7d50c40f63-->
-  <url><loc>https://tfilah.com/bracha-achat-meein-sheva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ae4b62972365-->
+  <url><loc>https://tfilah.com/shalom-rav/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--20c4977bafb3-->
+  <url><loc>https://tfilah.com/vayechulu/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--330239eb5bba-->
+  <url><loc>https://tfilah.com/bracha-achat-meein-sheva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--749a30f298c9-->
   <url><loc>https://tfilah.com/sefirat-haomer-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c28b693c5677-->
-  <url><loc>https://tfilah.com/adon-olam-shabbat-arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--53ab1479251a-->
-  <url><loc>https://tfilah.com/birkat-habanim/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--98648af44895-->
-  <url><loc>https://tfilah.com/shalom-aleichem/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--adcb86849939-->
-  <url><loc>https://tfilah.com/kiddush/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--864609c520d9-->
-  <url><loc>https://tfilah.com/ribon-kol-haolamim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d35d62a432cc-->
-  <url><loc>https://tfilah.com/eshet-chayil/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ec41a1784437-->
-  <url><loc>https://tfilah.com/kol-mikdash/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3896e1e9508c-->
-  <url><loc>https://tfilah.com/menucha-vesimcha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5b7c4463925f-->
-  <url><loc>https://tfilah.com/ma-yedidut/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cc0ac2f94eac-->
-  <url><loc>https://tfilah.com/yom-ze-leyisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--281ee32ba85e-->
-  <url><loc>https://tfilah.com/yah-ribon/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b42c61fad67b-->
-  <url><loc>https://tfilah.com/tzama-nafshi/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b720e362df32-->
-  <url><loc>https://tfilah.com/tzur-mishelo/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4206e25e15d0-->
+  <url><loc>https://tfilah.com/adon-olam-shabbat-arvit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--421c6a26871e-->
+  <url><loc>https://tfilah.com/birkat-habanim/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d912d6168492-->
+  <url><loc>https://tfilah.com/shalom-aleichem/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5f7010d2bcd0-->
+  <url><loc>https://tfilah.com/kiddush/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--232f58f62fbf-->
+  <url><loc>https://tfilah.com/ribon-kol-haolamim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7cf14d57940f-->
+  <url><loc>https://tfilah.com/eshet-chayil/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0696858b83e8-->
+  <url><loc>https://tfilah.com/kol-mikdash/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--65da4c0d7459-->
+  <url><loc>https://tfilah.com/menucha-vesimcha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9ee72d40d3f3-->
+  <url><loc>https://tfilah.com/ma-yedidut/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e5615e20ab40-->
+  <url><loc>https://tfilah.com/yom-ze-leyisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--51ab2d5ab5b4-->
+  <url><loc>https://tfilah.com/yah-ribon/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c892c5cf379e-->
+  <url><loc>https://tfilah.com/tzama-nafshi/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--12d16655247b-->
+  <url><loc>https://tfilah.com/tzur-mishelo/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f5039b52c606-->
   <url><loc>https://tfilah.com/modeh-ani-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--feb120268f1c-->
   <url><loc>https://tfilah.com/netilat-yadayim-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c5a625f7d4a3-->
   <url><loc>https://tfilah.com/asher-yatzar-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8b1544b02773-->
@@ -731,16 +731,16 @@
   <url><loc>https://tfilah.com/dinei-zevachim-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aec95ec55bc8-->
   <url><loc>https://tfilah.com/baraita-derabbi-yishmael-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f5ab2f3a8e6d-->
   <url><loc>https://tfilah.com/kaddish-derabanan-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8882407b5c13-->
-  <url><loc>https://tfilah.com/mizmor-shir-chanukat-habayit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7f065bc4c21b-->
+  <url><loc>https://tfilah.com/mizmor-shir-chanukat-habayit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9b61576f8dab-->
   <url><loc>https://tfilah.com/baruch-sheamar-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7464a7c1f062-->
   <url><loc>https://tfilah.com/hodu-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--670bffeae145-->
-  <url><loc>https://tfilah.com/tehilim-19/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--16a38bf46a13-->
-  <url><loc>https://tfilah.com/tehilim-34/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8fee4af67756-->
-  <url><loc>https://tfilah.com/tehilim-90/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--734b684db447-->
-  <url><loc>https://tfilah.com/tehilim-91/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bbce72e91e82-->
-  <url><loc>https://tfilah.com/tehilim-135/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8281035d1f7e-->
-  <url><loc>https://tfilah.com/tehilim-136/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5e928bd8fb4c-->
-  <url><loc>https://tfilah.com/tehilim-33/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f1eeda27531b-->
+  <url><loc>https://tfilah.com/tehilim-19/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cd5eee1f6417-->
+  <url><loc>https://tfilah.com/tehilim-34/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--565b334df0b9-->
+  <url><loc>https://tfilah.com/tehilim-90/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--8fc5f2ffc8dc-->
+  <url><loc>https://tfilah.com/tehilim-91/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--87fcb64602d4-->
+  <url><loc>https://tfilah.com/tehilim-135/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3728f6611924-->
+  <url><loc>https://tfilah.com/tehilim-136/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f3a6b789372e-->
+  <url><loc>https://tfilah.com/tehilim-33/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5db757c5c089-->
   <url><loc>https://tfilah.com/tehilim-92-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--30495c9cd5f0-->
   <url><loc>https://tfilah.com/tehilim-93-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ada7ba2d08d8-->
   <url><loc>https://tfilah.com/yehi-kavod-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--452f04cc1d7c-->
@@ -751,8 +751,8 @@
   <url><loc>https://tfilah.com/baruch-hashem-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0e6a6dbefe5e-->
   <url><loc>https://tfilah.com/vayevarech-david-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--86780e57405c-->
   <url><loc>https://tfilah.com/az-yashir-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b525cd467339-->
-  <url><loc>https://tfilah.com/nishmat-kol-chai/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5c260c42e802-->
-  <url><loc>https://tfilah.com/shochen-ad/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--110a3d63d984-->
+  <url><loc>https://tfilah.com/nishmat-kol-chai/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b6178da0590f-->
+  <url><loc>https://tfilah.com/shochen-ad/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2c1904f10575-->
   <url><loc>https://tfilah.com/yishtabach-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2b67bb02d6a1-->
   <url><loc>https://tfilah.com/tehilim-130-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e852e96060c4-->
   <url><loc>https://tfilah.com/barchu-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--29fcebafd53c-->
@@ -765,37 +765,37 @@
   <url><loc>https://tfilah.com/kedushat-hayom-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b82eed767d17-->
   <url><loc>https://tfilah.com/avoda-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--30af1cbf5c8f-->
   <url><loc>https://tfilah.com/modim-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3754c469fab2-->
-  <url><loc>https://tfilah.com/birkat-kohanim-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3de35e9013ea-->
+  <url><loc>https://tfilah.com/birkat-kohanim-shabbat-shacharit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ea29888dfd58-->
   <url><loc>https://tfilah.com/sim-shalom-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3ef40dc2e273-->
   <url><loc>https://tfilah.com/elohai-netzor-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--130fd3160a52-->
-  <url><loc>https://tfilah.com/ein-kamocha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--85a608d84c95-->
-  <url><loc>https://tfilah.com/vayehi-binsoa-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f2edc4415a53-->
+  <url><loc>https://tfilah.com/ein-kamocha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cdac9e38c20b-->
+  <url><loc>https://tfilah.com/vayehi-binsoa-shabbat-shacharit/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bf45c6e9e347-->
   <url><loc>https://tfilah.com/brich-shmei-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--afc42da61dab-->
-  <url><loc>https://tfilah.com/shema-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7dcb96c99718-->
+  <url><loc>https://tfilah.com/shema-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--980569be4b01-->
   <url><loc>https://tfilah.com/lecha-hashem-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2ee27993799b-->
-  <url><loc>https://tfilah.com/veyaazor-veyagen/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--282af8596432-->
+  <url><loc>https://tfilah.com/veyaazor-veyagen/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ea5987636add-->
   <url><loc>https://tfilah.com/birkat-hatora-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a47ca0f8b073-->
   <url><loc>https://tfilah.com/birkat-hagomel-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--437822f38f8a-->
-  <url><loc>https://tfilah.com/laole-hatora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b30ba378d714-->
-  <url><loc>https://tfilah.com/lacholim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--eee283733f9f-->
-  <url><loc>https://tfilah.com/yoledet-ben/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9d5fcd9e9a93-->
-  <url><loc>https://tfilah.com/yoledet-bat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e147fa54b76f-->
-  <url><loc>https://tfilah.com/bar-mitzva/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ce4d114fb865-->
+  <url><loc>https://tfilah.com/laole-hatora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d57349c06869-->
+  <url><loc>https://tfilah.com/lacholim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--aef4bb9df394-->
+  <url><loc>https://tfilah.com/yoledet-ben/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ca8fb188f41f-->
+  <url><loc>https://tfilah.com/yoledet-bat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1e2c9e71349e-->
+  <url><loc>https://tfilah.com/bar-mitzva/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--06f2e1bab199-->
   <url><loc>https://tfilah.com/hagbaha-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b3c4d1899cd8-->
-  <url><loc>https://tfilah.com/haftara-shabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cbc60f888746-->
-  <url><loc>https://tfilah.com/yekum-purkan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a6bb4cf41437-->
-  <url><loc>https://tfilah.com/tefila-leshalom-medinat-yisrael/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f66d22e33da0-->
-  <url><loc>https://tfilah.com/mi-sheberach-lechayalei-tzahal/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--978f0fea382c-->
-  <url><loc>https://tfilah.com/mi-sheberach-lashvuyim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8483ec0d3602-->
-  <url><loc>https://tfilah.com/birkat-hachodesh/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7b8d906b6fcb-->
+  <url><loc>https://tfilah.com/haftara-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4db51178e3cf-->
+  <url><loc>https://tfilah.com/yekum-purkan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1988e8fb685a-->
+  <url><loc>https://tfilah.com/tefila-leshalom-medinat-yisrael/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4e39b7a423d4-->
+  <url><loc>https://tfilah.com/mi-sheberach-lechayalei-tzahal/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1b00425cc906-->
+  <url><loc>https://tfilah.com/mi-sheberach-lashvuyim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--07243886c70d-->
+  <url><loc>https://tfilah.com/birkat-hachodesh/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--72ad2e7de71f-->
   <url><loc>https://tfilah.com/av-harachamim-shabbat-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--191113af9b82-->
-  <url><loc>https://tfilah.com/hachnasat-sefer-tora/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c57454b3de6b-->
+  <url><loc>https://tfilah.com/hachnasat-sefer-tora/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--3cc400f0e8f4-->
   <url><loc>https://tfilah.com/avot-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--958dc7b84c08-->
   <url><loc>https://tfilah.com/gevurot-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3683edab29c7-->
   <url><loc>https://tfilah.com/kedusha-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4f72f947f66a-->
   <url><loc>https://tfilah.com/kedushat-hashem-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--62b288cf8588-->
-  <url><loc>https://tfilah.com/leshabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ee5f7447d050-->
-  <url><loc>https://tfilah.com/leshabbat-rosh-chodesh/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--79380fbf92d4-->
+  <url><loc>https://tfilah.com/leshabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5fd547cd23c3-->
+  <url><loc>https://tfilah.com/leshabbat-rosh-chodesh/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--71143e489343-->
   <url><loc>https://tfilah.com/avoda-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--95b6bb20f42c-->
   <url><loc>https://tfilah.com/modim-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c3b3737d9f7d-->
   <url><loc>https://tfilah.com/birkat-kohanim-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7a9f98508c28-->
@@ -803,26 +803,26 @@
   <url><loc>https://tfilah.com/elohai-netzor-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--53975a63847e-->
   <url><loc>https://tfilah.com/ein-keloheinu-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--626dba8f8423-->
   <url><loc>https://tfilah.com/pitum-haketoret/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fc92460a454b-->
-  <url><loc>https://tfilah.com/aleinu-shabbat-musaf/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8621bec04176-->
+  <url><loc>https://tfilah.com/aleinu-shabbat-musaf/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--06845a587463-->
   <url><loc>https://tfilah.com/kaddish-yatom-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2dfab7544e87-->
-  <url><loc>https://tfilah.com/mizmor-shir-leyom-hashabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d0e7cac37115-->
-  <url><loc>https://tfilah.com/ledavid-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0e8b46d79049-->
-  <url><loc>https://tfilah.com/shir-hakavod/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8fcbf9b22f18-->
+  <url><loc>https://tfilah.com/mizmor-shir-leyom-hashabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--82113b9a0efe-->
+  <url><loc>https://tfilah.com/ledavid-shabbat-musaf/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a4901e1f6e89-->
+  <url><loc>https://tfilah.com/shir-hakavod/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f52214236fca-->
   <url><loc>https://tfilah.com/adon-olam-shabbat-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1278704065c9-->
-  <url><loc>https://tfilah.com/kiddusha-raba/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--51e0ffe8673e-->
-  <url><loc>https://tfilah.com/baruch-el-elyon/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0c63acdd9dd0-->
-  <url><loc>https://tfilah.com/yom-ze-mechubad/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--de6dce91e96b-->
-  <url><loc>https://tfilah.com/yom-shabbaton/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--96a12a4f9593-->
-  <url><loc>https://tfilah.com/shimru-shabtotai/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--abaa1c3a8e8c-->
-  <url><loc>https://tfilah.com/ki-eshmera/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e275456d16dc-->
-  <url><loc>https://tfilah.com/dror-yikra/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--369c8d498dc4-->
-  <url><loc>https://tfilah.com/ashrei-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--799c2f1a9fde-->
-  <url><loc>https://tfilah.com/uva-letzion-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--025a7338853a-->
-  <url><loc>https://tfilah.com/vaani-tefilati/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bbedf94c4976-->
+  <url><loc>https://tfilah.com/kiddusha-raba/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--37b1ff86b562-->
+  <url><loc>https://tfilah.com/baruch-el-elyon/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1ec6ba0a0d24-->
+  <url><loc>https://tfilah.com/yom-ze-mechubad/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ae4c356ee990-->
+  <url><loc>https://tfilah.com/yom-shabbaton/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0254f459ea2b-->
+  <url><loc>https://tfilah.com/shimru-shabtotai/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--11af374e90c0-->
+  <url><loc>https://tfilah.com/ki-eshmera/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--51ebee8ed683-->
+  <url><loc>https://tfilah.com/dror-yikra/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--58fc1362c73b-->
+  <url><loc>https://tfilah.com/ashrei-shabbat-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b6f2289dbc8c-->
+  <url><loc>https://tfilah.com/uva-letzion-shabbat-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--817ff2321f7a-->
+  <url><loc>https://tfilah.com/vaani-tefilati/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--17d998c498f5-->
   <url><loc>https://tfilah.com/vayehi-binsoa-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2a0fc35ea9e8-->
   <url><loc>https://tfilah.com/brich-shmei-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--35a89f23d497-->
-  <url><loc>https://tfilah.com/gadlu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ca04d41081f8-->
-  <url><loc>https://tfilah.com/lecha-hashem-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--35bb890d6526-->
+  <url><loc>https://tfilah.com/gadlu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f8018e16d6ac-->
+  <url><loc>https://tfilah.com/lecha-hashem-shabbat-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d303ce5909fb-->
   <url><loc>https://tfilah.com/av-harachamim-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--890bf0212a3d-->
   <url><loc>https://tfilah.com/vetigale-veterae-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ebe6546c9234-->
   <url><loc>https://tfilah.com/birkat-hatora-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b3ba94cbfd61-->
@@ -836,25 +836,25 @@
   <url><loc>https://tfilah.com/kedushat-hashem-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9f4cfdbd1283-->
   <url><loc>https://tfilah.com/kedushat-hayom-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c20705c6cb08-->
   <url><loc>https://tfilah.com/avoda-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--821399ae0f94-->
-  <url><loc>https://tfilah.com/modim-umodim-derabanan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--646bb68d2148-->
-  <url><loc>https://tfilah.com/al-hanisim-lachanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6637985a6c17-->
-  <url><loc>https://tfilah.com/al-hanisim-lepurim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e609abdd26b4-->
+  <url><loc>https://tfilah.com/modim-umodim-derabanan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d109edaa42d0-->
+  <url><loc>https://tfilah.com/al-hanisim-lachanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0213dc12462c-->
+  <url><loc>https://tfilah.com/al-hanisim-lepurim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9c8866a250a1-->
   <url><loc>https://tfilah.com/sim-shalom-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8b2290ea39be-->
   <url><loc>https://tfilah.com/elohai-netzor-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--011eebda2d83-->
-  <url><loc>https://tfilah.com/tzidkatcha-tzedek/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d797f1fc3c22-->
-  <url><loc>https://tfilah.com/barchi-nafshi-shabbat-mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7752b53ebfd0-->
-  <url><loc>https://tfilah.com/atkinu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f3f7e2b8df1a-->
-  <url><loc>https://tfilah.com/mizmor-ledavid/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9a69f0692493-->
+  <url><loc>https://tfilah.com/tzidkatcha-tzedek/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--eca321a33610-->
+  <url><loc>https://tfilah.com/barchi-nafshi-shabbat-mincha/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9e9ab76bc5ab-->
+  <url><loc>https://tfilah.com/atkinu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2b31e523911e-->
+  <url><loc>https://tfilah.com/mizmor-ledavid/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--911bf09b85b7-->
   <url><loc>https://tfilah.com/yedid-nefesh-shabbat-seuda/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cca1b8db1243-->
-  <url><loc>https://tfilah.com/havdala/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cd483fc3bc9f-->
-  <url><loc>https://tfilah.com/birkat-hallel/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--381877ebee0d-->
-  <url><loc>https://tfilah.com/tehilim-113/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5b864c355d45-->
-  <url><loc>https://tfilah.com/tehilim-114/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--dcee45041dba-->
-  <url><loc>https://tfilah.com/tehilim-115/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bbe22be82e6d-->
-  <url><loc>https://tfilah.com/tehilim-116/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a13052eab83d-->
-  <url><loc>https://tfilah.com/tehilim-117/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3774dbf70bbb-->
-  <url><loc>https://tfilah.com/tehilim-118/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ad578b06e3c0-->
-  <url><loc>https://tfilah.com/bracha-besof/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--2dfcd0a4b1e5-->
+  <url><loc>https://tfilah.com/havdala/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c84d38292e8b-->
+  <url><loc>https://tfilah.com/birkat-hallel/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bf91885e6c5c-->
+  <url><loc>https://tfilah.com/tehilim-113/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2029d00cf30d-->
+  <url><loc>https://tfilah.com/tehilim-114/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bf4e6060f15f-->
+  <url><loc>https://tfilah.com/tehilim-115/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9568494743fe-->
+  <url><loc>https://tfilah.com/tehilim-116/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--e56ef0fa3bf1-->
+  <url><loc>https://tfilah.com/tehilim-117/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5c3925c6526f-->
+  <url><loc>https://tfilah.com/tehilim-118/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--db5f5b8af772-->
+  <url><loc>https://tfilah.com/bracha-besof/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c9a717b4e060-->
   <url><loc>https://tfilah.com/avot-rosh-chodesh-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1e2994bcdf80-->
   <url><loc>https://tfilah.com/gevurot-rosh-chodesh-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--883f3003bc63-->
   <url><loc>https://tfilah.com/kedushat-hashem-rosh-chodesh-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--185803efe83c-->
@@ -867,8 +867,8 @@
   <url><loc>https://tfilah.com/avoda-regalim-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--514edde26f8f-->
   <url><loc>https://tfilah.com/modim-regalim-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b2aae3760df8-->
   <url><loc>https://tfilah.com/birkat-kohanim-regalim-shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f766a080e4d2-->
-  <url><loc>https://tfilah.com/bracha-leshalom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--973a0d5ce176-->
-  <url><loc>https://tfilah.com/siyum-amida/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--aaf8b2837bbf-->
+  <url><loc>https://tfilah.com/bracha-leshalom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a9ee06dbda78-->
+  <url><loc>https://tfilah.com/siyum-amida/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5fa1006e8e89-->
   <url><loc>https://tfilah.com/avot-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a38c52212815-->
   <url><loc>https://tfilah.com/gevurot-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8cc18a137b72-->
   <url><loc>https://tfilah.com/kedusha-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f06083916682-->
@@ -877,46 +877,46 @@
   <url><loc>https://tfilah.com/avoda-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--654c79504e57-->
   <url><loc>https://tfilah.com/modim-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bae2a3326526-->
   <url><loc>https://tfilah.com/birkat-kohanim-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--1eb299db7d56-->
-  <url><loc>https://tfilah.com/birkat-shalom/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--536d36c25b2b-->
+  <url><loc>https://tfilah.com/birkat-shalom/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a601605cf659-->
   <url><loc>https://tfilah.com/siyum-amida-regalim-musaf/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--934d5ee59052-->
-  <url><loc>https://tfilah.com/tefilat-tal/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5138a2d9fba3-->
-  <url><loc>https://tfilah.com/tefilat-geshem/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3d23a8e00be8-->
-  <url><loc>https://tfilah.com/keshenichnasim-lasukka/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e0ed22128c8d-->
-  <url><loc>https://tfilah.com/ushpizin/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--53a0c2a2c395-->
-  <url><loc>https://tfilah.com/kesheyotzim-min-hasukka/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--df57b02ff909-->
-  <url><loc>https://tfilah.com/netilat-lulav/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--65d9e3685e4f-->
-  <url><loc>https://tfilah.com/kol-yom-besukkot-shechal-beshabbat/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0f1211b5d0e3-->
-  <url><loc>https://tfilah.com/yom-tov-rishon-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e1043ce0cf56-->
-  <url><loc>https://tfilah.com/yom-sheni-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--7d6a421586ca-->
-  <url><loc>https://tfilah.com/yom-shlishi-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e101e59788af-->
-  <url><loc>https://tfilah.com/yom-revii-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bd61a1059200-->
-  <url><loc>https://tfilah.com/yom-chamishi-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--5bf0d6d54acb-->
-  <url><loc>https://tfilah.com/yom-shishi-shel-sukkot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4e59cbc8c262-->
-  <url><loc>https://tfilah.com/hoshana-raba/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8b1d8cfeea28-->
-  <url><loc>https://tfilah.com/brachot-hadlakat-nerot-chanukah/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f4ab64c23ad7-->
-  <url><loc>https://tfilah.com/hanerot-halalu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4c7024798e0b-->
-  <url><loc>https://tfilah.com/maoz-tzur/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--9fecb008a1e1-->
-  <url><loc>https://tfilah.com/tzom-gedalya/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--c20514a5b9db-->
-  <url><loc>https://tfilah.com/asara-betevet/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--b1216304022d-->
-  <url><loc>https://tfilah.com/taanit-ester/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--cec8433fd58d-->
-  <url><loc>https://tfilah.com/shiva-asar-betamuz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--702cbf990508-->
-  <url><loc>https://tfilah.com/yom-kippur-katan/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3a12cb0fdcc6-->
-  <url><loc>https://tfilah.com/behab/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--de3288736f3a-->
-  <url><loc>https://tfilah.com/birkat-hamazon/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--3ebe67324bf9-->
-  <url><loc>https://tfilah.com/brachot-rishonot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--d8948cd64024-->
+  <url><loc>https://tfilah.com/tefilat-tal/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4af007d8f5ce-->
+  <url><loc>https://tfilah.com/tefilat-geshem/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1b3e5a599093-->
+  <url><loc>https://tfilah.com/keshenichnasim-lasukka/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6c245b5ddc6a-->
+  <url><loc>https://tfilah.com/ushpizin/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5f127c205e1e-->
+  <url><loc>https://tfilah.com/kesheyotzim-min-hasukka/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ba65dddd5083-->
+  <url><loc>https://tfilah.com/netilat-lulav/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cbaf9e6c163b-->
+  <url><loc>https://tfilah.com/kol-yom-besukkot-shechal-beshabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--26900e90d981-->
+  <url><loc>https://tfilah.com/yom-tov-rishon-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--bf1f033eb2d3-->
+  <url><loc>https://tfilah.com/yom-sheni-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1d9e0539829d-->
+  <url><loc>https://tfilah.com/yom-shlishi-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--95c811d6cbb7-->
+  <url><loc>https://tfilah.com/yom-revii-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4bfd756a7341-->
+  <url><loc>https://tfilah.com/yom-chamishi-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4009fe2585a3-->
+  <url><loc>https://tfilah.com/yom-shishi-shel-sukkot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0f38bdc3416e-->
+  <url><loc>https://tfilah.com/hoshana-raba/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--de5dfcc9952d-->
+  <url><loc>https://tfilah.com/brachot-hadlakat-nerot-chanukah/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--5602de31e64e-->
+  <url><loc>https://tfilah.com/hanerot-halalu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1a585c45ddc6-->
+  <url><loc>https://tfilah.com/maoz-tzur/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d0adb36b9e0c-->
+  <url><loc>https://tfilah.com/tzom-gedalya/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b8e67f47f47f-->
+  <url><loc>https://tfilah.com/asara-betevet/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ceb1e14b7200-->
+  <url><loc>https://tfilah.com/taanit-ester/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--9085d45f9c86-->
+  <url><loc>https://tfilah.com/shiva-asar-betamuz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0053c3bf8a89-->
+  <url><loc>https://tfilah.com/yom-kippur-katan/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--2210d1601a81-->
+  <url><loc>https://tfilah.com/behab/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d0118db12c39-->
+  <url><loc>https://tfilah.com/birkat-hamazon/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--569540422f4e-->
+  <url><loc>https://tfilah.com/brachot-rishonot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7d8ff69ff0ef-->
   <url><loc>https://tfilah.com/al-hamichya/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--ea34a214cc36-->
-  <url><loc>https://tfilah.com/borei-nefashot/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e23d2d6fcb78-->
+  <url><loc>https://tfilah.com/borei-nefashot/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--eb87725f38f1-->
   <url><loc>https://tfilah.com/brachot-hareiya-hashmia-vehareiach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4d60d29ac063-->
-  <url><loc>https://tfilah.com/birkat-hamitzvot/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8f80e3b14053-->
-  <url><loc>https://tfilah.com/mechaye-hametim/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--00cb0f393a8c-->
-  <url><loc>https://tfilah.com/tefilat-haderech/ashkenaz/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e7c37f4744dc-->
-  <url><loc>https://tfilah.com/havinenu/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--6e107146541d-->
-  <url><loc>https://tfilah.com/chatzi-kaddish-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--fa9219d867fc-->
-  <url><loc>https://tfilah.com/kaddish-yatom-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--55373bf1d5e0-->
-  <url><loc>https://tfilah.com/kaddish-shalem-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--17d3cdfa1d32-->
-  <url><loc>https://tfilah.com/kaddish-derabanan-2/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--8605956ba14c-->
-  <url><loc>https://tfilah.com/kaddish-deitchadeta/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--62198fc1d4e0-->
-  <url><loc>https://tfilah.com/kaddish-achar-hashlamat-masechet/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--e46d412fc15f-->
+  <url><loc>https://tfilah.com/birkat-hamitzvot/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--419c1210f3d6-->
+  <url><loc>https://tfilah.com/mechaye-hametim/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--7fabbb444752-->
+  <url><loc>https://tfilah.com/tefilat-haderech/ashkenaz/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--76166f25d989-->
+  <url><loc>https://tfilah.com/havinenu/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--ccb40fe7ec37-->
+  <url><loc>https://tfilah.com/chatzi-kaddish-2/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--0213863bafff-->
+  <url><loc>https://tfilah.com/kaddish-yatom-2/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--1bf8b7654180-->
+  <url><loc>https://tfilah.com/kaddish-shalem-2/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f7796cf435fd-->
+  <url><loc>https://tfilah.com/kaddish-derabanan-2/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--f8a750f88a51-->
+  <url><loc>https://tfilah.com/kaddish-deitchadeta/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--b82a974b4b2d-->
+  <url><loc>https://tfilah.com/kaddish-achar-hashlamat-masechet/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--de5e7b1dea83-->
   <url><loc>https://tfilah.com/siddur/mizrach/shacharit/</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url><!--1157e8c61b7f-->
   <url><loc>https://tfilah.com/siddur/mizrach/mincha/</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url><!--b540bc70ec05-->
   <url><loc>https://tfilah.com/siddur/mizrach/arvit/</loc><lastmod>2026-11-24</lastmod><priority>0.9</priority></url><!--7f9c0a092249-->
@@ -1003,16 +1003,16 @@
   <url><loc>https://tfilah.com/parasha/haazinu/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--5bb065cf9c97-->
   <url><loc>https://tfilah.com/parasha/vezot-haberakhah/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--252651943f24-->
   <url><loc>https://tfilah.com/parasha/</loc><lastmod>2026-11-23</lastmod><priority>0.9</priority></url><!--f405d3c6d7de-->
-  <url><loc>https://tfilah.com/nishmat-kol-chai/mizrach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--f56a5e668a83-->
-  <url><loc>https://tfilah.com/nishmat-kol-chai/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--634a46d048e7-->
-  <url><loc>https://tfilah.com/chatzi-kaddish/mizrach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--23b52bd52835-->
-  <url><loc>https://tfilah.com/chatzi-kaddish/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0d27fc12e153-->
-  <url><loc>https://tfilah.com/kaddish-yatom/mizrach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--43819f9caf22-->
-  <url><loc>https://tfilah.com/kaddish-yatom/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--29a4d07f8821-->
-  <url><loc>https://tfilah.com/kaddish-shalem/mizrach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--0702c4c17146-->
-  <url><loc>https://tfilah.com/kaddish-shalem/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--a347c9fba1ea-->
-  <url><loc>https://tfilah.com/kaddish-derabanan/mizrach/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--bff89bbe8258-->
-  <url><loc>https://tfilah.com/kaddish-derabanan/sefard/</loc><lastmod>2026-11-24</lastmod><priority>0.6</priority></url><!--4a3af215337c-->
+  <url><loc>https://tfilah.com/nishmat-kol-chai/mizrach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--90f6acbe335a-->
+  <url><loc>https://tfilah.com/nishmat-kol-chai/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--6bca87b6ec59-->
+  <url><loc>https://tfilah.com/chatzi-kaddish/mizrach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--4f0d43001595-->
+  <url><loc>https://tfilah.com/chatzi-kaddish/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--73af4045ad54-->
+  <url><loc>https://tfilah.com/kaddish-yatom/mizrach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--a04cc903af1c-->
+  <url><loc>https://tfilah.com/kaddish-yatom/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cfde576c9681-->
+  <url><loc>https://tfilah.com/kaddish-shalem/mizrach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--60dcd437bb37-->
+  <url><loc>https://tfilah.com/kaddish-shalem/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--c1693fd5e57a-->
+  <url><loc>https://tfilah.com/kaddish-derabanan/mizrach/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--d9f1ba5483b8-->
+  <url><loc>https://tfilah.com/kaddish-derabanan/sefard/</loc><lastmod>2026-11-26</lastmod><priority>0.6</priority></url><!--cd84edb514cb-->
   <url><loc>https://tfilah.com/kaddish/</loc><lastmod>2026-11-23</lastmod><priority>0.8</priority></url><!--a4a3e500ecf2-->
   <url><loc>https://tfilah.com/kotel/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--f359850e442e-->
   <url><loc>https://tfilah.com/segulat-rachel-imenu/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--0d65cb900524-->
@@ -1064,46 +1064,46 @@
   <url><loc>https://tfilah.com/zmanei-shabbat/miami/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--f2157bf42d4d-->
   <url><loc>https://tfilah.com/zmanei-shabbat/london/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--d53ae3250852-->
   <url><loc>https://tfilah.com/zmanei-shabbat/paris/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--c0ec09e2c894-->
-  <url><loc>https://tfilah.com/zmanei-hayom/jerusalem/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--e0f7171722f8-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tel-aviv/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--ae45e3c91383-->
-  <url><loc>https://tfilah.com/zmanei-hayom/haifa/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--268da8e0afdf-->
-  <url><loc>https://tfilah.com/zmanei-hayom/bnei-brak/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--fb11490fa89d-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beer-sheva/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--e5e506a38f47-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ashdod/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--483cd5494c75-->
-  <url><loc>https://tfilah.com/zmanei-hayom/petah-tikva/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--242074037474-->
-  <url><loc>https://tfilah.com/zmanei-hayom/netanya/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--a6a5211d95dc-->
-  <url><loc>https://tfilah.com/zmanei-hayom/rishon-lezion/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--0c336781b370-->
-  <url><loc>https://tfilah.com/zmanei-hayom/holon/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--d1333f729294-->
-  <url><loc>https://tfilah.com/zmanei-hayom/bat-yam/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--00492e454d64-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ramat-gan/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--6e9f5845bead-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ashkelon/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--bdf06ced47b6-->
-  <url><loc>https://tfilah.com/zmanei-hayom/rehovot/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--39c6f37449a5-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beit-shemesh/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--2fb1a2da81fd-->
-  <url><loc>https://tfilah.com/zmanei-hayom/modiin/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--a0159eb878d0-->
-  <url><loc>https://tfilah.com/zmanei-hayom/modiin-illit/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--0d18d3caf145-->
-  <url><loc>https://tfilah.com/zmanei-hayom/elad/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--a025abe68a7c-->
-  <url><loc>https://tfilah.com/zmanei-hayom/herzliya/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--95f05fef39c1-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kfar-saba/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--e51d38f224d6-->
-  <url><loc>https://tfilah.com/zmanei-hayom/raanana/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--bfce598ec2de-->
-  <url><loc>https://tfilah.com/zmanei-hayom/hadera/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--dba3e30b95b4-->
-  <url><loc>https://tfilah.com/zmanei-hayom/lod/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--b393e6146671-->
-  <url><loc>https://tfilah.com/zmanei-hayom/ramla/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--fc058e7debc9-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tzfat/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--f10ee393fc51-->
-  <url><loc>https://tfilah.com/zmanei-hayom/tiberias/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--6c42d5da9d1d-->
-  <url><loc>https://tfilah.com/zmanei-hayom/afula/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--3a50fed0b245-->
-  <url><loc>https://tfilah.com/zmanei-hayom/nahariya/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--7a247aa16e75-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-shmona/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--c7e99c6ee153-->
-  <url><loc>https://tfilah.com/zmanei-hayom/eilat/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--3cf56b587038-->
-  <url><loc>https://tfilah.com/zmanei-hayom/netivot/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--c345b83bfedd-->
-  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-gat/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--6021cf05cdf3-->
-  <url><loc>https://tfilah.com/zmanei-hayom/beitar-illit/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--c064689d942c-->
-  <url><loc>https://tfilah.com/zmanei-hayom/new-york/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--c42e2602dcc2-->
-  <url><loc>https://tfilah.com/zmanei-hayom/los-angeles/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--f2c7886d9f61-->
-  <url><loc>https://tfilah.com/zmanei-hayom/miami/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--89c0e2697a40-->
-  <url><loc>https://tfilah.com/zmanei-hayom/london/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--b3600f2c4570-->
-  <url><loc>https://tfilah.com/zmanei-hayom/paris/</loc><lastmod>2026-11-25</lastmod><priority>0.8</priority></url><!--591820311631-->
-  <url><loc>https://tfilah.com/zmanei-hayom/</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url><!--f0d3845a45d6-->
-  <url><loc>https://tfilah.com/zmanei-shabbat/</loc><lastmod>2026-11-22</lastmod><priority>0.9</priority></url><!--2c63c9643797-->
+  <url><loc>https://tfilah.com/zmanei-hayom/jerusalem/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--b1495cf57046-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tel-aviv/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--433840e24c2a-->
+  <url><loc>https://tfilah.com/zmanei-hayom/haifa/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--5b8eff9a9ed5-->
+  <url><loc>https://tfilah.com/zmanei-hayom/bnei-brak/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--82e0e498b060-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beer-sheva/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--988d3592481c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ashdod/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--aad0bc5db0d8-->
+  <url><loc>https://tfilah.com/zmanei-hayom/petah-tikva/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--524d563070f5-->
+  <url><loc>https://tfilah.com/zmanei-hayom/netanya/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--adf495f0c338-->
+  <url><loc>https://tfilah.com/zmanei-hayom/rishon-lezion/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--f8dbb60f3e5d-->
+  <url><loc>https://tfilah.com/zmanei-hayom/holon/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--1b5b9da07afc-->
+  <url><loc>https://tfilah.com/zmanei-hayom/bat-yam/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--61757cb2fecb-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ramat-gan/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--dea4a690e961-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ashkelon/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--a4552dc97d0f-->
+  <url><loc>https://tfilah.com/zmanei-hayom/rehovot/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--427ad17a45f4-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beit-shemesh/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--b51ee8ab855a-->
+  <url><loc>https://tfilah.com/zmanei-hayom/modiin/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--08762ad58857-->
+  <url><loc>https://tfilah.com/zmanei-hayom/modiin-illit/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--8b8fed2d6abb-->
+  <url><loc>https://tfilah.com/zmanei-hayom/elad/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--d2787b02000a-->
+  <url><loc>https://tfilah.com/zmanei-hayom/herzliya/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--218fd5bc1fb8-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kfar-saba/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--130a77a38a62-->
+  <url><loc>https://tfilah.com/zmanei-hayom/raanana/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--925f041be015-->
+  <url><loc>https://tfilah.com/zmanei-hayom/hadera/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--a35f5c7d721f-->
+  <url><loc>https://tfilah.com/zmanei-hayom/lod/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--4983fa7df101-->
+  <url><loc>https://tfilah.com/zmanei-hayom/ramla/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--670854640b9a-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tzfat/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--bdda61699d8c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/tiberias/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--36b8ae177175-->
+  <url><loc>https://tfilah.com/zmanei-hayom/afula/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--6f0606184134-->
+  <url><loc>https://tfilah.com/zmanei-hayom/nahariya/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--104bb8b936bc-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-shmona/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--2dcfd2b514b9-->
+  <url><loc>https://tfilah.com/zmanei-hayom/eilat/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--198794a1a31c-->
+  <url><loc>https://tfilah.com/zmanei-hayom/netivot/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--881ed8ac5fbd-->
+  <url><loc>https://tfilah.com/zmanei-hayom/kiryat-gat/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--a39b20fca28b-->
+  <url><loc>https://tfilah.com/zmanei-hayom/beitar-illit/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--ae4801cb0657-->
+  <url><loc>https://tfilah.com/zmanei-hayom/new-york/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--57a1fa68ad0e-->
+  <url><loc>https://tfilah.com/zmanei-hayom/los-angeles/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--8cb5db71a1a8-->
+  <url><loc>https://tfilah.com/zmanei-hayom/miami/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--3c31c3677d5b-->
+  <url><loc>https://tfilah.com/zmanei-hayom/london/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--6ae005b8208f-->
+  <url><loc>https://tfilah.com/zmanei-hayom/paris/</loc><lastmod>2026-11-26</lastmod><priority>0.8</priority></url><!--f84adad2d4a0-->
+  <url><loc>https://tfilah.com/zmanei-hayom/</loc><lastmod>2026-11-26</lastmod><priority>0.9</priority></url><!--a4605ef5d41b-->
+  <url><loc>https://tfilah.com/zmanei-shabbat/</loc><lastmod>2026-11-26</lastmod><priority>0.9</priority></url><!--c8b5b20cf4c3-->
   <url><loc>https://tfilah.com/chanukah/</loc><lastmod>2026-11-25</lastmod><priority>0.9</priority></url><!--d420066e63d4-->
   <url><loc>https://tfilah.com/tisha-beav/</loc><lastmod>2026-11-23</lastmod><priority>0.7</priority></url><!--fae042ae2a57-->
   <url><loc>https://tfilah.com/birkat-kala/</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url><!--24b22a29072b-->

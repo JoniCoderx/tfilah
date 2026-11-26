@@ -10,3 +10,4 @@ S("pv");setInterval(function(){if(D.visibilityState==="visible")S("hb")},60000);
 addEventListener("hashchange",function(){var q=P();if(q!==p){p=q;v=id();c="internal";S("pv")}});
 addEventListener("beforeprint",function(){S("print")});
 D.addEventListener("click",function(e){var l=e.target&&e.target.closest&&e.target.closest("a[href]");if(l&&/wa\.me|whatsapp:|api\.whatsapp|t\.me\/share/.test(l.getAttribute("href")||""))S("share")},true)}catch(e){}})();
+(function(){try{document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-share-site]');if(!a||!navigator.share)return;e.preventDefault();navigator.share({title:'תפילה',text:'סידור תפילה, ספר תהילים, קריאה משותפת וזמני שבת. כל התפילות במקום אחד 🙏',url:'https://tfilah.com/?utm_source=share'}).catch(function(){})});}catch(e){}})();

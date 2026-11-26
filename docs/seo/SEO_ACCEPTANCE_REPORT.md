@@ -13,10 +13,10 @@ SEO baseline before this work: commit 2d4fe6b. Rollback: see SEO_MONITORING_RUNB
 | robots.txt | PASS | live: Allow /, Disallow /admin/, sitemap listed | — |
 | Sitemap, titles, descriptions, canonicals, JSON-LD | PASS | `tools/seo-audit.py`: OK; 2,810 JSON-LD blocks parse | — |
 | llms.txt | PASS | live 200, text/plain UTF-8 (PR #117) | experimental by nature |
-| IndexNow | BLOCKED (temporary) | key file live 200; first submission answered 403 SiteVerificationNotCompleted | retry scheduled |
+| IndexNow | PASS | 2026-11-26 22:00 UTC: 1,326 sitemap URLs submitted, HTTP 200 (received, not proof of indexing) | after page changes: `python3 tools/indexnow.py <date>` |
 | First-party analytics ingest | PASS (tests) / NOT RUN (production write) | 38/38 in tools/test-analytics.mjs; live endpoint rejects extra fields (400) and ignores crawlers (204) | a production write was not forced, to keep synthetic traffic out of the numbers; confirm in /admin/ after login |
 | Privacy: no IP/UA/referrer/typed text stored; DNT/GPC respected; private paths refused | PASS (tests, code review) | tests "rejected: …", privacy page updated | — |
-| Admin login | BLOCKED (owner) | live: 503 "not configured" until ADMIN_EMAIL and ADMIN_PASSWORD secrets are set | owner sets secrets |
+| Admin login | PASS (configured) | owner set ADMIN_EMAIL and ADMIN_PASSWORD secrets; live endpoint now answers 401 without a session (was 503) | owner confirms a login |
 | Admin access control | PASS (tests) | 401 without session, forged/expired sessions refused, password change revokes, lock after 8 failures | — |
 | Admin noindex / no-store | PASS | live header X-Robots-Tag: noindex, nofollow | — |
 | Live dashboard, trends, CSV, SEO check, integrations panel | PASS (mocked UI render) / NOT RUN (live data) | rendered at 1240 and 390 px | verify after login |

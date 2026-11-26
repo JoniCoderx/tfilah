@@ -185,7 +185,7 @@ def food_page(f):
                + f'<div class="mm-box"><small>אחרי האכילה</small><b>{a[0]}</b>' + (f'<p class="mm-cond">{E(f["after_cond"])}</p>' if f.get("after_cond") else "")
                + (f'<a href="{a[1]}">לנוסח המלא באתר</a>' if a[1] else "") + "</div></div>" + (f'<p class="mm-note">{E(f["note"])}</p>' if f.get("note") else ""))
         desc = cut(" ".join(x for x in (lead, f.get("note"), "עם מקור ההוראה ונוסח הברכה המלא בניקוד.") if x), 156)
-    for extra in ("מתוך הכלי ”מה מברכים על”, באתר תפילה.", "חינם ובלי פרסומות."):
+    for extra in ("מתוך הכלי ”מה מברכים על”, באתר תפילה.", "בלי פרסומות."):
         if len(desc) < 120 and not desc.endswith("…"):
             desc += " " + extra
     if len(title) > 58:

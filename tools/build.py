@@ -1,4 +1,4 @@
-import re, sys
+import os, re, sys
 src, out = sys.argv[1], sys.argv[2]
 s = open(src, encoding="utf-8").read()
 
@@ -24,6 +24,7 @@ for l in links:
     s = s.replace(l, "", 1)
 
 DESC = "סידור תפילה אונליין בניקוד מלא, בנוסח עדות המזרח, ספרד ואשכנז, עם ספר תהילים, פרשת השבוע, זמני היום ותהילים יחד. בלי פרסומות, נוח לקריאה בנייד."
+BEACON = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "beacon.js"), encoding="utf-8").read().strip()
 TITLE = "סידור תפילה אונליין ותהילים בניקוד מלא | תפילה Tfilah"
 
 head = f"""<!doctype html>
@@ -50,13 +51,14 @@ head = f"""<!doctype html>
 <meta property="og:url" content="https://tfilah.com/">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":["Tfilah","Tfilah.com","תפילה Tfilah"],"url":"https://tfilah.com/","inLanguage":"he","description":"{DESC}","publisher":{{"@type":"Organization","name":"תפילה","alternateName":"Tfilah","url":"https://tfilah.com/","logo":"https://tfilah.com/icons/icon-512.png","sameAs":["https://www.facebook.com/tfilahcom"]}}}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":["Tfilah","Tfilah.com","תפילה Tfilah"],"url":"https://tfilah.com/","inLanguage":"he","description":"{DESC}","publisher":{{"@type":"Organization","name":"תפילה","alternateName":"Tfilah","contactPoint":[{{"@type":"ContactPoint","contactType":"donations","email":"team@tfilah.com"}},{{"@type":"ContactPoint","contactType":"business inquiries","email":"business@tfilah.com"}}],"url":"https://tfilah.com/","logo":"https://tfilah.com/icons/icon-512.png","sameAs":["https://www.facebook.com/tfilahcom"]}}}}</script>
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","name":"תפילה: סידור תפילה אונליין ותהילים","url":"https://tfilah.com/","inLanguage":"he","isPartOf":{{"@type":"WebSite","url":"https://tfilah.com/"}},"primaryImageOfPage":{{"@type":"ImageObject","url":"https://tfilah.com/icons/thumb.png?v=1","width":1200,"height":1200}}}}</script>
 {''.join(links)}<style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 <script defer src="/config.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script defer src="/shim.js"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{{}}));</script>
+<script>{BEACON}</script>
 <noscript><style>.boot{{visibility:visible!important;animation:none!important}}</style></noscript>
 </head>
 <body>

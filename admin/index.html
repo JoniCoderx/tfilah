@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>מרכז הבקרה | תפילה</title>
+<link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#F4F8FC;--card:#fff;--ink:#0B2E4F;--ink2:#3A5D7C;--muted:#6B8399;--line:#DDEEF9;--accent:#0A6CA8;--accent2:#1E9BE4;--good:#0E7A41;--warn:#A15C00;--bad:#B42318;--chip:#EAF5FD}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0B1620;--card:#122231;--ink:#E6F1FA;--ink2:#B7CCDD;--muted:#8AA3B8;--line:#20374A;--accent:#5BB8F5;--accent2:#7CC8F7;--good:#5BD08F;--warn:#F2B35B;--bad:#FF8A80;--chip:#18324A}}
+:root[data-theme=dark]{--bg:#0B1620;--card:#122231;--ink:#E6F1FA;--ink2:#B7CCDD;--muted:#8AA3B8;--line:#20374A;--accent:#5BB8F5;--accent2:#7CC8F7;--good:#5BD08F;--warn:#F2B35B;--bad:#FF8A80;--chip:#18324A}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Assistant","Heebo",system-ui,Arial,sans-serif}
+button,input,select{font:inherit}a{color:var(--accent)}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--line)}
+.top b{font-size:18px}.top .sp{flex:1}.pill{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:6px 14px;cursor:pointer;min-height:36px}
+.pill[aria-pressed=true],.pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px 0;max-width:1240px;margin:0 auto}
+main{max-width:1240px;margin:0 auto;padding:12px 16px 40px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.card h2{margin:0 0 8px;font-size:15px;color:var(--ink2);font-weight:700}.big{font-size:32px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:13px}.row2{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:12px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{text-align:start;padding:6px 4px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}th{color:var(--muted);font-weight:600}
+td.n{text-align:end;white-space:nowrap}.ltr{direction:ltr;unicode-bidi:isolate}
+.bar{height:8px;border-radius:99px;background:var(--chip);overflow:hidden;min-width:40px}.bar i{display:block;height:100%;background:var(--accent2)}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:13px}.dot{width:9px;height:9px;border-radius:50%;background:var(--muted)}.dot.ok{background:var(--good)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+svg.chart{width:100%;height:150px;display:block}.note{color:var(--muted);font-size:13px;margin:8px 0 0}
+.login{max-width:380px;margin:12vh auto;padding:24px}.login h1{margin:0 0 4px;font-size:22px}.login label{display:block;margin:14px 0 4px;font-weight:600}
+.login input{width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;background:var(--bg);color:var(--ink)}
+.btn{min-height:44px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-weight:700;padding:0 18px;cursor:pointer}.btn:disabled{opacity:.6}
+.err{color:var(--bad);min-height:1.5em;margin-top:8px}.sev{font-weight:700;border-radius:6px;padding:0 6px}.sev.P0{color:#fff;background:var(--bad)}.sev.P1{color:#fff;background:var(--warn)}.sev.P2{background:var(--chip)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div id="loginView" hidden>
+  <form class="card login" id="loginForm" autocomplete="on">
+    <h1>מרכז הבקרה של תפילה</h1><p class="sub">כניסה למנהלים בלבד.</p>
+    <label for="em">אימייל</label><input id="em" name="email" type="email" autocomplete="username" required dir="ltr">
+    <label for="pw">סיסמה</label><input id="pw" name="password" type="password" autocomplete="current-password" required dir="ltr">
+    <div class="err" id="loginErr" role="alert"></div>
+    <button class="btn" id="loginBtn" type="submit">כניסה</button>
+  </form>
+</div>
+<div id="appView" hidden>
+  <header class="top"><b>מרכז הבקרה</b><span class="sub" id="who"></span><span class="sp"></span>
+    <button class="pill" id="themeBtn" type="button">מצב תצוגה</button><button class="pill" id="logoutBtn" type="button">יציאה</button></header>
+  <nav class="tabs" aria-label="מדורים">
+    <button class="pill on" data-tab="live" type="button">זמן אמת</button><button class="pill" data-tab="trend" type="button">מגמות</button>
+    <button class="pill" data-tab="seo" type="button">SEO טכני</button><button class="pill" data-tab="status" type="button">חיבורים וגרסה</button>
+  </nav>
+  <main>
+    <section id="tab-live">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap">
+        <span class="status"><span class="dot" id="liveDot"></span><span id="liveState">מתחבר…</span></span>
+        <button class="pill" id="pauseBtn" type="button" aria-pressed="false">השהיה</button><span class="sub">מתעדכן כל 10 שניות</span></div>
+      <div class="grid">
+        <div class="card"><h2>עמודים פתוחים עכשיו</h2><div class="big" id="kActive">–</div><div class="sub">פעילות ב-5 הדקות האחרונות (הערכה)</div></div>
+        <div class="card"><h2>צפיות, 5 דקות</h2><div class="big" id="k5">–</div></div>
+        <div class="card"><h2>צפיות, 30 דקות</h2><div class="big" id="k30">–</div><div class="sub" id="k15"></div></div>
+        <div class="card"><h2>צפיות, 24 שעות</h2><div class="big" id="k24">–</div><div class="sub" id="kPrev"></div></div>
+      </div>
+      <div class="card" style="margin-top:12px"><h2>צפיות לפי דקה, השעה האחרונה</h2><svg class="chart" id="chartLive" role="img" aria-label="צפיות לפי דקה"></svg></div>
+      <div class="row2">
+        <div class="card"><h2>עמודים פתוחים עכשיו</h2><table><tbody id="tLivePages"></tbody></table></div>
+        <div class="card"><h2>מקורות, עכשיו</h2><table><tbody id="tLiveCh"></tbody></table><h2 style="margin-top:12px">מכשירים</h2><table><tbody id="tLiveDev"></tbody></table></div>
+      </div>
+      <div class="card" style="margin-top:12px"><h2>אירועים אחרונים</h2><table><thead><tr><th>שעה</th><th>אירוע</th><th>עמוד</th><th>מקור</th><th>מכשיר</th></tr></thead><tbody id="tRecent"></tbody></table>
+        <p class="note">אין כאן שום פרט מזהה: רק עמוד ציבורי, קטגוריית מקור וסוג מכשיר. התנועה של המנהלים עצמם לא נספרת בדפדפן הזה.</p></div>
+    </section>
+    <section id="tab-trend" hidden>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap">
+        <button class="pill" data-days="7" type="button">7 ימים</button><button class="pill on" data-days="30" type="button">30 ימים</button><button class="pill" data-days="90" type="button">90 ימים</button>
+        <span class="sp"></span><button class="pill" id="csvDaily" type="button">CSV יומי</button><button class="pill" id="csvPages" type="button">CSV עמודים</button></div>
+      <div class="grid"><div class="card"><h2>צפיות בתקופה</h2><div class="big" id="tTotal">–</div><div class="sub" id="tPrev"></div></div>
+        <div class="card"><h2>שיתופים בוואטסאפ ובטלגרם</h2><div class="big" id="tShare">–</div></div><div class="card"><h2>הדפסות</h2><div class="big" id="tPrint">–</div></div></div>
+      <div class="card" style="margin-top:12px"><h2>צפיות לפי יום</h2><svg class="chart" id="chartDays" role="img" aria-label="צפיות לפי יום"></svg></div>
+      <div class="row2"><div class="card"><h2>העמודים המובילים</h2><table><tbody id="tPages"></tbody></table></div>
+        <div class="card"><h2>מקורות</h2><table><tbody id="tCh"></tbody></table><p class="note">מנועי AI מופיעים כ-ai:… רק כשהם מעבירים את כתובת המקור. הרבה כניסות מ-AI נראות כ"ישירות".</p>
+          <h2 style="margin-top:12px">מכשירים</h2><table><tbody id="tDev"></tbody></table></div></div>
+    </section>
+    <section id="tab-seo" hidden>
+      <div class="card"><h2>בדיקת SEO טכנית</h2><p class="sub">בודקת את דפי המפתח ו-32 דפים אקראיים ממפת האתר: סטטוס, כותרת, כתובת קנונית, noindex, H1 ונתונים מובנים.</p>
+        <button class="btn" id="auditBtn" type="button">הרצת בדיקה</button><div id="auditOut" style="margin-top:12px"></div></div>
+    </section>
+    <section id="tab-status" hidden>
+      <div class="row2"><div class="card"><h2>חיבורים</h2><table><tbody id="tInt"></tbody></table></div>
+        <div class="card"><h2>חזרה לגרסת ה-SEO המקורית</h2><div id="baseline"></div>
+          <ol style="padding-inline-start:20px;margin:8px 0 0"><li>נכנסים ל-dash.cloudflare.com ופותחים Workers &amp; Pages, ואז את הפרויקט tfilah.</li>
+          <li>בלשונית Deployments מוצאים את הפריסה של ה-commit שמופיע כאן למעלה.</li><li>לוחצים על ⋯ ובוחרים <b>Rollback to this deployment</b>. האתר חוזר למצב הזה תוך דקה.</li></ol>
+          <p class="note">החזרה מחזירה את כל האתר לרגע הזה, כולל הסרת לוח הבקרה והמדידה. אפשר לחזור קדימה באותה דרך.</p></div></div>
+      <div class="card" style="margin-top:12px"><h2>תהילים יחד</h2><div id="readings" class="sub"></div></div>
+    </section>
+  </main>
+</div>
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)},paused=false,timer=null,lastOk=0,trendData=null,days=30;
+function api(q){return fetch('/api/admin/data?q='+q,{credentials:'same-origin',cache:'no-store'}).then(function(r){if(r.status===401){show(false);throw new Error('401')}if(!r.ok)throw new Error(String(r.status));return r.json()})}
+function el(tag,txt,cls){var e=document.createElement(tag);if(txt!=null)e.textContent=txt;if(cls)e.className=cls;return e}
+function rows(tbody,list,label,max){tbody.textContent='';if(!list||!list.length){var tr=el('tr');tr.appendChild(el('td','אין נתונים עדיין','sub'));tbody.appendChild(tr);return}
+  var top=Math.max.apply(null,list.map(function(r){return r.n}));list.slice(0,max||20).forEach(function(r){var tr=el('tr'),a=el('td',label(r)),b=el('td'),c=el('td',fmt(r.n),'n');a.className='ltr';
+  var bar=el('div',null,'bar'),i=el('i');i.style.width=Math.max(3,Math.round(r.n/top*100))+'%';bar.appendChild(i);b.appendChild(bar);b.style.width='35%';tr.appendChild(a);tr.appendChild(b);tr.appendChild(c);tbody.appendChild(tr)})}
+function fmt(n){return Number(n||0).toLocaleString('he-IL')}
+var CH={direct:'ישירה / לא ידוע',internal:'מתוך האתר',referral:'אתרים אחרים'};function chName(c){return CH[c]||c}
+var DV={m:'טלפון',t:'טאבלט',d:'מחשב'};
+function bars(svg,points){svg.textContent='';var W=svg.clientWidth||600,H=150,n=points.length;svg.setAttribute('viewBox','0 0 '+W+' '+H);if(!n)return;var mx=Math.max(1,Math.max.apply(null,points.map(function(p){return p[1]}))),bw=W/n;
+  points.forEach(function(p,i){var h=Math.round(p[1]/mx*(H-24)),r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.setAttribute('x',W-(i+1)*bw+1);r.setAttribute('y',H-h-14);r.setAttribute('width',Math.max(1,bw-2));r.setAttribute('height',h);r.setAttribute('rx',2);r.setAttribute('fill','var(--accent2)');
+  var t=document.createElementNS('http://www.w3.org/2000/svg','title');t.textContent=p[0]+': '+p[1];r.appendChild(t);svg.appendChild(r)});
+  var tx=document.createElementNS('http://www.w3.org/2000/svg','text');tx.setAttribute('x',W-2);tx.setAttribute('y',H-2);tx.setAttribute('text-anchor','end');tx.setAttribute('font-size','11');tx.setAttribute('fill','var(--muted)');tx.setAttribute('direction','ltr');tx.setAttribute('unicode-bidi','isolate');tx.textContent=points[0][0];svg.appendChild(tx);
+  var t2=tx.cloneNode();t2.setAttribute('x',2);t2.setAttribute('text-anchor','start');t2.textContent=points[n-1][0];svg.appendChild(t2)}
+function hhmm(t){var d=new Date(t*1000);return d.toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+function loadLive(){if(paused)return;api('live').then(function(d){lastOk=Date.now();$('kActive').textContent=fmt(d.active);$('k5').textContent=fmt(d.pv.m5);$('k30').textContent=fmt(d.pv.m30);$('k15').textContent='15 דקות: '+fmt(d.pv.m15);$('k24').textContent=fmt(d.pv.h24);
+  $('kPrev').textContent='24 השעות שלפני כן: '+fmt(d.prev24);rows($('tLivePages'),d.pages,function(r){return r.p});rows($('tLiveCh'),d.channels,function(r){return chName(r.c)});rows($('tLiveDev'),d.devices,function(r){return DV[r.d]||r.d});
+  var by={};(d.series||[]).forEach(function(s){by[s.m]=s.n});var pts=[];for(var m=Math.floor(d.now/60)*60-3540;m<=d.now;m+=60)pts.push([hhmm(m).slice(0,5),by[m]||0]);bars($('chartLive'),pts);
+  var tb=$('tRecent');tb.textContent='';if(!d.recent.length){var tr=el('tr');tr.appendChild(el('td','אין אירועים ב-24 השעות האחרונות','sub'));tb.appendChild(tr)}
+  d.recent.forEach(function(r){var tr=el('tr');[hhmm(r.t),{pv:'צפייה',print:'הדפסה',share:'שיתוף'}[r.k]||r.k,r.p,chName(r.c),DV[r.d]||r.d].forEach(function(x,i){var td=el('td',x);if(i===2)td.className='ltr';tr.appendChild(td)});tb.appendChild(tr)});
+  state()}).catch(function(e){if(e.message!=='401')state(e.message)})}
+function state(err){var age=(Date.now()-lastOk)/1000,dot=$('liveDot'),s=$('liveState');if(paused){dot.className='dot warn';s.textContent='מושהה';return}
+  if(err&&age>30){dot.className='dot bad';s.textContent='אין חיבור ('+err+')';return}if(age>30){dot.className='dot warn';s.textContent='הנתונים לא עודכנו '+Math.round(age)+' שניות';return}dot.className='dot ok';s.textContent='מחובר · עודכן '+new Date(lastOk).toLocaleTimeString('he-IL')}
+function loadTrend(){api('trend&days='+days).then(function(d){trendData=d;$('tTotal').textContent=fmt(d.total);$('tPrev').textContent='בתקופה הקודמת: '+fmt(d.previous);
+  var ev={};(d.events||[]).forEach(function(e){ev[e.k]=e.n});$('tShare').textContent=fmt(ev.share);$('tPrint').textContent=fmt(ev.print);
+  var by={};d.daily.forEach(function(r){by[r.day]=r.n});var pts=[];for(var i=d.days-1;i>=0;i--){var k=new Date(Date.now()-i*864e5).toISOString().slice(0,10);pts.push([k.slice(5),by[k]||0])}bars($('chartDays'),pts);
+  rows($('tPages'),d.pages,function(r){return r.p},25);rows($('tCh'),d.channels,function(r){return chName(r.c)});rows($('tDev'),d.devices,function(r){return DV[r.d]||r.d})}).catch(function(){})}
+function csv(name,head,list){var s=head.join(',')+'\n'+list.map(function(r){return head.map(function(h){return '"'+String(r[h]==null?'':r[h]).replace(/"/g,'""')+'"'}).join(',')}).join('\n');
+  var a=el('a');a.href=URL.createObjectURL(new Blob(['﻿'+s],{type:'text/csv'}));a.download=name;document.body.appendChild(a);a.click();a.remove()}
+function loadStatus(){api('status').then(function(d){var tb=$('tInt');tb.textContent='';d.integrations.forEach(function(x){var tr=el('tr'),a=el('td',x.name),b=el('td'),c=el('td',x.note||'','sub');
+  var ok=/connected$|configured$|published/.test(x.state)&&!/not /.test(x.state);var s=el('span',null,'status'),dt=el('span',null,'dot '+(ok?'ok':(x.state==='not built'?'bad':'warn')));s.appendChild(dt);s.appendChild(el('span',x.state));b.appendChild(s);tr.appendChild(a);tr.appendChild(b);tr.appendChild(c);tb.appendChild(tr)});
+  var b=$('baseline');b.textContent='';b.appendChild(el('p','גרסת הבסיס: '+d.baseline.date+' · '+d.baseline.note));var code=el('code',d.baseline.commit.slice(0,12),'ltr');b.appendChild(code);
+  $('readings').textContent=d.readings?('פרקים שנקראו: '+fmt(d.readings.chapters)+' · קריאות: '+fmt(d.readings.readings)):'אין נתונים'}).catch(function(){})}
+function audit(){var b=$('auditBtn'),o=$('auditOut');b.disabled=true;o.textContent='בודק…';api('audit').then(function(d){o.textContent='';if(d.error){o.textContent=d.error;return}
+  o.appendChild(el('p','נבדקו '+d.checked+' דפים מתוך '+d.sitemapUrls+' במפת האתר. בעיות: '+d.issues.length+(d.blocksAll?' · אזהרה: robots.txt חוסם את כל האתר!':''),'sub'));
+  var t=el('table'),tb=el('tbody');t.appendChild(tb);if(!d.issues.length){var tr=el('tr');tr.appendChild(el('td','לא נמצאו בעיות בדפים שנבדקו.'));tb.appendChild(tr)}
+  d.issues.forEach(function(x){var tr=el('tr'),s=el('td');s.appendChild(el('span',x.sev,'sev '+x.sev));tr.appendChild(s);var p=el('td',x.p,'ltr');tr.appendChild(p);tr.appendChild(el('td',x.what));tb.appendChild(tr)});o.appendChild(t);
+  var pre=el('details');pre.appendChild(el('summary','robots.txt'));var c=el('pre',d.robots,'ltr');pre.appendChild(c);o.appendChild(pre)}).catch(function(e){o.textContent='הבדיקה נכשלה: '+e.message}).then(function(){b.disabled=false})}
+function show(on){$('loginView').hidden=on;$('appView').hidden=!on;if(on){try{localStorage.setItem('tf-admin','1')}catch(e){}loadLive();if(!timer)timer=setInterval(function(){loadLive();state()},10000);loadStatus()}else if(timer){clearInterval(timer);timer=null}}
+$('loginForm').addEventListener('submit',function(e){e.preventDefault();$('loginBtn').disabled=true;$('loginErr').textContent='';
+  fetch('/api/admin/login',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({email:$('em').value,password:$('pw').value})})
+  .then(function(r){return r.json().then(function(j){return[r.status,j]})}).then(function(x){if(x[0]===200){$('pw').value='';$('who').textContent=x[1].email;show(true)}else $('loginErr').textContent=x[0]===503?'הכניסה עוד לא הוגדרה בשרת (חסרים ADMIN_EMAIL ו-ADMIN_PASSWORD).':x[0]===429?'יותר מדי ניסיונות. נסו שוב בעוד רבע שעה.':'אימייל או סיסמה שגויים.'})
+  .catch(function(){$('loginErr').textContent='אין חיבור לשרת.'}).then(function(){$('loginBtn').disabled=false})});
+$('logoutBtn').addEventListener('click',function(){fetch('/api/admin/logout',{method:'POST',credentials:'same-origin'}).then(function(){show(false)})});
+$('pauseBtn').addEventListener('click',function(){paused=!paused;this.setAttribute('aria-pressed',paused);this.textContent=paused?'המשך':'השהיה';state();if(!paused)loadLive()});
+document.querySelectorAll('[data-tab]').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('[data-tab]').forEach(function(x){x.classList.toggle('on',x===b)});['live','trend','seo','status'].forEach(function(t){$('tab-'+t).hidden=t!==b.dataset.tab});if(b.dataset.tab==='trend')loadTrend();if(b.dataset.tab==='status')loadStatus()})});
+document.querySelectorAll('[data-days]').forEach(function(b){b.addEventListener('click',function(){days=+b.dataset.days;document.querySelectorAll('[data-days]').forEach(function(x){x.classList.toggle('on',x===b)});loadTrend()})});
+$('csvDaily').addEventListener('click',function(){if(trendData)csv('tfilah-daily.csv',['day','n'],trendData.daily)});$('csvPages').addEventListener('click',function(){if(trendData)csv('tfilah-pages.csv',['p','n'],trendData.pages)});
+$('auditBtn').addEventListener('click',audit);
+$('themeBtn').addEventListener('click',function(){var r=document.documentElement,d=r.dataset.theme==='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);r.dataset.theme=d?'light':'dark'});
+fetch('/api/admin/data?q=me',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(r.ok)return r.json().then(function(j){$('who').textContent=j.email;show(true)});$('loginView').hidden=false;if(r.status===503)$('loginErr').textContent='הכניסה עוד לא הוגדרה בשרת (חסרים ADMIN_EMAIL ו-ADMIN_PASSWORD).'}).catch(function(){$('loginView').hidden=false});
+})();
+</script>
+</body></html>

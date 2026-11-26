@@ -1,0 +1,12 @@
+(function(){try{var n=navigator,w=window,D=document;if(n.webdriver||n.doNotTrack==="1"||w.doNotTrack==="1"||n.globalPrivacyControl)return;try{if(localStorage.getItem("tf-admin"))return}catch(e){}
+var r="";try{r=D.referrer?new URL(D.referrer).hostname:""}catch(e){}var u="";try{u=(new URLSearchParams(location.search).get("utm_source")||"").toLowerCase()}catch(e){}
+var M=[[/(^|\.)(chatgpt\.com|openai\.com)$/,"ai:chatgpt"],[/(^|\.)perplexity\.ai$/,"ai:perplexity"],[/^gemini\.google\.com$/,"ai:gemini"],[/(^|\.)copilot\.microsoft\.com$/,"ai:copilot"],[/(^|\.)claude\.ai$/,"ai:claude"],[/(^|\.)(grok\.com|x\.ai)$/,"ai:grok"],[/(^|\.)google\.[a-z.]+$/,"search:google"],[/(^|\.)bing\.com$/,"search:bing"],[/(^|\.)duckduckgo\.com$/,"search:duckduckgo"],[/(^|\.)yahoo\.com$/,"search:yahoo"],[/(^|\.)yandex\.[a-z]+$/,"search:yandex"],[/(^|\.)(facebook\.com|fb\.com)$/,"social:facebook"],[/(^|\.)instagram\.com$/,"social:instagram"],[/(^|\.)(whatsapp\.com|wa\.me)$/,"social:whatsapp"],[/^(t\.co|x\.com|twitter\.com)$/,"social:x"],[/(^|\.)youtube\.com$/,"social:youtube"],[/^(t\.me|web\.telegram\.org)$/,"social:telegram"]];
+function ch(){if(/^[a-z0-9_-]{1,24}$/.test(u))return"utm:"+u;if(!r)return"direct";if(r===location.hostname||r==="www."+location.hostname)return"internal";for(var i=0;i<M.length;i++)if(M[i][0].test(r))return M[i][1];return"referral"}
+var a=n.userAgent||"",d=/iPad|Tablet/i.test(a)?"t":/Mobi|Android|iPhone/i.test(a)?"m":"d";
+function P(){var p=location.pathname;if(/^\/y\//.test(p))return"/y/";if(p==="/"&&location.hash){var h=(location.hash.match(/^#([a-z]{1,12})/)||[])[1];if(h)return"/#"+h}return/^\/(?:[a-z0-9][a-z0-9\-\/]{0,90}\/)?$/.test(p)?p:""}
+function id(){return Math.random().toString(36).slice(2,10)}var c=ch(),v=id(),p=P();
+function S(k){if(!p)return;var b=JSON.stringify({k:k,p:p,c:c,d:d,v:v});try{if(n.sendBeacon&&n.sendBeacon("/api/ev",new Blob([b],{type:"application/json"})))return}catch(e){}try{fetch("/api/ev",{method:"POST",body:b,keepalive:true,headers:{"content-type":"application/json"}})}catch(e){}}
+S("pv");setInterval(function(){if(D.visibilityState==="visible")S("hb")},60000);
+addEventListener("hashchange",function(){var q=P();if(q!==p){p=q;v=id();c="internal";S("pv")}});
+addEventListener("beforeprint",function(){S("print")});
+D.addEventListener("click",function(e){var l=e.target&&e.target.closest&&e.target.closest("a[href]");if(l&&/wa\.me|whatsapp:|api\.whatsapp|t\.me\/share/.test(l.getAttribute("href")||""))S("share")},true)}catch(e){}})();

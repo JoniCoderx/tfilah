@@ -62,7 +62,7 @@ def snippet(s, n=150):
 def esc(s):
     return html.escape(s, quote=True)
 
-TAILS = ("טקסט מלא בניקוד.", "קריאה נוחה בנייד, עם שליטה בגודל הכתב ובהצגת הניקוד.", "חינם וללא הרשמה, באתר תפילה.")
+TAILS = ("טקסט מלא בניקוד.", "קריאה נוחה בנייד, עם שליטה בגודל הכתב ובהצגת הניקוד.", "באתר תפילה, כל התפילות במקום אחד.")
 
 def fit_desc(head, body="", tails=TAILS):
     """meta description of 120 to 160 characters: the head, then as much of the opening as fits (whole words only)"""
@@ -1199,7 +1199,7 @@ for i, (k, t, chs) in enumerate(NEEDS):
         title = f"{h1}: פרקים {names} | {BRAND}"
         lead = f"{cnt} שנוהגים לומר {t}{alt}: {names}. כל הפרקים כאן ברצף, בניקוד מלא."
         desc = fit_desc(f"{h1}{alt}: {cnt} שנוהגים לומר, פרקים {names}. כל הפרקים ברצף בעמוד אחד, בניקוד מלא",
-                        tails=("עם קישור לכל פרק בנפרד.", "קריאה נוחה בנייד.", "חינם וללא הרשמה."))
+                        tails=("עם קישור לכל פרק בנפרד.", "קריאה נוחה בנייד.", "באתר תפילה."))
     text = "".join(f'<h2 id="p{c}"><a href="/tehillim/{c}/">תהילים פרק {gem(c)}</a></h2>{verses(c)}' for c in chs)
     if k == "tikkun":
         # what is said before and after the ten psalms, from the edition named in data/tikkun.json
@@ -1584,7 +1584,7 @@ hub += '<h2 class="sec">כל התפילות לפי נוסח</h2><div class="rela
 for n in NUS:
     hub += f'<h2 class="sec big" id="{n}"><a href="/siddur/{n}/">נוסח {esc(NUS[n])}</a></h2>' + nusach_lists(n, "h3", n + "-g")
 page("/siddur/", f"סידור תפילה אונליין | עדות המזרח, ספרד ואשכנז | {BRAND}",
-     "סידור תפילה מלא אונליין בניקוד, בחינם ובלי פרסומות: שחרית, מנחה, ערבית, ברכת המזון, תפילת הדרך, שבת וחגים, בנוסח עדות המזרח, ספרד ואשכנז.",
+     "סידור תפילה מלא אונליין בניקוד, בלי פרסומות: שחרית, מנחה, ערבית, ברכת המזון, תפילת הדרך, שבת וחגים, בנוסח עדות המזרח, ספרד ואשכנז.",
      "סידור תפילה", [("סידור", "/siddur/")], after=hub, app_hash="siddur", hub=True, prio="0.9",
      lead="כל התפילות בשלושה נוסחים, בניקוד מלא. כל תפילה בעמוד קריאה משלה.",
      ld=[collection("סידור תפילה", "/siddur/", [f"/siddur/{n}/" for n in NUS])])
@@ -1890,7 +1890,7 @@ page("/sefer/", f"ספרייה: פרקי אבות, מגילות, פרק שירה
 # Explainers that lead into the app
 # =====================================================================
 SB_ON = bool(re.search(r'supabaseUrl:\s*"[^"]+"|^\s*yachad:\s*true', open(os.path.join(ROOT, "config.js"), encoding="utf-8").read(), re.M))
-Y_QA = [('איך מצטרפים לקריאה קיימת?', 'נכנסים לקישור שקיבלתם, או בוחרים קריאה מהרשימה. לוקחים פרק, קוראים ולוחצים ”סיימתי”.'), ('על מה אפשר לפתוח קריאה?', 'לרפואה שלמה, לעילוי נשמה, לזיווג הגון, להצלחה ולישועה, או לבקשה כללית.'), ('זה עולה כסף? צריך להירשם?', 'לא. בלי חשבון, בלי הורדה ובלי תשלום.'), ('מי רואה את הקריאה שפתחתי?', 'מי שקיבל מכם את הקישור. ברשימה כאן היא מופיעה רק אם בחרתם בכך.'), ('לקחתי פרק ולא הספקתי לקרוא', 'אחרי 24 שעות הפרק חוזר להיות פנוי, ומישהו אחר יכול לקחת אותו.'), ('מה קורה כשכל הספר נקרא?', 'הספר נשלם, ומתחיל סבב חדש.')]
+Y_QA = [('איך מצטרפים לקריאה קיימת?', 'נכנסים לקישור שקיבלתם, או בוחרים קריאה מהרשימה. לוקחים פרק, קוראים ולוחצים ”סיימתי”.'), ('על מה אפשר לפתוח קריאה?', 'לרפואה שלמה, לעילוי נשמה, לזיווג הגון, להצלחה ולישועה, או לבקשה כללית.'), ('מי רואה את הקריאה שפתחתי?', 'מי שקיבל מכם את הקישור. ברשימה כאן היא מופיעה רק אם בחרתם בכך.'), ('לקחתי פרק ולא הספקתי לקרוא', 'אחרי 24 שעות הפרק חוזר להיות פנוי, ומישהו אחר יכול לקחת אותו.'), ('מה קורה כשכל הספר נקרא?', 'הספר נשלם, ומתחיל סבב חדש.')]
 Y_PIN = "93fe6ej9xd"  # the standing reading for the soldiers; shown first only while it is on the public list
 Y_JS = ("(function(){var PIN='" + Y_PIN + "',K={neshama:['לעילוי נשמה','לעילוי נשמת ',' ז״ל'],refuah:['לרפואה שלמה','',''],zivug:['לזיווג הגון','',''],hatzlacha:['להצלחה ולישועה','','']};"
         "function get(u,f){fetch(u).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.data)f(j.data)}).catch(function(){})}"
@@ -1912,7 +1912,7 @@ Y_JS = ("(function(){var PIN='" + Y_PIN + "',K={neshama:['לעילוי נשמה'
         "ul.textContent='';L.forEach(function(m){ul.appendChild(card(m))});none.hidden=!v||L.length>0}"
         "q.addEventListener('input',draw);draw();if(rest.length||pin)s.hidden=false})})();")
 yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.</p>'
-          + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a><small>בחינם ובלי הרשמה. דקה אחת וזה פתוח.</small>'
+          + ('<a class="btn" href="/#znew">פתחו קריאה משותפת</a>'
              '<ul class="ynum" id="ynum" hidden><li><b data-k="chapters">0</b>פרקים נקראו</li><li><b data-k="readings">0</b>קריאות נפתחו</li></ul></div>' if SB_ON else
              '<a class="btn" href="/tehillim/">לקריאת תהילים עכשיו</a><small>הקריאה המשותפת תיפתח בקרוב. בינתיים כל ספר התהילים פתוח לקריאה באתר.</small></div>')
           + ('<section id="ypin" hidden><h2 class="sec">קריאה פתוחה עכשיו</h2><ul class="yrec ypin"></ul></section>' if SB_ON else '')
@@ -1926,19 +1926,19 @@ yachad = ('<div class="yhero"><p>כל אחד פרק.<br>ביחד ספר שלם.<
              '</section>' if SB_ON else '') +
           '<div class="prose"><h2>חלוקת תהילים בין המשתתפים</h2>'
           '<p>150 פרקי הספר מתחלקים בין כל מי שמצטרף. כל אחד לוקח פרק, קורא ומסמן שקרא.</p></div>'
-          '<figure class="yfig"><img src="/icons/tehillim-yachad.png?v=1" width="1200" height="1200" loading="lazy" decoding="async" '
+          '<figure class="yfig"><img src="/icons/tehillim-yachad.png?v=2" width="1200" height="1200" loading="lazy" decoding="async" '
           'alt="תהילים יחד: קריאת תהילים משותפת באתר תפילה, כפי שהיא נראית בטלפון, עם מספר הפרקים שנקראו וכפתור לקבלת פרק"></figure>'
           + "".join(f'<details class="qa"><summary>{q}</summary><p>{a_}</p></details>' for q, a_ in Y_QA)
           + ('' if SB_ON else '<p class="note">העמוד הזה מסביר איך הקריאה המשותפת תעבוד. היא עדיין לא פתוחה לשימוש.</p>'))
 yachad += chips("לקריאה עצמית", [("/tehillim/", "ספר תהילים, כל 150 הפרקים"), ("/kelim/shem/", "תהילים לפי שם"), ("/tehillim/refuah/", "תהילים לרפואה שלמה"),
                                  ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                                  ("/tehillim/tikkun/", "תיקון הכללי"), ("/tehillim/yomi/", "תהילים יומי"), ("/kelim/shem/", "תהילים קיט לפי שם")])
-page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקריאה משותפת, בחינם | {BRAND}",
-     "תהילים יחד: קוראים תהילים ביחד, משפחה וחברים, בחינם ובלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
+page("/tehillim-yachad/", f"תהילים יחד: חלוקת תהילים וקריאה משותפת | {BRAND}",
+     "תהילים יחד: קוראים תהילים ביחד, משפחה וחברים, בלי הרשמה. פותחים קריאה לרפואה או לעילוי נשמה, שולחים קישור בוואטסאפ, וכל אחד קורא פרק עד שהספר נשלם.",
      "תהילים יחד", [("תהילים יחד", "/tehillim-yachad/")], after=yachad, hub=True, prio="0.8", h1_ctx="קריאת תהילים משותפת", script=Y_JS if SB_ON else "",
      lead="קוראים תהילים ביחד: מחלקים את 150 הפרקים בין כל מי שמצטרף, עד שהספר כולו נקרא.",
      ld=[{"@type": "WebPage", "name": "תהילים יחד", "url": SITE + "/tehillim-yachad/", "inLanguage": "he", "isPartOf": WEBSITE, "about": BOOK_T,
-          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/icons/tehillim-yachad.png?v=1", "width": 1200, "height": 1200,
+          "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/icons/tehillim-yachad.png?v=2", "width": 1200, "height": 1200,
                                  "caption": "תהילים יחד: קריאת תהילים משותפת באתר תפילה"}}])
 
 # ---------- personal tools: what each one does and how it calculates (read from the app's own code), then into the app ----------
@@ -2021,7 +2021,7 @@ for i, (k, t, d) in enumerate(KELIM):
             + (chips("רוצים שעוד אנשים יקראו?", [("/tehillim-yachad/", "פתיחת קריאת תהילים משותפת"), ("/kaddish/", "קדיש"), ("/tehillim/yomi/", "תהילים יומי")]) if k == "shem" else "")
             + pager((f"/kelim/{pv[0]}/", pv[1]) if pv else None, (f"/kelim/{nx[0]}/", nx[1]) if nx else None)
             + chips("קשור לכלי הזה", rel + [("/kelim/", "כל הכלים האישיים")]))
-    page(f"/kelim/{k}/", f"{ttl} | {BRAND}", fit_desc(head, tails=("הכלי נפתח באפליקציה של תפילה.", "חינם וללא הרשמה.")),
+    page(f"/kelim/{k}/", f"{ttl} | {BRAND}", fit_desc(head, tails=("הכלי נפתח באפליקציה של תפילה.", "באתר תפילה.")),
          t, [("כלים אישיים", "/kelim/"), (t, f"/kelim/{k}/")], after=body, lead=d, hub=False, prio="0.9" if k == "shem" else "0.7", script=SHEM_JS if k == "shem" else "",
          ld=[{"@type": "WebPage", "name": t, "description": d, "url": f"{SITE}/kelim/{k}/", "inLanguage": "he", "isPartOf": WEBSITE}])
     if k == "shem":
@@ -2029,7 +2029,7 @@ for i, (k, t, d) in enumerate(KELIM):
         _lb = body.replace('value="r" checked', 'value="r"').replace('value="n">', 'value="n" checked>')
         assert _lb != body and _lb.count("checked") == body.count("checked"), "the form changed: look at the landing page again"
         page("/leiluy-nishmat/", f"תהילים אותיות נשמה: לפי שם הנפטר, מפרק קי״ט | {BRAND}",
-             "תהילים אותיות נשמה לעילוי נשמת הנפטר: מקלידים את השם ומקבלים את פסוקי פרק קי״ט לפי אותיות השם ואותיות נ, ש, מ, ה, בניקוד מלא. חינם ובלי הרשמה.",
+             "תהילים אותיות נשמה לעילוי נשמת הנפטר: מקלידים את השם ומקבלים את פסוקי פרק קי״ט לפי אותיות השם ואותיות נ, ש, מ, ה, בניקוד מלא, עם קישור לשליחה למשפחה.",
              "תהילים אותיות נשמה", [("ספר תהילים", "/tehillim/"), ("תהילים אותיות נשמה", "/leiluy-nishmat/")], after=_lb, hub=False, prio="0.9", script=SHEM_JS,
              lead="מקלידים את שם הנפטר ומקבלים את הפסוקים לפי אותיות השם ואותיות ”נשמה”.",
              ld=[{"@type": "WebPage", "name": "תהילים אותיות נשמה", "url": f"{SITE}/leiluy-nishmat/", "inLanguage": "he", "isPartOf": WEBSITE}])
@@ -2042,7 +2042,7 @@ kelim += '</ul><p class="note">הכלים מחשבים לפי מה שמקליד�
 kelim += chips("קשור לכלים", [("/tehillim/119/", "תהילים פרק קיט"), ("/tehillim/neshama/", "תהילים לעילוי נשמה"), ("/tehillim/kever/", "תהילים לבית העלמין"),
                               ("/sefer/yizkor/", "יזכור"), ("/tehillim/yomi/", "תהילים יומי"), ("/tehillim-yachad/", "תהילים יחד")])
 page("/kelim/", f"כלים אישיים: תהילים לפי שם, יארצייט ויום הולדת עברי | {BRAND}",
-     fit_desc("כלי תפילה ולוח עברי: תהילים לפי שם, פסוק אישי לסוף העמידה, תהילים לפי גיל, יארצייט, יום הולדת עברי וכיוון התפילה. הסבר קצר על כל כלי, וחישוב בחינם", tails=()),
+     fit_desc("כלי תפילה ולוח עברי: תהילים לפי שם, פסוק אישי לסוף העמידה, תהילים לפי גיל, יארצייט, יום הולדת עברי וכיוון התפילה. הסבר קצר על כל כלי ואיך הוא מחשב", tails=()),
      "כלים אישיים", [("כלים אישיים", "/kelim/")], after=kelim, hub=True, prio="0.8", app_hash="kelim", app_label="לכל הכלים באפליקציה",
      lead=f"{len(KELIM)} כלים שמחשבים בשבילכם: לפי השם, לפי הגיל, לפי התאריך העברי ולפי המקום.",
      ld=[{"@type": "CollectionPage", "name": "כלים אישיים", "url": SITE + "/kelim/", "inLanguage": "he", "isPartOf": WEBSITE,
@@ -2314,7 +2314,7 @@ tb = ('<div class="prose"><p>תשעה באב הוא יום הצום על חור�
       + '<div class="prose"><h2>קינות</h2><p>הקינות עדיין אינן באתר. נוסיף אותן כשתהיה בידינו מהדורה שמותר לפרסם.</p></div>'
       + chips("צומות נוספים", [(PURL[i], l) for i, l in [("mizrach-123", "סליחות לי״ז בתמוז"), ("mizrach-121", "סליחות לעשרה בטבת"), ("mizrach-120", "סליחות לצום גדליה"), ("mizrach-122", "סליחות לתענית אסתר")]]))
 page("/tisha-beav/", f"תשעה באב: מגילת איכה, נחם וקריאת התורה | {BRAND}",
-     "תשעה באב באתר תפילה: מגילת איכה בניקוד מלא, תפילת נחם בתוך העמידה בשלושת הנוסחים וקריאת התורה לתענית ציבור. הכול בחינם ובלי הרשמה.",
+     "תשעה באב באתר תפילה: מגילת איכה בניקוד מלא, תפילת נחם בתוך העמידה בשלושת הנוסחים וקריאת התורה לתענית ציבור, לפי סדר היום ובאותיות נוחות לקריאה.",
      "תשעה באב", [("תשעה באב", "/tisha-beav/")], after=tb, hub=True, prio="0.7", lead="מגילת איכה, תפילת נחם וקריאת התורה ליום הצום.",
      ld=[{"@type": "CollectionPage", "name": "תשעה באב", "url": SITE + "/tisha-beav/", "inLanguage": "he", "isPartOf": WEBSITE}])
 
@@ -2376,7 +2376,7 @@ k_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
            '<p><small>האתר מביא את התפילה כפי שהיא במקור ואינו פוסק מתי ואיך לומר אותה. מי שרוצה הדרכה שואלת רב.</small></p></div>'
            + chips("עוד באתר", [("/segulat-rachel-imenu/", "סגולת רחל אמנו"), ("/nishmat-kol-chai/", "נשמת כל חי"), ("/mizmor-letoda/", "מזמור לתודה"), ("/sefer/shir/", "שיר השירים"), ("/tehillim/", "ספר תהילים"), ("/kelim/shem/", "תהילים לפי שם")]))
 page("/birkat-kala/", f"ברכת כלה: תפילת הכלה ביום חופתה, מנוקד להדפסה | {BRAND}",
-     "ברכת כלה בניקוד מלא: התפילה שהכלה אומרת ביום חופתה, מתוך הספר ”חופת חתנים”. עמוד נקי להדפסה או לשמירה כקובץ PDF, בחינם ובלי הרשמה.",
+     "ברכת כלה בניקוד מלא: התפילה שהכלה אומרת ביום חופתה, מתוך הספר ”חופת חתנים”. עמוד נקי להדפסה או לשמירה כקובץ PDF, עם מקור הנוסח.",
      "ברכת כלה", [("ברכת כלה", "/birkat-kala/")], text=k_text, before=k_before, after=k_after, prio="0.8", script=K_JS,
      lead="תפילת הכלה ביום חופתה, בניקוד מלא. מוכנה להדפסה.",
      ld=[{"@type": "Article", "headline": "ברכת כלה: תפילת הכלה ביום חופתה", "inLanguage": "he", "url": SITE + "/birkat-kala/", "license": KALA["license_url"]}])

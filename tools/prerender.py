@@ -146,6 +146,8 @@ h1{font-family:var(--f-disp);font-weight:900;font-size:clamp(2.2rem,7.4vw,3.3rem
 h1,h2,h3,[id]{scroll-margin-top:calc(var(--top) + .75rem)}
 h2.sec{font-family:var(--f-disp);font-weight:900;font-size:1.7rem;line-height:1.25;margin:2.25rem 0 .7rem}
 .related{display:flex;flex-wrap:wrap;gap:.45rem}
+.related.jr{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-block:2px;margin-inline:-2px;padding-inline:2px}.related.jr::-webkit-scrollbar{display:none}.related.jr a{flex:none}
+@media (max-width:480px){.related.jr{gap:.25rem}.related.jr a{padding:.3rem .5rem;font-size:.85rem}}
 .related a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.3rem 1rem;border:1px solid var(--line);background:var(--surface);text-decoration:none;color:var(--ink);font-size:.95rem;font-weight:600;line-height:1.3;border-radius:999px}
 .related a:hover{border-color:var(--stamp);color:var(--stamp)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem 1.5rem;background:var(--grad);color:#fff;text-decoration:none;font-weight:700;border-radius:999px;box-shadow:var(--sh)}
@@ -1210,7 +1212,7 @@ for i, (k, t, chs) in enumerate(NEEDS):
         title = f"תיקון הכללי המלא: עשרת המזמורים והתפילה שאחריהם | {BRAND}"
         lead = f"תיקון הכללי כפי שאומרים אותו: הפתיחה, עשרת פרקי התהילים ({names}) והתפילה שאחריהם. הכול ברצף, בניקוד מלא."
     before = (f'<p class="note">{esc(NEED_NOTE[k])}</p>' if k in NEED_NOTE else "")
-    before += ('<div class="related" style="margin-block-end:1rem">' + ('<a href="#lifnei">הפתיחה</a>' if k == "tikkun" else "")
+    before += ('<div class="related jr" style="margin-block-end:1rem">' + ('<a href="#lifnei">הפתיחה</a>' if k == "tikkun" else "")
                + "".join(f'<a href="#p{c}">פרק {gem(c)}</a>' for c in chs) + ('<a href="#acharei">התפילה שאחרי</a>' if k == "tikkun" else "") + "</div>")
     prev, nxt = (NEEDS[i - 1] if i else None), (NEEDS[i + 1] if i + 1 < len(NEEDS) else None)
     after = pager((f"/tehillim/{prev[0]}/", need_h1(prev[0])) if prev else None, (f"/tehillim/{nxt[0]}/", need_h1(nxt[0])) if nxt else None)
@@ -1239,7 +1241,7 @@ def day_page(path, h1, title, head, a, b, part, prev, nxt, rel, lead):
         lab = f"תהילים פרק {gem(c)}" + (f", {part[2]}" if part else "")
         text += f'<h2 id="p{c}"><a href="/tehillim/{c}/">{lab}</a></h2>' + (verses_part(c, part[0], part[1]) if part else verses(c))
         jump += f'<a href="#p{c}">פרק {gem(c)}</a>'
-    before = f'<div class="related" style="margin-block-end:1rem">{jump}</div>' if b > a else ""
+    before = f'<div class="related jr" style="margin-block-end:1rem">{jump}</div>' if b > a else ""
     after = pager(prev, nxt) + chips("קשור לעמוד הזה", rel) + TOGETHER_APP
     first = P[a - 1][part[0] if part else 0]
     page(path, title, fit_desc(head, first), h1, [("תהילים", "/tehillim/"), ("תהילים יומי", "/tehillim/yomi/"), (h1, path)],
@@ -1446,7 +1448,7 @@ for n, plist in by_nus.items():
                 return f'<h2 id="perek-{len(_pk)}">{_pk[-1]}</h2>'
             text = re.sub(r"<p>(?:<small>\s*)?<b>(פרק [^<]+?)\s*</b>(?:</small>)?</p>", _pkh, text)
             assert len(_pk) == 6, _pk
-            before += ('<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#perek-{i + 1}">{esc(h)}</a>' for i, h in enumerate(_pk))
+            before += ('<div class="related jr" style="margin-block-end:1rem">' + "".join(f'<a href="#perek-{i + 1}">{esc(h)}</a>' for i, h in enumerate(_pk))
                        + '<a href="#bakasha">בקשה לאחר פרק שירה</a><a href="#maakav">מעקב 40 יום</a></div>')
             _t40, _t40js = track40("perek40", "מסמנים כל יום שבו קראתם את פרק שירה.")
             after = _t40 + PEREK40_NOTE + after
@@ -1612,7 +1614,7 @@ for bi, (k, b) in enumerate(B.items()):
     after += chips("עוד בספרייה", [("/sefer/", "כל ספרי הספרייה"), ("/tehillim/", "ספר תהילים"), ("/siddur/", "סידור תפילה")])
     sub = b.get("sub", "")
     nsec = len([s for s in b["secs"] if s.get("h")])
-    jump = ('<div class="related" style="margin-block-end:1rem">' + "".join(
+    jump = ('<div class="related jr" style="margin-block-end:1rem">' + "".join(
         f'<a href="#s{j+1}">{esc(s["h"])}</a>' for j, s in enumerate(b["secs"]) if s.get("h")) + "</div>") if nsec > 1 else ""
     first_v = " ".join(b["secs"][0]["v"][:3])
     _bx = PLAIN_B.get(k, "")
@@ -1694,7 +1696,7 @@ for bi, p in enumerate(PARASHOT):
     after += chips("עוד באתר", [("/parasha/", "כל פרשות השבוע"), ("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/tehillim/", "ספר תהילים"), ("/siddur/", "סידור תפילה")])
     first = TORAH[book][c1 - 1][v1 - 1]
     before = (f'<p class="note">{esc(rng)}. {total} פסוקים, בשבע עליות.' + (f" {esc(haft)}." if haft else "") + "</p>"
-              f'<div class="related" style="margin-block-end:1rem">{jump}</div>')
+              f'<div class="related jr" style="margin-block-end:1rem">{jump}</div>')
     page(me, f"פרשת {he}: הטקסט המלא בניקוד, לפי עליות | {BRAND}",
          fit_desc(f"פרשת {he} בניקוד מלא, מחולקת לשבע העליות. {rng}, {total} פסוקים", first, tails=("לקריאה נוחה בנייד ולהדפסה.",)),
          f"פרשת {he}", [("פרשת השבוע", "/parasha/"), (f"פרשת {he}", me)], text=text, meta=f"חומש {CHUMASH[book]} · {esc(rng)}", before=before, after=after, prio="0.8",
@@ -1823,7 +1825,7 @@ k_text = ('<h2 id="bo">כשמגיעים אל הכותל</h2>'
 k_before = ('<div class="prose"><p>אין נוסח אחד מחייב לתפילה בכותל המערבי. לאורך הדורות נהגו לומר שם פסוקים ומזמורי תהילים על ירושלים ועל בית המקדש, ולהוסיף אחריהם בקשה אישית, כל אחד במילים שלו.</p>'
             '<p>בעמוד הזה מופיעים רק פסוקים ומזמורים, בסדר שמתואר במקורות, ולצד כל קטע כתוב מאיפה המנהג. '
             'השולחן ערוך מזכיר שם גם קריעה על חורבן המקדש. אם ואיך נוהגים בזה היום, שואלים רב.</p></div>'
-            '<div class="related" style="margin-block-end:1rem"><a href="#bo">כשמגיעים</a><a href="#mizmorim">מזמורים</a><a href="#churban">על החורבן</a></div>')
+            '<div class="related jr" style="margin-block-end:1rem"><a href="#bo">כשמגיעים</a><a href="#mizmorim">מזמורים</a><a href="#churban">על החורבן</a></div>')
 k_after = ('<div class="prose"><h2 class="sec">מקורות</h2><ul>'
            '<li>הפסוקים בבואו אל הכותל והמזמורים: ”מנהג אמירת תהלים ליד הכותל המערבי, לקט תיעוד היסטורי”, הקרן למורשת הכותל המערבי '
            f'(<a href="{_KSRC}" target="_blank" rel="noopener">לקריאת הלקט</a>), שמביא את ”שערי דמעה”, מכתב מירושלים משנת שע״ו, את רבי משה פוריית מפראג ואת רבי משה חאגיז.</li>'
@@ -2292,7 +2294,7 @@ ch_before = ('<div class="prose"><p>מדליקים נר אחד בלילה הרא
              '<table class="zt zday"><thead><tr><th scope="col">נר</th><th scope="col">הערב של</th><th scope="col">ברכות</th></tr></thead><tbody>'
              + "".join(f'<tr><td>נר {o}</td><td>{d}</td><td>{b}</td></tr>' for o, d, b in CH_NIGHTS)
              + '</tbody></table></div>'
-             '<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#{n}">נוסח {esc(NUS[n])}</a>' for n, _ in CH_SETS) + "</div>")
+             '<div class="related jr" style="margin-block-end:1rem">' + "".join(f'<a href="#{n}">נוסח {esc(NUS[n])}</a>' for n, _ in CH_SETS) + "</div>")
 CH_JS = "(function(){try{var U=location.origin+'/chanukah/?utm_source=chanukah',wa=document.getElementById('zwa'),im=document.getElementById('zim'),ms=document.getElementById('zmsg');var ORD=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שביעי','שמיני'];function hd(d){var o={};new Intl.DateTimeFormat('en-u-ca-hebrew',{month:'long',day:'numeric',timeZone:'Asia/Jerusalem'}).formatToParts(d).forEach(function(x){o[x.type]=x.value});return o}function night(now){for(var k=0;k<8;k++){var h=hd(new Date(+now+864e5-k*864e5));if(h.month==='Kislev'&&+h.day===25)return k+1}return 0}var N=0;try{N=night(new Date())}catch(e){}var TX=N?'חנוכה שמח 🕎\\nהערב מדליקים נר '+ORD[N-1]+' של חנוכה.\\nברכות ההדלקה, הנרות הללו ומעוז צור:\\n':'חנוכה שמח 🕎\\nברכות הדלקת נרות חנוכה, הנרות הללו ומעוז צור, בשלושה נוסחים:\\n';if(wa)wa.href='https://wa.me/?text='+encodeURIComponent(TX+U);function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}function flame(x,cx,cy,s){x.fillStyle='rgba(255,228,138,.3)';x.beginPath();x.arc(cx,cy-6*s,30*s,0,7);x.fill();x.fillStyle='#FFE48A';x.beginPath();x.moveTo(cx,cy-40*s);x.bezierCurveTo(cx+22*s,cy-12*s,cx+16*s,cy+12*s,cx,cy+12*s);x.bezierCurveTo(cx-16*s,cy+12*s,cx-22*s,cy-12*s,cx,cy-40*s);x.fill()}function draw(){var c=document.createElement('canvas');c.width=1080;c.height=1350;var x=c.getContext('2d'),g=x.createLinearGradient(0,0,0,1350);g.addColorStop(0,'#1F8FD9');g.addColorStop(.55,'#0F62B0');g.addColorStop(1,'#072F66');x.fillStyle=g;x.fillRect(0,0,1080,1350);x.direction='rtl';x.textAlign='center';x.fillStyle='#FFE48A';x.font='900 150px Heebo,Assistant,sans-serif';x.shadowColor='rgba(4,36,74,.4)';x.shadowBlur=26;x.shadowOffsetY=8;x.fillText('חנוכה שמח',540,250);x.fillStyle='#fff';x.font='700 60px Heebo,Assistant,sans-serif';x.shadowBlur=14;x.fillText(N?'נר '+ORD[N-1]+' של חנוכה':'ברכות הדלקת נרות חנוכה',540,352);x.shadowColor='transparent';x.shadowBlur=0;x.shadowOffsetY=0;var base=900,xs=[];for(var i=0;i<9;i++)xs.push(940-i*100);x.fillStyle='#fff';rr(x,110,base,860,26,13);x.fill();rr(x,440,base+26,200,60,16);x.fill();rr(x,330,base+86,420,26,13);x.fill();for(var j=0;j<9;j++){var sh=j===4,pos=j<4?j:j-1,lit=sh||(N?pos<N:true),h=sh?330:250,cx=xs[j];x.globalAlpha=lit?1:.38;x.fillStyle='#fff';rr(x,cx-19,base-h,38,h,12);x.fill();x.globalAlpha=1;if(lit)flame(x,cx,base-h-22,sh?1.15:1)}x.fillStyle='#EAF6FF';x.font='600 44px Assistant,Heebo,sans-serif';x.fillText('ברכות ההדלקה בניקוד מלא, בשלושה נוסחים',540,1072);x.fillStyle='#fff';rr(x,372,1112,92,92,24);x.fill();x.save();x.translate(386,1124);x.scale(2,2);x.strokeStyle='#1E9BE4';x.lineWidth=5.6;x.lineCap='round';x.lineJoin='round';x.stroke(new Path2D('M23 26.5V13.5A7 7 0 0 0 9 13.5V22.5Q9 26.5 5 26.5'));x.fillStyle='#1E9BE4';x.beginPath();x.arc(16,19.4,2.6,0,7);x.fill();x.restore();x.textAlign='right';x.fillStyle='#fff';x.font='900 76px Heebo,Assistant,sans-serif';x.fillText('תפילה',708,1184);x.textAlign='center';x.fillStyle='#fff';rr(x,300,1232,480,70,35);x.fill();x.direction='ltr';x.fillStyle='#0A5CA8';x.font='700 40px Assistant,Heebo,sans-serif';x.fillText('tfilah.com/chanukah',540,1281);return c}if(im)im.onclick=function(){im.disabled=true;var ft=document.fonts&&document.fonts.load?Promise.all([document.fonts.load('900 100px Heebo'),document.fonts.load('700 50px Heebo'),document.fonts.load('600 40px Assistant')]):Promise.resolve();ft.catch(function(){}).then(function(){draw().toBlob(function(bl){im.disabled=false;if(!bl)return;var f=new File([bl],'chanukah'+(N?'-'+N:'')+'.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:TX+U}).catch(function(){});return}var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download=f.name;document.body.appendChild(a);a.click();a.remove();if(ms)ms.textContent='התמונה נשמרה. אפשר לשלוח אותה בוואטסאפ.'},'image/png')})};window.__chNight=night}catch(e){}})();"
 ch_before = SHARE_HTML + ch_before
 ch_after = chips("כל קטע בעמוד משלו", ch_links) + chips("עוד לחנוכה ולשבת", [("/zmanei-shabbat/", "זמני כניסת ויציאת שבת"), ("/siddur/", "סידור תפילה"), ("/tehillim/", "ספר תהילים")])

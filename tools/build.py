@@ -24,7 +24,7 @@ for l in links:
     s = s.replace(l, "", 1)
 
 DESC = "סידור תפילה אונליין בניקוד מלא, בנוסח עדות המזרח, ספרד ואשכנז, עם ספר תהילים, פרשת השבוע, זמני היום ותהילים יחד. בלי פרסומות, נוח לקריאה בנייד."
-TITLE = "סידור תפילה אונליין ותהילים בניקוד מלא | תפילה"
+TITLE = "סידור תפילה אונליין ותהילים בניקוד מלא | תפילה Tfilah"
 
 head = f"""<!doctype html>
 <html lang="he" dir="rtl">
@@ -50,7 +50,7 @@ head = f"""<!doctype html>
 <meta property="og:url" content="https://tfilah.com/">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":"Tfilah.com","url":"https://tfilah.com/","inLanguage":"he","description":"{DESC}","publisher":{{"@type":"Organization","name":"תפילה","url":"https://tfilah.com/","logo":"https://tfilah.com/icons/icon-512.png","sameAs":["https://www.facebook.com/tfilahcom"]}}}}</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"תפילה","alternateName":["Tfilah","Tfilah.com","תפילה Tfilah"],"url":"https://tfilah.com/","inLanguage":"he","description":"{DESC}","publisher":{{"@type":"Organization","name":"תפילה","alternateName":"Tfilah","url":"https://tfilah.com/","logo":"https://tfilah.com/icons/icon-512.png","sameAs":["https://www.facebook.com/tfilahcom"]}}}}</script>
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","name":"תפילה: סידור תפילה אונליין ותהילים","url":"https://tfilah.com/","inLanguage":"he","isPartOf":{{"@type":"WebSite","url":"https://tfilah.com/"}},"primaryImageOfPage":{{"@type":"ImageObject","url":"https://tfilah.com/icons/thumb.png?v=1","width":1200,"height":1200}}}}</script>
 {''.join(links)}<style>:root{{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}}body{{margin:0}}img{{max-width:100%}}[hidden]{{display:none!important}}</style>
 <script defer src="/config.js"></script>

@@ -1421,7 +1421,16 @@ for n, plist in by_nus.items():
         _desc = fit_desc(head, " ".join(_open[:3]) if _open else " ".join(paras[:3]))
         if p["id"] == "sefard-32":
             _desc = "פרק שירה המלא בניקוד, עם ההקדמה ”תניא רבי אליעזר הגדול”: שירת השמים והארץ, הצמחים, העופות ובעלי החיים. עם מעקב 40 יום למי שנוהג לומר אותו ברצף."
-            meta += ' · באנגלית: <span lang="en" dir="ltr">Perek Shira</span> · <a href="#maakav">מעקב 40 יום</a>'
+            meta += ' · <a href="#maakav">מעקב 40 יום</a>'
+            # the six chapter lines of the source become headings one can jump to; their words are the source's own
+            _pk = []
+            def _pkh(m):
+                _pk.append(m.group(1).strip())
+                return f'<h2 id="perek-{len(_pk)}">{_pk[-1]}</h2>'
+            text = re.sub(r"<p>(?:<small>\s*)?<b>(פרק [^<]+?)\s*</b>(?:</small>)?</p>", _pkh, text)
+            assert len(_pk) == 6, _pk
+            before += ('<div class="related" style="margin-block-end:1rem">' + "".join(f'<a href="#perek-{i + 1}">{esc(h)}</a>' for i, h in enumerate(_pk))
+                       + '<a href="#bakasha">בקשה לאחר פרק שירה</a><a href="#maakav">מעקב 40 יום</a></div>')
             _t40, _t40js = track40("perek40", "מסמנים כל יום שבו קראתם את פרק שירה.")
             after = _t40 + PEREK40_NOTE + after
             after = chips("מהדורה נוספת", [("/sefer/perek/", "פרק שירה לפי פרקים, עם מקורות הפסוקים והבקשה שאחריו")]) + after

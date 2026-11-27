@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- The WhatsApp sticker pack: each .stk is drawn on a 512x512 transparent square and captured by tools/build-stickers.js.
+     Every sticker carries the site's mark, so a sticker passed along always says where it came from. -->
+<html lang="he" dir="rtl"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:H;font-weight:900;src:url(../../fonts/heebo-hebrew-900.woff2)}
+@font-face{font-family:HL;font-weight:900;src:url(../../fonts/heebo-latin-900.woff2)}
+*{margin:0;box-sizing:border-box}
+body{background:transparent;display:flex;flex-wrap:wrap;width:2048px}
+.cell{width:512px;height:512px;position:relative;display:grid;place-items:center}
+/* the die-cut look: a thick white edge around the whole shape, then a soft shadow */
+.stk{position:relative;display:flex;flex-direction:column;align-items:center;
+  filter:drop-shadow(7px 0 0 #fff) drop-shadow(-7px 0 0 #fff) drop-shadow(0 7px 0 #fff) drop-shadow(0 -7px 0 #fff) drop-shadow(5px 5px 0 #fff) drop-shadow(-5px -5px 0 #fff) drop-shadow(0 10px 12px rgba(0,0,0,.28))}
+.em{font-family:'Noto Color Emoji';font-size:150px;line-height:1;margin-bottom:-34px;position:relative;z-index:2}
+.plate{padding:26px 40px 30px;border-radius:44px;background:linear-gradient(160deg,var(--a),var(--b));color:var(--c,#fff);font:900 var(--fs,92px)/1 H;text-align:center;white-space:nowrap;
+  box-shadow:inset 0 -10px 0 rgba(0,0,0,.14),inset 0 6px 0 rgba(255,255,255,.28)}
+.plate small{display:block;font-size:.48em;margin-top:10px;opacity:.92}
+.mark{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:6px 14px 6px 8px;border-radius:999px;background:#fff;color:#0A5CA8;font:900 25px/1 HL;direction:ltr;white-space:nowrap;z-index:3;box-shadow:0 2px 0 rgba(10,92,168,.18)}
+.mark i{width:26px;height:26px;border-radius:8px;display:block;background:url(../../icons/favicon.svg) center/cover}
+</style></head><body>
+
+<div class="cell" id="shabbat-shalom"><div class="stk" style="--r:-5deg"><div class="em">🕯️🕯️</div><div class="plate" style="--a:#1E5FA8;--b:#0B2447;--c:#FFE48A">שבת שלום</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="shavua-tov"><div class="stk" style="--r:4deg"><div class="em">✨</div><div class="plate" style="--a:#8E5CF7;--b:#4B23B8">שבוע טוב</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="amen"><div class="stk" style="--r:-6deg"><div class="em">🙏</div><div class="plate" style="--a:#FFE14D;--b:#F7B500;--c:#3A2A00;--fs:150px">אמן!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="mazal-tov"><div class="stk" style="--r:5deg"><div class="em">🎉</div><div class="plate" style="--a:#FF6FA5;--b:#E8338B;--fs:104px">מזל טוב!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="besha-tova"><div class="stk" style="--r:-3deg"><div class="em">🌟</div><div class="plate" style="--a:#2CC6B0;--b:#0E8C7E">בשעה טובה</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="refua-shlema"><div class="stk" style="--r:4deg"><div class="em">💚</div><div class="plate" style="--a:#3DD68C;--b:#12A35E;--fs:84px">רפואה שלמה</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="chodesh-tov"><div class="stk" style="--r:-5deg"><div class="em">🌙</div><div class="plate" style="--a:#2B3E8C;--b:#141D4A;--c:#FFE48A">חודש טוב</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="chanukah-sameach"><div class="stk" style="--r:3deg"><div class="em">🕎</div><div class="plate" style="--a:#2FA9EA;--b:#0A5CA8;--fs:84px">חנוכה שמח<small style="color:#FFE48A">אורים וסופגניות</small></div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="chag-sameach"><div class="stk" style="--r:-4deg"><div class="em">🎊</div><div class="plate" style="--a:#FF9A3C;--b:#F2552C">חג שמח!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="toda-raba"><div class="stk" style="--r:5deg"><div class="em">🙌</div><div class="plate" style="--a:#FFB547;--b:#F08A00;--c:#3A2400">תודה רבה!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="lechaim"><div class="stk" style="--r:-6deg"><div class="em">🥂</div><div class="plate" style="--a:#E5455B;--b:#A3142E;--fs:120px">לחיים!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="behatzlacha"><div class="stk" style="--r:4deg"><div class="em">🍀</div><div class="plate" style="--a:#7BD94A;--b:#3E9B1C;--fs:104px">בהצלחה!</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="tizku-lemitzvot"><div class="stk" style="--r:-4deg"><div class="em">💛</div><div class="plate" style="--a:#FFE48A;--b:#F2B705;--c:#4A3200;--fs:80px">תזכו למצוות</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="karati-perek"><div class="stk" style="--r:5deg"><div class="em">📖✅</div><div class="plate" style="--a:#35A9EC;--b:#1477C9;--fs:88px">קראתי פרק<small>תהילים יחד</small></div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="chaser-asiri"><div class="stk" style="--r:-5deg"><div class="em">🏃</div><div class="plate" style="--a:#FF5E7E;--b:#D42A55;--fs:76px">חסר עשירי<small>למניין! מי בא?</small></div><div class="mark"><i></i>tfilah.com</div></div></div>
+<div class="cell" id="matai-shabbat"><div class="stk" style="--r:4deg"><div class="em">🤔</div><div class="plate" style="--a:#FFFFFF;--b:#E3F2FC;--c:#0B2E4F;--fs:72px">מתי נכנסת<br>שבת???</div><div class="mark"><i></i>tfilah.com</div></div></div>
+<script>
+// every sticker is scaled to sit inside the square with room for its white edge, then tilted a little
+document.querySelectorAll('.stk').forEach(e=>{const k=Math.min(1.25,420/e.offsetWidth,400/e.offsetHeight);
+  e.style.transform=`rotate(${getComputedStyle(e).getPropertyValue('--r')||'-4deg'}) scale(${k})`});
+</script></body></html>

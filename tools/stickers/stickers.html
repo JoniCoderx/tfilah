@@ -37,6 +37,9 @@ body{background:transparent;display:flex;flex-wrap:wrap;width:2048px}
 <div class="cell" id="matai-shabbat"><div class="stk" style="--r:4deg"><div class="em">🤔</div><div class="plate" style="--a:#FFFFFF;--b:#E3F2FC;--c:#0B2E4F;--fs:72px">מתי נכנסת<br>שבת???</div><div class="mark"><i></i>tfilah.com</div></div></div>
 <script>
 // every sticker is scaled to sit inside the square with room for its white edge, then tilted a little
-document.querySelectorAll('.stk').forEach(e=>{const k=Math.min(1.25,420/e.offsetWidth,400/e.offsetHeight);
-  e.style.transform=`rotate(${getComputedStyle(e).getPropertyValue('--r')||'-4deg'}) scale(${k})`});
+// run by the build once the fonts have loaded, so the measured width is the real one
+window.fit=()=>document.querySelectorAll('.stk').forEach(e=>{e.style.transform='';let L=1e9,T=1e9,R=-1e9,B=-1e9;
+  for(const x of [e,...e.querySelectorAll('*')]){const r=x.getBoundingClientRect();L=Math.min(L,r.left);T=Math.min(T,r.top);R=Math.max(R,r.right);B=Math.max(B,r.bottom)}
+  // the white edge and the shadow add about 20px on every side, so the drawn shape keeps to about 400px of the 512px square
+  const k=Math.min(1.2,396/(R-L),396/(B-T));e.style.transform=`scale(${k})`});
 </script></body></html>

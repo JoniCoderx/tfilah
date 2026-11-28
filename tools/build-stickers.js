@@ -9,7 +9,7 @@ fs.mkdirSync(OUT, { recursive: true });
   const b = await chromium.launch({ args: ['--allow-file-access-from-files'] });
   const p = await b.newPage({ viewport: { width: 2048, height: 2048 } });
   await p.goto('file://' + path.join(__dirname, 'stickers', 'stickers.html'));
-  await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(600);
+  await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(600); await p.evaluate(() => window.fit()); await p.waitForTimeout(100);
   const ids = await p.$$eval('.cell', els => els.map(e => e.id));
   for (const id of ids) await (await p.$('#' + id)).screenshot({ path: path.join(OUT, id + '.png'), omitBackground: true });
   fs.writeFileSync(path.join(OUT, 'list.json'), JSON.stringify(ids));

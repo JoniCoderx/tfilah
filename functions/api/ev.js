@@ -1,6 +1,6 @@
 // Cloudflare Pages Function: POST /api/ev
 // First-party, anonymous page analytics for the admin dashboard (/admin/). What a page sends, and all it can send:
-//   {k: "pv" | "hb" | "print" | "share", p: public page path, c: source category, d: "m" | "t" | "d", v: random page-view id}
+//   {k: "pv" | "hb" | "print" | "share" | "stk" | "dl", p: public page path, c: source category, d: "m" | "t" | "d", v: random page-view id}
 // Nothing else is accepted. No cookie, no IP, no user agent, no full referrer, no query string and nothing a visitor typed
 // is stored. `v` is a random number made fresh on every page opening and never saved in the browser; it only lets a
 // heartbeat ("the page is still open") find its page view, so the dashboard can count pages open right now.
@@ -9,7 +9,11 @@
 // Needs the D1 binding DB (the same database as /api/yachad). Without it the answer is 204 and nothing is stored.
 // Tests: node tools/test-analytics.mjs
 
-const KINDS = new Set(["pv", "hb", "print", "share"]);
+const KINDS = new Set(["pv", "hb", "print", "share", "stk", "dl"]);
+// "stk" (a sticker sent) and "dl" (a sticker or the whole pack downloaded) name the sticker, never the person:
+// their path is /stickers/<sticker>/ or /stickers/all/, and no other kind may use such a path
+const STICKER = /^\/stickers\/(?:[a-z]{2,16}(?:-[a-z]{2,16}){0,3})\/$/;
+const STK_KINDS = new Set(["stk", "dl"]);
 const PATH = /^\/(?:[a-z0-9][a-z0-9\-\/]{0,90}\/|#[a-z]{1,12})?$/;          // "/", "/#tehillim" (the app), "/siddur/mizrach/"
 const CHANNEL = /^(?:direct|internal|referral|(?:ai|search|social):[a-z]{1,16}|utm:[a-z0-9_-]{1,24})$/;
 const DEVICE = /^[mtd]$/;
@@ -50,6 +54,7 @@ export async function onRequest({ request, env }) {
   if (keys.some(k => !["k", "p", "c", "d", "v"].includes(k))) return new Response(null, { status: 400 });   // no extra fields, ever
   const { k, p, c, d, v } = e;
   if (!KINDS.has(k) || typeof p !== "string" || !PATH.test(p) || p.startsWith("/api/") || p.startsWith("/admin/") || (p.startsWith("/y/") && p !== "/y/")
+      || STK_KINDS.has(k) !== STICKER.test(p)
       || typeof c !== "string" || !CHANNEL.test(c) || typeof d !== "string" || !DEVICE.test(d) || typeof v !== "string" || !VIEW.test(v)) {
     return new Response(null, { status: 400 });
   }

@@ -116,15 +116,16 @@ async function trend(db, env, days) {
   await ensureAnalytics(db);
   const end = new Date(nowMs(env)), d0 = new Date(end - (days - 1) * 864e5).toISOString().slice(0, 10), p0 = new Date(end - (2 * days - 1) * 864e5).toISOString().slice(0, 10);
   const q = (sql, ...a) => db.prepare(sql).bind(...a).all().then(r => r.results);
-  const [daily, pages, channels, devices, events, prev] = await Promise.all([
+  const [daily, pages, channels, devices, events, prev, stickers] = await Promise.all([
     q("select day, sum(n) as n from day where k = 'pv' and day >= ?1 group by day order by day", d0),
     q("select p, sum(n) as n from day where k = 'pv' and day >= ?1 group by p order by n desc limit 50", d0),
     q("select c, sum(n) as n from day where k = 'pv' and day >= ?1 group by c order by n desc", d0),
     q("select d, sum(n) as n from day where k = 'pv' and day >= ?1 group by d order by n desc", d0),
     q("select k, sum(n) as n from day where k != 'pv' and day >= ?1 group by k", d0),
-    q("select sum(n) as n from day where k = 'pv' and day >= ?1 and day < ?2", p0, d0)
+    q("select sum(n) as n from day where k = 'pv' and day >= ?1 and day < ?2", p0, d0),
+    q("select k, p, sum(n) as n from day where k in ('stk', 'dl') and day >= ?1 group by k, p order by n desc", d0)
   ]);
-  return { days, from: d0, daily, pages, channels, devices, events, total: daily.reduce((s, r) => s + r.n, 0), previous: (prev[0] && prev[0].n) || 0 };
+  return { days, from: d0, daily, pages, channels, devices, events, stickers, total: daily.reduce((s, r) => s + r.n, 0), previous: (prev[0] && prev[0].n) || 0 };
 }
 
 async function seoAudit(env) {

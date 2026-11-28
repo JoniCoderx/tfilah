@@ -48,6 +48,13 @@ await post({ k: "share", p: "/tehillim-yachad/", c: "internal", d: "m", v: "abc1
 ok(await n("select count(*) as n from ev where k = 'share'") === 1, "share event stored");
 ok((await ev({ request: new Request(SITE + "/api/ev", { method: "POST", body: "{}" }), env: {} })).status === 204, "no database: quietly accepted, nothing breaks");
 
+ok((await post({ k: "stk", p: "/stickers/amen/", c: "internal", d: "m", v: "abc12347" })).status === 204, "a sent sticker is counted");
+ok((await post({ k: "dl", p: "/stickers/all/", c: "internal", d: "m", v: "abc12347" })).status === 204, "a pack download is counted");
+for (const [bad, why] of [[{ k: "stk", p: "/siddur/" }, "a sticker event on another page"], [{ k: "pv", p: "/stickers/amen/" }, "a page view of a sticker path"],
+  [{ k: "dl", p: "/stickers/../" }, "a made-up sticker path"], [{ k: "stk", p: "/stickers/" }, "a sticker event with no sticker"]])
+  ok((await post({ c: "internal", d: "m", v: "abc12348", ...bad })).status === 400, "rejected: " + why);
+ok(await n("select count(*) as n from ev where k in ('stk', 'dl')") === 2, "only the two good sticker events stored");
+
 // ---------- /api/admin ----------
 const call = (path, opt = {}, e = env()) => admin({ request: new Request(SITE + path, { headers: { origin: SITE, ...(opt.headers || {}) }, method: opt.method || "GET", body: opt.body }), env: e });
 ok((await call("/api/admin/data?q=live")).status === 401, "data without a session: 401");
@@ -65,9 +72,10 @@ const auth = q => call("/api/admin/data?q=" + q, { headers: { cookie } });
 const me = await (await auth("me")).json();
 ok(me.email === "admin@tfilah.com", "session reads back the admin");
 const live = await (await auth("live")).json();
-ok(live.active === 1 && live.pv.h24 === 1 && live.recent.length === 2, "live numbers match the stored events (" + JSON.stringify({ a: live.active, h: live.pv.h24, r: live.recent.length }) + ")");
+ok(live.active === 1 && live.pv.h24 === 1 && live.recent.length === 4, "live numbers match the stored events (" + JSON.stringify({ a: live.active, h: live.pv.h24, r: live.recent.length }) + ")");
 const tr = await (await auth("trend&days=7")).json();
 ok(tr.total === 1 && tr.pages[0].p === "/siddur/" && tr.channels[0].c === "search:google", "trend sums the daily rollup");
+ok(tr.stickers.length === 2 && tr.stickers.some(r => r.k === "stk" && r.p === "/stickers/amen/" && r.n === 1), "trend lists sticker sends and downloads");
 const forged = cookie.slice(0, -3) + "AAA";
 ok((await call("/api/admin/data?q=me", { headers: { cookie: forged } })).status === 401, "forged signature refused");
 ok((await call("/api/admin/data?q=me", { headers: { cookie } }, env({ ADMIN_PASSWORD: "a-new-long-password-456" }))).status === 401, "changing the password signs sessions out");
